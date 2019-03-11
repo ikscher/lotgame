@@ -1,1 +1,22 @@
-dsfasdfasdfasdf
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+	<button id="res">测试restful api</button>
+</body>
+<script type="text/javascript">
+    $.ajax({
+    	url:'article',  
+    	type:'get',  //put ,edit,update,get
+        data:{},
+        dataType:'text',
+        success:function(r){
+           console.log(r);
+        }
+    })
+</script>
+</html>

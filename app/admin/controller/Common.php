@@ -85,6 +85,7 @@ class Common extends Controller
      */
     public function login()
     {
+      
         if(Session::has('admin') == false) { 
             if($this->request->isPost()) {
                 //是登录操作

@@ -17,6 +17,7 @@ foreach ($url as $k => $val) {
 	\think\Route::rule($k,$val);
 }
 
+Route::resource('article','test/article');
 
 return [
     '__pattern__' => [
