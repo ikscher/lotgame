@@ -47,6 +47,10 @@ class Index extends Controller
 
         //模型操作
         // var_dump(Db::name('admin_menu')->where('id','>',40)->select());
+
+
+        $url = \think\Db::name("urlconfig")->where(['status' => 0])->column('aliases,url');
+        var_dump($url);
         return $this->fetch();
     }
 }
