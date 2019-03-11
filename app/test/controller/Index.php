@@ -8,7 +8,7 @@ class Index extends Controller
 {
     public function index()
     {
-    	// echo 'fffff';
+    	// ///////////////////////////////////////////
     	// $admin = adminModel::get(1);
     	// $desc=$admin->admincate()->field("desc")->find();
     	// echo $admin->nickname;
@@ -24,15 +24,12 @@ class Index extends Controller
     	// echo $desc;
         //////////////////////////////////////////////
 
-  //       $admin_ = new adminModel;
-		// $admin_->id = '3';
-		// $admin_->update_time='1517622948';
+        $admin_ =adminModel::get(1);
+		
 
-		$log = new AdminLog;
-		$log->admin_menu_id = '60';
-		$log->ip = '192.168.1.107';
-		// $log->create_time=time();
-		$log->save();
+
+		// $log->together('admin_')->save();
+		$admin_->log()->save(['admin_menu_id'=>60]);
 
     	return $this->fetch();
     }
