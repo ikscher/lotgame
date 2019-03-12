@@ -9,7 +9,7 @@
 // | Author: 听雨 < 389625819@qq.com >
 // +----------------------------------------------------------------------
 
-
+use \think\Route;
 
 //url美化 例：Route::rule('blog/:id','index/blog/read');
 $url = \think\Db::name("urlconfig")->where(['status' => 1])->column('aliases,url');
