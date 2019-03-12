@@ -29,7 +29,7 @@ class Permissions extends Controller
     protected function _initialize()
     {
         //检查当前ip是不是在黑名单
-        $black_ip = Db::name('webconfig')->where('web','web')->value('black_ip');
+        $black_ip = Db::name('webconfig')->where('id','101')->value('black_ip');
         
         if(!empty($black_ip)) {
             //转化成数组

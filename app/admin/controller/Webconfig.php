@@ -18,8 +18,9 @@ class Webconfig extends Permissions
 {
     public function index()
     {
-        $web_config = Db::name('webconfig')->where('web','web')->find();
+        $web_config = Db::name('webconfig')->where('id','101')->find();
         $this->assign('web_config',$web_config);
+
         return $this->fetch();
     }
 
@@ -29,7 +30,7 @@ class Webconfig extends Permissions
             $post = $this->request->post();
             //验证  唯一规则： 表名，字段名，排除主键值，主键名
             $validate = new \think\Validate([
-                ['name', 'require', '网站名称不能为空'],
+                ['sitename', 'require', '网站名称不能为空'],
                 ['file_type', 'require', '上传类型不能为空'],
                 ['file_size','require','上传大小不能为空'],
             ]);
@@ -44,11 +45,12 @@ class Webconfig extends Permissions
                 $post['is_log'] = $post['is_log'];
             }
 
-            if(false == Db::name('webconfig')->where('web','web')->update($post)) {
+            if(false == Db::name('webconfig')->where('id','101')->update($post)) {
                 return $this->error('提交失败');
             } else {
-                addlog();
-                return $this->success('提交成功','admin/webconfig/index');
+                $operation='网站设置提交成功';
+                addlog($operation);
+                return $this->success($operation,'admin/webconfig/index');
             }
         }
     }

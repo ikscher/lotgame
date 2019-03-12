@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50553
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50553
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2018-02-06 14:06:11
+Date: 2019-03-12 23:41:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,12 +35,13 @@ CREATE TABLE `tplay_admin` (
   KEY `admin_cate_id` (`admin_cate_id`) USING BTREE,
   KEY `nickname` (`nickname`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tplay_admin
 -- ----------------------------
-INSERT INTO `tplay_admin` VALUES ('1', 'Tplay', 'admin', '31c64b511d1e90fcda8519941c1bd660', '1', '1510885948', '1517622948', '1517887954', '127.0.0.1', '1');
+INSERT INTO `tplay_admin` VALUES ('1', 'Tplay', 'admin', '31c64b511d1e90fcda8519941c1bd660', '1', '1510885948', '1517622948', '1552396652', '192.168.1.102', '1');
+INSERT INTO `tplay_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
 -- Table structure for `tplay_admin_cate`
@@ -62,7 +63,7 @@ CREATE TABLE `tplay_admin_cate` (
 -- ----------------------------
 -- Records of tplay_admin_cate
 -- ----------------------------
-INSERT INTO `tplay_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,25,26,28,29,34,35,37,38,39,40,42,43,44,45,47,48', '0', '1517022009', '超级管理员，拥有最高权限！');
+INSERT INTO `tplay_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,25,26,28,29,34,35,37,38,39,40,42,43,44,45,47,48', '0', '1552398005', '超级管理员，拥有最高权限！');
 
 -- ----------------------------
 -- Table structure for `tplay_admin_log`
@@ -73,17 +74,29 @@ CREATE TABLE `tplay_admin_log` (
   `admin_menu_id` int(11) NOT NULL COMMENT '操作菜单id',
   `admin_id` int(11) NOT NULL COMMENT '操作者id',
   `ip` varchar(100) DEFAULT NULL COMMENT '操作ip',
-  `operation_id` varchar(200) DEFAULT NULL COMMENT '操作关联id',
+  `operation` varchar(200) DEFAULT NULL COMMENT '操作关联id',
   `create_time` int(11) NOT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`),
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tplay_admin_log
 -- ----------------------------
+INSERT INTO `tplay_admin_log` VALUES ('3', '40', '1', '192.168.1.103', null, '21342143');
+INSERT INTO `tplay_admin_log` VALUES ('4', '30', '1', '192.168.1.103', null, '343434');
+INSERT INTO `tplay_admin_log` VALUES ('6', '50', '1', '192.168.1.102', '', '1552396652');
+INSERT INTO `tplay_admin_log` VALUES ('7', '28', '1', '192.168.1.102', '1', '1552396679');
+INSERT INTO `tplay_admin_log` VALUES ('8', '28', '1', '192.168.1.102', '1', '1552397046');
+INSERT INTO `tplay_admin_log` VALUES ('9', '28', '1', '192.168.1.102', '1', '1552397171');
+INSERT INTO `tplay_admin_log` VALUES ('10', '28', '1', '192.168.1.102', '1', '1552397242');
+INSERT INTO `tplay_admin_log` VALUES ('11', '28', '1', '192.168.1.102', '1', '1552397246');
+INSERT INTO `tplay_admin_log` VALUES ('12', '28', '1', '192.168.1.102', '修改角色信息成功', '1552397526');
+INSERT INTO `tplay_admin_log` VALUES ('13', '28', '1', '192.168.1.102', '修改角色信息成功', '1552398005');
+INSERT INTO `tplay_admin_log` VALUES ('14', '11', '1', '192.168.1.102', '网站设置提交成功', '1552401448');
+INSERT INTO `tplay_admin_log` VALUES ('15', '11', '1', '192.168.1.102', '网站设置提交成功', '1552401463');
 
 -- ----------------------------
 -- Table structure for `tplay_admin_menu`
@@ -340,8 +353,8 @@ INSERT INTO `tplay_urlconfig` VALUES ('1', 'admin_login', 'admin/common/login', 
 -- ----------------------------
 DROP TABLE IF EXISTS `tplay_webconfig`;
 CREATE TABLE `tplay_webconfig` (
-  `web` varchar(20) NOT NULL COMMENT '网站配置标识',
-  `name` varchar(200) NOT NULL COMMENT '网站名称',
+  `id` int(11) NOT NULL COMMENT '网站配置标识',
+  `sitename` varchar(200) NOT NULL COMMENT '网站名称',
   `keywords` text COMMENT '关键词',
   `desc` text COMMENT '描述',
   `is_log` int(1) NOT NULL DEFAULT '1' COMMENT '1开启日志0关闭',
@@ -350,10 +363,17 @@ CREATE TABLE `tplay_webconfig` (
   `statistics` text COMMENT '统计代码',
   `black_ip` text COMMENT 'ip黑名单',
   `url_suffix` varchar(20) DEFAULT NULL COMMENT 'url伪静态后缀',
-  KEY `web` (`web`) USING BTREE
+  `currency` varchar(30) DEFAULT '金币' COMMENT '货币名称',
+  `numofverify` int(11) NOT NULL DEFAULT '0' COMMENT '金币超过多少要求手机验证',
+  `allowonlinenum` tinyint(2) DEFAULT '0' COMMENT '一个账户允许几个客户端同时在线',
+  `agent_depositrate` smallint(6) DEFAULT '1000' COMMENT '代理直冲比例',
+  `agent_depositexp` decimal(3,1) DEFAULT '0.5' COMMENT '代理直冲送经验',
+  `first_depositrate` decimal(6,4) DEFAULT '0.5000' COMMENT '首充返利比例',
+  PRIMARY KEY (`id`),
+  KEY `web` (`id`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tplay_webconfig
 -- ----------------------------
-INSERT INTO `tplay_webconfig` VALUES ('web', 'Tplay后台管理框架', 'Tplay,后台管理,thinkphp5,layui', 'Tplay是一款基于ThinkPHP5.0.12 + layui2.2.45 + ECharts + Mysql开发的后台管理框架，集成了一般应用所必须的基础性功能，为开发者节省大量的时间。', '1', 'jpg,png,gif,mp4,zip,jpeg', '500', '', '', null);
+INSERT INTO `tplay_webconfig` VALUES ('101', 'Tplay后台管理框架', 'Tplay,后台管理,thinkphp5,layui', 'Tplay是一款基于ThinkPHP5.0.12 + layui2.2.45 + ECharts + Mysql开发的后台管理框架，集成了一般应用所必须的基础性功能，为开发者节省大量的时间。', '1', 'jpg,png,gif,mp4,zip,jpeg', '500', '', '', null, '金币', '0', '0', '1000', '0.4', '0.5000');

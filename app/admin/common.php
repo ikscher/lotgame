@@ -27,12 +27,12 @@ function password($password, $password_code='lshi4AsSUrUOwWV')
  * @param  [type] $data [description]
  * @return [type]       [description]
  */
-function addlog($operation_id='')
+function addlog($operation='')
 {
     //获取网站配置
-    $web_config = \think\Db::name('webconfig')->where('web','web')->find();
+    $web_config = \think\Db::name('webconfig')->where('id','101')->find();
     if($web_config['is_log'] == 1) {
-        $data['operation_id'] = $operation_id;
+        $data['operation'] = $operation;
         $data['admin_id'] = \think\Session::get('admin');//管理员id
         $request = \think\Request::instance();
         $data['ip'] = $request->ip();//操作ip

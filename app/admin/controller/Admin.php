@@ -74,8 +74,10 @@ class Admin extends Permissions
                 if(false == $model->allowField(true)->save($post,['id'=>$id])) {
                     return $this->error('修改失败');
                 } else {
-                    addlog($model->id);//写入日志
-                    return $this->success('修改个人信息成功','admin/admin/personal');
+                    $operation='修改个人信息成功';
+                    // addlog($model->id);//写入日志
+                    addlog($operation);//写入日志
+                    return $this->success($operation,'admin/admin/personal');
                 }
             } else {
                 //非提交操作
@@ -125,8 +127,10 @@ class Admin extends Permissions
 	            if(false == $model->allowField(true)->save($post,['id'=>$id])) {
 	            	return $this->error('修改失败');
 	            } else {
-                    addlog($model->id);//写入日志
-	            	return $this->success('修改管理员信息成功','admin/admin/index');
+                    $operation='修改管理员信息成功';
+                    // addlog($model->id);//写入日志
+                    addlog($operation);//写入日志
+	            	return $this->success($operation,'admin/admin/index');
 	            }
     		} else {
     			//非提交操作
@@ -166,8 +170,10 @@ class Admin extends Permissions
 	            if(false == $model->allowField(true)->save($post)) {
 	            	return $this->error('添加管理员失败');
 	            } else {
-                    addlog($model->id);//写入日志
-	            	return $this->success('添加管理员成功','admin/admin/index');
+                    $operation='添加管理员成功';
+                    // addlog($model->id);//写入日志
+                    addlog($operation);//写入日志
+	            	return $this->success($operation,'admin/admin/index');
 	            }
     		} else {
     			//非提交操作
@@ -202,8 +208,9 @@ class Admin extends Permissions
     				if(false == Db::name('admin')->where('id',$id)->update(['password'=>password($post['password'])])) {
     					return $this->error('修改失败');
     				} else {
-                        addlog();//写入日志
-    					return $this->success('修改成功','admin/main/index');
+                        $operation='密码修改成功';
+                        addlog($operation);//写入日志
+    					return $this->success($operation,'admin/main/index');
     				}
     			} else {
     				return $this->error('原密码错误');
@@ -236,8 +243,9 @@ class Admin extends Permissions
     		if(false == Db::name('admin')->where('id',$id)->delete()) {
     			return $this->error('删除失败');
     		} else {
-                addlog($id);//写入日志
-    			return $this->success('删除成功','admin/admin/index');
+                $operation='管理员删除成功';
+                addlog($operation.'-'.$id);//写入日志
+    			return $this->success($operation,'admin/admin/index');
     		}
     	}
     }
@@ -307,8 +315,10 @@ class Admin extends Permissions
                 if(false == $model->allowField(true)->save($post,['id'=>$id])) {
                     return $this->error('修改失败');
                 } else {
-                    addlog($model->id);//写入日志
-                    return $this->success('修改角色信息成功','admin/admin/adminCate');
+                    $operation='修改角色信息成功';
+                    // addlog($model->id);//写入日志
+                    addlog($operation);//写入日志
+                    return $this->success($operation,'admin/admin/adminCate');
                 }
             } else {
                 //非提交操作
@@ -354,8 +364,9 @@ class Admin extends Permissions
                 if(false == $model->allowField(true)->save($post)) {
                     return $this->error('添加角色失败');
                 } else {
-                    addlog($model->id);//写入日志
-                    return $this->success('添加角色成功','admin/admin/adminCate');
+                    $operation='添加角色成功';
+                    addlog($operation);//写入日志
+                    return $this->success($operation,'admin/admin/adminCate');
                 }
             } else {
                 //非提交操作
@@ -435,8 +446,10 @@ class Admin extends Permissions
                 if(false == Db::name('admin_cate')->where('id',$id)->delete()) {
                     return $this->error('删除失败');
                 } else {
-                    addlog($id);//写入日志
-                    return $this->success('删除成功','admin/admin/adminCate');
+                    // addlog($id);//写入日志;
+                    $operation='删除管理员成功-'.$id;
+                    addlog($operation);//写入日志
+                    return $this->success($operation,'admin/admin/adminCate');
                 }
             } else {
                 return $this->error('id不正确');

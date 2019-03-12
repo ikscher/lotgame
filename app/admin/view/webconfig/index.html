@@ -20,7 +20,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">网站名称</label>
         <div class="layui-input-block" style="max-width: 400px">
-          <input name="name" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$web_config.name}">
+          <input name="sitename" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$web_config.sitename}">
         </div>
       </div>
 
@@ -74,9 +74,38 @@
         </div>
       </div>
 
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">货币名称</label>
+        <div class="layui-input-block" style="max-width: 600px">
+          <input name="currency" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$web_config.currency}">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">代理直冲比例</label>
+        <div class="layui-input-block" style="max-width: 600px">
+          <input name="agent_depositrate" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$web_config.agent_depositrate}">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">代理直冲送经验</label>
+        <div class="layui-input-block" style="max-width: 600px">
+          <input name="agent_depositexp" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$web_config.agent_depositexp}">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">首充返利比例</label>
+        <div class="layui-input-block" style="max-width: 600px">
+          <input name="first_depositrate" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$web_config.first_depositrate}">
+        </div>
+      </div>
+
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>
+          <button class="layui-btn" lay-submit lay-filter="admin">保存</button>
           <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
       </div>

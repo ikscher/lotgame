@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\menu\index.html";i:1546481687;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552365588;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\menu\index.html";i:1552308816;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552308816;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,9 +103,9 @@
                 //将message设置为全局以便子页面调用
                 message = layui.message;
                 //主入口
-                // app.set({
-                //     type: 'iframe'
-                // }).init();
+                app.set({
+                    type: 'iframe'
+                }).init();
             });
         </script> 
     <script type="text/javascript">
