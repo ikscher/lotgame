@@ -328,9 +328,16 @@ class Admin extends Permissions
                 //是提交操作
                 $post = $this->request->post();
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
-                $validate = new \think\Validate([
-                    ['name', 'require', '角色名称不能为空'],
-                ]);
+                //第一种验证
+                // $validate = new \think\Validate([
+                //     ['name', 'require', '角色名称不能为空'],
+                // ]);
+                //第二种验证
+                $rule=['name'=> 'require'];
+                $msg=['name.require' => '角色名称不能为空'];
+                $validate = new \think\Validate($rule, $msg);
+
+
                 //验证部分数据合法性
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());

@@ -45,7 +45,7 @@ return [
     // 数据集返回类型
     'resultset_type'  => 'array',
     // 自动写入时间戳字段
-    'auto_timestamp'  => false, //默认是true,可能导致 model 插入更新时提示 没有 update_time字段
+    'auto_timestamp'  => true, //默认是true,可能导致 model 插入更新时提示 没有 update_time字段
     // 时间字段取出后的默认时间格式
     'datetime_format' => 'Y-m-d H:i:s',
     // 是否需要进行SQL性能分析

@@ -3,20 +3,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<script type="text/javascript" src="jquery.js"></script>
+    <!-- <script src="/static/public/jquery/jquery.min.js"></script> -->
+	<script src="__PUBLIC__/jquery/jquery.min.js"></script>
 </head>
 <body>
 	<button id="res">测试restful api</button>
 </body>
 <script type="text/javascript">
-    $.ajax({
-    	url:'article',  
-    	type:'get',  //put ,edit,update,get
-        data:{},
-        dataType:'text',
-        success:function(r){
-           console.log(r);
-        }
-    })
+    $('#res').click(function(){
+        $.ajax({
+        	url:'article',  
+        	type:'get',  //put ,edit,update,get
+            data:{},
+            dataType:'text',
+            success:function(r){
+               console.log(r);
+            }
+        })
+    });
 </script>
 </html>
