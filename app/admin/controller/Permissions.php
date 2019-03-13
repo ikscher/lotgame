@@ -111,7 +111,7 @@ class Permissions extends Controller
             if(!empty($param_menu)) {
                 //该url的参数设置了权限，检查用户有没有权限
                 if(false == in_array($param_menu['id'],$menus)) {
-                    return $this->error('缺少权限');
+                    return $this->error('您没有权限');
                 }
             } else {
                 //该url带参数状态未设置权限，检查该url去掉参数时，用户有无权限
@@ -119,7 +119,7 @@ class Permissions extends Controller
                 if(!empty($menu)) {
                     if(empty($menu['parameter'])) {
                         if(!in_array($menu['id'],$menus)) {
-                            return $this->error('缺少权限');
+                            return $this->error('您没有权限');
                         }
                     }
                 }

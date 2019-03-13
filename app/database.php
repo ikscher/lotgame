@@ -29,7 +29,7 @@ return [
     // 数据库编码默认采用utf8
     'charset'         => 'utf8',
     // 数据库表前缀
-    'prefix'          => 'tplay_',
+    'prefix'          => 'hov_',
     // 数据库调试模式
     'debug'           => true,
     // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
@@ -43,7 +43,7 @@ return [
     // 是否严格检查字段是否存在
     'fields_strict'   => true,
     // 数据集返回类型
-    'resultset_type'  => 'array',
+    'resultset_type'  => 'array',  //collection,array
     // 自动写入时间戳字段
     'auto_timestamp'  => true, //默认是true,可能导致 model 插入更新时提示 没有 update_time字段
     // 时间字段取出后的默认时间格式

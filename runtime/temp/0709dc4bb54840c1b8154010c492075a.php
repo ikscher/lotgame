@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"D:\mywork\lotgame\public/../app/admin\view\webconfig\index.html";i:1552401273;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"D:\mywork\lotgame\public/../app/admin\view\webconfig\index.html";i:1552442238;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,6 +101,34 @@
         <label class="layui-form-label">首充返利比例</label>
         <div class="layui-input-block" style="max-width: 600px">
           <input name="first_depositrate" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="<?php echo $web_config['first_depositrate']; ?>">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">下线投注返利比例(百分比%)</label>
+        <div class="layui-input-block" style="max-width: 150px">
+          <input name="sub_bid_rrate" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="<?php echo $web_config['sub_bid_rrate']; ?>">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">固定游戏赔率</label>
+        <div class="layui-input-block" style="max-width: 600px">
+          <input name="fix_rate" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="<?php echo $web_config['fix_rate']; ?>">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">直营模式最低提现(元)</label>
+        <div class="layui-input-block" style="max-width: 600px">
+          <input name="min_withdraw" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="<?php echo $web_config['min_withdraw']; ?>">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">直营模式最低充值(元)</label>
+        <div class="layui-input-block" style="max-width: 600px">
+          <input name="max_deposit" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="<?php echo $web_config['max_deposit']; ?>">
         </div>
       </div>
 

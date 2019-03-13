@@ -21,7 +21,12 @@ class Urlsconfig extends Permissions
     public function index()
     {
         $model = new Urlconfig();
+        // $urlconfig = $model->order('create_time desc')->limit(20)->select();
         $urlconfig = $model->order('create_time desc')->paginate(20);
+        // $data=collection($urlconfig->toArray());
+        // var_dump($data['data']); //返回 array
+        // var_dump($urlconfig); //返回 object
+        // exit;
         $this->assign('urlconfig',$urlconfig);
         return $this->fetch();
     }

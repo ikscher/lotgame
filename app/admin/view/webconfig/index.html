@@ -104,6 +104,34 @@
       </div>
 
       <div class="layui-form-item">
+        <label class="layui-form-label">下线投注返利比例(百分比%)</label>
+        <div class="layui-input-block" style="max-width: 150px">
+          <input name="sub_bid_rrate" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$web_config.sub_bid_rrate}">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">固定游戏赔率</label>
+        <div class="layui-input-block" style="max-width: 600px">
+          <input name="fix_rate" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$web_config.fix_rate}">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">直营模式最低提现(元)</label>
+        <div class="layui-input-block" style="max-width: 600px">
+          <input name="min_withdraw" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$web_config.min_withdraw}">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">直营模式最低充值(元)</label>
+        <div class="layui-input-block" style="max-width: 600px">
+          <input name="max_deposit" lay-verify="pass" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$web_config.max_deposit}">
+        </div>
+      </div>
+
+      <div class="layui-form-item">
         <div class="layui-input-block">
           <button class="layui-btn" lay-submit lay-filter="admin">保存</button>
           <button type="reset" class="layui-btn layui-btn-primary">重置</button>

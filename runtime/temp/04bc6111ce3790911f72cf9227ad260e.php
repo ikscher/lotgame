@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"D:\mywork\lotgame\public/../app/admin\view\urlsconfig\index.html";i:1546481687;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552365666;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:67:"D:\mywork\lotgame\public/../app/admin\view\signingconfig\index.html";i:1552458351;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552365666;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,10 +27,11 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">URL美化管理</li>
-        <li><a href="<?php echo url('admin/urlsconfig/publish'); ?>" class="a_menu">新增美化</a></li>
+        <li class="layui-this">签到管理</li>
+        <li><a href="<?php echo url('admin/signingconfig/publish'); ?>" class="a_menu">新增</a></li>
       </ul>
     </div>
+    <span>设置公式：签到奖励计算公式为：基数+增数*连续天数</span>
     <table class="layui-table" lay-size="sm">
       <colgroup>
         <col width="50">
@@ -40,30 +41,33 @@
         <col width="150">
         <col width="100">
         <col width="100">
+        <col width="100">
       </colgroup>
       <thead>
         <tr>
           <th>编号</th>
-          <th>美化前</th>
-          <th>美化后</th>
+          <th>等级</th>
+          <th>增数</th>
           <th>备注</th>
           <th>创建时间</th>
+          <th>最大连续天数</th>
           <th>状态</th>
           <th>操作</th>
         </tr> 
       </thead>
       <tbody>
-        <?php if(is_array($urlconfig) || $urlconfig instanceof \think\Collection || $urlconfig instanceof \think\Paginator): $i = 0; $__LIST__ = $urlconfig;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <?php if(is_array($signinconfig) || $signinconfig instanceof \think\Collection || $signinconfig instanceof \think\Paginator): $i = 0; $__LIST__ = $signinconfig;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
           <td><?php echo $vo['id']; ?></td>
-          <td><?php echo $vo['url']; ?></td>
-          <td><?php echo $vo['aliases']; ?></td>
-          <td><?php echo $vo['desc']; ?></td>
+          <td><?php echo $vo['rank']; ?></td>
+          <td><?php echo $vo['increment_num']; ?></td>
+          <td><?php echo $vo['menu']; ?></td>
           <td><?php echo $vo['create_time']; ?></td>
+          <td><?php echo $vo['max_successive_day']; ?></td>
           <td><?php if($vo['status'] == 1): ?><span class="layui-badge">启用</span><?php else: ?><span class="layui-badge layui-bg-gray">禁用</span><?php endif; ?></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a class="layui-btn layui-btn-xs a_menu layui-btn-primary" href="<?php echo url('admin/urlsconfig/publish',['id'=>$vo['id']]); ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a class="layui-btn layui-btn-xs a_menu layui-btn-primary" href="<?php echo url('admin/signingconfig/publish',['id'=>$vo['id']]); ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a class="layui-btn layui-btn-xs layui-btn-primary status" <?php if($vo['status'] == 1): ?>data-id="0"<?php else: ?>data-id="1"<?php endif; ?> id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;" ><i class="fa <?php if($vo['status'] == 1): ?>fa-toggle-on<?php else: ?>fa-toggle-off<?php endif; ?>"></i></a>
               <a class="layui-btn layui-btn-xs delete layui-btn-primary" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
@@ -72,7 +76,7 @@
         <?php endforeach; endif; else: echo "" ;endif; ?>
       </tbody>
     </table>
-    <div style="padding:0 20px;"><?php echo $urlconfig->render(); ?></div>
+    <div style="padding:0 20px;"><?php echo $signinconfig->render(); ?></div>
             
         <script src="/static/public/layui/layui.js" charset="utf-8"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
@@ -164,7 +168,7 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"<?php echo url('admin/urlsconfig/delete'); ?>",
+          url:"<?php echo url('admin/signingconfig/delete'); ?>",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);
@@ -190,7 +194,7 @@
         var status = $(this).attr('data-id');
         layer.confirm('确定要设置?', function(index) {
           $.ajax({
-            url:"<?php echo url('admin/urlsconfig/status'); ?>",
+            url:"<?php echo url('admin/signingconfig/status'); ?>",
             type:'post',
             data:{id:id,status:status},
             success:function(res) {
