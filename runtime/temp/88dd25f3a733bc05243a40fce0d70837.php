@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"D:\mywork\lotgame\public/../app/admin\view\article\publish.html";i:1552548856;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:61:"D:\mywork\lotgame\public/../app/admin\view\board\publish.html";i:1552552609;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +15,8 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li><a href="<?php echo url('admin/article/index'); ?>" class="a_menu">活动管理</a></li>
-        <li class="layui-this">新增活动</li>
+        <li><a href="<?php echo url('admin/board/index'); ?>" class="a_menu">公告管理</a></li>
+        <li class="layui-this">新增公告</li>
       </ul>
     </div> 
     <div style="margin-top: 20px;">
@@ -26,58 +26,47 @@
       <div class="layui-form-item">
         <label class="layui-form-label">标题</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input" type="text" <?php if(!(empty($article['title']) || (($article['title'] instanceof \think\Collection || $article['title'] instanceof \think\Paginator ) && $article['title']->isEmpty()))): ?>value="<?php echo $article['title']; ?>"<?php endif; ?>>
+          <input name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input" type="text" <?php if(!(empty($board['title']) || (($board['title'] instanceof \think\Collection || $board['title'] instanceof \think\Paginator ) && $board['title']->isEmpty()))): ?>value="<?php echo $board['title']; ?>"<?php endif; ?>>
         </div>
       </div>
 
 
-      <div class="layui-form-item">
+      <!-- <div class="layui-form-item">
         <label class="layui-form-label">标签</label>
         <div class="layui-input-block" style="max-width:600px;">
           <input name="tag" autocomplete="off" placeholder="标签之间用,隔开" class="layui-input" type="text" <?php if(!(empty($article['tag']) || (($article['tag'] instanceof \think\Collection || $article['tag'] instanceof \think\Paginator ) && $article['tag']->isEmpty()))): ?>value="<?php echo $article['tag']; ?>"<?php endif; ?>>
         </div>
-      </div>
+      </div> -->
 
-      <div class="layui-form-item layui-form-text">
+      <!-- <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">描述</label>
         <div class="layui-input-block" style="max-width:600px;">
           <textarea placeholder="请输入内容" class="layui-textarea" name="description"><?php if(!(empty($article['description']) || (($article['description'] instanceof \think\Collection || $article['description'] instanceof \think\Paginator ) && $article['description']->isEmpty()))): ?><?php echo $article['description']; endif; ?></textarea>
         </div>
-      </div>
+      </div> -->
 
 
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">内容</label>
         <div class="layui-input-block" style="max-width:1000px;">
-          <textarea placeholder="请输入内容" class="layui-textarea" name="content" id="container" style="border:0;padding:0"><?php if(!(empty($article['content']) || (($article['content'] instanceof \think\Collection || $article['content'] instanceof \think\Paginator ) && $article['content']->isEmpty()))): ?><?php echo $article['content']; endif; ?></textarea>
+          <textarea placeholder="请输入内容" class="layui-textarea" name="content" id="container" style="border:0;padding:0"><?php if(!(empty($board['content']) || (($board['content'] instanceof \think\Collection || $board['content'] instanceof \think\Paginator ) && $board['content']->isEmpty()))): ?><?php echo $board['content']; endif; ?></textarea>
         </div>
       </div>
       
-
       <div class="layui-form-item">
-        <label class="layui-form-label">分类</label>
-        <div class="layui-input-block" style="max-width:600px;">
-          <select name="article_cate_id" lay-filter="aihao">
-            <option value="">请选择分类</option>
-            <?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): $i = 0; $__LIST__ = $cates;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-            <option value="<?php echo $vo['id']; ?>" <?php if(!(empty($article['article_cate_id']) || (($article['article_cate_id'] instanceof \think\Collection || $article['article_cate_id'] instanceof \think\Paginator ) && $article['article_cate_id']->isEmpty()))): if($article['article_cate_id'] == $vo['id']): ?> selected=""<?php endif; endif; ?>><?php echo $vo['str']; ?><?php echo $vo['name']; ?></option>
-            <?php endforeach; endif; else: echo "" ;endif; ?>
-          </select>
-        </div>
+          <label class="layui-form-label">状态</label>
+          <div class="layui-input-block">
+            <input type="checkbox" name="status" lay-skin="switch" lay-text="ON|OFF"  <?php if(empty($board['status']) || (($board['status'] instanceof \think\Collection || $board['status'] instanceof \think\Paginator ) && $board['status']->isEmpty())): ?>checked=""<?php endif; ?> value="1">
+          </div>
       </div>
-
-
-      <div class="layui-upload" id="upload-thumb">
-        <label class="layui-form-label">缩略图</label>
-        <button type="button" class="layui-btn" id="thumb">上传图片</button>
-        <div class="layui-upload-list">
-          <label class="layui-form-label"></label>
-          <img class="layui-upload-img" id="demo1" width="150" height="150" <?php if(!(empty($article['thumb']) || (($article['thumb'] instanceof \think\Collection || $article['thumb'] instanceof \think\Paginator ) && $article['thumb']->isEmpty()))): ?>src="<?php echo geturl($article['thumb']); ?>"<?php endif; ?>><?php if(!(empty($article['thumb']) || (($article['thumb'] instanceof \think\Collection || $article['thumb'] instanceof \think\Paginator ) && $article['thumb']->isEmpty()))): ?><input type="hidden" name="thumb" value="<?php echo $article['thumb']; ?>"><?php endif; ?>
-          <p id="demoText"></p>
-        </div>
+      <div class="layui-form-item">
+          <div class="layui-input-block">
+            <input type="checkbox" name="is_top" title="置顶" <?php if(empty($board['is_top']) || (($board['is_top'] instanceof \think\Collection || $board['is_top'] instanceof \think\Paginator ) && $board['is_top']->isEmpty())): ?>checked=""<?php endif; ?> value="0" >
+          </div>
       </div>
-      <?php if(!(empty($article) || (($article instanceof \think\Collection || $article instanceof \think\Paginator ) && $article->isEmpty()))): ?>
-      <input type="hidden" name="id" value="<?php echo $article['id']; ?>">
+     
+      <?php if(!(empty($board) || (($board instanceof \think\Collection || $board instanceof \think\Paginator ) && $board->isEmpty()))): ?>
+      <input type="hidden" name="id" value="<?php echo $board['id']; ?>">
       <?php endif; ?>
       <div class="layui-form-item">
         <div class="layui-input-block">
@@ -88,7 +77,7 @@
       
     </form>
 
-    
+
     <script src="/static/public/layui/layui.js"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
     <!-- <script>
@@ -108,35 +97,7 @@
             }).init();
         });
     </script> -->
-    <script>
-    layui.use('upload', function(){
-      var upload = layui.upload;
-      //执行实例
-      var uploadInst = upload.render({
-        elem: '#thumb' //绑定元素
-        ,url: "<?php echo url('common/upload'); ?>" //上传接口
-        ,data:{use:'article_thumb'}
-        ,done: function(res){
-          //上传完毕回调
-          if(res.code == 2) {
-            $('#demo1').attr('src',res.src);
-            $('#upload-thumb').append('<input type="hidden" name="thumb" value="'+ res.id +'">');
-          } else {
-            layer.msg(res.msg);
-          }
-        }
-        ,error: function(){
-          //请求异常回调
-          //演示失败状态，并实现重传
-          var demoText = $('#demoText');
-          demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
-          demoText.find('.demo-reload').on('click', function(){
-            uploadInst.upload();
-          });
-        }
-      });
-    });
-    </script>
+
     <script>
       layui.use(['layer', 'form'], function() {
           var layer = layui.layer,
@@ -145,11 +106,12 @@
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
-                      url:"<?php echo url('admin/article/publish'); ?>",
+                      url:"<?php echo url('admin/board/publish'); ?>",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,
                       success:function(res) {
+                          console.log(res);
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;

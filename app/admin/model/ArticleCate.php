@@ -43,6 +43,7 @@ class ArticleCate extends Model
 	public function article()
     {
         //关联文章表
-        return $this->hasOne('Article');
+        // return $this->hasOne('Article');
+        return $this->hasMany('Article','article_cate_id');
     }
 }

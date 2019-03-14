@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:61:"D:\mywork\lotgame\public/../app/admin\view\article\index.html";i:1552539964;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552548490;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:59:"D:\mywork\lotgame\public/../app/admin\view\board\index.html";i:1552546321;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552548490;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,25 +27,16 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">活动管理</li>
-        <li><a href="<?php echo url('admin/article/publish'); ?>" class="a_menu">新增活动</a></li>
+        <li class="layui-this">公告管理</li>
+        <li><a href="<?php echo url('admin/board/publish'); ?>" class="a_menu">新增公告</a></li>
       </ul>
     </div> 
-      <form class="layui-form serch" action="<?php echo url('admin/article/index'); ?>" method="post">
+      <form class="layui-form serch" action="<?php echo url('admin/board/index'); ?>" method="post">
         <div class="layui-form-item" style="float: left;">
           <div class="layui-input-inline">
             <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入关键词" class="layui-input layui-btn-sm">
           </div>
-          <div class="layui-input-inline">
-            <div class="layui-inline">
-                <select name="article_cate_id" lay-search="">
-                  <option value="">分类</option>
-                  <?php if(is_array($info['cate']) || $info['cate'] instanceof \think\Collection || $info['cate'] instanceof \think\Paginator): $i = 0; $__LIST__ = $info['cate'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                  <option value="<?php echo $vo['id']; ?>"><?php echo $vo['name']; ?></option>
-                  <?php endforeach; endif; else: echo "" ;endif; ?>
-                </select>
-            </div>
-          </div>
+        
           <div class="layui-input-inline">
             <div class="layui-inline">
                 <select name="status" lay-search="">
@@ -102,11 +93,8 @@
         <tr>
           <th>ID</th>
           <th>标题</th>
-          <th>缩略图</th>
-          <th>分类</th>
           <th>创建人</th>
           <th>创建时间</th>
-          <th>最后修改人</th>
           <th>最后修改时间</th>
           <th>置顶</th>
           <th>审核</th>
@@ -114,22 +102,18 @@
         </tr> 
       </thead>
       <tbody>
-        <?php if(is_array($articles) || $articles instanceof \think\Collection || $articles instanceof \think\Paginator): $i = 0; $__LIST__ = $articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
-
           <td><?php echo $vo['id']; ?></td>
           <td><?php echo $vo['title']; ?></td>
-          <td><a href="<?php echo geturl($vo['thumb']); ?>" class="tooltip"><img src="<?php echo geturl($vo['thumb']); ?>" width="20" height="20"></a></td>
-          <td><?php echo $vo['cate']['name']; ?></td>
           <td><?php echo $vo['admin']['nickname']; ?></td>
           <td><?php echo $vo['create_time']; ?></td>
-          <td><?php echo $vo['edit_admin']; ?></td>
           <td><?php echo $vo['update_time']; ?></td>
           <td><a href="javascript:;" style="font-size:18px;" class="is_top" data-id="<?php echo $vo['id']; ?>" data-val="<?php echo $vo['is_top']; ?>"><?php if($vo['is_top'] == '1'): ?><i class="fa fa-toggle-on"></i><?php else: ?><i class="fa fa-toggle-off"></i><?php endif; ?></a></td>
           <td><a href="javascript:;" style="font-size:18px;" class="status" data-id="<?php echo $vo['id']; ?>" data-val="<?php echo $vo['status']; ?>"><?php if($vo['status'] == '1'): ?><i class="fa fa-toggle-on"></i><?php else: ?><i class="fa fa-toggle-off"></i><?php endif; ?></a></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="<?php echo url('admin/article/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="<?php echo url('admin/board/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -137,7 +121,7 @@
         <?php endforeach; endif; else: echo "" ;endif; ?>
       </tbody>
     </table>
-    <div style="padding:0 20px;"><?php echo $articles->render(); ?></div> 
+    <div style="padding:0 20px;"><?php echo $boards->render(); ?></div> 
         <script src="/static/public/layui/layui.js" charset="utf-8"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
     <script>
@@ -228,7 +212,7 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"<?php echo url('admin/article/delete'); ?>",
+          url:"<?php echo url('admin/board/delete'); ?>",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);
@@ -256,7 +240,7 @@
       }
       $.ajax({
         type:"post",
-        url:"<?php echo url('admin/article/is_top'); ?>",
+        url:"<?php echo url('admin/board/is_top'); ?>",
         data:{is_top:is_top,id:id},
         success:function(res){
           
@@ -292,7 +276,7 @@
       }
       $.ajax({
         type:"post",
-        url:"<?php echo url('admin/article/status'); ?>",
+        url:"<?php echo url('admin/board/status'); ?>",
         data:{status:status,id:id},
         success:function(res){
           

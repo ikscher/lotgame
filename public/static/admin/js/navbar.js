@@ -241,7 +241,7 @@ var a_link = document.querySelectorAll('.menu_ul li a');
 var display;
 for (var i = 0, len = a_link.length; i < len; i++) {
     a_link[i].addEventListener('click',function(e){
-        console.log(this.parentNode.children[1])
+        // console.log(this.parentNode.children[1])
         if(this.parentNode.children[1]) {
             display = this.parentNode.children[1].style.display;
              a_link.forEach(function(item,index){

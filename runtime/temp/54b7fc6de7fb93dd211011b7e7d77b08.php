@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\menu\index.html";i:1546481687;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552365666;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\menu\index.html";i:1546481687;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552548490;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,22 +92,31 @@
       <script src="/static/public/layui/layui.js" charset="utf-8"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
     <script>
-            var message;
-            layui.config({
-                base: '/static/admin/js/',
-                version: '1.0.1'
-            }).use(['app', 'message'], function() {
-                var app = layui.app,
-                    $ = layui.jquery,
-                    layer = layui.layer;
+            // var message;
+        layui.config({
+            base: '/static/admin/js/',
+            version: '1.0.1'
+        }).use(['app', 'message','laydate'], function() {
+            var app = layui.app,
+                $ = layui.jquery,
+                layer = layui.layer,
                 //将message设置为全局以便子页面调用
-                message = layui.message;
-                //主入口
-                app.set({
-                    type: 'iframe'
-                }).init();
+                message = layui.message,
+                laydate = layui.laydate;
+            //主入口
+            app.set({
+                type: 'iframe'
+            }).init();
+
+
+            laydate.render({
+              elem: '#create_time'
             });
-        </script> 
+
+        });
+        
+        
+    </script> 
     <script type="text/javascript">
     $(function(){
       var x = 10;
@@ -163,16 +172,7 @@
       return a;
     })
     </script>
-    <script>
-    layui.use('laydate', function(){
-      var laydate = layui.laydate;
-      
-      //常规用法
-      laydate.render({
-        elem: '#create_time'
-      });
-    });
-    </script>
+
   <script type="text/javascript">
 
   $('.delete').click(function(){

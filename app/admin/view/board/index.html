@@ -26,25 +26,16 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">活动管理</li>
-        <li><a href="{:url('admin/article/publish')}" class="a_menu">新增活动</a></li>
+        <li class="layui-this">公告管理</li>
+        <li><a href="{:url('admin/board/publish')}" class="a_menu">新增公告</a></li>
       </ul>
     </div> 
-      <form class="layui-form serch" action="{:url('admin/article/index')}" method="post">
+      <form class="layui-form serch" action="{:url('admin/board/index')}" method="post">
         <div class="layui-form-item" style="float: left;">
           <div class="layui-input-inline">
             <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入关键词" class="layui-input layui-btn-sm">
           </div>
-          <div class="layui-input-inline">
-            <div class="layui-inline">
-                <select name="article_cate_id" lay-search="">
-                  <option value="">分类</option>
-                  {volist name="$info.cate" id="vo"}
-                  <option value="{$vo.id}">{$vo.name}</option>
-                  {/volist}
-                </select>
-            </div>
-          </div>
+        
           <div class="layui-input-inline">
             <div class="layui-inline">
                 <select name="status" lay-search="">
@@ -101,11 +92,8 @@
         <tr>
           <th>ID</th>
           <th>标题</th>
-          <th>缩略图</th>
-          <th>分类</th>
           <th>创建人</th>
           <th>创建时间</th>
-          <th>最后修改人</th>
           <th>最后修改时间</th>
           <th>置顶</th>
           <th>审核</th>
@@ -113,22 +101,18 @@
         </tr> 
       </thead>
       <tbody>
-        {volist name="articles" id="vo"}
+        {volist name="boards" id="vo"}
         <tr>
-
           <td>{$vo.id}</td>
           <td>{$vo.title}</td>
-          <td><a href="{$vo.thumb|geturl}" class="tooltip"><img src="{$vo.thumb|geturl}" width="20" height="20"></a></td>
-          <td>{$vo.cate.name}</td>
           <td>{$vo.admin.nickname}</td>
           <td>{$vo.create_time}</td>
-          <td>{$vo.edit_admin}</td>
           <td>{$vo.update_time}</td>
           <td><a href="javascript:;" style="font-size:18px;" class="is_top" data-id="{$vo.id}" data-val="{$vo.is_top}">{eq name="vo.is_top" value="1"}<i class="fa fa-toggle-on"></i>{else /}<i class="fa fa-toggle-off"></i>{/eq}</a></td>
           <td><a href="javascript:;" style="font-size:18px;" class="status" data-id="{$vo.id}" data-val="{$vo.status}">{eq name="vo.status" value="1"}<i class="fa fa-toggle-on"></i>{else /}<i class="fa fa-toggle-off"></i>{/eq}</a></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="{:url('admin/article/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="{:url('admin/board/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -136,7 +120,7 @@
         {/volist}
       </tbody>
     </table>
-    <div style="padding:0 20px;">{$articles->render()}</div> 
+    <div style="padding:0 20px;">{$boards->render()}</div> 
     {include file="public/foot"}
     <script type="text/javascript">
 
@@ -144,7 +128,7 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"{:url('admin/article/delete')}",
+          url:"{:url('admin/board/delete')}",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);
@@ -172,7 +156,7 @@
       }
       $.ajax({
         type:"post",
-        url:"{:url('admin/article/is_top')}",
+        url:"{:url('admin/board/is_top')}",
         data:{is_top:is_top,id:id},
         success:function(res){
           
@@ -208,7 +192,7 @@
       }
       $.ajax({
         type:"post",
-        url:"{:url('admin/article/status')}",
+        url:"{:url('admin/board/status')}",
         data:{status:status,id:id},
         success:function(res){
           

@@ -80,7 +80,7 @@ function addlog($operation='')
             $string = implode('&',$string);
         }
         $data['admin_menu_id'] = empty(\think\Db::name('admin_menu')->where($url)->where('parameter',$string)->value('id')) ? \think\Db::name('admin_menu')->where($url)->value('id') : \think\Db::name('admin_menu')->where($url)->where('parameter',$string)->value('id');
-                    
+        
         //return $data;
         \think\Db::name('admin_log')->insert($data);
     } else {

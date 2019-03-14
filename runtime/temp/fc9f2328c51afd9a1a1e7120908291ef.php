@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"D:\mywork\lotgame\public/../app/admin\view\signingconfig\publish.html";i:1552460984;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"D:\mywork\lotgame\public/../app/admin\view\signingconfig\publish.html";i:1552527878;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +26,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">等级</label>
         <div class="layui-input-inline">
-          <input name="rank" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($singinconfig['rank']) || (($singinconfig['rank'] instanceof \think\Collection || $singinconfig['rank'] instanceof \think\Paginator ) && $singinconfig['rank']->isEmpty()))): ?>value="<?php echo $signinconfig['rank']; ?>"<?php endif; ?>>
+          <input name="rank" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($signinconfig['rank']) || (($signinconfig['rank'] instanceof \think\Collection || $signinconfig['rank'] instanceof \think\Paginator ) && $signinconfig['rank']->isEmpty()))): ?>value="<?php echo $signinconfig['rank']; ?>"<?php endif; ?>>
         </div>
         <div class="layui-form-mid layui-word-aux">例：V0</div>
       </div>
@@ -50,7 +50,7 @@
       <div class="layui-form-item">
           <label class="layui-form-label">开关</label>
           <div class="layui-input-block">
-            <input type="checkbox" name="status" lay-skin="switch" lay-text="ON|OFF" <?php if(!(empty($signinconfig['status']) || (($signinconfig['status'] instanceof \think\Collection || $signinconfig['status'] instanceof \think\Paginator ) && $signinconfig['status']->isEmpty()))): ?>checked=""<?php endif; ?> value="1">
+            <input type="checkbox" name="status" lay-skin="switch" lay-text="ON|OFF"  <?php if(empty($signinconfig['status']) || (($signinconfig['status'] instanceof \think\Collection || $signinconfig['status'] instanceof \think\Paginator ) && $signinconfig['status']->isEmpty())): ?>checked=""<?php endif; ?> value="1">
           </div>
       </div>
 

@@ -58,7 +58,7 @@ class Signingconfig extends Permissions
                 } else {
                     $operation='签到等级修改成功';
                     addlog($operation);//写入日志
-                    return $this->success('修改成功','admin/signingconfig/index');
+                    return $this->success($operation,'admin/signingconfig/index');
                 }
             } else {
                 //非提交操作
