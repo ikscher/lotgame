@@ -75,6 +75,22 @@
           <p id="demoText"></p>
         </div>
       </div>
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">开始时间</label>
+        <div class="layui-input-block" style="max-width:300px;">
+            <input type="text" class="layui-input" id="create_time" placeholder="开始时间" name="begin_time" {notempty name="$article.begin_time"}value="{$article.begin_time|date="Y-m-d H:i:s",###}"{/notempty}>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">结束时间</label>
+        <div class="layui-input-block" style="max-width:300px;">
+            <input type="text" class="layui-input" id="create_time" placeholder="结束时间" name="end_time" {notempty name="$article.end_time"}value="{$article.end_time|date="Y-m-d H:i:s",###}"{/notempty}>
+        </div>
+      </div>
+
       {notempty name="$article"}
       <input type="hidden" name="id" value="{$article.id}">
       {/notempty}
@@ -137,10 +153,11 @@
     });
     </script>
     <script>
-      layui.use(['layer', 'form'], function() {
+      layui.use(['layer', 'form','laydate'], function() {
           var layer = layui.layer,
               $ = layui.jquery,
-              form = layui.form;
+              form = layui.form,
+              laydate = layui.laydate;
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
@@ -149,6 +166,7 @@
                       type:'post',
                       async: false,
                       success:function(res) {
+                          // console.log(res);
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;
@@ -161,6 +179,11 @@
                   return false;
               });
           });
+
+           laydate.render({
+              elem: '#create_time',
+              type: 'datetime'
+            });
       });
     </script>
 

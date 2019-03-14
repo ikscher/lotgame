@@ -99,11 +99,14 @@ class Article extends Permissions
 	            }
                 //设置修改人
                 $post['edit_admin_id'] = Session::get('admin');
+                $post['begin_time']=strtotime($post['begin_time']);
+                $post['end_time']=strtotime($post['end_time']);
 	            if(false == $model->allowField(true)->save($post,['id'=>$id])) {
 	            	return $this->error('修改失败');
 	            } else {
-                    addlog($model->id);//写入日志
-	            	return $this->success('修改成功','admin/article/index');
+                    $operation='修改成功';
+                    addlog($operation.'-'.$model->id);//写入日志
+	            	return $this->success($operation,'admin/article/index');
 	            }
     		} else {
     			//非提交操作
@@ -128,7 +131,9 @@ class Article extends Permissions
 	                ['title', 'require', '标题不能为空'],
                     ['article_cate_id', 'require', '请选择分类'],
                     ['thumb', 'require', '请上传缩略图'],
-                    ['content', 'require', '文章内容不能为空'],
+                    ['content', 'require', '内容不能为空'],
+                    ['begin_time', 'require', '开始时间不能为空'],
+                    ['end_time', 'require', '结束时间不能为空']
 	            ]);
 	            //验证部分数据合法性
 	            if (!$validate->check($post)) {
@@ -138,11 +143,15 @@ class Article extends Permissions
                 $post['admin_id'] = Session::get('admin');
                 //设置修改人
                 $post['edit_admin_id'] = $post['admin_id'];
+                $post['begin_time']=strtotime($post['begin_time']);
+                $post['end_time']=strtotime($post['end_time']);
+                // echo json_encode($post);exit;
 	            if(false == $model->allowField(true)->save($post)) {
 	            	return $this->error('添加失败');
 	            } else {
-                    addlog($model->id);//写入日志
-	            	return $this->success('添加成功','admin/article/index');
+                    $operation='添加活动成功';
+                    addlog($operation.'-'.$model->id);//写入日志
+	            	return $this->success($operation,'admin/article/index');
 	            }
     		} else {
     			//非提交操作

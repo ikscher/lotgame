@@ -144,8 +144,9 @@ class Board extends Permissions
 	            if(false ==$ret ) {
 	            	return $this->error('添加失败');
 	            } else {
-                    $operation='添加成功';
+                    $operation='添加公告成功';
                     addlog($operation.'-'.$model->id);//写入日志  报错因为必须要在菜单添加动作
+                    // return addlog($operation.'-'.$model->id);//测试 输出 写入日志  报错因为必须要在菜单添加动作
 	            	return $this->success($operation,'admin/board/index');
 	            }
     		} else {

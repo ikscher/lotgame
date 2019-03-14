@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"D:\mywork\lotgame\public/../app/admin\view\article\publish.html";i:1552548856;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"D:\mywork\lotgame\public/../app/admin\view\article\publish.html";i:1552572447;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +76,22 @@
           <p id="demoText"></p>
         </div>
       </div>
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">开始时间</label>
+        <div class="layui-input-block" style="max-width:300px;">
+            <input type="text" class="layui-input" id="create_time" placeholder="开始时间" name="begin_time" <?php if(!(empty($article['begin_time']) || (($article['begin_time'] instanceof \think\Collection || $article['begin_time'] instanceof \think\Paginator ) && $article['begin_time']->isEmpty()))): ?>value="<?php echo date("Y-m-d H:i:s",$article['begin_time']); ?>"<?php endif; ?>>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">结束时间</label>
+        <div class="layui-input-block" style="max-width:300px;">
+            <input type="text" class="layui-input" id="create_time" placeholder="结束时间" name="end_time" <?php if(!(empty($article['end_time']) || (($article['end_time'] instanceof \think\Collection || $article['end_time'] instanceof \think\Paginator ) && $article['end_time']->isEmpty()))): ?>value="<?php echo date("Y-m-d H:i:s",$article['end_time']); ?>"<?php endif; ?>>
+        </div>
+      </div>
+
       <?php if(!(empty($article) || (($article instanceof \think\Collection || $article instanceof \think\Paginator ) && $article->isEmpty()))): ?>
       <input type="hidden" name="id" value="<?php echo $article['id']; ?>">
       <?php endif; ?>
@@ -138,10 +154,11 @@
     });
     </script>
     <script>
-      layui.use(['layer', 'form'], function() {
+      layui.use(['layer', 'form','laydate'], function() {
           var layer = layui.layer,
               $ = layui.jquery,
-              form = layui.form;
+              form = layui.form,
+              laydate = layui.laydate;
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
@@ -150,6 +167,7 @@
                       type:'post',
                       async: false,
                       success:function(res) {
+                          // console.log(res);
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;
@@ -162,6 +180,11 @@
                   return false;
               });
           });
+
+           laydate.render({
+              elem: '#create_time',
+              type: 'datetime'
+            });
       });
     </script>
 

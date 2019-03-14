@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50505
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-03-14 17:05:53
+Date: 2019-03-14 22:25:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1552526449', '192.168.1.107', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1552567328', '192.168.1.102', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -63,7 +63,7 @@ CREATE TABLE `hov_admin_cate` (
 -- ----------------------------
 -- Records of hov_admin_cate
 -- ----------------------------
-INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,25,26,28,29,34,35,37,38,39,40,42,43,44,45,47,48', '0', '1552458647', '超级管理员，拥有最高权限！');
+INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,25,26,28,29,34,35,37,38,39,40,60,61,62,63', '0', '1552569820', '超级管理员，拥有最高权限！');
 
 -- ----------------------------
 -- Table structure for `hov_admin_log`
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -167,6 +167,24 @@ INSERT INTO `hov_admin_log` VALUES ('82', '4', '1', '192.168.1.107', '60', '1552
 INSERT INTO `hov_admin_log` VALUES ('83', '4', '1', '192.168.1.107', '61', '1552554116');
 INSERT INTO `hov_admin_log` VALUES ('84', '4', '1', '192.168.1.107', '62', '1552554163');
 INSERT INTO `hov_admin_log` VALUES ('85', '4', '1', '192.168.1.107', '63', '1552554205');
+INSERT INTO `hov_admin_log` VALUES ('86', '50', '1', '192.168.1.102', '', '1552567328');
+INSERT INTO `hov_admin_log` VALUES ('87', '28', '1', '192.168.1.102', '修改角色信息成功', '1552569820');
+INSERT INTO `hov_admin_log` VALUES ('88', '60', '1', '192.168.1.102', '添加公告成功-50', '1552569834');
+INSERT INTO `hov_admin_log` VALUES ('89', '61', '1', '192.168.1.102', '公告设置状态成功-50', '1552569975');
+INSERT INTO `hov_admin_log` VALUES ('90', '61', '1', '192.168.1.102', '公告设置状态成功-50', '1552569980');
+INSERT INTO `hov_admin_log` VALUES ('91', '62', '1', '192.168.1.102', '公告置顶设置成功-50', '1552569983');
+INSERT INTO `hov_admin_log` VALUES ('92', '62', '1', '192.168.1.102', '公告置顶设置成功-50', '1552569985');
+INSERT INTO `hov_admin_log` VALUES ('93', '62', '1', '192.168.1.102', '公告置顶设置成功-50', '1552569986');
+INSERT INTO `hov_admin_log` VALUES ('94', '62', '1', '192.168.1.102', '公告置顶设置成功-49', '1552569999');
+INSERT INTO `hov_admin_log` VALUES ('95', '62', '1', '192.168.1.102', '公告置顶设置成功-49', '1552570019');
+INSERT INTO `hov_admin_log` VALUES ('96', '61', '1', '192.168.1.102', '公告设置状态成功-49', '1552570020');
+INSERT INTO `hov_admin_log` VALUES ('97', '49', '1', '192.168.1.102', '5', '1552570746');
+INSERT INTO `hov_admin_log` VALUES ('98', '37', '1', '192.168.1.102', '4', '1552570770');
+INSERT INTO `hov_admin_log` VALUES ('99', '49', '1', '192.168.1.102', '6', '1552571665');
+INSERT INTO `hov_admin_log` VALUES ('100', '49', '1', '192.168.1.102', '7', '1552571816');
+INSERT INTO `hov_admin_log` VALUES ('101', '37', '1', '192.168.1.102', '添加活动成功-5', '1552571907');
+INSERT INTO `hov_admin_log` VALUES ('102', '40', '1', '192.168.1.102', '5', '1552572162');
+INSERT INTO `hov_admin_log` VALUES ('103', '37', '1', '192.168.1.102', '修改成功-4', '1552572278');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -256,7 +274,7 @@ INSERT INTO `hov_admin_menu` VALUES ('53', '新增/修改签到等级', 'admin',
 INSERT INTO `hov_admin_menu` VALUES ('54', '启用/禁用签到等级', 'admin', 'signingconfig', 'status', '', '启用/禁用签到等级', '2', '1', '52', '1552449499', '1552452904', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('55', '删除签到等级', 'admin', 'signingconfig', 'delete', '', '删除签到等级', '2', '1', '52', '1552449604', '1552452915', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('59', '公告', 'admin', 'board', 'index', '', '', '1', '2', '31', '1552534989', '1552534989', 'fa-sticky-note-o', '0', '0');
-INSERT INTO `hov_admin_menu` VALUES ('60', '新增/修改公告', 'admin', 'board', 'public', '', '新增/修改公告', '2', '1', '59', '1552554050', '1552554069', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('60', '新增/修改公告', 'admin', 'board', 'publish', '', '新增/修改公告', '2', '1', '59', '1552554050', '1552554069', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('61', '审核/拒绝公告', 'admin', 'board', 'status', '', '审核/拒绝公告', '2', '1', '59', '1552554116', '1552554116', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('62', '置顶/取消置顶公告', 'admin', 'board', 'is_top', '', '置顶/取消置顶公告', '2', '1', '59', '1552554163', '1552554163', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('63', '删除公告', 'admin', 'board', 'delete', '', '删除公告', '2', '1', '59', '1552554205', '1552554205', '', '0', '0');
@@ -274,6 +292,8 @@ CREATE TABLE `hov_article` (
   `thumb` int(11) DEFAULT NULL,
   `content` text,
   `admin_id` int(11) NOT NULL,
+  `begin_time` int(11) NOT NULL COMMENT '活动开始时间',
+  `end_time` int(11) NOT NULL COMMENT '活动结束时间',
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
   `edit_admin_id` int(11) NOT NULL COMMENT '最后修改人',
@@ -286,13 +306,14 @@ CREATE TABLE `hov_article` (
   KEY `article_cate_id` (`article_cate_id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_article
 -- ----------------------------
-INSERT INTO `hov_article` VALUES ('1', '活动1', '', '', '1', '2', '<p>彩豆28也是推出了非常难得出充值返利活动，活动期间，玩家可以获得每天首次单笔充值金额的0.5000%返利。作为充值返利，不设上限，也不设下限，所以大户玩家，完全可以多充多得！次日领取返利！这是彩豆28极少举行的充值返利活动。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;比起活动，我们更加注重的应该是网站的信誉和稳定，彩豆28作为业内大站，网站的实力和信誉都是大家有目共睹的！所以这个站点到现在为止，单单靠网站的口碑，在玩家群体中，就有着非常多的忠实粉丝！</p><p><br/></p>', '1', '1552537824', '1552537824', '1', '0', '0');
-INSERT INTO `hov_article` VALUES ('2', '活动2', '', '', '1', '3', '<p><strong style=\"margin: 0px; padding: 0px; color: rgb(84, 84, 84); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 14px; text-align: center; white-space: normal; background-color: rgb(243, 243, 243);\"><span style=\"color:#ff0000\"><p>站点必定会有更大的发展，喜欢返利活动的玩家可以多多关注一下彩豆28，这个站点大额游戏绝对没有任何问题，所以大家都是可以放心游戏的！彩豆28在2017中，相信会有更大的成长！</p><p>充值有礼送抽奖活动</p><p>【www.leodu288.com】</p></span></strong></p>', '1', '1552548392', '1552548392', '1', '0', '0');
+INSERT INTO `hov_article` VALUES ('1', '活动1', '', '', '1', '2', '<p>彩豆28也是推出了非常难得出充值返利活动，活动期间，玩家可以获得每天首次单笔充值金额的0.5000%返利。作为充值返利，不设上限，也不设下限，所以大户玩家，完全可以多充多得！次日领取返利！这是彩豆28极少举行的充值返利活动。</p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;比起活动，我们更加注重的应该是网站的信誉和稳定，彩豆28作为业内大站，网站的实力和信誉都是大家有目共睹的！所以这个站点到现在为止，单单靠网站的口碑，在玩家群体中，就有着非常多的忠实粉丝！</p><p><br/></p>', '1', '0', '0', '1552537824', '1552537824', '1', '0', '0');
+INSERT INTO `hov_article` VALUES ('2', '活动2', '', '', '1', '3', '<p><strong style=\"margin: 0px; padding: 0px; color: rgb(84, 84, 84); font-family: &quot;Microsoft YaHei&quot;, Arial, Verdana, sans-serif, &quot;Segoe UI&quot;, Tahoma; font-size: 14px; text-align: center; white-space: normal; background-color: rgb(243, 243, 243);\"><span style=\"color:#ff0000\"><p>站点必定会有更大的发展，喜欢返利活动的玩家可以多多关注一下彩豆28，这个站点大额游戏绝对没有任何问题，所以大家都是可以放心游戏的！彩豆28在2017中，相信会有更大的成长！</p><p>充值有礼送抽奖活动</p><p>【www.leodu288.com】</p></span></strong></p>', '1', '0', '0', '1552548392', '1552548392', '1', '0', '0');
+INSERT INTO `hov_article` VALUES ('4', 'sdf', 'sdfasf', 'sdfasdf', '1', '5', '<p>sdf</p>', '1', '1552572226', '1553720708', '1552570770', '1552572278', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `hov_article_cate`
@@ -339,7 +360,7 @@ CREATE TABLE `hov_attachment` (
   KEY `status` (`status`) USING BTREE,
   KEY `filename` (`filename`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='附件表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='附件表';
 
 -- ----------------------------
 -- Records of hov_attachment
@@ -348,6 +369,9 @@ INSERT INTO `hov_attachment` VALUES ('1', 'admin', '79811855a6c06de53047471c4ff8
 INSERT INTO `hov_attachment` VALUES ('2', 'admin', '880549630e0754f903ef7af923a2a9f5.jpg', '\\uploads\\admin\\article_thumb\\20190314\\880549630e0754f903ef7af923a2a9f5.jpg', '134483', 'jpg', '1', '192.168.1.107', '1', '1552537822', '1', '1552537822', 'article_thumb', '0');
 INSERT INTO `hov_attachment` VALUES ('3', 'admin', '8c1e970d0bb3a55fe8dcb03fca0f46ce.jpg', '\\uploads\\admin\\article_thumb\\20190314\\8c1e970d0bb3a55fe8dcb03fca0f46ce.jpg', '15902', 'jpg', '1', '192.168.1.107', '1', '1552548374', '1', '1552548374', 'article_thumb', '0');
 INSERT INTO `hov_attachment` VALUES ('4', 'admin', '3e6c9e0820be139fcb05baacdcd2a795.jpg', '\\uploads\\admin\\article_thumb\\20190314\\3e6c9e0820be139fcb05baacdcd2a795.jpg', '6071', 'jpg', '1', '192.168.1.107', '1', '1552550879', '1', '1552550879', 'article_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('5', 'admin', '1c464dc8db62c0578fe267cbda63d0fb.jpg', '\\uploads\\admin\\article_thumb\\20190314\\1c464dc8db62c0578fe267cbda63d0fb.jpg', '51653', 'jpg', '1', '192.168.1.102', '1', '1552570746', '1', '1552570746', 'article_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('6', 'admin', '75a8a893f61211f535a65532838ce82f.jpg', '\\uploads\\admin\\article_thumb\\20190314\\75a8a893f61211f535a65532838ce82f.jpg', '51653', 'jpg', '1', '192.168.1.102', '1', '1552571665', '1', '1552571665', 'article_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('7', 'admin', 'c50ec813521d1e620888646ab3ad2997.jpg', '\\uploads\\admin\\article_thumb\\20190314\\c50ec813521d1e620888646ab3ad2997.jpg', '51653', 'jpg', '1', '192.168.1.102', '1', '1552571816', '1', '1552571816', 'article_thumb', '0');
 
 -- ----------------------------
 -- Table structure for `hov_board`
@@ -363,7 +387,7 @@ CREATE TABLE `hov_board` (
   `status` tinyint(1) DEFAULT '1',
   `is_top` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_board
@@ -401,6 +425,20 @@ INSERT INTO `hov_board` VALUES ('33', '1', 'wer', '<p>werwer</p>', '1552554223',
 INSERT INTO `hov_board` VALUES ('34', '1', 'wer', '<p>werwer</p>', '1552554283', '1552554283', '1', '0');
 INSERT INTO `hov_board` VALUES ('35', '1', 'wer', '<p>werwer</p>', '1552554286', '1552554286', '1', '0');
 INSERT INTO `hov_board` VALUES ('36', '1', 'wer', '<p>werwer</p>', '1552554325', '1552554325', '1', '0');
+INSERT INTO `hov_board` VALUES ('37', '1', 'dsf', '<p>sdfsf<br/></p>', '1552567766', '1552567766', '1', '0');
+INSERT INTO `hov_board` VALUES ('38', '1', 'dsf', '<p>sdfsf<br/></p>', '1552567916', '1552567916', '1', '0');
+INSERT INTO `hov_board` VALUES ('39', '1', 'asd', '<p>sdfasf</p>', '1552567990', '1552567990', '1', '0');
+INSERT INTO `hov_board` VALUES ('40', '1', 'sdfsdf', '<p>sdfasdf</p>', '1552568040', '1552568040', '1', '0');
+INSERT INTO `hov_board` VALUES ('41', '1', 'sdf', '<p>sdfsdf</p>', '1552568522', '1552568522', '1', '0');
+INSERT INTO `hov_board` VALUES ('42', '1', 'sdf', '<p>sdfsdf</p>', '1552568567', '1552568567', '1', '0');
+INSERT INTO `hov_board` VALUES ('43', '1', 'sdf', '<p>sdfsdf</p>', '1552568666', '1552568666', '1', '0');
+INSERT INTO `hov_board` VALUES ('44', '1', 'sdf', '<p>sdfsdf</p>', '1552569432', '1552569432', '1', '0');
+INSERT INTO `hov_board` VALUES ('45', '1', 'sdf', '<p>sdfsdf</p>', '1552569462', '1552569462', '1', '0');
+INSERT INTO `hov_board` VALUES ('46', '1', 'sdf', '<p>sdfsdf</p>', '1552569513', '1552569513', '1', '0');
+INSERT INTO `hov_board` VALUES ('47', '1', 'sdf', '<p>sdfsdf</p>', '1552569542', '1552569542', '1', '0');
+INSERT INTO `hov_board` VALUES ('48', '1', 'sdf', '<p>sdfsdf</p>', '1552569555', '1552569555', '1', '0');
+INSERT INTO `hov_board` VALUES ('49', '1', 'sdf', '<p>sdfsdf</p>', '1552569566', '1552569566', '0', '0');
+INSERT INTO `hov_board` VALUES ('50', '1', 'sdf', '<p>sdfsdfasf</p>', '1552569834', '1552569834', '1', '1');
 
 -- ----------------------------
 -- Table structure for `hov_emailconfig`

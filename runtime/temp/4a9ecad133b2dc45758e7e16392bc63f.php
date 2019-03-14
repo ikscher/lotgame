@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:59:"D:\mywork\lotgame\public/../app/admin\view\board\index.html";i:1552546321;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552548490;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:59:"D:\mywork\lotgame\public/../app/admin\view\board\index.html";i:1552569942;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552567281;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,8 +78,8 @@
     <table class="layui-table" lay-size="sm">
       <colgroup>
         <col width="50">
-        <col width="300">
-        <col width="50">
+        <col width="250">
+        <col width="100">
         <col width="100">
         <col width="100">
         <col width="150">

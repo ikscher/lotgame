@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:61:"D:\mywork\lotgame\public/../app/admin\view\article\index.html";i:1552539964;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552548490;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:61:"D:\mywork\lotgame\public/../app/admin\view\article\index.html";i:1552572058;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552567281;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,9 +105,9 @@
           <th>缩略图</th>
           <th>分类</th>
           <th>创建人</th>
-          <th>创建时间</th>
+          <th>开始时间</th>
           <th>最后修改人</th>
-          <th>最后修改时间</th>
+          <th>结束时间</th>
           <th>置顶</th>
           <th>审核</th>
           <th>操作</th>
@@ -122,9 +122,9 @@
           <td><a href="<?php echo geturl($vo['thumb']); ?>" class="tooltip"><img src="<?php echo geturl($vo['thumb']); ?>" width="20" height="20"></a></td>
           <td><?php echo $vo['cate']['name']; ?></td>
           <td><?php echo $vo['admin']['nickname']; ?></td>
-          <td><?php echo $vo['create_time']; ?></td>
+          <td><?php echo date("Y-m-d H:i:s",$vo['begin_time']); ?></td>
           <td><?php echo $vo['edit_admin']; ?></td>
-          <td><?php echo $vo['update_time']; ?></td>
+          <td><?php echo date("Y-m-d H:i:s",$vo['end_time']); ?></td>
           <td><a href="javascript:;" style="font-size:18px;" class="is_top" data-id="<?php echo $vo['id']; ?>" data-val="<?php echo $vo['is_top']; ?>"><?php if($vo['is_top'] == '1'): ?><i class="fa fa-toggle-on"></i><?php else: ?><i class="fa fa-toggle-off"></i><?php endif; ?></a></td>
           <td><a href="javascript:;" style="font-size:18px;" class="status" data-id="<?php echo $vo['id']; ?>" data-val="<?php echo $vo['status']; ?>"><?php if($vo['status'] == '1'): ?><i class="fa fa-toggle-on"></i><?php else: ?><i class="fa fa-toggle-off"></i><?php endif; ?></a></td>
           <td class="operation-menu">

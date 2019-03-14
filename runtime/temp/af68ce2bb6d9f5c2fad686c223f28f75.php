@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\mywork\lotgame\public/../app/admin\view\admin\edit_password.html";i:1546481687;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\mywork\lotgame\public/../app/admin\view\admin\edit_password.html";i:1552308816;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
