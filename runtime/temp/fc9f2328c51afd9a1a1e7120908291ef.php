@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"D:\mywork\lotgame\public/../app/admin\view\signingconfig\publish.html";i:1552527878;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"D:\mywork\lotgame\public/../app/admin\view\signingconfig\publish.html";i:1552567281;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>

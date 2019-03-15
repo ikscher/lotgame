@@ -10,22 +10,23 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\admin\model;
+namespace app\user\model;
 
 use \think\Model;
-class Prize extends Model
+class UserRemark extends Model
 {
-	public function cate()
+	public function user()
     {
-        //关联分类表
-        return $this->belongsTo('PrizeCate');
+        //关联user表
+        return $this->belongsTo('User');
+    }
+    
+    public function prize()
+    {
+        //关联user表
+        return $this->belongsTo('app\admin\model\Prize');
+        // return $this->belongsTo('Prize');
     }
 
-    public function remark()
-    {
-        //关联user_remark表
-        return $this->belongsTo('UserRemark','prize_id');
-    }
-
-
+  
 }

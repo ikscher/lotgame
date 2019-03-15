@@ -10,22 +10,14 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\admin\model;
+namespace app\user\model;
 
 use \think\Model;
-class Prize extends Model
+class UserGrade extends Model
 {
-	public function cate()
+	public function user()
     {
-        //关联分类表
-        return $this->belongsTo('PrizeCate');
+        //关联管理员表
+        return $this->hasMany('user','user_grade_id');
     }
-
-    public function remark()
-    {
-        //关联user_remark表
-        return $this->belongsTo('UserRemark','prize_id');
-    }
-
-
 }

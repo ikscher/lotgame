@@ -21,6 +21,10 @@ use \think\Session;
 use app\admin\controller\Permissions;
 use app\admin\model\Prize as prizeModel;
 use app\admin\model\PrizeCate as cateModel;
+use app\user\model\UserGrade as gradeModel;
+use app\user\model\User as userModel;
+use app\user\model\UserLog as logModel;
+use app\user\model\UserRemark as remarkModel;
 class Prize extends Permissions
 {
     public function index()
@@ -175,20 +179,20 @@ class Prize extends Permissions
     }
 
 
-    public function is_top()
-    {
-        if($this->request->isPost()){
-            $post = $this->request->post();
-            if(false == Db::name('prize')->where('id',$post['id'])->update(['is_top'=>$post['is_top']])) {
-                return $this->error('设置失败');
-            } else {
-                addlog($post['id']);//写入日志
-                return $this->success('设置成功','admin/prize/index');
-            }
-        }
-    }
-
-
+    // public function is_top()
+    // {
+    //     if($this->request->isPost()){
+    //         $post = $this->request->post();
+    //         if(false == Db::name('prize')->where('id',$post['id'])->update(['is_top'=>$post['is_top']])) {
+    //             return $this->error('设置失败');
+    //         } else {
+    //             addlog($post['id']);//写入日志
+    //             return $this->success('设置成功','admin/prize/index');
+    //         }
+    //     }
+    // }
+ 
+    
     public function status()
     {
         if($this->request->isPost()){
@@ -201,4 +205,79 @@ class Prize extends Permissions
             }
         }
     }
+    
+    //显示奖品评论
+    public function remark(){
+        $model = new remarkModel();
+        $remarks = $model->select();
+        // var_dump($remarks);exit;
+        $this->assign('remarks',$remarks);
+        return $this->fetch();
+    }
+
+    //编辑奖品评论
+    public function editremark(){
+        //获取菜单id
+        $id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
+        $model = new remarkModel();
+
+        if($id > 0) {
+            //是修改操作
+            if($this->request->isPost()) {
+                //是提交操作
+                $post = $this->request->post();
+                //验证  唯一规则： 表名，字段名，排除主键值，主键名
+                $validate = new \think\Validate([
+                    ['content', 'require', '评论内容不能为空']
+                ]);
+                //验证部分数据合法性
+                if (!$validate->check($post)) {
+                    $this->error('提交失败：' . $validate->getError());
+                }
+                //验证菜单是否存在
+                $remark = $model->where('id',$id)->find();
+                if(empty($remark)) {
+                    return $this->error('id不正确');
+                }
+                //设置修改人
+                // $post['edit_admin_id'] = Session::get('admin');
+          
+                if(false == $model->allowField(true)->save($post,['id'=>$id])) {
+                    return $this->error('修改失败');
+                } else {
+                    $operation='修改奖品评论成功';
+                    addlog($operation.'-'.$model->id);//写入日志
+                    return $this->success($operation,'admin/prize/remark');
+                }
+            } else {
+                //非提交操作
+                $remark = $model->where('id',$id)->find();
+
+                if(!empty($remark)) {
+                    $this->assign('remark',$remark);
+                    return $this->fetch();
+                } else {
+                    return $this->error('id不正确');
+                }
+            }
+        }
+    
+    }
+
+
+    //删除奖品评论
+    public function deleteremark(){
+        if($this->request->isAjax()) {
+            $id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
+            if(false == Db::name('user_remark')->where('id',$id)->delete()) {
+                return $this->error('删除失败');
+            } else {
+                $operation='删除奖品评论成功';
+                addlog($operation.'-'.$id);//写入日志
+                return $this->success($operation,'admin/prize/remark');
+            }
+        }
+    }
+
+
 }
