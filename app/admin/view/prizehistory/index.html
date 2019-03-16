@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
+  <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+  <style type="text/css">
+
+/* tooltip */
+#tooltip{
+  position:absolute;
+  border:1px solid #ccc;
+  background:#333;
+  padding:2px;
+  display:none;
+  color:#fff;
+}
+td span a{
+  margin:0 5px;
+}
+</style>
+</head>
+<body style="padding:10px;">
+  <div class="tplay-body-div">
+    <div class="layui-tab">
+      <ul class="layui-tab-title">
+        <li class="layui-this">奖品兑换历史</li>
+        <!-- <li><a href="{:url('admin/prize/publish')}" class="a_menu">新增奖品</a></li> -->
+      </ul>
+    </div> 
+      <form name="searchForm" class="layui-form serch" action="{:url('admin/prizehistory/index')}" method="post">
+        <div class="layui-form-item" style="float: left;">
+          <div class="layui-input-inline">
+            <input type="text" name="keywords_u" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input layui-btn-sm" {notempty name="$post.keywords_u"}value="{$post.keywords_u}"{/notempty}>
+          </div>
+
+          <div class="layui-input-inline">
+            <input type="text" name="keywords_p" lay-verify="title" autocomplete="off" placeholder="请输入奖品名称" class="layui-input layui-btn-sm" {notempty name="$post.keywords_p"}value="{$post.keywords_p}"{/notempty}>
+          </div>
+         
+         <!--  <div class="layui-input-inline">
+            <div class="layui-inline">
+                <select name="status" lay-search="">
+                  <option value="">状态</option>
+                  <option value="0">待审核</option>
+                  <option value="1">已审核通过</option>
+                  <option value="2">审核未通过</option>
+                </select>
+            </div>
+          </div> -->
+          
+          <div class="layui-input-inline">
+            <div class="layui-inline">
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="create_time" placeholder="创建时间" name="create_time" {notempty name="$post.create_time"}value="{$post.create_time}"{/notempty}>
+              </div>
+            </div>
+          </div>
+          
+          <button class="layui-btn layui-btn-primary" lay-submit="" lay-filter="serch">查询</button>
+          <button type="reset" class="layui-btn layui-btn-primary reset">重置</button>
+        </div>
+      </form> 
+      
+    <table class="layui-table" lay-size="sm">
+      <colgroup>
+        <col width="50">
+        <col width="50">
+        <col width="50">
+        <col width="100">
+        <col width="150">
+        <col width="100">
+        <col width="150">
+        <col width="100">
+        <col width="100">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>用户ID</th>
+          <th>用户名</th>
+          <th>用户邮箱</th>
+          <th>兑换奖品</th>
+          <th>兑换价格</th>
+          <th>兑换时间</th>
+          <th>状态</th>
+          <!-- <th>操作</th> -->
+        </tr> 
+      </thead>
+      <tbody>
+        {volist name="exchanges" id="vo"}
+        <tr>
+
+          <td>{$vo.id}</td>
+          <td>{$vo.user_id}</td>
+          <td>{$vo.username}</td>
+          <td>{$vo.email}</td>
+          <td>{$vo.name}</td>
+          <td>{$vo.ex_price}</td>
+          <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td><!--如果是model不是Db::name创建的 A non well formed numeric value encountered  不需要用date转换  -->
+          <td>
+             {if condition="$vo.status eq 1"}
+              已通过
+             {elseif condition="$vo.status eq 2"}
+             未通过
+             {else /}
+             待审核
+             {/if}
+          </td>
+          <!-- <td class="operation-menu">
+            <div class="layui-btn-group">
+              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+            </div>
+          </td> -->
+        </tr>
+        {/volist}
+      </tbody>
+    </table>
+    <div style="padding:0 20px;">{$page}</div> 
+    {include file="public/foot"}
+    <script type="text/javascript">
+      $('.delete').click(function(){
+        var id = $(this).attr('id');
+        layer.confirm('确定要删除?', function(index) {
+          $.ajax({
+            url:"{:url('admin/prizeexchange/delete')}",
+            data:{id:id},
+            success:function(res) {
+              layer.msg(res.msg);
+              if(res.code == 1) {
+                setTimeout(function(){
+                  location.href = res.url;
+                },1500)
+              }
+            }
+          })
+        })
+      })
+    </script>
+    <script type="text/javascript">
+      // $('.exchange').click(function(){
+      //     var status = $(this).attr('data-status');
+      //     var id = $(this).attr('data-id');
+      //     var that = $(this);
+      //     var str='';
+      //     if(status==1){
+      //       str='已通过';
+      //     }else if(status==2){
+      //       str='未通过';
+      //     }
+      //     layer.confirm("您确定"+str+"吗?", {btn: ['确定', '取消'], title: "提示"}, function (index) {
+      //       $.ajax({
+      //         type:"post",
+      //         url:"{:url('admin/prizeexchange/status')}",
+      //         data:{status:status,id:id},
+      //         success:function(res){
+      //           layer.close(layer.index);
+      //           if(res.code == 1) {
+      //             that.parent('span').html(str);
+      //           } else {
+      //             layer.msg(res.msg);
+      //           }
+      //         }
+      //       })
+      //     })
+      // })
+    </script>
+  </div>
+</body>
+</html>

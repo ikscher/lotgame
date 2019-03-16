@@ -23,8 +23,15 @@ class User extends Model
 
     public function userremark()
     {
-        //关联文章表
+        //关联user_remark表
         return $this->hasMany('UserRemark','user_id');
+        // return $this->hasOne('Article');
+    }
+
+    public function userexchange()
+    {
+        //关联user_exchange表
+        return $this->hasMany('UserExchange','user_id');
         // return $this->hasOne('Article');
     }
 

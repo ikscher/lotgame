@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\mywork\lotgame\public/../app/admin\view\prize\editremark.html";i:1552662551;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\mywork\lotgame\public/../app/admin\view\prize\editremark.html";i:1552697791;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,6 +93,7 @@
                       type:'post',
                       async: false,
                       success:function(res) {
+                          // console.log(res)
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;

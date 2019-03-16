@@ -239,10 +239,12 @@ class Prize extends Permissions
                 if(empty($remark)) {
                     return $this->error('id不正确');
                 }
+
                 //设置修改人
                 // $post['edit_admin_id'] = Session::get('admin');
-          
-                if(false == $model->allowField(true)->save($post,['id'=>$id])) {
+                $ret=$model->allowField(['content','update_time'])->save($post,['id'=>$id]);
+                // echo $model->getLastSql();exit;
+                if(false ==$ret ) {
                     return $this->error('修改失败');
                 } else {
                     $operation='修改奖品评论成功';
@@ -278,6 +280,7 @@ class Prize extends Permissions
             }
         }
     }
+
 
 
 }
