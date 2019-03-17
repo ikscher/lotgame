@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
+  <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+  <style type="text/css">
+
+/* tooltip */
+#tooltip{
+  position:absolute;
+  border:1px solid #ccc;
+  background:#333;
+  padding:2px;
+  display:none;
+  color:#fff;
+}
+</style>
+</head>
+<body style="padding:10px;">
+  <div class="tplay-body-div">
+    <div class="layui-tab">
+      <ul class="layui-tab-title">
+        <li class="layui-this">手续费规则管理</li>
+        <li><a href="{:url('admin/chargeconfig/publish')}" class="a_menu">新增</a></li>
+      </ul>
+    </div>
+    <!-- <span>设置公式：签到奖励计算公式为：基数+增数*连续天数</span> -->
+    <table class="layui-table" lay-size="sm">
+      <colgroup>
+        <col width="50">
+        <col width="150">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>计费方式</th>
+          <th>最小数</th>
+          <th>最大数</th>
+          <th>固定/百分比</th>
+          <th>手续费</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr> 
+      </thead>
+      <tbody>
+        {volist name="chargeconfig" id="vo"}
+        <tr>
+          <td>{$vo.id}</td>
+          <td>{if condition="$vo.type eq 1"}兑奖次数{elseif condition="$vo.type eq 2"/}兑奖件数{/if}</td>
+          <td>{$vo.lower}</td>
+          <td>{$vo.upper}</td>
+          <td>{if condition="$vo.by eq 1"}固定数额{elseif condition="$vo.by eq 2"/}百分比{/if}</td>
+          <td>{$vo.charge}{if condition="$vo.by eq 2"}%{/if}</td>
+          <td>{if condition="$vo.status eq 1"}<span class="layui-badge">启用</span>{else /}<span class="layui-badge layui-bg-gray">禁用</span>{/if}</td>
+          <td class="operation-menu">
+            <div class="layui-btn-group">
+              <a class="layui-btn layui-btn-xs a_menu layui-btn-primary" href="{:url('admin/chargeconfig/publish',['id'=>$vo.id])}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <!-- <a class="layui-btn layui-btn-xs layui-btn-primary status" {if condition="$vo.status eq 1"}data-id="0"{else /}data-id="1"{/if} id="{$vo.id}" style="margin-right: 0;font-size:12px;" ><i class="fa {if condition="$vo.status eq 1"}fa-toggle-on{else /}fa-toggle-off{/if}"></i></a> -->
+              <a class="layui-btn layui-btn-xs delete layui-btn-primary" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+            </div>
+          </td>
+        </tr>
+        {/volist}
+      </tbody>
+    </table>
+    <div style="padding:0 20px;">{$chargeconfig->render()}</div>
+            
+    {include file="public/foot"}
+    <script type="text/javascript">
+
+    $('.delete').click(function(){
+      var id = $(this).attr('id');
+      layer.confirm('确定要删除?', function(index) {
+        $.ajax({
+          url:"{:url('admin/chargeconfig/delete')}",
+          data:{id:id},
+          success:function(res) {
+            layer.msg(res.msg);
+            if(res.code == 1) {
+              setTimeout(function(){
+                location.href = res.url;
+              },1500)
+            }
+          }
+        })
+      })
+    })
+
+    </script>
+
+    <script type="text/javascript">
+    layui.use('layer', function(){
+      var layer = layui.layer;
+      
+
+      $('.status').click(function(){
+        var id = $(this).attr('id');
+        var status = $(this).attr('data-id');
+        layer.confirm('确定要设置?', function(index) {
+          $.ajax({
+            url:"{:url('admin/chargeconfig/status')}",
+            type:'post',
+            data:{id:id,status:status},
+            success:function(res) {
+              layer.msg(res.msg);
+              if(res.code == 1) {
+                setTimeout(function(){
+                  location.href = res.url;
+                },1500)
+              }
+            }
+          })
+        })
+      }) 
+
+    }); 
+    </script>
+  </div>
+</body>
+</html>

@@ -34,7 +34,12 @@ class User extends Model
         return $this->hasMany('UserExchange','user_id');
         // return $this->hasOne('Article');
     }
-
+    
+     public function charge()
+    {
+        //关联特殊用户兑奖 手续费user_charge表
+        return $this->hasMany('UserCharge','user_id');
+    }
  
 
     public function log()

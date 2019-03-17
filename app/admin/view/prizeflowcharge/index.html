@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
+  <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+  <style type="text/css">
+
+/* tooltip */
+#tooltip{
+  position:absolute;
+  border:1px solid #ccc;
+  background:#333;
+  padding:2px;
+  display:none;
+  color:#fff;
+}
+</style>
+</head>
+<body style="padding:10px;">
+  <div class="tplay-body-div">
+    <div class="layui-tab">
+      <ul class="layui-tab-title">
+        <li class="layui-this">流水手续（投注）</li>
+        <li><a href="{:url('admin/prizeflowcharge/adduserrule')}" class="a_menu">新增特殊用户</a></li>
+      </ul>
+    </div> 
+      <form class="layui-form " id="admin">
+        <div class="layui-form-item" style="float: left;">
+          <div class="layui-form-item">
+            <label class="layui-form-label">流水计算天数</label>
+            <div class="layui-input-block">
+             <input name="flow_days" autocomplete="off" placeholder="请输入" class="layui-input" type="text" {notempty name="$web_config.flow_days"}value="{$web_config.flow_days}"{/notempty}>
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">额外兑奖手续费比例</label>
+            <div class="layui-input-inline">
+              <input name="charge_ratio" autocomplete="off" placeholder="请输入" class="layui-input" type="text" {notempty name="$web_config.charge_ratio"}value="{$web_config.charge_ratio}"{/notempty}>
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">流水倍数要求</label>
+            <div class="layui-input-inline">
+              <input name="flow_times" autocomplete="off" placeholder="请输入" class="layui-input" type="text" {notempty name="$web_config.flow_times"}value="{$web_config.flow_times}"{/notempty}>
+            </div>
+          </div>
+          
+          <div class="layui-form-item">
+            <label class="layui-form-label">自动投注算流水</label>
+            <div class="layui-input-block">
+              <input type="checkbox" name="switch" lay-skin="switch" value="1" {notempty name="$web_config.flow_autobid"}checked{/notempty}>
+            </div>
+          </div>
+
+          <button class="layui-btn" lay-submit lay-filter="save">保存</button>
+        </div>
+      </form> 
+    <hr class="layui-bg-red">
+    <table class="layui-table" lay-size="sm">
+      <span>特殊用户</span>
+      <colgroup>
+        <col width="50">
+        <col width="100">
+        <col width="200">
+        <col width="200">
+        <col width="200">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>UID</th>
+          <th>用户名</th>
+          <th>流水倍数要求</th>
+          <th>手续费比例</th>
+          <th>操作</th>
+        </tr> 
+      </thead>
+      <tbody>
+        {volist name="chargeconfig" id="vo"}
+        <tr>
+          <td>{$vo.user_id}</td>
+          <td>{$vo.charge.name}</td>
+          <td>{$vo.flow_times}</td>
+          <td>{$vo.charge_ratio}</td>
+          <td class="operation-menu">
+            <div class="layui-btn-group">
+              <a href="{:url('admin/prize/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+            </div>
+          </td>
+        </tr>
+        {/volist}
+      </tbody>
+    </table>
+    <div style="padding:0 20px;">{$chargeconfig->render()}</div> 
+    {include file="public/foot"}
+    <script type="text/javascript">
+      $('.delete').click(function(){
+        var id = $(this).attr('id');
+        layer.confirm('确定要删除?', function(index) {
+          $.ajax({
+            url:"{:url('admin/prize/delete')}",
+            data:{id:id},
+            success:function(res) {
+              layer.msg(res.msg);
+              if(res.code == 1) {
+                setTimeout(function(){
+                  location.href = res.url;
+                },1500)
+              }
+            }
+          })
+        })
+      });
+
+      layui.use(['layer', 'form'], function() {
+        var layer = layui.layer,
+            $ = layui.jquery,
+            form = layui.form;
+            $(window).on('load', function() {
+                form.on('submit(save)', function(data) {
+                    $.ajax({
+                        url:"{:url('admin/prizeflowcharge/publish')}",
+                        data:$('#admin').serialize(),
+                        type:'post',
+                        async: false,
+                        success:function(res) {
+                            console.log(res);
+                            if(res.code == 1) {
+                                layer.alert(res.msg, function(index){
+                                  location.href = res.url;
+                                })
+                            } else {
+                                layer.msg(res.msg);
+                            }
+                        }
+                    })
+                    return false;
+                });
+            });
+      });
+    </script>
+
+  </div>
+</body>
+</html>
