@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:69:"D:\mywork\lotgame\public/../app/admin\view\prizeflowcharge\index.html";i:1552831566;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552567281;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:69:"D:\mywork\lotgame\public/../app/admin\view\prizeflowcharge\index.html";i:1552877235;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552548490;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +57,7 @@
           <div class="layui-form-item">
             <label class="layui-form-label">自动投注算流水</label>
             <div class="layui-input-block">
-              <input type="checkbox" name="switch" lay-skin="switch" value="1" <?php if(!(empty($web_config['flow_autobid']) || (($web_config['flow_autobid'] instanceof \think\Collection || $web_config['flow_autobid'] instanceof \think\Paginator ) && $web_config['flow_autobid']->isEmpty()))): ?>checked<?php endif; ?>>
+              <input type="checkbox" name="flow_autobid" lay-skin="switch" value="1" <?php if(!(empty($web_config['flow_autobid']) || (($web_config['flow_autobid'] instanceof \think\Collection || $web_config['flow_autobid'] instanceof \think\Paginator ) && $web_config['flow_autobid']->isEmpty()))): ?>checked<?php endif; ?>>
             </div>
           </div>
 
@@ -87,12 +87,12 @@
         <?php if(is_array($chargeconfig) || $chargeconfig instanceof \think\Collection || $chargeconfig instanceof \think\Paginator): $i = 0; $__LIST__ = $chargeconfig;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
           <td><?php echo $vo['user_id']; ?></td>
-          <td><?php echo $vo['charge']['name']; ?></td>
+          <td><?php echo $vo['user']['username']; ?></td>
           <td><?php echo $vo['flow_times']; ?></td>
           <td><?php echo $vo['charge_ratio']; ?></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="<?php echo url('admin/prize/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <!-- <a href="<?php echo url('admin/prize/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a> -->
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -190,7 +190,7 @@
         var id = $(this).attr('id');
         layer.confirm('确定要删除?', function(index) {
           $.ajax({
-            url:"<?php echo url('admin/prize/delete'); ?>",
+            url:"<?php echo url('admin/prizeflowcharge/deleteuserrule'); ?>",
             data:{id:id},
             success:function(res) {
               layer.msg(res.msg);

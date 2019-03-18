@@ -17,7 +17,7 @@ class UserCharge extends Model
 {
 	public function user()
     {
-        //关联管理员表
+        //关联user表
         return $this->belongsTo('User');
     }
 

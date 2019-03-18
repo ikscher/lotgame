@@ -38,7 +38,7 @@ class User extends Model
      public function charge()
     {
         //关联特殊用户兑奖 手续费user_charge表
-        return $this->hasMany('UserCharge','user_id');
+        return $this->hasOne('UserCharge','user_id');
     }
  
 

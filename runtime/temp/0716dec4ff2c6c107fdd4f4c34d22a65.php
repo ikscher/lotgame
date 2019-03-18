@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"D:\mywork\lotgame\public/../app/admin\view\prizeflowcharge\adduserrule.html";i:1552831279;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"D:\mywork\lotgame\public/../app/admin\view\prizeflowcharge\adduserrule.html";i:1552872538;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>

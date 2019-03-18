@@ -58,16 +58,17 @@ class Prizeflowcharge extends Permissions
                 $this->error('提交失败：' . $validate->getError());
             }
 
-            // if(empty($post['is_log'])) {
-            //     $post['is_log'] = 0;
-            // } else {
-            //     $post['is_log'] = $post['is_log'];
-            // }
-            // echo json_encode($post);exit;
-            if(false == Db::name('webconfig')->where('id','101')->update($post)) {
-                return $this->error('提交失败');
+            if(empty($post['flow_autobid'])) {
+                $post['flow_autobid'] = 0;
             } else {
-                $operation='流水手续费提交成功';
+                $post['flow_autobid'] = $post['flow_autobid'];
+            }
+            // echo json_encode($post);exit;
+            $ret=Db::name('webconfig')->where('id','101')->update($post);
+            if($ret==0 ) {
+                return $this->error('提交成功，数据未变动');
+            } else {
+                $operation='流水手续费修改成功';
                 addlog($operation);
                 return $this->success($operation,'admin/prizeflowcharge/index');
             }
@@ -77,7 +78,8 @@ class Prizeflowcharge extends Permissions
     
     //对特定用户设置特定的流水要求和手续费
     public function adduserrule()
-    {
+    {  
+       $model=new chargeModel();
        if($this->request->isPost()) {
             //是提交操作
             $post = $this->request->post();
@@ -118,7 +120,8 @@ class Prizeflowcharge extends Permissions
     {
         if($this->request->isAjax()) {
             $id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
-            if(false == Db::name('user_charge')->where('id',$id)->delete()) {
+            $ret=Db::name('user_charge')->where('id',$id)->delete();
+            if(false == $ret) {
                 return $this->error('删除规则失败');
             } else {
                 $operation='用户兑换手续费规则删除成功';

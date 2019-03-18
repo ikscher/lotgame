@@ -149,3 +149,59 @@ function hide_phone($str){
     $resstr = substr_replace($str,'****',3,4);  
     return $resstr;  
 }
+
+/**
+* 百度API 根据IP地址获取地址信息
+* @param $ip 
+* @return 
+   array (size=3)
+  'address' => string 'CN|浙江|温州|None|CHINANET|0|0' (length=34)
+  'content' => 
+    array (size=3)
+      'address_detail' => 
+        array (size=6)
+          'province' => string '浙江省' (length=9)
+          'city' => string '温州市' (length=9)
+          'district' => string '' (length=0)
+          'street' => string '' (length=0)
+          'street_number' => string '' (length=0)
+          'city_code' => int 178
+      'address' => string '浙江省温州市' (length=18)
+      'point' => 
+        array (size=2)
+          'y' => string '3229086.95' (length=10)
+          'x' => string '13435366.19' (length=11)
+  'status' => int 0
+*/
+function  getAddressByIp($ip){
+    $url='http://api.map.baidu.com/location/ip?ip='.$ip.'&ak=abDsBedrGw46lo1CyQuwZs9magjV5gSf&coor=';
+    $res=curl_get($url);
+    $user_json = json_decode($res,true); //数据转换
+
+    // var_dump($user_json);//位置
+    $str=$ip;
+    if(!empty($user_json['address'])){
+       $str=$user_json['address'].'('.$ip.')';
+    }
+    return $str;
+}
+
+function curl_get($url) {
+    $ch = curl_init();
+    $timeout = 300;
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    $res = curl_exec($ch);
+
+    if (curl_errno($ch)) {
+        echo 'Curl error: ' . curl_error($ch);
+    }
+
+    curl_close($ch);
+    return $res;
+}

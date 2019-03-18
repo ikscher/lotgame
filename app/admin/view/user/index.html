@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
+  <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+  <style type="text/css">
+
+/* tooltip */
+#tooltip{
+  position:absolute;
+  border:1px solid #ccc;
+  background:#333;
+  padding:2px;
+  display:none;
+  color:#fff;
+}
+</style>
+</head>
+<body style="padding:10px;">
+  <div class="tplay-body-div">
+    <div class="layui-tab">
+      <ul class="layui-tab-title">
+        <li class="layui-this">用户管理</li>
+        <li><a href="{:url('admin/user/edit')}" class="a_menu">修改用户</a></li>
+      </ul>
+    </div> 
+      <form class="layui-form serch" action="{:url('admin/user/index')}" method="post">
+        <div class="layui-form-item" style="float: left;">
+          <div class="layui-input-inline">
+            <input type="text" name="uid" lay-verify="title" autocomplete="off" placeholder="请输入UID" class="layui-input layui-btn-sm">
+          </div>
+
+          <div class="layui-input-inline">
+            <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input layui-btn-sm">
+          </div>
+
+          <div class="layui-input-inline">
+            <input type="text" name="mobile" lay-verify="title" autocomplete="off" placeholder="请输入手机号码" class="layui-input layui-btn-sm">
+          </div>
+
+
+
+          <div class="layui-input-inline">
+            <div class="layui-inline">
+                <select name="user_type" lay-search="">
+                  <option value="">用户类型</option>
+                  <option value="1">普通类型</option>
+                  <option value="2">VIP类型</option>
+                </select>
+            </div>
+          </div>
+          <div class="layui-input-inline">
+            <div class="layui-inline">
+                <select name="status" lay-search="">
+                  <option value="">冻结状态</option>
+                  <option value="1">正常</option>
+                  <option value="2">冻结</option>
+                </select>
+            </div>
+          </div>
+          
+          
+          <!-- <div class="layui-input-inline">
+            <div class="layui-inline">
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="create_time" placeholder="创建时间" name="create_time">
+              </div>
+            </div>
+          </div> -->
+          <button class="layui-btn layui-btn-primary" lay-submit="" lay-filter="serch">查询</button>
+        </div>
+      </form> 
+    <table class="layui-table" lay-size="sm">
+      <colgroup>
+        <col width="50">
+        <col width="50">
+        <col width="50">
+        <col width="80">
+        <col width="50">
+        <col width="50">
+        <col width="50">
+        <col width="100">
+        <col width="150">
+        <col width="60">
+        <col width="100">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>用户</th>
+          <th>邮箱</th>
+          <th>手机号</th>
+          <th>金币</th>
+          <th>银行</th>
+          <th>兑奖数</th>
+          <th>充值/兑出</th>
+          <th>登录信息</th>
+          <th>是否冻结</th>
+          <th>操作</th>
+        </tr> 
+      </thead>
+      <tbody>
+        {volist name="users" id="vo"}
+        <tr>
+          <td>{$vo.uid}</td>
+          <td>{$vo.username}</td>
+          <td>{$vo.email}</td>
+          <td>{$vo.mobile}</td>
+          <td>{$vo.units}</td>
+          <td>{$vo.bank}</td>
+          <td>{$vo.exchange_num}</td>
+          <td></td>
+          <td>{$vo.login_ip|getAddressByIp}</td>
+          <td>{if condition="$vo.is_freeze eq 1"}正常{elseif condition="$vo.is_freeze eq 2"}冻结{/if}</td>
+          <td class="operation-menu">
+            <div class="layui-btn-group">
+              <a href="{:url('admin/user/edit',['uid'=>$vo.uid])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.uid}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+            </div>
+          </td>
+        </tr>
+        {/volist}
+      </tbody>
+    </table>
+    <div style="padding:0 20px;">{$users->render()}</div> 
+    {include file="public/foot"}
+    <script type="text/javascript">
+
+    $('.delete').click(function(){
+      var uid = $(this).attr('id');
+      layer.confirm('确定要删除?', function(index) {
+        $.ajax({
+          url:"{:url('admin/user/delete')}",
+          data:{uid:uid},
+          success:function(res) {
+            layer.msg(res.msg);
+            if(res.code == 1) {
+              setTimeout(function(){
+                location.href = res.url;
+              },1500)
+            }
+          }
+        })
+      })
+    })
+    </script>
+   <!--  <script type="text/javascript">
+
+    $('.is_top').click(function(){
+      var val = $(this).attr('data-val');
+      var id = $(this).attr('data-id');
+      var i = $(this).find('i');
+      var the = $(this);
+      if(val == 1){
+        var is_top = 0;
+      } else {
+        var is_top = 1;
+      }
+      $.ajax({
+        type:"post",
+        url:"{:url('admin/user/is_freeze')}",
+        data:{is_top:is_top,id:id},
+        success:function(res){
+          
+          if(res.code == 1) {
+            top();
+          } else {
+            layer.msg(res.msg);
+          }
+        }
+      })
+
+      function top(){
+        if(val == 1){
+          i.attr("class","fa fa-toggle-off");
+          the.attr('data-val',0);
+        } else {
+          i.attr("class","fa fa-toggle-on");
+          the.attr('data-val',1);
+        }
+      }
+    })
+
+
+    $('.status').click(function(){
+      var val = $(this).attr('data-val');
+      var id = $(this).attr('data-id');
+      var i = $(this).find('i');
+      var the = $(this);
+      if(val == 1){
+        var status = 0;
+      } else {
+        var status = 1;
+      }
+      $.ajax({
+        type:"post",
+        url:"{:url('admin/article/status')}",
+        data:{status:status,id:id},
+        success:function(res){
+          
+          if(res.code == 1) {
+            tostatus();
+          } else {
+            layer.msg(res.msg);
+          }
+        }
+      })
+
+      function tostatus(){
+        if(val == 1){
+          i.attr("class","fa fa-toggle-off");
+          the.attr('data-val',0);
+        } else {
+          i.attr("class","fa fa-toggle-on");
+          the.attr('data-val',1);
+        }
+      }
+    })
+    </script> -->
+  </div>
+</body>
+</html>

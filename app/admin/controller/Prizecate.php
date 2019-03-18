@@ -60,8 +60,9 @@ class Prizecate extends Permissions
 	            if(false == $model->allowField(true)->save($post,['id'=>$id])) {
 	            	return $this->error('修改失败');
 	            } else {
-                    addlog($operation_id=$id);//写入日志
-	            	return $this->success('修改奖品分类成功','admin/prizecate/index');
+                    $operation='修改奖品分类成功';
+                    addlog($operation.'-'.$id);//写入日志
+	            	return $this->success($operation,'admin/prizecate/index');
 	            }
     		} else {
     			//非提交操作

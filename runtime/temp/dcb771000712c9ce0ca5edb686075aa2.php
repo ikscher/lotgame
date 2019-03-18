@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:59:"D:\mywork\lotgame\public/../app/admin\view\board\index.html";i:1552612399;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552548490;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1552899407;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552548490;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,101 +27,109 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">公告管理</li>
-        <li><a href="<?php echo url('admin/board/publish'); ?>" class="a_menu">新增公告</a></li>
+        <li class="layui-this">用户管理</li>
+        <li><a href="<?php echo url('admin/user/edit'); ?>" class="a_menu">修改用户</a></li>
       </ul>
     </div> 
-      <form class="layui-form serch" action="<?php echo url('admin/board/index'); ?>" method="post">
+      <form class="layui-form serch" action="<?php echo url('admin/user/index'); ?>" method="post">
         <div class="layui-form-item" style="float: left;">
           <div class="layui-input-inline">
-            <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入关键词" class="layui-input layui-btn-sm">
+            <input type="text" name="uid" lay-verify="title" autocomplete="off" placeholder="请输入UID" class="layui-input layui-btn-sm">
           </div>
-        
+
+          <div class="layui-input-inline">
+            <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input layui-btn-sm">
+          </div>
+
+          <div class="layui-input-inline">
+            <input type="text" name="mobile" lay-verify="title" autocomplete="off" placeholder="请输入手机号码" class="layui-input layui-btn-sm">
+          </div>
+
+
+
+          <div class="layui-input-inline">
+            <div class="layui-inline">
+                <select name="user_type" lay-search="">
+                  <option value="">用户类型</option>
+                  <option value="1">普通类型</option>
+                  <option value="2">VIP类型</option>
+                </select>
+            </div>
+          </div>
           <div class="layui-input-inline">
             <div class="layui-inline">
                 <select name="status" lay-search="">
-                  <option value="">状态</option>
-                  <option value="0">待审核</option>
-                  <option value="1">已审核</option>
+                  <option value="">冻结状态</option>
+                  <option value="1">正常</option>
+                  <option value="2">冻结</option>
                 </select>
             </div>
           </div>
-          <div class="layui-input-inline">
-            <div class="layui-inline">
-                <select name="is_top" lay-search="">
-                  <option value="">置顶</option>
-                  <option value="0">未置顶</option>
-                  <option value="1">已置顶</option>
-                </select>
-            </div>
-          </div>
-          <div class="layui-input-inline">
-            <div class="layui-inline">
-                <select name="admin_id" lay-search="">
-                  <option value="">创建人</option>
-                  <?php if(is_array($info['admin']) || $info['admin'] instanceof \think\Collection || $info['admin'] instanceof \think\Paginator): $i = 0; $__LIST__ = $info['admin'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                  <option value="<?php echo $vo['id']; ?>"><?php echo $vo['nickname']; ?></option>
-                  <?php endforeach; endif; else: echo "" ;endif; ?>
-                </select>
-            </div>
-          </div>
-          <div class="layui-input-inline">
+          
+          
+          <!-- <div class="layui-input-inline">
             <div class="layui-inline">
               <div class="layui-input-inline">
                 <input type="text" class="layui-input" id="create_time" placeholder="创建时间" name="create_time">
               </div>
             </div>
-          </div>
-          <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" lay-filter="serch">保存</button>
+          </div> -->
+          <button class="layui-btn layui-btn-primary" lay-submit="" lay-filter="serch">查询</button>
         </div>
       </form> 
     <table class="layui-table" lay-size="sm">
       <colgroup>
         <col width="50">
-        <col width="250">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="150">
-        <col width="100">
-        <col width="150">
         <col width="50">
         <col width="50">
+        <col width="80">
+        <col width="50">
+        <col width="50">
+        <col width="50">
+        <col width="100">
+        <col width="150">
+        <col width="60">
         <col width="100">
       </colgroup>
       <thead>
         <tr>
           <th>ID</th>
-          <th>标题</th>
-          <th>创建人</th>
-          <th>创建时间</th>
-          <th>最后修改时间</th>
-          <th>置顶</th>
-          <th>审核</th>
+          <th>用户</th>
+          <th>邮箱</th>
+          <th>手机号</th>
+          <th>金币</th>
+          <th>银行</th>
+          <th>兑奖数</th>
+          <th>充值/兑出</th>
+          <th>登录信息</th>
+          <th>是否冻结</th>
           <th>操作</th>
         </tr> 
       </thead>
       <tbody>
-        <?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <?php if(is_array($users) || $users instanceof \think\Collection || $users instanceof \think\Paginator): $i = 0; $__LIST__ = $users;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
-          <td><?php echo $vo['id']; ?></td>
-          <td><?php echo $vo['title']; ?></td>
-          <td><?php echo $vo['admin']['nickname']; ?></td>
-          <td><?php echo $vo['create_time']; ?></td>
-          <td><?php echo $vo['update_time']; ?></td>
-          <td><a href="javascript:;" style="font-size:18px;" class="is_top" data-id="<?php echo $vo['id']; ?>" data-val="<?php echo $vo['is_top']; ?>"><?php if($vo['is_top'] == '1'): ?><i class="fa fa-toggle-on"></i><?php else: ?><i class="fa fa-toggle-off"></i><?php endif; ?></a></td>
-          <td><a href="javascript:;" style="font-size:18px;" class="status" data-id="<?php echo $vo['id']; ?>" data-val="<?php echo $vo['status']; ?>"><?php if($vo['status'] == '1'): ?><i class="fa fa-toggle-on"></i><?php else: ?><i class="fa fa-toggle-off"></i><?php endif; ?></a></td>
+          <td><?php echo $vo['uid']; ?></td>
+          <td><?php echo $vo['username']; ?></td>
+          <td><?php echo $vo['email']; ?></td>
+          <td><?php echo $vo['mobile']; ?></td>
+          <td><?php echo $vo['units']; ?></td>
+          <td><?php echo $vo['bank']; ?></td>
+          <td><?php echo $vo['exchange_num']; ?></td>
+          <td></td>
+          <td><?php echo getAddressByIp($vo['login_ip']); ?></td>
+          <td><?php if($vo['is_freeze'] == 1): ?>正常<?php elseif($vo['is_freeze'] == 2): ?>冻结<?php endif; ?></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="<?php echo url('admin/board/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="<?php echo url('admin/user/edit',['uid'=>$vo['uid']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['uid']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
         </tr>
         <?php endforeach; endif; else: echo "" ;endif; ?>
       </tbody>
     </table>
-    <div style="padding:0 20px;"><?php echo $boards->render(); ?></div> 
+    <div style="padding:0 20px;"><?php echo $users->render(); ?></div> 
         <script src="/static/public/layui/layui.js" charset="utf-8"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
     <script>
@@ -209,11 +217,11 @@
     <script type="text/javascript">
 
     $('.delete').click(function(){
-      var id = $(this).attr('id');
+      var uid = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"<?php echo url('admin/board/delete'); ?>",
-          data:{id:id},
+          url:"<?php echo url('admin/user/delete'); ?>",
+          data:{uid:uid},
           success:function(res) {
             layer.msg(res.msg);
             if(res.code == 1) {
@@ -226,7 +234,7 @@
       })
     })
     </script>
-    <script type="text/javascript">
+   <!--  <script type="text/javascript">
 
     $('.is_top').click(function(){
       var val = $(this).attr('data-val');
@@ -240,7 +248,7 @@
       }
       $.ajax({
         type:"post",
-        url:"<?php echo url('admin/board/is_top'); ?>",
+        url:"<?php echo url('admin/user/is_freeze'); ?>",
         data:{is_top:is_top,id:id},
         success:function(res){
           
@@ -276,7 +284,7 @@
       }
       $.ajax({
         type:"post",
-        url:"<?php echo url('admin/board/status'); ?>",
+        url:"<?php echo url('admin/article/status'); ?>",
         data:{status:status,id:id},
         success:function(res){
           
@@ -298,7 +306,7 @@
         }
       }
     })
-    </script>
+    </script> -->
   </div>
 </body>
 </html>

@@ -56,7 +56,7 @@
           <div class="layui-form-item">
             <label class="layui-form-label">自动投注算流水</label>
             <div class="layui-input-block">
-              <input type="checkbox" name="switch" lay-skin="switch" value="1" {notempty name="$web_config.flow_autobid"}checked{/notempty}>
+              <input type="checkbox" name="flow_autobid" lay-skin="switch" value="1" {notempty name="$web_config.flow_autobid"}checked{/notempty}>
             </div>
           </div>
 
@@ -86,12 +86,12 @@
         {volist name="chargeconfig" id="vo"}
         <tr>
           <td>{$vo.user_id}</td>
-          <td>{$vo.charge.name}</td>
+          <td>{$vo.user.username}</td>
           <td>{$vo.flow_times}</td>
           <td>{$vo.charge_ratio}</td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="{:url('admin/prize/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <!-- <a href="{:url('admin/prize/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a> -->
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -106,7 +106,7 @@
         var id = $(this).attr('id');
         layer.confirm('确定要删除?', function(index) {
           $.ajax({
-            url:"{:url('admin/prize/delete')}",
+            url:"{:url('admin/prizeflowcharge/deleteuserrule')}",
             data:{id:id},
             success:function(res) {
               layer.msg(res.msg);
