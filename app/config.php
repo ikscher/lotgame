@@ -223,6 +223,9 @@ return [
         'var_session_id' => '',
         // SESSION 前缀
         'prefix'         => 'think',
+        'use_trans_sid'  =>1,
+        //保存路径
+        'path' => SESSION_PATH,
         // 驱动方式 支持redis memcache memcached
         'type'           => '',
         // 是否自动开启 SESSION

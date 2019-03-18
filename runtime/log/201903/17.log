@@ -25209,3 +25209,276 @@
 [ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user_charge` [ RunTime:0.017001s ]
 [ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_user_charge` LIMIT 1 [ RunTime:0.001000s ]
 [ sql ] [ SQL ] SELECT * FROM `hov_user_charge` ORDER BY `create_time` DESC LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-17T22:17:46+08:00 ] 192.168.1.102 GET test.lotgame.com/admin/chargeconfig/index.shtml
+[运行时间：0.225013s] [吞吐率：4.44req/s] [内存消耗：3,238.91kb] [文件加载：58]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'chargeconfig',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=r0k5q4oj9m1p7g6886nd08lm27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Chargeconfig->index[ D:\mywork\lotgame\app\admin\controller\Chargeconfig.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\chargeconfig\index.html [ array (
+  0 => 'chargeconfig',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.017001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.017001s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Chargeconfig'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'chargeconfig=' LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Chargeconfig'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_chargeconfig` [ RunTime:0.017001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_chargeconfig` LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_chargeconfig` ORDER BY `create_time` DESC LIMIT 0,20 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-17T22:17:46+08:00 ] 192.168.1.102 GET test.lotgame.com/admin/prizehistory/index.shtml
+[运行时间：0.240014s] [吞吐率：4.17req/s] [内存消耗：2,910.83kb] [文件加载：56]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'prizehistory',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=r0k5q4oj9m1p7g6886nd08lm27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Prizehistory->index[ D:\mywork\lotgame\app\admin\controller\Prizehistory.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\prizehistory\index.html [ array (
+  0 => 'exchanges',
+  1 => 'page',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.019001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.020001s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.022001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Prizehistory'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'prizehistory=' LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Prizehistory'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user_exchange` [ RunTime:0.017001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_user_exchange` `a` INNER JOIN `hov_prize` `p` ON `a`.`prize_id`=`p`.`id` INNER JOIN `hov_user` `u` ON `a`.`user_id`=`u`.`uid` WHERE  `a`.`status` = 1 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT `a`.*,`u`.`username`,`u`.`email`,`p`.`name` FROM `hov_user_exchange` `a` INNER JOIN `hov_prize` `p` ON `a`.`prize_id`=`p`.`id` INNER JOIN `hov_user` `u` ON `a`.`user_id`=`u`.`uid` WHERE  `a`.`status` = 1 ORDER BY `a`.`create_time` DESC LIMIT 0,10 [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2019-03-17T22:17:46+08:00 ] 192.168.1.102 GET test.lotgame.com/admin/prizeexchange/index.shtml
+[运行时间：0.220012s] [吞吐率：4.55req/s] [内存消耗：2,932.73kb] [文件加载：56]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'prizeexchange',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=r0k5q4oj9m1p7g6886nd08lm27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Prizeexchange->index[ D:\mywork\lotgame\app\admin\controller\Prizeexchange.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\prizeexchange\index.html [ array (
+  0 => 'exchanges',
+  1 => 'page',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.019001s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.019001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Prizeexchange'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'prizeexchange=' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Prizeexchange'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user_exchange` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_user_exchange` `a` INNER JOIN `hov_prize` `p` ON `a`.`prize_id`=`p`.`id` INNER JOIN `hov_user` `u` ON `a`.`user_id`=`u`.`uid` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `a`.*,`u`.`username`,`u`.`email`,`p`.`name` FROM `hov_user_exchange` `a` INNER JOIN `hov_prize` `p` ON `a`.`prize_id`=`p`.`id` INNER JOIN `hov_user` `u` ON `a`.`user_id`=`u`.`uid` ORDER BY `a`.`create_time` DESC LIMIT 0,10 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2019-03-17T22:17:47+08:00 ] 192.168.1.102 GET test.lotgame.com/admin/prize/remark.shtml
+[运行时间：0.267015s] [吞吐率：3.75req/s] [内存消耗：3,316.87kb] [文件加载：59]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'prize',
+    2 => 'remark',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=r0k5q4oj9m1p7g6886nd08lm27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Prize->remark[ D:\mywork\lotgame\app\admin\controller\Prize.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\prize\remark.html [ array (
+  0 => 'remarks',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.020001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.019002s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.020001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Prize'  AND `function` = 'remark'  AND `type` = 1  AND `parameter` = 'prize=' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Prize'  AND `function` = 'remark'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user_remark` [ RunTime:0.020001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user_remark` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_prize` [ RunTime:0.016001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_prize` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-17T22:17:48+08:00 ] 192.168.1.102 GET test.lotgame.com/admin/prize/index.shtml
+[运行时间：0.263015s] [吞吐率：3.80req/s] [内存消耗：3,445.14kb] [文件加载：62]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'prize',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=r0k5q4oj9m1p7g6886nd08lm27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Prize->index[ D:\mywork\lotgame\app\admin\controller\Prize.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\prize\index.html [ array (
+  0 => 'prizes',
+  1 => 'info',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.016001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.019001s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.019001s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.020001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Prize'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'prize=' LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Prize'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.002001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_prize` [ RunTime:0.019001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_prize` LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_prize` ORDER BY `create_time` DESC LIMIT 0,20 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_prize_cate` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_prize_cate` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_prize_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_prize_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_prize_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_prize_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_prize_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.002000s ]
