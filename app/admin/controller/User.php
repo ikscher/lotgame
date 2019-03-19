@@ -17,7 +17,7 @@ use \think\Controller;
 use think\Loader;
 use think\Db;
 // use \think\Cookie;
-// use \think\Session;
+use \think\Session;
 use app\admin\controller\Permissions;
 use app\user\model\User as userModel;
 
@@ -76,95 +76,60 @@ class User extends Permissions
     public function publish()
     {
     	//获取菜单id
-    	$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
-    	$model = new articleModel();
-        $cateModel = new cateModel();
+    	$uid = $this->request->has('uid') ? $this->request->param('uid', 0, 'intval') : 0;
+    	$model = new userModel();
+        
+        if(empty($uid)) {
+            $uid=Session::get('userid_edit');
+        }
+
 		//是正常添加操作
-		if($id > 0) {
+		if($uid > 0) {
+            Session::set('userid_edit',$uid);
     		//是修改操作
     		if($this->request->isPost()) {
     			//是提交操作
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
 	            $validate = new \think\Validate([
-	                ['title', 'require', '标题不能为空'],
-	                ['article_cate_id', 'require', '请选择分类'],
-                    ['thumb', 'require', '请上传缩略图'],
-                    ['content', 'require', '文章内容不能为空'],
+	                ['username', 'require', '用户名不能为空'],
+	                ['password', 'require', '密码不能为空'],
+                    // ['thumb', 'require', '请上传缩略图'],
+                    // ['content', 'require', '文章内容不能为空'],
 	            ]);
 	            //验证部分数据合法性
 	            if (!$validate->check($post)) {
 	                $this->error('提交失败：' . $validate->getError());
 	            }
 	            //验证菜单是否存在
-	            $article = $model->where('id',$id)->find();
-	            if(empty($article)) {
-	            	return $this->error('id不正确');
+	            $user = $model->where('uid',$uid)->find();
+	            if(empty($user)) {
+	            	return $this->error('uid不正确');
 	            }
-                //设置修改人
-                // $post['edit_admin_id'] = Session::get('admin');
-                $post['begin_time']=strtotime($post['begin_time']);
-                $post['end_time']=strtotime($post['end_time']);
-	            if(false == $model->allowField(true)->save($post,['id'=>$id])) {
+                //设置被修改的UID
+                
+                $post['vip_expire']=strtotime($post['vip_expire']);
+                // $post['end_time']=strtotime($post['end_time']);
+	            if(false == $model->allowField(true)->save($post,['uid'=>$uid])) {
 	            	return $this->error('修改失败');
 	            } else {
-                    $operation='修改成功';
+                    $operation='修改用户信息成功';
                     addlog($operation.'-'.$model->id);//写入日志
-	            	return $this->success($operation,'admin/article/index');
+	            	return $this->success($operation,'admin/user/index');
 	            }
     		} else {
     			//非提交操作
-    			$article = $model->where('id',$id)->find();
-    			$cates = $cateModel->select();
-    			$cates_all = $cateModel->catelist($cates);
-    			$this->assign('cates',$cates_all);
-    			if(!empty($article)) {
-    				$this->assign('article',$article);
+    			$user = $model->where('uid',$uid)->find();
+    			$this->assign('user',$user);
+    			if(!empty($user)) {
+    				$this->assign('user',$user);
     				return $this->fetch();
     			} else {
-    				return $this->error('id不正确');
+    				return $this->error('uid不正确');
     			}
     		}
-    	} else {
-    		//是新增操作
-    		if($this->request->isPost()) {
-    			//是提交操作
-    			$post = $this->request->post();
-    			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-	            $validate = new \think\Validate([
-	                ['title', 'require', '标题不能为空'],
-                    ['article_cate_id', 'require', '请选择分类'],
-                    ['thumb', 'require', '请上传缩略图'],
-                    ['content', 'require', '内容不能为空'],
-                    ['begin_time', 'require', '开始时间不能为空'],
-                    ['end_time', 'require', '结束时间不能为空']
-	            ]);
-	            //验证部分数据合法性
-	            if (!$validate->check($post)) {
-	                $this->error('提交失败：' . $validate->getError());
-	            }
-                //设置创建人
-                // $post['admin_id'] = Session::get('admin');
-                //设置修改人
-                $post['edit_admin_id'] = $post['admin_id'];
-                $post['begin_time']=strtotime($post['begin_time']);
-                $post['end_time']=strtotime($post['end_time']);
-                // echo json_encode($post);exit;
-	            if(false == $model->allowField(true)->save($post)) {
-	            	return $this->error('添加失败');
-	            } else {
-                    $operation='添加活动成功';
-                    addlog($operation.'-'.$model->id);//写入日志
-	            	return $this->success($operation,'admin/article/index');
-	            }
-    		} else {
-    			//非提交操作
-    			$cate = $cateModel->select();
-    			$cates = $cateModel->catelist($cate);
-    			$this->assign('cates',$cates);
-    			return $this->fetch();
-    		}
-    	}
+    	} 
+    	
     	
     }
 
@@ -172,41 +137,32 @@ class User extends Permissions
     public function delete()
     {
     	if($this->request->isAjax()) {
-    		$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
-            if(false == Db::name('article')->where('id',$id)->delete()) {
+    		$uid = $this->request->has('uid') ? $this->request->param('uid', 0, 'intval') : 0;
+            if(false == Db::name('user')->where('uid',$uid)->delete()) {
                 return $this->error('删除失败');
             } else {
-                addlog($id);//写入日志
-                return $this->success('删除成功','admin/article/index');
+                $operation='删除用户成功';
+                addlog($operation.'-'.$uid);//写入日志
+                return $this->success($operation,'admin/user/index');
             }
     	}
     }
 
 
-    public function is_top()
+    public function freeze()
     {
-        if($this->request->isPost()){
-            $post = $this->request->post();
-            if(false == Db::name('article')->where('id',$post['id'])->update(['is_top'=>$post['is_top']])) {
-                return $this->error('设置失败');
+        if($this->request->isAjax()) {
+            $uid = $this->request->has('uid') ? $this->request->param('uid', 0, 'intval') : 0;
+            if(false == Db::name('user')->where('uid',$uid)->update(['is_freeze'=>'2'])) {
+                return $this->error('冻结失败');
             } else {
-                addlog($post['id']);//写入日志
-                return $this->success('设置成功','admin/article/index');
+                $operation='冻结用户成功';
+                addlog($operation.'-'.$uid);//写入日志
+                return $this->success($operation,'admin/user/index');
             }
         }
     }
 
 
-    public function status()
-    {
-        if($this->request->isPost()){
-            $post = $this->request->post();
-            if(false == Db::name('article')->where('id',$post['id'])->update(['status'=>$post['status']])) {
-                return $this->error('设置失败');
-            } else {
-                addlog($post['id']);//写入日志
-                return $this->success('设置成功','admin/article/index');
-            }
-        }
-    }
+    
 }

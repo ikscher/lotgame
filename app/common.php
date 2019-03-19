@@ -180,8 +180,8 @@ function  getAddressByIp($ip){
 
     // var_dump($user_json);//位置
     $str=$ip;
-    if(!empty($user_json['address'])){
-       $str=$user_json['address'].'('.$ip.')';
+    if(!empty($user_json['content'])){
+       $str=$user_json['content']['address'].'('.$ip.')';
     }
     return $str;
 }

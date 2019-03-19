@@ -27,7 +27,7 @@
     <div class="layui-tab">
       <ul class="layui-tab-title">
         <li class="layui-this">用户管理</li>
-        <li><a href="{:url('admin/user/edit')}" class="a_menu">修改用户</a></li>
+        <li><a href="{:url('admin/user/publish')}" class="a_menu">修改用户</a></li>
       </ul>
     </div> 
       <form class="layui-form serch" action="{:url('admin/user/index')}" method="post">
@@ -78,17 +78,17 @@
       </form> 
     <table class="layui-table" lay-size="sm">
       <colgroup>
+        <col width="30">
         <col width="50">
         <col width="50">
         <col width="50">
-        <col width="80">
         <col width="50">
         <col width="50">
         <col width="50">
-        <col width="100">
-        <col width="150">
         <col width="60">
         <col width="100">
+        <col width="60">
+        <col width="140">
       </colgroup>
       <thead>
         <tr>
@@ -108,8 +108,8 @@
       <tbody>
         {volist name="users" id="vo"}
         <tr>
-          <td>{$vo.uid}</td>
-          <td>{$vo.username}</td>
+          <td><input type="checkbox" name="uid[]" value="{$vo.uid}"></td>
+          <td>{$vo.username}({$vo.uid})</td>
           <td>{$vo.email}</td>
           <td>{$vo.mobile}</td>
           <td>{$vo.units}</td>
@@ -120,8 +120,13 @@
           <td>{if condition="$vo.is_freeze eq 1"}正常{elseif condition="$vo.is_freeze eq 2"}冻结{/if}</td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="{:url('admin/user/edit',['uid'=>$vo.uid])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.uid}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <!-- <a href="{:url('admin/user/edit',['uid'=>$vo.uid])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.uid}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a> -->
+              <a href="{:url('admin/user/login',['uid'=>$vo.uid])}" class="a_menu"  style="margin: 0;font-size:12px;">进入</a><span style="margin:0 3px;"></span>
+              <a href="{:url('admin/user/publish',['uid'=>$vo.uid])}" class="a_menu" style="margin: 0;font-size:12px;">修改</a><span style="margin:0 3px;"></span>
+              <a href="javascript:;" class="a_menu freeze" id="{$vo.uid}" style="margin: 0;font-size:12px;">冻结</a><span style="margin:0 3px;"></span>
+              <a href="javascript:;" class="a_menu delete" id="{$vo.uid}" style="margin: 0 ;font-size:12px;">删除</a><span style="margin:0 3px;"></span>
+              <a href="{:url('admin/userprofit/index',['uid'=>$vo.uid])}" class="a_menu"  id="{$vo.uid}" style="margin: 0 ;font-size:12px;">盈亏</a>
             </div>
           </td>
         </tr>
@@ -137,6 +142,24 @@
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
           url:"{:url('admin/user/delete')}",
+          data:{uid:uid},
+          success:function(res) {
+            layer.msg(res.msg);
+            if(res.code == 1) {
+              setTimeout(function(){
+                location.href = res.url;
+              },1500)
+            }
+          }
+        })
+      })
+    })
+
+    $('.freeze').click(function(){
+      var uid = $(this).attr('id');
+      layer.confirm('确定要冻结用户吗?', function(index) {
+        $.ajax({
+          url:"{:url('admin/user/freeze')}",
           data:{uid:uid},
           success:function(res) {
             layer.msg(res.msg);

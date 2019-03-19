@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1552899407;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552548490;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1552921591;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552567281;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@
     <div class="layui-tab">
       <ul class="layui-tab-title">
         <li class="layui-this">用户管理</li>
-        <li><a href="<?php echo url('admin/user/edit'); ?>" class="a_menu">修改用户</a></li>
+        <li><a href="<?php echo url('admin/user/publish'); ?>" class="a_menu">修改用户</a></li>
       </ul>
     </div> 
       <form class="layui-form serch" action="<?php echo url('admin/user/index'); ?>" method="post">
@@ -79,17 +79,17 @@
       </form> 
     <table class="layui-table" lay-size="sm">
       <colgroup>
+        <col width="30">
         <col width="50">
         <col width="50">
         <col width="50">
-        <col width="80">
         <col width="50">
         <col width="50">
         <col width="50">
-        <col width="100">
-        <col width="150">
         <col width="60">
         <col width="100">
+        <col width="60">
+        <col width="140">
       </colgroup>
       <thead>
         <tr>
@@ -109,8 +109,8 @@
       <tbody>
         <?php if(is_array($users) || $users instanceof \think\Collection || $users instanceof \think\Paginator): $i = 0; $__LIST__ = $users;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
-          <td><?php echo $vo['uid']; ?></td>
-          <td><?php echo $vo['username']; ?></td>
+          <td><input type="checkbox" name="uid[]" value="<?php echo $vo['uid']; ?>"></td>
+          <td><?php echo $vo['username']; ?>(<?php echo $vo['uid']; ?>)</td>
           <td><?php echo $vo['email']; ?></td>
           <td><?php echo $vo['mobile']; ?></td>
           <td><?php echo $vo['units']; ?></td>
@@ -121,8 +121,13 @@
           <td><?php if($vo['is_freeze'] == 1): ?>正常<?php elseif($vo['is_freeze'] == 2): ?>冻结<?php endif; ?></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="<?php echo url('admin/user/edit',['uid'=>$vo['uid']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['uid']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <!-- <a href="<?php echo url('admin/user/edit',['uid'=>$vo['uid']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['uid']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a> -->
+              <a href="<?php echo url('admin/user/login',['uid'=>$vo['uid']]); ?>" class="a_menu"  style="margin: 0;font-size:12px;">进入</a><span style="margin:0 3px;"></span>
+              <a href="<?php echo url('admin/user/publish',['uid'=>$vo['uid']]); ?>" class="a_menu" style="margin: 0;font-size:12px;">修改</a><span style="margin:0 3px;"></span>
+              <a href="javascript:;" class="a_menu freeze" id="<?php echo $vo['uid']; ?>" style="margin: 0;font-size:12px;">冻结</a><span style="margin:0 3px;"></span>
+              <a href="javascript:;" class="a_menu delete" id="<?php echo $vo['uid']; ?>" style="margin: 0 ;font-size:12px;">删除</a><span style="margin:0 3px;"></span>
+              <a href="<?php echo url('admin/userprofit/index',['uid'=>$vo['uid']]); ?>" class="a_menu"  id="<?php echo $vo['uid']; ?>" style="margin: 0 ;font-size:12px;">盈亏</a>
             </div>
           </td>
         </tr>
@@ -221,6 +226,24 @@
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
           url:"<?php echo url('admin/user/delete'); ?>",
+          data:{uid:uid},
+          success:function(res) {
+            layer.msg(res.msg);
+            if(res.code == 1) {
+              setTimeout(function(){
+                location.href = res.url;
+              },1500)
+            }
+          }
+        })
+      })
+    })
+
+    $('.freeze').click(function(){
+      var uid = $(this).attr('id');
+      layer.confirm('确定要冻结用户吗?', function(index) {
+        $.ajax({
+          url:"<?php echo url('admin/user/freeze'); ?>",
           data:{uid:uid},
           success:function(res) {
             layer.msg(res.msg);

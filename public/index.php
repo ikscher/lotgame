@@ -19,5 +19,7 @@ define('TPLAY_VERSION', '1.3.3');
 define('EXTEND_PATH', __DIR__ . '/../extend/');
 //重定义第三方类库目录
 define('VENDOR_PATH', __DIR__ . '/../vendor/');
+//定义SESSION保存目录
+define('SESSION_PATH', __DIR__.'./../runtime/session/');
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';
