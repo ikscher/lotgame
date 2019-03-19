@@ -22437,3 +22437,467 @@
 [ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.008001s ]
 [ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'edit'  AND `type` = 1  AND `parameter` = 'user=' LIMIT 1 [ RunTime:0.001000s ]
 [ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'edit'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-18T16:58:26+08:00 ] 192.168.1.107 GET test.lotgame.com/admin/usergrade/index.shtml
+[运行时间：0.201011s] [吞吐率：4.97req/s] [内存消耗：3,558.02kb] [文件加载：54]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'usergrade',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin/index/index.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=2bg57ltpoh9tskl0o64h0ntf27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Usergrade->index[ D:\mywork\lotgame\app\admin\controller\Usergrade.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\usergrade\index.html [ array (
+  0 => 'usergrades',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.030001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.016001s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.015001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Usergrade'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'usergrade=' LIMIT 1 [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Usergrade'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user_grade` [ RunTime:0.013000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user_grade` [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2019-03-18T16:58:28+08:00 ] 192.168.1.107 GET test.lotgame.com/admin/user/index.shtml
+[运行时间：0.389022s] [吞吐率：2.57req/s] [内存消耗：3,734.03kb] [文件加载：58]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'user',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin/index/index.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=2bg57ltpoh9tskl0o64h0ntf27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\User->index[ D:\mywork\lotgame\app\admin\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\user\index.html [ array (
+  0 => 'users',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.015001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.030002s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.030002s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.035002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'user=' LIMIT 1 [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.029001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_user` LIMIT 1 [ RunTime:0.012000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` ORDER BY `create_time` DESC LIMIT 0,20 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-18T16:58:28+08:00 ] 192.168.1.107 GET test.lotgame.com/admin/usergrade/index.shtml
+[运行时间：0.312018s] [吞吐率：3.20req/s] [内存消耗：3,558.02kb] [文件加载：54]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'usergrade',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin/index/index.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=2bg57ltpoh9tskl0o64h0ntf27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Usergrade->index[ D:\mywork\lotgame\app\admin\controller\Usergrade.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\usergrade\index.html [ array (
+  0 => 'usergrades',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.042002s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.033001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.038002s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.032002s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.029001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Usergrade'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'usergrade=' LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Usergrade'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user_grade` [ RunTime:0.028002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user_grade` [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2019-03-18T16:58:31+08:00 ] 192.168.1.107 GET test.lotgame.com/admin/user/index.shtml
+[运行时间：0.398023s] [吞吐率：2.51req/s] [内存消耗：3,734.03kb] [文件加载：58]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'user',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin/index/index.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=2bg57ltpoh9tskl0o64h0ntf27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\User->index[ D:\mywork\lotgame\app\admin\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\user\index.html [ array (
+  0 => 'users',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.025002s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.033002s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.035002s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.034002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'user=' LIMIT 1 [ RunTime:0.003001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_user` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` ORDER BY `create_time` DESC LIMIT 0,20 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-18T16:58:31+08:00 ] 192.168.1.107 GET test.lotgame.com/admin/usergrade/index.shtml
+[运行时间：0.250015s] [吞吐率：4.00req/s] [内存消耗：3,558.02kb] [文件加载：54]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'usergrade',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin/index/index.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=2bg57ltpoh9tskl0o64h0ntf27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Usergrade->index[ D:\mywork\lotgame\app\admin\controller\Usergrade.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\usergrade\index.html [ array (
+  0 => 'usergrades',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.027001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.035002s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.030002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Usergrade'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'usergrade=' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Usergrade'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user_grade` [ RunTime:0.028002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user_grade` [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-18T16:58:33+08:00 ] 192.168.1.107 GET test.lotgame.com/admin/user/index.shtml
+[运行时间：0.384022s] [吞吐率：2.60req/s] [内存消耗：3,734.03kb] [文件加载：58]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'user',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin/index/index.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=2bg57ltpoh9tskl0o64h0ntf27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\User->index[ D:\mywork\lotgame\app\admin\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\user\index.html [ array (
+  0 => 'users',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.028001s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.026001s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.027002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'user=' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.026001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_user` LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` ORDER BY `create_time` DESC LIMIT 0,20 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-18T16:58:34+08:00 ] 192.168.1.107 GET test.lotgame.com/admin/usergrade/index.shtml
+[运行时间：0.245014s] [吞吐率：4.08req/s] [内存消耗：3,558.02kb] [文件加载：54]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'usergrade',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin/index/index.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=2bg57ltpoh9tskl0o64h0ntf27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Usergrade->index[ D:\mywork\lotgame\app\admin\controller\Usergrade.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\usergrade\index.html [ array (
+  0 => 'usergrades',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.028002s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.027002s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.027002s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.030002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Usergrade'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'usergrade=' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Usergrade'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user_grade` [ RunTime:0.030002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user_grade` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-03-18T16:58:35+08:00 ] 192.168.1.107 GET test.lotgame.com/admin/user/index.shtml
+[运行时间：0.346020s] [吞吐率：2.89req/s] [内存消耗：3,734.03kb] [文件加载：58]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'user',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin/index/index.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=2bg57ltpoh9tskl0o64h0ntf27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\User->index[ D:\mywork\lotgame\app\admin\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\user\index.html [ array (
+  0 => 'users',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.031001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.030002s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.026002s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.027002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'user=' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.020001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_user` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` ORDER BY `create_time` DESC LIMIT 0,20 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-18T16:59:23+08:00 ] 192.168.1.107 GET test.lotgame.com/admin/user/index.shtml
+[运行时间：0.345019s] [吞吐率：2.90req/s] [内存消耗：3,734.03kb] [文件加载：58]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'user',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/admin/index/index.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=2bg57ltpoh9tskl0o64h0ntf27',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\User->index[ D:\mywork\lotgame\app\admin\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/admin\view\user\index.html [ array (
+  0 => 'users',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_urlconfig` [ RunTime:0.023001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `hov_urlconfig` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_webconfig` [ RunTime:0.032001s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `hov_webconfig` WHERE  `id` = 101 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_cate` [ RunTime:0.027001s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `hov_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_admin_menu` [ RunTime:0.032002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'user=' LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'User'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.030002s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_user` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` ORDER BY `create_time` DESC LIMIT 0,20 [ RunTime:0.001000s ]
