@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"D:\mywork\lotgame\public/../app/admin\view\user\publish.html";i:1552921075;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"D:\mywork\lotgame\public/../app/admin\view\user\publish.html";i:1552983623;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,6 +60,13 @@
           <input name="email" autocomplete="off"  class="layui-input" type="text" <?php if(!(empty($user['email']) || (($user['email'] instanceof \think\Collection || $user['email'] instanceof \think\Paginator ) && $user['email']->isEmpty()))): ?>value="<?php echo $user['email']; ?>"<?php endif; ?>>
         </div>
       </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">邮箱验证</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input type="checkbox" name="is_email" lay-filter="email" title="" <?php if(!(empty($user['is_email']) || (($user['is_email'] instanceof \think\Collection || $user['is_email'] instanceof \think\Paginator ) && $user['is_email']->isEmpty()))): ?>checked value="1"<?php else: ?> value="0"<?php endif; ?> >
+        </div>
+      </div>
       
       <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
@@ -69,23 +76,44 @@
       </div>
 
       <div class="layui-form-item">
+        <label class="layui-form-label">手机号码</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input name="mobile" autocomplete="off"  class="layui-input" lay-verify="required|phone|number" type="text" <?php if(!(empty($user['mobile']) || (($user['mobile'] instanceof \think\Collection || $user['mobile'] instanceof \think\Paginator ) && $user['mobile']->isEmpty()))): ?>value="<?php echo $user['mobile']; ?>"<?php endif; ?>>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">手机验证</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input type="checkbox" name="is_mobile" lay-filter="mobile" title="" <?php if(!(empty($user['is_mobile']) || (($user['is_mobile'] instanceof \think\Collection || $user['is_mobile'] instanceof \think\Paginator ) && $user['is_mobile']->isEmpty()))): ?>checked value="1"<?php else: ?> value="0"<?php endif; ?> >
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">QQ</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input name="qq" autocomplete="off"  class="layui-input" lay-verify="required|number" type="text" <?php if(!(empty($user['qq']) || (($user['qq'] instanceof \think\Collection || $user['qq'] instanceof \think\Paginator ) && $user['qq']->isEmpty()))): ?>value="<?php echo $user['qq']; ?>"<?php endif; ?>>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">用户金币</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="units" autocomplete="off"  class="layui-input" type="text" <?php if(!(empty($user['units']) || (($user['units'] instanceof \think\Collection || $user['units'] instanceof \think\Paginator ) && $user['units']->isEmpty()))): ?>value="<?php echo $user['units']; ?>"<?php endif; ?>>
+          <input name="units" autocomplete="off" lay-verify="required|number"  class="layui-input" type="text" <?php if(!(empty($user['units']) || (($user['units'] instanceof \think\Collection || $user['units'] instanceof \think\Paginator ) && $user['units']->isEmpty()))): ?>value="<?php echo $user['units']; ?>"<?php endif; ?>>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">金币银行</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="bank" autocomplete="off"  class="layui-input" type="text" <?php if(!(empty($user['bank']) || (($user['bank'] instanceof \think\Collection || $user['bank'] instanceof \think\Paginator ) && $user['bank']->isEmpty()))): ?>value="<?php echo $user['bank']; ?>"<?php endif; ?>>
+          <input name="bank" autocomplete="off"  lay-verify="required|number" class="layui-input" type="text" <?php if(!(empty($user['bank']) || (($user['bank'] instanceof \think\Collection || $user['bank'] instanceof \think\Paginator ) && $user['bank']->isEmpty()))): ?>value="<?php echo $user['bank']; ?>"<?php endif; ?>>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">用户积分</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="points" autocomplete="off"  class="layui-input" type="text" <?php if(!(empty($user['points']) || (($user['points'] instanceof \think\Collection || $user['points'] instanceof \think\Paginator ) && $user['points']->isEmpty()))): ?>value="<?php echo $user['points']; ?>"<?php endif; ?>>
+          <input name="points" autocomplete="off"  class="layui-input"  lay-verify="required|number" type="text" <?php if(!(empty($user['points']) || (($user['points'] instanceof \think\Collection || $user['points'] instanceof \think\Paginator ) && $user['points']->isEmpty()))): ?>value="<?php echo $user['points']; ?>"<?php endif; ?>>
         </div>
       </div>
 
@@ -101,11 +129,16 @@
       </div>
 
       <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">注册时间</label>
-        <div class="layui-input-block" style="max-width:300px;">
-            <input type="text" class="layui-input" id="create_time" placeholder="开始时间" name="create_time" <?php if(!(empty($article['create_time']) || (($article['create_time'] instanceof \think\Collection || $article['create_time'] instanceof \think\Paginator ) && $article['create_time']->isEmpty()))): ?>value="<?php echo date("Y-m-d H:i:s",$user['create_time']); ?>"<?php endif; ?>>
+        <label class="layui-form-label">出生日期</label>
+        <div class="layui-input-inline birth" style="max-width:900px;">
+          <select name="year" class="sel_year" rel="<?php echo date('Y',strtotime($user['birth'])); ?>" lay-filter="birth" ></select>年
+          <select name="month" class="sel_month" rel="<?php echo date('m',strtotime($user['birth'])); ?>" lay-filter="birth"></select>月
+          <select name="day" class="sel_day" rel="<?php echo date('d',strtotime($user['birth'])); ?>" ></select>日
         </div>
       </div>
+      <style type="text/css">
+         div.birth div{display: inline-block;}/*修正解决select选框出现单行显示*/
+      </style>
 
 
       <div class="layui-form-item layui-form-text">
@@ -114,6 +147,8 @@
             <input type="text" class="layui-input" id="vip_expire" placeholder="结束时间" name="vip_expire" <?php if(!(empty($user['vip_expire']) || (($user['vip_expire'] instanceof \think\Collection || $user['vip_expire'] instanceof \think\Paginator ) && $user['vip_expire']->isEmpty()))): ?>value="<?php echo date("Y-m-d H:i:s",$user['vip_expire']); ?>"<?php endif; ?>>
         </div>
       </div>
+
+      
 
       <?php if(!(empty($user) || (($user instanceof \think\Collection || $user instanceof \think\Paginator ) && $user->isEmpty()))): ?>
       <input type="hidden" name="id" value="<?php echo $user['uid']; ?>">
@@ -130,23 +165,8 @@
     
     <script src="/static/public/layui/layui.js"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
-    <!-- <script>
-        var message;
-        layui.config({
-            base: '/static/admin/js/',
-            version: '1.0.1'
-        }).use(['app', 'message'], function() {
-            var app = layui.app,
-                $ = layui.jquery,
-                layer = layui.layer;
-            //将message设置为全局以便子页面调用
-            message = layui.message;
-            //主入口
-            app.set({
-                type: 'iframe'
-            }).init();
-        });
-    </script> -->
+       
+    <!-- <script src="/static/public/jquery/birthday.js"></script> -->
     <script>
     layui.use('upload', function(){
       var upload = layui.upload;
@@ -177,11 +197,18 @@
     });
     </script>
     <script>
-      layui.use(['layer', 'form','laydate'], function() {
+       layui.config({
+            base: '/static/admin/js/',
+            version: '1.0.1'
+        }).extend({
+          birthday:'birthday'
+        });
+      layui.use(['layer', 'form','laydate','jquery','birthday'], function() {
           var layer = layui.layer,
           $ = layui.jquery,
           form = layui.form,
-          laydate = layui.laydate;
+          laydate = layui.laydate,
+          birthday = layui.birthday;
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
@@ -190,7 +217,7 @@
                       type:'post',
                       async: false,
                       success:function(res) {
-                          // console.log(res);
+                          console.log(res);
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;
@@ -213,8 +240,36 @@
               elem: '#vip_expire',
               type: 'datetime'
           });
+
+          //取反
+          form.on('checkbox(email)',function(data){
+             var x=$("input[name='is_email']");
+             if(x.prop('checked')){
+                x.val(1);
+             }else{
+                x.val(0);
+             }
+          })
+          
+          //取反
+          form.on('checkbox(mobile)',function(data){
+             var x=$("input[name='is_mobile']");
+             if(x.prop('checked')){
+                x.val(1);
+             }else{
+                x.val(0);
+             }
+          })
+         
+          // console.log(birthday)
+          // birthday.init();
+          birthday.ms_DatePicker();
+        
+ 
+
       });
     </script>
+
   </div>
 </body>
 </html>

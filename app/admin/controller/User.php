@@ -28,7 +28,7 @@ class User extends Permissions
         $model = new userModel();
         $post = $this->request->param();
         if (isset($post['username']) and !empty($post['username'])) {
-            $where['user'] = ['like', '%' . $post['username'] . '%'];
+            $where['username'] = ['like', '%' . $post['username'] . '%'];
         }
         if (isset($post['user_type']) and $post['user_type'] > 0) {
             $where['user_type'] = $post['user_type'];
@@ -38,8 +38,8 @@ class User extends Permissions
             $where['uid'] = $post['uid'];
         }
         
-        if (isset($post['mobile'])) {
-            $where['mobile'] = $post['mobile'];
+        if (!empty($post['mobile'])) {
+            $where['mobile'] = ['like', '%' . $post['mobile'] . '%'];
         }
 
         // if (isset($post['is_vip']) and ($post['is_vip'] == 1 or $post['is_top'] === '0')) {
@@ -56,9 +56,9 @@ class User extends Permissions
         //     $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
         // }
         
-        $users = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
+        $users = empty($where) ? $model->order('create_time desc')->paginate(15) : $model->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
         
-    
+        // echo $model->getLastSql();
         // $arc=collection($articles->toArray());var_dump($arc['data']);exit;
         //$articles = $article->toArray();
         //添加最后修改人的name
@@ -107,14 +107,19 @@ class User extends Permissions
 	            	return $this->error('uid不正确');
 	            }
                 //设置被修改的UID
+                $post['birth']=$post['year'].'-'.$post['month'].'-'.$post['day'];
                 
                 $post['vip_expire']=strtotime($post['vip_expire']);
+                $post['is_email']= empty($post['is_email'])?0:1;
+                $post['is_mobile']= empty($post['is_mobile'])?0:1;
                 // $post['end_time']=strtotime($post['end_time']);
-	            if(false == $model->allowField(true)->save($post,['uid'=>$uid])) {
+                $ret=$model->allowField(true)->save($post,['uid'=>$uid]);
+                // echo $model->getLastSql();exit;
+	            if(false == $ret) {
 	            	return $this->error('修改失败');
 	            } else {
                     $operation='修改用户信息成功';
-                    addlog($operation.'-'.$model->id);//写入日志
+                    addlog($operation.'-'.$uid);//写入日志
 	            	return $this->success($operation,'admin/user/index');
 	            }
     		} else {
@@ -153,12 +158,15 @@ class User extends Permissions
     {
         if($this->request->isAjax()) {
             $uid = $this->request->has('uid') ? $this->request->param('uid', 0, 'intval') : 0;
-            if(false == Db::name('user')->where('uid',$uid)->update(['is_freeze'=>'2'])) {
-                return $this->error('冻结失败');
-            } else {
-                $operation='冻结用户成功';
+            $is_freeze = $this->request->param('is_freeze','2','intval');
+            $model = new userModel();
+            if(false !== $model::where('uid',$uid)->update(['is_freeze'=>$is_freeze])){
+                $operation=($is_freeze==1)?'解冻用户成功':'冻结用户成功';
                 addlog($operation.'-'.$uid);//写入日志
                 return $this->success($operation,'admin/user/index');
+            } else {
+                $operation=($is_freeze==1)?'解冻用户失败':'冻结用户失败';
+                return $this->error($operation);
             }
         }
     }

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1552921591;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552567281;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1552961108;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552548490;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,8 +125,12 @@
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['uid']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a> -->
               <a href="<?php echo url('admin/user/login',['uid'=>$vo['uid']]); ?>" class="a_menu"  style="margin: 0;font-size:12px;">进入</a><span style="margin:0 3px;"></span>
               <a href="<?php echo url('admin/user/publish',['uid'=>$vo['uid']]); ?>" class="a_menu" style="margin: 0;font-size:12px;">修改</a><span style="margin:0 3px;"></span>
-              <a href="javascript:;" class="a_menu freeze" id="<?php echo $vo['uid']; ?>" style="margin: 0;font-size:12px;">冻结</a><span style="margin:0 3px;"></span>
-              <a href="javascript:;" class="a_menu delete" id="<?php echo $vo['uid']; ?>" style="margin: 0 ;font-size:12px;">删除</a><span style="margin:0 3px;"></span>
+              <?php if($vo['is_freeze'] == 1): ?>
+                 <a href="javascript:;" class="freeze" id="<?php echo $vo['uid']; ?>" data-val="2" style="margin: 0;font-size:12px;">冻结</a><span style="margin:0 3px;"></span>
+              <?php elseif($vo['is_freeze'] == 2): ?>
+                 <a href="javascript:;" class="freeze" id="<?php echo $vo['uid']; ?>" data-val="1" style="margin: 0;font-size:12px;">解冻</a><span style="margin:0 3px;"></span>
+              <?php endif; ?>
+              <a href="javascript:;" class="delete" id="<?php echo $vo['uid']; ?>" style="margin: 0 ;font-size:12px;">删除</a><span style="margin:0 3px;"></span>
               <a href="<?php echo url('admin/userprofit/index',['uid'=>$vo['uid']]); ?>" class="a_menu"  id="<?php echo $vo['uid']; ?>" style="margin: 0 ;font-size:12px;">盈亏</a>
             </div>
           </td>
@@ -241,10 +245,12 @@
 
     $('.freeze').click(function(){
       var uid = $(this).attr('id');
-      layer.confirm('确定要冻结用户吗?', function(index) {
+      var is_freeze=$(this).data('val');
+      var msg=(is_freeze==1)?'解冻':'冻结';
+      layer.confirm('确定要'+msg+'用户吗?', function(index) {
         $.ajax({
           url:"<?php echo url('admin/user/freeze'); ?>",
-          data:{uid:uid},
+          data:{uid:uid,is_freeze:is_freeze},
           success:function(res) {
             layer.msg(res.msg);
             if(res.code == 1) {
