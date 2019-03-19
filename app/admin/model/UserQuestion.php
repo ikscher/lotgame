@@ -13,25 +13,17 @@
 namespace app\admin\model;
 
 use \think\Model;
-class Prize extends Model
+class UserQuestion extends Model
 {
-	public function cate()
+    public function admin()
     {
-        //关联分类表
-        return $this->belongsTo('PrizeCate');
+        //关联ADMIN表
+        return $this->belongsTo('Admin');
     }
 
-    public function remark()
+    public function user()
     {
-        //关联user_remark表
-        return $this->hasMany('app\user\model\UserRemark','prize_id');
+        //关联ADMIN表
+        return $this->belongsTo('app\user\model\User');
     }
-
-    public function exchange()
-    {
-        //关联user_exchange表
-        return $this->hasMany('app\user\model\UserExchange','prize_id');
-    }
-
-
 }

@@ -46,4 +46,8 @@ class Admin extends Model
         //关联附件表
         return $this->hasOne('Attachment');
     }
+
+    public function userquestion(){
+        return $this->hasMany('app\user\model\UserQuestion','admin_id');
+    }
 }

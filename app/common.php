@@ -205,3 +205,14 @@ function curl_get($url) {
     curl_close($ch);
     return $res;
 }
+
+/**
+*  返回用户工单的状态
+*  @param  1，2，3，4，5
+*  @return 1待处理，2正在处理，3待用户反馈，4已解决，5已取消
+*/
+function getStatus($status){
+    if (empty($status)) return '';
+    $status_arr=array('1'=>'待处理','2'=>'正在处理','3'=>'待用户反馈','4'=>'已解决','5'=>'已取消');
+    return $status_arr[$status];
+}

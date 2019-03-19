@@ -48,4 +48,8 @@ class User extends Model
         return $this->hasMany('UserLog','user_id');
     }
 
+    public function userquestion(){
+        return $this->hasMany('app\user\model\UserQuestion','user_id');
+    }
+
 }
