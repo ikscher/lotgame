@@ -24,12 +24,17 @@
     <div style="margin-top: 20px;">
     </div>
     <form class="layui-form" id="admin">
-      
-
+      <div class="layui-form-item">
+        <label class="layui-form-label">用户ID</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input name="user_id" lay-verify="title" autocomplete="off" required lay-verify="number" placeholder="请输入UID" class="layui-input" type="text" {notempty name="$userquestion.user_id"}value="{$userquestion.user_id}" disabled {/notempty}>
+        </div>
+      </div>
+  
       <div class="layui-form-item">
         <label class="layui-form-label">名称</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="title" lay-verify="title" autocomplete="off" lay-verify="required" placeholder="请输入标题" class="layui-input" type="text" {notempty name="$userquestion.title"}value="{$userquestion.title}"{/notempty}>
+          <input name="title" lay-verify="title" autocomplete="off" required lay-verify="required" placeholder="请输入标题" class="layui-input" type="text" {notempty name="$userquestion.title"}value="{$userquestion.title}"{/notempty}>
         </div>
       </div>
       
@@ -45,25 +50,26 @@
 
       <div class="layui-form-item">
         <label class="layui-form-label">问题内容</label>
-        <div class="layui-input-block" style="max-width:300px;">
-          <textarea name="question" autocomplete="off"  class="layui-textarea"  {notempty name="$userquestion.question"}value="{$userquestion.question}"{/notempty}></textarea>
+        <div class="layui-input-block" style="max-width:600px;">
+          <textarea name="question" autocomplete="off"  class="layui-textarea" required lay-verify="required" >{notempty name="$userquestion.question"}{$userquestion.question}{/notempty}</textarea>
         </div>
       </div>
-
+      
+      {notempty name="$userquestion.user_id"}
       <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">内容</label>
+        <label class="layui-form-label">回复内容</label>
         <div class="layui-input-block" style="max-width:1000px;">
           <textarea placeholder="请输入内容" class="layui-textarea" name="answer" id="container" style="border:0;padding:0">{notempty name="$userquestion.answer"}{$userquestion.answer}{/notempty}</textarea>
         </div>
       </div>
+      {/notempty}
       
       <div class="layui-form-item">
         <label class="layui-form-label">状态</label>
         <div class="layui-input-block" style="max-width:300px;">
-          <select name="prize_cate_id" lay-filter="aihao">
-            <option value="">--</option>
+          <select name="status" lay-filter="aihao">
             {foreach name="status_arr" item="vo" key="k" }
-            <option value="{$k}" {notempty name="$userquestion.status"}{eq name="$userquestion.status" value="$k"} selected=""{/eq}{/notempty}>{$vo}</option>
+            <option value="{$k}" {notempty name="$userquestion.status"}{eq name="$userquestion.status" value="$k"} selected{/eq} {/notempty}>{$vo}</option>
             {/foreach}
           </select>
         </div>
@@ -164,9 +170,9 @@
             });
       });
     </script>
-
+    {notempty name="$userquestion.user_id"}
     <!-- 加载编辑器的容器 -->
-    <script id="container" name="desc" type="text/plain">
+    <script id="container" name="answer" type="text/plain">
         这里写你的初始化内容
     </script>
     <!-- 配置文件 -->
@@ -177,6 +183,7 @@
     <script type="text/javascript">
         var ue = UE.getEditor('container');
     </script>
+    {/notempty}
   </div>
 </body>
 </html>

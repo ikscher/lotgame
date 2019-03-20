@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:58:"D:\mywork\lotgame\public/../app/admin\view\main\index.html";i:1552308816;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:58:"D:\mywork\lotgame\public/../app/admin\view\main\index.html";i:1553057439;}*/ ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -116,8 +116,9 @@
               <tr>
                 <td>当前版本</td>
                 <td>
-                    Tplay <?php echo $info['tplay']; ?>
-                    <a href="http://tplay.pengyichen.cn/tplay/public/index/index/log.shtml" target="_blank" style="padding-left: 15px;">更新日志</a> 
+                    lotgame 1.01
+                    <!-- Tplay <?php echo $info['tplay']; ?>
+                    <a href="http://tplay.pengyichen.cn/tplay/public/index/index/log.shtml" target="_blank" style="padding-left: 15px;">更新日志</a>  -->
                 </td>
               </tr>
               <tr>
@@ -130,7 +131,7 @@
                 <td>主要特色</td>
                 <td>适配强 / 高颜值 / 清爽 / 简洁</td>
               </tr>
-              <tr>
+             <!--  <tr>
                 <td>下载交流</td>
                 <td style="padding-bottom: 0;">
                   <div class="layui-btn-container">
@@ -138,7 +139,7 @@
                     <a href="http://tplay.pengyichen.cn" target="_blank" class="layui-btn layui-btn-sm">下载最新版</a>
                   </div>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
@@ -149,7 +150,7 @@
           官方公告
         </div>
         <div class="layui-card-body layui-text layadmin-text">
-          <p>Tplay后台管理框架搭载的是国内最受欢迎的两大框架Layui和ThinkPHP，ThinkPHP的大道至简和Layui的简而全在理念上可谓是不谋而合，两大框架结合所产生的结果就是将WEB开发精简到了极致。</p>
+          <p>后台管理框架搭载的是国内最受欢迎的两大框架Layui和ThinkPHP，ThinkPHP的大道至简和Layui的简而全在理念上可谓是不谋而合，两大框架结合所产生的结果就是将WEB开发精简到了极致。</p>
         </div>
       </div>
 

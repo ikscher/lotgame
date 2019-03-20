@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50624
+Source Server         : 127.0.0.1
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-03-19 22:09:37
+Date: 2019-03-20 16:56:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1552999110', '192.168.1.102', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1553053998', '192.168.1.107', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -63,7 +63,7 @@ CREATE TABLE `hov_admin_cate` (
 -- ----------------------------
 -- Records of hov_admin_cate
 -- ----------------------------
-INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,25,26,28,29,34,35,37,38,39,40,60,61,62,63,71,72,73,74,75,76,77,78,79,80,81,83,84,85,92,93,94,95,96,97,98', '0', '1552959515', '超级管理员，拥有最高权限！');
+INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,25,26,28,29,34,35,37,38,39,40,60,61,62,63,71,72,73,74,75,76,77,78,79,80,81,83,84,85,92,93,94,95,96,97,98,104', '0', '1553055765', '超级管理员，拥有最高权限！');
 
 -- ----------------------------
 -- Table structure for `hov_admin_log`
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=331 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=359 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -412,6 +412,34 @@ INSERT INTO `hov_admin_log` VALUES ('327', '4', '1', '192.168.1.102', '99', '155
 INSERT INTO `hov_admin_log` VALUES ('328', '4', '1', '192.168.1.102', '100', '1553004335');
 INSERT INTO `hov_admin_log` VALUES ('329', '99', '1', '192.168.1.102', '回复问题成功-1', '1553004349');
 INSERT INTO `hov_admin_log` VALUES ('330', '99', '1', '192.168.1.102', '回复问题成功-1', '1553004368');
+INSERT INTO `hov_admin_log` VALUES ('331', '50', '1', '192.168.1.107', '', '1553044696');
+INSERT INTO `hov_admin_log` VALUES ('332', '99', '1', '192.168.1.107', '回复问题成功-1', '1553044800');
+INSERT INTO `hov_admin_log` VALUES ('333', '99', '1', '192.168.1.107', '回复问题成功-1', '1553045047');
+INSERT INTO `hov_admin_log` VALUES ('334', '99', '1', '192.168.1.107', '回复问题成功-1', '1553045165');
+INSERT INTO `hov_admin_log` VALUES ('335', '99', '1', '192.168.1.107', '回复问题成功-1', '1553045274');
+INSERT INTO `hov_admin_log` VALUES ('336', '99', '1', '192.168.1.107', '回复问题成功-1', '1553045282');
+INSERT INTO `hov_admin_log` VALUES ('337', '99', '1', '192.168.1.107', '回复问题成功-1', '1553045288');
+INSERT INTO `hov_admin_log` VALUES ('338', '99', '1', '192.168.1.107', '创建工单成功-2', '1553045303');
+INSERT INTO `hov_admin_log` VALUES ('339', '100', '1', '192.168.1.107', '删除工单成功-1', '1553046034');
+INSERT INTO `hov_admin_log` VALUES ('340', '99', '1', '192.168.1.107', '回复问题成功-2', '1553046304');
+INSERT INTO `hov_admin_log` VALUES ('341', '99', '1', '192.168.1.107', '创建工单成功-3', '1553047231');
+INSERT INTO `hov_admin_log` VALUES ('342', '50', '1', '192.168.1.107', '', '1553049608');
+INSERT INTO `hov_admin_log` VALUES ('343', '4', '1', '192.168.1.107', '101', '1553051319');
+INSERT INTO `hov_admin_log` VALUES ('344', '4', '1', '192.168.1.107', '101', '1553051356');
+INSERT INTO `hov_admin_log` VALUES ('345', '4', '1', '192.168.1.107', '102', '1553051566');
+INSERT INTO `hov_admin_log` VALUES ('346', '4', '1', '192.168.1.107', '103', '1553051827');
+INSERT INTO `hov_admin_log` VALUES ('347', '4', '1', '192.168.1.107', '102', '1553053022');
+INSERT INTO `hov_admin_log` VALUES ('348', '4', '1', '192.168.1.107', '103', '1553053034');
+INSERT INTO `hov_admin_log` VALUES ('349', '4', '1', '192.168.1.107', '103', '1553053253');
+INSERT INTO `hov_admin_log` VALUES ('350', '50', '1', '192.168.1.107', '', '1553053998');
+INSERT INTO `hov_admin_log` VALUES ('351', '4', '1', '192.168.1.107', '104', '1553055683');
+INSERT INTO `hov_admin_log` VALUES ('352', '28', '1', '192.168.1.107', '修改角色信息成功', '1553055765');
+INSERT INTO `hov_admin_log` VALUES ('353', '4', '1', '192.168.1.107', '105', '1553057085');
+INSERT INTO `hov_admin_log` VALUES ('354', '4', '1', '192.168.1.107', '106', '1553057155');
+INSERT INTO `hov_admin_log` VALUES ('355', '102', '1', '192.168.1.107', '发送站内信成功-4', '1553065042');
+INSERT INTO `hov_admin_log` VALUES ('356', '104', '1', '192.168.1.107', '删除站内信成功-4', '1553065099');
+INSERT INTO `hov_admin_log` VALUES ('357', '102', '1', '192.168.1.107', '发送站内信成功-5', '1553065119');
+INSERT INTO `hov_admin_log` VALUES ('358', '104', '1', '192.168.1.107', '删除站内信成功-2', '1553065134');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -440,7 +468,7 @@ CREATE TABLE `hov_admin_menu` (
   KEY `function` (`function`) USING BTREE,
   KEY `is_display` (`is_display`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=MyISAM AUTO_INCREMENT=107 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of hov_admin_menu
@@ -542,6 +570,12 @@ INSERT INTO `hov_admin_menu` VALUES ('97', '批量删除用户', 'admin', 'user'
 INSERT INTO `hov_admin_menu` VALUES ('98', '批量冻结用户', 'admin', 'user', 'batchfreeze', '', '', '2', '1', '88', '1552893480', '1552893480', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('99', '新增/修改用户工单', 'admin', 'userquestion', 'publish', '', '新增/修改用户工单', '2', '1', '89', '1553004310', '1553004310', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('100', '删除用户工单', 'admin', 'userquestion', 'delete', '', '', '2', '1', '89', '1553004335', '1553004335', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('101', '站内信', '', '', '', '', '', '1', '2', '0', '1553051319', '1553051356', 'fa-sticky-note-o', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('102', '发站内信', 'admin', 'usernote', 'send', '', '', '1', '2', '101', '1553051566', '1553053022', 'fa-send-o', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('103', '发送历史', 'admin', 'usernote', 'index', '', '', '1', '2', '101', '1553051827', '1553053253', 'fa-paw', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('104', '删除站内信', 'admin', 'usernote', 'delete', '', '', '2', '1', '101', '1553055683', '1553055683', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('105', '商务管理', '', '', '', '', '', '1', '2', '0', '1553057085', '1553057085', 'fa-gg', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('106', '游戏管理', '', '', '', '', '', '1', '2', '0', '1553057155', '1553057155', 'fa-gamepad', '0', '0');
 
 -- ----------------------------
 -- Table structure for `hov_article`
@@ -716,6 +750,35 @@ INSERT INTO `hov_board` VALUES ('47', '1', 'sdf', '<p>sdfsdf</p>', '1552569542',
 INSERT INTO `hov_board` VALUES ('48', '1', 'sdf', '<p>sdfsdf</p>', '1552569555', '1552569555', '1', '0');
 INSERT INTO `hov_board` VALUES ('49', '1', 'sdf', '<p>sdfsdf</p>', '1552569566', '1552569566', '0', '0');
 INSERT INTO `hov_board` VALUES ('50', '1', 'sdf', '<p>sdfsdfasf</p>', '1552569834', '1552569834', '1', '1');
+
+-- ----------------------------
+-- Table structure for `hov_card_cate`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_card_cate`;
+CREATE TABLE `hov_card_cate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL COMMENT '卡名称',
+  `header` char(10) DEFAULT NULL COMMENT '卡头',
+  `random_bits` tinyint(2) DEFAULT NULL COMMENT '随机位数',
+  `random_type` tinyint(1) DEFAULT '3' COMMENT '1：数字，2：数字+大写字母，3：数字+大写字母+小写字母',
+  `thumb` int(11) DEFAULT NULL,
+  `price` decimal(8,2) DEFAULT NULL COMMENT '价格',
+  `vip` tinyint(1) DEFAULT '0' COMMENT '是否需要开通VIP才有效1：是，0：不是',
+  `coin` int(11) DEFAULT NULL COMMENT '金币面值',
+  `experiment` int(11) DEFAULT NULL,
+  `day_coin` int(11) DEFAULT NULL,
+  `day_experiment` int(11) DEFAULT NULL,
+  `valid_time` int(11) DEFAULT NULL COMMENT '（有效）领取天数',
+  `create_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT NULL,
+  `is_proxy` tinyint(1) DEFAULT NULL COMMENT '1：代理能生成，0：不能',
+  `desc` varchar(300) DEFAULT NULL COMMENT '卡类介绍',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hov_card_cate
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `hov_chargeconfig`
@@ -918,7 +981,7 @@ CREATE TABLE `hov_user` (
   `user_type` tinyint(1) DEFAULT '1' COMMENT '用户类型1:普通，2：vip类型',
   `email` varchar(100) NOT NULL,
   `mobile` varchar(13) DEFAULT NULL,
-  `units` int(11) DEFAULT NULL COMMENT '金币数',
+  `coin` int(11) DEFAULT NULL COMMENT '金币数',
   `bank` int(11) DEFAULT NULL COMMENT '银行金币数',
   `exchange_num` int(11) DEFAULT NULL COMMENT '兑奖数',
   `create_time` int(11) DEFAULT NULL,
@@ -944,7 +1007,7 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('1', 'ikscher', null, '2', null, null, 'ikscher@163.com', '13856900659', null, null, null, null, null, null, '114.102.155.30', null, null, null, null, null, null, null, null, null, null, null, null, '1');
+INSERT INTO `hov_user` VALUES ('1', 'ikscher', null, '2', null, null, 'ikscher@163.com', '13856900659', '12', null, null, null, null, null, '114.102.155.30', null, null, null, null, null, null, null, null, null, null, null, null, '1');
 INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '222222', '2', '16', null, 'wenthuang@sina.com', '13856900456', '23', '2', null, '0', '1552983662', null, '116.27.147.29', null, '1553616000', '23', null, null, '0', '1', null, null, '435345345', '2018-06-02', null, '1');
 
 -- ----------------------------
@@ -1024,11 +1087,34 @@ CREATE TABLE `hov_user_log` (
   `desc` varchar(100) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
 -- ----------------------------
+INSERT INTO `hov_user_log` VALUES ('1', '1', '1212', '1510885948');
+INSERT INTO `hov_user_log` VALUES ('2', '1', '12', '1510485948');
+
+-- ----------------------------
+-- Table structure for `hov_user_note`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_user_note`;
+CREATE TABLE `hov_user_note` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL COMMENT '收件人',
+  `type` tinyint(1) DEFAULT NULL COMMENT '1:所有人2:vip3:单用户',
+  `title` varchar(100) DEFAULT NULL,
+  `content` varchar(800) DEFAULT NULL,
+  `is_read` tinyint(1) DEFAULT NULL COMMENT '1已读0未读',
+  `create_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hov_user_note
+-- ----------------------------
+INSERT INTO `hov_user_note` VALUES ('1', '1', '1', '12222', '123', '0', '1553616000');
+INSERT INTO `hov_user_note` VALUES ('5', null, '1', 'sdfas', '<p>sdfasdf</p>', null, '1553065119');
 
 -- ----------------------------
 -- Table structure for `hov_user_question`
@@ -1046,12 +1132,13 @@ CREATE TABLE `hov_user_question` (
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_question
 -- ----------------------------
-INSERT INTO `hov_user_question` VALUES ('1', '1', '1', '3', 'sdfsdf', '<p>234</p>', '234', '1', null, '1553004368');
+INSERT INTO `hov_user_question` VALUES ('2', '2', '1', 'dddd', 'aaaa', '<p>ccccc</p>', null, '1', '1553045303', '1553046304');
+INSERT INTO `hov_user_question` VALUES ('3', '1', '1', '122', '2323', null, null, '0', '1553047231', '1553047231');
 
 -- ----------------------------
 -- Table structure for `hov_user_remark`

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"D:\mywork\lotgame\public/../app/admin\view\userquestion\index.html";i:1553003256;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552567281;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"D:\mywork\lotgame\public/../app/admin\view\userquestion\index.html";i:1553046362;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,7 +91,7 @@
           <td class="operation-menu">
             <div class="layui-btn-group">
               <a href="<?php echo url('admin/userquestion/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a href="<?php echo url('admin/userquestion/publish',['pid'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="<?php echo url('admin/userquestion/publish'); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -122,6 +122,14 @@
 
             laydate.render({
               elem: '#create_time'
+            });
+
+            laydate.render({
+              elem: '#begin_time'
+            });
+
+            laydate.render({
+              elem: '#end_time'
             });
 
         });

@@ -95,7 +95,6 @@ class Userquestion extends Permissions
     		} else {
     			//非提交操作
     			$userquestion = $model->where('id',$id)->find();
-    	
     			if(!empty($userquestion)) {
     				$this->assign('userquestion',$userquestion);
     				return $this->fetch();
@@ -110,6 +109,7 @@ class Userquestion extends Permissions
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
 	            $validate = new \think\Validate([
+                    ['user_id', 'require', 'UID不能为空'],
 	                ['title', 'require', '标题不能为空'],
                     ['question', 'require', '问题内容不能为空']
 	            ]);
@@ -118,7 +118,7 @@ class Userquestion extends Permissions
 	                $this->error('提交失败：' . $validate->getError());
 	            }
                 //设置创建人
-                // $post['admin_id'] = Session::get('admin');
+                $post['admin_id'] = Session::get('admin');
                 //设置修改人
                 // $post['edit_admin_id'] = $post['admin_id'];
           
