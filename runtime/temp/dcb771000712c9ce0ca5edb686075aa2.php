@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1552998920;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552567281;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1553090209;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,7 +113,7 @@
           <td><?php echo $vo['username']; ?>(<?php echo $vo['uid']; ?>)</td>
           <td><?php echo $vo['email']; ?></td>
           <td><?php echo $vo['mobile']; ?></td>
-          <td><?php echo $vo['units']; ?></td>
+          <td><?php echo $vo['coin']; ?></td>
           <td><?php echo $vo['bank']; ?></td>
           <td><?php echo $vo['exchange_num']; ?></td>
           <td></td>
@@ -161,6 +161,14 @@
 
             laydate.render({
               elem: '#create_time'
+            });
+
+            laydate.render({
+              elem: '#begin_time'
+            });
+
+            laydate.render({
+              elem: '#end_time'
             });
 
         });
