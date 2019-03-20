@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\menu\index.html";i:1552308816;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1552567281;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\menu\index.html";i:1546481687;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,6 +111,14 @@
 
             laydate.render({
               elem: '#create_time'
+            });
+
+            laydate.render({
+              elem: '#begin_time'
+            });
+
+            laydate.render({
+              elem: '#end_time'
             });
 
         });

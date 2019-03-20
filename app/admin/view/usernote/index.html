@@ -26,26 +26,13 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">用户工单管理</li>
-        <li><a href="{:url('admin/userquestion/publish')}" class="a_menu">创建/修改工单</a></li>
+        <li class="layui-this">发送历史</li>
       </ul>
     </div> 
-      <form class="layui-form serch" action="{:url('admin/userquestion/index')}" method="post">
+      <form class="layui-form serch" action="{:url('admin/usernote/index')}" method="post">
         <div class="layui-form-item" style="float: left;">
           <div class="layui-input-inline">
-            <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入关键词" class="layui-input layui-btn-sm">
-          </div>
-          <div class="layui-input-inline">
-            <div class="layui-inline">
-                <select name="status" lay-search="">
-                  <option value="">状态</option>
-                  <option value="1">待处理</option>
-                  <option value="2">正在处理</option>
-                  <option value="3">待用户反馈</option>
-                  <option value="4">已解决</option>
-                  <option value="5">已取消</option>
-                </select>
-            </div>
+            <input type="text" name="user_id"   autocomplete="off" placeholder="请输入UID" class="layui-input layui-btn-sm" >
           </div>
          
           
@@ -71,26 +58,24 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>工单标题</th>
-          <th>用户</th>
-          <th>工单状态</th>
-          <th>创建时间</th>
+          <th>收件人</th>
+          <th>主题</th>
+          <th>状态</th>
+          <th>时间</th>
           <th>操作</th>
         </tr> 
       </thead>
       <tbody>
-        {volist name="userquestions" id="vo"}
+        {volist name="usernotes" id="vo"}
         <tr>
 
           <td>{$vo.id}</td>
+          <td>{if condition="$vo.type eq 1"}所有人{elseif condition="$vo.type eq 2"/}vip用户{else /}{$vo.user_id}{/if}</td>
           <td>{$vo.title}</td>
-          <td>{$vo.user.username}</td>
-          <td>{$vo.status|getStatus}</td>
-          <td>{$vo.create_time}</td>
+          <td>{if condition="$vo.type eq 3"}{if condition="$vo.is_read eq 1"}已查看{else /}未查看{/if}{else /}-{/if}</td>
+          <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="{:url('admin/userquestion/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a href="{:url('admin/userquestion/publish')}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -98,7 +83,7 @@
         {/volist}
       </tbody>
     </table>
-    <div style="padding:0 20px;">{$userquestions->render()}</div> 
+    <div style="padding:0 20px;">{$usernotes->render()}</div> 
     {include file="public/foot"}
     <script type="text/javascript">
 
@@ -106,9 +91,10 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"{:url('admin/userquestion/delete')}",
+          url:"{:url('admin/usernote/delete')}",
           data:{id:id},
           success:function(res) {
+            // console.log(res);
             layer.msg(res.msg);
             if(res.code == 1) {
               setTimeout(function(){
@@ -120,43 +106,7 @@
       })
     })
     </script>
-    <!-- <script type="text/javascript">
-
-    $('.status').click(function(){
-      var val = $(this).attr('data-val');
-      var id = $(this).attr('data-id');
-      var i = $(this).find('i');
-      var the = $(this);
-      if(val == 1){
-        var status = 0;
-      } else {
-        var status = 1;
-      }
-      $.ajax({
-        type:"post",
-        url:"{:url('admin/userquestion/status')}",
-        data:{status:status,id:id},
-        success:function(res){
-          
-          if(res.code == 1) {
-            tostatus();
-          } else {
-            layer.msg(res.msg);
-          }
-        }
-      })
-
-      function tostatus(){
-        if(val == 1){
-          i.attr("class","fa fa-toggle-off");
-          the.attr('data-val',0);
-        } else {
-          i.attr("class","fa fa-toggle-on");
-          the.attr('data-val',1);
-        }
-      }
-    })
-    </script> -->
+   
   </div>
 </body>
 </html>

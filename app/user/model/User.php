@@ -49,7 +49,7 @@ class User extends Model
     }
 
     public function userquestion(){
-        return $this->hasMany('app\user\model\UserQuestion','user_id');
+        return $this->hasMany('app\admin\model\UserQuestion','user_id');
     }
 
 }

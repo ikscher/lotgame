@@ -20,7 +20,5 @@ class UserLog extends Model
         //关联管理员表
         return $this->belongsTo('User');
     }
-
-
   
 }
