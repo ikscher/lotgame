@@ -15,7 +15,7 @@
     <div class="layui-tab">
       <ul class="layui-tab-title">
         <li><a href="{:url('admin/cardcate/index')}" class="a_menu">卡类管理</a></li>
-        <li class="layui-this">新增卡类</li>
+        <li class="layui-this">新增/修改卡类</li>
       </ul>
     </div>
     <div style="margin-top: 20px;">
@@ -25,30 +25,30 @@
       <div class="layui-form-item">
         <label class="layui-form-label">充值卡名称</label>
         <div class="layui-input-block" style="max-width:500px;">
-          <input name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$cardcaate.name"}value="{$cardcaate.name}"{/notempty}>
+          <input name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$cardcate.name"}value="{$cardcate.name}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">价格（元）</label>
         <div class="layui-input-inline" >
-          <input name="price" autocomplete="off" placeholder="请输入价格" class="layui-input" type="text" {notempty name="$cardcaate.price"}value="{$cardcate.price}"{/notempty}>
+          <input name="price" autocomplete="off" placeholder="请输入价格" class="layui-input" type="text" {notempty name="$cardcate.price"}value="{$cardcate.price}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">自定义卡头</label>
         <div class="layui-input-inline" >
-          <input name="header" autocomplete="off" placeholder="0~3位英文或数字,推荐2位" class="layui-input" type="text" {notempty name="$cardcaate.header"}value="{$cardcate.header}"{/notempty}>
+          <input name="header" autocomplete="off" placeholder="0~3位英文或数字,推荐2位" class="layui-input" type="text" {notempty name="$cardcate.header"}value="{$cardcate.header}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">随机位数</label>
-        <div class="layui-input-block" style="max-width:600px;">
+        <div class="layui-input-inline" style="max-width:600px;">
           <select name="random_bits" lay-filter="aihao">
             {foreach name="$card_random_bits" item="vo" key="k" }
-            <option value="{$k}" {eq name="$k" value="8"} selected{/eq}>{$vo}</option>
+            <option value="{$k}" {notempty name="$cardcate.random_bits"}{if condition="$cardcate.random_bits eq $k"}selected{/if}{/notempty}>{$vo}</option>
             {/foreach}
           </select>
         </div>
@@ -56,28 +56,88 @@
 
       <div class="layui-form-item">
         <label class="layui-form-label">随机数类型</label>
-        <div class="layui-input-block" style="max-width:600px;">
+        <div class="layui-input-inline" style="max-width:600px;">
           <select name="random_bits" lay-filter="aihao">
             {foreach name="$card_random_type" item="vo" key="k" }
-            <option value="{$k}" >{$vo}</option>
+            <option value="{$k}" {notempty name="$cardcate.random_type"}{if condition="$cardcate.random_type eq $k"}selected{/if}{/notempty}>{$vo}</option>
             {/foreach}
           </select>
         </div>
       </div>
 
-
+      <div class="layui-form-item">
+        <label class="layui-form-label">升级VIP</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input type="checkbox" name="is_vip" lay-filter="vip" title="" {notempty name="$cardcate.is_vip"}checked value="1"{else /} value="0"{/notempty} >
+        </div>
+      </div>
 
       <div class="layui-form-item">
-        <label class="layui-form-label">等级</label>
-        <div class="layui-input-block" style="max-width:500px;">
-          <input name="grade" autocomplete="off" placeholder="标签之间用,隔开" class="layui-input" type="text" {notempty name="$usergrade.grade"}value="{$usergrade.grade}"{/notempty}>
+        <label class="layui-form-label">领取天数</label>
+        <div class="layui-input-inline" >
+          <input name="valid_time" autocomplete="off" placeholder="在这个天数内有效" class="layui-input" type="text"  {notempty name="$cardcate.valid_time"}{if condition="$cardcate.valid_time egt 0"}value="{$cardcate.valid_time}"{/if}{else /}value="0"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">使用获得金币</label>
+        <div class="layui-input-inline" >
+          <input name="coin" autocomplete="off" placeholder="" lay-verify="number" class="layui-input" type="text" {notempty name="$cardcate.coin"}{if condition="$cardcate.coin egt 0"}value="{$cardcate.coin}"{/if}{else /}value="0"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">使用获得经验</label>
+        <div class="layui-input-inline" >
+          <input name="experiment" autocomplete="off" placeholder=""  lay-verify="number" class="layui-input" type="text" {notempty name="$cardcate.experiment"}{if condition="$cardcate.experiment egt 0"}value="{$cardcate.experiment}"{/if}{else /}value="0"{/notempty} />
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">每日领取金币</label>
+        <div class="layui-input-inline" >
+          <input type="text" name="day_coin"  placeholder="" autocomplete="off" class="layui-input" {notempty name="$cardcate.day_coin"}{if  condition="$cardcate.day_coin egt 0"}value="{$cardcate.day_coin}"{/if}{else /}value="0"{/notempty}>
+          <!-- <input name="day_coin" 　class="layui-input" type="text" {notempty name="$cardcate.day_coin"}value="{$cardcate.day_coin}"{/notempty} /> -->
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">每日领取经验</label>
+        <div class="layui-input-inline" >
+          <input type="text" name="day_experiment"  placeholder="" autocomplete="off" class="layui-input" {notempty name="$cardcate.day_experiment"}{if condition="$cardcate.day_experiment egt 0"}value="{$cardcate.day_experiment}"{/if}{else /}value="0"{/notempty}>
+          <!-- <input name="day_experiment" autocomplete="off" placeholder=""  lay-verify="number"　class="layui-input" type="text" {notempty name="$cardcate.day_experiment"}value="{$cardcate.day_experiment}"{/notempty} /> -->
+        </div>
+      </div>
+
+      <div class="layui-upload" id="upload-thumb">
+        <label class="layui-form-label">缩略图</label>
+        <button type="button" class="layui-btn" id="thumb">上传图片</button>
+        <div class="layui-upload-list">
+          <label class="layui-form-label"></label>
+          <img class="layui-upload-img" id="demo1" width="150" height="150" {notempty name="$cardcate.thumb"}src="{$cardcate.thumb|geturl}"{/notempty}>{notempty name="$cardcate.thumb"}<input type="hidden" name="avatar" value="{$cardcate.thumb}">{/notempty}
+          <p id="demoText"></p>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">代理可生成</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input type="checkbox" name="is_proxy" lay-filter="proxy" title="" {notempty name="$cardcate.is_proxy"}checked value="1"{else /} value="0"{/notempty} >
+        </div>
+      </div>
+
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">卡类介绍</label>
+        <div class="layui-input-block" style="max-width:1000px;">
+          <textarea placeholder="请输入内容" class="layui-textarea" name="desc" id="container" style="border:0;padding:0">{notempty name="$cardcate.desc"}{$cardcate.desc}{/notempty}</textarea>
         </div>
       </div>
 
      
       
-      {notempty name="$usergrade"}
-      <input type="hidden" name="id" value="{$usergrade.id}">
+      {notempty name="$cardcate"}
+      <input type="hidden" name="id" value="{$cardcate.id}">
       {/notempty}
       <div class="layui-form-item">
         <div class="layui-input-block">
@@ -116,7 +176,7 @@
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
-                      url:"{:url('admin/usergrade/publish')}",
+                      url:"{:url('admin/cardcate/publish')}",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,
@@ -135,6 +195,105 @@
               });
           });
       });
+    </script>
+
+
+    <script>
+      layui.use('upload', function(){
+      var upload = layui.upload;
+      //执行实例
+      var uploadInst = upload.render({
+        elem: '#thumb' //绑定元素
+        ,url: "{:url('common/upload')}" //上传接口
+        ,data:{use:'prize_thumb'}
+        ,done: function(res){
+          //上传完毕回调
+          if(res.code == 2) {
+            $('#demo1').attr('src',res.src);
+            $('#upload-thumb').append('<input type="hidden" name="thumb" value="'+ res.id +'">');
+          } else {
+            layer.msg(res.msg);
+          }
+        }
+        ,error: function(){
+          //请求异常回调
+          //演示失败状态，并实现重传
+          var demoText = $('#demoText');
+          demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+          demoText.find('.demo-reload').on('click', function(){
+            uploadInst.upload();
+          });
+        }
+      });
+    });
+    </script>
+    <script>
+      layui.use(['layer', 'form','laydate'], function() {
+          var layer = layui.layer,
+          $ = layui.jquery,
+          form = layui.form,
+          laydate = layui.laydate;
+          $(window).on('load', function() {
+              form.on('submit(admin)', function(data) {
+                  $.ajax({
+                      url:"{:url('admin/cardcate/publish')}",
+                      data:$('#admin').serialize(),
+                      type:'post',
+                      async: false,
+                      success:function(res) {
+                          // console.log(res);
+                          if(res.code == 1) {
+                              layer.alert(res.msg, function(index){
+                                location.href = res.url;
+                              })
+                          } else {
+                              layer.msg(res.msg);
+                          }
+                      }
+                  })
+                  return false;
+              });
+          });
+
+           laydate.render({
+              elem: '#create_time',
+              type: 'datetime'
+            });
+
+          //取反
+          form.on('checkbox(proxy)',function(data){
+             var x=$("input[name='is_proxy']");
+             if(x.prop('checked')){
+                x.val(1);
+             }else{
+                x.val(0);
+             }
+          })
+          
+          //取反
+          form.on('checkbox(vip)',function(data){
+             var x=$("input[name='is_vip']");
+             if(x.prop('checked')){
+                x.val(1);
+             }else{
+                x.val(0);
+             }
+          })
+      });
+    </script>
+
+
+    <!-- 加载编辑器的容器 -->
+    <script id="container" name="desc" type="text/plain">
+        这里写你的初始化内容
+    </script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container');
     </script>
   </div>
 </body>

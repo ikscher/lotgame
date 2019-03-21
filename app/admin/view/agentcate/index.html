@@ -26,50 +26,38 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">卡类管理</li>
-        <li><a href="{:url('admin/cardcate/publish')}" class="a_menu">新增卡类</a></li>
+        <li class="layui-this">代理分类管理</li>
+        <li><a href="{:url('admin/agentcate/publish')}" class="a_menu">新增分类</a></li>
       </ul>
     </div>
     <table class="layui-table" lay-size="sm">
       <colgroup>
+        <col width="50">
+        <col width="150">
+        <col width="500">
         <col width="200">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
         <col width="100">
       </colgroup>
       <thead>
         <tr>
+          <th>编号</th>
           <th>名称</th>
-          <th>价值</th>
-          <th>开通VIP</th>
-          <th>增加金币</th>
-          <th>增加经验</th>
-          <th>每日金币</th>
-          <th>每日经验</th>
-          <th>领取时长</th>
+          <th>描述</th>
+          <th>创建时间</th>
           <th>操作</th>
         </tr> 
       </thead>
       <tbody>
-        {volist name="cardcates" id="vo"}
+        {volist name="cates" id="vo"}
         <tr>
-          <td>{$vo.name}</td>
-          <td>{$vo.price}</td>
-          <td>{$vo.is_vip}</td>
-          <td>{$vo.coin}</td>
-          <td>{$vo.experiment}</td>
-          <td>{$vo.day_coin}</td>
-          <td>{$vo.day_experiment}</td>
-          <td>{$vo.valid_time}</td>
+          <td>{$vo.id}</td>
+          <td><span style="font-weight:500;">{$vo.str}</span>{$vo.name}</td>
+          <td>{$vo.description}</td>
+          <td>{$vo.create_time}</td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="{:url('admin/cardcate/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a href="{:url('admin/cardcate/publish')}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="{:url('admin/agentcate/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="{:url('admin/agentcate/publish',['pid'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -85,7 +73,7 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"{:url('admin/cardcate/delete')}",
+          url:"{:url('admin/agentcate/delete')}",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);

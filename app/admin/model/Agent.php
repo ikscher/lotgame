@@ -13,20 +13,17 @@
 namespace app\admin\model;
 
 use \think\Model;
-class CardPwd extends Model
+class Agent extends Model
 {
 	public function cate()
     {
-        //关联卡类表
-        return $this->belongsTo('CardCate');
+        //关联分类表
+        return $this->belongsTo('AgentCate');
     }
 
-    public function user(){
-    	return $this->belongsTo('app\user\model\User');
+    public function card()
+    {
+        //关联卡密表
+        return $this->hasMany('CardPwd','agent_id');
     }
-
-    public function agent(){
-    	return $this->belongsTo('Agent');
-    }
-
 }
