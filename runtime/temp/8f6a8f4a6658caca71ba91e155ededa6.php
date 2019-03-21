@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:61:"D:\mywork\lotgame\public/../app/admin\view\article\index.html";i:1552572058;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:61:"D:\mywork\lotgame\public/../app/admin\view\cardpwd\index.html";i:1553178143;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,63 +27,39 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">活动管理</li>
-        <li><a href="<?php echo url('admin/article/publish'); ?>" class="a_menu">新增活动</a></li>
+        <li class="layui-this">卡密管理</li>
+        <li><a href="<?php echo url('admin/cardpwd/publish'); ?>" class="a_menu">新增卡密</a></li>
       </ul>
     </div> 
-      <form class="layui-form serch" action="<?php echo url('admin/article/index'); ?>" method="post">
-        <div class="layui-form-item" style="float: left;">
+      <form class="layui-form serch" action="<?php echo url('admin/cardpwd/index'); ?>" method="post">
+        <div class="layui-inline">
           <div class="layui-input-inline">
             <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入关键词" class="layui-input layui-btn-sm">
           </div>
+          
+          
+          <button class="layui-btn layui-btn-primary layui-btn-sm" lay-submit="" lay-filter="serch">查询</button>
+        </div>
+
+        <div class="layui-inline">
+          <label class="layui-form-label">分类查询</label>
           <div class="layui-input-inline">
-            <div class="layui-inline">
-                <select name="article_cate_id" lay-search="">
-                  <option value="">分类</option>
-                  <?php if(is_array($info['cate']) || $info['cate'] instanceof \think\Collection || $info['cate'] instanceof \think\Paginator): $i = 0; $__LIST__ = $info['cate'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                  <option value="<?php echo $vo['id']; ?>"><?php echo $vo['name']; ?></option>
-                  <?php endforeach; endif; else: echo "" ;endif; ?>
-                </select>
-            </div>
+              <select name="cardcate" lay-verify="required">
+                <?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): if( count($cates)==0 ) : echo "" ;else: foreach($cates as $k=>$vo): ?>
+                <option value="<?php echo $k; ?>"><?php echo $vo['name']; ?></option>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+              </select>
           </div>
-          <div class="layui-input-inline">
-            <div class="layui-inline">
-                <select name="status" lay-search="">
-                  <option value="">状态</option>
-                  <option value="0">待审核</option>
-                  <option value="1">已审核</option>
-                </select>
-            </div>
-          </div>
-          <div class="layui-input-inline">
-            <div class="layui-inline">
-                <select name="is_top" lay-search="">
-                  <option value="">置顶</option>
-                  <option value="0">未置顶</option>
-                  <option value="1">已置顶</option>
-                </select>
-            </div>
-          </div>
-          <div class="layui-input-inline">
-            <div class="layui-inline">
-                <select name="admin_id" lay-search="">
-                  <option value="">创建人</option>
-                  <?php if(is_array($info['admin']) || $info['admin'] instanceof \think\Collection || $info['admin'] instanceof \think\Paginator): $i = 0; $__LIST__ = $info['admin'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                  <option value="<?php echo $vo['id']; ?>"><?php echo $vo['nickname']; ?></option>
-                  <?php endforeach; endif; else: echo "" ;endif; ?>
-                </select>
-            </div>
-          </div>
-          <div class="layui-input-inline">
-            <div class="layui-inline">
-              <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="create_time" placeholder="创建时间" name="create_time">
-              </div>
-            </div>
-          </div>
-          <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" lay-filter="serch">保存</button>
+        </div>
+        
+        <div class="layui-inline" style="margin-left:20px;">
+          <a href="">已回收</a>
+          <a href="">已充值</a>
+          <a href="">未充值</a>
+          <a href="">已兑出</a>
         </div>
       </form> 
+    
     <table class="layui-table" lay-size="sm">
       <colgroup>
         <col width="50">
@@ -101,35 +77,33 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>标题</th>
-          <th>缩略图</th>
-          <th>分类</th>
-          <th>创建人</th>
-          <th>开始时间</th>
-          <th>最后修改人</th>
-          <th>结束时间</th>
-          <th>置顶</th>
-          <th>审核</th>
+          <th>卡号</th>
+          <th>密码</th>
+          <th>充值卡类型</th>
+          <th>所属代理</th>
+          <th>状态</th>
+          <th>兑奖用户</th>
+          <th>生成时间</th>
+          <th>使用时间</th>
           <th>操作</th>
         </tr> 
       </thead>
       <tbody>
-        <?php if(is_array($articles) || $articles instanceof \think\Collection || $articles instanceof \think\Paginator): $i = 0; $__LIST__ = $articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <?php if(is_array($cardpwds) || $cardpwds instanceof \think\Collection || $cardpwds instanceof \think\Paginator): $i = 0; $__LIST__ = $cardpwds;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
 
           <td><?php echo $vo['id']; ?></td>
-          <td><?php echo $vo['title']; ?></td>
-          <td><a href="<?php echo geturl($vo['thumb']); ?>" class="tooltip"><img src="<?php echo geturl($vo['thumb']); ?>" width="20" height="20"></a></td>
-          <td><?php echo $vo['cate']['name']; ?></td>
-          <td><?php echo $vo['admin']['nickname']; ?></td>
-          <td><?php echo date("Y-m-d H:i:s",$vo['begin_time']); ?></td>
-          <td><?php echo $vo['edit_admin']; ?></td>
-          <td><?php echo date("Y-m-d H:i:s",$vo['end_time']); ?></td>
+          <td><?php echo $vo['card_no']; ?></td>
+          <td><?php echo $vo['card_pwd']; ?></td>
+          <td><?php echo $vo['agent']['name']; ?></td>
+          <td><?php echo $vo['status']; ?></td>
+          <td><?php echo $vo['user']['username']; ?></td>
+          <td><?php echo $vo['create_time']; ?></td>
+          <td><?php echo $vo['use_time']; ?></td>
           <td><a href="javascript:;" style="font-size:18px;" class="is_top" data-id="<?php echo $vo['id']; ?>" data-val="<?php echo $vo['is_top']; ?>"><?php if($vo['is_top'] == '1'): ?><i class="fa fa-toggle-on"></i><?php else: ?><i class="fa fa-toggle-off"></i><?php endif; ?></a></td>
-          <td><a href="javascript:;" style="font-size:18px;" class="status" data-id="<?php echo $vo['id']; ?>" data-val="<?php echo $vo['status']; ?>"><?php if($vo['status'] == '1'): ?><i class="fa fa-toggle-on"></i><?php else: ?><i class="fa fa-toggle-off"></i><?php endif; ?></a></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="<?php echo url('admin/article/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="<?php echo url('admin/cardpwd/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -137,7 +111,7 @@
         <?php endforeach; endif; else: echo "" ;endif; ?>
       </tbody>
     </table>
-    <div style="padding:0 20px;"><?php echo $articles->render(); ?></div> 
+    <div style="padding:0 20px;"><?php echo $cardpwds->render(); ?></div> 
         <script src="/static/public/layui/layui.js" charset="utf-8"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
     <script>
@@ -236,7 +210,7 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"<?php echo url('admin/article/delete'); ?>",
+          url:"<?php echo url('admin/cardpwd/delete'); ?>",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);
