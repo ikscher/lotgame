@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\mywork\lotgame\public/../app/admin\view\userquestion\publish.html";i:1553004211;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\mywork\lotgame\public/../app/admin\view\userquestion\publish.html";i:1553047272;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,12 +25,17 @@
     <div style="margin-top: 20px;">
     </div>
     <form class="layui-form" id="admin">
-      
-
+      <div class="layui-form-item">
+        <label class="layui-form-label">用户ID</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input name="user_id" lay-verify="title" autocomplete="off" required lay-verify="number" placeholder="请输入UID" class="layui-input" type="text" <?php if(!(empty($userquestion['user_id']) || (($userquestion['user_id'] instanceof \think\Collection || $userquestion['user_id'] instanceof \think\Paginator ) && $userquestion['user_id']->isEmpty()))): ?>value="<?php echo $userquestion['user_id']; ?>" disabled <?php endif; ?>>
+        </div>
+      </div>
+  
       <div class="layui-form-item">
         <label class="layui-form-label">名称</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="title" lay-verify="title" autocomplete="off" lay-verify="required" placeholder="请输入标题" class="layui-input" type="text" <?php if(!(empty($userquestion['title']) || (($userquestion['title'] instanceof \think\Collection || $userquestion['title'] instanceof \think\Paginator ) && $userquestion['title']->isEmpty()))): ?>value="<?php echo $userquestion['title']; ?>"<?php endif; ?>>
+          <input name="title" lay-verify="title" autocomplete="off" required lay-verify="required" placeholder="请输入标题" class="layui-input" type="text" <?php if(!(empty($userquestion['title']) || (($userquestion['title'] instanceof \think\Collection || $userquestion['title'] instanceof \think\Paginator ) && $userquestion['title']->isEmpty()))): ?>value="<?php echo $userquestion['title']; ?>"<?php endif; ?>>
         </div>
       </div>
       
@@ -46,25 +51,26 @@
 
       <div class="layui-form-item">
         <label class="layui-form-label">问题内容</label>
-        <div class="layui-input-block" style="max-width:300px;">
-          <textarea name="question" autocomplete="off"  class="layui-textarea"  <?php if(!(empty($userquestion['question']) || (($userquestion['question'] instanceof \think\Collection || $userquestion['question'] instanceof \think\Paginator ) && $userquestion['question']->isEmpty()))): ?>value="<?php echo $userquestion['question']; ?>"<?php endif; ?>></textarea>
+        <div class="layui-input-block" style="max-width:600px;">
+          <textarea name="question" autocomplete="off"  class="layui-textarea" required lay-verify="required" ><?php if(!(empty($userquestion['question']) || (($userquestion['question'] instanceof \think\Collection || $userquestion['question'] instanceof \think\Paginator ) && $userquestion['question']->isEmpty()))): ?><?php echo $userquestion['question']; endif; ?></textarea>
         </div>
       </div>
-
+      
+      <?php if(!(empty($userquestion['user_id']) || (($userquestion['user_id'] instanceof \think\Collection || $userquestion['user_id'] instanceof \think\Paginator ) && $userquestion['user_id']->isEmpty()))): ?>
       <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">内容</label>
+        <label class="layui-form-label">回复内容</label>
         <div class="layui-input-block" style="max-width:1000px;">
           <textarea placeholder="请输入内容" class="layui-textarea" name="answer" id="container" style="border:0;padding:0"><?php if(!(empty($userquestion['answer']) || (($userquestion['answer'] instanceof \think\Collection || $userquestion['answer'] instanceof \think\Paginator ) && $userquestion['answer']->isEmpty()))): ?><?php echo $userquestion['answer']; endif; ?></textarea>
         </div>
       </div>
+      <?php endif; ?>
       
       <div class="layui-form-item">
         <label class="layui-form-label">状态</label>
         <div class="layui-input-block" style="max-width:300px;">
-          <select name="prize_cate_id" lay-filter="aihao">
-            <option value="">--</option>
+          <select name="status" lay-filter="aihao">
             <?php if(is_array($status_arr) || $status_arr instanceof \think\Collection || $status_arr instanceof \think\Paginator): if( count($status_arr)==0 ) : echo "" ;else: foreach($status_arr as $k=>$vo): ?>
-            <option value="<?php echo $k; ?>" <?php if(!(empty($userquestion['status']) || (($userquestion['status'] instanceof \think\Collection || $userquestion['status'] instanceof \think\Paginator ) && $userquestion['status']->isEmpty()))): if($userquestion['status'] == $k): ?> selected=""<?php endif; endif; ?>><?php echo $vo; ?></option>
+            <option value="<?php echo $k; ?>" <?php if(!(empty($userquestion['status']) || (($userquestion['status'] instanceof \think\Collection || $userquestion['status'] instanceof \think\Paginator ) && $userquestion['status']->isEmpty()))): if($userquestion['status'] == $k): ?> selected<?php endif; endif; ?>><?php echo $vo; ?></option>
             <?php endforeach; endif; else: echo "" ;endif; ?>
           </select>
         </div>
@@ -165,9 +171,9 @@
             });
       });
     </script>
-
+    <?php if(!(empty($userquestion['user_id']) || (($userquestion['user_id'] instanceof \think\Collection || $userquestion['user_id'] instanceof \think\Paginator ) && $userquestion['user_id']->isEmpty()))): ?>
     <!-- 加载编辑器的容器 -->
-    <script id="container" name="desc" type="text/plain">
+    <script id="container" name="answer" type="text/plain">
         这里写你的初始化内容
     </script>
     <!-- 配置文件 -->
@@ -178,6 +184,7 @@
     <script type="text/javascript">
         var ue = UE.getEditor('container');
     </script>
+    <?php endif; ?>
   </div>
 </body>
 </html>

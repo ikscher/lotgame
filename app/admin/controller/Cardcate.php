@@ -25,15 +25,16 @@ class Cardcate extends Permissions
 {   
     private $card_random_bits=array();
     private $card_random_type=array();
+    private $model;
     public function _initialize(){
         $this->card_random_bits=Config::get('card_random_bits');
         $this->card_random_type=Config::get('card_random_type');
         // var_dump($this->card_random_bits);
+        $this->model = new cardcateModel();
     }
     public function index()
     {
-        $model = new cardcateModel();
-        $cardcates = $model->select();
+        $cardcates = $this->model->select();
         $this->assign('cardcates',$cardcates);
         return $this->fetch();
     }
@@ -43,7 +44,7 @@ class Cardcate extends Permissions
     {
     	//获取菜单id
     	$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
-    	$model = new cardcateModel();
+    	// $model = new cardcateModel();
 		//是正常添加操作
 		if($id > 0) {
     		//是修改操作
@@ -51,21 +52,23 @@ class Cardcate extends Permissions
     			//是提交操作
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-	            $rule = [
+	             $rule = [
                     'name'  => 'require',
-                    'exp_min'   => 'number|require',
-                    'exp_max' => 'number|require',
-                    'grade'  => 'number|require'
+                    'header'   => 'require',
+                    'price' => 'number|require',
+                    'coin'  => 'number|require',
+                    'valid_time'  => 'number|require'
                 ];
 
                 $msg = [
-                    'name.require' => '名称必须填写',
-                    'exp_min.require' => '经验值必须填写',
-                    'exp_max.require' => '经验值必须填写',
-                    'exp_min.number'   => '经验值必须是数字',
-                    'exp_max.number'   => '经验值必须是数字',
-                    'grade.number'  => '等级必须是数字',
-                    'grade.require'  => '等级必须填写'
+                    'name.require' => '卡名称必须填写',
+                    'header.require' => '卡头必须填写',
+                    'price.require' => '充值价格必须填写',
+                    'price.number'   => '充值价格必须是数字',
+                    'coin.number'   => '金币必须是数字',
+                    'coin.require'  => '金币必须填写',
+                    'valid_time.require'  => '领取时长必须填写',
+                    'valid_time.number'  => '领取时长必须是数字'
                 ];
                 $validate = new \think\Validate($rule,$msg);
 	            //验证部分数据合法性
@@ -73,24 +76,27 @@ class Cardcate extends Permissions
 	                $this->error('提交失败：' . $validate->getError());
 	            }
 	            //验证菜单是否存在
-	            $usergrade = $model->where('id',$id)->find();
-	            if(empty($usergrade)) {
+	            $cardcate = $this->model->where('id',$id)->find();
+	            if(empty($cardcate)) {
 	            	return $this->error('id不正确');
 	            }
-
-	            if(false == $model->allowField(true)->save($post,['id'=>$id])) {
+                $post['is_vip']= empty($post['is_vip'])?0:1;
+                $post['is_proxy']= empty($post['is_proxy'])?0:1;
+	            if(false == $this->model->allowField(true)->save($post,['id'=>$id])) {
 	            	return $this->error('修改失败');
 	            } else {
-                    $operation='修改用户级别成功';
+                    $operation='修改卡类成功';
                     addlog($operation.'-'.$id);//写入日志
-	            	return $this->success($operation,'admin/usergrade/index');
+	            	return $this->success($operation,'admin/cardcate/index');
 	            }
     		} else {
     			//非提交操作
-    			$usergrade = $model->where('id',$id)->find();
-    			$this->assign('usergrade',$usergrade);
-    			if(!empty($usergrade)) {
-    				$this->assign('usergrade',$usergrade);
+                $this->assign('card_random_bits',$this->card_random_bits);
+                $this->assign('card_random_type',$this->card_random_type);
+    			$cardcate = $this->model->where('id',$id)->find();
+    			$this->assign('cardcate',$cardcate);
+    			if(!empty($cardcate)) {
+    				$this->assign('cardcate',$cardcate);
     				return $this->fetch();
     			} else {
     				return $this->error('id不正确');
@@ -105,31 +111,36 @@ class Cardcate extends Permissions
 
                 $rule = [
                     'name'  => 'require',
-                    'exp_min'   => 'number|require',
-                    'exp_max' => 'number|require',
-                    'grade'  => 'number|require'
+                    'header'   => 'require',
+                    'price' => 'number|require',
+                    'coin'  => 'number|require',
+                    'valid_time'  => 'number|require'
                 ];
 
                 $msg = [
-                    'name.require' => '名称必须填写',
-                    'exp_min.require' => '经验值必须填写',
-                    'exp_max.require' => '经验值必须填写',
-                    'exp_min.number'   => '经验值必须是数字',
-                    'exp_max.number'   => '经验值必须是数字',
-                    'grade.number'  => '等级必须是数字',
-                    'grade.require'  => '等级必须填写'
+                    'name.require' => '卡名称必须填写',
+                    'header.require' => '卡头必须填写',
+                    'price.require' => '充值价格必须填写',
+                    'price.number'   => '充值价格必须是数字',
+                    'coin.number'   => '金币必须是数字',
+                    'coin.require'  => '金币必须填写',
+                    'valid_time.require'  => '领取时长必须填写',
+                    'valid_time.number'  => '领取时长必须是数字'
                 ];
 	            $validate = new \think\Validate($rule,$msg);
 	            //验证部分数据合法性
 	            if (!$validate->check($post)) {
 	                $this->error('提交失败：' . $validate->getError());
 	            }
-	            if(false == $model->allowField(true)->save($post)) {
+
+                // $post['is_vip']= empty($post['is_vip'])?0:1;
+                // $post['is_proxy']= empty($post['is_proxy'])?0:1;
+	            if(false == $this->model->allowField(true)->save($post)) {
 	            	return $this->error('添加失败');
 	            } else {
-                    $operation='添加用户级别成功';
-                    addlog($operation.'-'.$model->id);//写入日志
-	            	return $this->success($operation,'admin/usergrade/index');
+                    $operation='添加卡类成功';
+                    addlog($operation.'-'.$this->model->id);//写入日志
+	            	return $this->success($operation,'admin/cardcate/index');
 	            }
     		} else {
                 $this->assign('card_random_bits',$this->card_random_bits);
@@ -146,12 +157,12 @@ class Cardcate extends Permissions
     	if($this->request->isAjax()) {
     		$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
         
-            if(false == Db::name('user_grade')->where('id',$id)->delete()) {
+            if(false == $this->model->where('id',$id)->delete()) {
                 return $this->error('删除失败');
             } else {
-                $operation='删除用户级别成功';
+                $operation='删除卡类成功';
                 addlog($operation.'-'.$id);//写入日志
-                return $this->success($operation,'admin/usergrade/index');
+                return $this->success($operation,'admin/cardcate/index');
             }
             
     	}

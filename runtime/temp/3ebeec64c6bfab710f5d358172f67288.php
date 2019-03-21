@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:62:"D:\mywork\lotgame\public/../app/admin\view\cardcate\index.html";i:1553136104;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"D:\mywork\lotgame\public/../app/admin\view\agentcate\index.html";i:1553156665;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,50 +27,38 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">卡类管理</li>
-        <li><a href="<?php echo url('admin/cardcate/publish'); ?>" class="a_menu">新增卡类</a></li>
+        <li class="layui-this">代理分类管理</li>
+        <li><a href="<?php echo url('admin/agentcate/publish'); ?>" class="a_menu">新增分类</a></li>
       </ul>
     </div>
     <table class="layui-table" lay-size="sm">
       <colgroup>
+        <col width="50">
+        <col width="150">
+        <col width="500">
         <col width="200">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
         <col width="100">
       </colgroup>
       <thead>
         <tr>
+          <th>编号</th>
           <th>名称</th>
-          <th>价值</th>
-          <th>开通VIP</th>
-          <th>增加金币</th>
-          <th>增加经验</th>
-          <th>每日金币</th>
-          <th>每日经验</th>
-          <th>领取时长</th>
+          <th>描述</th>
+          <th>创建时间</th>
           <th>操作</th>
         </tr> 
       </thead>
       <tbody>
-        <?php if(is_array($cardcates) || $cardcates instanceof \think\Collection || $cardcates instanceof \think\Paginator): $i = 0; $__LIST__ = $cardcates;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): $i = 0; $__LIST__ = $cates;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
-          <td><?php echo $vo['name']; ?></td>
-          <td><?php echo $vo['price']; ?></td>
-          <td><?php echo $vo['is_vip']; ?></td>
-          <td><?php echo $vo['coin']; ?></td>
-          <td><?php echo $vo['experiment']; ?></td>
-          <td><?php echo $vo['day_coin']; ?></td>
-          <td><?php echo $vo['day_experiment']; ?></td>
-          <td><?php echo $vo['valid_time']; ?></td>
+          <td><?php echo $vo['id']; ?></td>
+          <td><span style="font-weight:500;"><?php echo $vo['str']; ?></span><?php echo $vo['name']; ?></td>
+          <td><?php echo $vo['description']; ?></td>
+          <td><?php echo $vo['create_time']; ?></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="<?php echo url('admin/cardcate/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a href="<?php echo url('admin/cardcate/publish'); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="<?php echo url('admin/agentcate/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="<?php echo url('admin/agentcate/publish',['pid'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -177,7 +165,7 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"<?php echo url('admin/cardcate/delete'); ?>",
+          url:"<?php echo url('admin/agentcate/delete'); ?>",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);

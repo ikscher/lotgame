@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:65:"D:\mywork\lotgame\public/../app/admin\view\prizecate\publish.html";i:1552619942;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:65:"D:\mywork\lotgame\public/../app/admin\view\agentcate\publish.html";i:1553157224;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +15,8 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li><a href="<?php echo url('admin/prizecate/index'); ?>" class="a_menu">奖品类别管理</a></li>
-        <li class="layui-this">新增奖品类别</li>
+        <li><a href="<?php echo url('admin/prizecate/index'); ?>" class="a_menu">代理分类管理</a></li>
+        <li class="layui-this">新增代理分类</li>
       </ul>
     </div>
     <div style="margin-top: 20px;">
@@ -96,11 +96,12 @@
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
-                      url:"<?php echo url('admin/prizecate/publish'); ?>",
+                      url:"<?php echo url('admin/agentcate/publish'); ?>",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,
                       success:function(res) {
+                          console.log(res)
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;
