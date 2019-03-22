@@ -103,3 +103,36 @@ function format_bytes($size, $delimiter = '') {
     for ($i = 0; $size >= 1024 && $i < 5; $i++) $size /= 1024;
     return round($size, 2) . $delimiter . $units[$i];
 }
+
+
+/*
+ * 生成随机字符串
+ * @param int $length 生成随机字符串的长度
+ * @param string $char 组成随机字符串的字符串
+ * @return string $string 生成的随机字符串
+ */
+function str_rand($length = 8, $format = '') {
+    switch($format){
+        case 'all':
+           $char='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+           break;
+        case 'charnum':
+           $char='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+           break;
+        case 'number':
+           $char='0123456789';
+           break;
+        default:
+           $char='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    }
+    if(!is_int($length) || $length < 0) {
+        return false;
+    }
+
+    $string = '';
+    for($i = $length; $i > 0; $i--) {
+        $string .= $char[mt_rand(0, strlen($char) - 1)];
+    }
+
+    return $string;
+}

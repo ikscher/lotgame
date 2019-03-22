@@ -19,52 +19,59 @@ use think\Db;
 use \think\Cookie;
 use \think\Session;
 use app\admin\controller\Permissions;
-use app\admin\model\Article as articleModel;
-use app\admin\model\ArticleCate as cateModel;
-class Article extends Permissions
-{
+use app\admin\model\CardPwd as cardpwdModel;
+use app\admin\model\CardCate as cardcateModel;
+class Cardpwd extends Permissions
+{   
+    private $model;
+    private $catemodel;
+
+    public function _initialize()
+    {
+        $this->model=new cardpwdModel();
+        $this->catemodel=new cardcateModel();
+    }
     public function index()
     {
-        $model = new articleModel();
         $post = $this->request->param();
         if (isset($post['keywords']) and !empty($post['keywords'])) {
-            $where['title'] = ['like', '%' . $post['keywords'] . '%'];
+            $where['card_no'] = ['like', '%' . $post['keywords'] . '%'];
         }
-        if (isset($post['article_cate_id']) and $post['article_cate_id'] > 0) {
-            $where['article_cate_id'] = $post['article_cate_id'];
-        }
+        // if (isset($post['article_cate_id']) and $post['article_cate_id'] > 0) {
+        //     $where['article_cate_id'] = $post['article_cate_id'];
+        // }
 
-        if (isset($post['admin_id']) and $post['admin_id'] > 0) {
-            $where['admin_id'] = $post['admin_id'];
-        }
+        // if (isset($post['admin_id']) and $post['admin_id'] > 0) {
+        //     $where['admin_id'] = $post['admin_id'];
+        // }
         
-        if (isset($post['status']) and ($post['status'] == 1 or $post['status'] === '0')) {
-            $where['status'] = $post['status'];
-        }
+        // if (isset($post['status']) and ($post['status'] == 1 or $post['status'] === '0')) {
+        //     $where['status'] = $post['status'];
+        // }
 
-        if (isset($post['is_top']) and ($post['is_top'] == 1 or $post['is_top'] === '0')) {
-            $where['is_top'] = $post['is_top'];
-        }
+        // if (isset($post['is_top']) and ($post['is_top'] == 1 or $post['is_top'] === '0')) {
+        //     $where['is_top'] = $post['is_top'];
+        // }
  
-        if(isset($post['create_time']) and !empty($post['create_time'])) {
-            $min_time = strtotime($post['create_time']);
-            $max_time = $min_time + 24 * 60 * 60;
-            $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
-        }
+        // if(isset($post['create_time']) and !empty($post['create_time'])) {
+        //     $min_time = strtotime($post['create_time']);
+        //     $max_time = $min_time + 24 * 60 * 60;
+        //     $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
+        // }
         
-        $articles = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
+        $cardpwds = empty($where) ? $this->model->order('create_time desc')->paginate(15) : $this->model->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
         
     
         // $arc=collection($articles->toArray());var_dump($arc['data']);exit;
         //$articles = $article->toArray();
-        //添加最后修改人的name
-        foreach ($articles as $key => $value) {
-            $articles[$key]['edit_admin'] = Db::name('admin')->where('id',$value['edit_admin_id'])->value('nickname');
-        }
-        $this->assign('articles',$articles);
-        $info['cate'] = Db::name('article_cate')->select();
-        $info['admin'] = Db::name('admin')->select();
-        $this->assign('info',$info);
+        
+        $this->assign('cardpwds',$cardpwds);
+        $cates_= $this->catemodel->select();
+        $cates=collection($cates_)->toArray();
+
+        $this->assign('cates',$cates);
+        // $info['admin'] = Db::name('admin')->select();
+        // $this->assign('info',$info);
         return $this->fetch();
     }
 

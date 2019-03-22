@@ -47,9 +47,15 @@ class User extends Model
         //关联日志表
         return $this->hasMany('UserLog','user_id');
     }
-
+    
     public function userquestion(){
+        //关联工单表
         return $this->hasMany('app\admin\model\UserQuestion','user_id');
+    }
+
+    public function card(){
+        //关联卡密表（兑奖）
+        return $this->hasMany('app\admin\model\CardPwd','user_id');
     }
 
 }
