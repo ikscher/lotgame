@@ -113,13 +113,13 @@ function format_bytes($size, $delimiter = '') {
  */
 function str_rand($length = 8, $format = '') {
     switch($format){
-        case 'all':
+        case '3'://数字+大写字母+小写字母
            $char='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
            break;
-        case 'charnum':
+        case '2'://数字+大写字母
            $char='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
            break;
-        case 'number':
+        case '1': //数字
            $char='0123456789';
            break;
         default:

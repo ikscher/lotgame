@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:61:"D:\mywork\lotgame\public/../app/admin\view\cardpwd\index.html";i:1553229226;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:59:"D:\mywork\lotgame\public/../app/admin\view\agent\index.html";i:1553241413;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,38 +27,34 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">卡密管理</li>
-        <li><a href="<?php echo url('admin/cardpwd/publish'); ?>" class="a_menu">新增卡密</a></li>
+        <li class="layui-this">代理管理</li>
+        <li><a href="<?php echo url('admin/agent/publish'); ?>" class="a_menu">新增代理</a></li>
       </ul>
     </div> 
-      <form class="layui-form serch" action="<?php echo url('admin/cardpwd/index'); ?>" method="post">
+      <form class="layui-form serch" action="<?php echo url('admin/agent/index'); ?>" method="post">
         <div class="layui-inline">
           <div class="layui-input-inline">
-            <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入关键词" class="layui-input layui-btn-sm" <?php if(!(empty($keywords) || (($keywords instanceof \think\Collection || $keywords instanceof \think\Paginator ) && $keywords->isEmpty()))): ?>value="<?php echo $keywords; ?>"{/eq}<?php endif; ?>>
+            <select name="agent_id"  lay-filter="agentsel">
+                <option  value="">所有代理</option>
+                <?php if(is_array($agents) || $agents instanceof \think\Collection || $agents instanceof \think\Paginator): if( count($agents)==0 ) : echo "" ;else: foreach($agents as $key=>$vo): ?>
+                <option value="<?php echo $k; ?>" <?php if(!(empty($agent_id) || (($agent_id instanceof \think\Collection || $agent_id instanceof \think\Paginator ) && $agent_id->isEmpty()))): if($agent_id == $k): ?>selected<?php endif; endif; ?>><?php echo $vo; ?></option>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+              </select>
           </div>
-          
-          
-          <button class="layui-btn layui-btn-primary layui-btn-sm" lay-submit="" lay-filter="serch">查询</button>
         </div>
 
         <div class="layui-inline">
           <label class="layui-form-label">分类查询</label>
           <div class="layui-input-inline">
-              <select name="card_cate_id"  lay-filter="catesel">
+              <select name="agent_log_type">
                 <option  value="">全部卡</option>
-                <?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): if( count($cates)==0 ) : echo "" ;else: foreach($cates as $key=>$vo): ?>
-                <option value="<?php echo $vo['id']; ?>" <?php if(!(empty($card_cate_id) || (($card_cate_id instanceof \think\Collection || $card_cate_id instanceof \think\Paginator ) && $card_cate_id->isEmpty()))): if($card_cate_id == $vo['id']): ?>selected<?php endif; endif; ?>><?php echo $vo['name']; ?></option>
+                <?php if(is_array($agent_log_types) || $agent_log_types instanceof \think\Collection || $agent_log_types instanceof \think\Paginator): if( count($agent_log_types)==0 ) : echo "" ;else: foreach($agent_log_types as $k=>$vo): ?>
+                <option value="<?php echo $k; ?>" <?php if(!(empty($agent_log_type) || (($agent_log_type instanceof \think\Collection || $agent_log_type instanceof \think\Paginator ) && $agent_log_type->isEmpty()))): if($agent_log_type == $k): ?>selected<?php endif; endif; ?>><?php echo $vo; ?></option>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
               </select>
           </div>
         </div>
-        
-        <div class="layui-inline" style="margin-left:20px;">
-          <a href="index?status=2">已回收</a>
-          <a href="index?status=3">已充值</a>
-          <a href="index?status=1">未充值</a>
-          <a href="index?status=4">已兑出</a>
-        </div>
+        <button class="layui-btn layui-btn-primary layui-btn-sm" lay-submit="" lay-filter="serch">查询</button>
       </form> 
     
     <table class="layui-table" lay-size="sm">
@@ -73,34 +69,43 @@
         <col width="100">
         <col width="100">
         <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
       </colgroup>
       <thead>
         <tr>
           <th>ID</th>
-          <th>卡号</th>
-          <th>密码</th>
-          <th>充值卡类型</th>
-          <th>所属代理</th>
-          <th>状态</th>
-          <th>兑奖用户</th>
-          <th>生成时间</th>
-          <th>使用时间</th>
+          <th>名称</th>
+          <th>铺货量（元）</th>
+          <th>余额（元）</th>
+          <th>库存量（元）</th>
+          <th>折扣</th>
+          <th>可提额</th>
+          <th>操作</th>
+          <th>今日业绩</th>
+          <th>近7天业绩</th>
+          <th>近30天业绩</th>
+          <th>日志</th>
           <th>操作</th>
         </tr> 
       </thead>
       <tbody>
-        <?php if(is_array($cardpwds) || $cardpwds instanceof \think\Collection || $cardpwds instanceof \think\Paginator): $i = 0; $__LIST__ = $cardpwds;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <?php if(is_array($agents) || $agents instanceof \think\Collection || $agents instanceof \think\Paginator): $i = 0; $__LIST__ = $agents;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
 
           <td><?php echo $vo['id']; ?></td>
-          <td><?php echo $vo['card_no']; ?></td>
-          <td><?php echo $vo['card_pwd']; ?></td>
-          <td><?php echo $vo['cate']['name']; ?></td>
-          <td><?php echo $vo['agent']['name']; ?></td>
-          <td><?php echo $card_status[$vo['status']]; ?></td>
-          <td><?php echo $vo['user']['username']; ?></td>
-          <td><?php echo $vo['create_time']; ?></td>
-          <td><?php echo $vo['use_time']; ?></td>
+          <td><?php echo $vo['name']; ?></td>
+          <td><?php echo $vo['advance']; ?></td>
+          <td><?php echo $vo['balance']; ?></td>
+          <td><?php echo $vo['stock']; ?></td>
+          <td><?php echo $vo['discount']; ?></td>
+          <td><?php echo $vo['balance']-$vo['advance']+$vo['stock']*$vo['discount']; ?></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
@@ -110,7 +115,7 @@
         <?php endforeach; endif; else: echo "" ;endif; ?>
       </tbody>
     </table>
-    <div style="padding:0 20px;"><?php echo $cardpwds->render(); ?></div> 
+    <div style="padding:0 20px;"><?php echo $agents->render(); ?></div> 
         <script src="/static/public/layui/layui.js" charset="utf-8"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
     <script>

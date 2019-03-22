@@ -58,4 +58,9 @@ class User extends Model
         return $this->hasMany('app\admin\model\CardPwd','user_id');
     }
 
+    public function agent(){
+        //关联代理表
+        return $this->hasOne('app\admin\model\Agent','user_id');
+    }
+
 }

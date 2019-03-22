@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50624
+Source Server         : 127.0.0.1
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-03-21 22:26:50
+Date: 2019-03-22 16:49:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=418 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=442 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -499,6 +499,30 @@ INSERT INTO `hov_admin_log` VALUES ('414', '50', '1', '192.168.1.102', '', '1553
 INSERT INTO `hov_admin_log` VALUES ('415', '4', '1', '192.168.1.102', '113', '1553174793');
 INSERT INTO `hov_admin_log` VALUES ('416', '4', '1', '192.168.1.102', '114', '1553174885');
 INSERT INTO `hov_admin_log` VALUES ('417', '4', '1', '192.168.1.102', '115', '1553174913');
+INSERT INTO `hov_admin_log` VALUES ('418', '108', '1', '192.168.1.107', '修改卡类成功-3', '1553221145');
+INSERT INTO `hov_admin_log` VALUES ('419', '108', '1', '192.168.1.107', '修改卡类成功-3', '1553221511');
+INSERT INTO `hov_admin_log` VALUES ('420', '108', '1', '192.168.1.107', '修改卡类成功-3', '1553221784');
+INSERT INTO `hov_admin_log` VALUES ('421', '108', '1', '192.168.1.107', '修改卡类成功-2', '1553221817');
+INSERT INTO `hov_admin_log` VALUES ('422', '108', '1', '192.168.1.107', '修改卡类成功-4', '1553221844');
+INSERT INTO `hov_admin_log` VALUES ('423', '108', '1', '192.168.1.107', '修改卡类成功-5', '1553221861');
+INSERT INTO `hov_admin_log` VALUES ('424', '108', '1', '192.168.1.107', '修改卡类成功-6', '1553221881');
+INSERT INTO `hov_admin_log` VALUES ('425', '108', '1', '192.168.1.107', '修改卡类成功-7', '1553221901');
+INSERT INTO `hov_admin_log` VALUES ('426', '108', '1', '192.168.1.107', '修改卡类成功-8', '1553221928');
+INSERT INTO `hov_admin_log` VALUES ('427', '108', '1', '192.168.1.107', '修改卡类成功-9', '1553221947');
+INSERT INTO `hov_admin_log` VALUES ('428', '114', '1', '192.168.1.107', '成功生成卡密-1', '1553224047');
+INSERT INTO `hov_admin_log` VALUES ('429', '114', '1', '192.168.1.107', '成功生成卡密', '1553225522');
+INSERT INTO `hov_admin_log` VALUES ('430', '115', '1', '192.168.1.107', '4', '1553225596');
+INSERT INTO `hov_admin_log` VALUES ('431', '115', '1', '192.168.1.107', '3', '1553225600');
+INSERT INTO `hov_admin_log` VALUES ('432', '115', '1', '192.168.1.107', '2', '1553225604');
+INSERT INTO `hov_admin_log` VALUES ('433', '115', '1', '192.168.1.107', '7', '1553225608');
+INSERT INTO `hov_admin_log` VALUES ('434', '115', '1', '192.168.1.107', '6', '1553225612');
+INSERT INTO `hov_admin_log` VALUES ('435', '115', '1', '192.168.1.107', '5', '1553225616');
+INSERT INTO `hov_admin_log` VALUES ('436', '114', '1', '192.168.1.107', '成功生成卡密', '1553225623');
+INSERT INTO `hov_admin_log` VALUES ('437', '4', '1', '192.168.1.107', '116', '1553231481');
+INSERT INTO `hov_admin_log` VALUES ('438', '4', '1', '192.168.1.107', '117', '1553231607');
+INSERT INTO `hov_admin_log` VALUES ('439', '4', '1', '192.168.1.107', '118', '1553231643');
+INSERT INTO `hov_admin_log` VALUES ('440', '4', '1', '192.168.1.107', '119', '1553241725');
+INSERT INTO `hov_admin_log` VALUES ('441', '4', '1', '192.168.1.107', '120', '1553241824');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -527,7 +551,7 @@ CREATE TABLE `hov_admin_menu` (
   KEY `function` (`function`) USING BTREE,
   KEY `is_display` (`is_display`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=MyISAM AUTO_INCREMENT=121 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of hov_admin_menu
@@ -644,6 +668,11 @@ INSERT INTO `hov_admin_menu` VALUES ('112', '删除代理分类', 'admin', 'agen
 INSERT INTO `hov_admin_menu` VALUES ('113', '卡密管理', 'admin', 'cardpwd', 'index', '', '', '1', '2', '105', '1553174793', '1553174793', 'fa-id-card', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('114', '生成新卡密', 'admin', 'cardpwd', 'publish', '', '', '2', '1', '113', '1553174885', '1553174885', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('115', '删除卡密', 'admin', 'cardpwd', 'delete', '', '', '2', '1', '113', '1553174913', '1553174913', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('116', '代理管理', 'admin', 'agent', 'index', '', '', '1', '2', '105', '1553231481', '1553231481', 'fa-film', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('117', '代理提现', 'admin', 'agent', 'withdraw', '', '', '1', '2', '105', '1553231607', '1553231607', 'fa-upload', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('118', '代理充值', 'admin', 'agent', 'deposit', '', '', '1', '2', '105', '1553231643', '1553231643', 'fa-download', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('119', '新增/修改代理', 'admin', 'agent', 'publish', '', '', '2', '1', '116', '1553241725', '1553241725', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('120', '删除代理', 'admin', 'agent', 'delete', '', '', '2', '1', '116', '1553241824', '1553241824', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `hov_agent`
@@ -653,16 +682,18 @@ CREATE TABLE `hov_agent` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `agent_cate_id` int(11) DEFAULT NULL,
   `name` varchar(50) NOT NULL,
-  `balance` decimal(10,2) DEFAULT NULL,
+  `balance` decimal(10,2) DEFAULT NULL COMMENT '余额',
   `qq` char(13) DEFAULT NULL,
   `advance` decimal(10,2) DEFAULT NULL COMMENT '铺货量',
   `stock` decimal(10,2) DEFAULT NULL,
   `discount` decimal(3,2) DEFAULT NULL,
-  `reward` decimal(5,2) DEFAULT NULL,
+  `reclaim_reward` decimal(5,2) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `is_show` tinyint(1) DEFAULT '0',
   `is_freeze` tinyint(1) DEFAULT NULL,
   `thumb` int(11) DEFAULT NULL,
+  `create_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -891,7 +922,7 @@ CREATE TABLE `hov_card_cate` (
   `valid_time` int(11) DEFAULT NULL COMMENT '（有效）领取天数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `is_proxy` tinyint(1) DEFAULT '0' COMMENT '1：代理能生成，0：不能',
+  `is_agent` tinyint(1) DEFAULT '0' COMMENT '1：代理能生成，0：不能',
   `desc` varchar(300) DEFAULT NULL COMMENT '卡类介绍',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
@@ -899,14 +930,14 @@ CREATE TABLE `hov_card_cate` (
 -- ----------------------------
 -- Records of hov_card_cate
 -- ----------------------------
-INSERT INTO `hov_card_cate` VALUES ('2', '红钻卡(每天领1W2)', 'gz1', '2', '3', '20', '300.00', '0', '0', '0', '12000', '0', '30', '1553137662', '1553137662', '0', '');
-INSERT INTO `hov_card_cate` VALUES ('3', '金龙卡', '15', '3', '3', null, '1500.00', '0', '1500000', '0', '50000', '0', '30', '1553137724', '1553137724', '0', '');
-INSERT INTO `hov_card_cate` VALUES ('4', '1000元中国移动手机充值卡', 'd1', '2', '3', null, '1000.00', '0', '1000000', '0', '0', '0', '0', '1553137799', '1553137799', '1', '');
-INSERT INTO `hov_card_cate` VALUES ('5', 'VIP贵宾卡', 'vi', '3', '3', null, '0.00', '1', '0', '0', '0', '0', '0', '1553137961', '1553138803', '0', '');
-INSERT INTO `hov_card_cate` VALUES ('6', '20元广告体验卡', '20', '3', '3', null, '20.00', '0', '20000', '10', '0', '0', '0', '1553138020', '1553138020', '1', '');
-INSERT INTO `hov_card_cate` VALUES ('7', '1元红包卡', 'HB', '2', '3', null, '1.00', '0', '0', '0', '0', '0', '0', '1553138095', '1553138095', '1', '');
-INSERT INTO `hov_card_cate` VALUES ('8', '兑奖200元专用卡', 'd200', '1', '3', null, '200.00', '0', '200000', '0', '0', '0', '0', '1553138141', '1553138141', '0', '');
-INSERT INTO `hov_card_cate` VALUES ('9', '兑奖50元专用卡', 'd50', '2', '3', null, '50.00', '0', '50000', '0', '0', '0', '0', '1553138205', '1553138205', '0', '');
+INSERT INTO `hov_card_cate` VALUES ('2', '红钻卡(每天领1W2)', 'gz1', '8', '3', '20', '300.00', '0', '0', '0', '12000', '0', '30', '1553137662', '1553221816', '0', '');
+INSERT INTO `hov_card_cate` VALUES ('3', '金龙卡', '15', '8', '3', null, '1500.00', '0', '1500000', '0', '50000', '0', '30', '1553137724', '1553221784', '0', '');
+INSERT INTO `hov_card_cate` VALUES ('4', '1000元中国移动手机充值卡', 'd1', '8', '3', null, '1000.00', '0', '1000000', '0', '0', '0', '0', '1553137799', '1553221844', '1', '');
+INSERT INTO `hov_card_cate` VALUES ('5', 'VIP贵宾卡', 'vi', '8', '3', null, '0.00', '1', '0', '0', '0', '0', '0', '1553137961', '1553221861', '0', '');
+INSERT INTO `hov_card_cate` VALUES ('6', '20元广告体验卡', '20', '15', '3', null, '20.00', '0', '20000', '10', '0', '0', '0', '1553138020', '1553221881', '1', '');
+INSERT INTO `hov_card_cate` VALUES ('7', '1元红包卡', 'HB', '8', '2', null, '1.00', '0', '0', '0', '0', '0', '0', '1553138095', '1553221901', '1', '');
+INSERT INTO `hov_card_cate` VALUES ('8', '兑奖200元专用卡', 'd200', '15', '3', null, '200.00', '0', '200000', '0', '0', '0', '0', '1553138141', '1553221928', '0', '');
+INSERT INTO `hov_card_cate` VALUES ('9', '兑奖50元专用卡', 'd50', '15', '2', null, '50.00', '0', '50000', '0', '0', '0', '0', '1553138205', '1553221947', '0', '');
 
 -- ----------------------------
 -- Table structure for `hov_card_pwd`
@@ -914,20 +945,24 @@ INSERT INTO `hov_card_cate` VALUES ('9', '兑奖50元专用卡', 'd50', '2', '3'
 DROP TABLE IF EXISTS `hov_card_pwd`;
 CREATE TABLE `hov_card_pwd` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `card_no` varchar(20) DEFAULT NULL,
-  `card_pwd` varchar(20) DEFAULT NULL,
+  `card_no` varchar(30) DEFAULT NULL,
+  `card_pwd` varchar(30) DEFAULT NULL,
   `card_cate_id` int(11) DEFAULT NULL,
   `agent_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1' COMMENT '2已回收 | 3已充值 | 1未充值 | 4已兑出(未回收)',
   `create_time` int(11) DEFAULT NULL,
   `use_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_card_pwd
 -- ----------------------------
+INSERT INTO `hov_card_pwd` VALUES ('1', 'gz1WbTX6VsD', '5l5a0sCk', '2', null, null, '1', '1553224047', null);
+INSERT INTO `hov_card_pwd` VALUES ('8', 'd200HjtCpKzvmYQY7Tc', 'CVbfn8uJpLcu2yp', '8', null, null, '1', '1553225623', null);
+INSERT INTO `hov_card_pwd` VALUES ('9', 'd200nr2TAaRVr7ajWCW', 'jw1iQlimi0D3Chn', '8', null, null, '1', '1553225623', null);
+INSERT INTO `hov_card_pwd` VALUES ('10', 'd200yDAg1K0T3kcqX34', 'fipzwIIG45Gk9ar', '8', null, null, '1', '1553225623', null);
 
 -- ----------------------------
 -- Table structure for `hov_chargeconfig`

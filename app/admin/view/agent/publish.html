@@ -14,130 +14,122 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li><a href="{:url('admin/cardcate/index')}" class="a_menu">卡类管理</a></li>
-        <li class="layui-this">新增/修改卡类</li>
+        <li><a href="{:url('admin/cardcate/index')}" class="a_menu">代理管理</a></li>
+        <li class="layui-this">新增/修改代理</li>
       </ul>
     </div>
     <div style="margin-top: 20px;">
     </div>
     <form class="layui-form" id="admin">
-      
+      {notempty name="$agent.id"}
       <div class="layui-form-item">
-        <label class="layui-form-label">充值卡名称</label>
+        <label class="layui-form-label">代理编号</label>
         <div class="layui-input-block" style="max-width:500px;">
-          <input name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$cardcate.name"}value="{$cardcate.name}"{/notempty}>
+          <label>{$agent.id}</label>
         </div>
       </div>
-
+      {/notempty}
       <div class="layui-form-item">
-        <label class="layui-form-label">价格（元）</label>
+        <label class="layui-form-label">密码</label>
         <div class="layui-input-inline" >
-          <input name="price" autocomplete="off" placeholder="请输入价格" class="layui-input" type="text" {notempty name="$cardcate.price"}value="{$cardcate.price}"{/notempty}>
+          <input name="password" autocomplete="off" placeholder="" class="layui-input" type="pasword" {notempty name="$agent.user.pasword"}value="{$agent.user.password}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
-        <label class="layui-form-label">自定义卡头</label>
+        <label class="layui-form-label">代理名</label>
         <div class="layui-input-inline" >
-          <input name="header" autocomplete="off" placeholder="0~3位英文或数字,推荐2位" class="layui-input" type="text" {notempty name="$cardcate.header"}value="{$cardcate.header}"{/notempty}>
+          <input name="name" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$agent.name"}value="{$agent.name}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
-        <label class="layui-form-label">随机位数</label>
+        <label class="layui-form-label">余额</label>
         <div class="layui-input-inline" style="max-width:600px;">
-          <select name="random_bits" lay-filter="aihao">
-            {foreach name="$card_random_bits" item="vo" key="k" }
-            <option value="{$k}" {notempty name="$cardcate.random_bits"}{if condition="$cardcate.random_bits eq $k"}selected{/if}{/notempty}>{$vo}</option>
-            {/foreach}
-          </select>
+          <input name="balance" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$agent.balance"}value="{$agent.balance}"{/notempty}>
         </div>
       </div>
 
+
       <div class="layui-form-item">
-        <label class="layui-form-label">随机数类型</label>
+        <label class="layui-form-label">QQ</label>
         <div class="layui-input-inline" style="max-width:600px;">
-          <select name="random_type" lay-filter="aihao">
-            {foreach name="$card_random_type" item="vo" key="k" }
-            <option value="{$k}" {notempty name="$cardcate.random_type"}{if condition="$cardcate.random_type eq $k"}selected{/if}{/notempty}>{$vo}</option>
-            {/foreach}
-          </select>
+          <input name="qq" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$agent.qq"}value="{$agent.qq}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
-        <label class="layui-form-label">升级VIP</label>
+        <label class="layui-form-label">铺货量(元)</label>
+        <div class="layui-input-inline" style="max-width:600px;">
+          <input name="advance" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$agent.advance"}value="{$agent.advance}"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">库存量</label>
+        <div class="layui-input-inline" style="max-width:600px;">
+          <input name="stock" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$agent.stock"}value="{$agent.stock}"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">制卡，代充折扣</label>
+        <div class="layui-input-inline" style="max-width:600px;">
+          <input name="discount" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$agent.discount"}value="{$agent.discount}"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">收卡奖励百分比</label>
+        <div class="layui-input-inline" style="max-width:600px;">
+          <input name="reclaim_reward" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$agent.reclaim_reward"}value="{$agent.reclaim_reward}"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">绑定前台UID</label>
+        <div class="layui-input-inline" style="max-width:600px;">
+          <input name="uid" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$agent.user.uid"}value="{$agent.user.uid}"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">在代理列表显示</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input type="checkbox" name="is_vip" lay-filter="vip" title="" {notempty name="$cardcate.is_vip"}checked value="1"{else /} value="0"{/notempty} >
+          <input type="checkbox" name="is_show" lay-filter="agent" title="" {notempty name="$cardcate.is_show"}checked value="1"{else /} value="0"{/notempty} >
         </div>
       </div>
 
       <div class="layui-form-item">
-        <label class="layui-form-label">领取天数</label>
-        <div class="layui-input-inline" >
-          <input name="valid_time" autocomplete="off" placeholder="在这个天数内有效" class="layui-input" type="text"  {notempty name="$cardcate.valid_time"}{if condition="$cardcate.valid_time egt 0"}value="{$cardcate.valid_time}"{/if}{else /}value="0"{/notempty}>
-        </div>
-      </div>
-
-      <div class="layui-form-item">
-        <label class="layui-form-label">使用获得金币</label>
-        <div class="layui-input-inline" >
-          <input name="coin" autocomplete="off" placeholder="" lay-verify="number" class="layui-input" type="text" {notempty name="$cardcate.coin"}{if condition="$cardcate.coin egt 0"}value="{$cardcate.coin}"{/if}{else /}value="0"{/notempty}>
-        </div>
-      </div>
-
-      <div class="layui-form-item">
-        <label class="layui-form-label">使用获得经验</label>
-        <div class="layui-input-inline" >
-          <input name="experiment" autocomplete="off" placeholder=""  lay-verify="number" class="layui-input" type="text" {notempty name="$cardcate.experiment"}{if condition="$cardcate.experiment egt 0"}value="{$cardcate.experiment}"{/if}{else /}value="0"{/notempty} />
-        </div>
-      </div>
-
-      <div class="layui-form-item">
-        <label class="layui-form-label">每日领取金币</label>
-        <div class="layui-input-inline" >
-          <input type="text" name="day_coin"  placeholder="" autocomplete="off" class="layui-input" {notempty name="$cardcate.day_coin"}{if  condition="$cardcate.day_coin egt 0"}value="{$cardcate.day_coin}"{/if}{else /}value="0"{/notempty}>
-          <!-- <input name="day_coin" 　class="layui-input" type="text" {notempty name="$cardcate.day_coin"}value="{$cardcate.day_coin}"{/notempty} /> -->
-        </div>
-      </div>
-
-      <div class="layui-form-item">
-        <label class="layui-form-label">每日领取经验</label>
-        <div class="layui-input-inline" >
-          <input type="text" name="day_experiment"  placeholder="" autocomplete="off" class="layui-input" {notempty name="$cardcate.day_experiment"}{if condition="$cardcate.day_experiment egt 0"}value="{$cardcate.day_experiment}"{/if}{else /}value="0"{/notempty}>
-          <!-- <input name="day_experiment" autocomplete="off" placeholder=""  lay-verify="number"　class="layui-input" type="text" {notempty name="$cardcate.day_experiment"}value="{$cardcate.day_experiment}"{/notempty} /> -->
+        <label class="layui-form-label">冻结</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input type="checkbox" name="is_freeze" lay-filter="agent" title="" {notempty name="$cardcate.is_freeze"}checked value="1"{else /} value="0"{/notempty} >
         </div>
       </div>
 
       <div class="layui-upload" id="upload-thumb">
-        <label class="layui-form-label">缩略图</label>
+        <label class="layui-form-label">代理头像</label>
         <button type="button" class="layui-btn" id="thumb">上传图片</button>
         <div class="layui-upload-list">
           <label class="layui-form-label"></label>
-          <img class="layui-upload-img" id="demo1" width="150" height="150" {notempty name="$cardcate.thumb"}src="{$cardcate.thumb|geturl}"{/notempty}>{notempty name="$cardcate.thumb"}<input type="hidden" name="avatar" value="{$cardcate.thumb}">{/notempty}
+          <img class="layui-upload-img" id="demo1" width="150" height="150" {notempty name="$agent.thumb"}src="{$agent.thumb|geturl}"{/notempty}>{notempty name="$agent.thumb"}<input type="hidden" name="thumb" value="{$agent.thumb}">{/notempty}
           <p id="demoText"></p>
         </div>
       </div>
 
       <div class="layui-form-item">
-        <label class="layui-form-label">代理可生成</label>
+        <label class="layui-form-label">代理分类</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input type="checkbox" name="is_agent" lay-filter="agent" title="" {notempty name="$cardcate.is_agent"}checked value="1"{else /} value="0"{/notempty} >
+            <select name="agent_cate_id">
+              {foreach name="cates" item="vo" key="k"}
+              <option value="{$k}" {notempty name="$agent.agent_cate_id"}{eq name="$agent.agent_cate_id" value="$k"}selected{/eq}{/notempty}>{$vo['name']}</option>
+              {/foreach}
+            </select>
         </div>
       </div>
-
-
-      <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">卡类介绍</label>
-        <div class="layui-input-block" style="max-width:1000px;">
-          <textarea placeholder="请输入内容" class="layui-textarea" name="desc" id="container" style="border:0;padding:0">{notempty name="$cardcate.desc"}{$cardcate.desc}{/notempty}</textarea>
-        </div>
-      </div>
-
-     
       
-      {notempty name="$cardcate"}
-      <input type="hidden" name="id" value="{$cardcate.id}">
+      {notempty name="$agent"}
+      <input type="hidden" name="id" value="{$agent.id}">
       {/notempty}
       <div class="layui-form-item">
         <div class="layui-input-block">
@@ -236,7 +228,7 @@
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
-                      url:"{:url('admin/cardcate/publish')}",
+                      url:"{:url('admin/agent/publish')}",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,

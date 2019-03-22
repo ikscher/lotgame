@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"D:\mywork\lotgame\public/../app/admin\view\cardpwd\publish.html";i:1553223941;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,15 +7,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
-  <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
-  <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+  <link rel="stylesheet" href="/static/public/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="/static/public/font-awesome/css/font-awesome.min.css" media="all" />
+  <link rel="stylesheet" href="/static/admin/css/admin.css"  media="all">
 </head>
 <body style="padding:10px;">
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li><a href="{:url('admin/cardpwd/index')}" class="a_menu">卡密管理</a></li>
+        <li><a href="<?php echo url('admin/cardpwd/index'); ?>" class="a_menu">卡密管理</a></li>
         <li class="layui-this">生成卡密</li>
       </ul>
     </div> 
@@ -26,9 +27,9 @@
         <label class="layui-form-label">点卡类型</label>
         <div class="layui-input-block" style="max-width:600px;">
           <select name="card_cate_id" lay-filter="card">
-            {volist name="$cates" id="vo"}
-            <option value="{$vo.id}" >{$vo.name}</option>
-            {/volist}
+            <?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): $i = 0; $__LIST__ = $cates;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <option value="<?php echo $vo['id']; ?>" ><?php echo $vo['name']; ?></option>
+            <?php endforeach; endif; else: echo "" ;endif; ?>
           </select>
         </div>
       </div>
@@ -52,8 +53,8 @@
     </form>
 
     
-    <script src="__PUBLIC__/layui/layui.js"></script>
-    <script src="__PUBLIC__/jquery/jquery.min.js"></script>
+    <script src="/static/public/layui/layui.js"></script>
+    <script src="/static/public/jquery/jquery.min.js"></script>
    
     <script>
       layui.use(['layer', 'form','laydate'], function() {
@@ -64,7 +65,7 @@
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
-                      url:"{:url('admin/cardpwd/publish')}",
+                      url:"<?php echo url('admin/cardpwd/publish'); ?>",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,

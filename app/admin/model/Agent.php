@@ -21,6 +21,12 @@ class Agent extends Model
         return $this->belongsTo('AgentCate');
     }
 
+    public function user()
+    {
+        //关联用户表
+        return $this->belongsTo('app\user\model\User');
+    }
+
     public function card()
     {
         //关联卡密表

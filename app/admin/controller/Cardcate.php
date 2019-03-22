@@ -81,7 +81,7 @@ class Cardcate extends Permissions
 	            	return $this->error('id不正确');
 	            }
                 $post['is_vip']= empty($post['is_vip'])?0:1;
-                $post['is_proxy']= empty($post['is_proxy'])?0:1;
+                $post['is_agent']= empty($post['is_agent'])?0:1;
 	            if(false == $this->model->allowField(true)->save($post,['id'=>$id])) {
 	            	return $this->error('修改失败');
 	            } else {

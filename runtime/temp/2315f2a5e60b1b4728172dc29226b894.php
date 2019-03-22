@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\mywork\lotgame\public/../app/admin\view\cardcate\publish.html";i:1553171391;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\mywork\lotgame\public/../app/admin\view\cardcate\publish.html";i:1553221770;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +58,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">随机数类型</label>
         <div class="layui-input-inline" style="max-width:600px;">
-          <select name="random_bits" lay-filter="aihao">
+          <select name="random_type" lay-filter="aihao">
             <?php if(is_array($card_random_type) || $card_random_type instanceof \think\Collection || $card_random_type instanceof \think\Paginator): if( count($card_random_type)==0 ) : echo "" ;else: foreach($card_random_type as $k=>$vo): ?>
             <option value="<?php echo $k; ?>" <?php if(!(empty($cardcate['random_type']) || (($cardcate['random_type'] instanceof \think\Collection || $cardcate['random_type'] instanceof \think\Paginator ) && $cardcate['random_type']->isEmpty()))): if($cardcate['random_type'] == $k): ?>selected<?php endif; endif; ?>><?php echo $vo; ?></option>
             <?php endforeach; endif; else: echo "" ;endif; ?>
@@ -123,7 +123,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">代理可生成</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input type="checkbox" name="is_proxy" lay-filter="proxy" title="" <?php if(!(empty($cardcate['is_proxy']) || (($cardcate['is_proxy'] instanceof \think\Collection || $cardcate['is_proxy'] instanceof \think\Paginator ) && $cardcate['is_proxy']->isEmpty()))): ?>checked value="1"<?php else: ?> value="0"<?php endif; ?> >
+          <input type="checkbox" name="is_agent" lay-filter="agent" title="" <?php if(!(empty($cardcate['is_agent']) || (($cardcate['is_agent'] instanceof \think\Collection || $cardcate['is_agent'] instanceof \think\Paginator ) && $cardcate['is_agent']->isEmpty()))): ?>checked value="1"<?php else: ?> value="0"<?php endif; ?> >
         </div>
       </div>
 
@@ -263,7 +263,7 @@
 
           //取反
           form.on('checkbox(proxy)',function(data){
-             var x=$("input[name='is_proxy']");
+             var x=$("input[name='is_agent']");
              if(x.prop('checked')){
                 x.val(1);
              }else{
