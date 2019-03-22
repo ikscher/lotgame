@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:61:"D:\mywork\lotgame\public/../app/admin\view\agent\publish.html";i:1553253938;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:61:"D:\mywork\lotgame\public/../app/admin\view\agent\publish.html";i:1553267950;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li><a href="<?php echo url('admin/cardcate/index'); ?>" class="a_menu">代理管理</a></li>
+        <li><a href="<?php echo url('admin/agent/index'); ?>" class="a_menu">代理管理</a></li>
         <li class="layui-this">新增/修改代理</li>
       </ul>
     </div>
@@ -90,21 +90,21 @@
       <div class="layui-form-item">
         <label class="layui-form-label">绑定前台UID</label>
         <div class="layui-input-inline" style="max-width:600px;">
-          <input name="uid" autocomplete="off" placeholder="" class="layui-input" type="text" <?php if(!(empty($agent['user']['uid']) || (($agent['user']['uid'] instanceof \think\Collection || $agent['user']['uid'] instanceof \think\Paginator ) && $agent['user']['uid']->isEmpty()))): ?>value="<?php echo $agent['user']['uid']; ?>"<?php endif; ?>>
+          <input name="user_id" autocomplete="off" placeholder="" class="layui-input" type="text" <?php if(!(empty($agent['user_id']) || (($agent['user_id'] instanceof \think\Collection || $agent['user_id'] instanceof \think\Paginator ) && $agent['user_id']->isEmpty()))): ?>value="<?php echo $agent['user_id']; ?>"<?php endif; ?>>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">在代理列表显示</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input type="checkbox" name="is_show" lay-filter="agent" title="" <?php if(!(empty($cardcate['is_show']) || (($cardcate['is_show'] instanceof \think\Collection || $cardcate['is_show'] instanceof \think\Paginator ) && $cardcate['is_show']->isEmpty()))): ?>checked value="1"<?php else: ?> value="0"<?php endif; ?> >
+          <input type="checkbox" name="is_show" lay-filter="show" title="" <?php if(!(empty($agent['is_show']) || (($agent['is_show'] instanceof \think\Collection || $agent['is_show'] instanceof \think\Paginator ) && $agent['is_show']->isEmpty()))): ?>checked value="1"<?php else: ?> value="0"<?php endif; ?> >
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">冻结</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input type="checkbox" name="is_freeze" lay-filter="agent" title="" <?php if(!(empty($cardcate['is_freeze']) || (($cardcate['is_freeze'] instanceof \think\Collection || $cardcate['is_freeze'] instanceof \think\Paginator ) && $cardcate['is_freeze']->isEmpty()))): ?>checked value="1"<?php else: ?> value="0"<?php endif; ?> >
+          <input type="checkbox" name="is_freeze" lay-filter="freeze" title="" <?php if(!(empty($agent['is_freeze']) || (($agent['is_freeze'] instanceof \think\Collection || $agent['is_freeze'] instanceof \think\Paginator ) && $agent['is_freeze']->isEmpty()))): ?>checked value="1"<?php else: ?> value="0"<?php endif; ?> >
         </div>
       </div>
 
@@ -169,12 +169,12 @@
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
-                      url:"<?php echo url('admin/cardcate/publish'); ?>",
+                      url:"<?php echo url('admin/agent/publish'); ?>",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,
                       success:function(res) {
-                          // console.log(res)
+                          console.log(res)
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;
@@ -254,8 +254,8 @@
             });
 
           //取反
-          form.on('checkbox(proxy)',function(data){
-             var x=$("input[name='is_agent']");
+          form.on('checkbox(freeze)',function(data){
+             var x=$("input[name='is_freeze']");
              if(x.prop('checked')){
                 x.val(1);
              }else{
@@ -264,8 +264,8 @@
           })
           
           //取反
-          form.on('checkbox(vip)',function(data){
-             var x=$("input[name='is_vip']");
+          form.on('checkbox(show)',function(data){
+             var x=$("input[name='is_show']");
              if(x.prop('checked')){
                 x.val(1);
              }else{
@@ -275,19 +275,6 @@
       });
     </script>
 
-
-    <!-- 加载编辑器的容器 -->
-    <script id="container" name="desc" type="text/plain">
-        这里写你的初始化内容
-    </script>
-    <!-- 配置文件 -->
-    <script type="text/javascript" src="/static/public/ueditor/ueditor.config.js"></script>
-    <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="/static/public/ueditor/ueditor.all.js"></script>
-    <!-- 实例化编辑器 -->
-    <script type="text/javascript">
-        var ue = UE.getEditor('container');
-    </script>
   </div>
 </body>
 </html>

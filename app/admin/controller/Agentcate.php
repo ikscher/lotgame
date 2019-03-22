@@ -30,7 +30,10 @@ class Agentcate extends Permissions
     public function index()
     {
         $cate = $this->model->select();
+        // var_dump(collection($cate)->toArray());
         $cates = $this->model->catelist($cate);
+        // $cates_ = $this->model->deepcatelist($cate);
+        // var_dump(collection($cates_)->toArray());
         $this->assign('cates',$cates);
         return $this->fetch();
     }

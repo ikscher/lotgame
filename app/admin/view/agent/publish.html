@@ -14,7 +14,7 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li><a href="{:url('admin/cardcate/index')}" class="a_menu">代理管理</a></li>
+        <li><a href="{:url('admin/agent/index')}" class="a_menu">代理管理</a></li>
         <li class="layui-this">新增/修改代理</li>
       </ul>
     </div>
@@ -89,21 +89,21 @@
       <div class="layui-form-item">
         <label class="layui-form-label">绑定前台UID</label>
         <div class="layui-input-inline" style="max-width:600px;">
-          <input name="uid" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$agent.user.uid"}value="{$agent.user.uid}"{/notempty}>
+          <input name="user_id" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$agent.user_id"}value="{$agent.user_id}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">在代理列表显示</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input type="checkbox" name="is_show" lay-filter="agent" title="" {notempty name="$cardcate.is_show"}checked value="1"{else /} value="0"{/notempty} >
+          <input type="checkbox" name="is_show" lay-filter="show" title="" {notempty name="$agent.is_show"}checked value="1"{else /} value="0"{/notempty} >
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">冻结</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input type="checkbox" name="is_freeze" lay-filter="agent" title="" {notempty name="$cardcate.is_freeze"}checked value="1"{else /} value="0"{/notempty} >
+          <input type="checkbox" name="is_freeze" lay-filter="freeze" title="" {notempty name="$agent.is_freeze"}checked value="1"{else /} value="0"{/notempty} >
         </div>
       </div>
 
@@ -168,12 +168,12 @@
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
-                      url:"{:url('admin/cardcate/publish')}",
+                      url:"{:url('admin/agent/publish')}",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,
                       success:function(res) {
-                          // console.log(res)
+                          console.log(res)
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;
@@ -253,8 +253,8 @@
             });
 
           //取反
-          form.on('checkbox(proxy)',function(data){
-             var x=$("input[name='is_agent']");
+          form.on('checkbox(freeze)',function(data){
+             var x=$("input[name='is_freeze']");
              if(x.prop('checked')){
                 x.val(1);
              }else{
@@ -263,8 +263,8 @@
           })
           
           //取反
-          form.on('checkbox(vip)',function(data){
-             var x=$("input[name='is_vip']");
+          form.on('checkbox(show)',function(data){
+             var x=$("input[name='is_show']");
              if(x.prop('checked')){
                 x.val(1);
              }else{
@@ -274,19 +274,6 @@
       });
     </script>
 
-
-    <!-- 加载编辑器的容器 -->
-    <script id="container" name="desc" type="text/plain">
-        这里写你的初始化内容
-    </script>
-    <!-- 配置文件 -->
-    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
-    <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
-    <!-- 实例化编辑器 -->
-    <script type="text/javascript">
-        var ue = UE.getEditor('container');
-    </script>
   </div>
 </body>
 </html>

@@ -21,17 +21,20 @@ use think\Config;
 use \think\Session;
 use app\admin\controller\Permissions;
 use app\admin\model\Agent as agentModel;
+use app\user\model\User as userModel;
 use app\admin\model\AgentCate as agentcateModel;
 class Agent extends Permissions
 {   
     private $model;
     private $agentcatemodel;
     private $agent_log_types;
+    private $usermodel;
 
     public function _initialize()
     {
         $this->model=new agentModel();
         $this->agentcatemodel=new agentcateModel();
+        $this->usermodel=new userModel();
         $this->agent_log_types=Config::get('agent_log_type');
     }
     public function index()
@@ -78,42 +81,44 @@ class Agent extends Permissions
                 //是提交操作
                 $post = $this->request->post();
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
-                 $rule = [
-                    'name'  => 'require',
-                    'header'   => 'require',
-                    'price' => 'number|require',
-                    'coin'  => 'number|require',
-                    'valid_time'  => 'number|require'
+                $rule = [
+                    'password'  => 'max:20',
+                    'name'   => 'require|max:30',
                 ];
 
                 $msg = [
-                    'name.require' => '卡名称必须填写',
-                    'header.require' => '卡头必须填写',
-                    'price.require' => '充值价格必须填写',
-                    'price.number'   => '充值价格必须是数字',
-                    'coin.number'   => '金币必须是数字',
-                    'coin.require'  => '金币必须填写',
-                    'valid_time.require'  => '领取时长必须填写',
-                    'valid_time.number'  => '领取时长必须是数字'
+                    'password.require' => '密码不能超过20位',
+                    'name.require' => '代理名称必须填写',
+                    'name.max' => '代理名称不能超过30个字符'
                 ];
                 $validate = new \think\Validate($rule,$msg);
                 //验证部分数据合法性
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());
                 }
+             
                 //验证菜单是否存在
-                $cardcate = $this->model->where('id',$id)->find();
-                if(empty($cardcate)) {
+                $agent = $this->model->where('id',$id)->find();
+                if(empty($agent)) {
                     return $this->error('id不正确');
                 }
-                $post['is_vip']= empty($post['is_vip'])?0:1;
-                $post['is_agent']= empty($post['is_agent'])?0:1;
-                if(false == $this->model->allowField(true)->save($post,['id'=>$id])) {
+
+                $post['is_freeze']= empty($post['is_freeze'])?0:1;
+                $post['is_show']= empty($post['is_show'])?0:1;
+                //修改对应的用户密码
+                if($post['user_id']){
+                    $data['password']=$post['password'];
+                    $this->usermodel->allowField(['password'])->save($data, ['uid' => $post['user_id']]);
+                }
+                //更改代理信息
+                $ret=$this->model->allowField(true)->save($post,['id'=>$id]);
+                // echo $this->model->getLastSql();exit;
+                if(false ==$ret ) {
                     return $this->error('修改失败');
                 } else {
-                    $operation='修改卡类成功';
+                    $operation='修改代理成功';
                     addlog($operation.'-'.$id);//写入日志
-                    return $this->success($operation,'admin/cardcate/index');
+                    return $this->success($operation,'admin/agent/index');
                 }
             } else {
                 //非提交操作
@@ -135,37 +140,30 @@ class Agent extends Permissions
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
 
                 $rule = [
-                    'name'  => 'require',
-                    'header'   => 'require',
-                    'price' => 'number|require',
-                    'coin'  => 'number|require',
-                    'valid_time'  => 'number|require'
+                    'password'  => 'max:20',
+                    'name'   => 'require|max:30',
                 ];
 
                 $msg = [
-                    'name.require' => '卡名称必须填写',
-                    'header.require' => '卡头必须填写',
-                    'price.require' => '充值价格必须填写',
-                    'price.number'   => '充值价格必须是数字',
-                    'coin.number'   => '金币必须是数字',
-                    'coin.require'  => '金币必须填写',
-                    'valid_time.require'  => '领取时长必须填写',
-                    'valid_time.number'  => '领取时长必须是数字'
+                    'password.require' => '密码不能超过20位',
+                    'name.require' => '代理名称必须填写',
+                    'name.max' => '代理名称不能超过30个字符'
                 ];
                 $validate = new \think\Validate($rule,$msg);
                 //验证部分数据合法性
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());
                 }
+                
 
                 // $post['is_vip']= empty($post['is_vip'])?0:1;
                 // $post['is_proxy']= empty($post['is_proxy'])?0:1;
                 if(false == $this->model->allowField(true)->save($post)) {
                     return $this->error('添加失败');
                 } else {
-                    $operation='添加卡类成功';
+                    $operation='添加代理成功';
                     addlog($operation.'-'.$this->model->id);//写入日志
-                    return $this->success($operation,'admin/cardcate/index');
+                    return $this->success($operation,'admin/agent/index');
                 }
             } else {
                 $cates_= $this->agentcatemodel->select();

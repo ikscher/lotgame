@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50505
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-03-22 16:49:04
+Date: 2019-03-22 23:20:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=442 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=461 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -523,6 +523,25 @@ INSERT INTO `hov_admin_log` VALUES ('438', '4', '1', '192.168.1.107', '117', '15
 INSERT INTO `hov_admin_log` VALUES ('439', '4', '1', '192.168.1.107', '118', '1553231643');
 INSERT INTO `hov_admin_log` VALUES ('440', '4', '1', '192.168.1.107', '119', '1553241725');
 INSERT INTO `hov_admin_log` VALUES ('441', '4', '1', '192.168.1.107', '120', '1553241824');
+INSERT INTO `hov_admin_log` VALUES ('442', '111', '1', '192.168.1.102', '添加代理分类成功-9', '1553261427');
+INSERT INTO `hov_admin_log` VALUES ('443', '111', '1', '192.168.1.102', '添加代理分类成功-10', '1553261438');
+INSERT INTO `hov_admin_log` VALUES ('444', '111', '1', '192.168.1.102', '添加代理分类成功-11', '1553261477');
+INSERT INTO `hov_admin_log` VALUES ('445', '111', '1', '192.168.1.102', '添加代理分类成功-12', '1553261484');
+INSERT INTO `hov_admin_log` VALUES ('446', '119', '1', '192.168.1.102', '添加代理成功-1', '1553265488');
+INSERT INTO `hov_admin_log` VALUES ('447', '115', '1', '192.168.1.102', '1', '1553265583');
+INSERT INTO `hov_admin_log` VALUES ('448', '120', '1', '192.168.1.102', '1', '1553265614');
+INSERT INTO `hov_admin_log` VALUES ('449', '119', '1', '192.168.1.102', '添加代理成功-2', '1553265931');
+INSERT INTO `hov_admin_log` VALUES ('450', '119', '1', '192.168.1.102', '修改代理成功-2', '1553266355');
+INSERT INTO `hov_admin_log` VALUES ('451', '119', '1', '192.168.1.102', '修改代理成功-2', '1553266429');
+INSERT INTO `hov_admin_log` VALUES ('452', '119', '1', '192.168.1.102', '修改代理成功-2', '1553267035');
+INSERT INTO `hov_admin_log` VALUES ('453', '119', '1', '192.168.1.102', '修改代理成功-2', '1553267057');
+INSERT INTO `hov_admin_log` VALUES ('454', '119', '1', '192.168.1.102', '修改代理成功-2', '1553267459');
+INSERT INTO `hov_admin_log` VALUES ('455', '119', '1', '192.168.1.102', '添加代理成功-3', '1553267614');
+INSERT INTO `hov_admin_log` VALUES ('456', '49', '1', '192.168.1.102', '21', '1553267657');
+INSERT INTO `hov_admin_log` VALUES ('457', '119', '1', '192.168.1.102', '修改代理成功-3', '1553267658');
+INSERT INTO `hov_admin_log` VALUES ('458', '119', '1', '192.168.1.102', '修改代理成功-3', '1553267682');
+INSERT INTO `hov_admin_log` VALUES ('459', '119', '1', '192.168.1.102', '修改代理成功-3', '1553267741');
+INSERT INTO `hov_admin_log` VALUES ('460', '119', '1', '192.168.1.102', '修改代理成功-3', '1553267909');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -682,24 +701,26 @@ CREATE TABLE `hov_agent` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `agent_cate_id` int(11) DEFAULT NULL,
   `name` varchar(50) NOT NULL,
-  `balance` decimal(10,2) DEFAULT NULL COMMENT '余额',
+  `balance` decimal(10,2) DEFAULT '0.00' COMMENT '余额',
   `qq` char(13) DEFAULT NULL,
-  `advance` decimal(10,2) DEFAULT NULL COMMENT '铺货量',
-  `stock` decimal(10,2) DEFAULT NULL,
-  `discount` decimal(3,2) DEFAULT NULL,
-  `reclaim_reward` decimal(5,2) DEFAULT NULL,
+  `advance` decimal(10,2) DEFAULT '0.00' COMMENT '铺货量',
+  `stock` decimal(10,2) DEFAULT '0.00',
+  `discount` decimal(3,2) DEFAULT '1.00',
+  `reclaim_reward` decimal(5,2) DEFAULT '0.00',
   `user_id` int(11) DEFAULT NULL,
-  `is_show` tinyint(1) DEFAULT '0',
-  `is_freeze` tinyint(1) DEFAULT NULL,
+  `is_show` tinyint(1) DEFAULT '1',
+  `is_freeze` tinyint(1) DEFAULT '0',
   `thumb` int(11) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_agent
 -- ----------------------------
+INSERT INTO `hov_agent` VALUES ('2', '0', '是地方撒放ffff', '0.00', '', '0.00', '0.00', '0.00', '0.00', '1', '1', '1', null, '1553265931', '1553267459');
+INSERT INTO `hov_agent` VALUES ('3', '0', 'ertre', '10.00', '', '222.00', '333.00', '0.80', '0.10', '5', '1', '0', '21', '1553267613', '1553267909');
 
 -- ----------------------------
 -- Table structure for `hov_agent_cate`
@@ -715,7 +736,7 @@ CREATE TABLE `hov_agent_cate` (
   `pid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_agent_cate
@@ -723,6 +744,10 @@ CREATE TABLE `hov_agent_cate` (
 INSERT INTO `hov_agent_cate` VALUES ('5', '安徽省', '', '', '1553157411', '1553157673', '0');
 INSERT INTO `hov_agent_cate` VALUES ('6', '合肥市', '', '', '1553157436', '1553157679', '5');
 INSERT INTO `hov_agent_cate` VALUES ('7', '包河区', '', '', '1553157449', '1553157690', '6');
+INSERT INTO `hov_agent_cate` VALUES ('9', '江西省', '', '', '1553261427', '1553261427', '0');
+INSERT INTO `hov_agent_cate` VALUES ('10', '南昌市', '', '', '1553261438', '1553261438', '9');
+INSERT INTO `hov_agent_cate` VALUES ('11', '东湖区', '', '', '1553261477', '1553261477', '10');
+INSERT INTO `hov_agent_cate` VALUES ('12', '西湖区', '', '', '1553261484', '1553261484', '10');
 
 -- ----------------------------
 -- Table structure for `hov_article`
@@ -809,7 +834,7 @@ CREATE TABLE `hov_attachment` (
   KEY `status` (`status`) USING BTREE,
   KEY `filename` (`filename`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='附件表';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='附件表';
 
 -- ----------------------------
 -- Records of hov_attachment
@@ -834,6 +859,7 @@ INSERT INTO `hov_attachment` VALUES ('17', 'admin', '67f14a50fd1c11cbb25c60702ba
 INSERT INTO `hov_attachment` VALUES ('18', 'admin', '242f411b90f2f6b519bbf4312ecd8ca1.png', '\\uploads\\admin\\prize_thumb\\20190321\\242f411b90f2f6b519bbf4312ecd8ca1.png', '999', 'png', '1', '192.168.1.107', '1', '1553135048', '1', '1553135048', 'prize_thumb', '0');
 INSERT INTO `hov_attachment` VALUES ('19', 'admin', '40ec749605502eecf6f3ab5bf229eb26.png', '\\uploads\\admin\\prize_thumb\\20190321\\40ec749605502eecf6f3ab5bf229eb26.png', '999', 'png', '1', '192.168.1.107', '1', '1553135444', '1', '1553135444', 'prize_thumb', '0');
 INSERT INTO `hov_attachment` VALUES ('20', 'admin', '9a7f644d4aff6fe9a9a793b98f8bdf0f.png', '\\uploads\\admin\\prize_thumb\\20190321\\9a7f644d4aff6fe9a9a793b98f8bdf0f.png', '999', 'png', '1', '192.168.1.107', '1', '1553137645', '1', '1553137645', 'prize_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('21', 'admin', '357c152455be9c044d93cd115dd088ed.jpg', '\\uploads\\admin\\prize_thumb\\20190322\\357c152455be9c044d93cd115dd088ed.jpg', '51653', 'jpg', '1', '192.168.1.102', '1', '1553267657', '1', '1553267657', 'prize_thumb', '0');
 
 -- ----------------------------
 -- Table structure for `hov_board`
@@ -959,7 +985,6 @@ CREATE TABLE `hov_card_pwd` (
 -- ----------------------------
 -- Records of hov_card_pwd
 -- ----------------------------
-INSERT INTO `hov_card_pwd` VALUES ('1', 'gz1WbTX6VsD', '5l5a0sCk', '2', null, null, '1', '1553224047', null);
 INSERT INTO `hov_card_pwd` VALUES ('8', 'd200HjtCpKzvmYQY7Tc', 'CVbfn8uJpLcu2yp', '8', null, null, '1', '1553225623', null);
 INSERT INTO `hov_card_pwd` VALUES ('9', 'd200nr2TAaRVr7ajWCW', 'jw1iQlimi0D3Chn', '8', null, null, '1', '1553225623', null);
 INSERT INTO `hov_card_pwd` VALUES ('10', 'd200yDAg1K0T3kcqX34', 'fipzwIIG45Gk9ar', '8', null, null, '1', '1553225623', null);
@@ -1192,8 +1217,8 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('1', 'ikscher', '2323223', '2', '17', null, 'ikscher@163.com', '13856900659', '12', '23', null, null, '1553090275', null, '114.102.155.30', null, '0', '23', null, null, '1', '0', null, null, '2323423', '1970-01-01', null, '1');
-INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '222222', '2', '16', null, 'wenthuang@sina.com', '13856900456', '23', '2', null, '0', '1552983662', null, '116.27.147.29', null, '1553616000', '23', null, null, '0', '1', null, null, '435345345', '2018-06-02', null, '1');
+INSERT INTO `hov_user` VALUES ('1', 'ikscher', 'wwwwww', '2', '17', null, 'ikscher@163.com', '13856900659', '12', '23', null, null, '1553267459', null, '114.102.155.30', null, '0', '23', null, null, '1', '0', null, null, '2323423', '1970-01-01', null, '1');
+INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '23', '2', null, '0', '1553267838', null, '116.27.147.29', null, '1553616000', '23', null, null, '0', '1', null, null, '435345345', '2018-06-02', null, '1');
 
 -- ----------------------------
 -- Table structure for `hov_user_charge`

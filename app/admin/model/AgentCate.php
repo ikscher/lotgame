@@ -38,7 +38,20 @@ class AgentCate extends Model
 		}
 		return $cates;
 	}
-
+    
+    public function deepcatelist($cate,$id=0){
+        static $cates_ = array();
+        static $temp='';
+		foreach ($cate as $value) {
+           if($value['pid']==$id){
+              $temp.=$value['name'];
+              $cates_[$id]=$temp;
+           	  $this->deepcatelist($cate,$value['id']);
+           }
+ 
+		}
+		return $cates_;
+    }
 
 	public function agent()
     {

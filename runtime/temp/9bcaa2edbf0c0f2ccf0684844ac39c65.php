@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:59:"D:\mywork\lotgame\public/../app/admin\view\agent\index.html";i:1553253938;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:59:"D:\mywork\lotgame\public/../app/admin\view\agent\index.html";i:1553266115;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,7 @@
           <div class="layui-input-inline">
             <select name="agent_id"  lay-filter="agentsel">
                 <option  value="">所有代理</option>
-                <?php if(is_array($agents) || $agents instanceof \think\Collection || $agents instanceof \think\Paginator): if( count($agents)==0 ) : echo "" ;else: foreach($agents as $key=>$vo): ?>
+                <?php if(is_array($agents) || $agents instanceof \think\Collection || $agents instanceof \think\Paginator): if( count($agents)==0 ) : echo "" ;else: foreach($agents as $k=>$vo): ?>
                 <option value="<?php echo $k; ?>" <?php if(!(empty($agent_id) || (($agent_id instanceof \think\Collection || $agent_id instanceof \think\Paginator ) && $agent_id->isEmpty()))): if($agent_id == $k): ?>selected<?php endif; endif; ?>><?php echo $vo; ?></option>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
               </select>
@@ -108,6 +108,7 @@
           <td></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
+              <a href="<?php echo url('admin/agent/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -214,7 +215,7 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"<?php echo url('admin/cardpwd/delete'); ?>",
+          url:"<?php echo url('admin/agent/delete'); ?>",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);

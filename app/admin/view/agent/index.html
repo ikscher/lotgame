@@ -35,7 +35,7 @@
           <div class="layui-input-inline">
             <select name="agent_id"  lay-filter="agentsel">
                 <option  value="">所有代理</option>
-                {foreach name="agents" item="vo" }
+                {foreach name="agents" item="vo" key="k"}
                 <option value="{$k}" {notempty name="$agent_id"}{eq name="$agent_id" value="$k"}selected{/eq}{/notempty}>{$vo}</option>
                 {/foreach}
               </select>
@@ -107,6 +107,7 @@
           <td></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
+              <a href="{:url('admin/agent/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -122,7 +123,7 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"{:url('admin/cardpwd/delete')}",
+          url:"{:url('admin/agent/delete')}",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);

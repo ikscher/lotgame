@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"D:\mywork\lotgame\public/../app/admin\view\cardpwd\publish.html";i:1553223941;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"D:\mywork\lotgame\public/../app/admin\view\cardpwd\publish.html";i:1553253938;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
