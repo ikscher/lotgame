@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:59:"D:\mywork\lotgame\public/../app/admin\view\agent\index.html";i:1553266115;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:59:"D:\mywork\lotgame\public/../app/admin\view\agent\index.html";i:1553308739;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +36,8 @@
           <div class="layui-input-inline">
             <select name="agent_id"  lay-filter="agentsel">
                 <option  value="">所有代理</option>
-                <?php if(is_array($agents) || $agents instanceof \think\Collection || $agents instanceof \think\Paginator): if( count($agents)==0 ) : echo "" ;else: foreach($agents as $k=>$vo): ?>
-                <option value="<?php echo $k; ?>" <?php if(!(empty($agent_id) || (($agent_id instanceof \think\Collection || $agent_id instanceof \think\Paginator ) && $agent_id->isEmpty()))): if($agent_id == $k): ?>selected<?php endif; endif; ?>><?php echo $vo; ?></option>
+                <?php if(is_array($agents_sel) || $agents_sel instanceof \think\Collection || $agents_sel instanceof \think\Paginator): if( count($agents_sel)==0 ) : echo "" ;else: foreach($agents_sel as $key=>$vo): ?>
+                <option value="<?php echo $vo['id']; ?>" <?php if(!(empty($agent_id) || (($agent_id instanceof \think\Collection || $agent_id instanceof \think\Paginator ) && $agent_id->isEmpty()))): if($agent_id == $vo['id']): ?>selected<?php endif; endif; ?>><?php echo $vo['name']; ?></option>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
               </select>
           </div>
@@ -61,17 +61,17 @@
       <colgroup>
         <col width="50">
         <col width="200">
-        <col width="200">
-        <col width="200">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
+        <col width="100">
         <col width="150">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
       </colgroup>
       <thead>
         <tr>
@@ -93,7 +93,6 @@
       <tbody>
         <?php if(is_array($agents) || $agents instanceof \think\Collection || $agents instanceof \think\Paginator): $i = 0; $__LIST__ = $agents;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
-
           <td><?php echo $vo['id']; ?></td>
           <td><?php echo $vo['name']; ?></td>
           <td><?php echo $vo['advance']; ?></td>
@@ -218,6 +217,7 @@
           url:"<?php echo url('admin/agent/delete'); ?>",
           data:{id:id},
           success:function(res) {
+            // console.log(res)
             layer.msg(res.msg);
             if(res.code == 1) {
               setTimeout(function(){

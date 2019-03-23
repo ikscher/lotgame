@@ -13,29 +13,12 @@
 namespace app\admin\model;
 
 use \think\Model;
-class Agent extends Model
+class AgentLog extends Model
 {
-	public function cate()
+	
+    public function agent()
     {
-        //关联分类表
-        return $this->belongsTo('AgentCate');
-    }
-
-    public function user()
-    {
-        //关联用户表
-        return $this->belongsTo('app\user\model\User');
-    }
-
-    public function card()
-    {
-        //关联卡密表
-        return $this->hasMany('CardPwd','agent_id');
-    }
-
-    public function log()
-    {
-        //关联日志表
-        return $this->hasMany('AgentLog','agent_id');
+        //关联角色表
+        return $this->belongsTo('Agent');
     }
 }

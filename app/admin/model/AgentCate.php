@@ -45,7 +45,7 @@ class AgentCate extends Model
 		foreach ($cate as $value) {
            if($value['pid']==$id){
               $temp.=$value['name'];
-              $cates_[$id]=$temp;
+              $cates_[]=$temp;
            	  $this->deepcatelist($cate,$value['id']);
            }
  

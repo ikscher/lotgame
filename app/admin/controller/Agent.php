@@ -23,18 +23,21 @@ use app\admin\controller\Permissions;
 use app\admin\model\Agent as agentModel;
 use app\user\model\User as userModel;
 use app\admin\model\AgentCate as agentcateModel;
+use app\admin\model\AgentLog as agentlogModel;
 class Agent extends Permissions
 {   
     private $model;
     private $agentcatemodel;
     private $agent_log_types;
     private $usermodel;
+    private $agentlog;
 
     public function _initialize()
     {
         $this->model=new agentModel();
         $this->agentcatemodel=new agentcateModel();
         $this->usermodel=new userModel();
+        $this->agentlogmodel=new agentlogModel();
         $this->agent_log_types=Config::get('agent_log_type');
     }
     public function index()
@@ -42,21 +45,24 @@ class Agent extends Permissions
         $post = $this->request->param();
         if($this->request->isPost()) {
             if (isset($post['agent_id']) and $post['agent_id'] > 0) {
-                $where['agent_id'] = $post['agent_id'];
+                $where['a.id'] = $post['agent_id'];
                 $this->assign('agent_id',$post['agent_id']);
             }
         
 
             if (isset($post['agent_log_type']) and $post['agent_log_type'] > 0) {
-                $where['agent_log_type'] = $post['agent_log_type'];
+                $where['l.type'] = $post['agent_log_type'];
                 $this->assign('agent_log_type',$post['agent_log_type']);
             }
 
         }
- 
-        $agents = empty($where) ? $this->model->order('create_time desc')->paginate(15) : $this->model->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
+
+        $agents_sel=collection($this->model->select())->toArray();
         
-        
+        // $agents = empty($where) ? $this->model->order('create_time desc')->paginate(15) : $this->model->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
+        $agents=empty($where)?Db::name('agent')->alias('a')->field('a.*')->join('agent_log l',' a.id=l.agent_id','left')->order('a.create_time desc')->paginate(15):Db::name('agent')->alias('a')->join('agent_log l',' a.id=l.agent_id','left')->where($where)->order('a.create_time desc')->paginate(15);
+        // echo Db::name('agent')->getLastSql();
+        $this->assign('agents_sel',$agents_sel);
         $this->assign('agents',$agents);
         // $cates_= $this->agentcatemodel->select();
         // $cates=collection($cates_)->toArray();
@@ -181,11 +187,24 @@ class Agent extends Permissions
     {
     	if($this->request->isAjax()) {
     		$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
-            if(false == $this->model->where('id',$id)->delete()) {
+            $map['agent_id']=$id;
+            // $logs=Db::name('agent_log')->where($map)->find();
+            // echo json_encode($logs);exit;
+            $logs=$this->agentlogmodel->where($map)->find();
+            // echo $this->agentcatemodel->getLastSql();exit;
+            // echo $logs['id'];exit;
+            if(!empty($logs['id'])){
+               return $this->error('代理已经有日志，删除失败');
+            }
+           
+            $ret=$this->model->where('id',$id)->delete();
+            // echo $this->model->getLastSql();exit;
+            if(false == $ret) {
                 return $this->error('删除代理失败');
             } else {
-                addlog($id);//写入日志
-                return $this->success('删除代理成功','admin/agent/index');
+                $operation='删除代理成功';
+                addlog($operation.'-'.$id);//写入日志
+                return $this->success($operation,'admin/agent/index');
             }
     	}
     }

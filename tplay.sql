@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-03-22 23:20:23
+Date: 2019-03-23 20:11:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1553171534', '192.168.1.102', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1553302651', '192.168.1.102', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -63,7 +63,7 @@ CREATE TABLE `hov_admin_cate` (
 -- ----------------------------
 -- Records of hov_admin_cate
 -- ----------------------------
-INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,25,26,28,29,34,35,37,38,39,40,60,61,62,63,71,72,73,74,75,76,77,78,79,80,81,83,84,85,92,93,94,95,96,97,98,104,108,109,111,112', '0', '1553156814', '超级管理员，拥有最高权限！');
+INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,25,26,28,29,34,35,37,38,39,40,60,61,62,63,71,72,73,74,75,76,77,78,79,80,81,83,84,85,92,93,94,95,96,97,98,104,108,109,111,112,122,123,124,125,126', '0', '1553329835', '超级管理员，拥有最高权限！');
 
 -- ----------------------------
 -- Table structure for `hov_admin_log`
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=461 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=471 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -542,6 +542,16 @@ INSERT INTO `hov_admin_log` VALUES ('457', '119', '1', '192.168.1.102', '修改�
 INSERT INTO `hov_admin_log` VALUES ('458', '119', '1', '192.168.1.102', '修改代理成功-3', '1553267682');
 INSERT INTO `hov_admin_log` VALUES ('459', '119', '1', '192.168.1.102', '修改代理成功-3', '1553267741');
 INSERT INTO `hov_admin_log` VALUES ('460', '119', '1', '192.168.1.102', '修改代理成功-3', '1553267909');
+INSERT INTO `hov_admin_log` VALUES ('461', '50', '1', '192.168.1.102', '', '1553302651');
+INSERT INTO `hov_admin_log` VALUES ('462', '119', '1', '192.168.1.102', '添加代理成功-4', '1553306931');
+INSERT INTO `hov_admin_log` VALUES ('463', '120', '1', '192.168.1.102', '删除代理成功-4', '1553307368');
+INSERT INTO `hov_admin_log` VALUES ('464', '120', '1', '192.168.1.102', '删除代理成功-3', '1553307867');
+INSERT INTO `hov_admin_log` VALUES ('465', '119', '1', '192.168.1.102', '添加代理成功-5', '1553307875');
+INSERT INTO `hov_admin_log` VALUES ('466', '120', '1', '192.168.1.102', '删除代理成功-5', '1553308582');
+INSERT INTO `hov_admin_log` VALUES ('467', '119', '1', '192.168.1.102', '添加代理成功-6', '1553308614');
+INSERT INTO `hov_admin_log` VALUES ('468', '120', '1', '192.168.1.102', '删除代理成功-1', '1553308631');
+INSERT INTO `hov_admin_log` VALUES ('469', '119', '1', '192.168.1.102', '添加代理成功-7', '1553308660');
+INSERT INTO `hov_admin_log` VALUES ('470', '4', '1', '192.168.1.102', '121', '1553309362');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -570,7 +580,7 @@ CREATE TABLE `hov_admin_menu` (
   KEY `function` (`function`) USING BTREE,
   KEY `is_display` (`is_display`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=121 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=MyISAM AUTO_INCREMENT=127 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of hov_admin_menu
@@ -692,6 +702,12 @@ INSERT INTO `hov_admin_menu` VALUES ('117', '代理提现', 'admin', 'agent', 'w
 INSERT INTO `hov_admin_menu` VALUES ('118', '代理充值', 'admin', 'agent', 'deposit', '', '', '1', '2', '105', '1553231643', '1553231643', 'fa-download', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('119', '新增/修改代理', 'admin', 'agent', 'publish', '', '', '2', '1', '116', '1553241725', '1553241725', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('120', '删除代理', 'admin', 'agent', 'delete', '', '', '2', '1', '116', '1553241824', '1553241824', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('121', '游戏开关', 'admin', 'game', 'index', '', '', '1', '2', '106', '1553309362', '1553309362', 'fa-gamepad', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('122', '新增/修改游戏', 'admin', 'game', 'publish', '', '', '2', '1', '106', '1553312314', '1553312314', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('123', '删除游戏', 'admin', 'game', 'delete', '', '', '2', '1', '106', '1553312355', '1553312355', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('124', '游戏开关', 'admin', 'game', 'onff', '', '', '2', '1', '106', '1553315191', '1553315191', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('125', '游戏配置', 'admin', 'game', 'setup', '', '', '2', '1', '106', '1553329792', '1553329792', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('126', '游戏管理', 'admin', 'game', 'manage', '', '', '2', '1', '106', '1553329824', '1553329824', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `hov_agent`
@@ -714,13 +730,12 @@ CREATE TABLE `hov_agent` (
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_agent
 -- ----------------------------
-INSERT INTO `hov_agent` VALUES ('2', '0', '是地方撒放ffff', '0.00', '', '0.00', '0.00', '0.00', '0.00', '1', '1', '1', null, '1553265931', '1553267459');
-INSERT INTO `hov_agent` VALUES ('3', '0', 'ertre', '10.00', '', '222.00', '333.00', '0.80', '0.10', '5', '1', '0', '21', '1553267613', '1553267909');
+INSERT INTO `hov_agent` VALUES ('2', '0', 'sdfsdfas', '0.00', '', '0.00', '0.00', '0.00', '0.00', '0', '1', '0', null, '1553308660', '1553308660');
 
 -- ----------------------------
 -- Table structure for `hov_agent_cate`
@@ -748,6 +763,26 @@ INSERT INTO `hov_agent_cate` VALUES ('9', '江西省', '', '', '1553261427', '15
 INSERT INTO `hov_agent_cate` VALUES ('10', '南昌市', '', '', '1553261438', '1553261438', '9');
 INSERT INTO `hov_agent_cate` VALUES ('11', '东湖区', '', '', '1553261477', '1553261477', '10');
 INSERT INTO `hov_agent_cate` VALUES ('12', '西湖区', '', '', '1553261484', '1553261484', '10');
+
+-- ----------------------------
+-- Table structure for `hov_agent_log`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_agent_log`;
+CREATE TABLE `hov_agent_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `agent_id` int(11) DEFAULT NULL,
+  `type` tinyint(2) DEFAULT NULL,
+  `ip` varchar(30) DEFAULT NULL,
+  `create_time` int(11) DEFAULT NULL,
+  `desc` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hov_agent_log
+-- ----------------------------
+INSERT INTO `hov_agent_log` VALUES ('1', '2', '3', null, null, null);
+INSERT INTO `hov_agent_log` VALUES ('2', '3', '34', null, '345345', '345');
 
 -- ----------------------------
 -- Table structure for `hov_article`
@@ -1004,7 +1039,7 @@ CREATE TABLE `hov_chargeconfig` (
   `update_time` int(11) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1' COMMENT '1:启用0禁用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_chargeconfig
@@ -1033,6 +1068,92 @@ CREATE TABLE `hov_emailconfig` (
 -- Records of hov_emailconfig
 -- ----------------------------
 INSERT INTO `hov_emailconfig` VALUES ('email', '', '', '', '', '', '', '');
+
+-- ----------------------------
+-- Table structure for `hov_game`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_game`;
+CREATE TABLE `hov_game` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `draw_ratio` decimal(6,2) DEFAULT NULL COMMENT '抽水比例',
+  `forbid` int(11) DEFAULT '0' COMMENT '禁止投注时间(秒）',
+  `min_bid` int(11) DEFAULT NULL COMMENT '限额',
+  `max_bid` int(11) DEFAULT NULL,
+  `reward_exp` varchar(200) DEFAULT NULL,
+  `reward_points` varchar(200) DEFAULT NULL,
+  `help` text,
+  `tip` varchar(100) DEFAULT NULL,
+  `onff` tinyint(1) DEFAULT '0' COMMENT '1开，0关',
+  `create_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hov_game
+-- ----------------------------
+INSERT INTO `hov_game` VALUES ('1', '急速28', null, '0', null, null, null, null, null, null, '1', '1553311975', '1553318088');
+INSERT INTO `hov_game` VALUES ('2', '急速16', null, '0', null, null, null, null, null, null, '0', '1553312074', '1553312074');
+INSERT INTO `hov_game` VALUES ('3', '急速36', null, '0', null, null, null, null, null, null, '1', '1553312148', '1553318048');
+INSERT INTO `hov_game` VALUES ('4', '急速11', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('6', '急速10', null, '0', null, null, null, null, null, null, '1', '1553312250', '1553312250');
+INSERT INTO `hov_game` VALUES ('7', '急速冠亚', '1.30', '23', '33', '344', '344', null, '<p>wwe斯蒂芬斯蒂芬的ee</p>', '3333werwerwervv啊啊啊啊啊啊啊啊啊啊啊啊啊rr', '0', '1553312368', '1553337429');
+INSERT INTO `hov_game` VALUES ('8', '急速22', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('9', '蛋蛋28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('10', '蛋蛋16', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('11', '蛋蛋36', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('12', '韩国28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('13', '韩国16', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('14', '韩国36', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('15', '韩国11', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('16', '韩国10', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('17', '韩国外围', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('18', '韩国定位', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('19', '北京28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('20', '北京16', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('21', '北京36', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('22', '加拿大28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('23', '加拿大16', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('24', '加拿大36', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('25', '加拿大11', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('26', '加拿大10', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('27', '加拿大外围', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('28', '加拿大定位', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('29', '蛋蛋外围', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('30', '蛋蛋定位', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('31', '北京10', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('32', '趣吧16', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('33', '重庆时时彩', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('34', 'PK冠亚', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('35', 'PK22', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('36', 'PK冠军', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('37', 'PK10', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('38', 'PK龙虎', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('39', '北京11', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('40', '飞艇10', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('41', '飞艇冠军', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('42', '瑞士28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('43', '瑞士16', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('44', '瑞士11', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('45', '瑞士36', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('46', '飞艇22', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('47', '固定蛋蛋28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('48', '固定北京28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('49', '固定加拿大28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('50', '固定韩国28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('51', '虚拟28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('52', '新德里28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('53', '新德里16', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('54', '新德里11', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('55', '新德里36', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('56', '新德里10', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('57', '新德里外围', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('58', 'PK赛车', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('59', '腾讯28', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('60', '腾讯16', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('61', '腾讯11', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('62', '腾讯36', null, '0', null, null, null, null, null, null, '0', null, null);
 
 -- ----------------------------
 -- Table structure for `hov_messages`
@@ -1212,7 +1333,7 @@ CREATE TABLE `hov_user` (
   `address` varchar(100) DEFAULT NULL,
   `is_freeze` tinyint(1) DEFAULT '1' COMMENT '1:normal,2:frozen',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user
@@ -1231,7 +1352,7 @@ CREATE TABLE `hov_user_charge` (
   `charge_ratio` decimal(8,4) DEFAULT NULL COMMENT '手续费比例',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_charge
@@ -1278,7 +1399,7 @@ CREATE TABLE `hov_user_grade` (
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_grade
