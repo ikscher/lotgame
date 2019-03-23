@@ -32,8 +32,14 @@
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-              
-               <div class="layui-form-item">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">游戏名称</label>
+                  <div class="layui-input-inline">
+                    <input name="name"  disabled class="layui-input" type="text" {notempty name="$game.name"}value="{$game.name}"{/notempty}>
+                  </div>
+                </div>
+
+                <div class="layui-form-item">
                   <label class="layui-form-label">抽水比例</label>
                   <div class="layui-input-inline">
                     <input name="draw_ratio" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$game.draw_ratio"}value="{$game.draw_ratio}"{else /}value="0"{/notempty}>
@@ -52,7 +58,7 @@
                   <div class="layui-input-inline">
                     <input name="min_bid" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$game.min_bid"}value="{$game.min_bid}"{else /}value="0"{/notempty}>
                   </div>
-                  <label class="layui-form-label" >到</label>
+                  <label class="layui-form-label" style="width: 2px;" >到</label>
                   <div class="layui-input-inline">
                     <input name="max_bid" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$game.max_bid"}value="{$game.max_bid}"{else /}value="0"{/notempty}>
                   </div>
@@ -61,44 +67,68 @@
                 
             </div>
             <div class="layui-tab-item">
-              {for start="1" end="5"}
+              {for start="1" end="4"}
                 <div style="margin:10px;">
                 <label>手动盈利</label>
                 <div class="layui-input-inline">
-                  <input name="min_exp_from" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$game.min_bid"}value="{$game.min_bid}"{else /}value="0"{/notempty}>
+                  <input name="min_exp_from[{$i}]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$reward_exp[$i]['min_exp_from']"}value="{$reward_exp[$i]['min_exp_from']}"{else /}value="0"{/notempty}>
                 </div>
                 <label  style="width: 30px;">到</label>
                 <div class="layui-input-inline">
-                  <input name="max_exp_from" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$game.max_bid"}value="{$game.max_bid}"{else /}value="0"{/notempty}>
+                  <input name="max_exp_to[{$i}]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$reward_exp[$i]['max_exp_to']"}value="{$reward_exp[$i]['max_exp_to']}"{else /}value="0"{/notempty}>
                 </div>
 
                 <label >奖励</label>
                 <div class="layui-input-inline">
-                  <input name="reward_exp" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$game.max_bid"}value="{$game.max_bid}"{else /}value="0"{/notempty}>
+                  <input name="seq_reward_exp[{$i}]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$reward_exp[$i]['seq_reward_exp']"}value="{$reward_exp[$i]['seq_reward_exp']}"{else /}value="0"{/notempty}>
                 </div>
                  <label >经验</label>
                  </div>
                {/for}
+               <div style="margin:10px;">
+                  <label>手动盈利超过</label>
+                  <div class="layui-input-inline">
+                    <input name="min_exp_from[4]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$reward_exp[4]['min_exp_from']"}value="{$reward_exp[4]['min_exp_from']}"{else /}value="0"{/notempty}>
+                  </div>
+
+                  <label >奖励</label>
+                  <div class="layui-input-inline">
+                    <input name="seq_reward_exp[4]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$reward_exp[4]['seq_reward_exp']"}value="{$reward_exp[4]['seq_reward_exp']}"{else /}value="0"{/notempty}>
+                  </div>
+                   <label >经验</label>
+                 </div>
             </div>
             <div class="layui-tab-item">
-              {for start="1" end="5"}
+              {for start="1" end="4"}
                 <div style="margin:10px;">
-                <label>盈利</label>
-                <div class="layui-input-inline">
-                  <input name="min_points_from" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$game.min_bid"}value="{$game.min_bid}"{else /}value="0"{/notempty}>
-                </div>
-                <label  style="width: 30px;">到</label>
-                <div class="layui-input-inline">
-                  <input name="max_points_from" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$game.max_bid"}value="{$game.max_bid}"{else /}value="0"{/notempty}>
-                </div>
+                  <label>盈利</label>
+                  <div class="layui-input-inline">
+                    <input name="min_points_from[{$i}]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$reward_points[$i]['min_points_from']"}value="{$reward_points[$i]['min_points_from']}"{else /}value="0"{/notempty}>
+                  </div>
+                  <label  style="width: 30px;">到</label>
+                  <div class="layui-input-inline">
+                    <input name="max_points_to[{$i}]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$reward_points[$i]['max_points_to']"}value="{$reward_points[$i]['max_points_to']}"{else /}value="0"{/notempty}>
+                  </div>
 
-                <label >奖励</label>
-                <div class="layui-input-inline">
-                  <input name="reward_points" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$game.max_bid"}value="{$game.max_bid}"{else /}value="0"{/notempty}>
-                </div>
-                 <label >积分</label>
+                  <label >奖励</label>
+                  <div class="layui-input-inline">
+                    <input name="seq_reward_points[{$i}]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$reward_points[$i]['seq_reward_points']"}value="{$reward_points[$i]['seq_reward_points']}"{else /}value="0"{/notempty}>
+                  </div>
+                   <label >积分</label>
                  </div>
                {/for}
+                <div style="margin:10px;">
+                  <label>盈利超过</label>
+                  <div class="layui-input-inline">
+                    <input name="min_points_from[4]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$reward_points[4]['min_points_from']"}value="{$reward_points[$i]['min_points_from']}"{else /}value="0"{/notempty}>
+                  </div>
+
+                  <label >奖励</label>
+                  <div class="layui-input-inline">
+                    <input name="seq_reward_points[4]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$reward_points[4]['seq_reward_points']"}value="{$reward_points[4]['seq_reward_points']}"{else /}value="0"{/notempty}>
+                  </div>
+                   <label >积分</label>
+                 </div>
             </div>
             <div class="layui-tab-item">
               <div class="layui-form-item layui-form-text">
@@ -161,14 +191,12 @@
           form = layui.form;
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
-                  console.log('ggg')
                   $.ajax({
                       url:"{:url('admin/game/setup')}",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,
                       success:function(res) {
-                          // console.log(res)
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-03-23 20:11:30
+Date: 2019-03-23 23:04:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1080,8 +1080,8 @@ CREATE TABLE `hov_game` (
   `forbid` int(11) DEFAULT '0' COMMENT '禁止投注时间(秒）',
   `min_bid` int(11) DEFAULT NULL COMMENT '限额',
   `max_bid` int(11) DEFAULT NULL,
-  `reward_exp` varchar(200) DEFAULT NULL,
-  `reward_points` varchar(200) DEFAULT NULL,
+  `reward_exp` varchar(500) DEFAULT NULL,
+  `reward_points` varchar(500) DEFAULT NULL,
   `help` text,
   `tip` varchar(100) DEFAULT NULL,
   `onff` tinyint(1) DEFAULT '0' COMMENT '1开，0关',
@@ -1095,10 +1095,10 @@ CREATE TABLE `hov_game` (
 -- ----------------------------
 INSERT INTO `hov_game` VALUES ('1', '急速28', null, '0', null, null, null, null, null, null, '1', '1553311975', '1553318088');
 INSERT INTO `hov_game` VALUES ('2', '急速16', null, '0', null, null, null, null, null, null, '0', '1553312074', '1553312074');
-INSERT INTO `hov_game` VALUES ('3', '急速36', null, '0', null, null, null, null, null, null, '1', '1553312148', '1553318048');
+INSERT INTO `hov_game` VALUES ('3', '急速36', '0.00', '0', '0', '0', '0', '0', '', '', '1', '1553312148', '1553343614');
 INSERT INTO `hov_game` VALUES ('4', '急速11', null, '0', null, null, null, null, null, null, '0', null, null);
 INSERT INTO `hov_game` VALUES ('6', '急速10', null, '0', null, null, null, null, null, null, '1', '1553312250', '1553312250');
-INSERT INTO `hov_game` VALUES ('7', '急速冠亚', '1.30', '23', '33', '344', '344', null, '<p>wwe斯蒂芬斯蒂芬的ee</p>', '3333werwerwervv啊啊啊啊啊啊啊啊啊啊啊啊啊rr', '0', '1553312368', '1553337429');
+INSERT INTO `hov_game` VALUES ('7', '急速冠亚', '1.30', '23', '33', '344', '{\"1\":{\"min_exp_from\":\"1\",\"max_exp_to\":\"2\",\"seq_reward_exp\":\"3\"},\"2\":{\"min_exp_from\":\"4\",\"max_exp_to\":\"5\",\"seq_reward_exp\":\"6\"},\"3\":{\"min_exp_from\":\"3\",\"max_exp_to\":\"34\",\"seq_reward_exp\":\"3\"},\"4\":{\"min_exp_from\":\"12\",\"max_exp_to\":\"\",\"seq_reward_exp\":\"22\"}}', '[{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"23\",\"max_points_to\":\"324\",\"seq_reward_points\":\"2\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"32334\",\"max_points_to\":\"43434\",\"seq_reward_points\":\"345\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"}]', '<table class=\"table_list\" width=\"1100\" style=\"width: 968px;\"><tbody style=\"margin: 0px; padding: 0px;\"><tr style=\"margin: 0px; padding: 0px;\" class=\"firstRow\"><td colspan=\"4\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">如第654574期</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(按照由小到大的顺序依次排列)</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">区位</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第一区[第1/2/3/4/5/6位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第二区[第7/8/9/10/11/12位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第三区[第13/14/15/16/17/18位数字]</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">数字</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">25,30,35,36,43,49</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">50,53,59,66,69,71</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">求和</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">61</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">218</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">368</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">计算</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">结果</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">开奖</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;=&nbsp;&nbsp;</p></li><li><p>17</p></li></ul></td></tr></tbody></table><p><br/></p>', '游戏时间：北京时间 09:05 ～ 23:55,每 5分钟 一期，全天 179 期。', '0', '1553312368', '1553349970');
 INSERT INTO `hov_game` VALUES ('8', '急速22', null, '0', null, null, null, null, null, null, '0', null, null);
 INSERT INTO `hov_game` VALUES ('9', '蛋蛋28', null, '0', null, null, null, null, null, null, '0', null, null);
 INSERT INTO `hov_game` VALUES ('10', '蛋蛋16', null, '0', null, null, null, null, null, null, '0', null, null);
@@ -1154,6 +1154,25 @@ INSERT INTO `hov_game` VALUES ('59', '腾讯28', null, '0', null, null, null, nu
 INSERT INTO `hov_game` VALUES ('60', '腾讯16', null, '0', null, null, null, null, null, null, '0', null, null);
 INSERT INTO `hov_game` VALUES ('61', '腾讯11', null, '0', null, null, null, null, null, null, '0', null, null);
 INSERT INTO `hov_game` VALUES ('62', '腾讯36', null, '0', null, null, null, null, null, null, '0', null, null);
+
+-- ----------------------------
+-- Table structure for `hov_game_js28`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_game_js28`;
+CREATE TABLE `hov_game_js28` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lot_num` int(11) DEFAULT NULL,
+  `open_time` int(11) DEFAULT NULL,
+  `result` char(50) DEFAULT NULL,
+  `hits` int(11) DEFAULT NULL,
+  `bids` int(11) DEFAULT NULL,
+  `create_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hov_game_js28
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `hov_messages`

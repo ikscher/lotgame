@@ -217,6 +217,30 @@ class Game extends Permissions
                     return $this->error('id不正确');
                 }
                 
+                $exp_count=sizeof($post['min_exp_from']);
+                for($i=1;$i<=$exp_count;$i++){
+                    $reward_exp[$i]['min_exp_from']=!empty($post['min_exp_from'][$i])?$post['min_exp_from'][$i]:'';
+                    $reward_exp[$i]['max_exp_to']=!empty($post['max_exp_to'][$i])?$post['max_exp_to'][$i]:'';
+                    $reward_exp[$i]['seq_reward_exp']=!empty($post['seq_reward_exp'][$i])?$post['seq_reward_exp'][$i]:'';
+                }
+                $post['reward_exp']=json_encode($reward_exp);
+
+                $points_count=sizeof($post['min_points_from']);
+                for($j=0;$j<=$points_count;$j++){
+                    $reward_points[$j]['min_points_from']=!empty($post['min_points_from'][$j])?$post['min_points_from'][$j]:'';
+                    $reward_points[$j]['max_points_to']=!empty($post['max_points_to'][$j])?$post['max_points_to'][$j]:'';
+                    $reward_points[$j]['seq_reward_points']=!empty($post['seq_reward_points'][$j])?$post['seq_reward_points'][$j]:'';
+                }
+
+                $post['reward_points']=json_encode($reward_points);
+                // $post['max_exp_from']
+                // $post['seq_reward_exp']
+
+                // $post['min_points_from']
+                // $post['max_points_from']
+                // $post['seq_reward_points']
+
+
                 //设置修改人
                 // $post['edit_admin_id'] = Session::get('admin');
                 $ret=$this->model->allowField(true)->save($post,['id'=>$id]);
@@ -231,9 +255,14 @@ class Game extends Permissions
             } else {
                 //非提交操作
                 $game = $this->model->where('id',$id)->find();
-
+            
                 if(!empty($game)) {
                     $this->assign('game',$game);
+                    $reward_exp=json_decode($game['reward_exp'],true);
+                    $reward_points=json_decode($game['reward_points'],true);
+                    $this->assign('reward_exp',$reward_exp);
+                    $this->assign('reward_points',$reward_points);
+
                     return $this->fetch();
                 } else {
                     return $this->error('id不正确');

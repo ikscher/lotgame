@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:58:"D:\mywork\lotgame\public/../app/admin\view\game\setup.html";i:1553337842;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:58:"D:\mywork\lotgame\public/../app/admin\view\game\setup.html";i:1553349961;}*/ ?>
 <!DOCTYPE html>
 <html ng-app="App">
 <head>
@@ -33,8 +33,14 @@
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-              
-               <div class="layui-form-item">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">游戏名称</label>
+                  <div class="layui-input-inline">
+                    <input name="name"  disabled class="layui-input" type="text" <?php if(!(empty($game['name']) || (($game['name'] instanceof \think\Collection || $game['name'] instanceof \think\Paginator ) && $game['name']->isEmpty()))): ?>value="<?php echo $game['name']; ?>"<?php endif; ?>>
+                  </div>
+                </div>
+
+                <div class="layui-form-item">
                   <label class="layui-form-label">抽水比例</label>
                   <div class="layui-input-inline">
                     <input name="draw_ratio" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($game['draw_ratio']) || (($game['draw_ratio'] instanceof \think\Collection || $game['draw_ratio'] instanceof \think\Paginator ) && $game['draw_ratio']->isEmpty()))): ?>value="<?php echo $game['draw_ratio']; ?>"<?php else: ?>value="0"<?php endif; ?>>
@@ -53,7 +59,7 @@
                   <div class="layui-input-inline">
                     <input name="min_bid" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($game['min_bid']) || (($game['min_bid'] instanceof \think\Collection || $game['min_bid'] instanceof \think\Paginator ) && $game['min_bid']->isEmpty()))): ?>value="<?php echo $game['min_bid']; ?>"<?php else: ?>value="0"<?php endif; ?>>
                   </div>
-                  <label class="layui-form-label" >到</label>
+                  <label class="layui-form-label" style="width: 2px;" >到</label>
                   <div class="layui-input-inline">
                     <input name="max_bid" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($game['max_bid']) || (($game['max_bid'] instanceof \think\Collection || $game['max_bid'] instanceof \think\Paginator ) && $game['max_bid']->isEmpty()))): ?>value="<?php echo $game['max_bid']; ?>"<?php else: ?>value="0"<?php endif; ?>>
                   </div>
@@ -62,44 +68,68 @@
                 
             </div>
             <div class="layui-tab-item">
-              <?php $__FOR_START_23671__=1;$__FOR_END_23671__=5;for($i=$__FOR_START_23671__;$i < $__FOR_END_23671__;$i+=1){ ?>
+              <?php $__FOR_START_17024__=1;$__FOR_END_17024__=4;for($i=$__FOR_START_17024__;$i < $__FOR_END_17024__;$i+=1){ ?>
                 <div style="margin:10px;">
                 <label>手动盈利</label>
                 <div class="layui-input-inline">
-                  <input name="min_exp_from" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($game['min_bid']) || (($game['min_bid'] instanceof \think\Collection || $game['min_bid'] instanceof \think\Paginator ) && $game['min_bid']->isEmpty()))): ?>value="<?php echo $game['min_bid']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+                  <input name="min_exp_from[<?php echo $i; ?>]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($reward_exp[$i]['min_exp_from']) || (($reward_exp[$i]['min_exp_from'] instanceof \think\Collection || $reward_exp[$i]['min_exp_from'] instanceof \think\Paginator ) && $reward_exp[$i]['min_exp_from']->isEmpty()))): ?>value="<?php echo $reward_exp[$i]['min_exp_from']; ?>"<?php else: ?>value="0"<?php endif; ?>>
                 </div>
                 <label  style="width: 30px;">到</label>
                 <div class="layui-input-inline">
-                  <input name="max_exp_from" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($game['max_bid']) || (($game['max_bid'] instanceof \think\Collection || $game['max_bid'] instanceof \think\Paginator ) && $game['max_bid']->isEmpty()))): ?>value="<?php echo $game['max_bid']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+                  <input name="max_exp_to[<?php echo $i; ?>]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($reward_exp[$i]['max_exp_to']) || (($reward_exp[$i]['max_exp_to'] instanceof \think\Collection || $reward_exp[$i]['max_exp_to'] instanceof \think\Paginator ) && $reward_exp[$i]['max_exp_to']->isEmpty()))): ?>value="<?php echo $reward_exp[$i]['max_exp_to']; ?>"<?php else: ?>value="0"<?php endif; ?>>
                 </div>
 
                 <label >奖励</label>
                 <div class="layui-input-inline">
-                  <input name="reward_exp" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($game['max_bid']) || (($game['max_bid'] instanceof \think\Collection || $game['max_bid'] instanceof \think\Paginator ) && $game['max_bid']->isEmpty()))): ?>value="<?php echo $game['max_bid']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+                  <input name="seq_reward_exp[<?php echo $i; ?>]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($reward_exp[$i]['seq_reward_exp']) || (($reward_exp[$i]['seq_reward_exp'] instanceof \think\Collection || $reward_exp[$i]['seq_reward_exp'] instanceof \think\Paginator ) && $reward_exp[$i]['seq_reward_exp']->isEmpty()))): ?>value="<?php echo $reward_exp[$i]['seq_reward_exp']; ?>"<?php else: ?>value="0"<?php endif; ?>>
                 </div>
                  <label >经验</label>
                  </div>
                <?php } ?>
+               <div style="margin:10px;">
+                  <label>手动盈利超过</label>
+                  <div class="layui-input-inline">
+                    <input name="min_exp_from[4]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($reward_exp[4]['min_exp_from']) || (($reward_exp[4]['min_exp_from'] instanceof \think\Collection || $reward_exp[4]['min_exp_from'] instanceof \think\Paginator ) && $reward_exp[4]['min_exp_from']->isEmpty()))): ?>value="<?php echo $reward_exp[4]['min_exp_from']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+                  </div>
+
+                  <label >奖励</label>
+                  <div class="layui-input-inline">
+                    <input name="seq_reward_exp[4]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($reward_exp[4]['seq_reward_exp']) || (($reward_exp[4]['seq_reward_exp'] instanceof \think\Collection || $reward_exp[4]['seq_reward_exp'] instanceof \think\Paginator ) && $reward_exp[4]['seq_reward_exp']->isEmpty()))): ?>value="<?php echo $reward_exp[4]['seq_reward_exp']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+                  </div>
+                   <label >经验</label>
+                 </div>
             </div>
             <div class="layui-tab-item">
-              <?php $__FOR_START_24182__=1;$__FOR_END_24182__=5;for($i=$__FOR_START_24182__;$i < $__FOR_END_24182__;$i+=1){ ?>
+              <?php $__FOR_START_25347__=1;$__FOR_END_25347__=4;for($i=$__FOR_START_25347__;$i < $__FOR_END_25347__;$i+=1){ ?>
                 <div style="margin:10px;">
-                <label>盈利</label>
-                <div class="layui-input-inline">
-                  <input name="min_points_from" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($game['min_bid']) || (($game['min_bid'] instanceof \think\Collection || $game['min_bid'] instanceof \think\Paginator ) && $game['min_bid']->isEmpty()))): ?>value="<?php echo $game['min_bid']; ?>"<?php else: ?>value="0"<?php endif; ?>>
-                </div>
-                <label  style="width: 30px;">到</label>
-                <div class="layui-input-inline">
-                  <input name="max_points_from" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($game['max_bid']) || (($game['max_bid'] instanceof \think\Collection || $game['max_bid'] instanceof \think\Paginator ) && $game['max_bid']->isEmpty()))): ?>value="<?php echo $game['max_bid']; ?>"<?php else: ?>value="0"<?php endif; ?>>
-                </div>
+                  <label>盈利</label>
+                  <div class="layui-input-inline">
+                    <input name="min_points_from[<?php echo $i; ?>]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($reward_points[$i]['min_points_from']) || (($reward_points[$i]['min_points_from'] instanceof \think\Collection || $reward_points[$i]['min_points_from'] instanceof \think\Paginator ) && $reward_points[$i]['min_points_from']->isEmpty()))): ?>value="<?php echo $reward_points[$i]['min_points_from']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+                  </div>
+                  <label  style="width: 30px;">到</label>
+                  <div class="layui-input-inline">
+                    <input name="max_points_to[<?php echo $i; ?>]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($reward_points[$i]['max_points_to']) || (($reward_points[$i]['max_points_to'] instanceof \think\Collection || $reward_points[$i]['max_points_to'] instanceof \think\Paginator ) && $reward_points[$i]['max_points_to']->isEmpty()))): ?>value="<?php echo $reward_points[$i]['max_points_to']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+                  </div>
 
-                <label >奖励</label>
-                <div class="layui-input-inline">
-                  <input name="reward_points" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($game['max_bid']) || (($game['max_bid'] instanceof \think\Collection || $game['max_bid'] instanceof \think\Paginator ) && $game['max_bid']->isEmpty()))): ?>value="<?php echo $game['max_bid']; ?>"<?php else: ?>value="0"<?php endif; ?>>
-                </div>
-                 <label >积分</label>
+                  <label >奖励</label>
+                  <div class="layui-input-inline">
+                    <input name="seq_reward_points[<?php echo $i; ?>]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($reward_points[$i]['seq_reward_points']) || (($reward_points[$i]['seq_reward_points'] instanceof \think\Collection || $reward_points[$i]['seq_reward_points'] instanceof \think\Paginator ) && $reward_points[$i]['seq_reward_points']->isEmpty()))): ?>value="<?php echo $reward_points[$i]['seq_reward_points']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+                  </div>
+                   <label >积分</label>
                  </div>
                <?php } ?>
+                <div style="margin:10px;">
+                  <label>盈利超过</label>
+                  <div class="layui-input-inline">
+                    <input name="min_points_from[4]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($reward_points[4]['min_points_from']) || (($reward_points[4]['min_points_from'] instanceof \think\Collection || $reward_points[4]['min_points_from'] instanceof \think\Paginator ) && $reward_points[4]['min_points_from']->isEmpty()))): ?>value="<?php echo $reward_points[$i]['min_points_from']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+                  </div>
+
+                  <label >奖励</label>
+                  <div class="layui-input-inline">
+                    <input name="seq_reward_points[4]" lay-verify="number" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($reward_points[4]['seq_reward_points']) || (($reward_points[4]['seq_reward_points'] instanceof \think\Collection || $reward_points[4]['seq_reward_points'] instanceof \think\Paginator ) && $reward_points[4]['seq_reward_points']->isEmpty()))): ?>value="<?php echo $reward_points[4]['seq_reward_points']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+                  </div>
+                   <label >积分</label>
+                 </div>
             </div>
             <div class="layui-tab-item">
               <div class="layui-form-item layui-form-text">
@@ -162,14 +192,12 @@
           form = layui.form;
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
-                  console.log('ggg')
                   $.ajax({
                       url:"<?php echo url('admin/game/setup'); ?>",
                       data:$('#admin').serialize(),
                       type:'post',
                       async: false,
                       success:function(res) {
-                          // console.log(res)
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;

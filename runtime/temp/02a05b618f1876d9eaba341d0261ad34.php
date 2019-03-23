@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\game\index.html";i:1553319993;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\game\index.html";i:1553343684;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +54,7 @@
         <tr>
           <th>ID</th>
           <th>名称</th>
-          <th>设置管理</th>
+          <th>设置 | 管理</th>
           <th>状态</th>
           <th>开关</th>
           <th>操作</th>
