@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\game\index.html";i:1553343684;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\game\index.html";i:1553415254;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +68,7 @@
           <td class="operation-menu">
             <div class="layui-btn-group">
               <a href="<?php echo url('admin/game/setup',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon">&#xe716;</i></a>
-              <a href="<?php echo url('admin/game/manage',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon">&#xe653;</i></a>
+              <a href="javascript:;" class="layui-btn layui-btn-xs a_menu layui-btn-primary manage" data-name="<?php echo $vo['name']; ?>" data-code="<?php echo $vo['code']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon">&#xe653;</i></a>
             </div>
           </td>
           <td><?php if($vo['onff'] == 1): ?>开启<?php else: ?>关闭<?php endif; ?></td>
@@ -191,10 +191,30 @@
             if(res.code == 1) {
               setTimeout(function(){
                 location.href = res.url;
-              },1500)
+              },500)
             }
           }
         })
+      })
+    })
+
+    $('.manage').click(function(){
+      var code = $(this).attr('data-code');
+      var name = $(this).attr('data-name');
+      $.ajax({
+        url:"<?php echo url('admin/game/istable'); ?>", 
+        data:{code:code,name:name},
+        type:'post',
+        async:false,
+        success:function(res) {
+          console.log(res)
+          // layer.msg(res.msg);
+          if(res.code == 1) {
+              location.href = res.url;
+          }else{
+            layer.msg(res.msg);
+          }
+        }
       })
     })
     </script>

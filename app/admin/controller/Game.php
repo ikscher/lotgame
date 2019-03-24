@@ -15,19 +15,21 @@ namespace app\admin\controller;
 use \think\Cache;
 use \think\Controller;
 use think\Loader;
-use think\Db;
+use \think\Db;
 use \think\Cookie;
-use think\Config;
+use \think\Config;
+use \think\Url;
 use \think\Session;
 use app\admin\controller\Permissions;
 use app\admin\model\Game as gameModel;
 class Game extends Permissions
 {   
     private $model;
-
+    private $prefix;
     public function _initialize()
     {
-        $this->model=new gameModel();
+        $this->model  = new gameModel();
+        $this->prefix = Config::get('database.prefix');
         // $this->agentcatemodel=new agentcateModel();
         // $this->usermodel=new userModel();
         // $this->agentlogmodel=new agentlogModel();
@@ -35,6 +37,7 @@ class Game extends Permissions
     }
     public function index()
     {
+
         $post = $this->request->param();
         if($this->request->isPost()) {
             if (isset($post['keywords']) and !empty($post['keywords'])) {
@@ -66,11 +69,14 @@ class Game extends Permissions
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
                 $rule = [
                     'name'   => 'require|max:30',
+                    'code'   => 'require'
                 ];
 
                 $msg = [
                     'name.require' => '游戏名称必须填写',
-                    'name.max' => '游戏名称不能超过30个字符'
+                    'name.max' => '游戏名称不能超过60个字符',
+                    'code.require'   => '编码不能为空'
+
                 ];
                 $validate = new \think\Validate($rule,$msg);
                 //验证部分数据合法性
@@ -115,11 +121,13 @@ class Game extends Permissions
 
                 $rule = [
                     'name'   => 'require|max:30',
+                    'code' =>'require'
                 ];
 
                 $msg = [
                     'name.require' => '游戏名称必须填写',
-                    'name.max' => '游戏名称不能超过30个字符'
+                    'name.max' => '游戏名称不能超过30个字符',
+                    'code.require' =>'编码不能为空'
                 ];
                 $validate = new \think\Validate($rule,$msg);
                 //验证部分数据合法性
@@ -270,10 +278,98 @@ class Game extends Permissions
             }
         }
     }
+    
+    //判断表是否存在
+    public function istable(){
+        $post = $this->request->param();
+        
+        $table='';
+        if (!empty($post['code'])) {
+            $table='game_'.$post['code'];
+            // $this->assign('code',$post['code']);
+        }
+        
+        if(!empty($post['name'])){
+            $this->assign('gamename',$post['name']);
+        }
+        
+        $table=$this->prefix.$table;
+        $exist = $this->model->query("show tables like '{$table}'");
+       
+        if (false==$exist) {
+            return $this->error('表不存在');
+        }else {
+            $url=Url::build('admin/game/manage',['code'=>$post['code'],'name'=>$post['name']]);
+            return $this->success('',$url);
+        }
+    }
 
     //游戏管理
     public function manage()
     {
+       $post = $this->request->param();
+        
+        if (!empty($post['code'])) {
+            $table='game_'.$post['code'];
+            $this->assign('code',$post['code']);
+        }
+        
+       
+
+        if(!empty($post['name'])){
+            $this->assign('gamename',$post['name']);
+        }
+
+        if(isset($post['create_time']) and !empty($post['create_time'])) {
+            $begin_time = strtotime($post['create_time']);
+            $end_time = $begin_time + 24*60*60;
+            $where['create_time'] = [['>=',$begin_time],['<=',$end_time]];
+        }
+
+        if(!empty($post['lot_num'])){
+            $where['lot_num'] = $post['lot_num'];
+        }
+
+        
+        $lotterys = empty($where) ? Db::name($table)->order('create_time desc')->paginate(15) : Db::name($table)->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
+        // $lotterys = Db::name($table)->order('create_time desc')->paginate(15) ;
+        // echo $model->getLastSql();
+        // var_dump(collection($userlogs)->toArray());exit;
+        $this->assign('lotterys',$lotterys);
+
+        return $this->fetch();
+    }
+    
+    //创建游戏表
+    public function createtable(){
+        
+        $codes=$this->model->column('code');
+        $code='js22';
+        foreach($codes as $code){
+            $table=$this->prefix.'game_'.$code;
+            $exist = $this->model->query("show tables like '{$table}'");
+           
+            if (false==$exist) {
+                $sql="CREATE TABLE `{$table}` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
+                  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
+                  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
+                  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
+                  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+                  `create_time` int(11) DEFAULT NULL,
+                  `update_time` int(11) DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+
+                $this->model->query($sql);
+
+                echo $code;
+            }else{
+                // $sql="alter table {$table} MODIFY result VARCHAR(49)";
+                // $this->model->query($sql);
+            }
+        }
 
     }
 

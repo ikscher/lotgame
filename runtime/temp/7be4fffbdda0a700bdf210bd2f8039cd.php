@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"D:\mywork\lotgame\public/../app/admin\view\game\publish.html";i:1553318072;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"D:\mywork\lotgame\public/../app/admin\view\game\publish.html";i:1553395006;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,11 +27,16 @@
       <div class="layui-form-item">
         <label class="layui-form-label">游戏名称</label>
         <div class="layui-input-inline" >
-          <input name="name" autocomplete="off" placeholder="" class="layui-input" type="text" <?php if(!(empty($game['name']) || (($game['name'] instanceof \think\Collection || $game['name'] instanceof \think\Paginator ) && $game['name']->isEmpty()))): ?>value="<?php echo $game['name']; ?>"<?php endif; ?>>
+          <input name="name" autocomplete="off" lay-verify="required" placeholder="" class="layui-input" type="text" <?php if(!(empty($game['name']) || (($game['name'] instanceof \think\Collection || $game['name'] instanceof \think\Paginator ) && $game['name']->isEmpty()))): ?>value="<?php echo $game['name']; ?>"<?php endif; ?>>
         </div>
       </div>
 
-      
+      <div class="layui-form-item">
+        <label class="layui-form-label">拼音编码</label>(比如急速28，编码js28；加拿大36，编码jnd36)
+        <div class="layui-input-inline" >
+          <input name="code" autocomplete="off" lay-verify="required" placeholder="" class="layui-input" type="text" <?php if(!(empty($game['code']) || (($game['code'] instanceof \think\Collection || $game['code'] instanceof \think\Paginator ) && $game['code']->isEmpty()))): ?>value="<?php echo $game['code']; ?>"<?php endif; ?>>
+        </div>
+      </div>
 
       
 

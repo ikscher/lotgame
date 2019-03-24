@@ -26,11 +26,16 @@
       <div class="layui-form-item">
         <label class="layui-form-label">游戏名称</label>
         <div class="layui-input-inline" >
-          <input name="name" autocomplete="off" placeholder="" class="layui-input" type="text" {notempty name="$game.name"}value="{$game.name}"{/notempty}>
+          <input name="name" autocomplete="off" lay-verify="required" placeholder="" class="layui-input" type="text" {notempty name="$game.name"}value="{$game.name}"{/notempty}>
         </div>
       </div>
 
-      
+      <div class="layui-form-item">
+        <label class="layui-form-label">拼音编码</label>(比如急速28，编码js28；加拿大36，编码jnd36)
+        <div class="layui-input-inline" >
+          <input name="code" autocomplete="off" lay-verify="required" placeholder="" class="layui-input" type="text" {notempty name="$game.code"}value="{$game.code}"{/notempty}>
+        </div>
+      </div>
 
       
 

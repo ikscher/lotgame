@@ -67,7 +67,7 @@
           <td class="operation-menu">
             <div class="layui-btn-group">
               <a href="{:url('admin/game/setup',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon">&#xe716;</i></a>
-              <a href="{:url('admin/game/manage',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon">&#xe653;</i></a>
+              <a href="javascript:;" class="layui-btn layui-btn-xs a_menu layui-btn-primary manage" data-name="{$vo.name}" data-code="{$vo.code}" style="margin-right: 0;font-size:12px;"><i class="layui-icon">&#xe653;</i></a>
             </div>
           </td>
           <td>{if condition="$vo.onff eq 1"}开启{else /}关闭{/if}</td>
@@ -99,10 +99,30 @@
             if(res.code == 1) {
               setTimeout(function(){
                 location.href = res.url;
-              },1500)
+              },500)
             }
           }
         })
+      })
+    })
+
+    $('.manage').click(function(){
+      var code = $(this).attr('data-code');
+      var name = $(this).attr('data-name');
+      $.ajax({
+        url:"{:url('admin/game/istable')}", 
+        data:{code:code,name:name},
+        type:'post',
+        async:false,
+        success:function(res) {
+          console.log(res)
+          // layer.msg(res.msg);
+          if(res.code == 1) {
+              location.href = res.url;
+          }else{
+            layer.msg(res.msg);
+          }
+        }
       })
     })
     </script>
