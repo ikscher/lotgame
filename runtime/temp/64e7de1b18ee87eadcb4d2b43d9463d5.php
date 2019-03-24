@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553432303;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553435575;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553435193;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553435487;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -220,363 +220,363 @@
 			setTimeout(window.autoAnimation, 5000);
 		</script>
 
-		<div class="banner">
-			<div class="loginbg"></div>
-			<div id="loginbox" class="alogin">
-				<div class="logtit"><strong>登录成功</strong></div>
-				<div style="height:20px;"></div>
-				<div class="logtit" style="font-size:14px;">登录账号：ikscher (891435)</div>
-				<div class="captcha mt10 mb10">
-					<label>账户余额：500 </label>
-				</div>
-				<a href="/User/Index" class="sub mt20">会员中心</a>
-				<a href="/Game/Index" class="sub mt20">游戏中心</a>
+<div class="banner">
+	<div class="loginbg"></div>
+	<div id="loginbox" class="alogin">
+		<div class="logtit"><strong>登录成功</strong></div>
+		<div style="height:20px;"></div>
+		<div class="logtit" style="font-size:14px;">登录账号：ikscher (891435)</div>
+		<div class="captcha mt10 mb10">
+			<label>账户余额：500 </label>
+		</div>
+		<a href="/User/Index" class="sub mt20">会员中心</a>
+		<a href="/Game/Index" class="sub mt20">游戏中心</a>
 
-				<div class="forget fr mt10">
-					<a id="LinkButton1" class="outlink" href="/User/Login?act=logout">退出</a>
-				</div>
-
-			</div>
-			<SCRIPT type="text/javascript">
-				$('.logtit em').click(function(){
-					$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
-					$(this).prev().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
-					$('.send_mobi, .send_num').show();
-					$('.id, .pass').hide();
-					$("#logintype").attr("value","2");
-				});
-				$('.logtit strong').click(function(){
-					$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
-					$(this).next().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
-					$('.send_mobi, .send_num').hide();
-					$('.id, .pass').show();
-					$("#logintype").attr("value","1");
-				});
-			</SCRIPT>
-
-			<div id="slideBox" class="slideBox">
-				<div class="hd">
-					<ul>
-						<li>优势</li>
-						<li>上线</li>
-						<li>活动</li>
-						<li>奖品</li>
-						<li>抽奖</li>
-					</ul>
-				</div>
-				<div class="bd">
-					<ul>
-						<li><a href="#" target="_blank"><img src="/static/front/image/banner1.jpg" /></a></li>
-						<li><a href="/User/Reg" target="_blank"><img src="/static/front/image/banner2.jpg" /></a></li>
-						<li><a href="/Hd/List" target="_blank"><img src="/static/front/image/banner3.jpg" /></a></li>
-						<li><a href="/Prize/Center" target="_blank"><img src="/static/front/image/banner4.jpg" /></a></li>
-						<li><a href="/Hd/Round" target="_blank"><img src="/static/front/image/banner5.jpg" /></a></li>
-					</ul>
-				</div>
-
-				<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
-				<a class="prev" href="javascript:void(0)"></a>
-				<a class="next" href="javascript:void(0)"></a>
-
-			</div>
-
-			<script type="text/javascript">
-				$(".slideBox").slide({mainCell:".bd ul",effect:"left",autoPlay:true});
-			</script>	
+		<div class="forget fr mt10">
+			<a id="LinkButton1" class="outlink" href="/User/Login?act=logout">退出</a>
 		</div>
 
+	</div>
+	<SCRIPT type="text/javascript">
+		$('.logtit em').click(function(){
+			$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
+			$(this).prev().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
+			$('.send_mobi, .send_num').show();
+			$('.id, .pass').hide();
+			$("#logintype").attr("value","2");
+		});
+		$('.logtit strong').click(function(){
+			$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
+			$(this).next().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
+			$('.send_mobi, .send_num').hide();
+			$('.id, .pass').show();
+			$("#logintype").attr("value","1");
+		});
+	</SCRIPT>
 
-
-		<div class="yoo-service w100">
-			<ul class="col3">
-				<li>
-					<i class="service-1">
-					</i>
-					<div class="text">
-						<h3>
-							平台安全稳定
-						</h3>
-						<p>
-							实力平台 提供安全稳定的游戏环境
-							<br>
-							信誉第一 口碑上佳
-						</p>
-					</div>
-				</li>
-				<li>
-					<i class="service-2">
-					</i>
-					<div class="text">
-						<h3>
-							服务高效优质
-						</h3>
-						<p>
-							最全面的游戏体验 以种类第一为保证
-							<br>
-							领先行业最高质量
-						</p>
-					</div>
-				</li>
-				<li>
-					<i class="service-3">
-					</i>
-					<div class="text">
-						<h3>
-							简单方便快捷
-						</h3>
-						<p>
-							全天7x24小时服务 最快的响应速度
-							<br>
-							支持手机在线游戏
-						</p>
-					</div>
-				</li>
-				<li>
-					<i class="service-4">
-					</i>
-					<div class="text">
-						<h3>
-							活动礼品丰富
-						</h3>
-						<p>
-							活动丰富多彩 奖励别具一格
-							<br>
-							尽情畅玩 奖励不断
-						</p>
-					</div>
-				</li>
+	<div id="slideBox" class="slideBox">
+		<div class="hd">
+			<ul>
+				<li>优势</li>
+				<li>上线</li>
+				<li>活动</li>
+				<li>奖品</li>
+				<li>抽奖</li>
+			</ul>
+		</div>
+		<div class="bd">
+			<ul>
+				<li><a href="#" target="_blank"><img src="/static/front/image/banner1.jpg" /></a></li>
+				<li><a href="/User/Reg" target="_blank"><img src="/static/front/image/banner2.jpg" /></a></li>
+				<li><a href="/Hd/List" target="_blank"><img src="/static/front/image/banner3.jpg" /></a></li>
+				<li><a href="/Prize/Center" target="_blank"><img src="/static/front/image/banner4.jpg" /></a></li>
+				<li><a href="/Hd/Round" target="_blank"><img src="/static/front/image/banner5.jpg" /></a></li>
 			</ul>
 		</div>
 
-		<div class="w100 f1 mt10">
-			<div class="w1000 forumHots">
-				<div class="news fl">
-					<h2 class="h2">最新公告<a href="/News/List">MORE</a></h2>
-					<div class="textLeft">
+		<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+		<a class="prev" href="javascript:void(0)"></a>
+		<a class="next" href="javascript:void(0)"></a>
 
-						<ul class="detailList">
+	</div>
 
-							<li>
-								<a class="title ellipsis hover-line" href="/News/Detail/116" target="_blank"><span>[ 02-11 ] </span>游戏已经全部恢复！祝您游戏愉快！</a>
-								<p><span style="font-size: 14px; line-height: 25px;">游戏已经全部恢复！</span></p>
+	<script type="text/javascript">
+		$(".slideBox").slide({mainCell:".bd ul",effect:"left",autoPlay:true});
+	</script>	
+</div>
+
+
+
+<div class="yoo-service w100">
+	<ul class="col3">
+		<li>
+			<i class="service-1">
+			</i>
+			<div class="text">
+				<h3>
+					平台安全稳定
+				</h3>
+				<p>
+					实力平台 提供安全稳定的游戏环境
+					<br>
+					信誉第一 口碑上佳
+				</p>
+			</div>
+		</li>
+		<li>
+			<i class="service-2">
+			</i>
+			<div class="text">
+				<h3>
+					服务高效优质
+				</h3>
+				<p>
+					最全面的游戏体验 以种类第一为保证
+					<br>
+					领先行业最高质量
+				</p>
+			</div>
+		</li>
+		<li>
+			<i class="service-3">
+			</i>
+			<div class="text">
+				<h3>
+					简单方便快捷
+				</h3>
+				<p>
+					全天7x24小时服务 最快的响应速度
+					<br>
+					支持手机在线游戏
+				</p>
+			</div>
+		</li>
+		<li>
+			<i class="service-4">
+			</i>
+			<div class="text">
+				<h3>
+					活动礼品丰富
+				</h3>
+				<p>
+					活动丰富多彩 奖励别具一格
+					<br>
+					尽情畅玩 奖励不断
+				</p>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<div class="w100 f1 mt10">
+	<div class="w1000 forumHots">
+		<div class="news fl">
+			<h2 class="h2">最新公告<a href="/News/List">MORE</a></h2>
+			<div class="textLeft">
+
+				<ul class="detailList">
+
+					<li>
+						<a class="title ellipsis hover-line" href="/News/Detail/116" target="_blank"><span>[ 02-11 ] </span>游戏已经全部恢复！祝您游戏愉快！</a>
+						<p><span style="font-size: 14px; line-height: 25px;">游戏已经全部恢复！</span></p>
+					</li>
+				</ul>
+
+				<ul class="simpleList">
+					<li>
+						<a class="ellipsis hover-line fl" href="/News/Detail/115" target="_blank">
+							<span>[ 02-04 ] </span>2019年春节蛋蛋/北京类游戏停机公告</a>
+						</li>
+						<li>
+							<a class="ellipsis hover-line fl" href="/News/Detail/114" target="_blank">
+								<span>[ 01-18 ] </span>妞妞点卡解除合作</a>
 							</li>
-						</ul>
-
-						<ul class="simpleList">
 							<li>
-								<a class="ellipsis hover-line fl" href="/News/Detail/115" target="_blank">
-									<span>[ 02-04 ] </span>2019年春节蛋蛋/北京类游戏停机公告</a>
+								<a class="ellipsis hover-line fl" href="/News/Detail/113" target="_blank">
+									<span>[ 01-08 ] </span>全新界面！带给您更好的游戏体验！app正在内测！</a>
 								</li>
 								<li>
-									<a class="ellipsis hover-line fl" href="/News/Detail/114" target="_blank">
-										<span>[ 01-18 ] </span>妞妞点卡解除合作</a>
+									<a class="ellipsis hover-line fl" href="/News/Detail/111" target="_blank">
+										<span>[ 01-01 ] </span>跨年红包中奖用户如下！</a>
 									</li>
-									<li>
-										<a class="ellipsis hover-line fl" href="/News/Detail/113" target="_blank">
-											<span>[ 01-08 ] </span>全新界面！带给您更好的游戏体验！app正在内测！</a>
-										</li>
-										<li>
-											<a class="ellipsis hover-line fl" href="/News/Detail/111" target="_blank">
-												<span>[ 01-01 ] </span>跨年红包中奖用户如下！</a>
-											</li>
 
-										</ul>
+								</ul>
 
-									</div>
+							</div>
+						</div>
+
+						<div class="imgRight fr">
+							<h2 class="h2">最新活动<a href="/Hd/List">MORE</a></h2>
+							<ul class="hdul">
+								<li class="fl">
+									<a href="#"><img src="/static/front/image/hd1.jpg"><span>立即参加</span></a>
+								</li>
+								<li class="fr">
+									<a href="#"><img src="/static/front/image/hd2.jpg"><span>立即参加</span></a>
+								</li>
+								<li class="fl">
+									<a href="#"><img src="/static/front/image/hd3.jpg"><span>立即参加</span></a>
+								</li>
+								<li class="fr">
+									<a href="#"><img src="/static/front/image/hd4.jpg"><span>立即参加</span></a>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="clear"></div>
+
+				<div class="w100 f2">
+					<div class="w1000">
+						<h2 class="h2" style="padding: 30px 0;"><span style="margin-left:5px;">奖品兑换</span><a href="/Prize/Center" style="color:#fff">MORE</a></h2>
+						<div class="gwfl fl">
+							<div class="gwl fr">
+								<a href="#" class="gwlu"><img src="/static/front/image/gwl.jpg"><p>好礼换不停</p></a>
+								<a href="#" class="gwld"><div class="tit">奖品兑换中心</div><div class="in">点击进入</div></a>
+							</div>
+							<div class="gwr fl">
+								<a class="first" href="#">
+									<div class="tit1">苹果12英寸MacBook 256GB</div>
+									<div class="tit2">轻薄学习办公笔记本电脑</div>
+									<img src="/static/front/image/gw6.jpg">
+								</a><a href="#">
+									<div class="tit1">Apple/苹果iPhone7</div>
+									<div class="tit2"> 国行全网通4G版手机</div>
+									<img src="/static/front/image/gw1.jpg">
+								</a><a href="#">
+									<div class="tit1">Apple/苹果iPad Pro</div>
+									<div class="tit2">苹果9.7英寸 WLAN 128GB</div>
+									<img src="/static/front/image/gw3.jpg">
+								</a><a href="#">
+									<div class="tit1">微软Arc无线鼠标 </div>
+									<div class="tit2">mini可折叠激光鼠标</div>
+									<img src="/static/front/image/gw4.jpg">
+								</a><a href="#">
+									<div class="tit1">头戴式无线蓝牙B耳机</div>
+									<div class="tit2">Beats Beats Solo3 Wireless</div>
+									<img src="/static/front/image/gw7.jpg">
+								</a><a href="#">
+									<div class="tit1">360小水滴智能摄像头</div>
+									<div class="tit2">wifi远程监控夜视版</div>
+									<img src="/static/front/image/gw8.jpg">
+								</a><a href="#">
+									<div class="tit1">飞科剃须刀FS373</div>
+									<div class="tit2">全身水洗充电式电动剃须</div>
+									<img src="/static/front/image/gw2.jpg">
+								</a>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+
+				<div class="w100 rk oo">
+					<div class="w1000">
+						<div class="rank-list-main clearfix">
+							<div class="rank-box rank-today">
+								<div class="rank-box-top">
+									<h3>牛人排行榜</h3>
+									<p><a href="/Game/Top">今日牛人排行榜，更多排行榜及奖励请点击查看</a></p>
 								</div>
+								<div class="rank-box-main">
+									<ul>
 
-								<div class="imgRight fr">
-									<h2 class="h2">最新活动<a href="/Hd/List">MORE</a></h2>
-									<ul class="hdul">
-										<li class="fl">
-											<a href="#"><img src="/static/front/image/hd1.jpg"><span>立即参加</span></a>
+
+										<li  >
+											<span class="num first"><i>1</i></span>
+											<span class="name">滑翔起飞</span>
+											<span class="account">142,237,934</span>
 										</li>
-										<li class="fr">
-											<a href="#"><img src="/static/front/image/hd2.jpg"><span>立即参加</span></a>
+
+
+
+										<li  class="fr"  >
+											<span class="num second"><i>2</i></span>
+											<span class="name">黑旋风李逵</span>
+											<span class="account">131,449,468</span>
 										</li>
-										<li class="fl">
-											<a href="#"><img src="/static/front/image/hd3.jpg"><span>立即参加</span></a>
+
+
+
+										<li  >
+											<span class="num third"><i>3</i></span>
+											<span class="name">希望的田野</span>
+											<span class="account">117,199,854</span>
 										</li>
-										<li class="fr">
-											<a href="#"><img src="/static/front/image/hd4.jpg"><span>立即参加</span></a>
+
+
+
+										<li  class="fr"  >
+											<span class="num fourth"><i>4</i></span>
+											<span class="name">善良的死神</span>
+											<span class="account">112,158,875</span>
 										</li>
+
+
+
+										<li  >
+											<span class="num "><i>5</i></span>
+											<span class="name">我的爱赤裸裸</span>
+											<span class="account">108,135,478</span>
+										</li>
+
+
+
+										<li  class="fr"  >
+											<span class="num "><i>6</i></span>
+											<span class="name">春去东来</span>
+											<span class="account">76,728,666</span>
+										</li>
+
+
+
+										<li  >
+											<span class="num "><i>7</i></span>
+											<span class="name">我叫28</span>
+											<span class="account">74,252,422</span>
+										</li>
+
+
+
+										<li  class="fr"  >
+											<span class="num "><i>8</i></span>
+											<span class="name">飞起666</span>
+											<span class="account">72,119,929</span>
+										</li>
+
+
+
+										<li  >
+											<span class="num "><i>9</i></span>
+											<span class="name">牛逼克拉斯</span>
+											<span class="account">66,525,745</span>
+										</li>
+
+
+
+										<li  class="fr"  >
+											<span class="num "><i>10</i></span>
+											<span class="name">面朝大海</span>
+											<span class="account">64,202,607</span>
+										</li>
+
 									</ul>
 								</div>
-
 							</div>
 						</div>
+					</div>
+				</div>
 
-						<div class="clear"></div>
-
-						<div class="w100 f2">
-							<div class="w1000">
-								<h2 class="h2" style="padding: 30px 0;"><span style="margin-left:5px;">奖品兑换</span><a href="/Prize/Center" style="color:#fff">MORE</a></h2>
-								<div class="gwfl fl">
-									<div class="gwl fr">
-										<a href="#" class="gwlu"><img src="/static/front/image/gwl.jpg"><p>好礼换不停</p></a>
-										<a href="#" class="gwld"><div class="tit">奖品兑换中心</div><div class="in">点击进入</div></a>
-									</div>
-									<div class="gwr fl">
-										<a class="first" href="#">
-											<div class="tit1">苹果12英寸MacBook 256GB</div>
-											<div class="tit2">轻薄学习办公笔记本电脑</div>
-											<img src="/static/front/image/gw6.jpg">
-										</a><a href="#">
-											<div class="tit1">Apple/苹果iPhone7</div>
-											<div class="tit2"> 国行全网通4G版手机</div>
-											<img src="/static/front/image/gw1.jpg">
-										</a><a href="#">
-											<div class="tit1">Apple/苹果iPad Pro</div>
-											<div class="tit2">苹果9.7英寸 WLAN 128GB</div>
-											<img src="/static/front/image/gw3.jpg">
-										</a><a href="#">
-											<div class="tit1">微软Arc无线鼠标 </div>
-											<div class="tit2">mini可折叠激光鼠标</div>
-											<img src="/static/front/image/gw4.jpg">
-										</a><a href="#">
-											<div class="tit1">头戴式无线蓝牙B耳机</div>
-											<div class="tit2">Beats Beats Solo3 Wireless</div>
-											<img src="/static/front/image/gw7.jpg">
-										</a><a href="#">
-											<div class="tit1">360小水滴智能摄像头</div>
-											<div class="tit2">wifi远程监控夜视版</div>
-											<img src="/static/front/image/gw8.jpg">
-										</a><a href="#">
-											<div class="tit1">飞科剃须刀FS373</div>
-											<div class="tit2">全身水洗充电式电动剃须</div>
-											<img src="/static/front/image/gw2.jpg">
-										</a>
-									</div>
-
-								</div>
-
-							</div>
+				<div class="client">
+					<div class="text-block">
+						<h1>合作伙伴</h1>
+					</div>
+					<div class="container-large">
+						<div class="client-list">
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
+							<div class="brand"><div class="logo"></div></div>
 						</div>
+					</div>
+					<script type="text/javascript">
+						jQuery(".container-large").slide({mainCell:".client-list",autoPlay:true,effect:"leftMarquee",vis:7,interTime:50});
+					</script>
+				</div>
 
-
-						<div class="w100 rk oo">
-							<div class="w1000">
-								<div class="rank-list-main clearfix">
-									<div class="rank-box rank-today">
-										<div class="rank-box-top">
-											<h3>牛人排行榜</h3>
-											<p><a href="/Game/Top">今日牛人排行榜，更多排行榜及奖励请点击查看</a></p>
-										</div>
-										<div class="rank-box-main">
-											<ul>
-
-
-												<li  >
-													<span class="num first"><i>1</i></span>
-													<span class="name">滑翔起飞</span>
-													<span class="account">142,237,934</span>
-												</li>
-
-
-
-												<li  class="fr"  >
-													<span class="num second"><i>2</i></span>
-													<span class="name">黑旋风李逵</span>
-													<span class="account">131,449,468</span>
-												</li>
-
-
-
-												<li  >
-													<span class="num third"><i>3</i></span>
-													<span class="name">希望的田野</span>
-													<span class="account">117,199,854</span>
-												</li>
-
-
-
-												<li  class="fr"  >
-													<span class="num fourth"><i>4</i></span>
-													<span class="name">善良的死神</span>
-													<span class="account">112,158,875</span>
-												</li>
-
-
-
-												<li  >
-													<span class="num "><i>5</i></span>
-													<span class="name">我的爱赤裸裸</span>
-													<span class="account">108,135,478</span>
-												</li>
-
-
-
-												<li  class="fr"  >
-													<span class="num "><i>6</i></span>
-													<span class="name">春去东来</span>
-													<span class="account">76,728,666</span>
-												</li>
-
-
-
-												<li  >
-													<span class="num "><i>7</i></span>
-													<span class="name">我叫28</span>
-													<span class="account">74,252,422</span>
-												</li>
-
-
-
-												<li  class="fr"  >
-													<span class="num "><i>8</i></span>
-													<span class="name">飞起666</span>
-													<span class="account">72,119,929</span>
-												</li>
-
-
-
-												<li  >
-													<span class="num "><i>9</i></span>
-													<span class="name">牛逼克拉斯</span>
-													<span class="account">66,525,745</span>
-												</li>
-
-
-
-												<li  class="fr"  >
-													<span class="num "><i>10</i></span>
-													<span class="name">面朝大海</span>
-													<span class="account">64,202,607</span>
-												</li>
-
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="client">
-							<div class="text-block">
-								<h1>合作伙伴</h1>
-							</div>
-							<div class="container-large">
-								<div class="client-list">
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-									<div class="brand"><div class="logo"></div></div>
-								</div>
-							</div>
-							<script type="text/javascript">
-								jQuery(".container-large").slide({mainCell:".client-list",autoPlay:true,effect:"leftMarquee",vis:7,interTime:50});
-							</script>
-						</div>
-
-						<div class="foot w100">
+				<div class="foot w100">
 							<div class="w1000 oo">
 								<div class="footl fl">
 
@@ -845,4 +845,4 @@
 		// 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
 		// })();
 	</script>
-<!-- End of LiveChat code -->
+<!-- End of LiveChat code -->					

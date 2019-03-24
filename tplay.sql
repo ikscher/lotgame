@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-03-24 16:37:33
+Date: 2019-03-24 23:02:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -963,7 +963,7 @@ INSERT INTO `hov_board` VALUES ('46', '1', 'sdf', '<p>sdfsdf</p>', '1552569513',
 INSERT INTO `hov_board` VALUES ('47', '1', 'sdf', '<p>sdfsdf</p>', '1552569542', '1552569542', '1', '0');
 INSERT INTO `hov_board` VALUES ('48', '1', 'sdf', '<p>sdfsdf</p>', '1552569555', '1552569555', '1', '0');
 INSERT INTO `hov_board` VALUES ('49', '1', 'sdf', '<p>sdfsdf</p>', '1552569566', '1552569566', '0', '0');
-INSERT INTO `hov_board` VALUES ('50', '1', 'sdf', '<p>sdfsdfasf</p>', '1552569834', '1552569834', '1', '1');
+INSERT INTO `hov_board` VALUES ('50', '1', 'sdf', '<p>sdfsdfasf</p>', '1553434767', '1552569834', '1', '1');
 
 -- ----------------------------
 -- Table structure for `hov_card_cate`
@@ -2628,7 +2628,7 @@ CREATE TABLE `hov_user_grade` (
 -- ----------------------------
 -- Records of hov_user_grade
 -- ----------------------------
-INSERT INTO `hov_user_grade` VALUES ('1', 'VIP0', '0', '1000', '0', null, null);
+INSERT INTO `hov_user_grade` VALUES ('1', 'VIP0', '6', '1000', '3', null, '1553434751');
 INSERT INTO `hov_user_grade` VALUES ('2', 'VIP1', '1001', '2000', '1', null, '1553002578');
 INSERT INTO `hov_user_grade` VALUES ('3', 'VIP2', '2001', '3000', '2', null, null);
 
