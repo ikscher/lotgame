@@ -19,8 +19,8 @@ use think\Db;
 use \think\Cookie;
 use \think\Session;
 use app\admin\controller\Permissions;
-use app\user\model\UserLog as userlogModel;
-use app\user\model\User as userModel;
+use app\front\model\UserLog as userlogModel;
+use app\front\model\User as userModel;
 
 class Userlog extends Permissions
 {   

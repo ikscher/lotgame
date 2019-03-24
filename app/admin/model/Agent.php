@@ -24,7 +24,7 @@ class Agent extends Model
     public function user()
     {
         //关联用户表
-        return $this->belongsTo('app\user\model\User');
+        return $this->belongsTo('app\front\model\User');
     }
 
     public function card()

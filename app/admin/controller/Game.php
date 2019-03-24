@@ -12,14 +12,14 @@
 //活动内容控制器
 namespace app\admin\controller;
 
-use \think\Cache;
-use \think\Controller;
+use think\Cache;
+use think\Controller;
 use think\Loader;
-use \think\Db;
-use \think\Cookie;
-use \think\Config;
-use \think\Url;
-use \think\Session;
+use think\Db;
+use think\Cookie;
+use think\Config;
+use think\Url;
+use think\Session;
 use app\admin\controller\Permissions;
 use app\admin\model\Game as gameModel;
 class Game extends Permissions

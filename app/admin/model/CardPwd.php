@@ -22,7 +22,7 @@ class CardPwd extends Model
     }
 
     public function user(){
-    	return $this->belongsTo('app\user\model\User');
+    	return $this->belongsTo('app\front\model\User');
     }
 
     public function agent(){

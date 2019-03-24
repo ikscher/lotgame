@@ -23,7 +23,7 @@ use app\admin\controller\Permissions;
 // use app\admin\model\PrizeCate as cateModel;
 // use app\user\model\UserGrade as gradeModel;
 // use app\user\model\User as userModel;
-use app\user\model\UserExchange as exchangeModel;
+use app\front\model\UserExchange as exchangeModel;
 class Prizehistory extends Permissions
 {
     public function index()

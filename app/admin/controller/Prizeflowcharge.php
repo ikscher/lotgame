@@ -15,7 +15,7 @@ namespace app\admin\controller;
 use \think\Controller;
 use think\Db;
 use app\admin\controller\Permissions;
-use app\user\model\UserCharge as chargeModel;
+use app\front\model\UserCharge as chargeModel;
 
 class Prizeflowcharge extends Permissions
 {

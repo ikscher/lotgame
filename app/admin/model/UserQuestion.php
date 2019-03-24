@@ -24,6 +24,6 @@ class UserQuestion extends Model
     public function user()
     {
         //关联ADMIN表
-        return $this->belongsTo('app\user\model\User');
+        return $this->belongsTo('app\front\model\User');
     }
 }

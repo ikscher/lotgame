@@ -155,9 +155,10 @@ return [
 
     // 视图输出字符串内容替换
     'view_replace_str'       => [
-        '__CSS__'      => '/static/admin/css',
+        '__CSS__'      => '/static/front/css',
         '__PUBLIC__'   => '/static/public',
-        '__JS__'       => '/static/admin/js'
+        '__IMAGE__'    => '/static/front/image',
+        '__JS__'       => '/static/front/js'
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',

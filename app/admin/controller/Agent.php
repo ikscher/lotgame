@@ -21,7 +21,7 @@ use think\Config;
 use \think\Session;
 use app\admin\controller\Permissions;
 use app\admin\model\Agent as agentModel;
-use app\user\model\User as userModel;
+use app\front\model\User as userModel;
 use app\admin\model\AgentCate as agentcateModel;
 use app\admin\model\AgentLog as agentlogModel;
 class Agent extends Permissions

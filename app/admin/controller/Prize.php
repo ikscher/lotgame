@@ -21,10 +21,10 @@ use \think\Session;
 use app\admin\controller\Permissions;
 use app\admin\model\Prize as prizeModel;
 use app\admin\model\PrizeCate as cateModel;
-use app\user\model\UserGrade as gradeModel;
-use app\user\model\User as userModel;
-use app\user\model\UserLog as logModel;
-use app\user\model\UserRemark as remarkModel;
+use app\front\model\UserGrade as gradeModel;
+use app\front\model\User as userModel;
+use app\front\model\UserLog as logModel;
+use app\front\model\UserRemark as remarkModel;
 class Prize extends Permissions
 {
     public function index()

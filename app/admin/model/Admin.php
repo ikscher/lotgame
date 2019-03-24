@@ -48,6 +48,6 @@ class Admin extends Model
     }
 
     public function userquestion(){
-        return $this->hasMany('app\user\model\UserQuestion','admin_id');
+        return $this->hasMany('app\front\model\UserQuestion','admin_id');
     }
 }

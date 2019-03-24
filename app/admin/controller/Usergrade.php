@@ -19,7 +19,7 @@ use think\Db;
 // use \think\Cookie;
 use \think\Session;
 use app\admin\controller\Permissions;
-use app\user\model\UserGrade as usergradeModel;
+use app\front\model\UserGrade as usergradeModel;
 class Usergrade extends Permissions
 {
     public function index()

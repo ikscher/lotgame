@@ -24,13 +24,13 @@ class Prize extends Model
     public function remark()
     {
         //关联user_remark表
-        return $this->hasMany('app\user\model\UserRemark','prize_id');
+        return $this->hasMany('app\front\model\UserRemark','prize_id');
     }
 
     public function exchange()
     {
         //关联user_exchange表
-        return $this->hasMany('app\user\model\UserExchange','prize_id');
+        return $this->hasMany('app\front\model\UserExchange','prize_id');
     }
 
 

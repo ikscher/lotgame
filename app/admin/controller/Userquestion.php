@@ -21,7 +21,7 @@ use \think\Session;
 use app\admin\controller\Permissions;
 use app\admin\model\UserQuestion as userQuestionModel;
 use app\admin\model\Admin as adminModel;
-use app\user\model\User as userModel;
+use app\front\model\User as userModel;
 
 class Userquestion extends Permissions
 {   
