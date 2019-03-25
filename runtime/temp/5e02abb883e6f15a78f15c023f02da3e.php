@@ -1,13 +1,12 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\board\index.html";i:1553520302;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553520761;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\news\index.html";i:1553506481;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553505300;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
+<link href="/static/front/css/base.css" type="text/css" rel="stylesheet" />
 <!DOCTYPE html>
 <html>
 <head>
 	<meta name="renderer" content="webkit"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<?php if($controller != 'Index'): ?>
-	<link href="/static/front/css/base.css" type="text/css" rel="stylesheet" />
-	<?php endif; ?>
+	
     <link href="/static/front/css/common.css" type="text/css" rel="stylesheet" />
 	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 	<script src="/static/public/layui/layui.js"></script>
@@ -73,7 +72,7 @@
 					<li class="select"><a href="/" class="nli">首页</a></li>
 					<li><a href="/Game/Index" class="nli">游戏中心</a></li>
 					<li><a href="/Prize/Center" class="nli">兑换商城</a></li>
-					<li><a href="/Article/Index" class="nli">活动专场</a></li>
+					<li><a href="/Hd/List" class="nli">活动专场</a></li>
 					<div class="dropdown fl">
 						<li>
 							<a href="#" class="nli">福利时代</a>
@@ -225,7 +224,7 @@
 		</div>
 		<ul  id="ContentPlaceHolder1_GridView1">
 			<?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-			<li><a href="/board/detail/<?php echo $vo['id']; ?>"><?php echo $vo['title']; ?></a>
+			<li><a href="<?php echo url('news/detail',['id'=>$vo['id']]); ?>"><?php echo $vo['title']; ?></a>
 				<span><?php echo date('Y-m-d',strtotime($vo['create_time'])); ?></span>
 			</li>
 			<?php endforeach; endif; else: echo "" ;endif; ?>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\board\index.html";i:1553520302;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553520761;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\article\index.html";i:1553522336;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553524258;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
 	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 	<script src="/static/public/layui/layui.js"></script>
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-	<title>新闻公告-<?php echo $title; ?></title>
+	<title><?php echo $title; ?></title>
 </head>
 <body>
 	<script>
@@ -21,7 +21,7 @@
 			,form = layui.form;
 		});
 	</script> 
-	<style>
+	<style type="text/css">
 	#callboard {    width: 150px;
 		overflow: hidden;
 		display: inline-block;
@@ -80,7 +80,7 @@
 							<div class="dropdown-main">
 								<div class="dropdown-content">
 									<a href="/Hd/Qiangka">抢卡风暴</a>
-									<a href="/Game/Egg">砸金蛋</a>
+									<a href="/Prize/Shatter">砸金蛋</a>
 									<a href="/Hd/Round">抽奖转盘</a>
 								</div>
 							</div>
@@ -203,37 +203,53 @@
 			}(window));
 		setTimeout(window.autoAnimation, 5000);
 	</script>
-<script src="/static/front/js/js.js"></script>
-<div class="area oo" style="min-height:600px;">
+<style type="text/css">
+	.hdbox{
+		background:#E8BF4C url(/static/front/image/hd.jpg) center top no-repeat;
+		padding-top:450px;
+		display: inline-block;
+		width: 100%;
+	}
 
-	<div class="newsleft fr">
-		<div class="help">
-			<h2>常见问题</h2>
-			<ul>
-			</ul>
-		</div>
-		<div class="comm">
-			<h2>最新推荐</h2>
-			<img src="/static/front/image/hd1.jpg" >
-			<img src="/static/front/image/hd3.jpg" style="margin-top:10px;">
+	.hd {
+		margin: 0 auto;
+		min-height: 300px;
+	}
+	.hd .hdli{border:0;}
+    .hd .i1{display: block;}
+</style>
+
+<div class="hdbox">
+	<div class="area">
+		<div class="hd">
+			<div class="hdli">
+                <?php if(is_array($articles) || $articles instanceof \think\Collection || $articles instanceof \think\Paginator): $i = 0; $__LIST__ = $articles;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+				<a href="javascript:void(0)" onclick="ShowDetail(<?php echo $vo['id']; ?>)"><img style="border-radius: 10px" src="<?php echo geturl($vo['thumb']); ?>"  class="i1" alt="<?php echo $vo['title']; ?>"/></a>
+				<?php endforeach; endif; else: echo "" ;endif; ?>
+			</div>
+			<!-- <div class="page">
+				<li ><a  href="/Hd/List?page=1">首页</a></li> <li ><a  href="#">上一页</a></li> <li class="current"><a>1</a></li>
+				<li ><a  href="/Hd/List?page=2">下一页</a></li> <li ><a  href="/Hd/List?page=1">尾页</a></li>
+			</div> -->
 		</div>
 	</div>
-
-	<div class="newsli fl">
-		<div class="top">
-			<h1>网站公告</h1>
-		</div>
-		<ul  id="ContentPlaceHolder1_GridView1">
-			<?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-			<li><a href="/board/detail/<?php echo $vo['id']; ?>"><?php echo $vo['title']; ?></a>
-				<span><?php echo date('Y-m-d',strtotime($vo['create_time'])); ?></span>
-			</li>
-			<?php endforeach; endif; else: echo "" ;endif; ?>
-		</ul>
-        <div style="padding:0 20px;"><?php echo $boards->render(); ?></div> 
-	</div>
-
 </div>
+
+<script type="text/javascript">
+	function ShowDetail(no) {
+		layer.open({
+			type: 2,
+			title: '活动详情',
+			shadeClose: true,
+			shade: [0.5, '#000000'],
+			maxmin: false,
+			area: ['950px', '590px'],
+			content: '/Article/Detail/' + no
+		});
+	}
+</script>
+
+<div class="clear"></div>
 <div class="foot w100">
 							<div class="w1000 oo">
 								<div class="footl fl">

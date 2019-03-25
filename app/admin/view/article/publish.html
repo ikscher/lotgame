@@ -79,7 +79,7 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">开始时间</label>
         <div class="layui-input-block" style="max-width:300px;">
-            <input type="text" class="layui-input" id="create_time" placeholder="开始时间" name="begin_time" {notempty name="$article.begin_time"}value="{$article.begin_time|date="Y-m-d H:i:s",###}"{/notempty}>
+            <input type="text" class="layui-input" id="create_time_b" placeholder="开始时间" name="begin_time" {notempty name="$article.begin_time"}value="{$article.begin_time|date="Y-m-d",###}"{/notempty}>
         </div>
       </div>
 
@@ -87,7 +87,7 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">结束时间</label>
         <div class="layui-input-block" style="max-width:300px;">
-            <input type="text" class="layui-input" id="create_time" placeholder="结束时间" name="end_time" {notempty name="$article.end_time"}value="{$article.end_time|date="Y-m-d H:i:s",###}"{/notempty}>
+            <input type="text" class="layui-input" id="create_time_e" placeholder="结束时间" name="end_time" {notempty name="$article.end_time"}value="{$article.end_time|date="Y-m-d",###}"{/notempty}>
         </div>
       </div>
 
@@ -181,8 +181,12 @@
           });
 
            laydate.render({
-              elem: '#create_time',
-              type: 'datetime'
+              elem: '#create_time_b',
+              type: 'date'
+            });
+           laydate.render({
+              elem: '#create_time_e',
+              type: 'date'
             });
       });
     </script>
