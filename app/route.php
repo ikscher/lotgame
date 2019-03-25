@@ -32,9 +32,9 @@ use \think\Route;
 
 return [    
  '' => 'front/index/index', //首页
- // ':controller/:action'=>'front/:controller/:action', //控制器方法
+ ':controller/:action'=>'front/:controller/:action', //控制器方法
 ];
-
+Route::rule('board/detail/:id','front/board/detail');
 // Route::controller('board','front/board');
 // Route::rule('board/detail/:id','front/board/detail');
 

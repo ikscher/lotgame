@@ -22,7 +22,7 @@
 		</div>
 		<ul  id="ContentPlaceHolder1_GridView1">
 			{volist name="boards" id="vo"}
-			<li><a href="{:url('board/detail',['id'=>$vo.id])}">{$vo.title}</a>
+			<li><a href="{:url('front/board/detail',['id'=>$vo.id])}">{$vo.title}</a>
 				<span>{$vo.create_time|strtotime|date='Y-m-d',###}</span>
 			</li>
 			{/volist}

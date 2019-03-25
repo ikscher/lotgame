@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\board\index.html";i:1553488645;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553482695;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553477906;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\board\index.html";i:1553490117;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553482695;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553477906;}*/ ?>
 <link href="/static/front/css/base.css" type="text/css" rel="stylesheet" />
 <!DOCTYPE html>
 <html>
@@ -224,7 +224,7 @@
 		</div>
 		<ul  id="ContentPlaceHolder1_GridView1">
 			<?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-			<li><a href="<?php echo url('board/detail',['id'=>$vo['id']]); ?>"><?php echo $vo['title']; ?></a>
+			<li><a href="<?php echo url('front/board/detail',['id'=>$vo['id']]); ?>"><?php echo $vo['title']; ?></a>
 				<span><?php echo date('Y-m-d',strtotime($vo['create_time'])); ?></span>
 			</li>
 			<?php endforeach; endif; else: echo "" ;endif; ?>
