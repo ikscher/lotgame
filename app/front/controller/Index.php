@@ -1,11 +1,22 @@
 <?php
 namespace app\front\controller;
 use think\Controller;
+use think\Config;
+use app\admin\model\Board as boardModel;
 class Index extends Controller
-{
-    public function index()
+{   
+	private $boardModel;
+	
+	public function _initialize()
     {
-        $this->assign('title','彩豆28');
+        $this->boardModel = new boardModel();
+    }
+    public function index()
+    {   
+        $site_name=Config::get('site_name');
+    	$boards=$this->boardModel->limit(5)->select();
+    	$this->assign('boards',$boards);
+        $this->assign('title',$site_name);
     	return $this->fetch();
     }
 }

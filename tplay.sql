@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50624
+Source Server         : 127.0.0.1
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-03-24 23:02:12
+Date: 2019-03-25 12:52:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1553393708', '192.168.1.102', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1553477969', '192.168.1.107', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -841,11 +841,6 @@ CREATE TABLE `hov_article_cate` (
 -- ----------------------------
 -- Records of hov_article_cate
 -- ----------------------------
-INSERT INTO `hov_article_cate` VALUES ('1', '分类1', '', '', '1552537765', '1552537765', '0');
-INSERT INTO `hov_article_cate` VALUES ('2', '分类2', '', '', '1552619459', '1552619459', '0');
-INSERT INTO `hov_article_cate` VALUES ('3', '分类21', '', '', '1552619470', '1552619470', '2');
-INSERT INTO `hov_article_cate` VALUES ('4', '分类211', '', '', '1552619482', '1552619482', '3');
-INSERT INTO `hov_article_cate` VALUES ('5', '分类3', '', '', '1552619502', '1552619502', '0');
 
 -- ----------------------------
 -- Table structure for `hov_attachment`
@@ -912,58 +907,22 @@ CREATE TABLE `hov_board` (
   `status` tinyint(1) DEFAULT '1',
   `is_top` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_board
 -- ----------------------------
-INSERT INTO `hov_board` VALUES ('1', '1', '公告1', '<p>士大夫撒地方撒旦</p>', '1552549710', '1552549710', '1', '1');
-INSERT INTO `hov_board` VALUES ('2', '1', '公告1', '<p>士大夫撒地方撒旦</p>', '1552549721', '1552549721', '1', '1');
-INSERT INTO `hov_board` VALUES ('3', '1', '公告1', '<p>士大夫撒地方撒旦</p>', '1552549955', '1552549955', '1', '1');
-INSERT INTO `hov_board` VALUES ('4', '1', '啊', '<p>发生的发生<br/></p>', '1552550155', '1552550155', '1', '1');
-INSERT INTO `hov_board` VALUES ('5', '1', '啊', '<p>发生的发生<br/></p>', '1552550266', '1552550266', '1', '1');
-INSERT INTO `hov_board` VALUES ('6', '1', '啊', '<p>发生的发生<br/></p>', '1552550350', '1552550350', '1', '1');
-INSERT INTO `hov_board` VALUES ('7', '1', '啊', '<p>发生的发生<br/></p>', '1552550351', '1552550351', '1', '1');
-INSERT INTO `hov_board` VALUES ('8', '1', 'sdf', '<p>sdfasdfasfd</p>', '1552550359', '1552550359', '1', '1');
-INSERT INTO `hov_board` VALUES ('9', '1', 'sdf', '<p>sdfsdf</p>', '1552551016', '1552551016', '1', '1');
-INSERT INTO `hov_board` VALUES ('10', '1', 'sdf', '<p>sdfsdf</p>', '1552551033', '1552551033', '1', '1');
-INSERT INTO `hov_board` VALUES ('11', '1', 'sdf', '<p>sdfsdf</p>', '1552551169', '1552551169', '1', '1');
-INSERT INTO `hov_board` VALUES ('12', '1', 'sdf', '<p>sdfsdf</p>', '1552551174', '1552551174', '1', '1');
-INSERT INTO `hov_board` VALUES ('13', '1', 'sdf', '<p>sdfsdf</p>', '1552551544', '1552551544', '1', '1');
-INSERT INTO `hov_board` VALUES ('14', '1', 'sdf', '<p>sdfsdf</p>', '1552551552', '1552551552', '1', '1');
-INSERT INTO `hov_board` VALUES ('15', '1', 'sdf', '<p>sdfsdf</p>', '1552551554', '1552551554', '1', '1');
-INSERT INTO `hov_board` VALUES ('16', '1', 'sdf', '<p>sdfsdf</p>', '1552551927', '1552551927', '1', '1');
-INSERT INTO `hov_board` VALUES ('19', '1', 'sdf', '<p>sdfsafsafd</p>', null, null, '1', '1');
-INSERT INTO `hov_board` VALUES ('20', '1', 'sdf', '<p>sdfsafsafd</p>', null, null, '1', '1');
-INSERT INTO `hov_board` VALUES ('21', '1', 'sdfsadf', '<p>sdfasdfasfasfd</p>', '1552552293', '1552552293', '1', '1');
-INSERT INTO `hov_board` VALUES ('22', '1', 'asdf', '<p>sadfsadf</p>', '1552552622', '1552552622', '1', '0');
-INSERT INTO `hov_board` VALUES ('24', '1', 'rtre', '<p>ertertert</p>', '1552553036', '1552553036', '1', '0');
-INSERT INTO `hov_board` VALUES ('25', '1', 'rtre', '<p>ertertert</p>', '1552553099', '1552553099', '1', '0');
-INSERT INTO `hov_board` VALUES ('26', '1', 'rtre', '<p>ertertert</p>', '1552553216', '1552553216', '1', '0');
-INSERT INTO `hov_board` VALUES ('27', '1', 'rtre', '<p>ertertert</p>', '1552553236', '1552553236', '1', '0');
-INSERT INTO `hov_board` VALUES ('28', '1', 'rtre', '<p>ertertert</p>', '1552553250', '1552553250', '1', '0');
-INSERT INTO `hov_board` VALUES ('29', '1', 'rtre', '<p>ertertert</p>', '1552553382', '1552553382', '1', '0');
-INSERT INTO `hov_board` VALUES ('30', '1', 'rtre', '<p>ertertert</p>', '1552553391', '1552553391', '1', '0');
-INSERT INTO `hov_board` VALUES ('31', '1', 'rtre', '<p>ertertert</p>', '1552553493', '1552553493', '1', '0');
-INSERT INTO `hov_board` VALUES ('32', '1', 'wer', '<p>werwer</p>', '1552554216', '1552554216', '1', '0');
-INSERT INTO `hov_board` VALUES ('33', '1', 'wer', '<p>werwer</p>', '1552554223', '1552554223', '1', '0');
-INSERT INTO `hov_board` VALUES ('34', '1', 'wer', '<p>werwer</p>', '1552554283', '1552554283', '1', '0');
-INSERT INTO `hov_board` VALUES ('35', '1', 'wer', '<p>werwer</p>', '1552554286', '1552554286', '1', '0');
-INSERT INTO `hov_board` VALUES ('36', '1', 'wer', '<p>werwer</p>', '1552554325', '1552554325', '1', '0');
-INSERT INTO `hov_board` VALUES ('37', '1', 'dsf', '<p>sdfsf<br/></p>', '1552567766', '1552567766', '1', '0');
-INSERT INTO `hov_board` VALUES ('38', '1', 'dsf', '<p>sdfsf<br/></p>', '1552567916', '1552567916', '1', '0');
-INSERT INTO `hov_board` VALUES ('39', '1', 'asd', '<p>sdfasf</p>', '1552567990', '1552567990', '1', '0');
-INSERT INTO `hov_board` VALUES ('40', '1', 'sdfsdf', '<p>sdfasdf</p>', '1552568040', '1552568040', '1', '0');
-INSERT INTO `hov_board` VALUES ('41', '1', 'sdf', '<p>sdfsdf</p>', '1552568522', '1552568522', '1', '0');
-INSERT INTO `hov_board` VALUES ('42', '1', 'sdf', '<p>sdfsdf</p>', '1552568567', '1552568567', '1', '0');
-INSERT INTO `hov_board` VALUES ('43', '1', 'sdf', '<p>sdfsdf</p>', '1552568666', '1552568666', '1', '0');
-INSERT INTO `hov_board` VALUES ('44', '1', 'sdf', '<p>sdfsdf</p>', '1552569432', '1552569432', '1', '0');
-INSERT INTO `hov_board` VALUES ('45', '1', 'sdf', '<p>sdfsdf</p>', '1552569462', '1552569462', '1', '0');
-INSERT INTO `hov_board` VALUES ('46', '1', 'sdf', '<p>sdfsdf</p>', '1552569513', '1552569513', '1', '0');
-INSERT INTO `hov_board` VALUES ('47', '1', 'sdf', '<p>sdfsdf</p>', '1552569542', '1552569542', '1', '0');
-INSERT INTO `hov_board` VALUES ('48', '1', 'sdf', '<p>sdfsdf</p>', '1552569555', '1552569555', '1', '0');
-INSERT INTO `hov_board` VALUES ('49', '1', 'sdf', '<p>sdfsdf</p>', '1552569566', '1552569566', '0', '0');
-INSERT INTO `hov_board` VALUES ('50', '1', 'sdf', '<p>sdfsdfasf</p>', '1553434767', '1552569834', '1', '1');
+INSERT INTO `hov_board` VALUES ('51', '1', '游戏已经全部恢复！祝您游戏愉快！', '<p><span style=\"color: rgb(85, 85, 85); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; background-color: rgb(255, 255, 255);\">游戏已经全部恢复！</span></p>', '1553478276', '1553478276', '1', '0');
+INSERT INTO `hov_board` VALUES ('52', '1', '2019年春节蛋蛋/北京类游戏停机公告', '<p><strong style=\"margin: 0px; padding: 0px;\">亲爱的彩豆会员：</strong></p><p><strong style=\"margin: 0px; padding: 0px;\">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;因第三方平台北京福利彩票官网“北京快乐8”、“北京PK拾”将在春节期间休市，2019年2月3日（农历二十九）0:00至2月11日（正月初七）24:00期间，平台里的北京28、蛋蛋28、北京赛车将暂停开奖。在此期间，极速28 加拿大28 韩国28正常运作，祝大家玩的开心！</strong></p><p><span class=\"news_time\" style=\"margin: 60px 0px 0px; padding: 0px; color: rgb(85, 85, 85); background-color: rgb(255, 255, 255); display: inline-block; text-align: right; width: 716px; font-family: UKIJTor, 微软雅黑, &quot;Microsoft YaHei UI&quot;, Helvetica, Arial, sans-serif; letter-spacing: 4px;\"><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"margin: 0px; padding: 0px; text-align: start;\">彩豆</span>28</strong></p></span></p><p><br/></p>', '1553478306', '1553478306', '1', '0');
+INSERT INTO `hov_board` VALUES ('53', '1', '妞妞点卡解除合作', '<p>因妞妞点卡个人原因和网站解除合作关系，如果玩家有需要请找其他代理合作，谢谢！</p><p>如再有玩家执意要找妞妞点卡交易的，造成的损失，一切后果玩家自行承担！</p><p><br/></p>', '1553478341', '1553478341', '1', '0');
+INSERT INTO `hov_board` VALUES ('54', '1', '跨年红包中奖用户如下！', '<p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">ID：22551&nbsp;</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">ID：890921</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">ID：24344&nbsp;</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">ID：22992&nbsp;</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">ID：21537</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">ID：890995&nbsp;</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">ID：22694&nbsp;<span class=\"Apple-tab-span\" style=\"margin: 0px; padding: 0px; white-space: pre;\">	</span></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">ID：890034&nbsp;</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">ID：23360</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">ID：890727&nbsp;</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"color:#ff0000\">以上中奖用户联系对应代理找客服领取588元<img src=\"http://test.lotgame.com/static/public/ueditor/themes/default/images/spacer.gif\"/>红包【系统已经站内信通知】！</span></strong></p><p><br/></p>', '1553478369', '1553478369', '1', '0');
+INSERT INTO `hov_board` VALUES ('55', '1', '2019元旦快乐', '<p><span style=\"color: rgb(255, 255, 255); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; text-align: center; background-color: rgb(255, 0, 0);\">新的一年祝大家工作顺利，全家平安，同时也祝愿祖国繁荣昌盛！</span></p>', '1553478400', '1553478400', '1', '0');
+INSERT INTO `hov_board` VALUES ('56', '1', '11月10日更新开奖接口（更高效更精准）！', '<p><span style=\"color: rgb(85, 85, 85); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; background-color: rgb(255, 255, 255);\">11月10日更新开奖接口（更高效更精准）！</span></p>', '1553478441', '1553478441', '1', '0');
+INSERT INTO `hov_board` VALUES ('57', '1', '乐豆28元旦活动礼品奖励公布如下', '<p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">乐豆28元旦活动礼品奖励公布如下：</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">以下用户已发货！快递订单号已发往站内信请注意查看！</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">乐豆28从始至终活动都 公平 公正！后期活动还请尽请期待！！！</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月1日排名第一名称 :【发发发9999】 &nbsp; &nbsp; &nbsp;奖品：8,888,000 &nbsp;Apple苹果iPhoneX</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月1日排名第二名称 :【大哥来袭】 &nbsp; &nbsp; &nbsp; &nbsp;奖品：6,100,000 LV男士手包</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月2日排名第一名称 : 【忙着玩 28 】 &nbsp; &nbsp; 奖品：16,999,000 外星人ALW15C-R273</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月2日排名第二名称 : 【我不管 我最帅】 &nbsp;奖品：5,500,000 prada男士手提包</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月3日排名第一名称 : 【 我叫28 】 &nbsp; &nbsp; &nbsp; 奖品：8,888,000 &nbsp;Apple苹果iPhoneX</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月3日排名第二名称 : 【 我不叫大户 】 &nbsp; 奖品：12,900,000 全球购 路易威登（LV）新款</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月4日排名第一名称 : 【雷迪嘎嘎 &nbsp; 】 &nbsp; &nbsp;奖品：16,999,000 外星人ALW15C-R273</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月4日排名第二名称 : 【 &nbsp;喵喵嘿嘿 】 &nbsp; &nbsp;奖品：3,800,000 LV男士钱包</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月5日排名第一名称 : 【巴巴爸爸不 &nbsp;】 &nbsp; 奖品：12,999,000 &nbsp;VETAS V5轻奢智能手机</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月5日排名第二名称 : 【 我是小星星 &nbsp;】 &nbsp;奖品：16,899,000 prada女士单肩包</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月6日排名第一名称 ：【 全中 】 &nbsp; &nbsp; &nbsp; &nbsp; 奖品：6,458,000 &nbsp;iPhone7 Plus</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月6日排名第二名称 : 【每天赢一点】 &nbsp; &nbsp; 奖品：2,298,000 Versace皮带男式范思哲</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月7日排名第一名称 : 【好吧来吧 】 &nbsp; &nbsp; &nbsp;奖品：8,888,000 &nbsp;Apple苹果iPhoneX</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月7日排名第二名称 : 【 石哥 &nbsp;】 &nbsp; &nbsp; &nbsp; &nbsp;奖品：16,899,000 prada女士单肩包</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月1日至1月7日周第一名称 :【518518 】 &nbsp; 奖品：16,999,000 外星人ALW15C-R273</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">1月1日至1月7日周第二名称 :【 明日再战 】奖品：16,899,000 prada女士单肩包</span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\"><br/></span></strong></p><p><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px;color:#ff0000\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 没有拿到奖励的还有更多活动等你哦！</span></strong></p><p><br/></p>', '1553479470', '1553479470', '1', '0');
+INSERT INTO `hov_board` VALUES ('58', '1', '鸿福点卡解除合作', '<p>因鸿福点卡个人原因和网站解除合作关系，如果玩家有需要请找其他代理合作，谢谢！</p><p>如再有玩家执意要找鸿福点卡交易的，造成的损失，一切后果玩家自行承担！</p><p><br/></p>', '1553479489', '1553479489', '1', '0');
+INSERT INTO `hov_board` VALUES ('59', '1', '本平台再次申明禁止多开账号！', '<p style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; word-wrap: break-word; color: rgb(85, 85, 85); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; white-space: normal; background-color: rgb(255, 255, 255);\"><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px\">本平台三令五声禁止多开账号！一人只能一个ID</span></strong></p><p style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; word-wrap: break-word; color: rgb(85, 85, 85); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; white-space: normal; background-color: rgb(255, 255, 255);\"><strong style=\"margin: 0px; padding: 0px;\"><span style=\"font-size:18px\">&nbsp; &nbsp; 如果发现一个IP下有多个ID，我们将永久冻结账号，不给予解封，请广大玩家告知！</span></strong></p><p style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; word-wrap: break-word; color: rgb(85, 85, 85); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; white-space: normal; background-color: rgb(255, 255, 255);\"><span style=\"margin: 0px; padding: 0px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Microsoft YaheiUI&quot;, &quot;Microsoft YaHei&quot;, SimHei, 宋体, simsun, sans-serif; font-size: large; font-weight: bold; text-align: center;\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 谢谢理解和配合。</span></p><p><br/></p>', '1553479510', '1553479510', '1', '0');
+INSERT INTO `hov_board` VALUES ('60', '1', '小强点卡跑路通知！', '<p><span style=\"color: rgb(85, 85, 85); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; background-color: rgb(255, 255, 255);\">小强点卡已经跑路！</span><span style=\"margin: 0px; padding: 0px; color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Microsoft YaheiUI&quot;, &quot;Microsoft YaHei&quot;, SimHei, 宋体, simsun, sans-serif; line-height: 40px; text-indent: 4%; background-color: rgb(255, 255, 255);\">，请各位玩家联系其他合作商家！</span></p>', '1553483470', '1553483470', '1', '0');
+INSERT INTO `hov_board` VALUES ('61', '1', '乐豆28实力信誉60款游戏等你来玩！', '<p style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; word-wrap: break-word; color: rgb(85, 85, 85); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; white-space: normal; background-color: rgb(255, 255, 255);\">乐豆28为了方便玩家对游戏的选择现共有60多款游戏！更多游戏正在开发中！</p><p style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; word-wrap: break-word; color: rgb(85, 85, 85); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; white-space: normal; background-color: rgb(255, 255, 255);\">请大家关注乐豆28官网：www.ledou288.com &nbsp; &nbsp;</p><p style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; word-wrap: break-word; color: rgb(85, 85, 85); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; white-space: normal; background-color: rgb(255, 255, 255);\">客服QQ：2577000</p><p style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; word-wrap: break-word; color: rgb(85, 85, 85); font-family: &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, 黑体, Arial, HELVETICA; font-size: 15px; white-space: normal; background-color: rgb(255, 255, 255);\">交流群QQ：2577000</p><p><br/></p>', '1553483494', '1553483494', '1', '0');
 
 -- ----------------------------
 -- Table structure for `hov_card_cate`

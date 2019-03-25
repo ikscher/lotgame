@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:58:"D:\mywork\lotgame\public/../app/admin\view\game\setup.html";i:1553353072;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:58:"D:\mywork\lotgame\public/../app/admin\view\game\setup.html";i:1553477457;}*/ ?>
 <!DOCTYPE html>
 <html ng-app="App">
 <head>
@@ -68,7 +68,7 @@
                 
             </div>
             <div class="layui-tab-item">
-              <?php $__FOR_START_16541__=1;$__FOR_END_16541__=4;for($i=$__FOR_START_16541__;$i < $__FOR_END_16541__;$i+=1){ ?>
+              <?php $__FOR_START_8936__=1;$__FOR_END_8936__=4;for($i=$__FOR_START_8936__;$i < $__FOR_END_8936__;$i+=1){ ?>
                 <div style="margin:10px;">
                 <label>手动盈利</label>
                 <div class="layui-input-inline">
@@ -100,7 +100,7 @@
                  </div>
             </div>
             <div class="layui-tab-item">
-              <?php $__FOR_START_17268__=1;$__FOR_END_17268__=4;for($i=$__FOR_START_17268__;$i < $__FOR_END_17268__;$i+=1){ ?>
+              <?php $__FOR_START_25611__=1;$__FOR_END_25611__=4;for($i=$__FOR_START_25611__;$i < $__FOR_END_25611__;$i+=1){ ?>
                 <div style="margin:10px;">
                   <label>盈利</label>
                   <div class="layui-input-inline">
