@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553488738;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553482695;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553477906;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553490019;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553482695;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553477906;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -352,7 +352,7 @@
 <div class="w100 f1 mt10">
 	<div class="w1000 forumHots">
 		<div class="news fl">
-			<h2 class="h2">最新公告<a href="front/board/index">MORE</a></h2>
+			<h2 class="h2">最新公告<a href="board/index">MORE</a></h2>
 			<div class="textLeft">
 				<ul class="simpleList">
 					<?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>

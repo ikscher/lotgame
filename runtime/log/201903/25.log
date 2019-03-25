@@ -31837,3 +31837,3452 @@
 [ info ] [ PARAM ] array (
 )
 [ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:08+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.049002s] [吞吐率：20.41req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:09+08:00 ] 192.168.1.107 GET test.lotgame.com/board/index
+[运行时间：0.124205s] [吞吐率：8.05req/s] [内存消耗：3,671.20kb] [文件加载：55]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'index',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->index[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\index.html [ array (
+  0 => 'boards',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.015001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_board` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` ORDER BY `create_time` DESC LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:49:09+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.139008s] [吞吐率：7.19req/s] [内存消耗：1,794.13kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:09+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.097006s] [吞吐率：10.31req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:10+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.106006s] [吞吐率：9.43req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:10+08:00 ] 192.168.1.107 GET test.lotgame.com/board/notify.ogg
+[运行时间：0.126007s] [吞吐率：7.94req/s] [内存消耗：3,320.48kb] [文件加载：51]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'notify.ogg',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:10+08:00 ] 192.168.1.107 GET test.lotgame.com/images/sound/tips.wav
+[运行时间：0.059003s] [吞吐率：16.95req/s] [内存消耗：1,794.29kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'sound',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'sound',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:12+08:00 ] 192.168.1.107 GET test.lotgame.com/board/index
+[运行时间：0.132008s] [吞吐率：7.58req/s] [内存消耗：3,671.20kb] [文件加载：55]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'index',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->index[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\index.html [ array (
+  0 => 'boards',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_board` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` ORDER BY `create_time` DESC LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:49:13+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.107006s] [吞吐率：9.35req/s] [内存消耗：1,794.13kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:13+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.076004s] [吞吐率：13.16req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:13+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.094006s] [吞吐率：10.64req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:13+08:00 ] 192.168.1.107 GET test.lotgame.com/board/notify.ogg
+[运行时间：0.228013s] [吞吐率：4.39req/s] [内存消耗：3,320.48kb] [文件加载：51]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'notify.ogg',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:13+08:00 ] 192.168.1.107 GET test.lotgame.com/images/sound/tips.wav
+[运行时间：0.066004s] [吞吐率：15.15req/s] [内存消耗：1,794.29kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'sound',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'sound',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:14+08:00 ] 192.168.1.107 GET test.lotgame.com/board/index
+[运行时间：0.134607s] [吞吐率：7.43req/s] [内存消耗：3,671.20kb] [文件加载：55]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'index',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->index[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\index.html [ array (
+  0 => 'boards',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.031002s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_board` LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` ORDER BY `create_time` DESC LIMIT 0,10 [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:49:14+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.056003s] [吞吐率：17.86req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:14+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.128007s] [吞吐率：7.81req/s] [内存消耗：1,794.13kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:14+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.066004s] [吞吐率：15.15req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:14+08:00 ] 192.168.1.107 GET test.lotgame.com/board/notify.ogg
+[运行时间：0.110006s] [吞吐率：9.09req/s] [内存消耗：3,320.48kb] [文件加载：51]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'notify.ogg',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:15+08:00 ] 192.168.1.107 GET test.lotgame.com/images/sound/tips.wav
+[运行时间：0.063004s] [吞吐率：15.87req/s] [内存消耗：1,794.29kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'sound',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'sound',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:22+08:00 ] 192.168.1.107 GET test.lotgame.com/board/index
+[运行时间：0.126606s] [吞吐率：7.90req/s] [内存消耗：3,671.20kb] [文件加载：55]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'index',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->index[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\index.html [ array (
+  0 => 'boards',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_board` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` ORDER BY `create_time` DESC LIMIT 0,10 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:49:22+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.058003s] [吞吐率：17.24req/s] [内存消耗：1,794.13kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:22+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.058003s] [吞吐率：17.24req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:22+08:00 ] 192.168.1.107 GET test.lotgame.com/board/notify.ogg
+[运行时间：0.080005s] [吞吐率：12.50req/s] [内存消耗：3,320.48kb] [文件加载：51]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'notify.ogg',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:22+08:00 ] 192.168.1.107 GET test.lotgame.com/images/sound/tips.wav
+[运行时间：0.049003s] [吞吐率：20.41req/s] [内存消耗：1,794.29kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'sound',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'sound',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:22+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.199011s] [吞吐率：5.02req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/
+[运行时间：0.148008s] [吞吐率：6.76req/s] [内存消耗：3,596.39kb] [文件加载：52]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'index',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Index->index[ D:\mywork\lotgame\app\front\controller\Index.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\index\index.html [ array (
+  0 => 'boards',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.027002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` LIMIT 5 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/class/geetest/web/StartCaptchaServlet.php?t=1553496567233
+[运行时间：0.060004s] [吞吐率：16.67req/s] [内存消耗：1,795.14kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'class',
+    2 => 'geetest',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  't' => '1553496567233',
+  'controller' => 'class',
+  'action' => 'geetest',
+  'web' => 'StartCaptchaServlet.php',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.041002s] [吞吐率：24.39req/s] [内存消耗：1,750.91kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/fw1.png
+[运行时间：0.096006s] [吞吐率：10.42req/s] [内存消耗：1,794.66kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/style.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'fw1.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/fw3.png
+[运行时间：0.161009s] [吞吐率：6.21req/s] [内存消耗：1,794.66kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/style.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'fw3.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.156009s] [吞吐率：6.41req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/money_bg_03.png
+[运行时间：0.207012s] [吞吐率：4.83req/s] [内存消耗：1,794.70kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/style.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'money_bg_03.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/news_ico.png
+[运行时间：0.231014s] [吞吐率：4.33req/s] [内存消耗：1,794.70kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/style.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'news_ico.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/notify.ogg
+[运行时间：0.165009s] [吞吐率：6.06req/s] [内存消耗：1,750.76kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'notify.ogg',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/images/sound/tips.wav
+[运行时间：0.071004s] [吞吐率：14.08req/s] [内存消耗：1,794.23kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'sound',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'sound',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/fw2.png
+[运行时间：0.490028s] [吞吐率：2.04req/s] [内存消耗：1,794.66kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/style.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'fw2.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:27+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.377022s] [吞吐率：2.65req/s] [内存消耗：1,794.13kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:30+08:00 ] 192.168.1.107 GET test.lotgame.com/board/index
+[运行时间：0.121007s] [吞吐率：8.26req/s] [内存消耗：3,671.26kb] [文件加载：55]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'index',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->index[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\index.html [ array (
+  0 => 'boards',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_board` LIMIT 1 [ RunTime:0.004001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` ORDER BY `create_time` DESC LIMIT 0,10 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:49:30+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.066004s] [吞吐率：15.15req/s] [内存消耗：1,794.13kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:30+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.083005s] [吞吐率：12.05req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:30+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.144008s] [吞吐率：6.94req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:30+08:00 ] 192.168.1.107 GET test.lotgame.com/board/notify.ogg
+[运行时间：0.377022s] [吞吐率：2.65req/s] [内存消耗：3,320.48kb] [文件加载：51]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'notify.ogg',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:30+08:00 ] 192.168.1.107 GET test.lotgame.com/images/sound/tips.wav
+[运行时间：0.058003s] [吞吐率：17.24req/s] [内存消耗：1,794.29kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'sound',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'sound',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:40+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.063400s] [吞吐率：15.77req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:49:50+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046800s] [吞吐率：21.37req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:50:00+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046800s] [吞吐率：21.37req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:50:10+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046800s] [吞吐率：21.37req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:50:20+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046800s] [吞吐率：21.37req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:50:30+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046800s] [吞吐率：21.37req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:50:40+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.062400s] [吞吐率：16.03req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:50:50+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.062400s] [吞吐率：16.03req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:51:00+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046801s] [吞吐率：21.37req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:51:10+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046800s] [吞吐率：21.37req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:51:20+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.063003s] [吞吐率：15.87req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:51:30+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046800s] [吞吐率：21.37req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:51:40+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046800s] [吞吐率：21.37req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:51:50+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046800s] [吞吐率：21.37req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:00+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.062400s] [吞吐率：16.03req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:10+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.076004s] [吞吐率：13.16req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:16+08:00 ] 192.168.1.107 GET test.lotgame.com/board/index
+[运行时间：0.196610s] [吞吐率：5.09req/s] [内存消耗：3,672.63kb] [文件加载：55]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'index',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->index[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\index.html [ array (
+  0 => 'boards',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.042003s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hov_board` LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` ORDER BY `create_time` DESC LIMIT 0,10 [ RunTime:0.004000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:16+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.064004s] [吞吐率：15.62req/s] [内存消耗：1,794.13kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:16+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.058004s] [吞吐率：17.24req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:16+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.051003s] [吞吐率：19.61req/s] [内存消耗：1,750.88kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:16+08:00 ] 192.168.1.107 GET test.lotgame.com/board/notify.ogg
+[运行时间：0.069004s] [吞吐率：14.49req/s] [内存消耗：3,320.48kb] [文件加载：51]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'notify.ogg',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:16+08:00 ] 192.168.1.107 GET test.lotgame.com/images/sound/tips.wav
+[运行时间：0.056004s] [吞吐率：17.86req/s] [内存消耗：1,794.29kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'sound',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'sound',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:19+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/59.shtml
+[运行时间：0.103006s] [吞吐率：9.71req/s] [内存消耗：3,399.16kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => '59',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 59 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:19+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.062003s] [吞吐率：16.13req/s] [内存消耗：1,794.19kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/detail/id/59.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:19+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.060004s] [吞吐率：16.67req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/59.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:20+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.099006s] [吞吐率：10.10req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:20+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/notify.ogg
+[运行时间：0.187011s] [吞吐率：5.35req/s] [内存消耗：3,390.07kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/detail/id/59.shtml',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.017001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.034002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:20+08:00 ] 192.168.1.107 GET test.lotgame.com/images/sound/tips.wav
+[运行时间：0.055003s] [吞吐率：18.18req/s] [内存消耗：1,794.32kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'sound',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/detail/id/59.shtml',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'sound',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:21+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.081005s] [吞吐率：12.34req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:21+08:00 ] 192.168.1.107 GET test.lotgame.com/images/sound/tips.wav
+[运行时间：0.097005s] [吞吐率：10.31req/s] [内存消耗：1,794.29kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'sound',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'sound',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:22+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/53.shtml
+[运行时间：0.125007s] [吞吐率：8.00req/s] [内存消耗：3,394.72kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => '53',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.026001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 53 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:23+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.072004s] [吞吐率：13.89req/s] [内存消耗：1,794.19kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/detail/id/53.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:23+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.041002s] [吞吐率：24.39req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/53.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:23+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.069004s] [吞吐率：14.49req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:23+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/notify.ogg
+[运行时间：0.122007s] [吞吐率：8.20req/s] [内存消耗：3,390.07kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/detail/id/53.shtml',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.031001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:23+08:00 ] 192.168.1.107 GET test.lotgame.com/images/sound/tips.wav
+[运行时间：0.059003s] [吞吐率：16.95req/s] [内存消耗：1,794.32kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'sound',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/detail/id/53.shtml',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'sound',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:24+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.082004s] [吞吐率：12.19req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:25+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/56.shtml
+[运行时间：0.122007s] [吞吐率：8.20req/s] [内存消耗：3,394.86kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => '56',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.024002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 56 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:26+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.066003s] [吞吐率：15.15req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/56.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:26+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.128007s] [吞吐率：7.81req/s] [内存消耗：1,794.19kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/detail/id/56.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:26+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.096005s] [吞吐率：10.42req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:26+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/notify.ogg
+[运行时间：0.186011s] [吞吐率：5.38req/s] [内存消耗：3,390.07kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/detail/id/56.shtml',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.030002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 0 LIMIT 1 [ RunTime:0.003000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:27+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.086005s] [吞吐率：11.63req/s] [内存消耗：1,794.13kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:28+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/59.shtml
+[运行时间：0.110006s] [吞吐率：9.09req/s] [内存消耗：3,399.16kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => '59',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.023001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 59 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:28+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.083005s] [吞吐率：12.05req/s] [内存消耗：1,794.19kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/detail/id/59.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:28+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.114007s] [吞吐率：8.77req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/59.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:28+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.146008s] [吞吐率：6.85req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:28+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/notify.ogg
+[运行时间：0.117006s] [吞吐率：8.55req/s] [内存消耗：3,390.07kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/detail/id/59.shtml',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 0 LIMIT 1 [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:29+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.070004s] [吞吐率：14.28req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:31+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/61.shtml
+[运行时间：0.149009s] [吞吐率：6.71req/s] [内存消耗：3,398.01kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => '61',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.031002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 61 LIMIT 1 [ RunTime:0.022001s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:31+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.092006s] [吞吐率：10.87req/s] [内存消耗：1,794.19kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/detail/id/61.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:31+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.105006s] [吞吐率：9.52req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:31+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.162010s] [吞吐率：6.17req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/61.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:31+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/notify.ogg
+[运行时间：0.193011s] [吞吐率：5.18req/s] [内存消耗：3,390.07kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/detail/id/61.shtml',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.008001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.037002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:33+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.092006s] [吞吐率：10.87req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:35+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/52.shtml
+[运行时间：0.168208s] [吞吐率：5.95req/s] [内存消耗：3,396.98kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/index',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => '52',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.046002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 52 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:35+08:00 ] 192.168.1.107 GET test.lotgame.com/images/score/v0.png
+[运行时间：0.069004s] [吞吐率：14.49req/s] [内存消耗：1,794.19kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'images',
+    2 => 'score',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'images',
+  'action' => 'score',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:35+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.053003s] [吞吐率：18.87req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:36+08:00 ] 192.168.1.107 GET test.lotgame.com/board/detail/id/notify.ogg
+[运行时间：0.114007s] [吞吐率：8.77req/s] [内存消耗：3,390.07kb] [文件加载：50]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'board',
+    2 => 'detail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'identity;q=1, *;q=0',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+  'range' => 'bytes=0-',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'board',
+  'action' => 'detail',
+  'id' => 'notify.ogg',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Board->detail[ D:\mywork\lotgame\app\front\controller\Board.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\board\detail.html [ array (
+  0 => 'board',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.032002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `id` = 0 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-25T14:52:36+08:00 ] 192.168.1.107 GET test.lotgame.com/static/front/image/footbg.png
+[运行时间：0.245014s] [吞吐率：4.08req/s] [内存消耗：1,794.56kb] [文件加载：37]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'static',
+    2 => 'front',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://test.lotgame.com/static/front/css/common.css',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+  'controller' => 'static',
+  'action' => 'front',
+  'image' => 'footbg.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:45+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.062400s] [吞吐率：16.03req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:52:55+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.055003s] [吞吐率：18.18req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:53:06+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.062400s] [吞吐率：16.03req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:53:15+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046801s] [吞吐率：21.37req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:53:25+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.062400s] [吞吐率：16.03req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:53:36+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.062400s] [吞吐率：16.03req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:53:45+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.070004s] [吞吐率：14.28req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:53:55+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.078000s] [吞吐率：12.82req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:54:05+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.078000s] [吞吐率：12.82req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-25T14:54:15+08:00 ] 192.168.1.107 GET test.lotgame.com/Ajax_points.php
+[运行时间：0.046800s] [吞吐率：21.37req/s] [内存消耗：1,750.97kb] [文件加载：36]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'Ajax_points.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/board/detail/id/52.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=9k71b7n4a0io5jdjd0h04cra44',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File

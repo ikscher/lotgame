@@ -224,7 +224,8 @@ class Url
                 $action     = strtolower($action);
                 $controller = Loader::parseName($controller);
             }
-            $url = $module . $controller . '/' . $action;
+            // $url = $module . $controller . '/' . $action;
+            $url =  $controller . '/' . $action;  //这里的MODUEL 去除， http://test.lotgame.com/front/board/detail/id/52.shtml变成http://test.lotgame.com/board/detail/id/52.shtml
         }
         return $url;
     }
