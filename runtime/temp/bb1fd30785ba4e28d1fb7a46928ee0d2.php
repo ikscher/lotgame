@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1553590905;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553575832;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553477906;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1553603701;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553606886;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 	<link href="/static/front/css/base.css" type="text/css" rel="stylesheet" />
 	<?php endif; ?>
     <link href="/static/front/css/common.css" type="text/css" rel="stylesheet" />
-	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script src="/static/public/jquery/jquery.min.js"></script>
 	<script src="/static/public/layui/layui.js"></script>
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 	<title><?php echo $title; ?></title>

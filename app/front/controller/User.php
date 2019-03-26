@@ -33,7 +33,10 @@ class User extends Controller
         $user=$this->userModel->where($map)->find();
         
         if($user['points']>20){
-            
+            $this->userModel->where($map)->setDec('points',$user['points']); //一次砸蛋扣多少积分
+            // echo $this->userModel->getLastSql();exit;
+            adduserlog('1','砸金蛋');
+
             $jp = array();
             $jp[] = array( 'gl' => 1 , 'title' => '一等奖');
             $jp[] = array( 'gl' => 2 , 'title' => '二等奖');
@@ -41,16 +44,19 @@ class User extends Controller
             $jp[] = array( 'gl' => 94 , 'title' => '未中奖');
 
             $zj = random_hits( $jp );
-        
+            
             if(in_array($zj['gl'],array('1','2','3'))) {
                 $data['msg']=1;
                 $data['prize']="我中奖了";
                 echo json_encode($data);exit;
             }else{
                 $data['msg']=0;
-                $data['prize']="没有奖";
+                $data['prize']="没有中奖";
                 echo json_encode($data);exit;
             }
+
+
+
         }else{
             $data['msg']=-2;
             $data['prize']="";
