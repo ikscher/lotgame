@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553490019;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553482695;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553477906;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553506839;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553520472;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -6,12 +6,14 @@
 	<meta name="renderer" content="webkit"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
+	<?php if($controller != 'Index'): ?>
+	<link href="/static/front/css/base.css" type="text/css" rel="stylesheet" />
+	<?php endif; ?>
     <link href="/static/front/css/common.css" type="text/css" rel="stylesheet" />
 	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 	<script src="/static/public/layui/layui.js"></script>
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-	<title>新闻公告-<?php echo $title; ?></title>
+	<title><?php echo $controller; ?>新闻公告-<?php echo $title; ?></title>
 </head>
 <body>
 	<script>

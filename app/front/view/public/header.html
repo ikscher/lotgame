@@ -4,12 +4,14 @@
 	<meta name="renderer" content="webkit"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
+	{if condition="$controller neq 'Index'"}
+	<link href="__CSS__/base.css" type="text/css" rel="stylesheet" />
+	{/if}
     <link href="__CSS__/common.css" type="text/css" rel="stylesheet" />
 	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 	<script src="__PUBLIC__/layui/layui.js"></script>
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-	<title>新闻公告-{$title}</title>
+	<title>{$title}</title>
 </head>
 <body>
 	<script>
@@ -18,7 +20,7 @@
 			,form = layui.form;
 		});
 	</script> 
-	<style>
+	<style type="text/css">
 	#callboard {    width: 150px;
 		overflow: hidden;
 		display: inline-block;
@@ -55,7 +57,7 @@
 					</ul>
 				</div>
 				<span class="barr fr">
-					<b >ikscher(891435)</b> <b style="background:url(/images/score/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
+					<b >ikscher(891435)</b> <b style="background:url(__IMAGE__/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
 					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
 
@@ -70,14 +72,14 @@
 					<li class="select"><a href="/" class="nli">首页</a></li>
 					<li><a href="/Game/Index" class="nli">游戏中心</a></li>
 					<li><a href="/Prize/Center" class="nli">兑换商城</a></li>
-					<li><a href="/Hd/List" class="nli">活动专场</a></li>
+					<li><a href="/Article/Index" class="nli">活动专场</a></li>
 					<div class="dropdown fl">
 						<li>
 							<a href="#" class="nli">福利时代</a>
 							<div class="dropdown-main">
 								<div class="dropdown-content">
 									<a href="/Hd/Qiangka">抢卡风暴</a>
-									<a href="/Game/Egg">砸金蛋</a>
+									<a href="/Prize/Shatter">砸金蛋</a>
 									<a href="/Hd/Round">抽奖转盘</a>
 								</div>
 							</div>

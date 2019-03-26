@@ -10,13 +10,17 @@ class Index extends Controller
 	public function _initialize()
     {
         $this->boardModel = new boardModel();
+        $controller=$this->request->controller();
+        $this->assign('controller',$controller);
     }
     public function index()
     {   
         $site_name=Config::get('site_name');
     	$boards=$this->boardModel->limit(5)->select();
+
     	$this->assign('boards',$boards);
         $this->assign('title',$site_name);
+
     	return $this->fetch();
     }
 }

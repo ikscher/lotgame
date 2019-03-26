@@ -30,11 +30,17 @@ use \think\Route;
 
 // ];
 
-return [    
- '' => 'front/index/index', //首页
- ':controller/:action'=>'front/:controller/:action', //控制器方法
-];
+// return [    
+//  '/' => 'front/index/index', //首页
+//  'board/index' => 'front/board/index',
+//  'board/detail/:id' => 'front/board/detail'
+//   // ':controller/:action'=>'front/:controller/:action', //控制器方法
+// ];
+Route::rule('/','front/index/index');
 Route::rule('board/detail/:id','front/board/detail');
-// Route::controller('board','front/board');
-// Route::rule('board/detail/:id','front/board/detail');
+Route::rule('board/index','front/board/index');
+Route::rule('article/index','front/article/index');
+Route::rule('article/detail/:id','front/article/detail');
+Route::rule('prize/shatter','front/prize/shatter');
+
 

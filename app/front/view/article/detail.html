@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>活动详情 - {$title}</title>
+    <link href="__CSS__/base.css" rel="stylesheet" type="text/css" />
+    <script  type="text/javascript" src="__PUBLIC__/jquery/jquery.min.js"></script>
+    <script  type="text/javascript" src="__JS__/js.js"></script>
+    <script src="__PUBLIC__/layui/layui.js"></script>
+    <script>
+        layui.use(['layer'], function(){
+            var layer = layui.layer;
+        });
+    </script> 
+    <style type="text/css">
+        .hddetail{width:910px;height:500px;background:#fff;border:#ddd solid 1px;border-radius: 10px;margin:10px auto;padding:10px}
+        .hddetail h2{ line-height: 45px;color:#E24124}
+        .hddetail h2 span{float: right; font-size: 14px;}
+        .hddetail .con{ font-size: 14px; line-height: 28px; background: #F3F3F3; padding: 10px; border-radius: 10px; color: #545454; height: 255px; overflow: auto}
+    </style>
+</head>
+<body>
+
+    <div class="hddetail">
+      <img style="border-radius: 10px" src="{$article.thumb|geturl}"/>
+      <h2>{$article.title} <span>活动时间：{$article.begin_time|date='Y-m-d',###}至{$article.end_time|date='Y-m-d',###}</span></h2>
+      <div class="con">{$article.content}</div>
+    </div>
+
+</body>
+</html>

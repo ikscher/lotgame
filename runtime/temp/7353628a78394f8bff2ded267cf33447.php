@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"D:\mywork\lotgame\public/../app/admin\view\article\publish.html";i:1552612399;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:63:"D:\mywork\lotgame\public/../app/admin\view\article\publish.html";i:1553519110;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,7 +80,7 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">开始时间</label>
         <div class="layui-input-block" style="max-width:300px;">
-            <input type="text" class="layui-input" id="create_time" placeholder="开始时间" name="begin_time" <?php if(!(empty($article['begin_time']) || (($article['begin_time'] instanceof \think\Collection || $article['begin_time'] instanceof \think\Paginator ) && $article['begin_time']->isEmpty()))): ?>value="<?php echo date("Y-m-d H:i:s",$article['begin_time']); ?>"<?php endif; ?>>
+            <input type="text" class="layui-input" id="create_time_b" placeholder="开始时间" name="begin_time" <?php if(!(empty($article['begin_time']) || (($article['begin_time'] instanceof \think\Collection || $article['begin_time'] instanceof \think\Paginator ) && $article['begin_time']->isEmpty()))): ?>value="<?php echo date("Y-m-d",$article['begin_time']); ?>"<?php endif; ?>>
         </div>
       </div>
 
@@ -88,7 +88,7 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">结束时间</label>
         <div class="layui-input-block" style="max-width:300px;">
-            <input type="text" class="layui-input" id="create_time" placeholder="结束时间" name="end_time" <?php if(!(empty($article['end_time']) || (($article['end_time'] instanceof \think\Collection || $article['end_time'] instanceof \think\Paginator ) && $article['end_time']->isEmpty()))): ?>value="<?php echo date("Y-m-d H:i:s",$article['end_time']); ?>"<?php endif; ?>>
+            <input type="text" class="layui-input" id="create_time_e" placeholder="结束时间" name="end_time" <?php if(!(empty($article['end_time']) || (($article['end_time'] instanceof \think\Collection || $article['end_time'] instanceof \think\Paginator ) && $article['end_time']->isEmpty()))): ?>value="<?php echo date("Y-m-d",$article['end_time']); ?>"<?php endif; ?>>
         </div>
       </div>
 
@@ -182,8 +182,12 @@
           });
 
            laydate.render({
-              elem: '#create_time',
-              type: 'datetime'
+              elem: '#create_time_b',
+              type: 'date'
+            });
+           laydate.render({
+              elem: '#create_time_e',
+              type: 'date'
             });
       });
     </script>

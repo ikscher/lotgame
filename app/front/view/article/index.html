@@ -1,0 +1,49 @@
+{include file="public/header" /}
+<style type="text/css">
+	.hdbox{
+		background:#E8BF4C url(__IMAGE__/hd.jpg) center top no-repeat;
+		padding-top:450px;
+		display: inline-block;
+		width: 100%;
+	}
+
+	.hd {
+		margin: 0 auto;
+		min-height: 300px;
+	}
+	.hd .hdli{border:0;}
+    .hd .i1{display: block;}
+</style>
+
+<div class="hdbox">
+	<div class="area">
+		<div class="hd">
+			<div class="hdli">
+                {volist name="articles" id="vo"  }
+				<a href="javascript:void(0)" onclick="ShowDetail({$vo.id})"><img style="border-radius: 10px" src="{$vo.thumb|geturl}"  class="i1" alt="{$vo.title}"/></a>
+				{/volist}
+			</div>
+			<!-- <div class="page">
+				<li ><a  href="/Hd/List?page=1">首页</a></li> <li ><a  href="#">上一页</a></li> <li class="current"><a>1</a></li>
+				<li ><a  href="/Hd/List?page=2">下一页</a></li> <li ><a  href="/Hd/List?page=1">尾页</a></li>
+			</div> -->
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function ShowDetail(no) {
+		layer.open({
+			type: 2,
+			title: '活动详情',
+			shadeClose: true,
+			shade: [0.5, '#000000'],
+			maxmin: false,
+			area: ['950px', '590px'],
+			content: '/Article/Detail/' + no
+		});
+	}
+</script>
+
+<div class="clear"></div>
+{include file="public/footer" /}

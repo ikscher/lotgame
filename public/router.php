@@ -20,10 +20,3 @@ if (is_file($_SERVER["DOCUMENT_ROOT"] . $_SERVER["SCRIPT_NAME"])) {
 }
 
 
-// Route::rule('www/index','front/Index/index');
-return [    
- // '' => 'front/Index/index', //首页
- 'index/index'=>'front/Index/index', //控制器方法
- // ':controller'=>'front/:controller/:action', //控制器方法
-];
-

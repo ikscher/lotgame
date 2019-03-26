@@ -1,13 +1,12 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\board\index.html";i:1553520302;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553520761;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\news\detail.html";i:1553505300;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553505300;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
+<link href="/static/front/css/base.css" type="text/css" rel="stylesheet" />
 <!DOCTYPE html>
 <html>
 <head>
 	<meta name="renderer" content="webkit"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<?php if($controller != 'Index'): ?>
-	<link href="/static/front/css/base.css" type="text/css" rel="stylesheet" />
-	<?php endif; ?>
+	
     <link href="/static/front/css/common.css" type="text/css" rel="stylesheet" />
 	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 	<script src="/static/public/layui/layui.js"></script>
@@ -73,7 +72,7 @@
 					<li class="select"><a href="/" class="nli">首页</a></li>
 					<li><a href="/Game/Index" class="nli">游戏中心</a></li>
 					<li><a href="/Prize/Center" class="nli">兑换商城</a></li>
-					<li><a href="/Article/Index" class="nli">活动专场</a></li>
+					<li><a href="/Hd/List" class="nli">活动专场</a></li>
 					<div class="dropdown fl">
 						<li>
 							<a href="#" class="nli">福利时代</a>
@@ -204,14 +203,40 @@
 		setTimeout(window.autoAnimation, 5000);
 	</script>
 <script src="/static/front/js/js.js"></script>
+<style type="text/css">
+.la{ padding:12px; line-height:20px;}
+.la a{ display:block;margin-bottom: 15px;}
+.la a:link,.la a:visited{ color:#333;}
+</style>
+
 <div class="area oo" style="min-height:600px;">
 
 	<div class="newsleft fr">
-		<div class="help">
-			<h2>常见问题</h2>
+		<!-- <div class="help">
+			<h2>最近公告</h2>
 			<ul>
+				<li><a href="/News/Detail?id=116"><span style="color: #E9272F">[02-11]</span>游戏已经全部恢复！祝您游戏愉快！</a>
+				</li>
+				<li><a href="/News/Detail?id=115"><span style="color: #E9272F">[02-04]</span>2019年春节蛋蛋/北京类游戏停机公告</a>
+				</li>
+				<li><a href="/News/Detail?id=114"><span style="color: #E9272F">[01-18]</span>妞妞点卡解除合作</a>
+				</li>
+				<li><a href="/News/Detail?id=113"><span style="color: #E9272F">[01-08]</span>全新界面！带给您更好的游戏体验！app正在内测！</a>
+				</li>
+				<li><a href="/News/Detail?id=111"><span style="color: #E9272F">[01-01]</span>跨年红包中奖用户如下！</a>
+				</li>
+				<li><a href="/News/Detail?id=110"><span style="color: #E9272F">[12-19]</span>梦想点卡解除合作</a>
+				</li>
+				<li><a href="/News/Detail?id=107"><span style="color: #E9272F">[11-26]</span>全民免手续费！只要V1以上即可免手续费！</a>
+				</li>
+				<li><a href="/News/Detail?id=104"><span style="color: #E9272F">[08-06]</span>更名公告</a>
+				</li>
+				<li><a href="/News/Detail?id=100"><span style="color: #E9272F">[01-11]</span>乐豆28元旦活动礼品奖励公布如下：</a>
+				</li>
+				<li><a href="/News/Detail?id=112"><span style="color: #E9272F">[01-02]</span>2019元旦快乐</a>
+				</li>
 			</ul>
-		</div>
+		</div> -->
 		<div class="comm">
 			<h2>最新推荐</h2>
 			<img src="/static/front/image/hd1.jpg" >
@@ -221,19 +246,17 @@
 
 	<div class="newsli fl">
 		<div class="top">
-			<h1>网站公告</h1>
-		</div>
-		<ul  id="ContentPlaceHolder1_GridView1">
-			<?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-			<li><a href="/board/detail/<?php echo $vo['id']; ?>"><?php echo $vo['title']; ?></a>
-				<span><?php echo date('Y-m-d',strtotime($vo['create_time'])); ?></span>
-			</li>
-			<?php endforeach; endif; else: echo "" ;endif; ?>
-		</ul>
-        <div style="padding:0 20px;"><?php echo $boards->render(); ?></div> 
-	</div>
+			<h1>查看公告</h1>
 
-</div>
+		</div>
+		<div class="newscon">
+			<h2><?php echo $board['title']; ?></h2>
+			<div class="fabu">发布：<span><?php echo $title; ?></span> &nbsp;  &nbsp; 时间：<span><?php echo date('Y-m-d',strtotime($board['create_time'])); ?></span></div>
+			<b><font color="#ff0000"><?php echo $board['content']; ?></font></b>
+		</div>
+
+	</div>
+</div>     
 <div class="foot w100">
 							<div class="w1000 oo">
 								<div class="footl fl">
@@ -504,4 +527,4 @@
 		// 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
 		// })();
 	</script>
-<!-- End of LiveChat code -->
+<!-- End of LiveChat code -->  

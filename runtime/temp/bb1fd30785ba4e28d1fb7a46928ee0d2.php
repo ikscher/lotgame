@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\board\index.html";i:1553520302;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553520761;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1553526302;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553526502;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
 	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 	<script src="/static/public/layui/layui.js"></script>
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-	<title>新闻公告-<?php echo $title; ?></title>
+	<title><?php echo $title; ?></title>
 </head>
 <body>
 	<script>
@@ -21,7 +21,7 @@
 			,form = layui.form;
 		});
 	</script> 
-	<style>
+	<style type="text/css">
 	#callboard {    width: 150px;
 		overflow: hidden;
 		display: inline-block;
@@ -58,7 +58,7 @@
 					</ul>
 				</div>
 				<span class="barr fr">
-					<b >ikscher(891435)</b> <b style="background:url(/images/score/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
+					<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
 					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
 
@@ -80,7 +80,7 @@
 							<div class="dropdown-main">
 								<div class="dropdown-content">
 									<a href="/Hd/Qiangka">抢卡风暴</a>
-									<a href="/Game/Egg">砸金蛋</a>
+									<a href="/Prize/Shatter">砸金蛋</a>
 									<a href="/Hd/Round">抽奖转盘</a>
 								</div>
 							</div>
@@ -203,37 +203,94 @@
 			}(window));
 		setTimeout(window.autoAnimation, 5000);
 	</script>
-<script src="/static/front/js/js.js"></script>
-<div class="area oo" style="min-height:600px;">
+<style type="text/css">
+	.egg{width:1100px; height:770px; margin:0 auto 20px auto;padding-top: 360px;}
+	.egg ul li{z-index:999;}
+	.eggList{padding-top:110px;position:relative;width:1100px;}
+	.eggList li{    margin-bottom: 30px;float:left;background:#f5f5f5 url(/static/front/image/egg_1.png) no-repeat center;width:320px;height:320px;cursor:pointer;position:relative;margin-left:35px; border-radius: 15px;}
+	.eggList li span{position:absolute; width:30px; height:60px; left:46%; top:150px; color:#FF9190; font-size:42px; font-weight:bold;z-index: 9999;}
+	.eggList li.curr{background:url(/static/front/image/egg_2.png) no-repeat center;cursor:default;z-index:300;}
+	.eggList li.curr sup{position:absolute;background:url(/static/front/image/img-4.png) no-repeat;width:232px; height:181px;top:-36px;left:-34px;z-index:800;}
+	.hammer{background:url(/static/front/image/img-6.png) no-repeat;width:74px;height:87px;position:absolute; text-indent:-9999px;z-index:9999;left:320px;top:170px;}
+	.resultTip{position:absolute; background:#ffc ;width:148px;padding:6px;z-index:500;top:200px; left:10px; color:#f60; text-align:center;overflow:hidden;display:none;z-index:99999;}
+	.resultTip b{font-size:14px;line-height:24px;}
+</style>
 
-	<div class="newsleft fr">
-		<div class="help">
-			<h2>常见问题</h2>
-			<ul>
-			</ul>
-		</div>
-		<div class="comm">
-			<h2>最新推荐</h2>
-			<img src="/static/front/image/hd1.jpg" >
-			<img src="/static/front/image/hd3.jpg" style="margin-top:10px;">
-		</div>
-	</div>
 
-	<div class="newsli fl">
-		<div class="top">
-			<h1>网站公告</h1>
-		</div>
-		<ul  id="ContentPlaceHolder1_GridView1">
-			<?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-			<li><a href="/board/detail/<?php echo $vo['id']; ?>"><?php echo $vo['title']; ?></a>
-				<span><?php echo date('Y-m-d',strtotime($vo['create_time'])); ?></span>
-			</li>
-			<?php endforeach; endif; else: echo "" ;endif; ?>
-		</ul>
-        <div style="padding:0 20px;"><?php echo $boards->render(); ?></div> 
-	</div>
+<div id="main" style="background:url(/static/front/image/egg_top.jpg) center top no-repeat; margin-left:auto; margin-right:auto">
 
+	<div class="egg" style=" margin-left:auto; margin-right:auto"">
+	<ul class="eggList">
+		<p class="hammer" id="hammer">锤子</p>
+		<p class="resultTip" id="resultTip"><b id="result"></b></p>
+		<li class="liup"><span>1</span><sup></sup></li>
+		<li class="liup"><span>2</span><sup></sup></li>
+		<li class="liup"><span>3</span><sup></sup></li>
+
+		<p class="resultTip" id="resultTip"><b id="result"></b></p>
+		<li class="lidown"><span>4</span><sup></sup></li>
+		<li class="lidown"><span>5</span><sup></sup></li>
+		<li class="lidown"><span>6</span><sup></sup></li>
+	</ul>
 </div>
+<div class="ad_demo"><!-- <script src="/js/ad_js/ad_demo.js" type="text/javascript"></script> --></div><br/>
+</div>
+<div style="text-align:center;line-height:50px;color:#DA2C35">
+	<strong>温馨提示：</strong>砸金蛋每次消耗20点积分。<hr />
+</div>
+<script type="text/javascript">
+	function eggClick(obj,hei1,hei2) {
+		var _this = obj;
+		$.getJSON("/data.php",function(res){
+			if(_this.hasClass("curr")){
+				alert("蛋都碎了，别砸了！刷新再来.");
+				window.location.href="/Prize/Shatter";
+				return false;
+			}
+			if(res.msg==-2){
+				alert("对不起,您的积分不足");
+				return;
+			}
+			_this.children("span").hide();
+			//_this.unbind('click');
+			$(".hammer").css({"top":_this.position().top-55,"left":_this.position().left+185});
+			$(".hammer").animate({
+				"top":_this.position().top-25,
+				"left":_this.position().left+125
+			},30,function(){
+
+				_this.addClass("curr"); //蛋碎效果
+				_this.find("sup").show(); //金花四溅
+				$(".hammer").hide();
+				$('.resultTip').css({display:'block',top:hei1,left:_this.position().left+45,opacity:0}).animate({top: hei2,opacity:1},300,function(){
+					if(res.msg==1){
+						$("#result").html(res.prize+"!");
+					}else{
+						$("#result").html("很遗憾,您没能中奖!");
+					}
+				});	
+			});
+	    });
+	}
+
+
+	$(".eggList  .liup").click(function() {
+		eggClick($(this),'160px','110px');
+	});
+
+	$(".eggList .lidown").click(function() {
+		eggClick($(this),'510px','460px');
+	});
+
+	$(".eggList .liup").hover(function() {
+		var posL = $(this).position().left + $(this).width();
+		$("#hammer").show().css({'left': posL,'top': '170px'});
+	})
+	$(".eggList .lidown").hover(function() {
+		var posL = $(this).position().left + $(this).width();
+		$("#hammer").show().css({'left': posL,'top': '520px'});;
+	})
+</script>
 <div class="foot w100">
 							<div class="w1000 oo">
 								<div class="footl fl">
