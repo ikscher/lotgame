@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553506839;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553603701;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553506839;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553606886;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553609915;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
 	<link href="/static/front/css/base.css" type="text/css" rel="stylesheet" />
 	<?php endif; ?>
     <link href="/static/front/css/common.css" type="text/css" rel="stylesheet" />
-	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script src="/static/public/jquery/jquery.min.js"></script>
 	<script src="/static/public/layui/layui.js"></script>
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 	<title><?php echo $title; ?></title>
@@ -709,7 +709,7 @@
 	function reflushPoints(){
 		var html = "";
 		$.ajax({
-			url:"/Ajax_points.php",
+			// url:"/Ajax_points.php",
 			dataType:"json",
 			type:"get",
 			success: function (rs) {

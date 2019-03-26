@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<script src="__PUBLIC__/layui/layui.js"></script>
+	<title>卡密收回</title>
+</head>
+<body>
+	{include file="public/left" /}
+    <div class="right">
+	<form class="layui-form" action="">
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">卡号</label>
+	    <div class="layui-input-block">
+	      <input type="text" name="title" required  lay-verify="required" placeholder="请输入卡号" autocomplete="off" class="layui-input">
+	    </div>
+	  </div>
+
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">卡密</label>
+	    <div class="layui-input-block">
+	      <input type="text" name="title" required  lay-verify="required" placeholder="请输入卡密" autocomplete="off" class="layui-input">
+	    </div>
+	  </div>
+
+	  <div class="layui-form-item">
+	    <div class="layui-input-block">
+	      <button class="layui-btn" lay-submit lay-filter="formDemo">确认回收</button>
+	      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+	    </div>
+	  </div>
+	</form>
+    </div>
+</body>
+</html>
