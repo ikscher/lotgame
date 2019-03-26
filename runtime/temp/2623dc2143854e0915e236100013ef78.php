@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\board\index.html";i:1553520302;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553520761;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\board\index.html";i:1553563476;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553575832;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553477906;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
 	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 	<script src="/static/public/layui/layui.js"></script>
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-	<title>新闻公告-<?php echo $title; ?></title>
+	<title><?php echo $title; ?></title>
 </head>
 <body>
 	<script>
@@ -21,7 +21,7 @@
 			,form = layui.form;
 		});
 	</script> 
-	<style>
+	<style type="text/css">
 	#callboard {    width: 150px;
 		overflow: hidden;
 		display: inline-block;
@@ -58,7 +58,7 @@
 					</ul>
 				</div>
 				<span class="barr fr">
-					<b >ikscher(891435)</b> <b style="background:url(/images/score/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
+					<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
 					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
 
@@ -80,7 +80,7 @@
 							<div class="dropdown-main">
 								<div class="dropdown-content">
 									<a href="/Hd/Qiangka">抢卡风暴</a>
-									<a href="/Game/Egg">砸金蛋</a>
+									<a href="/Prize/Shatter">砸金蛋</a>
 									<a href="/Hd/Round">抽奖转盘</a>
 								</div>
 							</div>
@@ -117,7 +117,7 @@
 					}
 					return;
 				}
-				if(pNall.toLowerCase().indexOf("egg") > 0){
+				if(pNall.toLowerCase().indexOf("shatter") > 0){
 					if(i==4){
 						$(this).attr('class','select');
 						$(".dropdown-content a:eq(1)").addClass("select");

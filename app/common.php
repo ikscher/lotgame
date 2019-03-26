@@ -57,7 +57,6 @@ function SendMail($address)
     $mail->CharSet='UTF-8';         
     // 添加收件人地址，可以多次使用来添加多个收件人
     $mail->AddAddress($address); 
-
     $data = \think\Db::name('emailconfig')->where('email','email')->find();
             $title = $data['title'];
             $message = $data['content'];
@@ -206,13 +205,38 @@ function curl_get($url) {
     return $res;
 }
 
+
+
+
 /**
-*  返回用户工单的状态
-*  @param  1，2，3，4，5
-*  @return 1待处理，2正在处理，3待用户反馈，4已解决，5已取消
-*/
-function getStatus($status){
-    if (empty($status)) return '';
-    $status_arr=array('1'=>'待处理','2'=>'正在处理','3'=>'待用户反馈','4'=>'已解决','5'=>'已取消');
-    return $status_arr[$status];
+ *php 中奖概率算法
+ *
+ //使用方法
+//模拟一个从数据库中读取的 中奖配置  gl 为 中奖的概率 
+//例如array( 'gl' => 10 , 'title' => '一等奖');的中奖概率 = 10 / （10+20+30+40）
+$jp = array();
+$jp[] = array( 'gl' => 10 , 'title' => '一等奖');
+$jp[] = array( 'gl' => 20 , 'title' => '二等奖');
+$jp[] = array( 'gl' => 30 , 'title' => '三等奖');
+$jp[] = array( 'gl' => 40 , 'title' => '未中奖');
+  
+//调用 中奖概率函数 
+//返回中奖 信息数组 例如：array( 'gl' => 10 , 'title' => '一等奖');
+$zj = get_zj( $jp );
+ */
+function random_hits( $jp ,$glname = 'gl'){
+    $sum = 0;
+    foreach($jp as $k =>$v ){
+        $sum += $v[$glname];
+    }
+  
+    $R = rand(1,$sum);//获取随机数
+  
+    foreach( $jp as $k => $v){
+        if( $R <= $v[$glname] ){
+            return $v;
+        }
+        $R = $R - $v[$glname] ;
+    }
+  
 }

@@ -42,5 +42,7 @@ Route::rule('board/index','front/board/index');
 Route::rule('article/index','front/article/index');
 Route::rule('article/detail/:id','front/article/detail');
 Route::rule('prize/shatter','front/prize/shatter');
+Route::rule('user/index','front/user/index');
+Route::rule('user/point','front/user/point');
 
 

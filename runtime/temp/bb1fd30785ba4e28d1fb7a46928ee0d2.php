@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1553526302;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553526502;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1553590905;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553575832;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553477906;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,7 +117,7 @@
 					}
 					return;
 				}
-				if(pNall.toLowerCase().indexOf("egg") > 0){
+				if(pNall.toLowerCase().indexOf("shatter") > 0){
 					if(i==4){
 						$(this).attr('class','select');
 						$(".dropdown-content a:eq(1)").addClass("select");
@@ -241,14 +241,15 @@
 <script type="text/javascript">
 	function eggClick(obj,hei1,hei2) {
 		var _this = obj;
-		$.getJSON("/data.php",function(res){
+		$.getJSON("/user/point",function(res){
+			console.log(res)
 			if(_this.hasClass("curr")){
-				alert("蛋都碎了，别砸了！刷新再来.");
+				layer.msg("蛋都碎了，别砸了！刷新再来.");
 				window.location.href="/Prize/Shatter";
 				return false;
 			}
 			if(res.msg==-2){
-				alert("对不起,您的积分不足");
+				layer.msg("对不起,您的积分不足");
 				return;
 			}
 			_this.children("span").hide();
