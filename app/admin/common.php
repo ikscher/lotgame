@@ -81,8 +81,8 @@ function addlog($operation='')
         // }
         // $data['admin_menu_id'] = empty(\think\Db::name('admin_menu')->where($url)->where('parameter',$string)->value('id')) ? \think\Db::name('admin_menu')->where($url)->value('id') : \think\Db::name('admin_menu')->where($url)->where('parameter',$string)->value('id');
         $data['admin_menu_id'] = \think\Db::name('admin_menu')->where($url)->value('id');
-        $data['sql']=\think\Db::name('admin_menu')->getLastSql();
-        return $data;
+        // $data['sql']=\think\Db::name('admin_menu')->getLastSql();
+        // return $data;
         \think\Db::name('admin_log')->insert($data);
     } else {
         //关闭了日志

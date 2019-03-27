@@ -10,14 +10,32 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\user\model;
+namespace app\agent\model;
 
 use \think\Model;
-class UserGrade extends Model
+class Agent extends Model
 {
-	public function user()
+	public function cate()
     {
-        //关联管理员表
-        return $this->hasMany('user','user_grade_id');
+        //关联分类表
+        return $this->belongsTo('AgentCate');
+    }
+
+    public function user()
+    {
+        //关联用户表
+        return $this->belongsTo('app\front\model\User');
+    }
+
+    public function card()
+    {
+        //关联卡密表
+        return $this->hasMany('app\admin\model\CardPwd','agent_id');
+    }
+
+    public function log()
+    {
+        //关联日志表
+        return $this->hasMany('AgentLog','agent_id');
     }
 }

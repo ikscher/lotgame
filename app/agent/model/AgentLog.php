@@ -10,23 +10,15 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\user\model;
+namespace app\agent\model;
 
 use \think\Model;
-class UserRemark extends Model
+class AgentLog extends Model
 {
-	public function user()
+	
+    public function agent()
     {
-        //关联user表
-        return $this->belongsTo('User');
+        //关联角色表
+        return $this->belongsTo('Agent');
     }
-    
-    public function prize()
-    {
-        //关联user表
-        return $this->belongsTo('app\admin\model\Prize');
-        // return $this->belongsTo('Prize');
-    }
-
-  
 }
