@@ -1,0 +1,233 @@
+{include file="public/header" /}
+<script type="text/javascript" src="__PUBLIC__/jquery/awardRotate.js"></script>
+<script type="text/javascript" src="__PUBLIC__/jquery/ajaxrequest.js"></script>
+
+<script type="text/javascript">
+  var turnplate = {
+    restaraunts: [],
+    outsideRadius: 260, //大转盘外圆的半径
+    textRadius: 155, //大转盘奖品位置距离圆心的距离
+    insideRadius: 83, //大转盘内圆的半径
+    startAngle: 0, //开始角度
+    bRotate: false, //false:停止;ture:旋转
+    rotateFn: function () {
+      $.ajax({ 
+            type: 'GET', 
+            url: '/prize/start?act=sum', 
+            dataType: 'json', 
+            cache: false, 
+            error: function(){ 
+                alert('出错了！'); 
+                return false; 
+            }, 
+            success:function(result){ 
+                var angles = result.angle; //角度 
+                var txt = result.prize; //奖项 
+                var cjcs = result.cjcs;
+                if (angles < 270) {
+                  angles = 270 - angles;
+                } else {
+                  angles = 360 - angles + 270;
+                }           
+                if(cjcs>0){
+                  turnplate.bRotate = !turnplate.bRotate;
+                  $('#wheelcanvas').stopRotate();
+                  $("#wheelcanvas").rotate({ 
+                     duration:8000, //转动时间 
+                     angle: 0, 
+                     animateTo:angles + 1800, //转动角度 
+                     // easing: $.easing.easeOutSine, 
+                     callback: function(){ 
+                        alert('恭喜你，中得'+txt+'');
+                        location.reload();
+                        turnplate.bRotate = !turnplate.bRotate;
+                    } 
+                  }); 
+                }else{
+                  alert("您的抽奖次数已用完，请再次充值！");
+                }
+                
+            } 
+         }); 
+    },
+    /*setText: function (t) {
+      this.Div.innerHTML = t;
+    },*/
+    drawRouletteWheel: function (prize) {
+      this.restaraunts = prize;
+      var num1=360/prize.length;
+      var num = Math.PI/180;
+      var canvas = document.getElementById("wheelcanvas");
+      if (canvas.getContext) {
+        //根据奖品个数计算圆周角度
+        var arc = Math.PI / (turnplate.restaraunts.length / 2);
+        var ctx = canvas.getContext("2d");
+        //在给定矩形内清空一个矩形
+        ctx.clearRect(0, 0, 240, 240);
+        //strokeStyle 属性设置或返回用于笔触的颜色、渐变或模式 
+        ctx.strokeStyle = "#FFBE04";
+        //font 属性设置或返回画布上文本内容的当前字体属性
+        ctx.font = '26px Microsoft YaHei';
+        for (var i = 0; i < turnplate.restaraunts.length; i++) {
+          var angle = turnplate.startAngle + i * arc;
+          if(i%2==0){
+              ctx.fillStyle = "#ffffff";
+          }else{
+              ctx.fillStyle = "#79cbde";
+          }
+          ctx.beginPath();
+          //arc(x,y,r,起始角,结束角,绘制方向) 方法创建弧/曲线（用于创建圆或部分圆） 
+          ctx.arc(260, 260, turnplate.outsideRadius, angle, angle + arc, false);
+          ctx.arc(260, 260, turnplate.insideRadius, angle + arc, angle, true);
+          ctx.stroke();
+          ctx.fill();
+          //锁画布(为了保存之前的画布状态)
+          ctx.save();
+          //----绘制奖品开始----
+          ctx.fillStyle = "#ff2727";
+          var text = turnplate.restaraunts[i];
+
+          var line_height = 17;
+          ctx.translate(260, 260);
+          ctx.rotate((i*num1+40)*num);
+          ctx.fillText(text, 110, 0);
+          ctx.restore();
+        }
+      }
+    }
+  };
+  window.onload=function(){
+    $.ajax({
+          type: "POST",
+          url: "/prize/start",
+          dataType: 'json', 
+          cache: false,
+          success: function(result){
+            var prize=[];
+            for(var i=0;i<result.sum.length;i++){
+                    prize.push(result.sum[i].prize);
+                 }
+        turnplate.drawRouletteWheel(prize);
+      }
+      });
+  };
+
+  </script>
+ </head>
+ <body style="min-width: 1310px;">
+
+<div class="cjbg">
+  <div class="w1000" style="width: 1310px;">
+      <div class="turntable-bg">
+        <div class="rotate" >
+          <img src="__IMAGE__/turntable-bg-shadow.png" class="turntable-bg-shadow">
+        <canvas class="item" id="wheelcanvas" width="520px" height="520px"></canvas>
+        <img class="pointer" src="__IMAGE__/pointer-pc.png?v=1.2" alt="pointer" id="pointer" onclick='turnplate.rotateFn()'/>
+         </div>
+      </div>
+      <div class="cjstate" >
+          <h5 class="cjstate_tit">活动说明：</h5>
+          <div class="cjstate_con">
+            <div><font color="#ff0000" size="4"><b>活动期间大转盘福利！充值200元即可抽奖一次！快去抽！</b></font></div>
+<div><font color="#ff0000" size="4"><b>最高能获得888000金币，以及彩豆大礼包一份！</b>&lt
+          </div>
+          <p>活动时间：2018-10-01-2019-05-07</p>
+            <p>您剩余的抽奖次数：<span>0</span>次</p>
+      </div>
+  </div>
+  <div class="cjbg-bottom"></div>
+</div>  
+
+<style>
+.cjbg{
+    background: url(__IMAGE__/cjbg.jpg?v=1.2) no-repeat top center;
+    width: 100%;
+    padding-top: 660px;
+    height: 1575px;
+    position: relative;
+    box-sizing: border-box;
+}
+.cjbg-bottom{
+  width: 100%;
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  background: url('__IMAGE__/cjbg-bottom.png') no-repeat center center;
+  z-index: 999;
+  height: 100px;
+}
+.turntable-bg {
+  width: 619px;
+  height: 768px;
+  float: left;
+  display:block;
+}
+.turntable-bg-shadow{
+  width: 520px;
+  height: 520px;
+  position: absolute;
+  top: 140px;
+  left: 65px;
+  z-index: 3;
+}
+.turntable-bg .rotate {
+  width: 631px;
+  height: 788px;
+  position: relative;
+  background: url('__IMAGE__/turntable-bg-pc.png?v=1.1') no-repeat center center;
+  background-size: 100% 100%;
+}
+.turntable-bg .rotate .item{
+    position: absolute;
+    top: 140px;
+    left: 65px;
+    z-index: 1;
+}
+
+.turntable-bg .rotate .pointer {
+  width: 224px;
+  height: 265px;
+  position: absolute;
+  left: 50%;
+  top: 250px;
+  margin-left: -103px;
+  z-index: 8;
+}
+.cjstate{
+    background-color: #fff;
+    width: 600px;
+    border-radius: 10px;
+    padding: 20px 34px;
+    float: right;
+    height: 350px;
+    text-align: left;
+    box-sizing: border-box;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+    margin-top: 250px;
+}
+.cjstate h5{
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 50px;
+    display: inline-block;
+    width: 475px;
+    color: #ff2727;
+    border-bottom: 1px solid #ff2727;
+}
+.cjstate .cjstate_con{
+  font-size: 22px;
+  line-height: 37px;
+  color: #ff2727;
+  margin: 10px 0 20px;
+}
+.cjstate  p{
+    display: inline-block;
+    width: 100%;
+    font-size: 22px;
+    color: #656565;
+    line-height: 37px;
+}
+.cjstate p span{color: #ff2727;}
+
+</style>
+{include file="public/footer" /}
