@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<script src="__PUBLIC__/layui/layui.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	{include file="public/left" /}
+
+	<div class="right">
+		<h1>收卡记录</h1>
+		<hr>
+		<div style="margin:40px 0 0 0;">
+			<form class="layui-form" action="" id="agent">
+				<div class="layui-form-item" style="display:inline;">
+				    <label class="layui-form-label" style="width: 200px;">备注(支持模糊查找)</label>
+				    <div class="layui-input-inline" style="width: 300px;">
+				      <input type="text" name="keyword" autocomplete="off" class="layui-input">
+				    </div>
+				
+		            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="formAgent">查询</button>
+		        </div>
+	        </form>
+        </div>
+	    
+		<table class="layui-table">
+		  <colgroup>
+		    <col width="150">
+		    <col width="150">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		  </colgroup>
+		  <thead>
+		    <tr>
+		      <th>记录号</th>
+		      <th>类型</th>
+		      <th>涉及金额</th>
+		      <th>余额</th>
+		      <th>时间</th>
+		      <th>IP</th>
+		      <th>备注</th>
+		    </tr> 
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td>贤心</td>
+		      <td>2016-11-29</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		    </tr>
+		    
+		  </tbody>
+        </table>
+	</div>
+</body>
+
+</html>

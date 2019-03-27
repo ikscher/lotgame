@@ -159,7 +159,8 @@ return [
         '__CSS__'      => '/static/front/css',
         '__PUBLIC__'   => '/static/public',
         '__IMAGE__'    => '/static/front/image',
-        '__JS__'       => '/static/front/js'
+        '__JS__'       => '/static/front/js',
+        '__AGENT__'    =>'/static/agent/'
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',

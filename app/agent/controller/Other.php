@@ -5,16 +5,20 @@ use think\Config;
 use app\admin\model\Agent as agentModel;
 use app\admin\model\AgentCate as agentCateModel;
 use app\admin\model\AgentLog as agentLogModel;
+use app\admin\model\CardCate as cardcateModel;
+
 class Other extends Controller
 {   
 	private $agentModel;
     private $agentCateModel;
     private $agentLogModel;
+    private $cardcateModel;
 	public function _initialize()
     {
         $this->agentModel = new agentModel();
         $this->agentCateModel = new agentCateModel();
         $this->agentLogModel = new agentLogModel();
+        $this->cardcateModel = new CardCateModel();
     }
 
     //代理信息
@@ -26,15 +30,57 @@ class Other extends Controller
     	return $this->fetch();
     }
 
-    public function detail(){
-    	$post = $this->request->param();
-    	if(!empty($post['id'])){
-    		$article=$this->articleModel->where('id',$post['id'])->find();
-    		$this->assign('article',$article);
-    	}else{
-            return $this->error('id不正确');
-    	}
-    	$this->assign('title',$this->site_name);
-    	return $this->fetch();
+    //业务统计
+    public function bussiness()
+    {   
+        $map['id']=10000;
+        $agent=$this->agentModel->where($map)->find();
+        $this->assign('agetn',$agent);
+        return $this->fetch();
     }
+
+    //排行榜
+    public function rank()
+    {   
+        $map['id']=10000;
+        $agent=$this->agentModel->where($map)->find();
+        $this->assign('agetn',$agent);
+        return $this->fetch();
+    }
+
+    //资金互转
+    public function transfer()
+    {   
+        $map['id']=10000;
+        $agent=$this->agentModel->where($map)->find();
+        $this->assign('agetn',$agent);
+        return $this->fetch();
+    }
+
+    //库存管理（全部）
+    public function allstock()
+    {   
+        $cates_= $this->cardcateModel->select();
+        $cates=collection($cates_)->toArray();
+        $this->assign('cates',$cates);
+        return $this->fetch();
+    }
+
+    //库存管理（未售）
+    public function unsalestock()
+    {   
+        $cates_= $this->cardcateModel->select();
+        $cates=collection($cates_)->toArray();
+        $this->assign('cates',$cates);
+        return $this->fetch();
+    }
+
+    //代充撤回
+    public function cancel()
+    {   
+        
+        return $this->fetch();
+    }
+
+    
 }

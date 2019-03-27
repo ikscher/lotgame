@@ -4,10 +4,116 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+
 	<script src="__PUBLIC__/layui/layui.js"></script>
 	<title>Document</title>
 </head>
 <body>
 	{include file="public/left" /}
+
+	<div class="right">
+		<h1>代理信息</h1>
+		<hr>
+        
+		<div class="layui-form-item">
+		    <label class="layui-form-label">代理ID：</label>
+		    <div class="layui-input-inline">
+		      <input type="text" name="uid" required  lay-verify="required|number" placeholder="请输入UID" autocomplete="off" class="layui-input">
+		    </div>
+		    <!-- <div class="layui-form-mid layui-word-aux"><a href="">查询</a></div> -->
+		</div>
+
+		<div class="layui-form-item">
+		    <label class="layui-form-label">代理名称：</label>
+		    <div class="layui-input-inline">
+		      <input type="text" name="uid"  disabled   autocomplete="off" class="layui-input">
+		    </div>
+		</div>
+
+		<div class="layui-form-item">
+		    <label class="layui-form-label" >账户余额：</label>
+		    <div class="layui-input-inline">
+		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		    </div>
+		</div>
+
+		<div class="layui-form-item">
+		    <label class="layui-form-label" >制卡折扣：</label>
+		    <div class="layui-input-inline">
+		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		    </div>
+		</div>
+
+		<div class="layui-form-item">
+		    <label class="layui-form-label" >收卡额外奖励比例：</label>
+		    <div class="layui-input-inline">
+		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		    </div>
+		</div>
+
+		<div class="layui-form-item">
+		    <label class="layui-form-label" >铺货金额：</label>
+		    <div class="layui-input-inline">
+		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		    </div>
+		</div>
+
+		<div class="layui-form-item">
+		    <label class="layui-form-label" >可提现金额：</label>
+		    <div class="layui-input-inline">
+		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		    </div>
+		</div>
+
+
+		<!-- <div class="result-box">
+			<div class="agent-info">
+				<img src="/413768708825.png">
+				<p>表妹点卡></p>
+				<a href="shoucardweb.php">进入收卡</a>
+			</div>
+			<div class="agent-xc">
+				<form action="?act=save" method='post'>
+					<label>宣传语：</label><input type="text" name="xcy" value=""/>
+					<button type="submit">保 存</button>
+				</form>
+			</div>
+			<div class="agent-con">
+				<div class="agent-con-div">
+					<div class="con1">
+						<span>158</span>
+						<p>代理ID</p>
+					</div>
+					<div class="con1" style="margin-top: 70px">
+						<span>¥ 8,849.56</span>
+						<p>账户余额</p>
+					</div>
+				</div>
+				<div class="line"></div>
+				<div class="agent-con-div">
+					<div class="con1">
+						<span>0.98</span>
+						<p>制卡折扣</p>
+					</div>
+					<div class="con1" style="margin-top: 70px">
+						<span>0%</span>
+						<p>收卡额外奖励比例</p>
+					</div>
+				</div>
+				<div class="line"></div>
+				<div class="agent-con-div">
+					<div class="con1">
+						<span>¥ 10,000</span>
+						<p>铺货金额</p>
+					</div>
+					<div class="con1" style="margin-top: 70px">
+						<span>¥ -1,150.44</span>
+						<p>可提现余额</p>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+	</div>
 </body>
 </html>

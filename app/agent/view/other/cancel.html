@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+
+	<script src="__PUBLIC__/layui/layui.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	{include file="public/left" /}
+
+	<div class="right">
+		<h1>代充撤回</h1>
+		<hr>
+		<div style="margin:40px 0 0 0;">
+			<form class="layui-form" action="" id="agent">
+				<div class="layui-form-item" >
+				    <label class="layui-form-label" style="width: 200px;">用户UID</label>
+				    <div class="layui-input-inline" style="width: 300px;">
+				      <input type="text" name="keyword" autocomplete="off" class="layui-input">
+				    </div>
+				    <input type="hidden" name="act" value="post">
+                    <input type="hidden" name="sub" value="recharge">
+                    <input type="hidden" name="uid" value="">
+
+                    <input name="safecode" style="display:none" type="text" value=""/>
+		            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="formAgent">提交</button>
+		        </div>
+	        </form>
+        </div>
+        <!--卡密充值的不支持，只有 在代充记录(代充金币）里面的 才可以撤回-->
+        
+        <!--  <div class="state">*说明：可撤回时间为5分钟，不支持卡密充值撤回，如有需要请联系管理员。</div>
+	        <form id="form1" name="form1" method="post" action="?act=post">
+	            <table class="dc-table">
+	                
+	                <tr>
+	                    <td class="td1">用户UID：</td>
+	                    <td>
+	                        <input type="text" value="" name="userid" class="user-input">
+	                        <input type="hidden" name="act" value="post">
+	                        <input type="hidden" name="sub" value="recharge">
+	                        <input type="hidden" name="uid" value="">
+
+	                        <input name="safecode" style="display:none" type="text" value=""/>
+	                        <input type="submit" name="hqinfo" class="cxyh"  value="查询用户">
+	                    </td>
+	                </tr>
+	            
+	                            </table>
+	        </form>
+	    </div> -->
+
+
+	</div>
+</body>
+</html>

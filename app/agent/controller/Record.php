@@ -17,13 +17,49 @@ class Record extends Controller
         $this->agentLogModel = new agentLogModel();
     }
 
-    //代理信息
-    public function info()
+    //全部记录
+    public function all()
     {   
         $map['id']=10000;
     	$agent=$this->agentModel->where($map)->find();
     	$this->assign('agetn',$agent);
     	return $this->fetch();
+    }
+
+    //制卡记录
+    public function generate()
+    {   
+        $map['id']=10000;
+        $agent=$this->agentModel->where($map)->find();
+        $this->assign('agetn',$agent);
+        return $this->fetch();
+    }
+
+    //售卡记录
+    public function sale()
+    {   
+        $map['id']=10000;
+        $agent=$this->agentModel->where($map)->find();
+        $this->assign('agetn',$agent);
+        return $this->fetch();
+    }
+
+    //收卡记录
+    public function retract()
+    {   
+        $map['id']=10000;
+        $agent=$this->agentModel->where($map)->find();
+        $this->assign('agetn',$agent);
+        return $this->fetch();
+    }
+
+    //代充记录
+    public function recharge()
+    {   
+        $map['id']=10000;
+        $agent=$this->agentModel->where($map)->find();
+        $this->assign('agetn',$agent);
+        return $this->fetch();
     }
 
     public function detail(){

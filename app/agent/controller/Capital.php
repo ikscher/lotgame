@@ -18,7 +18,7 @@ class Capital extends Controller
     }
 
     //代理信息
-    public function info()
+    public function withdraw()
     {   
         $map['id']=10000;
     	$agent=$this->agentModel->where($map)->find();
@@ -26,15 +26,5 @@ class Capital extends Controller
     	return $this->fetch();
     }
 
-    public function detail(){
-    	$post = $this->request->param();
-    	if(!empty($post['id'])){
-    		$article=$this->articleModel->where('id',$post['id'])->find();
-    		$this->assign('article',$article);
-    	}else{
-            return $this->error('id不正确');
-    	}
-    	$this->assign('title',$this->site_name);
-    	return $this->fetch();
-    }
+   
 }
