@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"D:\mywork\lotgame\public/../app/admin\view\userquestion\index.html";i:1553088615;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"D:\mywork\lotgame\public/../app/admin\view\userquestion\index.html";i:1553661623;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +32,7 @@
       </ul>
     </div> 
       <form class="layui-form serch" action="<?php echo url('admin/userquestion/index'); ?>" method="post">
-        <div class="layui-form-item" style="float: left;">
+        <!-- <div class="layui-form-item" style="float: left;"> -->
           <div class="layui-input-inline">
             <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入关键词" class="layui-input layui-btn-sm">
           </div>
@@ -58,7 +58,7 @@
             </div>
           </div>
           <button class="layui-btn layui-btn-primary layui-btn-sm" lay-submit="" lay-filter="serch">查询</button>
-        </div>
+        <!-- </div> -->
       </form> 
     <table class="layui-table" lay-size="sm">
       <colgroup>

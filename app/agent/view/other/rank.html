@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<script src="__PUBLIC__/layui/layui.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	{include file="public/left" /}
+
+	<div class="right">
+		<h1>排行榜</h1>
+	    
+		<table class="layui-table">
+		  <colgroup>
+		    <col width="150">
+		    <col width="150">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		  </colgroup>
+		  <thead>
+		    <tr>
+		      <th>排行名次</th>
+		      <th>日排行</th>
+		      <th>日奖励</th>
+		      <th>周排行</th>
+		      <th>周奖励</th>
+		      <th>月排行</th>
+		      <th>月奖励</th>
+		    </tr> 
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td>贤心</td>
+		      <td>2016-11-29</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		    </tr>
+		    
+		  </tbody>
+        </table>
+	</div>
+</body>
+<script type="text/javascript">
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	  //执行一个laydate实例
+	  laydate.render({
+	    elem: '#begin_time' //指定元素
+	  });
+
+	  laydate.render({
+	    elem: '#end_time' //指定元素
+	  });
+	});
+</script>
+</html>

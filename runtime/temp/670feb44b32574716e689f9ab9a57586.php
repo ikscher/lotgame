@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\article\index.html";i:1553522336;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553524258;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553505300;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\article\index.html";i:1553563475;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553674375;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553649154;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 	<link href="/static/front/css/base.css" type="text/css" rel="stylesheet" />
 	<?php endif; ?>
     <link href="/static/front/css/common.css" type="text/css" rel="stylesheet" />
-	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script src="/static/public/jquery/jquery.min.js"></script>
 	<script src="/static/public/layui/layui.js"></script>
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 	<title><?php echo $title; ?></title>
@@ -58,7 +58,7 @@
 					</ul>
 				</div>
 				<span class="barr fr">
-					<b >ikscher(891435)</b> <b style="background:url(/images/score/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
+					<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
 					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
 
@@ -89,6 +89,7 @@
 					<li><a href="/Game/top" class="nli">排行榜</a></li>
 					<li><a href="/User/Index" class="nli">会员中心</a></li>
 					<li><a href="/js/tianmao28.html" class="nli">了解彩豆</a></li>
+					<li><a href="/agent/index" class="nli">合作商家</a></li>
 					<!-- <li><a style="color:red" href="/appdownload.php" class="nli">APP下载</a></li> -->
 				</ul>
 			</div>
@@ -117,7 +118,7 @@
 					}
 					return;
 				}
-				if(pNall.toLowerCase().indexOf("egg") > 0){
+				if(pNall.toLowerCase().indexOf("shatter") > 0){
 					if(i==4){
 						$(this).attr('class','select');
 						$(".dropdown-content a:eq(1)").addClass("select");
@@ -420,7 +421,7 @@
 	function reflushPoints(){
 		var html = "";
 		$.ajax({
-			url:"/Ajax_points.php",
+			// url:"/Ajax_points.php",
 			dataType:"json",
 			type:"get",
 			success: function (rs) {

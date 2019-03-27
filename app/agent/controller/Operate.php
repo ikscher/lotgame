@@ -5,16 +5,20 @@ use think\Config;
 use app\admin\model\Agent as agentModel;
 use app\admin\model\AgentCate as agentCateModel;
 use app\admin\model\AgentLog as agentLogModel;
+use app\admin\model\CardCate as cardcateModel;
+
 class Operate extends Controller
 {   
 	private $agentModel;
     private $agentCateModel;
     private $agentLogModel;
+    private $cardcateModel;
 	public function _initialize()
     {
         $this->agentModel = new agentModel();
         $this->agentCateModel = new agentCateModel();
         $this->agentLogModel = new agentLogModel();
+        $this->cardcateModel = new cardcateModel();
     }
 
     
@@ -33,19 +37,11 @@ class Operate extends Controller
 
     //金币代充
     public function gencard()
-    {
+    {   
+        $cates_= $this->cardcateModel->select();
+        $cates=collection($cates_)->toArray();
+        $this->assign('cates',$cates);
         return $this->fetch();
     }
 
-    public function detail(){
-    	$post = $this->request->param();
-    	if(!empty($post['id'])){
-    		$article=$this->articleModel->where('id',$post['id'])->find();
-    		$this->assign('article',$article);
-    	}else{
-            return $this->error('id不正确');
-    	}
-    	$this->assign('title',$this->site_name);
-    	return $this->fetch();
-    }
 }

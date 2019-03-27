@@ -5,35 +5,42 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
 	<script src="__PUBLIC__/layui/layui.js"></script>
-	<title>卡密收回</title>
+	<title>生成卡密</title>
 </head>
 <body>
 	{include file="public/left" /}
     <div class="right">
-	<form class="layui-form" action="">
-	  <div class="layui-form-item">
-	    <label class="layui-form-label">充值卡类型</label>
-	    <div class="layui-input-inline">
-	      <select></select>
-	    </div>
-	  </div>
+    	<h1>生成卡密</h1>
+    	<hr>
+		<form class="layui-form" action="">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">卡类型</label>
+		    <div class="layui-input-inline">
+		      <select name="card_cate_id"  lay-search lay-filter="catesel">
+                <option  value="">全部卡</option>
+                {foreach name="cates" item="vo" }
+                <option value="{$vo['id']}" {notempty name="$card_cate_id"}{eq name="$card_cate_id" value="$vo['id']"}selected{/eq}{/notempty}>{$vo['name']}</option>
+                {/foreach}
+              </select>
+		    </div>
+		  </div>
 
-	  <div class="layui-form-item">
-	    <label class="layui-form-label">生成张数</label>
-	    <div class="layui-input-block">
-	      <input type="text" name="title" disabled  lay-verify="required" placeholder="请输入生成张数" autocomplete="off" class="layui-input">
-	    </div>
-	  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">生成张数</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="title"   required lay-verify="required|number" placeholder="请输入生成张数" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
 
-	  
+		  
 
-	  <div class="layui-form-item">
-	    <div class="layui-input-block">
-	      <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
-	      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-	    </div>
-	  </div>
-	</form>
+		  <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      <button class="layui-btn layui-btn-primary" lay-submit lay-filter="formDemo">提交</button>
+		      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+		    </div>
+		  </div>
+		</form>
     </div>
 </body>
 </html>

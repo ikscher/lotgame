@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"D:\mywork\lotgame\public/../app/front\view\article\detail.html";i:1553522559;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:62:"D:\mywork\lotgame\public/../app/front\view\article\detail.html";i:1553563475;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>

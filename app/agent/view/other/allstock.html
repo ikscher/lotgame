@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<script src="__PUBLIC__/layui/layui.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	{include file="public/left" /}
+
+	<div class="right">
+		<h1>库存管理</h1>
+		<hr>
+		<form class="layui-form serch" action="" method="post">
+			<div class="layui-form-item">
+ 
+			  <div class="layui-inline">
+			    <label class="layui-form-label" style="width: 150px;">使用者id/卡密/卡号</label>
+			    <div class="layui-input-inline" style="width: 200px;">
+			      <input type="text" name="price_min"  autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+			  
+			  <div class="layui-inline">
+			    <label class="layui-form-label">类型</label>
+			    <div class="layui-input-inline">
+			      <select name="card_cate_id"  lay-search lay-filter="catesel">
+	                <option  value="">全部卡</option>
+	                {foreach name="cates" item="vo" }
+	                <option value="{$vo['id']}" {notempty name="$card_cate_id"}{eq name="$card_cate_id" value="$vo['id']"}selected{/eq}{/notempty}>{$vo['name']}</option>
+	                {/foreach}
+	              </select>
+
+			    </div>
+			  </div>
+
+			  <div class="layui-inline">
+			    <div class="layui-input-inline" style="width: 100px;">
+			       <button class="layui-btn layui-btn-primary" lay-submit lay-filter="formAgent">查询</button>
+			    </div>
+			  </div>
+			</div>
+		</form>
+	    
+		<table class="layui-table">
+		  <colgroup>
+		    <col width="150">
+		    <col width="150">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		  </colgroup>
+		  <thead>
+		    <tr>
+		      <th>日期</th>
+		      <th>售出</th>
+		      <th>代充</th>
+		      <th>回收</th>
+		      <th>收卡奖励</th>
+		      <th>利润</th>
+		    </tr> 
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td>贤心</td>
+		      <td>2016-11-29</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		      <td>人生就像是一场修行</td>
+		    </tr>
+		    
+		  </tbody>
+        </table>
+	</div>
+</body>
+<script type="text/javascript">
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	});
+</script>
+</html>

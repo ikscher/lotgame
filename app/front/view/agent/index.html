@@ -1,0 +1,16 @@
+{include file="public/header" /}
+<div class="agent">
+    <div class="top">
+        <h1>合作商家列表</h1>
+    </div>
+
+	<div class="xiaji">
+		{foreach name="agents" item="vo"}
+	   	<div class="hdq">
+			<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$vo.qq}&site=qq&menu=yes"><img  {notempty name="$vo.thumb"}src="{$vo.thumb|geturl}"{/notempty} style="width:280px;height:180px">
+			
+		</div>
+	    {/foreach}
+    </div>
+</div>
+{include file="public/footer" /}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<!-- <link rel="stylesheet" href="__AGENT__/css/common.css"> -->
+	<!-- <link rel="stylesheet" href="__AGENT__/css/main.css"> -->
+	<script src="__PUBLIC__/layui/layui.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	{include file="public/left" /}
+
+	<div class="right">
+		<h1>资金提现</h1>
+		<hr>
+		<div style="margin:40px 0 0 0;">
+			<form class="layui-form" action="" id="agent">
+				<div class="layui-form-item">
+					<label class="layui-form-label">可提现金额</label>
+					<div class="layui-input-block">
+						<input type="text" name="title" disabled value="¥ 99,966,808"  autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label class="layui-form-label">提现金额</label>
+					<div class="layui-input-block">
+						<input type="text" name="title" required  lay-verify="required|number" placeholder="请输入" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+				<input type="hidden" name="cxinfo" value="cx">
+				<input type="hidden" name="act" value="post">
+
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn layui-btn-primary" lay-submit lay-filter="formAgent">申请提现</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+        <table class="layui-table">
+		  <colgroup>
+		    <col width="250">
+		    <col width="200">
+		    <col width="200">
+		    <col>
+		  </colgroup>
+		  <thead>
+		    <tr>
+		      <th>时间</th>
+			  <th>提现金额</th>
+			  <th>处理状态</th>
+			  <th>操作</th>
+		    </tr> 
+		  </thead>
+		  <tbody>
+		    <tr>
+						<td>2018-10-14 20:13:17</td>
+						<td>2300.00</td>
+						<td>
+							<span style="color:#1ab144">提现成功</span>
+						</td>
+						<td>
+							-
+						</td>
+					</tr>
+		  </tbody>
+		</table>
+
+	
+
+	</div>
+<script tyep="text/javascript">
+	layui.use(['layer', 'form','jquery'], function(){
+	  var layer = layui.layer, form = layui.form, $=layui.jquery;
+	  
+
+	  //监听提交
+	  form.on('submit(formAgent)', function(data){
+	    // layer.msg(JSON.stringify(data.field));
+	    if(layer.confirm('确定要提现么？')){ 
+           
+           layer.close();
+	    }
+	    return false;
+	  });
+	});
+</script> 
+</body>
+</html>

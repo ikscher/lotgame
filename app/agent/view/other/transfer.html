@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<!-- <link rel="stylesheet" href="__AGENT__/css/common.css">
+	<link rel="stylesheet" href="__AGENT__/css/main.css"> -->
+	<script src="__PUBLIC__/layui/layui.js"></script>
+	<title>资金互转</title>
+</head>
+<body>
+	{include file="public/left" /}
+
+	<div class="right">
+		<h1>资金互转</h1>
+		<hr>
+
+		<form class="layui-form" action="">
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label">代理ID：</label>
+			    <div class="layui-input-inline">
+			      <input type="text" name="uid" required  lay-verify="required|number" placeholder="请输入UID" autocomplete="off" class="layui-input">
+			    </div>
+			    <div class="layui-form-mid layui-word-aux"><a href="">查询</a></div>
+			</div>
+
+			<div class="layui-form-item">
+			    <label class="layui-form-label">代理名称：</label>
+			    <div class="layui-input-inline">
+			      <input type="text" name="uid"  disabled   autocomplete="off" class="layui-input">
+			    </div>
+			</div>
+
+			<div class="layui-form-item">
+			    <label class="layui-form-label" >最多可转金额：</label>
+			    <div class="layui-input-inline">
+			      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+			    </div>
+			</div>
+
+			<div class="layui-form-item">
+			    <label class="layui-form-label">转账金额：</label>
+			    <div class="layui-input-inline">
+			      <input type="text" name="uid" required  lay-verify="required|number" placeholder="请输入" autocomplete="off" class="layui-input">
+			    </div>
+			</div>
+
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn layui-btn-primary" lay-submit lay-filter="formDemo">确认转账</button>
+			    </div>
+			</div>
+			<input type="hidden" name="cxinfo" value="cx">
+			<input type="hidden" name="act" value="post">
+        </form>
+
+	</div>
+</body>
+</html>

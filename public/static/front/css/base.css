@@ -809,7 +809,7 @@ em.ncnum20, .result .num20,.popup-body .table_list td label.num20 {
 .mybet span{line-height: 35px;
     color: #F63;}
 
-.agent{ width:910px;min-height:900px;margin-top: 20px;}
+.agent{ width:910px;min-height:900px;margin-top: 20px;margin:0 auto;}
 
 .usermain{width:1200px;margin:25px auto;margin-top:0px;position:relative;}
   .col-left{width: 225px;
