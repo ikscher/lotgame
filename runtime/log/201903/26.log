@@ -30948,3 +30948,155 @@
 [ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
 [ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.014001s ]
 [ sql ] [ SQL ] SELECT * FROM `hov_board` LIMIT 5 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-26T23:22:37+08:00 ] 192.168.1.101 GET test.lotgame.com/
+[运行时间：0.128007s] [吞吐率：7.81req/s] [内存消耗：2,975.01kb] [文件加载：52]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'index',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=mscatcrg8ncc1268qeoun5asu0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Index->index[ D:\mywork\lotgame\app\front\controller\Index.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\index\index.html [ array (
+  0 => 'controller',
+  1 => 'boards',
+  2 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.026001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.017000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` LIMIT 5 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2019-03-26T23:22:47+08:00 ] 192.168.1.101 GET test.lotgame.com/
+[运行时间：0.110006s] [吞吐率：9.09req/s] [内存消耗：2,975.01kb] [文件加载：52]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'index',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=mscatcrg8ncc1268qeoun5asu0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Index->index[ D:\mywork\lotgame\app\front\controller\Index.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\index\index.html [ array (
+  0 => 'controller',
+  1 => 'boards',
+  2 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.015001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` LIMIT 5 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-26T23:22:57+08:00 ] 192.168.1.101 GET test.lotgame.com/
+[运行时间：0.135008s] [吞吐率：7.41req/s] [内存消耗：2,975.01kb] [文件加载：52]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'index',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=mscatcrg8ncc1268qeoun5asu0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Index->index[ D:\mywork\lotgame\app\front\controller\Index.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\index\index.html [ array (
+  0 => 'controller',
+  1 => 'boards',
+  2 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.019001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.016001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` LIMIT 5 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-03-26T23:23:07+08:00 ] 192.168.1.101 GET test.lotgame.com/
+[运行时间：0.151009s] [吞吐率：6.62req/s] [内存消耗：2,975.01kb] [文件加载：52]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'index',
+    2 => 'index',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=mscatcrg8ncc1268qeoun5asu0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\Index->index[ D:\mywork\lotgame\app\front\controller\Index.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\index\index.html [ array (
+  0 => 'controller',
+  1 => 'boards',
+  2 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.028002s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.017001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` LIMIT 5 [ RunTime:0.002000s ]
