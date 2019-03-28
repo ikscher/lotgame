@@ -1,5 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553506839;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553690310;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553609915;}*/ ?>
-
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\prize\draw.html";i:1553694124;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553692502;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553609915;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +72,7 @@
 				<ul class="nav-ul">
 					<li class="select"><a href="/" class="nli">首页</a></li>
 					<li><a href="/Game/Index" class="nli">游戏中心</a></li>
-					<li><a href="/Prize/Center" class="nli">兑换商城</a></li>
+					<li><a href="/Shop/Center" class="nli">兑换商城</a></li>
 					<li><a href="/Article/Index" class="nli">活动专场</a></li>
 					<div class="dropdown fl">
 						<li>
@@ -205,341 +204,237 @@
 			}(window));
 		setTimeout(window.autoAnimation, 5000);
 	</script>
-<link href="/static/front/css/style.css" type="text/css" rel="stylesheet" />
-<!--[if lt IE 7]>
-	<script src="/static/front/js/oldbowers.js" type="text/javascript"></script>
-<![endif]-->
-<script src="http://static.geetest.com/static/tools/gt.js"></script>
-<script src="/static/front/js/jquery.showLoading.min.js"></script>
-<script type="text/javascript" src="/static/front/js/jeeslide.js"></script>
-<script type="text/javascript" src="/static/front/js/login.js"></script>
+<script type="text/javascript" src="/static/public/jquery/awardRotate.js"></script>
+<script type="text/javascript" src="/static/public/jquery/ajaxrequest.js"></script>
 
 <script type="text/javascript">
-	function setCookie(name,value) 
-	{ 
-		var Days = 30; 
-		var exp = new Date(); 
-		exp.setTime(exp.getTime() + Days*24*60*60*1000); 
-		document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString(); 
-	}
-</script>
+  var turnplate = {
+    restaraunts: [],
+    outsideRadius: 260, //大转盘外圆的半径
+    textRadius: 155, //大转盘奖品位置距离圆心的距离
+    insideRadius: 83, //大转盘内圆的半径
+    startAngle: 0, //开始角度
+    bRotate: false, //false:停止;ture:旋转
+    rotateFn: function () {
+      $.ajax({ 
+            type: 'GET', 
+            url: '/prize/start', 
+            dataType: 'json', 
+            cache: false, 
+            error: function(){ 
+                alert('出错了！'); 
+                return false; 
+            }, 
+            success:function(result){ 
+                var angles = result.angle; //角度 
+                var txt = result.prize; //奖项 
+                var cjcs = result.cjcs;
+                if (angles < 270) {
+            angles = 270 - angles;
+          } else {
+            angles = 360 - angles + 270;
+          }           
+                if(cjcs>0){
+                  turnplate.bRotate = !turnplate.bRotate;
+                  $('#wheelcanvas').stopRotate();
+                  $("#wheelcanvas").rotate({ 
+                     duration:8000, //转动时间 
+                     angle: 0, 
+                     animateTo:angles + 1800, //转动角度 
+                     // easing: $.easing.easeOutSine, 
+                     callback: function(){ 
+                        alert('恭喜你，中得'+txt+'');
+                        location.reload();
+                        turnplate.bRotate = !turnplate.bRotate;
+                    } 
+                  }); 
+                }else{
+                  alert("您的抽奖次数已用完，请再次充值！");
+                }
+                
+            } 
+         }); 
+    },
+    /*setText: function (t) {
+      this.Div.innerHTML = t;
+    },*/
+    drawRouletteWheel: function (prize) {
+      this.restaraunts = prize;
+      var num1=360/prize.length;
+      var num = Math.PI/180;
+      var canvas = document.getElementById("wheelcanvas");
+      if (canvas.getContext) {
+        //根据奖品个数计算圆周角度
+        var arc = Math.PI / (turnplate.restaraunts.length / 2);
+        var ctx = canvas.getContext("2d");
+        //在给定矩形内清空一个矩形
+        ctx.clearRect(0, 0, 240, 240);
+        //strokeStyle 属性设置或返回用于笔触的颜色、渐变或模式 
+        ctx.strokeStyle = "#FFBE04";
+        //font 属性设置或返回画布上文本内容的当前字体属性
+        ctx.font = '26px Microsoft YaHei';
+        for (var i = 0; i < turnplate.restaraunts.length; i++) {
+          var angle = turnplate.startAngle + i * arc;
+          if(i%2==0){
+              ctx.fillStyle = "#ffffff";
+          }else{
+              ctx.fillStyle = "#79cbde";
+          }
+          ctx.beginPath();
+          //arc(x,y,r,起始角,结束角,绘制方向) 方法创建弧/曲线（用于创建圆或部分圆） 
+          ctx.arc(260, 260, turnplate.outsideRadius, angle, angle + arc, false);
+          ctx.arc(260, 260, turnplate.insideRadius, angle + arc, angle, true);
+          ctx.stroke();
+          ctx.fill();
+          //锁画布(为了保存之前的画布状态)
+          ctx.save();
+          //----绘制奖品开始----
+          ctx.fillStyle = "#ff2727";
+          var text = turnplate.restaraunts[i];
 
-<div class="banner">
-	<div class="loginbg"></div>
-	<div id="loginbox" class="alogin">
-		<div class="logtit"><strong>登录成功</strong></div>
-		<div style="height:20px;"></div>
-		<div class="logtit" style="font-size:14px;">登录账号：ikscher (891435)</div>
-		<div class="captcha mt10 mb10">
-			<label>账户余额：500 </label>
-		</div>
-		<a href="/User/Index" class="sub mt20">会员中心</a>
-		<a href="/Game/Index" class="sub mt20">游戏中心</a>
+          var line_height = 17;
+          ctx.translate(260, 260);
+          ctx.rotate((i*num1+40)*num);
+          ctx.fillText(text, 110, 0);
+          ctx.restore();
+        }
+      }
+    }
+  };
+  window.onload=function(){
+    $.ajax({
+          type: "POST",
+          url: "/prize/init",
+          dataType: 'json', 
+          cache: false,
+          success: function(result){
+            var prize=[];
+            for(var i=0;i<result.sum.length;i++){
+                    prize.push(result.sum[i].prize);
+                 }
+        turnplate.drawRouletteWheel(prize);
+      }
+      });
+  };
 
-		<div class="forget fr mt10">
-			<a id="LinkButton1" class="outlink" href="/User/Login?act=logout">退出</a>
-		</div>
+  </script>
+ </head>
+ <body style="min-width: 1310px;">
 
-	</div>
-	<SCRIPT type="text/javascript">
-		$('.logtit em').click(function(){
-			$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
-			$(this).prev().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
-			$('.send_mobi, .send_num').show();
-			$('.id, .pass').hide();
-			$("#logintype").attr("value","2");
-		});
-		$('.logtit strong').click(function(){
-			$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
-			$(this).next().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
-			$('.send_mobi, .send_num').hide();
-			$('.id, .pass').show();
-			$("#logintype").attr("value","1");
-		});
-	</SCRIPT>
+<div class="cjbg">
+  <div class="w1000" style="width: 1310px;">
+      <div class="turntable-bg">
+        <div class="rotate" >
+          <img src="/static/front/image/turntable-bg-shadow.png" class="turntable-bg-shadow">
+        <canvas class="item" id="wheelcanvas" width="520px" height="520px"></canvas>
+        <img class="pointer" src="/static/front/image/pointer-pc.png?v=1.2" alt="pointer" id="pointer" onclick='turnplate.rotateFn()'/>
+         </div>
+      </div>
+      <div class="cjstate" >
+          <h5 class="cjstate_tit">活动说明：</h5>
+          <div class="cjstate_con">
+            <div><font color="#ff0000" size="4"><b>活动期间大转盘福利！充值200元即可抽奖一次！快去抽！</b></font></div>
+<div><font color="#ff0000" size="4"><b>最高能获得888000金币，以及彩豆大礼包一份！</b>&lt
+          </div>
+          <p>活动时间：2018-10-01-2019-05-07</p>
+            <p>您剩余的抽奖次数：<span>0</span>次</p>
+      </div>
+  </div>
+  <div class="cjbg-bottom"></div>
+</div>  
 
-	<div id="slideBox" class="slideBox">
-		<div class="hd">
-			<ul>
-				<li>优势</li>
-				<li>上线</li>
-				<li>活动</li>
-				<li>奖品</li>
-				<li>抽奖</li>
-			</ul>
-		</div>
-		<div class="bd">
-			<ul>
-				<li><a href="#" target="_blank"><img src="/static/front/image/banner1.jpg" /></a></li>
-				<li><a href="/User/Reg" target="_blank"><img src="/static/front/image/banner2.jpg" /></a></li>
-				<li><a href="/Hd/List" target="_blank"><img src="/static/front/image/banner3.jpg" /></a></li>
-				<li><a href="/Prize/Center" target="_blank"><img src="/static/front/image/banner4.jpg" /></a></li>
-				<li><a href="/Hd/Round" target="_blank"><img src="/static/front/image/banner5.jpg" /></a></li>
-			</ul>
-		</div>
+<style>
+.cjbg{
+    background: url(/static/front/image/cjbg.jpg?v=1.2) no-repeat top center;
+    width: 100%;
+    padding-top: 660px;
+    height: 1575px;
+    position: relative;
+    box-sizing: border-box;
+}
+.cjbg-bottom{
+  width: 100%;
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  background: url('/static/front/image/cjbg-bottom.png') no-repeat center center;
+  z-index: 999;
+  height: 100px;
+}
+.turntable-bg {
+  width: 619px;
+  height: 768px;
+  float: left;
+  display:block;
+}
+.turntable-bg-shadow{
+  width: 520px;
+  height: 520px;
+  position: absolute;
+  top: 140px;
+  left: 65px;
+  z-index: 3;
+}
+.turntable-bg .rotate {
+  width: 631px;
+  height: 788px;
+  position: relative;
+  background: url('/static/front/image/turntable-bg-pc.png?v=1.1') no-repeat center center;
+  background-size: 100% 100%;
+}
+.turntable-bg .rotate .item{
+    position: absolute;
+    top: 140px;
+    left: 65px;
+    z-index: 1;
+}
 
-		<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
-		<a class="prev" href="javascript:void(0)"></a>
-		<a class="next" href="javascript:void(0)"></a>
+.turntable-bg .rotate .pointer {
+  width: 224px;
+  height: 265px;
+  position: absolute;
+  left: 50%;
+  top: 250px;
+  margin-left: -103px;
+  z-index: 8;
+}
+.cjstate{
+    background-color: #fff;
+    width: 600px;
+    border-radius: 10px;
+    padding: 20px 34px;
+    float: right;
+    height: 350px;
+    text-align: left;
+    box-sizing: border-box;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+    margin-top: 250px;
+}
+.cjstate h5{
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 50px;
+    display: inline-block;
+    width: 475px;
+    color: #ff2727;
+    border-bottom: 1px solid #ff2727;
+}
+.cjstate .cjstate_con{
+  font-size: 22px;
+  line-height: 37px;
+  color: #ff2727;
+  margin: 10px 0 20px;
+}
+.cjstate  p{
+    display: inline-block;
+    width: 100%;
+    font-size: 22px;
+    color: #656565;
+    line-height: 37px;
+}
+.cjstate p span{color: #ff2727;}
 
-	</div>
-
-	<script type="text/javascript">
-		$(".slideBox").slide({mainCell:".bd ul",effect:"left",autoPlay:true});
-	</script>	
-</div>
-
-
-
-<div class="yoo-service w100">
-	<ul class="col3">
-		<li>
-			<i class="service-1">
-			</i>
-			<div class="text">
-				<h3>
-					平台安全稳定
-				</h3>
-				<p>
-					实力平台 提供安全稳定的游戏环境
-					<br>
-					信誉第一 口碑上佳
-				</p>
-			</div>
-		</li>
-		<li>
-			<i class="service-2">
-			</i>
-			<div class="text">
-				<h3>
-					服务高效优质
-				</h3>
-				<p>
-					最全面的游戏体验 以种类第一为保证
-					<br>
-					领先行业最高质量
-				</p>
-			</div>
-		</li>
-		<li>
-			<i class="service-3">
-			</i>
-			<div class="text">
-				<h3>
-					简单方便快捷
-				</h3>
-				<p>
-					全天7x24小时服务 最快的响应速度
-					<br>
-					支持手机在线游戏
-				</p>
-			</div>
-		</li>
-		<li>
-			<i class="service-4">
-			</i>
-			<div class="text">
-				<h3>
-					活动礼品丰富
-				</h3>
-				<p>
-					活动丰富多彩 奖励别具一格
-					<br>
-					尽情畅玩 奖励不断
-				</p>
-			</div>
-		</li>
-	</ul>
-</div>
-
-<div class="w100 f1 mt10">
-	<div class="w1000 forumHots">
-		<div class="news fl">
-			<h2 class="h2">最新公告<a href="board/index">MORE</a></h2>
-			<div class="textLeft">
-				<ul class="simpleList">
-					<?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-					<li>
-					<a class="ellipsis hover-line fl" href="/News/Detail/115" target="_blank">
-					<span>[ <?php echo date('Y-m-d',strtotime($vo['create_time'])); ?> ] </span><?php echo $vo['title']; ?></a>
-					</li>
-					<?php endforeach; endif; else: echo "" ;endif; ?>
-				</ul>
-
-			</div>
-		</div>
-
-		<div class="imgRight fr">
-			<h2 class="h2">最新活动<a href="/Hd/List">MORE</a></h2>
-			<ul class="hdul">
-				<li class="fl">
-					<a href="#"><img src="/static/front/image/hd1.jpg"><span>立即参加</span></a>
-				</li>
-				<li class="fr">
-					<a href="#"><img src="/static/front/image/hd2.jpg"><span>立即参加</span></a>
-				</li>
-				<li class="fl">
-					<a href="#"><img src="/static/front/image/hd3.jpg"><span>立即参加</span></a>
-				</li>
-				<li class="fr">
-					<a href="#"><img src="/static/front/image/hd4.jpg"><span>立即参加</span></a>
-				</li>
-			</ul>
-		</div>
-
-	</div>
-</div>
-
-<div class="clear"></div>
-
-<div class="w100 f2">
-	<div class="w1000">
-		<h2 class="h2" style="padding: 30px 0;"><span style="margin-left:5px;">奖品兑换</span><a href="/Prize/Center" style="color:#fff">MORE</a></h2>
-		<div class="gwfl fl">
-			<div class="gwl fr">
-				<a href="#" class="gwlu"><img src="/static/front/image/gwl.jpg"><p>好礼换不停</p></a>
-				<a href="#" class="gwld"><div class="tit">奖品兑换中心</div><div class="in">点击进入</div></a>
-			</div>
-			<div class="gwr fl">
-				<a class="first" href="#">
-					<div class="tit1">苹果12英寸MacBook 256GB</div>
-					<div class="tit2">轻薄学习办公笔记本电脑</div>
-					<img src="/static/front/image/gw6.jpg">
-				</a><a href="#">
-					<div class="tit1">Apple/苹果iPhone7</div>
-					<div class="tit2"> 国行全网通4G版手机</div>
-					<img src="/static/front/image/gw1.jpg">
-				</a><a href="#">
-					<div class="tit1">Apple/苹果iPad Pro</div>
-					<div class="tit2">苹果9.7英寸 WLAN 128GB</div>
-					<img src="/static/front/image/gw3.jpg">
-				</a><a href="#">
-					<div class="tit1">微软Arc无线鼠标 </div>
-					<div class="tit2">mini可折叠激光鼠标</div>
-					<img src="/static/front/image/gw4.jpg">
-				</a><a href="#">
-					<div class="tit1">头戴式无线蓝牙B耳机</div>
-					<div class="tit2">Beats Beats Solo3 Wireless</div>
-					<img src="/static/front/image/gw7.jpg">
-				</a><a href="#">
-					<div class="tit1">360小水滴智能摄像头</div>
-					<div class="tit2">wifi远程监控夜视版</div>
-					<img src="/static/front/image/gw8.jpg">
-				</a><a href="#">
-					<div class="tit1">飞科剃须刀FS373</div>
-					<div class="tit2">全身水洗充电式电动剃须</div>
-					<img src="/static/front/image/gw2.jpg">
-				</a>
-			</div>
-
-		</div>
-
-	</div>
-</div>
-
-
-<div class="w100 rk oo">
-	<div class="w1000">
-		<div class="rank-list-main clearfix">
-			<div class="rank-box rank-today">
-				<div class="rank-box-top">
-					<h3>牛人排行榜</h3>
-					<p><a href="/Game/Top">今日牛人排行榜，更多排行榜及奖励请点击查看</a></p>
-				</div>
-				<div class="rank-box-main">
-					<ul>
-						<li  >
-							<span class="num first"><i>1</i></span>
-							<span class="name">滑翔起飞</span>
-							<span class="account">142,237,934</span>
-						</li>
-
-						<li  class="fr"  >
-							<span class="num second"><i>2</i></span>
-							<span class="name">黑旋风李逵</span>
-							<span class="account">131,449,468</span>
-						</li>
-
-						<li  >
-							<span class="num third"><i>3</i></span>
-							<span class="name">希望的田野</span>
-							<span class="account">117,199,854</span>
-						</li>
-
-						<li  class="fr"  >
-							<span class="num fourth"><i>4</i></span>
-							<span class="name">善良的死神</span>
-							<span class="account">112,158,875</span>
-						</li>
-
-						<li  >
-							<span class="num "><i>5</i></span>
-							<span class="name">我的爱赤裸裸</span>
-							<span class="account">108,135,478</span>
-						</li>
-
-						<li  class="fr"  >
-							<span class="num "><i>6</i></span>
-							<span class="name">春去东来</span>
-							<span class="account">76,728,666</span>
-						</li>
-
-						<li  >
-							<span class="num "><i>7</i></span>
-							<span class="name">我叫28</span>
-							<span class="account">74,252,422</span>
-						</li>
-
-						<li  class="fr"  >
-							<span class="num "><i>8</i></span>
-							<span class="name">飞起666</span>
-							<span class="account">72,119,929</span>
-						</li>
-
-						<li  >
-							<span class="num "><i>9</i></span>
-							<span class="name">牛逼克拉斯</span>
-							<span class="account">66,525,745</span>
-						</li>
-
-						<li  class="fr"  >
-							<span class="num "><i>10</i></span>
-							<span class="name">面朝大海</span>
-							<span class="account">64,202,607</span>
-						</li>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="client">
-	<div class="text-block">
-		<h1>合作伙伴</h1>
-	</div>
-	<div class="container-large">
-		<div class="client-list">
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-		</div>
-	</div>
-	<script type="text/javascript">
-		jQuery(".container-large").slide({mainCell:".client-list",autoPlay:true,effect:"leftMarquee",vis:7,interTime:50});
-	</script>
-</div>
-
+</style>
 <div class="foot w100">
 							<div class="w1000 oo">
 								<div class="footl fl">
@@ -810,4 +705,4 @@
 		// 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
 		// })();
 	</script>
-<!-- End of LiveChat code -->					
+<!-- End of LiveChat code -->

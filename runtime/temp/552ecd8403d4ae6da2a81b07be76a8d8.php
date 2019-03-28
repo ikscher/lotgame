@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\agent\index.html";i:1553675412;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553676432;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553649154;}*/ ?>
+=======
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\agent\index.html";i:1553687019;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553687019;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553609915;}*/ ?>
+>>>>>>> 1ec7c76a1cb4d1c03a7eae161b88fc91813886bf
 <!DOCTYPE html>
 <html>
 <head>

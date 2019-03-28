@@ -46,5 +46,8 @@ Route::rule('user/index','front/user/index');
 Route::rule('user/point','front/user/point');
 Route::rule('agent/index','front/agent/index');
 Route::rule('site/index','front/site/index');
+Route::rule('prize/ind','front/prize/init');
+Route::rule('prize/index','front/prize/index');
+Route::rule('prize/start','front/prize/start');
 
 
