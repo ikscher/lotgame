@@ -65,4 +65,10 @@ class User extends Controller
        
     }
 
+    //获取用户的金币和投注信息
+    public function ajaxpoint(){
+        //对应footer模板 ajax_points页面返回的{"points":"501","xnb":"0","nearBetList":[]}
+        $map['uid']=1;
+    }
+
 }

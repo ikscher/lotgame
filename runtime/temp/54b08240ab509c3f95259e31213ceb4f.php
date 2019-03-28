@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\agent\index.html";i:1553675412;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553746313;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553649154;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\index.html";i:1553763824;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553746313;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553649154;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -204,20 +204,97 @@
 			}(window));
 		setTimeout(window.autoAnimation, 5000);
 	</script>
-<div class="agent">
-    <div class="top">
-        <h1>合作商家列表</h1>
-    </div>
+<script  type="text/javascript" src="/static/front/js/jeeslide.js"></script>
 
-	<div class="xiaji">
-		<?php if(is_array($agents) || $agents instanceof \think\Collection || $agents instanceof \think\Paginator): if( count($agents)==0 ) : echo "" ;else: foreach($agents as $key=>$vo): ?>
-	   	<div class="hdq">
-			<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $vo['qq']; ?>&site=qq&menu=yes"><img  <?php if(!(empty($vo['thumb']) || (($vo['thumb'] instanceof \think\Collection || $vo['thumb'] instanceof \think\Paginator ) && $vo['thumb']->isEmpty()))): ?>src="<?php echo geturl($vo['thumb']); ?>"<?php endif; ?> style="width:280px;height:180px">
-			
-		</div>
-	    <?php endforeach; endif; else: echo "" ;endif; ?>
-    </div>
+<style type="text/css">
+	.hotgoods {margin-top:20px;width:258px;}
+	.hotgoods li{  text-align: center; margin: 15px 0;} 
+	.hotgoods li img{height:230px; width: 230px;}
+	.hotgoods li p{ line-height: 35px; color: #666;}
+	.djdt {border-bottom: 1px solid #eee;}
+	.newsleft .djdt ul {height: 275px; overflow: hidden;padding:0}
+	.newsleft .djdt ul li{background:none;padding: 10px 5px;border-bottom:#ddd dotted 1px;overflow:auto;zoom:1;margin: 0;    width: 248px;}
+	.newsleft .djdt ul li:hover{background: #FBFBFB;}
+	.djdt ul li h3 , .mxyh ul li h3{font-size:14px;font-weight:100;color:#333;height:21px;line-height:21px; display:block; width:160px; word-break:keep-all; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; } 
+	.djdt ul li div , .mxyh ul li div{width:166px;float:right}
+	.djdt ul li span{font-size:13px;height:30px;line-height:30px;display:block;color:#888;overflow:hidden}
+	.djdt ul li em{color:#FF9100;font:12px/20px 'microsoft yahei';}
+	.djdt ul li .djnum{float: right;line-height: 16px;margin-right: 20px;font-size:13px;font-weight:100 }
+	.djdt ul li img{width:65px;height:65px; float:left; margin: 0 0 0 5px;}
+</style>
+<div class="area oo">
+
+<div class="newsleft fl">
+	<?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): if( count($cates)==0 ) : echo "" ;else: foreach($cates as $key=>$vo): ?>
+    <div class="help">
+	    <h2><?php echo $vo['name']; ?></h2>
+		<ul>
+			<?php if(is_array($vo['child']) || $vo['child'] instanceof \think\Collection || $vo['child'] instanceof \think\Paginator): if( count($vo['child'])==0 ) : echo "" ;else: foreach($vo['child'] as $key=>$vo_): ?>
+			<li><a href="/Shop/Index/<?php echo $vo_['id']; ?>"><?php echo $vo_['name']; ?></a></li>
+			<?php endforeach; endif; else: echo "" ;endif; ?>
+	    </ul>
+	</div>
+    <?php endforeach; endif; else: echo "" ;endif; ?>
 </div>
+
+<div class="buybox fr">
+	  <div class="top">
+	  	<img src="/static/front/image/dhlc.jpg" />
+		<h1>广告体验卡</h1>
+	  </div>
+
+       <div class="con prizec">
+          <table id="ContentPlaceHolder1_DataList1" width="100%" cellspacing="15" cellpadding="0">
+                                    <tr>               <td width="25%"><div class="blank"></div>
+                <a href="/Prize/Detail?id=214"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406152903.jpg" /></a><br> 
+                <div class="ot"><font class="money money_bg">50,000,000</font></div>
+				<a href="/Prize/Detail?id=214" class="txt">移动充值卡50000元</a>
+			  </td>
+                                                    <td width="25%"><div class="blank"></div>
+                <a href="/Prize/Detail?id=213"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406151358.jpg" /></a><br> 
+                <div class="ot"><font class="money money_bg">30,000,000</font></div>
+				<a href="/Prize/Detail?id=213" class="txt">移动充值卡30000元</a>
+			  </td>
+                                                    <td width="25%"><div class="blank"></div>
+                <a href="/Prize/Detail?id=212"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406150439.jpg" /></a><br> 
+                <div class="ot"><font class="money money_bg">10,000,000</font></div>
+				<a href="/Prize/Detail?id=212" class="txt">移动充值卡10000元</a>
+			  </td>
+               </tr>
+                                                <tr>               <td width="25%"><div class="blank"></div>
+                <a href="/Prize/Detail?id=211"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406145357.jpg" /></a><br> 
+                <div class="ot"><font class="money money_bg">300,000</font></div>
+				<a href="/Prize/Detail?id=211" class="txt">移动充值卡300元</a>
+			  </td>
+                                                    <td width="25%"><div class="blank"></div>
+                <a href="/Prize/Detail?id=183"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406144745.jpg" /></a><br> 
+                <div class="ot"><font class="money money_bg">5,000,000</font></div>
+				<a href="/Prize/Detail?id=183" class="txt">移动充值卡5000元</a>
+			  </td>
+                                                    <td width="25%"><div class="blank"></div>
+                <a href="/Prize/Detail?id=182"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406113015.jpg" /></a><br> 
+                <div class="ot"><font class="money money_bg">1,000,000</font></div>
+				<a href="/Prize/Detail?id=182" class="txt">移动充值卡1000元</a>
+			  </td>
+               </tr>
+                                                <tr>               <td width="25%"><div class="blank"></div>
+                <a href="/Prize/Detail?id=181"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406144431.jpg" /></a><br> 
+                <div class="ot"><font class="money money_bg">500,000</font></div>
+				<a href="/Prize/Detail?id=181" class="txt">移动充值卡500元</a>
+			  </td>
+                                                    <td width="25%"><div class="blank"></div>
+                <a href="/Prize/Detail?id=180"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406144359.jpg" /></a><br> 
+                <div class="ot"><font class="money money_bg">100,000</font></div>
+				<a href="/Prize/Detail?id=180" class="txt">移动充值卡100元</a>
+			  </td>
+                                      </tr> 
+          </table>
+	    </div>
+</div>
+</div>
+
+
+
 <div class="foot w100">
 							<div class="w1000 oo">
 								<div class="footl fl">

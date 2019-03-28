@@ -49,5 +49,7 @@ Route::rule('site/index','front/site/index');
 Route::rule('prize/ind','front/prize/init');
 Route::rule('prize/index','front/prize/index');
 Route::rule('prize/start','front/prize/start');
+Route::rule('shop/index','front/shop/index');
+Route::rule('shop/index/:id','front/shop/index');
 
 

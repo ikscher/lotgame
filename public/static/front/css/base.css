@@ -60,7 +60,7 @@ a:visited {text-decoration:none;}
 
 
 .newsleft{width:260px;margin-top:10px;}
-.newsleft .help , .newsleft .comm{width:258px;margin-top:10px}
+.newsleft .help , .newsleft .comm{width:258px;/*margin-top:10px*/}
  .newsleft .comm img{width:258px;}
 .newsleft .comm{margin:10px 0;}
 .newsleft h2{    font-size: 18px;

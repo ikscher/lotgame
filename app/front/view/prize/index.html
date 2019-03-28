@@ -17,19 +17,21 @@
             dataType: 'json', 
             cache: false, 
             error: function(){ 
-                alert('出错了！'); 
+                layer.msg('出错了！'); 
                 return false; 
             }, 
             success:function(result){ 
                 var angles = result.angle; //角度 
                 var txt = result.prize; //奖项 
-                var cjcs = result.cjcs;
+                var can = result.can;
+                var coin= result.coin;
+
                 if (angles < 270) {
                   angles = 270 - angles;
                 } else {
                   angles = 360 - angles + 270;
                 }           
-                if(cjcs>0){
+                if(can>0){
                   turnplate.bRotate = !turnplate.bRotate;
                   $('#wheelcanvas').stopRotate();
                   $("#wheelcanvas").rotate({ 
@@ -38,13 +40,20 @@
                      animateTo:angles + 1800, //转动角度 
                      // easing: $.easing.easeOutSine, 
                      callback: function(){ 
-                        alert('恭喜你，中得'+txt+'');
-                        location.reload();
+                        if(coin==0){
+                          
+                          layer.msg('不要泄气，'+txt,{time:3000});
+                        }else{
+                          layer.msg('恭喜你，中得'+txt+'');
+                        }
+
+                        // location.reload();
                         turnplate.bRotate = !turnplate.bRotate;
                     } 
                   }); 
+                  document.getElementById('drawtime').innerHTML=can-1;//更新界面抽奖次数
                 }else{
-                  alert("您的抽奖次数已用完，请再次充值！");
+                  layer.msg("您的抽奖次数已用完，请再次充值！");
                 }
                 
             } 
@@ -103,9 +112,10 @@
           dataType: 'json', 
           cache: false,
           success: function(result){
+            console.log(result)
             var prize=[];
-            for(var i=0;i<result.sum.length;i++){
-                    prize.push(result.sum[i].prize);
+            for(var i=0;i<result.length;i++){
+                    prize.push(result[i].prize);
                  }
         turnplate.drawRouletteWheel(prize);
       }
@@ -129,10 +139,10 @@
           <h5 class="cjstate_tit">活动说明：</h5>
           <div class="cjstate_con">
             <div><font color="#ff0000" size="4"><b>活动期间大转盘福利！充值200元即可抽奖一次！快去抽！</b></font></div>
-<div><font color="#ff0000" size="4"><b>最高能获得888000金币，以及彩豆大礼包一份！</b>&lt
+<div><font color="#ff0000" size="4"><b>最高能获得888000金币，以及彩豆大礼包一份！</b>
           </div>
           <p>活动时间：2018-10-01-2019-05-07</p>
-            <p>您剩余的抽奖次数：<span>0</span>次</p>
+            <p>您剩余的抽奖次数：<span id="drawtime">{$can}</span>次</p>
       </div>
   </div>
   <div class="cjbg-bottom"></div>

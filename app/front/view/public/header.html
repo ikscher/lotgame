@@ -71,7 +71,7 @@
 				<ul class="nav-ul">
 					<li class="select"><a href="/" class="nli">首页</a></li>
 					<li><a href="/Game/Index" class="nli">游戏中心</a></li>
-					<li><a href="/Shop/Center" class="nli">兑换商城</a></li>
+					<li><a href="/Shop/Index" class="nli">兑换商城</a></li>
 					<li><a href="/Article/Index" class="nli">活动专场</a></li>
 					<div class="dropdown fl">
 						<li>
@@ -131,7 +131,7 @@
 					}
 					return;
 				}
-				if(pNall.toLowerCase().indexOf("hd/round") > 0){
+				if(pNall.toLowerCase().indexOf("prize/index") > 0){
 					if(i==4){
 						$(this).attr('class','select');
 						$(".dropdown-content a:eq(2)").addClass("select");
@@ -150,7 +150,7 @@
 					}
 					return;
 				}
-				if(pNall.toLowerCase().indexOf("prize/") > 0){
+				if(pNall.toLowerCase().indexOf("shop/") > 0){
 					if(i==2){
 						$(this).attr('class','select');
 					}
