@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\agent\index.html";i:1553675412;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553674375;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553649154;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\agent\index.html";i:1553675412;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553676432;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553649154;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,7 +88,7 @@
 					</div>
 					<li><a href="/Game/top" class="nli">排行榜</a></li>
 					<li><a href="/User/Index" class="nli">会员中心</a></li>
-					<li><a href="/js/tianmao28.html" class="nli">了解彩豆</a></li>
+					<li><a href="/site/index" class="nli">了解彩豆</a></li>
 					<li><a href="/agent/index" class="nli">合作商家</a></li>
 					<!-- <li><a style="color:red" href="/appdownload.php" class="nli">APP下载</a></li> -->
 				</ul>
