@@ -138,7 +138,7 @@ class Layuipaginate extends Paginator
      */  
     protected function getAvailablePageWrapper($url, $page)  
     {  
-        return '<a href="' . htmlentities($url) . '" title="第"'. $page .'"页" >' . $page . '</a>';  
+        return '<a href="' . htmlentities($url) . '" title="第'. $page .'页" >' . $page . '</a>';  
     }  
   
     /** 

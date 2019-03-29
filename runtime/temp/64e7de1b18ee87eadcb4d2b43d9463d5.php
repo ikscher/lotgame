@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553506839;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553690310;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553609915;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553506839;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553774924;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553609915;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -73,7 +73,7 @@
 				<ul class="nav-ul">
 					<li class="select"><a href="/" class="nli">首页</a></li>
 					<li><a href="/Game/Index" class="nli">游戏中心</a></li>
-					<li><a href="/Prize/Center" class="nli">兑换商城</a></li>
+					<li><a href="/Shop/Index" class="nli">兑换商城</a></li>
 					<li><a href="/Article/Index" class="nli">活动专场</a></li>
 					<div class="dropdown fl">
 						<li>
@@ -82,7 +82,7 @@
 								<div class="dropdown-content">
 									<a href="/Hd/Qiangka">抢卡风暴</a>
 									<a href="/Prize/Shatter">砸金蛋</a>
-									<a href="/Prize/Draw">抽奖转盘</a>
+									<a href="/Prize/Index">抽奖转盘</a>
 								</div>
 							</div>
 						</li>
@@ -133,7 +133,7 @@
 					}
 					return;
 				}
-				if(pNall.toLowerCase().indexOf("hd/round") > 0){
+				if(pNall.toLowerCase().indexOf("prize/index") > 0){
 					if(i==4){
 						$(this).attr('class','select');
 						$(".dropdown-content a:eq(2)").addClass("select");
@@ -152,7 +152,7 @@
 					}
 					return;
 				}
-				if(pNall.toLowerCase().indexOf("prize/") > 0){
+				if(pNall.toLowerCase().indexOf("shop/") > 0){
 					if(i==2){
 						$(this).attr('class','select');
 					}
