@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\shop\detail.html";i:1553784759;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553774924;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553609915;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\shop\detail.html";i:1553828756;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553746313;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553845857;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -243,107 +243,103 @@
 .djdt ul li img{width:65px;height:65px; float:left; margin: 0 0 0 5px;}
 </style>
 <div class="area oo">
-
-<div class="newsleft fl">
-	<?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): if( count($cates)==0 ) : echo "" ;else: foreach($cates as $key=>$vo): ?>
-    <div class="help">
-	    <h2><?php echo $vo['name']; ?></h2>
-		<ul>
-			<?php if(is_array($vo['child']) || $vo['child'] instanceof \think\Collection || $vo['child'] instanceof \think\Paginator): if( count($vo['child'])==0 ) : echo "" ;else: foreach($vo['child'] as $key=>$vo_): ?>
-			<li><a href="/Shop/Index?id=<?php echo $vo_['id']; ?>"><?php echo $vo_['name']; ?></a></li>
-			<?php endforeach; endif; else: echo "" ;endif; ?>
-	    </ul>
+	<div class="newsleft fl">
+		<?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): if( count($cates)==0 ) : echo "" ;else: foreach($cates as $key=>$vo): ?>
+	    <div class="help">
+		    <h2><?php echo $vo['name']; ?></h2>
+			<ul>
+				<?php if(is_array($vo['child']) || $vo['child'] instanceof \think\Collection || $vo['child'] instanceof \think\Paginator): if( count($vo['child'])==0 ) : echo "" ;else: foreach($vo['child'] as $key=>$vo_): ?>
+				<li><a href="/Shop/Index?id=<?php echo $vo_['id']; ?>"><?php echo $vo_['name']; ?></a></li>
+				<?php endforeach; endif; else: echo "" ;endif; ?>
+		    </ul>
+		</div>
+	    <?php endforeach; endif; else: echo "" ;endif; ?>
 	</div>
-    <?php endforeach; endif; else: echo "" ;endif; ?>
-</div>
 
-<div class="buybox fr">
-    <div class="top">
-		<h1>奖品兑换</h1>
-	  </div>
-    <div class="con">
+	<div class="buybox fr">
+	    <div class="top">
+			<h1>奖品兑换</h1>
+		</div>
+	    <div class="con">
+	        <div class="goods oo">
+	            <div class="pic fl"><img src="<?php echo geturl($prize['thumb']); ?>" style="width:300px;" /></div>
+	            <div class="ginfo fr">
+			        <h1><?php echo $prize['name']; ?> </h1>
+	                <div class="price">
+				      您的兑换价格：<font class="money money_bg"><?php echo $prize['price']*$coefficient; ?></font>
+				    </div>
+	                <div class="li">兑换价格：</div>
+				    <table>
+					    <tr style="background-color: #F9F9F9;">
+						  <td><span style='background:url(/static/front/image/v0.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
+						  <td><span style='background:url(/static/front/image/v1.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
+						  <td><span style='background:url(/static/front/image/v2.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
+						  <td><span style='background:url(/static/front/image/v3.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
+						  <td><span style='background:url(/static/front/image/v4.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
+						  <td><span style='background:url(/static/front/image/v5.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
+						  <td><span style='background:url(/static/front/image/v6.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
+					    </tr>
+					    <tr>
+							<?php if(is_array($grade) || $grade instanceof \think\Collection || $grade instanceof \think\Paginator): if( count($grade)==0 ) : echo "" ;else: foreach($grade as $key=>$vo_): ?>
+							    <td><font class="money money_bg"><?php if($vo_['grade'] == 1): ?><?php echo $prize['price']*$c1; else: ?><?php echo $prize['price']*$c2; endif; ?></font></td>
+							<?php endforeach; endif; else: echo "" ;endif; ?>
+						</tr>
+				    </table>
+				    <input type="button" onclick="javascript:window.location.href='/shop/order?id=<?php echo $id; ?>'" value="确认兑奖" class="gbtn"/>
+	            </div>        
+	        </div>
+	        <div class="blank"> </div>
+		      <div>
+		         <div class="top">
+				     <h1>奖品详情</h1>
+			     </div>
+		        <div class="intr"><?php echo $prize['desc']; ?></div>
+		      </div>
+	        <div style="margin-top:20px;" >
+	            <div class="top"><h1>奖品评论</h1></div>
+	            <div id="div_comment">
+					<script type="application/javascript">
+						var url=window.location.href;
+						if(url.indexOf("page")>0){
+							location.hash = 'div_comment';
+						}
+					</script>
 
-      <div class="goods oo">
-           <div class="pic fl"><img src="<?php echo geturl($prize['thumb']); ?>" style="width:300px;" /></div>
-           <div class="ginfo fr">
-		       <h1><?php echo $prize['name']; ?> </h1>
-               <div class="price">
-			      您的兑换价格：<font class="money money_bg">105,000</font>
-			    </div>
-             <div class="li">兑换价格：</div>
-			 <table>
-				  <tr style="background-color: #F9F9F9;">
-					  <td><span style='background:url(/static/front/image/v0.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
-					  <td><span style='background:url(/static/front/image/v1.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
-					  <td><span style='background:url(/static/front/image/v2.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
-					  <td><span style='background:url(/static/front/image/v3.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
-					  <td><span style='background:url(/static/front/image/v4.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
-					  <td><span style='background:url(/static/front/image/v5.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
-					  <td><span style='background:url(/static/front/image/v6.png) right center no-repeat;padding-right:12px;'>&nbsp;</span></td>
-
-				  </tr>
-
-				<tr>
-					<td><font class="money money_bg">105,000</font></td>
-					<td><font class="money money_bg">100,000</font></td>
-					<td><font class="money money_bg">100,000</font></td>
-					<td><font class="money money_bg">100,000</font></td>
-					<td><font class="money money_bg">100,000</font></td>
-					<td><font class="money money_bg">100,000</font></td>
-					<td><font class="money money_bg">100,000</font></td>
-				</tr>
-			 </table>
-
-		
-			  
-			  <input type="button" onclick="javascript:window.location.href='/Prize/Buy?id=180'" value="确认兑奖" class="gbtn"/>
-          </div>        
-      </div>
-
-      <div class="blank"> </div>
-      <div>
-         <div class="top">
-		     <h1>奖品详情</h1>
-	     </div>
-        <div class="intr"> <div><font color="#ff0000"><b>奖品兑换流程：</b></font></div>
-<div><font color="#ff0000"><b><br>
-</b></font></div>
-<div><font color="#ff0000"><b>1. 奖品价格已经包含邮寄费用在内，您无须另行支付。兑奖前请确认您的帐户中有足够数量的金额！</b></font></div>
-<div><font color="#ff0000"><b>2. 在您要兑奖的奖品页面点击“立即兑换”按钮，提交您的兑奖申请！</b></font></div>
-<div><font color="#ff0000"><b>3. 实物奖品将在您的兑奖确认后的2-5工作日内发出(奖品状态您可通过“站内信-兑奖发货通知”查询)！</b></font></div>
-<div><font color="#ff0000"><b>4. 兑奖中心所有奖品颜色均为随机发送, 敬请谅解！</b></font></div>
-<div><font color="#ff0000"><b>5. 奖品受供货商库存影响，会有缺货情况，如有缺货，客服会取消兑奖，退还金额。</b></font></div> </div>
-      </div>
-      <div style="margin-top:20px;" >
-         <div class="top">
-		     <h1>奖品评论</h1>
-	     </div>
-        <DIV id="div_comment">
-			<script type="application/javascript">
-				var url=window.location.href;
-				if(url.indexOf("page")>0){
-					location.hash = 'div_comment';
-				}
-			</script>
-            		  <div align="center" class="page">共0条记录&nbsp;&nbsp;当前1/0页 <li ><a  href="/Prize/Detail?id=180&page=1">首页</a></li> <li ><a  href="#">上一页</a></li>  <li ><a  href="/Prize/Detail?id=180&page=2">下一页</a></li> <li ><a  href="/Prize/Detail?id=180&page=0">尾页</a></li></div>
-        </DIV>
-      </div>
-      <div style="margin-top:20px; overflow: auto; zoom:1;">
-        <div class="top">
-		     <h1>发表评论</h1>
-	     </div>
-        <div>
-          <form action="?id=180" method="post">
-            <TEXTAREA id="tbCommentContent" name="tbCommentContent" style="width:908px;border: 1px solid #eee;height: 100px;"></TEXTAREA>
-            <input style=" margin:10px auto;display: block;" name="btnComment" value="发表评论" type="submit" class="nbtn">
-          </form>
-        </div>
-      </div>
+					<?php if(is_array($remarks) || $remarks instanceof \think\Collection || $remarks instanceof \think\Paginator): if( count($remarks)==0 ) : echo "" ;else: foreach($remarks as $key=>$vo__): ?>
+					    <div><?php echo $vo__['user']['username']; ?><span style="margin:0 0 0 20px;"><?php echo $vo__['create_time']; ?></span></div>
+					    <div><?php echo $vo__['content']; ?></div>
+					<?php endforeach; endif; else: echo "" ;endif; ?>
+		            <div style="padding:0 20px;"><?php echo $remarks->render(); ?></div> 
+		        </div>
+	        </div>
+	        <div style="margin-top:20px; overflow: auto; zoom:1;">
+		        <div class="top">
+				     <h1>发表评论</h1>
+			     </div>
+		        <div>
+		          <form action="/user/remark" method="post">
+		            <TEXTAREA id="tbCommentContent" name="tbCommentContent" style="width:908px;border: 1px solid #eee;height: 100px;"></TEXTAREA>
+		            <!-- <input style=" margin:10px auto;display: block;" name="btnComment" value="发表评论" type="submit" class="nbtn"> -->
+		            <button style=" margin:10px auto;display: block;" class="nbtn" lay-submit lay-filter="remark">发表评论</button>
+		          </form>
+		        </div>
+	        </div>
+	    </div>
     </div>
-  </div>
 </div>
 
-
+<script type="text/javascript">
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+  
+  form.on('submit(remark)',function(){
+  	 layer.msg('对不起，评论功能已关闭');
+  	 return false;
+  })
+});
+</script> 
 
 
 <div class="foot w100">

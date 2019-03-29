@@ -101,7 +101,7 @@ td span a{
           <td>{$vo.username}</td>
           <td>{$vo.email}</td>
           <td>{$vo.name}</td>
-          <td>{$vo.ex_price}</td>
+          <td>{$vo.price}</td>
           <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td><!--如果是model不是Db::name创建的 A non well formed numeric value encountered  不需要用date转换  -->
           <td>
              {if condition="$vo.status eq 1"}

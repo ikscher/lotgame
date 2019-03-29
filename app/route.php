@@ -52,5 +52,7 @@ Route::rule('prize/start','front/prize/start');
 Route::rule('shop/index','front/shop/index');
 Route::rule('shop/index/:id','front/shop/index');
 Route::rule('shop/detail','front/shop/detail');
+Route::rule('shop/order','front/shop/order');
+Route::rule('user/remark','front/user/remark');
 
 

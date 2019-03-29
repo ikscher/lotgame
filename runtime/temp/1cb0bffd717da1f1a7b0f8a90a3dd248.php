@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:67:"D:\mywork\lotgame\public/../app/admin\view\prizeexchange\index.html";i:1552734484;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:67:"D:\mywork\lotgame\public/../app/admin\view\prizeexchange\index.html";i:1553842975;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,7 +102,7 @@ td span a{
           <td><?php echo $vo['username']; ?></td>
           <td><?php echo $vo['email']; ?></td>
           <td><?php echo $vo['name']; ?></td>
-          <td><?php echo $vo['ex_price']; ?></td>
+          <td><?php echo $vo['price']; ?></td>
           <td><?php echo date('Y-m-d H:i:s',$vo['create_time']); ?></td><!--如果是model不是Db::name创建的 A non well formed numeric value encountered  不需要用date转换  -->
           <td>
              <?php if($vo['status'] == 1): ?>

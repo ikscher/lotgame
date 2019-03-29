@@ -19,6 +19,7 @@ use think\Db;
 use \think\Cookie;
 use \think\Session;
 use app\admin\controller\Permissions;
+use app\front\model\User as userModel;
 use app\front\model\UserExchange as exchangeModel;
 class Prizeexchange extends Permissions
 {
@@ -90,10 +91,14 @@ class Prizeexchange extends Permissions
         if($this->request->isPost()){
             $post = $this->request->post();
             if(false == Db::name('user_exchange')->where('id',$post['id'])->update(['status'=>$post['status']])) {
-                return $this->error('设置失败');
+                return $this->error('操作失败');
             } else {
-                addlog($post['id']);//写入日志
-                return $this->success('设置成功','');
+                $operation="审核用户奖品兑换";
+                addlog($operation);//写入日志
+
+                $userModel=new $userModel();
+                
+                return $this->success(','');
             }
         }
     }
