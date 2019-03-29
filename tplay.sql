@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50505
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-03-28 17:05:03
+Date: 2019-03-29 23:20:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1553745168', '192.168.1.107', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1553775733', '192.168.1.101', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=501 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=514 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -582,6 +582,19 @@ INSERT INTO `hov_admin_log` VALUES ('497', '73', '1', '192.168.1.107', '修改�
 INSERT INTO `hov_admin_log` VALUES ('498', '73', '1', '192.168.1.107', '修改奖品成功-4', '1553762812');
 INSERT INTO `hov_admin_log` VALUES ('499', '49', '1', '192.168.1.107', '32', '1553762894');
 INSERT INTO `hov_admin_log` VALUES ('500', '73', '1', '192.168.1.107', '添加奖品成功-6', '1553762909');
+INSERT INTO `hov_admin_log` VALUES ('501', '50', '1', '192.168.1.101', '', '1553775733');
+INSERT INTO `hov_admin_log` VALUES ('502', '49', '1', '192.168.1.101', '33', '1553776657');
+INSERT INTO `hov_admin_log` VALUES ('503', '73', '1', '192.168.1.101', '添加奖品成功-7', '1553776674');
+INSERT INTO `hov_admin_log` VALUES ('504', '49', '1', '192.168.1.101', '34', '1553776719');
+INSERT INTO `hov_admin_log` VALUES ('505', '73', '1', '192.168.1.101', '添加奖品成功-8', '1553776727');
+INSERT INTO `hov_admin_log` VALUES ('506', '49', '1', '192.168.1.101', '35', '1553776750');
+INSERT INTO `hov_admin_log` VALUES ('507', '49', '1', '192.168.1.101', '36', '1553776765');
+INSERT INTO `hov_admin_log` VALUES ('508', '49', '1', '192.168.1.101', '37', '1553776768');
+INSERT INTO `hov_admin_log` VALUES ('509', '73', '1', '192.168.1.101', '修改奖品成功-8', '1553776774');
+INSERT INTO `hov_admin_log` VALUES ('510', '49', '1', '192.168.1.101', '38', '1553776809');
+INSERT INTO `hov_admin_log` VALUES ('511', '73', '1', '192.168.1.101', '添加奖品成功-9', '1553776816');
+INSERT INTO `hov_admin_log` VALUES ('512', '49', '1', '192.168.1.101', '39', '1553776869');
+INSERT INTO `hov_admin_log` VALUES ('513', '73', '1', '192.168.1.101', '添加奖品成功-10', '1553776882');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -902,7 +915,7 @@ CREATE TABLE `hov_attachment` (
   KEY `status` (`status`) USING BTREE,
   KEY `filename` (`filename`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='附件表';
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='附件表';
 
 -- ----------------------------
 -- Records of hov_attachment
@@ -939,6 +952,13 @@ INSERT INTO `hov_attachment` VALUES ('29', 'admin', 'ee5f6c68e5ce35f26985c809bff
 INSERT INTO `hov_attachment` VALUES ('30', 'admin', 'c25c6f275892eb06928e40de636232eb.jpg', '\\uploads\\admin\\prize_thumb\\20190326\\c25c6f275892eb06928e40de636232eb.jpg', '51653', 'jpg', '1', '192.168.1.102', '1', '1553608818', '1', '1553608818', 'prize_thumb', '0');
 INSERT INTO `hov_attachment` VALUES ('31', 'admin', '9d898ed29b2133d0aebe6b65516a9902.jpg', '\\uploads\\admin\\prize_thumb\\20190327\\9d898ed29b2133d0aebe6b65516a9902.jpg', '47615', 'jpg', '1', '192.168.1.107', '1', '1553675512', '1', '1553675512', 'prize_thumb', '0');
 INSERT INTO `hov_attachment` VALUES ('32', 'admin', '8ae61ef4660a7d56c20eda1f5237523a.jpg', '\\uploads\\admin\\prize_thumb\\20190328\\8ae61ef4660a7d56c20eda1f5237523a.jpg', '51030', 'jpg', '1', '192.168.1.107', '1', '1553762894', '1', '1553762894', 'prize_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('33', 'admin', 'cc7d2e09ac19a03a25f7bb1546bc2cfb.jpg', '\\uploads\\admin\\prize_thumb\\20190328\\cc7d2e09ac19a03a25f7bb1546bc2cfb.jpg', '79975', 'jpg', '1', '192.168.1.101', '1', '1553776657', '1', '1553776657', 'prize_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('34', 'admin', '1e61431b2b5de8709885a2d14084c9af.jpg', '\\uploads\\admin\\prize_thumb\\20190328\\1e61431b2b5de8709885a2d14084c9af.jpg', '78825', 'jpg', '1', '192.168.1.101', '1', '1553776719', '1', '1553776719', 'prize_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('35', 'admin', '0405ef6b1eb0c05eb06794e47f8bd1fe.jpg', '\\uploads\\admin\\prize_thumb\\20190328\\0405ef6b1eb0c05eb06794e47f8bd1fe.jpg', '80044', 'jpg', '1', '192.168.1.101', '1', '1553776750', '1', '1553776750', 'prize_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('36', 'admin', 'a57caf2a32265b3f66dbca818a0b7f09.jpg', '\\uploads\\admin\\prize_thumb\\20190328\\a57caf2a32265b3f66dbca818a0b7f09.jpg', '78400', 'jpg', '1', '192.168.1.101', '1', '1553776765', '1', '1553776765', 'prize_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('37', 'admin', '051440617a1d23002aa2d43a4a60142d.jpg', '\\uploads\\admin\\prize_thumb\\20190328\\051440617a1d23002aa2d43a4a60142d.jpg', '78400', 'jpg', '1', '192.168.1.101', '1', '1553776768', '1', '1553776768', 'prize_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('38', 'admin', 'a435be7595bf22cf080ec6d549cf52dd.jpg', '\\uploads\\admin\\prize_thumb\\20190328\\a435be7595bf22cf080ec6d549cf52dd.jpg', '80044', 'jpg', '1', '192.168.1.101', '1', '1553776809', '1', '1553776809', 'prize_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('39', 'admin', '43483d311f2b79cd577786059fe82106.jpg', '\\uploads\\admin\\prize_thumb\\20190328\\43483d311f2b79cd577786059fe82106.jpg', '79385', 'jpg', '1', '192.168.1.101', '1', '1553776869', '1', '1553776869', 'prize_thumb', '0');
 
 -- ----------------------------
 -- Table structure for `hov_board`
@@ -2425,7 +2445,7 @@ CREATE TABLE `hov_prize` (
   `update_time` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_prize
@@ -2433,6 +2453,10 @@ CREATE TABLE `hov_prize` (
 INSERT INTO `hov_prize` VALUES ('4', null, '移动充值卡100元', '11', '10', '100.00', '100000', '0', '0', '<p>移动充值卡100元</p>', '1552636993', '1553762812', '0');
 INSERT INTO `hov_prize` VALUES ('5', null, '移动充值卡5000元', '12', '10', '5000.00', '5000000', '0', '0', '<p>移动充值卡5000元问问</p>', '1552637483', '1553762802', '0');
 INSERT INTO `hov_prize` VALUES ('6', null, '华为手机', '32', '11', '8000.00', '8000000', '0', '0', '', '1553762909', '1553762909', '0');
+INSERT INTO `hov_prize` VALUES ('7', null, '移动充值卡50000元', '33', '10', '50000.00', '50000000', '0', '0', '', '1553776674', '1553776674', '0');
+INSERT INTO `hov_prize` VALUES ('8', null, '移动充值卡1000元', '37', '10', '5000.00', '5000000', '0', '0', '', '1553776727', '1553776774', '0');
+INSERT INTO `hov_prize` VALUES ('9', null, '移动充值卡30000元', '38', '10', '30000.00', '30000000', '0', '0', '', '1553776816', '1553776816', '0');
+INSERT INTO `hov_prize` VALUES ('10', null, '移动充值卡10000元', '39', '10', '10000.00', '10000000', '0', '0', '', '1553776882', '1553776882', '0');
 
 -- ----------------------------
 -- Table structure for `hov_prize_cate`
@@ -2567,7 +2591,7 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('1', 'ikscher', 'wwwwww', '2', '17', null, 'ikscher@163.com', '13856900659', '1000', '23', null, null, '1553267459', null, '114.102.155.30', null, '0', '0', null, null, '1', '0', null, null, '2323423', '1970-01-01', null, '1');
+INSERT INTO `hov_user` VALUES ('1', 'ikscher', 'wwwwww', '2', '17', null, 'ikscher@163.com', '13856900659', '0', '23', null, null, '1553267459', null, '114.102.155.30', null, '0', '0', null, null, '1', '0', null, null, '2323423', '1970-01-01', null, '1');
 INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '230000', '2', null, '0', '1553267838', null, '116.27.147.29', null, '1553616000', '23', null, null, '0', '1', null, null, '435345345', '2018-06-02', null, '1');
 
 -- ----------------------------

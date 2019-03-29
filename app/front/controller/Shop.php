@@ -30,13 +30,17 @@ class Shop extends Controller
     {   
 
         $id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
-        var_dump($this->request->get());
     	if(!empty($id)){
-    		
-           // $prize=$this->prizeModel->where("prize_cate_id={$id}")->select();
-           // $this->assign('prize',$prize);
-           // var_dump($prize);
-    	}
+    	    $catename=$this->prizeCateModel->field('name')->where("id={$id}")->find();
+            $this->assign('catename',$catename->name);
+            $prizes=$this->prizeModel->where("prize_cate_id={$id}")->paginate(9,false,['query'=>$this->request->param()]);
+            // var_dump($prizes);exit;
+            $this->assign('prizes',$prizes);
+    	}else{
+            $this->assign('catename','所有产品');
+            $prizes=$this->prizeModel->paginate(9);
+            $this->assign('prizes',$prizes);
+        }
         $this->site_name=Config::get('site_name');
         $this->assign('title',$this->site_name);
 
@@ -44,6 +48,22 @@ class Shop extends Controller
         $this->assign('cates',$cates);
         
     	return $this->fetch();
+    }
+
+    public function detail()
+    {   
+        $id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
+        if(!empty($id)){
+            $prize=$this->prizeModel->where("id={$id}")->find();
+            $this->assign('prize',$prize);
+        }
+        $this->site_name=Config::get('site_name');
+        $this->assign('title',$this->site_name);
+
+        $cates=$this->getCateList(0);
+        $this->assign('cates',$cates);
+        
+        return $this->fetch();
     }
 
     public function getCateList($pid=0)

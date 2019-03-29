@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\index.html";i:1553763824;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553746313;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553649154;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\index.html";i:1553782782;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553774924;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553609915;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -230,7 +230,7 @@
 	    <h2><?php echo $vo['name']; ?></h2>
 		<ul>
 			<?php if(is_array($vo['child']) || $vo['child'] instanceof \think\Collection || $vo['child'] instanceof \think\Paginator): if( count($vo['child'])==0 ) : echo "" ;else: foreach($vo['child'] as $key=>$vo_): ?>
-			<li><a href="/Shop/Index/<?php echo $vo_['id']; ?>"><?php echo $vo_['name']; ?></a></li>
+			<li><a href="/Shop/Index?id=<?php echo $vo_['id']; ?>"><?php echo $vo_['name']; ?></a></li>
 			<?php endforeach; endif; else: echo "" ;endif; ?>
 	    </ul>
 	</div>
@@ -240,56 +240,21 @@
 <div class="buybox fr">
 	  <div class="top">
 	  	<img src="/static/front/image/dhlc.jpg" />
-		<h1>广告体验卡</h1>
+		<h1><?php echo $catename; ?></h1>
 	  </div>
 
        <div class="con prizec">
           <table id="ContentPlaceHolder1_DataList1" width="100%" cellspacing="15" cellpadding="0">
-                                    <tr>               <td width="25%"><div class="blank"></div>
-                <a href="/Prize/Detail?id=214"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406152903.jpg" /></a><br> 
-                <div class="ot"><font class="money money_bg">50,000,000</font></div>
-				<a href="/Prize/Detail?id=214" class="txt">移动充值卡50000元</a>
-			  </td>
-                                                    <td width="25%"><div class="blank"></div>
-                <a href="/Prize/Detail?id=213"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406151358.jpg" /></a><br> 
-                <div class="ot"><font class="money money_bg">30,000,000</font></div>
-				<a href="/Prize/Detail?id=213" class="txt">移动充值卡30000元</a>
-			  </td>
-                                                    <td width="25%"><div class="blank"></div>
-                <a href="/Prize/Detail?id=212"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406150439.jpg" /></a><br> 
-                <div class="ot"><font class="money money_bg">10,000,000</font></div>
-				<a href="/Prize/Detail?id=212" class="txt">移动充值卡10000元</a>
-			  </td>
-               </tr>
-                                                <tr>               <td width="25%"><div class="blank"></div>
-                <a href="/Prize/Detail?id=211"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406145357.jpg" /></a><br> 
-                <div class="ot"><font class="money money_bg">300,000</font></div>
-				<a href="/Prize/Detail?id=211" class="txt">移动充值卡300元</a>
-			  </td>
-                                                    <td width="25%"><div class="blank"></div>
-                <a href="/Prize/Detail?id=183"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406144745.jpg" /></a><br> 
-                <div class="ot"><font class="money money_bg">5,000,000</font></div>
-				<a href="/Prize/Detail?id=183" class="txt">移动充值卡5000元</a>
-			  </td>
-                                                    <td width="25%"><div class="blank"></div>
-                <a href="/Prize/Detail?id=182"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406113015.jpg" /></a><br> 
-                <div class="ot"><font class="money money_bg">1,000,000</font></div>
-				<a href="/Prize/Detail?id=182" class="txt">移动充值卡1000元</a>
-			  </td>
-               </tr>
-                                                <tr>               <td width="25%"><div class="blank"></div>
-                <a href="/Prize/Detail?id=181"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406144431.jpg" /></a><br> 
-                <div class="ot"><font class="money money_bg">500,000</font></div>
-				<a href="/Prize/Detail?id=181" class="txt">移动充值卡500元</a>
-			  </td>
-                                                    <td width="25%"><div class="blank"></div>
-                <a href="/Prize/Detail?id=180"><img style="width:280px;height:180px" src="/uppic/shoppic/20170406144359.jpg" /></a><br> 
-                <div class="ot"><font class="money money_bg">100,000</font></div>
-				<a href="/Prize/Detail?id=180" class="txt">移动充值卡100元</a>
-			  </td>
-                                      </tr> 
+          	  <?php if(is_array($prizes) || $prizes instanceof \think\Collection || $prizes instanceof \think\Paginator): if( count($prizes)==0 ) : echo "" ;else: foreach($prizes as $k=>$vo): if($k%3 == 0): ?><tr><?php endif; ?>              
+	              <td width="25%"><div class="blank"></div>
+	                <a href="/Shop/Detail?id=<?php echo $vo['id']; ?>"><img style="width:280px;height:180px" src="<?php echo geturl($vo['thumb']); ?>" /></a><br> 
+	                <div class="ot"><font class="money money_bg"><?php echo $vo['name']; ?></font></div>
+					<a href="/Shop/Detail?id=<?php echo $vo['id']; ?>" class="txt"><?php echo $vo['name']; ?></a>
+				  </td>
+               <?php if($k%3 == 2): ?></tr><?php endif; endforeach; endif; else: echo "" ;endif; ?>                              
           </table>
 	    </div>
+	    <div style="padding:0 20px;"><?php echo $prizes->render(); ?></div> 
 </div>
 </div>
 
