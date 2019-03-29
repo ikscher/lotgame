@@ -1,5 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553490019;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553746313;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553649154;}*/ ?>
-
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\order.html";i:1553847244;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553746313;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553845857;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -205,341 +204,208 @@
 			}(window));
 		setTimeout(window.autoAnimation, 5000);
 	</script>
-<link href="/static/front/css/style.css" type="text/css" rel="stylesheet" />
-<!--[if lt IE 7]>
-	<script src="/static/front/js/oldbowers.js" type="text/javascript"></script>
-<![endif]-->
 <script src="http://static.geetest.com/static/tools/gt.js"></script>
-<script src="/static/front/js/jquery.showLoading.min.js"></script>
-<script type="text/javascript" src="/static/front/js/jeeslide.js"></script>
-<script type="text/javascript" src="/static/front/js/login.js"></script>
+<script  type="text/javascript" src="/static/front/js/js.js"></script>
+<script  type="text/javascript" src="/static/front/js/prize_buy.js"></script>
 
-<script type="text/javascript">
-	function setCookie(name,value) 
-	{ 
-		var Days = 30; 
-		var exp = new Date(); 
-		exp.setTime(exp.getTime() + Days*24*60*60*1000); 
-		document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString(); 
-	}
-</script>
+<style type="text/css">
+    #detail .tb-key .tb-stock {position: relative; float: left; }
+    #bd .tb-stock .tb-disable-increase, #bd .tb-stock .tb-disable-increase:hover, #bd .tb-stock .tb-disable-reduce, #bd .tb-stock .tb-disable-reduce:hover {color: #ccc; cursor: not-allowed; background-color: #ededed; }
+    .tb-stock .tb-reduce {border-right: 0 !important; }
+    .tb-stock a, #bd .tb-stock a:hover {display: block; _display: inline; float: left; width: 26px; height: 26px; border: 1px solid #ccc; line-height: 26px; padding: 0; vertical-align: top; overflow: hidden; text-align: center; background-color: #ededed; overflow: hidden; }
+    #tbExchangedCount {float: left; margin: 0; padding: 0; width: 48px; height: 26px; font-size: 16px; line-height: 26px; text-align: center; color: #666; border: 1px solid #CCC; outline: 0; background: #FFF; ime-mode: disabled; }
+    #bd .tb-stock .tb-increase {border-left: 0 !important; margin-right: 8px; }
+    #bd .tb-stock a, #bd .tb-stock a:hover {display: block; _display: inline; float: left; width: 26px; height: 26px; border: 1px solid #ccc; line-height: 26px; padding: 0; vertical-align: top; overflow: hidden; text-align: center; background-color: #ededed; overflow: hidden; }
+    .text-overflow{display:block;/*内联对象需加*/ width:31em; word-break:keep-all;/* 不换行 */ white-space:nowrap;/* 不换行 */ overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ } 
+    .sxfsm{width: 400px; height: 100px; border: 1px #FF4400 dotted; float: left; border-radius: 5px; padding: 5px 10px; margin: 5px; color: #737573; font-size: 12px;}
+    .ordbtn{font-size: 12px;color: #FFFFFF;width: 182px;height: 39px;background-color: #FF4400;border: none;font-weight: 900;margin-left: 100px;}
+</style>
 
-<div class="banner">
-	<div class="loginbg"></div>
-	<div id="loginbox" class="alogin">
-		<div class="logtit"><strong>登录成功</strong></div>
-		<div style="height:20px;"></div>
-		<div class="logtit" style="font-size:14px;">登录账号：ikscher (891435)</div>
-		<div class="captcha mt10 mb10">
-			<label>账户余额：500 </label>
-		</div>
-		<a href="/User/Index" class="sub mt20">会员中心</a>
-		<a href="/Game/Index" class="sub mt20">游戏中心</a>
+<div class="area oo">
+    <div class="newsleft fl">
+        <?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): if( count($cates)==0 ) : echo "" ;else: foreach($cates as $key=>$vo): ?>
+        <div class="help">
+            <h2><?php echo $vo['name']; ?></h2>
+            <ul>
+                <?php if(is_array($vo['child']) || $vo['child'] instanceof \think\Collection || $vo['child'] instanceof \think\Paginator): if( count($vo['child'])==0 ) : echo "" ;else: foreach($vo['child'] as $key=>$vo_): ?>
+                <li><a href="/Shop/Index?id=<?php echo $vo_['id']; ?>"><?php echo $vo_['name']; ?></a></li>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+            </ul>
+        </div>
+        <?php endforeach; endif; else: echo "" ;endif; ?>
+    </div>
 
-		<div class="forget fr mt10">
-			<a id="LinkButton1" class="outlink" href="/User/Login?act=logout">退出</a>
-		</div>
 
-	</div>
-	<SCRIPT type="text/javascript">
-		$('.logtit em').click(function(){
-			$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
-			$(this).prev().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
-			$('.send_mobi, .send_num').show();
-			$('.id, .pass').hide();
-			$("#logintype").attr("value","2");
-		});
-		$('.logtit strong').click(function(){
-			$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
-			$(this).next().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
-			$('.send_mobi, .send_num').hide();
-			$('.id, .pass').show();
-			$("#logintype").attr("value","1");
-		});
-	</SCRIPT>
+    <div id="buybox" class="buybox fr">
+        <div class="top">
+            <h1>确认下单</h1>
+        </div>
 
-	<div id="slideBox" class="slideBox">
-		<div class="hd">
-			<ul>
-				<li>优势</li>
-				<li>上线</li>
-				<li>活动</li>
-				<li>奖品</li>
-				<li>抽奖</li>
-			</ul>
-		</div>
-		<div class="bd">
-			<ul>
-				<li><a href="#" target="_blank"><img src="/static/front/image/banner1.jpg" /></a></li>
-				<li><a href="/User/Reg" target="_blank"><img src="/static/front/image/banner2.jpg" /></a></li>
-				<li><a href="/Hd/List" target="_blank"><img src="/static/front/image/banner3.jpg" /></a></li>
-				<li><a href="/Prize/Center" target="_blank"><img src="/static/front/image/banner4.jpg" /></a></li>
-				<li><a href="/Hd/Round" target="_blank"><img src="/static/front/image/banner5.jpg" /></a></li>
-			</ul>
-		</div>
+        <div class="con prizec">
+            <table id="ContentPlaceHolder1_DataList1" width="100%" cellspacing="15" cellpadding="0">
+                <tbody>
+                    <form  method="post" id="prizeform">
+                        <input type="hidden" name="prizeid" value="<?php echo $id; ?>" />
+                        <input type="hidden" name="prizeprice" value="<?php echo $prize['price']; ?>" />
+                        <tr>
+                             <td style="width: 250px"><img src="<?php echo geturl($prize['thumb']); ?>" alt="" width="250"></td>
+                             <td style="vertical-align: top;background-color: #FBFCFF;border-top:1px #B2D1FF dotted;width: 100%">
+                                <div style="width:175px;float:left">
+                                          <h1 style="font-size: 18px;font-weight: 100;margin-top: 10px"><?php echo $prize['name']; ?></h1>
 
-		<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
-		<a class="prev" href="javascript:void(0)"></a>
-		<a class="next" href="javascript:void(0)"></a>
+                                          <span>单价：</span><span id="oneprice" style="font-size: 21px" class="money money_bg">	<?php echo $prize['price']*$coefficient; ?></span>
+                                          <br>
+                                         <span>额外手续费：</span><span  id="lssxf" style="color:green">-</span><span style="color:green;">金币</span><a id="sxfdetail" onmouseover="sxfdetail()" onmouseout="sxfdetail_clo()" style="display:none;background:url('/static/front/image/wenh2.png');background-size:16px;width:16px;height:16px;    position: relative;top: 2px" ></a>
+                                      <div style="height:3px"></div>
 
-	</div>
+                                      <span style="float: left;margin-right: 6px">数量：</span>
+                                      <span class="tb-stock" id="J_Stock">
+                                        <a href="javascript:minus();cacusxf();" title="减1" hidefocus="" class="tb-reduce J_Reduce tb-iconfont tb-disable-reduce" data-spm-anchor-id="2013.1.20140002.1">-</a>
+                                        <input onkeyup="adjust();cacusxf();" name="tbExchangedCount" id="tbExchangedCount" type="text" class="tb-text" value="1" maxlength="8" title="请输入购买量">
+                                        <a href="javascript:add();cacusxf();" hidefocus="" class="tb-increase J_Increase tb-iconfont" title="加1" data-spm-anchor-id="2013.1.20140002.2">+</a>
+                                    </span>
+                                </div>
 
-	<script type="text/javascript">
-		$(".slideBox").slide({mainCell:".bd ul",effect:"left",autoPlay:true});
-	</script>	
+                            <div id="sxfsm" class="sxfsm"></div>
+
+
+                                    <!--<div style="background-color: #F2F7FF;width: auto;clear: both;height: 128px;padding: 8px">
+                                     <span>你的职业是什么?</span>
+                                     <br>
+                                     <input type="text" style="width: 150px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="tbUserSecAns">
+                                     <br>
+                                     <span>手机验证码</span>
+                                     <br>
+                                     <input id="code" type="text" style="width: 100px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="code"><button type="button" id="popup-submit" style="width: 50px;height: 29px;border: none;background-color: #90C626;padding:0 10px;color: #FFFFFF;font-weight: 900;position: relative;bottom: 1px">获取</button>
+                                    </div> -->
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: solid #FF4400 1px;height: 100px">
+                                <div style="border: 3px solid #fff0e8;width: 100%;height: 100%;line-height: 100px">
+                                    <span style="display: none" id="price1"><?php echo $prize['price']*$coefficient; ?></span>
+                                    <div id="embed-captcha"></div>
+                                    <p id="wait" class="show"></p>
+                                    <p id="notice" class="hide"></p>
+                                    <div id="popup-captcha"></div>
+                                    <span style="margin-left: 10px;font-weight: 900">实付款：</span><span style="font-size: 30px;position: relative;top: 5px" class="money_bg" id="price"><?php echo $prize['price']*$coefficient; ?></span>
+                                    <button lay-submit lay-filter="order" class="ordbtn">提交订单</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+<script> 
+      var lssxfopen = 1; //按照流水   手续费开区
+
+      var cssxfopen = 0; //按次数     手续费关闭
+      var oldprice;
+      var lsbs = <?php echo $charge['flow_times']; ?>; //流水倍数
+      var yxls = 0; //7天内一共有的流水
+      var lssxbl = <?php echo $charge['charge_ratio']; ?>; //流水手续比例
+      var xsf;
+      var tipsStr='';
+      var sumSxf;
+      function cacusxf(){
+           tipsStr='';
+           sumSxf = 0;
+           oldprice = parseInt($("#price").html().replace(/,/g,""));
+           if(lssxfopen == 1){
+              var freeprice = parseInt(yxls/lsbs);
 
 
+              if(oldprice>freeprice){
+                 xsf = (oldprice-freeprice)*lssxbl/100;
 
-<div class="yoo-service w100">
-	<ul class="col3">
-		<li>
-			<i class="service-1">
-			</i>
-			<div class="text">
-				<h3>
-					平台安全稳定
-				</h3>
-				<p>
-					实力平台 提供安全稳定的游戏环境
-					<br>
-					信誉第一 口碑上佳
-				</p>
-			</div>
-		</li>
-		<li>
-			<i class="service-2">
-			</i>
-			<div class="text">
-				<h3>
-					服务高效优质
-				</h3>
-				<p>
-					最全面的游戏体验 以种类第一为保证
-					<br>
-					领先行业最高质量
-				</p>
-			</div>
-		</li>
-		<li>
-			<i class="service-3">
-			</i>
-			<div class="text">
-				<h3>
-					简单方便快捷
-				</h3>
-				<p>
-					全天7x24小时服务 最快的响应速度
-					<br>
-					支持手机在线游戏
-				</p>
-			</div>
-		</li>
-		<li>
-			<i class="service-4">
-			</i>
-			<div class="text">
-				<h3>
-					活动礼品丰富
-				</h3>
-				<p>
-					活动丰富多彩 奖励别具一格
-					<br>
-					尽情畅玩 奖励不断
-				</p>
-			</div>
-		</li>
-	</ul>
-</div>
+                 sumSxf = xsf;
+                 tipsStr = '●游戏流水手续费:您最近7日游戏流水：0<br/>您最近7日兑奖：0<br/>您当前可用流水：0<br/>可免额外手续费兑奖'+fmoney(parseInt(yxls/lsbs))+'金币,本次兑奖'+fmoney(oldprice)+"金币,超出部分："+fmoney(oldprice-parseInt(yxls/lsbs))+"按"+lssxbl+"%收取手续费："+fmoney(parseInt(xsf))+"金币";
+             }else{
+                 $("#lssxf").html('无');
+                 tipsStr = '●游戏流水手续费:您最近7日游戏流水：0<br/>您最近7日兑奖：0<br/>您当前可用流水：0<br/>可免额外手续费兑奖'+fmoney(parseInt(yxls/lsbs))+'金币,本次兑奖'+fmoney(oldprice)+"金币,不收取额外手续费！";
+             }
+         }
+         if(cssxfopen == 1){
+             var feetype = 0;
+             if(feetype == 1){
+                var curfee = parseInt(0);
+                sumSxf += parseInt(curfee);
+                tipsStr += "<br/>●兑奖次数手续费:您今天是第1次兑奖，需收取"+curfee+"金币的手续费!";
+            }else{
+                var curfee = parseInt(0*oldprice/100);
+                sumSxf += curfee;
+                tipsStr += "<br/>●兑奖次数手续费:您今天是第1次兑奖，本次兑奖"+oldprice+"金币,需收取0%的手续费,即"+curfee+"金币!";
+            }
 
-<div class="w100 f1 mt10">
-	<div class="w1000 forumHots">
-		<div class="news fl">
-			<h2 class="h2">最新公告<a href="board/index">MORE</a></h2>
-			<div class="textLeft">
-				<ul class="simpleList">
-					<?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-					<li>
-					<a class="ellipsis hover-line fl" href="/News/Detail/115" target="_blank">
-					<span>[ <?php echo date('Y-m-d',strtotime($vo['create_time'])); ?> ] </span><?php echo $vo['title']; ?></a>
-					</li>
-					<?php endforeach; endif; else: echo "" ;endif; ?>
-				</ul>
+        }
+        $("#sxfsm").html(tipsStr);
+        if(cssxfopen == 1 || lssxfopen == 1){
+             var aggregate=fmoney(parseInt(oldprice)+sumSxf);
+             $("#price").html(aggregate);
+             $("#lssxf").html(fmoney(sumSxf));
+         }
+    }
+     var layerindex;
+     function sxfdetail(){
+      if($("#lssxf").html()=="无"){
+         layerindex=layer.tips(tipsStr, '#sxfdetail', {
+          tips: [1, '#323436'],
+          time: 0,
+          area:["440px"]
+      });
+     }else{
+      layerindex=layer.tips(tipsStr, '#sxfdetail', {
+          tips: [1, '#323436'],
+          time: 0,
+          area:["440px"]
+      });
+    }
 
-			</div>
-		</div>
-
-		<div class="imgRight fr">
-			<h2 class="h2">最新活动<a href="/Hd/List">MORE</a></h2>
-			<ul class="hdul">
-				<li class="fl">
-					<a href="#"><img src="/static/front/image/hd1.jpg"><span>立即参加</span></a>
-				</li>
-				<li class="fr">
-					<a href="#"><img src="/static/front/image/hd2.jpg"><span>立即参加</span></a>
-				</li>
-				<li class="fl">
-					<a href="#"><img src="/static/front/image/hd3.jpg"><span>立即参加</span></a>
-				</li>
-				<li class="fr">
-					<a href="#"><img src="/static/front/image/hd4.jpg"><span>立即参加</span></a>
-				</li>
-			</ul>
-		</div>
-
-	</div>
-</div>
-
-<div class="clear"></div>
-
-<div class="w100 f2">
-	<div class="w1000">
-		<h2 class="h2" style="padding: 30px 0;"><span style="margin-left:5px;">奖品兑换</span><a href="/Prize/Center" style="color:#fff">MORE</a></h2>
-		<div class="gwfl fl">
-			<div class="gwl fr">
-				<a href="#" class="gwlu"><img src="/static/front/image/gwl.jpg"><p>好礼换不停</p></a>
-				<a href="#" class="gwld"><div class="tit">奖品兑换中心</div><div class="in">点击进入</div></a>
-			</div>
-			<div class="gwr fl">
-				<a class="first" href="#">
-					<div class="tit1">苹果12英寸MacBook 256GB</div>
-					<div class="tit2">轻薄学习办公笔记本电脑</div>
-					<img src="/static/front/image/gw6.jpg">
-				</a><a href="#">
-					<div class="tit1">Apple/苹果iPhone7</div>
-					<div class="tit2"> 国行全网通4G版手机</div>
-					<img src="/static/front/image/gw1.jpg">
-				</a><a href="#">
-					<div class="tit1">Apple/苹果iPad Pro</div>
-					<div class="tit2">苹果9.7英寸 WLAN 128GB</div>
-					<img src="/static/front/image/gw3.jpg">
-				</a><a href="#">
-					<div class="tit1">微软Arc无线鼠标 </div>
-					<div class="tit2">mini可折叠激光鼠标</div>
-					<img src="/static/front/image/gw4.jpg">
-				</a><a href="#">
-					<div class="tit1">头戴式无线蓝牙B耳机</div>
-					<div class="tit2">Beats Beats Solo3 Wireless</div>
-					<img src="/static/front/image/gw7.jpg">
-				</a><a href="#">
-					<div class="tit1">360小水滴智能摄像头</div>
-					<div class="tit2">wifi远程监控夜视版</div>
-					<img src="/static/front/image/gw8.jpg">
-				</a><a href="#">
-					<div class="tit1">飞科剃须刀FS373</div>
-					<div class="tit2">全身水洗充电式电动剃须</div>
-					<img src="/static/front/image/gw2.jpg">
-				</a>
-			</div>
-
-		</div>
-
-	</div>
-</div>
+      }
+      function sxfdetail_clo(){
+          layer.close(layerindex);
+      }
 
 
-<div class="w100 rk oo">
-	<div class="w1000">
-		<div class="rank-list-main clearfix">
-			<div class="rank-box rank-today">
-				<div class="rank-box-top">
-					<h3>牛人排行榜</h3>
-					<p><a href="/Game/Top">今日牛人排行榜，更多排行榜及奖励请点击查看</a></p>
-				</div>
-				<div class="rank-box-main">
-					<ul>
-						<li  >
-							<span class="num first"><i>1</i></span>
-							<span class="name">滑翔起飞</span>
-							<span class="account">142,237,934</span>
-						</li>
+      $(document).ready(function(){
+          cacusxf();
+      });
 
-						<li  class="fr"  >
-							<span class="num second"><i>2</i></span>
-							<span class="name">黑旋风李逵</span>
-							<span class="account">131,449,468</span>
-						</li>
-
-						<li  >
-							<span class="num third"><i>3</i></span>
-							<span class="name">希望的田野</span>
-							<span class="account">117,199,854</span>
-						</li>
-
-						<li  class="fr"  >
-							<span class="num fourth"><i>4</i></span>
-							<span class="name">善良的死神</span>
-							<span class="account">112,158,875</span>
-						</li>
-
-						<li  >
-							<span class="num "><i>5</i></span>
-							<span class="name">我的爱赤裸裸</span>
-							<span class="account">108,135,478</span>
-						</li>
-
-						<li  class="fr"  >
-							<span class="num "><i>6</i></span>
-							<span class="name">春去东来</span>
-							<span class="account">76,728,666</span>
-						</li>
-
-						<li  >
-							<span class="num "><i>7</i></span>
-							<span class="name">我叫28</span>
-							<span class="account">74,252,422</span>
-						</li>
-
-						<li  class="fr"  >
-							<span class="num "><i>8</i></span>
-							<span class="name">飞起666</span>
-							<span class="account">72,119,929</span>
-						</li>
-
-						<li  >
-							<span class="num "><i>9</i></span>
-							<span class="name">牛逼克拉斯</span>
-							<span class="account">66,525,745</span>
-						</li>
-
-						<li  class="fr"  >
-							<span class="num "><i>10</i></span>
-							<span class="name">面朝大海</span>
-							<span class="account">64,202,607</span>
-						</li>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="client">
-	<div class="text-block">
-		<h1>合作伙伴</h1>
-	</div>
-	<div class="container-large">
-		<div class="client-list">
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-			<div class="brand"><div class="logo"></div></div>
-		</div>
-	</div>
-	<script type="text/javascript">
-		jQuery(".container-large").slide({mainCell:".client-list",autoPlay:true,effect:"leftMarquee",vis:7,interTime:50});
-	</script>
-</div>
-
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+  
+  form.on('submit(order)',function(){
+     var num=$('#tbExchangedCount').val();
+     var aggregate=$('#price').html();
+     var prize_id=$("input[name='prizeid']").val();
+     var price=$("input[name='prizeprice']").val();
+     $.ajax({
+          url:"<?php echo url('/shop/order'); ?>",
+          data:{prize_id:prize_id,num:num,aggregate:aggregate,price:price},
+          type:'post',
+          async: false,
+          success:function(res) {
+              console.log(res);
+              if(res.code == 1) {
+                  layer.msg(res.msg, function(index){
+                    location.href = res.url;
+                  })
+              } else {
+                  layer.msg(res.msg);
+              }
+          }
+      })
+      return false;
+  })
+});
+</script> 
 <div class="foot w100">
 							<div class="w1000 oo">
 								<div class="footl fl">
@@ -810,4 +676,4 @@
 		// 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
 		// })();
 	</script>
-<!-- End of LiveChat code -->					
+<!-- End of LiveChat code -->

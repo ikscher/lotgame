@@ -71,4 +71,9 @@ class User extends Controller
         $map['uid']=1;
     }
 
+    //用户奖品评论
+    public function remark(){
+
+    }
+
 }

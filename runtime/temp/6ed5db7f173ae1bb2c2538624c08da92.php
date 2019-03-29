@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:69:"D:\mywork\lotgame\public/../app/admin\view\prizeflowcharge\index.html";i:1552912333;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:69:"D:\mywork\lotgame\public/../app/admin\view\prizeflowcharge\index.html";i:1553832532;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +35,10 @@
         <div class="layui-form-item" style="float: left;">
           <div class="layui-form-item">
             <label class="layui-form-label">流水计算天数</label>
-            <div class="layui-input-block">
+            <div class="layui-input-inline">
              <input name="flow_days" autocomplete="off" placeholder="请输入" class="layui-input" type="text" <?php if(!(empty($web_config['flow_days']) || (($web_config['flow_days'] instanceof \think\Collection || $web_config['flow_days'] instanceof \think\Paginator ) && $web_config['flow_days']->isEmpty()))): ?>value="<?php echo $web_config['flow_days']; ?>"<?php endif; ?>>
             </div>
+            <div class="layui-form-mid layui-word-aux">不要超过15天</div>
           </div>
 
           <div class="layui-form-item">
@@ -45,6 +46,7 @@
             <div class="layui-input-inline">
               <input name="charge_ratio" autocomplete="off" placeholder="请输入" class="layui-input" type="text" <?php if(!(empty($web_config['charge_ratio']) || (($web_config['charge_ratio'] instanceof \think\Collection || $web_config['charge_ratio'] instanceof \think\Paginator ) && $web_config['charge_ratio']->isEmpty()))): ?>value="<?php echo $web_config['charge_ratio']; ?>"<?php endif; ?>>
             </div>
+            <div class="layui-form-mid layui-word-aux">该比例是按兑奖金额，不是按流水的比例。比如用户的有效流水为900，流水倍数要求为3倍，则可以免费兑奖300，兑奖金额超出的部分按该比例收取手续费</div>
           </div>
 
           <div class="layui-form-item">
@@ -52,6 +54,7 @@
             <div class="layui-input-inline">
               <input name="flow_times" autocomplete="off" placeholder="请输入" class="layui-input" type="text" <?php if(!(empty($web_config['flow_times']) || (($web_config['flow_times'] instanceof \think\Collection || $web_config['flow_times'] instanceof \think\Paginator ) && $web_config['flow_times']->isEmpty()))): ?>value="<?php echo $web_config['flow_times']; ?>"<?php endif; ?>>
             </div>
+             <div class="layui-form-mid layui-word-aux">要求流水达到兑奖额的多少倍</div>
           </div>
           
           <div class="layui-form-item">

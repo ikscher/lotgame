@@ -1,0 +1,204 @@
+{include file="public/header" /}
+<script src="http://static.geetest.com/static/tools/gt.js"></script>
+<script  type="text/javascript" src="__JS__/js.js"></script>
+<script  type="text/javascript" src="__JS__/prize_buy.js"></script>
+
+<style type="text/css">
+    #detail .tb-key .tb-stock {position: relative; float: left; }
+    #bd .tb-stock .tb-disable-increase, #bd .tb-stock .tb-disable-increase:hover, #bd .tb-stock .tb-disable-reduce, #bd .tb-stock .tb-disable-reduce:hover {color: #ccc; cursor: not-allowed; background-color: #ededed; }
+    .tb-stock .tb-reduce {border-right: 0 !important; }
+    .tb-stock a, #bd .tb-stock a:hover {display: block; _display: inline; float: left; width: 26px; height: 26px; border: 1px solid #ccc; line-height: 26px; padding: 0; vertical-align: top; overflow: hidden; text-align: center; background-color: #ededed; overflow: hidden; }
+    #tbExchangedCount {float: left; margin: 0; padding: 0; width: 48px; height: 26px; font-size: 16px; line-height: 26px; text-align: center; color: #666; border: 1px solid #CCC; outline: 0; background: #FFF; ime-mode: disabled; }
+    #bd .tb-stock .tb-increase {border-left: 0 !important; margin-right: 8px; }
+    #bd .tb-stock a, #bd .tb-stock a:hover {display: block; _display: inline; float: left; width: 26px; height: 26px; border: 1px solid #ccc; line-height: 26px; padding: 0; vertical-align: top; overflow: hidden; text-align: center; background-color: #ededed; overflow: hidden; }
+    .text-overflow{display:block;/*内联对象需加*/ width:31em; word-break:keep-all;/* 不换行 */ white-space:nowrap;/* 不换行 */ overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ } 
+    .sxfsm{width: 400px; height: 100px; border: 1px #FF4400 dotted; float: left; border-radius: 5px; padding: 5px 10px; margin: 5px; color: #737573; font-size: 12px;}
+    .ordbtn{font-size: 12px;color: #FFFFFF;width: 182px;height: 39px;background-color: #FF4400;border: none;font-weight: 900;margin-left: 100px;}
+</style>
+
+<div class="area oo">
+    <div class="newsleft fl">
+        {foreach name="cates" item="vo" }
+        <div class="help">
+            <h2>{$vo['name']}</h2>
+            <ul>
+                {foreach name="vo.child" item="vo_" }
+                <li><a href="/Shop/Index?id={$vo_['id']}">{$vo_['name']}</a></li>
+                {/foreach}
+            </ul>
+        </div>
+        {/foreach}
+    </div>
+
+
+    <div id="buybox" class="buybox fr">
+        <div class="top">
+            <h1>确认下单</h1>
+        </div>
+
+        <div class="con prizec">
+            <table id="ContentPlaceHolder1_DataList1" width="100%" cellspacing="15" cellpadding="0">
+                <tbody>
+                    <form  method="post" id="prizeform">
+                        <input type="hidden" name="prizeid" value="{$id}" />
+                        <input type="hidden" name="prizeprice" value="{$prize['price']}" />
+                        <tr>
+                             <td style="width: 250px"><img src="{$prize['thumb']|geturl}" alt="" width="250"></td>
+                             <td style="vertical-align: top;background-color: #FBFCFF;border-top:1px #B2D1FF dotted;width: 100%">
+                                <div style="width:175px;float:left">
+                                          <h1 style="font-size: 18px;font-weight: 100;margin-top: 10px">{$prize['name']}</h1>
+
+                                          <span>单价：</span><span id="oneprice" style="font-size: 21px" class="money money_bg">	{$prize['price']*$coefficient}</span>
+                                          <br>
+                                         <span>额外手续费：</span><span  id="lssxf" style="color:green">-</span><span style="color:green;">金币</span><a id="sxfdetail" onmouseover="sxfdetail()" onmouseout="sxfdetail_clo()" style="display:none;background:url('__IMAGE__/wenh2.png');background-size:16px;width:16px;height:16px;    position: relative;top: 2px" ></a>
+                                      <div style="height:3px"></div>
+
+                                      <span style="float: left;margin-right: 6px">数量：</span>
+                                      <span class="tb-stock" id="J_Stock">
+                                        <a href="javascript:minus();cacusxf();" title="减1" hidefocus="" class="tb-reduce J_Reduce tb-iconfont tb-disable-reduce" data-spm-anchor-id="2013.1.20140002.1">-</a>
+                                        <input onkeyup="adjust();cacusxf();" name="tbExchangedCount" id="tbExchangedCount" type="text" class="tb-text" value="1" maxlength="8" title="请输入购买量">
+                                        <a href="javascript:add();cacusxf();" hidefocus="" class="tb-increase J_Increase tb-iconfont" title="加1" data-spm-anchor-id="2013.1.20140002.2">+</a>
+                                    </span>
+                                </div>
+
+                            <div id="sxfsm" class="sxfsm"></div>
+
+
+                                    <!--<div style="background-color: #F2F7FF;width: auto;clear: both;height: 128px;padding: 8px">
+                                     <span>你的职业是什么?</span>
+                                     <br>
+                                     <input type="text" style="width: 150px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="tbUserSecAns">
+                                     <br>
+                                     <span>手机验证码</span>
+                                     <br>
+                                     <input id="code" type="text" style="width: 100px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="code"><button type="button" id="popup-submit" style="width: 50px;height: 29px;border: none;background-color: #90C626;padding:0 10px;color: #FFFFFF;font-weight: 900;position: relative;bottom: 1px">获取</button>
+                                    </div> -->
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border: solid #FF4400 1px;height: 100px">
+                                <div style="border: 3px solid #fff0e8;width: 100%;height: 100%;line-height: 100px">
+                                    <span style="display: none" id="price1">{$prize['price']*$coefficient}</span>
+                                    <div id="embed-captcha"></div>
+                                    <p id="wait" class="show"></p>
+                                    <p id="notice" class="hide"></p>
+                                    <div id="popup-captcha"></div>
+                                    <span style="margin-left: 10px;font-weight: 900">实付款：</span><span style="font-size: 30px;position: relative;top: 5px" class="money_bg" id="price">{$prize['price']*$coefficient}</span>
+                                    <button lay-submit lay-filter="order" class="ordbtn">提交订单</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script> 
+      var lssxfopen = 1; //按照流水   手续费开区
+
+      var cssxfopen = 0; //按次数     手续费关闭
+      var oldprice;
+      var lsbs = {$charge['flow_times']}; //流水倍数
+      var yxls = 0; //7天内一共有的流水
+      var lssxbl = {$charge['charge_ratio']}; //流水手续比例
+      var xsf;
+      var tipsStr='';
+      var sumSxf;
+      function cacusxf(){
+           tipsStr='';
+           sumSxf = 0;
+           oldprice = parseInt($("#price").html().replace(/,/g,""));
+           if(lssxfopen == 1){
+              var freeprice = parseInt(yxls/lsbs);
+
+
+              if(oldprice>freeprice){
+                 xsf = (oldprice-freeprice)*lssxbl/100;
+
+                 sumSxf = xsf;
+                 tipsStr = '●游戏流水手续费:您最近7日游戏流水：0<br/>您最近7日兑奖：0<br/>您当前可用流水：0<br/>可免额外手续费兑奖'+fmoney(parseInt(yxls/lsbs))+'金币,本次兑奖'+fmoney(oldprice)+"金币,超出部分："+fmoney(oldprice-parseInt(yxls/lsbs))+"按"+lssxbl+"%收取手续费："+fmoney(parseInt(xsf))+"金币";
+             }else{
+                 $("#lssxf").html('无');
+                 tipsStr = '●游戏流水手续费:您最近7日游戏流水：0<br/>您最近7日兑奖：0<br/>您当前可用流水：0<br/>可免额外手续费兑奖'+fmoney(parseInt(yxls/lsbs))+'金币,本次兑奖'+fmoney(oldprice)+"金币,不收取额外手续费！";
+             }
+         }
+         if(cssxfopen == 1){
+             var feetype = 0;
+             if(feetype == 1){
+                var curfee = parseInt(0);
+                sumSxf += parseInt(curfee);
+                tipsStr += "<br/>●兑奖次数手续费:您今天是第1次兑奖，需收取"+curfee+"金币的手续费!";
+            }else{
+                var curfee = parseInt(0*oldprice/100);
+                sumSxf += curfee;
+                tipsStr += "<br/>●兑奖次数手续费:您今天是第1次兑奖，本次兑奖"+oldprice+"金币,需收取0%的手续费,即"+curfee+"金币!";
+            }
+
+        }
+        $("#sxfsm").html(tipsStr);
+        if(cssxfopen == 1 || lssxfopen == 1){
+             var aggregate=fmoney(parseInt(oldprice)+sumSxf);
+             $("#price").html(aggregate);
+             $("#lssxf").html(fmoney(sumSxf));
+         }
+    }
+     var layerindex;
+     function sxfdetail(){
+      if($("#lssxf").html()=="无"){
+         layerindex=layer.tips(tipsStr, '#sxfdetail', {
+          tips: [1, '#323436'],
+          time: 0,
+          area:["440px"]
+      });
+     }else{
+      layerindex=layer.tips(tipsStr, '#sxfdetail', {
+          tips: [1, '#323436'],
+          time: 0,
+          area:["440px"]
+      });
+    }
+
+      }
+      function sxfdetail_clo(){
+          layer.close(layerindex);
+      }
+
+
+      $(document).ready(function(){
+          cacusxf();
+      });
+
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+  
+  form.on('submit(order)',function(){
+     var num=$('#tbExchangedCount').val();
+     var aggregate=$('#price').html();
+     var prize_id=$("input[name='prizeid']").val();
+     var price=$("input[name='prizeprice']").val();
+     $.ajax({
+          url:"{:url('/shop/order')}",
+          data:{prize_id:prize_id,num:num,aggregate:aggregate,price:price},
+          type:'post',
+          async: false,
+          success:function(res) {
+              console.log(res);
+              if(res.code == 1) {
+                  layer.msg(res.msg, function(index){
+                    location.href = res.url;
+                  })
+              } else {
+                  layer.msg(res.msg);
+              }
+          }
+      })
+      return false;
+  })
+});
+</script> 
+{include file="public/footer" /}
