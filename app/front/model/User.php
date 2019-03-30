@@ -47,6 +47,12 @@ class User extends Model
         //关联日志表
         return $this->hasMany('UserLog','user_id');
     }
+
+    public function msg()
+    {
+        //关联站内信表
+        return $this->hasMany('UserMsg','user_id');
+    }
     
     public function userquestion(){
         //关联工单表

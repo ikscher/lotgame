@@ -44,6 +44,9 @@ Route::rule('article/detail/:id','front/article/detail');
 Route::rule('prize/shatter','front/prize/shatter');
 Route::rule('user/index','front/user/index');
 Route::rule('user/point','front/user/point');
+Route::rule('user/remark','front/user/remark');
+Route::rule('user/msg','front/user/msg');
+Route::rule('user/edit','front/user/edit');
 Route::rule('agent/index','front/agent/index');
 Route::rule('site/index','front/site/index');
 Route::rule('prize/ind','front/prize/init');
@@ -53,6 +56,6 @@ Route::rule('shop/index','front/shop/index');
 Route::rule('shop/index/:id','front/shop/index');
 Route::rule('shop/detail','front/shop/detail');
 Route::rule('shop/order','front/shop/order');
-Route::rule('user/remark','front/user/remark');
+Route::rule('common/upload','front/common/upload');
 
 

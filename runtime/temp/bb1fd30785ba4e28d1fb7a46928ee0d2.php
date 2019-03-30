@@ -1,11 +1,13 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1553603701;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553774924;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553609915;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1553603701;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553911713;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="renderer" content="webkit"/>
+<!-- 	<meta name="renderer" content="webkit"/> -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<?php if($controller != 'Index'): ?>
+	<?php if($controller == 'User'): ?>
+	<link href="/static/front/css/user.css" type="text/css" rel="stylesheet" />
+	<?php elseif($controller != 'Index'): ?>
 	<link href="/static/front/css/base.css" type="text/css" rel="stylesheet" />
 	<?php endif; ?>
     <link href="/static/front/css/common.css" type="text/css" rel="stylesheet" />
@@ -293,6 +295,7 @@
 		$("#hammer").show().css({'left': posL,'top': '520px'});;
 	})
 </script>
+<div class="clear"></div>
 <div class="foot w100">
 							<div class="w1000 oo">
 								<div class="footl fl">
@@ -408,7 +411,8 @@
 	Notification.requestPermission( function(status) {
 		
 	});
-
+    
+    //数字加千分位符号fmoney(“12345.675910”, 3)，返回12,345.676
 	function fmoney(s, n) {
 		n = n > 0 && n <= 20 ? n : 2;
 		f = s < 0 ? "-" : "";
@@ -420,6 +424,10 @@
 			t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
 		}
 		return f + t.split("").reverse().join("");
+	}
+	//数字去掉千分位符号
+	function rmoney(s){   
+	   return parseFloat(s.replace(/[^\d\.-]/g, ""));   
 	}
 
 	function getSimpleResult(game,text){

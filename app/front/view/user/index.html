@@ -1,0 +1,174 @@
+{include file="public/header" /}
+<div class="umain">
+	<div class="w1200">
+		<div class="utop">
+			<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);?><?php }else{ ?>__IMAGE__/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
+			<div class="utop-info">
+				<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
+				<div class="utop-info-name">昵称：{$user['username']}</div>
+				<div class="utop-info-name">ID:{$user['uid']}</div>
+			</div>
+			<ul class="ubase-ul">
+				<li class="li1">
+					<p class="p1">账户余额</p>
+					<p class="p2">{$user['coin']}</p>
+				</li>
+				<li class="li2">
+					<p class="p1">银行</p>
+					<p class="p2">{$user['bank']}</p>
+				</li>
+				<li class="li3">
+					<p class="p1">积分</p>
+					<p class="p2">{$user['points']}</p>
+				</li>
+				<li class="li4">
+					<p class="p1">经验</p>
+					<p class="p2">{$user['experiments']}</p>
+				</li>
+			</ul>
+		</div>
+		<!--左侧left菜单-->
+        {include file="user/left" /}
+		<!--左侧left菜单-->
+
+
+
+		<script type="text/javascript" language="javascript">
+			var links = $("#side-menu li");
+			var lilen = $("#side-menu a");
+			var currenturl = document.location.href;
+			var last = -1;
+			for (var i=0;i<links.length;i++)
+			{
+				var linkurl = lilen[i].getAttribute("href");
+				if(currenturl.indexOf(linkurl)!=-1)
+				{
+					last = i;
+				}
+			}
+     /*links[last].style.backgroundColor = '#e22525';
+     links[last].style.color = '#e22525';*/  //高亮代码样式
+
+     links[last].setAttribute("class","menufirst");
+ </script>
+ <div class="uright">
+ 	<div class="ibox">
+ 		<div class="ibox-title">
+ 			<h5>账户信息</h5>
+ 		</div>
+ 		<div class="ibox-content">
+ 			<ul class="safe-ul">
+ 				<!-- <li class="li1">
+ 					<i></i>
+ 					<p class="p1">专属域名</p>
+ 					<p class="p2 "><span>未开通</span><a href="/User/SelfLine">立即开通</a></p>
+ 				</li> -->
+ 				<li class="li2">
+ 					<i></i>
+ 					<p class="p1">邮箱绑定</p>
+ 					<p class="p2  yes "><span>已绑定</span><a href="/User/BindEmail">查看</a></p>
+ 				</li>
+ 				<li class="li3" style="margin-right: 50px;">
+ 					<i></i>
+ 					<p class="p1">手机绑定</p>
+ 					<p class="p2  yes "><span>已绑定</span><a href="/User/Mobile">查看</a></p>
+ 				</li>
+ 				<li class="li4">
+ 					<i></i>
+ 					<p class="p1">QQ绑定</p>
+ 					<p class="p2 "><span>未绑定</span><a href="/plugin/qc/login.php">立即绑定</a></p>
+ 				</li>
+ 				<li class="li5">
+ 					<i></i>
+ 					<p class="p1">密保启用</p>
+ 					<p class="p2  no "><span>未启用</span><a href="/User/Safe">立即启用</a></p>
+ 				</li>
+ 				<li class="li6" style="margin-right: 50px;">
+ 					<i></i>
+ 					<p class="p1">在线充值</p>
+ 					<p class="p2"><span>未充值</span><a href="/User/MyRecharge">立即充值</a></p>
+ 				</li>
+ 			</ul>
+ 		</div>
+
+ 		<div class="ibox-title">
+ 			<h5>账户动态</h5>
+ 		</div>
+ 		<div class="ibox-content">
+ 			<table class="user-table mt20">
+ 				<thead>
+ 					<tr>
+ 						<th>事件</th>
+ 						<th>时间</th>
+ 						<th>金额</th>
+ 						<th>经验</th>
+ 						<th>余额</th>
+ 					</tr>
+ 				</thead>
+ 				<tbody>
+ 					{foreach name="logs" item="vo" }
+ 					<tr>
+ 						<td width="260px"><p class="table-p">{$vo.desc}</p></td>
+ 						<td>{$vo.create_time}</td>
+ 						<td><span class="blue">{$vo.coin}</span></td>
+ 						<td><span class="blue">{$vo.experiment}</span></td>
+ 						<td><span class="blue">{$vo.user.coin}</span></td>
+ 					</tr>
+ 					{/foreach}
+ 				</tbody>
+ 			</table>
+ 			<div style="padding:0 20px;">{$logs->render()}</div> 
+ 			<!-- <form id="chaxun" name="chaxun" method="get" action="?">
+ 				<select name="k" id="k" class="user-select">
+ 					<option value="0">全部记录</option>
+ 					<option value="8">登陆记录</option>
+ 					<option value="4">银行操作</option>
+ 					<option value="1">广告奖励</option>
+ 					<option value="5">任务记录</option>
+ 					<option value="2">道具使用</option>
+ 					<option value="3">奖罚记录</option>
+ 					<option value="7">推广奖励</option>
+ 					<option value="6">游戏记录</option>
+ 					<option value="11">工资记录</option>
+ 					<option value="12">签到记录</option>
+ 					<option value="19">专属线路</option>
+ 					<option value="25">站内红包</option>
+ 				</select>
+ 				<input type="submit" name="Submit" value="查询" />
+ 			</form> -->
+ 		</div>
+ 	</div>
+ </div>
+</div>
+</div>
+
+
+<div style="clear:both;"></div>
+
+<script>
+	var url=window.location.href;
+	if(url.indexOf("page")>0){
+		location.hash = 'history';
+	}
+	if(readCookie('cSound')==null){
+		setCookie('cSound',1);
+	}
+	if(readCookie('zdsx')==null){
+		setCookie('zdsx',1);
+	}
+	function setCookie(cookieName,cookieValue){
+		var date = new Date();
+		date.setTime(date.getTime() + 24*60*60*1000000);
+		document.cookie = cookieName + "=" + cookieValue + ";expires=" + date.toGMTString() + ";path=/";
+	}
+	function readCookie(cookieName){
+		var aCookie = document.cookie.split("; ");
+		for (var i=0; i < aCookie.length; i++){
+			var aCrumb = aCookie[i].split("=");
+			if(cookieName == aCrumb[0])
+				return unescape(aCrumb[1]);
+		}
+		return null;
+	}
+</script>
+{include file="public/footer" /}

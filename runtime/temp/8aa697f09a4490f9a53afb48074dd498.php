@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"D:\mywork\lotgame\public/../app/admin\view\user\publish.html";i:1552983623;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"D:\mywork\lotgame\public/../app/admin\view\user\publish.html";i:1553947744;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,7 +124,7 @@
         <div class="layui-upload-list">
           <label class="layui-form-label"></label>
           <img class="layui-upload-img" id="demo1" width="150" height="150" <?php if(!(empty($user['avatar']) || (($user['avatar'] instanceof \think\Collection || $user['avatar'] instanceof \think\Paginator ) && $user['avatar']->isEmpty()))): ?>src="<?php echo geturl($user['avatar']); ?>"<?php endif; ?>><?php if(!(empty($user['avatar']) || (($user['avatar'] instanceof \think\Collection || $user['avatar'] instanceof \think\Paginator ) && $user['avatar']->isEmpty()))): ?><input type="hidden" name="avatar" value="<?php echo $user['avatar']; ?>"><?php endif; ?>
-          <p id="demoText"></p>
+          <p id="demoText" ></p>
         </div>
       </div>
 

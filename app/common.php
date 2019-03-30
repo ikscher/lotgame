@@ -25,10 +25,11 @@ function geturl($id)
 			return $geturl['filepath'];
 		} elseif($geturl['status'] == 0) {
 			//待审核
-			return '/uploads/xitong/beiyong1.jpg';
+			return '/static/front/image/user/head-img2.jpg';
+            // return '/uploads/xitong/beiyong1.jpg';
 		} else {
 			//不通过
-			return '/uploads/xitong/beiyong2.jpg';
+			return '/static/front/image/user/head-img2.jpg';
 		} 
     }
     return false;

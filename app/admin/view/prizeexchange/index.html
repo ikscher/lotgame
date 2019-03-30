@@ -87,6 +87,8 @@ td span a{
           <th>用户邮箱</th>
           <th>兑换奖品</th>
           <th>兑换价格</th>
+          <th>兑换数量</th>
+          <th>兑换总价</th>
           <th>兑换时间</th>
           <th>审核</th>
           <th>操作</thS>
@@ -102,6 +104,8 @@ td span a{
           <td>{$vo.email}</td>
           <td>{$vo.name}</td>
           <td>{$vo.price}</td>
+          <td>{$vo.num}</td>
+          <td>{$vo.aggregate}</td>
           <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td><!--如果是model不是Db::name创建的 A non well formed numeric value encountered  不需要用date转换  -->
           <td>
              {if condition="$vo.status eq 1"}
@@ -109,7 +113,7 @@ td span a{
              {elseif condition="$vo.status eq 2"}
              未通过
              {else /}
-             <span><a class="exchange"  data-id="{$vo.id}" data-status="1" href="javascript:;">通过</a><a class="exchange"  data-id="{$vo.id}" data-status="2" href="javascript:;">拒绝</a></span>
+             <span><a class="exchange"  data-id="{$vo.id}" data-aggregate="{$vo.aggregate}" data-uid="{$vo.user_id}" data-status="1" href="javascript:;">通过</a><a class="exchange"  data-id="{$vo.id}" data-status="2" href="javascript:;">拒绝</a></span>
              {/if}
           </td>
           <td class="operation-menu">
@@ -147,6 +151,8 @@ td span a{
       $('.exchange').click(function(){
           var status = $(this).attr('data-status');
           var id = $(this).attr('data-id');
+          var uid = $(this).attr('data-uid');
+          var aggregate = $(this).attr('data-aggregate');
           var that = $(this);
           var str='';
           if(status==1){
@@ -158,8 +164,9 @@ td span a{
             $.ajax({
               type:"post",
               url:"{:url('admin/prizeexchange/status')}",
-              data:{status:status,id:id},
+              data:{status:status,id:id,uid:uid,aggregate:aggregate},
               success:function(res){
+                // console.log(res)
                 layer.close(layer.index);
                 if(res.code == 1) {
                   that.parent('span').html(str);
