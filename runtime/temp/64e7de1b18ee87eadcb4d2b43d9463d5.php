@@ -1,4 +1,5 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\edit.html";i:1554009598;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554020389;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554010449;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553506839;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554020389;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -193,346 +194,341 @@
 		}(window));
 	setTimeout(window.autoAnimation, 5000);
 </script>
-<link href="/static/public/layui/css/layui.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="/static/front/js/birthday_jq.js" ></script>
-<div id="wrapper" class="umain">
-	<div class="w1200">
-		<!--顶侧top-->
-		<div class="utop">
-	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
-	<div class="utop-info">
-		<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
-		<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
-		<div class="utop-info-name">ID:<?php echo $user['uid']; ?></div>
+<link href="/static/front/css/style.css" type="text/css" rel="stylesheet" />
+<!--[if lt IE 7]>
+	<script src="/static/front/js/oldbowers.js" type="text/javascript"></script>
+<![endif]-->
+<script src="http://static.geetest.com/static/tools/gt.js"></script>
+<script src="/static/front/js/jquery.showLoading.min.js"></script>
+<script type="text/javascript" src="/static/front/js/jeeslide.js"></script>
+<script type="text/javascript" src="/static/front/js/login.js"></script>
+
+<script type="text/javascript">
+	function setCookie(name,value) 
+	{ 
+		var Days = 30; 
+		var exp = new Date(); 
+		exp.setTime(exp.getTime() + Days*24*60*60*1000); 
+		document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString(); 
+	}
+</script>
+
+<div class="banner">
+	<div class="loginbg"></div>
+	<div id="loginbox" class="alogin">
+		<div class="logtit"><strong>登录成功</strong></div>
+		<div style="height:20px;"></div>
+		<div class="logtit" style="font-size:14px;">登录账号：ikscher (891435)</div>
+		<div class="captcha mt10 mb10">
+			<label>账户余额：500 </label>
+		</div>
+		<a href="/User/Index" class="sub mt20">会员中心</a>
+		<a href="/Game/Index" class="sub mt20">游戏中心</a>
+
+		<div class="forget fr mt10">
+			<a id="LinkButton1" class="outlink" href="/User/Login?act=logout">退出</a>
+		</div>
+
 	</div>
-	<ul class="ubase-ul">
-		<li class="li1">
-			<p class="p1">账户余额</p>
-			<p class="p2"><?php echo $user['coin']; ?></p>
+	<SCRIPT type="text/javascript">
+		$('.logtit em').click(function(){
+			$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
+			$(this).prev().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
+			$('.send_mobi, .send_num').show();
+			$('.id, .pass').hide();
+			$("#logintype").attr("value","2");
+		});
+		$('.logtit strong').click(function(){
+			$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
+			$(this).next().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
+			$('.send_mobi, .send_num').hide();
+			$('.id, .pass').show();
+			$("#logintype").attr("value","1");
+		});
+	</SCRIPT>
+
+	<div id="slideBox" class="slideBox">
+		<div class="hd">
+			<ul>
+				<li>优势</li>
+				<li>上线</li>
+				<li>活动</li>
+				<li>奖品</li>
+				<li>抽奖</li>
+			</ul>
+		</div>
+		<div class="bd">
+			<ul>
+				<li><a href="#" target="_blank"><img src="/static/front/image/banner1.jpg" /></a></li>
+				<li><a href="/User/Reg" target="_blank"><img src="/static/front/image/banner2.jpg" /></a></li>
+				<li><a href="/Hd/List" target="_blank"><img src="/static/front/image/banner3.jpg" /></a></li>
+				<li><a href="/Prize/Center" target="_blank"><img src="/static/front/image/banner4.jpg" /></a></li>
+				<li><a href="/Hd/Round" target="_blank"><img src="/static/front/image/banner5.jpg" /></a></li>
+			</ul>
+		</div>
+
+		<!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+		<a class="prev" href="javascript:void(0)"></a>
+		<a class="next" href="javascript:void(0)"></a>
+
+	</div>
+
+	<script type="text/javascript">
+		$(".slideBox").slide({mainCell:".bd ul",effect:"left",autoPlay:true});
+	</script>	
+</div>
+
+
+
+<div class="yoo-service w100">
+	<ul class="col3">
+		<li>
+			<i class="service-1">
+			</i>
+			<div class="text">
+				<h3>
+					平台安全稳定
+				</h3>
+				<p>
+					实力平台 提供安全稳定的游戏环境
+					<br>
+					信誉第一 口碑上佳
+				</p>
+			</div>
 		</li>
-		<li class="li2">
-			<p class="p1">银行</p>
-			<p class="p2"><?php echo $user['bank']; ?></p>
+		<li>
+			<i class="service-2">
+			</i>
+			<div class="text">
+				<h3>
+					服务高效优质
+				</h3>
+				<p>
+					最全面的游戏体验 以种类第一为保证
+					<br>
+					领先行业最高质量
+				</p>
+			</div>
 		</li>
-		<li class="li3">
-			<p class="p1">积分</p>
-			<p class="p2"><?php echo $user['points']; ?></p>
+		<li>
+			<i class="service-3">
+			</i>
+			<div class="text">
+				<h3>
+					简单方便快捷
+				</h3>
+				<p>
+					全天7x24小时服务 最快的响应速度
+					<br>
+					支持手机在线游戏
+				</p>
+			</div>
 		</li>
-		<li class="li4">
-			<p class="p1">经验</p>
-			<p class="p2"><?php echo $user['experiments']; ?></p>
+		<li>
+			<i class="service-4">
+			</i>
+			<div class="text">
+				<h3>
+					活动礼品丰富
+				</h3>
+				<p>
+					活动丰富多彩 奖励别具一格
+					<br>
+					尽情畅玩 奖励不断
+				</p>
+			</div>
 		</li>
 	</ul>
 </div>
-		<!--顶侧top-->
 
-		<!--左侧left菜单-->
-		<div class="col-left">
-	<div class="uleft-menu" id="side-menu">
-		<p style="margin-top: 0;">用户账户</p>
-		<ul>
-			<li><a href='/User/Index'>个人信息</a></li>
-			<li><a href='/User/Edit'>资料修改</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Editpwd'>密码修改</a></li>
-			<li><a href='/User/Safe'>安全工具</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/MyRecharge'>在线充值</a></li>
-			<li><a href='/Cg/Getprize'>闯关奖励</a></li>
-		</ul>
+<div class="w100 f1 mt10">
+	<div class="w1000 forumHots">
+		<div class="news fl">
+			<h2 class="h2">最新公告<a href="board/index">MORE</a></h2>
+			<div class="textLeft">
+				<ul class="simpleList">
+					<?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+					<li>
+					<a class="ellipsis hover-line fl" href="/News/Detail/115" target="_blank">
+					<span>[ <?php echo date('Y-m-d',strtotime($vo['create_time'])); ?> ] </span><?php echo $vo['title']; ?></a>
+					</li>
+					<?php endforeach; endif; else: echo "" ;endif; ?>
+				</ul>
 
-		<p>站内功能</p>
-		<ul>
-			<li><a href='/User/SelfLine'>专属域名</a></li>
-			<li><a href='/User/Recharge'>点卡使用</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Msg'>站内信箱</a></li>
-			<li><a href='/User/Bank'>金币银行</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Prize'>兑奖记录</a></li>
-			<li><a href='/User/ReWard'>亏损返利</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Bonus'>首充返利</a></li>
-		</ul>
-
-		<p>推广相关</p>
-		<ul>
-			<li><a href='/User/Recom'>推广下线</a></li>
-			<li><a href='/User/Recomprofit'>推广收益</a></li>
-		</ul>
-
-		<p>工资救济</p>
-		<ul>
-			<li><a href='/User/Sign'>签到中心</a></li>
-			<li><a href='/User/Alms'>领取救济</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Wage'>工资领取</a></li>
-			<li><a href='/Game/Egg'>金蛋砸取</a></li>
-		</ul>
-
-		<p>游戏功能</p>
-		<ul> 
-			<li><a href='/User/Auto'>方案中心</a></li>
-			<li><a href='/game/top'>玩家排行</a></li>
-		</ul>
-	</div>
-</div>
-<script type="text/javascript" language="javascript">
-	var links = $("#side-menu li");
-	var lilen = $("#side-menu a");
-	var currenturl = document.location.href;
-	var last = -1;
-	for (var i=0;i<links.length;i++)
-	{
-		var linkurl = lilen[i].getAttribute("href");
-		if(currenturl.indexOf(linkurl)!=-1)
-		{
-			last = i;
-		}
-	}
-
-	links[last].setAttribute("class","menufirst");
-</script>
-
-		<!--左侧left菜单-->
-
-
-		<div class="uright">
-			<div class="ibox">
-				<div class="ibox-title">
-					<h5>资料修改</h5>
-				</div>
-				<div class="ibox-content">
-					<div class="tishi tishi1">依据自由自愿的原则，您可以选择填写以下资料或不填写，但如果你需要申请提现或兑换奖品则一定要如实填写以下资料，如果所填内容涉嫌作假，我们有权冻结您的账号。</div>
-
-					<form   id="userInfoForm">
-						<ul class="edit-ul">
-							<!-- <li class="pro-li">
-								<label>资料完整度: </label>
-								<div class="progress">
-									<span class="bar" id="edit-progress"></span>
-								</div>
-								<div class="progress-text"></div>
-								<div id="editName" class="edit-text">亲爱的ikscher，请填写完整的基本资料！</div>
-							</li> -->
-							<li>
-								<label>ID号：</label>
-								<input type="text" disabled="" value="<?php echo $user['uid']; ?>" class="edit-input">
-							</li>
-							<li>
-								<label>昵称：</label>
-								<input type="text" class="edit-input"  name="username" value="<?php echo $user['username']; ?>" >
-								<span class="help-text">必填</span>
-							</li>
-							<li>
-								<label>性别：</label>
-								<select class="edit-select" name="gender" id="tbUserGender">
-									<option value="1"  <?php if($user['gender'] != 2): ?>selected<?php endif; ?>>男</option>
-									<option value="2"  <?php if($user['gender'] == 2): ?>selected<?php endif; ?>>女</option>
-								</select>
-							</li>
-							<li>
-								<label>生日：</label>
-								<select class="edit-select birth-select" name="byear" id="tbBirthYear"  <?php if($user['birth'] == 0): ?>rel="2000"<?php else: ?> rel="<?php echo date('Y',$user['birth']); ?>"<?php endif; ?>></select>年
-						        <select class="edit-select birth-select" name="bmonth" id="tbBirthMonth" <?php if($user['birth'] == 0): ?>rel="2"<?php else: ?>rel="<?php echo date('m',$user['birth']); ?>"<?php endif; ?>></select>月
-						        <select class="edit-select birth-select" name="bday" id="tbBirthDay" <?php if($user['birth'] == 0): ?>rel="14"<?php else: ?>rel="<?php echo date('d',$user['birth']); ?>"<?php endif; ?>></select>日
-							</li>
-							<li>
-								<label>QQ：</label>
-								<input type="text" class="edit-input"  name="qq" id="tbUserQQ"  <?php if(!(empty($user['qq']) || (($user['qq'] instanceof \think\Collection || $user['qq'] instanceof \think\Paginator ) && $user['qq']->isEmpty()))): ?>disabled<?php endif; ?>   value="<?php echo $user['qq']; ?>">
-								<span class="help-text">设置后不可修改</span>
-							</li>
-							<li style="position: relative;left: -10px;">
-								<label style="width: 60px;">支付宝：</label>
-								<input type="text" class="edit-input"  id="tbAlipay" <?php if(!(empty($user['alipay']) || (($user['alipay'] instanceof \think\Collection || $user['alipay'] instanceof \think\Paginator ) && $user['alipay']->isEmpty()))): ?>disabled<?php endif; ?> value="<?php echo $user['alipay']; ?>"  name="alipay">
-								<span class="help-text">设置后不可修改</span>
-							</li>
-							<li style="margin: 5px 0;">
-								<label></label>
-								<input type="hidden" name="act" value="update" />
-								<button class="user-btn" lay-submit lay-filter="userInfo">保存内容</button>
-							</li>
-						</ul>
-					</form>
-				</div>
 			</div>
+		</div>
 
-			<div class="ibox">
-				<div class="ibox-title">
-					<h5>头像设置</h5>
-				</div>
-				<div class="ibox-content">
-					<div class="uploadhead"><div class="uploadhead-btn" id="thumb"><span>上传头像</span></div> 仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</div>
-					<div class="head-box">
-						<form class="layui-form" id="userAvatarForm">
-						    <div class="head-box-left" id="upload-thumb">
-								<div class="form-head">
-									<!-- <input type="file" class="form-control" id="chooseImage" name="tbUserPhoto" style="display: none;"> -->
-									<img src="<?php if(!(empty($user['avatar']) || (($user['avatar'] instanceof \think\Collection || $user['avatar'] instanceof \think\Paginator ) && $user['avatar']->isEmpty()))): ?><?php echo geturl($user['avatar']); else: ?>'/static/front/image/user/head-img1.jpg'<?php endif; ?>" width="260px" height="260px" onclick="F_Open_dialog('chooseImage')" id="cropedBigImg">
-								</div>
-								<?php if(!(empty($user['avatar']) || (($user['avatar'] instanceof \think\Collection || $user['avatar'] instanceof \think\Paginator ) && $user['avatar']->isEmpty()))): ?><input type="hidden" name="avatar" value="<?php echo $user['avatar']; ?>"><?php endif; ?>
-								<!-- <input type="hidden" name="tbUserNick" value="ikscher"> -->
-								<input type="hidden" name="act" value="upload">
-								<button class="user-btn" type="button"  lay-submit lay-filter="avatar" style="margin: 10px auto">确认保存</button>
-						    </div>
-						</form>
-						<div class="head-box-right">
-							<div class="head-img1">
-								<img  id="demo1" src="/static/front/image/user/head-img2.jpg" width="100px" height="100px" id="head-img2">
-								<p>大头像100*100像素</p>
-							</div>
-							<div class="head-img2">
-								<img id="demo2" src="/static/front/image/user/head-img2.jpg" width="80px" height="80px" id="head-img3">
-								<p>大头像80*80像素</p>
-							</div>
-						</div>
-					</div>
+		<div class="imgRight fr">
+			<h2 class="h2">最新活动<a href="/Hd/List">MORE</a></h2>
+			<ul class="hdul">
+				<li class="fl">
+					<a href="#"><img src="/static/front/image/hd1.jpg"><span>立即参加</span></a>
+				</li>
+				<li class="fr">
+					<a href="#"><img src="/static/front/image/hd2.jpg"><span>立即参加</span></a>
+				</li>
+				<li class="fl">
+					<a href="#"><img src="/static/front/image/hd3.jpg"><span>立即参加</span></a>
+				</li>
+				<li class="fr">
+					<a href="#"><img src="/static/front/image/hd4.jpg"><span>立即参加</span></a>
+				</li>
+			</ul>
+		</div>
 
-				</div>
-
-				<div class="ibox-title">
-					<h5>用户偏好</h5>
-				</div>
-				<div class="ibox-content" style="width: 260px;">
-					<form action="?act=modifyfav" method="post" >
-						<div class="gdsz-box">
-							<label>接收中奖弹出提示：</label>
-							<input class="fl" type="checkbox" name="zjtips" value="1" checked style="margin-top: 5px;">
-						</div>
-						<button class="user-btn" type="submit" style="margin: 20px auto 0px;">确认保存</button>
-					</form>
-				</div>
-			</div>
-
-		</div><!--uright-->
 	</div>
 </div>
 
-<script type="text/javascript">
-$(function () {
-	$.ms_DatePicker({
-            YearSelector: "#tbBirthYear",
-            MonthSelector: "#tbBirthMonth",
-            DaySelector: "#tbBirthDay"
-    });
-	// $.ms_DatePicker();
-}); 
+<div class="clear"></div>
 
-// function F_Open_dialog(id) {
-//     document.getElementById(id).click();
-// }
+<div class="w100 f2">
+	<div class="w1000">
+		<h2 class="h2" style="padding: 30px 0;"><span style="margin-left:5px;">奖品兑换</span><a href="/Prize/Center" style="color:#fff">MORE</a></h2>
+		<div class="gwfl fl">
+			<div class="gwl fr">
+				<a href="#" class="gwlu"><img src="/static/front/image/gwl.jpg"><p>好礼换不停</p></a>
+				<a href="#" class="gwld"><div class="tit">奖品兑换中心</div><div class="in">点击进入</div></a>
+			</div>
+			<div class="gwr fl">
+				<a class="first" href="#">
+					<div class="tit1">苹果12英寸MacBook 256GB</div>
+					<div class="tit2">轻薄学习办公笔记本电脑</div>
+					<img src="/static/front/image/gw6.jpg">
+				</a><a href="#">
+					<div class="tit1">Apple/苹果iPhone7</div>
+					<div class="tit2"> 国行全网通4G版手机</div>
+					<img src="/static/front/image/gw1.jpg">
+				</a><a href="#">
+					<div class="tit1">Apple/苹果iPad Pro</div>
+					<div class="tit2">苹果9.7英寸 WLAN 128GB</div>
+					<img src="/static/front/image/gw3.jpg">
+				</a><a href="#">
+					<div class="tit1">微软Arc无线鼠标 </div>
+					<div class="tit2">mini可折叠激光鼠标</div>
+					<img src="/static/front/image/gw4.jpg">
+				</a><a href="#">
+					<div class="tit1">头戴式无线蓝牙B耳机</div>
+					<div class="tit2">Beats Beats Solo3 Wireless</div>
+					<img src="/static/front/image/gw7.jpg">
+				</a><a href="#">
+					<div class="tit1">360小水滴智能摄像头</div>
+					<div class="tit2">wifi远程监控夜视版</div>
+					<img src="/static/front/image/gw8.jpg">
+				</a><a href="#">
+					<div class="tit1">飞科剃须刀FS373</div>
+					<div class="tit2">全身水洗充电式电动剃须</div>
+					<img src="/static/front/image/gw2.jpg">
+				</a>
+			</div>
 
-// $(function(){
-// 	$('#chooseImage').on('change',function(){
-//     	var filePath = $(this).val(),         //获取到input的value，里面是文件的路径
-//     		fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
-//     		src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
-    		
-//     	// 检查是否是图片
-//     	if( !fileFormat.match(/.png|.jpg|.jpeg/) ) {
-//     		error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
-//         	return;  
-//         }
-  	
-//         $('#cropedBigImg').attr("src",src);
-//         $('#head-img2').attr("src",src);
-//         $('#head-img3').attr("src",src);
-// 	});
-// });
+		</div>
 
-</script> 
+	</div>
+</div>
 
-<script>
-    layui.use('upload', function(){
-      var upload = layui.upload;
-      //执行实例
-      var uploadInst = upload.render({
-        elem: '#thumb' //绑定元素
-        ,url: "<?php echo url('/common/upload'); ?>" //上传接口
-        ,data:{use:'user_thumb'}
-        ,done: function(res){
-        	console.log(res)
-          //上传完毕回调
-          if(res.code == 2) {
-          	$('#cropedBigImg').attr("src",res.src);
-            $('#demo1').attr('src',res.src);
-            $('#demo2').attr('src',res.src);
-            $('#upload-thumb').append('<input type="hidden" name="avatar" value="'+ res.id +'">');
-          } else {
-            layer.msg(res.msg);
-          }
-        }
-        ,error: function(){
-          //请求异常回调
-          //演示失败状态，并实现重传
-          layer.msg('上传失败');
-          // var demoText = $('#demoText');
-          // demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
-          // demoText.find('.demo-reload').on('click', function(){
-          //   uploadInst.upload();
-          // });
-        }
-      });
-    });
 
-    layui.use('form', function(){
-	   var form = layui.form;
-	  
-	   form.on('submit(avatar)', function(data) {
-            $.ajax({
-                url:"<?php echo url('/user/edit'); ?>",
-                data:$('#userAvatarForm').serialize(),
-                type:'post',
-                async: false,
-                success:function(res) {
-                    console.log(res);
-                    if(res.code == 1) {
-                      layer.msg(res.msg);
-                      // layer.alert(res.msg, function(index){
-                      //   location.href = res.url;
-                      // })
-                    } else {
-                      layer.msg(res.msg);
-                    }
-                }
-            })
-            return false;
-       });
+<div class="w100 rk oo">
+	<div class="w1000">
+		<div class="rank-list-main clearfix">
+			<div class="rank-box rank-today">
+				<div class="rank-box-top">
+					<h3>牛人排行榜</h3>
+					<p><a href="/Game/Top">今日牛人排行榜，更多排行榜及奖励请点击查看</a></p>
+				</div>
+				<div class="rank-box-main">
+					<ul>
+						<li  >
+							<span class="num first"><i>1</i></span>
+							<span class="name">滑翔起飞</span>
+							<span class="account">142,237,934</span>
+						</li>
 
-       form.on('submit(userInfo)',function(){
-            var username=$("input[name='username']").val();
-            if(!username){
-           	   layer.msg('用户名不能为空！');
-           	   return false;
-            }
+						<li  class="fr"  >
+							<span class="num second"><i>2</i></span>
+							<span class="name">黑旋风李逵</span>
+							<span class="account">131,449,468</span>
+						</li>
 
-            $.ajax({
-                url:"<?php echo url('/user/edit'); ?>",
-                data:$('#userInfoForm').serialize(),
-                type:'post',
-                async: false,
-                success:function(res) {
-                    console.log(res);
-                    if(res.code == 1) {
-                      layer.msg(res.msg);
-                      // layer.alert(res.msg, function(index){
-                      //   location.href = res.url;
-                      // })
-                    } else {
-                      layer.msg(res.msg);
-                    }
-                }
-            })
-            return false;
-       })
-	});
-</script>
+						<li  >
+							<span class="num third"><i>3</i></span>
+							<span class="name">希望的田野</span>
+							<span class="account">117,199,854</span>
+						</li>
+
+						<li  class="fr"  >
+							<span class="num fourth"><i>4</i></span>
+							<span class="name">善良的死神</span>
+							<span class="account">112,158,875</span>
+						</li>
+
+						<li  >
+							<span class="num "><i>5</i></span>
+							<span class="name">我的爱赤裸裸</span>
+							<span class="account">108,135,478</span>
+						</li>
+
+						<li  class="fr"  >
+							<span class="num "><i>6</i></span>
+							<span class="name">春去东来</span>
+							<span class="account">76,728,666</span>
+						</li>
+
+						<li  >
+							<span class="num "><i>7</i></span>
+							<span class="name">我叫28</span>
+							<span class="account">74,252,422</span>
+						</li>
+
+						<li  class="fr"  >
+							<span class="num "><i>8</i></span>
+							<span class="name">飞起666</span>
+							<span class="account">72,119,929</span>
+						</li>
+
+						<li  >
+							<span class="num "><i>9</i></span>
+							<span class="name">牛逼克拉斯</span>
+							<span class="account">66,525,745</span>
+						</li>
+
+						<li  class="fr"  >
+							<span class="num "><i>10</i></span>
+							<span class="name">面朝大海</span>
+							<span class="account">64,202,607</span>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="client">
+	<div class="text-block">
+		<h1>合作伙伴</h1>
+	</div>
+	<div class="container-large">
+		<div class="client-list">
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+			<div class="brand"><div class="logo"></div></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		jQuery(".container-large").slide({mainCell:".client-list",autoPlay:true,effect:"leftMarquee",vis:7,interTime:50});
+	</script>
+</div>
+
 <div class="clear"></div>
 <div class="foot w100">
 							<div class="w1000 oo">
@@ -809,4 +805,4 @@ $(function () {
 		// 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
 		// })();
 	</script>
-<!-- End of LiveChat code -->
+<!-- End of LiveChat code -->					

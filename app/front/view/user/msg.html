@@ -77,24 +77,7 @@
 
 
 
-<script type="text/javascript" language="javascript">
-		var links = $("#side-menu li");
-		var lilen = $("#side-menu a");
-		var currenturl = document.location.href;
-		var last = -1;
-		for (var i=0;i<links.length;i++)
-		{
-			var linkurl = lilen[i].getAttribute("href");
-			if(currenturl.indexOf(linkurl)!=-1)
-			{
-				last = i;
-			}
-		}
- /*links[last].style.backgroundColor = '#e22525';
- links[last].style.color = '#e22525';*/  //高亮代码样式
 
- 		links[last].setAttribute("class","menufirst");
- </script>
  <div class="uright">
  	<div class="ibox">
  		<div class="ibox-title">

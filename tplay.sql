@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-03-30 23:28:01
+Date: 2019-03-31 23:02:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2599,7 +2599,7 @@ CREATE TABLE `hov_user` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(32) DEFAULT NULL,
-  `gender` tinyint(1) DEFAULT NULL COMMENT '1:male,2:female',
+  `gender` tinyint(1) unsigned DEFAULT NULL COMMENT '1:male,2:female',
   `avatar` int(11) DEFAULT NULL COMMENT '用户头像',
   `user_type` tinyint(1) DEFAULT '1' COMMENT '用户类型1:普通，2：vip类型',
   `email` varchar(100) NOT NULL,
@@ -2620,7 +2620,9 @@ CREATE TABLE `hov_user` (
   `safe_q` tinyint(1) DEFAULT NULL COMMENT 'question safety',
   `safe_a` varchar(100) DEFAULT NULL COMMENT 'answer safety',
   `qq` char(12) DEFAULT NULL,
-  `birth` date DEFAULT NULL,
+  `wechat` char(30) DEFAULT NULL,
+  `alipay` char(40) DEFAULT NULL,
+  `birth` int(11) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   `is_freeze` tinyint(1) DEFAULT '1' COMMENT '1:normal,2:frozen',
   PRIMARY KEY (`uid`)
@@ -2629,8 +2631,8 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('1', 'ikscher', 'wwwwww', '2', '50', null, 'ikscher@163.com', '13856900659', '0', '23', null, '1553267459', '1', '114.102.155.30', null, '0', '0', null, '0', '1', '0', null, null, '2323423', '1970-01-01', null, '1');
-INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '230000', '2', '0', '1553267838', '1', '116.27.147.29', null, '1553616000', '23', null, '0', '0', '1', null, null, '435345345', '2018-06-02', null, '1');
+INSERT INTO `hov_user` VALUES ('1', 'ikscherw', 'wwwwww', '1', '50', null, 'ikscher@163.com', '13856900659', '0', '23', null, '1554004864', '1', '114.102.155.30', null, '0', '0', null, '0', '1', '0', null, null, '2323423', null, 'sdf@163c.om', '553186800', null, '1');
+INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '230000', '2', '0', '1553267838', '1', '116.27.147.29', null, '1553616000', '23', null, '0', '0', '1', null, null, '435345345', null, null, '20180602', null, '1');
 
 -- ----------------------------
 -- Table structure for `hov_user_charge`
@@ -2714,7 +2716,7 @@ CREATE TABLE `hov_user_log` (
   `experiment` int(11) DEFAULT '0',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -2748,6 +2750,17 @@ INSERT INTO `hov_user_log` VALUES ('26', '48', '图片上传', '0', '0', '155395
 INSERT INTO `hov_user_log` VALUES ('27', '49', '图片上传', '0', '0', '1553950932');
 INSERT INTO `hov_user_log` VALUES ('28', '50', '图片上传', '0', '0', '1553952608');
 INSERT INTO `hov_user_log` VALUES ('29', '1', '头像上传成功', '0', '0', '1553952610');
+INSERT INTO `hov_user_log` VALUES ('30', '1', '更新用户资料成功', '0', '0', '1554002539');
+INSERT INTO `hov_user_log` VALUES ('31', '1', '更新用户资料成功', '0', '0', '1554002544');
+INSERT INTO `hov_user_log` VALUES ('32', '1', '更新用户资料成功', '0', '0', '1554002555');
+INSERT INTO `hov_user_log` VALUES ('33', '1', '更新用户资料成功', '0', '0', '1554002564');
+INSERT INTO `hov_user_log` VALUES ('34', '1', '更新用户资料成功', '0', '0', '1554002574');
+INSERT INTO `hov_user_log` VALUES ('35', '1', '更新用户资料成功', '0', '0', '1554002613');
+INSERT INTO `hov_user_log` VALUES ('36', '1', '更新用户资料成功', '0', '0', '1554004594');
+INSERT INTO `hov_user_log` VALUES ('37', '1', '更新用户资料成功', '0', '0', '1554004625');
+INSERT INTO `hov_user_log` VALUES ('38', '1', '更新用户资料成功', '0', '0', '1554004642');
+INSERT INTO `hov_user_log` VALUES ('39', '1', '更新用户资料成功', '0', '0', '1554004653');
+INSERT INTO `hov_user_log` VALUES ('40', '1', '更新用户资料成功', '0', '0', '1554004864');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`
@@ -2816,6 +2829,23 @@ CREATE TABLE `hov_user_remark` (
 -- Records of hov_user_remark
 -- ----------------------------
 INSERT INTO `hov_user_remark` VALUES ('1', '1', '4', '<p>ewrewrwersdfafsdfasssf问问</p><p>斯蒂芬斯蒂芬abcds</p>', '1552572226', '1553000946', '1');
+
+-- ----------------------------
+-- Table structure for `hov_user_safepwd`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_user_safepwd`;
+CREATE TABLE `hov_user_safepwd` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `safe` varchar(1000) DEFAULT NULL,
+  `create_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hov_user_safepwd
+-- ----------------------------
+INSERT INTO `hov_user_safepwd` VALUES ('3', '1', '{\"A\":{\"1\":\"4m\",\"2\":\"q7\",\"3\":\"nh\",\"4\":\"5j\",\"5\":\"6u\",\"6\":\"5w\",\"7\":\"eb\",\"8\":\"qt\",\"9\":\"ty\"},\"B\":{\"1\":\"5j\",\"2\":\"v9\",\"3\":\"fb\",\"4\":\"pe\",\"5\":\"xj\",\"6\":\"ag\",\"7\":\"hf\",\"8\":\"6t\",\"9\":\"gk\"},\"C\":{\"1\":\"pa\",\"2\":\"pb\",\"3\":\"qa\",\"4\":\"ka\",\"5\":\"9p\",\"6\":\"pv\",\"7\":\"74\",\"8\":\"xv\",\"9\":\"xy\"},\"D\":{\"1\":\"n5\",\"2\":\"yr\",\"3\":\"4r\",\"4\":\"qy\",\"5\":\"6h\",\"6\":\"gt\",\"7\":\"sx\",\"8\":\"ct\",\"9\":\"xq\"},\"E\":{\"1\":\"9p\",\"2\":\"jr\",\"3\":\"kh\",\"4\":\"n4\",\"5\":\"gj\",\"6\":\"5r\",\"7\":\"re\",\"8\":\"6x\",\"9\":\"ba\"},\"F\":{\"1\":\"5j\",\"2\":\"8t\",\"3\":\"tb\",\"4\":\"8v\",\"5\":\"qt\",\"6\":\"tj\",\"7\":\"fb\",\"8\":\"ky\",\"9\":\"xv\"},\"G\":{\"1\":\"s4\",\"2\":\"me\",\"3\":\"wp\",\"4\":\"8d\",\"5\":\"pd\",\"6\":\"p9\",\"7\":\"ms\",\"8\":\"e7\",\"9\":\"mq\"},\"H\":{\"1\":\"tg\",\"2\":\"bd\",\"3\":\"ej\",\"4\":\"4n\",\"5\":\"uc\",\"6\":\"qf\",\"7\":\"k8\",\"8\":\"nw\",\"9\":\"ay\"},\"I\":{\"1\":\"59\",\"2\":\"qy\",\"3\":\"sj\",\"4\":\"kx\",\"5\":\"3s\",\"6\":\"hf\",\"7\":\"dp\",\"8\":\"aq\",\"9\":\"ev\"}}', '1554043911');
 
 -- ----------------------------
 -- Table structure for `hov_webconfig`

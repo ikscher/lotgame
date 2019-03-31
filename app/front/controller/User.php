@@ -6,9 +6,13 @@ use think\Cookie;
 use app\front\model\User as userModel;
 use app\front\model\UserLog as userLogModel;
 use app\front\model\UserMsg as userMsgModel;
+use app\front\model\UserSafepwd as userSafepwdModel;
 class User extends Controller
 {   
 	private $userModel;
+    private $userLogModel;
+    private $userMsgModel;
+    private $userSafepwdModel;
 	private $site_name;
     private $uid;
     private $user;
@@ -17,6 +21,7 @@ class User extends Controller
         $this->userModel = new userModel();
         $this->userLogModel = new userlogModel();
         $this->userMsgModel = new userMsgModel();
+        $this->userSafepwdModel = new userSafepwdModel();
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
         $this->site_name=Config::get('site_name');
@@ -96,10 +101,66 @@ class User extends Controller
 
                     return $this->success($operation,'/user/index');
                 }
+            }elseif(isset($post['act']) && $post['act']=='update'){
+                $post['birth']=strtotime(date($post['byear'].'-'.$post['bmonth'].'-'.$post['bday']));
+                unset($post['byear']);
+                unset($post['bmonth']);
+                unset($post['bday']);
+                unset($post['act']);
+                // echo json_encode($post);exit;
+                $ret=$this->userModel->save($post,['uid'=>$this->uid]);
+                // echo $this->userModel->getLastSql();exit;
+                if(false==$ret){
+                    return $this->error('更新用户资料失败');
+                } else {
+                    $operation='更新用户资料成功';
+                    adduserlog($this->uid,$operation);//写入日志
+
+                    return $this->success($operation,'/user/index');
+                }
             }
         }
         return $this->fetch();
     }
+    //安全工具
+    public function safe()
+    {   
+        //判断是否绑定了密保卡
+        $map['user_id']=$this->uid;
+        $id=$this->userSafepwdModel->where($map)->value('id');
+        if(!empty($id)){
+            $this->assign('isbind',1);
+        }
+        return $this->fetch();
+    }
+
+    //密保卡
+    public function safepwd()
+    {   
+        //生产密保卡
+        $data=array();
+        $map['user_id']=$this->uid;
+        if($this->request->isPost()){
+            $act=$this->request->has('act')?$this->request->post('act'):'';
+            if($act=='bind'){
+               $s=gen_safecode();
+               $data['user_id']=$this->uid;
+               $data['safe']=$s;
+               $data['create_time']=time();
+               $this->userSafepwdModel->insert($data); //绑定密保卡
+            }elseif ($act=='unbind') {
+               $this->userSafepwdModel->where($map)->delete();//解除密保卡
+            }
+        }   
+
+        //显示密保卡
+        $safepwd=$this->userSafepwdModel->where($map)->value('safe');
+        
+        $this->assign('safepwd',json_decode($safepwd,true));
+        return $this->fetch();
+    }
+    
+   
 
     public function point()
     {   

@@ -54,3 +54,19 @@
 		</ul>
 	</div>
 </div>
+<script type="text/javascript" language="javascript">
+	var links = $("#side-menu li");
+	var lilen = $("#side-menu a");
+	var currenturl = document.location.href;
+	var last = -1;
+	for (var i=0;i<links.length;i++)
+	{
+		var linkurl = lilen[i].getAttribute("href");
+		if(currenturl.indexOf(linkurl)!=-1)
+		{
+			last = i;
+		}
+	}
+
+	links[last].setAttribute("class","menufirst");
+</script>

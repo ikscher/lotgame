@@ -47,6 +47,8 @@ Route::rule('user/point','front/user/point');
 Route::rule('user/remark','front/user/remark');
 Route::rule('user/msg','front/user/msg');
 Route::rule('user/edit','front/user/edit');
+Route::rule('user/safe','front/user/safe');
+Route::rule('user/safepwd','front/user/safepwd');
 Route::rule('agent/index','front/agent/index');
 Route::rule('site/index','front/site/index');
 Route::rule('prize/ind','front/prize/init');

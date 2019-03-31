@@ -3,32 +3,10 @@
 <script type="text/javascript" src="__JS__/birthday_jq.js" ></script>
 <div id="wrapper" class="umain">
 	<div class="w1200">
-		<div class="utop">
-			<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);?><?php }else{ ?>__IMAGE__/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
-			<div class="utop-info">
-				<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
-				<div class="utop-info-name">昵称：{$user['username']}</div>
-				<div class="utop-info-name">ID:{$user['uid']}</div>
-			</div>
-			<ul class="ubase-ul">
-				<li class="li1">
-					<p class="p1">账户余额</p>
-					<p class="p2">{$user['coin']}</p>
-				</li>
-				<li class="li2">
-					<p class="p1">银行</p>
-					<p class="p2">{$user['bank']}</p>
-				</li>
-				<li class="li3">
-					<p class="p1">积分</p>
-					<p class="p2">{$user['points']}</p>
-				</li>
-				<li class="li4">
-					<p class="p1">经验</p>
-					<p class="p2">{$user['experiments']}</p>
-				</li>
-			</ul>
-		</div>
+		<!--顶侧top-->
+		{include file="user/header" /}
+		<!--顶侧top-->
+
 		<!--左侧left菜单-->
 		{include file="user/left" /}
 		<!--左侧left菜单-->
@@ -42,7 +20,7 @@
 				<div class="ibox-content">
 					<div class="tishi tishi1">依据自由自愿的原则，您可以选择填写以下资料或不填写，但如果你需要申请提现或兑换奖品则一定要如实填写以下资料，如果所填内容涉嫌作假，我们有权冻结您的账号。</div>
 
-					<form  method="post" enctype="multipart/form-data">
+					<form   id="userInfoForm">
 						<ul class="edit-ul">
 							<!-- <li class="pro-li">
 								<label>资料完整度: </label>
@@ -58,38 +36,36 @@
 							</li>
 							<li>
 								<label>昵称：</label>
-								<input type="text" class="edit-input" name="tbUserNick" value="{$user['username']}" >
+								<input type="text" class="edit-input"  name="username" value="{$user['username']}" >
 								<span class="help-text">必填</span>
 							</li>
 							<li>
 								<label>性别：</label>
-								<select class="edit-select" name="tbUserGender" id="tbUserGender">
-									<option value="M"  selected >男</option>
-									<option value="F" >女</option>
+								<select class="edit-select" name="gender" id="tbUserGender">
+									<option value="1"  {if condition="$user['gender'] neq 2"}selected{/if}>男</option>
+									<option value="2"  {if condition="$user['gender'] eq 2"}selected{/if}>女</option>
 								</select>
 							</li>
 							<li>
 								<label>生日：</label>
-								<!-- <select class="edit-select birth-select" name="tbBirthYear" id="tbBirthYear" style="padding-left:10px;"> </select>
-								<select class="edit-select birth-select" name="tbBirthMonth" id="tbBirthMonth" style="padding-left:10px;"> </select>
-								<select class="edit-select birth-select" name="tbBirthDay" id="tbBirthDay" style="padding-left:10px;"> </select> -->
-								<select class="edit-select birth-select" name="tbBirthYear" id="tbBirthYear" rel="2000"></select>年
-						        <select class="edit-select birth-select" name="tbBirthMonth" id="tbBirthMonth" rel="2"></select>月
-						        <select class="edit-select birth-select" name="tbBirthDay" id="tbBirthDay" rel="14"></select>日
+								<select class="edit-select birth-select" name="byear" id="tbBirthYear"  {if condition="$user['birth'] eq 0"}rel="2000"{else /} rel="{$user['birth']|date='Y',###}"{/if}></select>年
+						        <select class="edit-select birth-select" name="bmonth" id="tbBirthMonth" {if condition="$user['birth'] eq 0"}rel="2"{else /}rel="{$user['birth']|date='m',###}"{/if}></select>月
+						        <select class="edit-select birth-select" name="bday" id="tbBirthDay" {if condition="$user['birth'] eq 0"}rel="14"{else /}rel="{$user['birth']|date='d',###}"{/if}></select>日
 							</li>
 							<li>
 								<label>QQ：</label>
-								<input type="text" class="edit-input"  name="tbUserQQ" id="tbUserQQ" onblur="qq_blur(this)"  value="">
+								<input type="text" class="edit-input"  name="qq" id="tbUserQQ"  {notempty name="$user['qq']"}disabled{/notempty}   value="{$user['qq']}">
 								<span class="help-text">设置后不可修改</span>
 							</li>
 							<li style="position: relative;left: -10px;">
 								<label style="width: 60px;">支付宝：</label>
-								<input type="text" class="edit-input" onblur="addr_blur(this)" id="tbAlipay" value=""  name="tbAlipay">
+								<input type="text" class="edit-input"  id="tbAlipay" {notempty name="$user['alipay']"}disabled{/notempty} value="{$user['alipay']}"  name="alipay">
 								<span class="help-text">设置后不可修改</span>
 							</li>
 							<li style="margin: 5px 0;">
 								<label></label>
-								<button class="user-btn" lay-submit lay-filter="formUser">保存内容</button>
+								<input type="hidden" name="act" value="update" />
+								<button class="user-btn" lay-submit lay-filter="userInfo">保存内容</button>
 							</li>
 						</ul>
 					</form>
@@ -103,7 +79,7 @@
 				<div class="ibox-content">
 					<div class="uploadhead"><div class="uploadhead-btn" id="thumb"><span>上传头像</span></div> 仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</div>
 					<div class="head-box">
-						<form class="layui-form" id="user">
+						<form class="layui-form" id="userAvatarForm">
 						    <div class="head-box-left" id="upload-thumb">
 								<div class="form-head">
 									<!-- <input type="file" class="form-control" id="chooseImage" name="tbUserPhoto" style="display: none;"> -->
@@ -220,7 +196,7 @@ $(function () {
 	   form.on('submit(avatar)', function(data) {
             $.ajax({
                 url:"{:url('/user/edit')}",
-                data:$('#user').serialize(),
+                data:$('#userAvatarForm').serialize(),
                 type:'post',
                 async: false,
                 success:function(res) {
@@ -237,6 +213,33 @@ $(function () {
             })
             return false;
        });
+
+       form.on('submit(userInfo)',function(){
+            var username=$("input[name='username']").val();
+            if(!username){
+           	   layer.msg('用户名不能为空！');
+           	   return false;
+            }
+
+            $.ajax({
+                url:"{:url('/user/edit')}",
+                data:$('#userInfoForm').serialize(),
+                type:'post',
+                async: false,
+                success:function(res) {
+                    console.log(res);
+                    if(res.code == 1) {
+                      layer.msg(res.msg);
+                      // layer.alert(res.msg, function(index){
+                      //   location.href = res.url;
+                      // })
+                    } else {
+                      layer.msg(res.msg);
+                    }
+                }
+            })
+            return false;
+       })
 	});
 </script>
 {include file="public/footer" /}

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:56:"D:\mywork\lotgame\public/../app/front\view\user\msg.html";i:1554010425;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553911713;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554010449;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:60:"D:\mywork\lotgame\public/../app/front\view\user\safepwd.html";i:1554042897;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554020389;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554010449;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,269 +17,225 @@
 	<title><?php echo $title; ?></title>
 </head>
 <body>
-	<script>
-		layui.use(['layer', 'form'], function(){
-			var layer = layui.layer
-			,form = layui.form;
-		});
-	</script> 
-	<style type="text/css">
-	#callboard {    width: 150px;
-		overflow: hidden;
-		display: inline-block;
-		vertical-align: middle;
-		font-size: 12px;
-		position: relative;
-		top: -1px;
-		margin-left: 30px;float:left}
-		#callboard ul { padding:0; }
-		#callboard li { padding:0; }
-	</style>
-	<div style="width: 100%;background: #fff;">
-		<div class="bar">
-			<div class="w1000">
-				<span class="barl fl">欢迎光临！<a href="/SaveToHome.php">保存到桌面</a> <a href="/mobile.php">手机版</a><a href="/User/Sign?act=qd" class="qd">签到</a></span>
-				<div id="callboard">
-					<ul>
-						<li>
-							<a style="color:red;" target="_blank" href="/News/Detail/116" >游戏已经全部恢复！祝您游戏愉快！</a>
-						</li>
-						<li>
-							<a style="color:red;" target="_blank" href="/News/Detail/115" >2019年春节蛋蛋/北京类游戏停机公告</a>
-						</li>
-						<li>
-							<a style="color:red;" target="_blank" href="/News/Detail/114" >妞妞点卡解除合作</a>
-						</li>
-						<li>
-							<a style="color:red;" target="_blank" href="/News/Detail/113" >全新界面！带给您更好的游戏体验！app正在内测！</a>
-						</li>
-						<li>
-							<a style="color:red;" target="_blank" href="/News/Detail/111" >跨年红包中奖用户如下！</a>
-						</li>
+<style type="text/css">
+#callboard {width: 150px; overflow: hidden; display: inline-block; vertical-align: middle; font-size: 12px; position: relative; top: -1px; margin-left: 30px;float:left} 
+#callboard ul { padding:0; } 
+#callboard li { padding:0; } 
+</style>
+<div style="width: 100%;background: #fff;">
+	<div class="bar">
+		<div class="w1000">
+			<span class="barl fl">欢迎光临！<a href="/SaveToHome.php">保存到桌面</a> <a href="/mobile.php">手机版</a><a href="/User/Sign?act=qd" class="qd">签到</a></span>
+			<div id="callboard">
+				<ul>
+					<li>
+						<a style="color:red;" target="_blank" href="/News/Detail/116" >游戏已经全部恢复！祝您游戏愉快！</a>
+					</li>
+					<li>
+						<a style="color:red;" target="_blank" href="/News/Detail/115" >2019年春节蛋蛋/北京类游戏停机公告</a>
+					</li>
+					<li>
+						<a style="color:red;" target="_blank" href="/News/Detail/114" >妞妞点卡解除合作</a>
+					</li>
+					<li>
+						<a style="color:red;" target="_blank" href="/News/Detail/113" >全新界面！带给您更好的游戏体验！app正在内测！</a>
+					</li>
+					<li>
+						<a style="color:red;" target="_blank" href="/News/Detail/111" >跨年红包中奖用户如下！</a>
+					</li>
 
-					</ul>
-				</div>
-				<span class="barr fr">
-					<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
-					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
-					<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
-
-					<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
-				</span> 
-			</div>
-		</div>
-		<div class="w1000"> 
-			<div class="logobox">
-				<h1 class="fl"><a href="/"><img src="/static/front/image/logo.png?v=2.3" class="logo"></a><img src="/static/front/image/logor.png" class="logor"></h1>
-				<ul class="nav-ul">
-					<li class="select"><a href="/" class="nli">首页</a></li>
-					<li><a href="/Game/Index" class="nli">游戏中心</a></li>
-					<li><a href="/Shop/Index" class="nli">兑换商城</a></li>
-					<li><a href="/Article/Index" class="nli">活动专场</a></li>
-					<div class="dropdown fl">
-						<li>
-							<a href="#" class="nli">福利时代</a>
-							<div class="dropdown-main">
-								<div class="dropdown-content">
-									<a href="/Hd/Qiangka">抢卡风暴</a>
-									<a href="/Prize/Shatter">砸金蛋</a>
-									<a href="/Prize/Index">抽奖转盘</a>
-								</div>
-							</div>
-						</li>
-					</div>
-					<li><a href="/Game/top" class="nli">排行榜</a></li>
-					<li><a href="/User/Index" class="nli">会员中心</a></li>
-					<li><a href="/site/index" class="nli">了解彩豆</a></li>
-					<li><a href="/agent/index" class="nli">合作商家</a></li>
-					<!-- <li><a style="color:red" href="/appdownload.php" class="nli">APP下载</a></li> -->
 				</ul>
 			</div>
-			<div class="clear"></div>
+			<span class="barr fr">
+				<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
+				<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
+				<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
+
+				<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
+			</span> 
 		</div>
 	</div>
+	<div class="w1000"> 
+		<div class="logobox">
+			<h1 class="fl"><a href="/"><img src="/static/front/image/logo.png?v=2.3" class="logo"></a><img src="/static/front/image/logor.png" class="logor"></h1>
+			<ul class="nav-ul">
+				<li class="select"><a href="/" class="nli">首页</a></li>
+				<li><a href="/Game/Index" class="nli">游戏中心</a></li>
+				<li><a href="/Shop/Index" class="nli">兑换商城</a></li>
+				<li><a href="/Article/Index" class="nli">活动专场</a></li>
+				<div class="dropdown fl">
+					<li>
+						<a href="#" class="nli">福利时代</a>
+						<div class="dropdown-main">
+							<div class="dropdown-content">
+								<a href="/Hd/Qiangka">抢卡风暴</a>
+								<a href="/Prize/Shatter">砸金蛋</a>
+								<a href="/Prize/Index">抽奖转盘</a>
+							</div>
+						</div>
+					</li>
+				</div>
+				<li><a href="/Game/top" class="nli">排行榜</a></li>
+				<li><a href="/User/Index" class="nli">会员中心</a></li>
+				<li><a href="/site/index" class="nli">了解彩豆</a></li>
+				<li><a href="/agent/index" class="nli">合作商家</a></li>
+				<!-- <li><a style="color:red" href="/appdownload.php" class="nli">APP下载</a></li> -->
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
 
-	<SCRIPT type=text/javascript>
+<SCRIPT type=text/javascript>
 
-		$('.ucen').click(function(){
-			$('.nav ul .nli').fadeToggle(100);
-		});
-		$(document).ready(function(){
-			$('.nav ul .nli').fadeToggle(100);
-		});
-	</SCRIPT>
+	$('.ucen').click(function(){
+		$('.nav ul .nli').fadeToggle(100);
+	});
+	$(document).ready(function(){
+		$('.nav ul .nli').fadeToggle(100);
+	});
+</SCRIPT>
 
-	<script>
-		$(function(){
-			var pNall = window.location.pathname;
-			$(".nav-ul").find('li').each(function(i) {
-				$(this).attr('class','');
-				if(pNall.toLowerCase().indexOf("game/top") > 0){
-					if(i==5){
-						$(this).attr('class','select');
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("shatter") > 0){
-					if(i==4){
-						$(this).attr('class','select');
-						$(".dropdown-content a:eq(1)").addClass("select");
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("hd/qiangka") > 0){
-					if(i==4){
-						$(this).attr('class','select');
-						$(".dropdown-content a:eq(0)").addClass("select");
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("prize/index") > 0){
-					if(i==4){
-						$(this).attr('class','select');
-						$(".dropdown-content a:eq(2)").addClass("select");
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("game/") > 0){
-					if(i==1){
-						$(this).attr('class','select');
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("hd/") > 0){
-					if(i==3){
-						$(this).attr('class','select');
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("shop/") > 0){
-					if(i==2){
-						$(this).attr('class','select');
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("user/") > 0){
-					if(i==6){
-						$(this).attr('class','select');
-					}
-					return;
-				}
-
-
-				if(i==0){
+<script>
+	$(function(){
+		var pNall = window.location.pathname;
+		$(".nav-ul").find('li').each(function(i) {
+			$(this).attr('class','');
+			if(pNall.toLowerCase().indexOf("game/top") > 0){
+				if(i==5){
 					$(this).attr('class','select');
 				}
 				return;
+			}
+			if(pNall.toLowerCase().indexOf("shatter") > 0){
+				if(i==4){
+					$(this).attr('class','select');
+					$(".dropdown-content a:eq(1)").addClass("select");
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("hd/qiangka") > 0){
+				if(i==4){
+					$(this).attr('class','select');
+					$(".dropdown-content a:eq(0)").addClass("select");
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("prize/index") > 0){
+				if(i==4){
+					$(this).attr('class','select');
+					$(".dropdown-content a:eq(2)").addClass("select");
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("game/") > 0){
+				if(i==1){
+					$(this).attr('class','select');
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("hd/") > 0){
+				if(i==3){
+					$(this).attr('class','select');
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("shop/") > 0){
+				if(i==2){
+					$(this).attr('class','select');
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("user/") > 0){
+				if(i==6){
+					$(this).attr('class','select');
+				}
+				return;
+			}
 
 
-			});
+			if(i==0){
+				$(this).attr('class','select');
+			}
+			return;
+
+
 		});
-	</script>
+	});
+</script>
 
-	<script type="text/javascript">
-		(function (win){
-			var callboarTimer;
-			var callboard = $('#callboard');
-			var callboardUl = callboard.find('ul');
-			var callboardLi = callboard.find('li');
-			var liLen = callboard.find('li').length;
-			var initHeight = callboardLi.first().outerHeight(true);
-			win.autoAnimation = function (){
-				if (liLen <= 1) return;
-				var self = arguments.callee;
-				var callboardLiFirst = callboard.find('li').first();
-				callboardLiFirst.animate({
-					marginTop:-initHeight
-				}, 500, function (){
-					clearTimeout(callboarTimer);
-					callboardLiFirst.appendTo(callboardUl).css({marginTop:0});
-					callboarTimer = setTimeout(self, 5000);
-				});
-			}
-			callboard.mouseenter(
-				function (){
-					clearTimeout(callboarTimer);
-				}).mouseleave(function (){
-					callboarTimer = setTimeout(win.autoAnimation, 5000);
-				});
-			}(window));
-		setTimeout(window.autoAnimation, 5000);
-	</script>
 <script type="text/javascript">
-
-	function delMsg(){
-		var idArray = new Array();
-		var items=$("input[name^='selectsms']");
-		var len = items.length;
- 
-		$.each(items,function(i,n){
-			// console.log(n)
-            if ($(n).prop('checked')) {                        
-				idArray.push($(n).val());                    
-			}  
-		})               
-	    
-	    // console.log(smsArray);           
-		
-		if(idArray.length<=0){
-			layer.msg('请选择要删除的记录！');
-			return false;
-		}   
-
-		$.ajax({
-			url:'/user/msg',
-			type:'post',
-			data:{idArray:idArray},
-			dataType:'json',
-			success:function(res){
-                if(res.code == 1) {
-                    layer.msg(res.msg, function(index){
-                      location.href = res.url;
-                    })
-                }else{
-                    layer.msg(res.msg);
-                }
-			}
-		})
-
-		// window.location.href="/User/Msg?act=del&chkID="+smsArray;
-	}
-
+	(function (win){
+		var callboarTimer;
+		var callboard = $('#callboard');
+		var callboardUl = callboard.find('ul');
+		var callboardLi = callboard.find('li');
+		var liLen = callboard.find('li').length;
+		var initHeight = callboardLi.first().outerHeight(true);
+		win.autoAnimation = function (){
+			if (liLen <= 1) return;
+			var self = arguments.callee;
+			var callboardLiFirst = callboard.find('li').first();
+			callboardLiFirst.animate({
+				marginTop:-initHeight
+			}, 500, function (){
+				clearTimeout(callboarTimer);
+				callboardLiFirst.appendTo(callboardUl).css({marginTop:0});
+				callboarTimer = setTimeout(self, 5000);
+			});
+		}
+		callboard.mouseenter(
+			function (){
+				clearTimeout(callboarTimer);
+			}).mouseleave(function (){
+				callboarTimer = setTimeout(win.autoAnimation, 5000);
+			});
+		}(window));
+	setTimeout(window.autoAnimation, 5000);
 </script>
 <style type="text/css">
-	.user-table>tbody>tr>td{color: #000;}
+	.safecard table{border-collapse:collapse;border:1px solid #000;margin:0 auto;font-family:Tahoma,verdana,sans-serif;font-size:24px;}
+	.safecard table td{width:44px;height:44px;text-align:center;border:1px solid #999;color:#133FA8;}
+	.safecard tr.letter_block td{font-weight:bold;font-size:26px;color:#000;}
+	.safecard .mum_block{background-color:#FFF;font-weight:bold;font-size:26px;color:#000;}
+	.safecard .hc{background-color:#CCCCCC;}
+	.safecard .sn{color:red;}
+	.safecard .coord{background-color:#e6e6e6;font-size:26px;padding:2px;}
 </style>
+
 <div id="wrapper" class="umain">
 	<div class="w1200">
+		<!--顶侧top-->
 		<div class="utop">
-			<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
-			<div class="utop-info">
-				<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
-				<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
-				<div class="utop-info-name">ID:<?php echo $user['uid']; ?></div>
-			</div>
-			<ul class="ubase-ul">
-				<li class="li1">
-					<p class="p1">账户余额</p>
-					<p class="p2"><?php echo $user['coin']; ?></p>
-				</li>
-				<li class="li2">
-					<p class="p1">银行</p>
-					<p class="p2"><?php echo $user['bank']; ?></p>
-				</li>
-				<li class="li3">
-					<p class="p1">积分</p>
-					<p class="p2"><?php echo $user['points']; ?></p>
-				</li>
-				<li class="li4">
-					<p class="p1">经验</p>
-					<p class="p2"><?php echo $user['experiments']; ?></p>
-				</li>
-			</ul>
-		</div>
+	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
+	<div class="utop-info">
+		<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
+		<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
+		<div class="utop-info-name">ID:<?php echo $user['uid']; ?></div>
+	</div>
+	<ul class="ubase-ul">
+		<li class="li1">
+			<p class="p1">账户余额</p>
+			<p class="p2"><?php echo $user['coin']; ?></p>
+		</li>
+		<li class="li2">
+			<p class="p1">银行</p>
+			<p class="p2"><?php echo $user['bank']; ?></p>
+		</li>
+		<li class="li3">
+			<p class="p1">积分</p>
+			<p class="p2"><?php echo $user['points']; ?></p>
+		</li>
+		<li class="li4">
+			<p class="p1">经验</p>
+			<p class="p2"><?php echo $user['experiments']; ?></p>
+		</li>
+	</ul>
+</div>
+		<!--顶侧top-->
+
 		<!--左侧left菜单-->
-        <div class="col-left">
+		<div class="col-left">
 	<div class="uleft-menu" id="side-menu">
 		<p style="margin-top: 0;">用户账户</p>
 		<ul>
@@ -355,45 +311,43 @@
 		<!--左侧left菜单-->
 
 
+		<div class="uright">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>我的密保卡</h5>
+				</div>
+				<p style="text-align:center;margin-bottom:10px" class="mt40">您还有<font style="color:red">53</font>分钟可查看此卡，过期将无法再查看，请尽快截图保存，或按Ctrl+S保存。</p>
 
-
- <div class="uright">
- 	<div class="ibox">
- 		<div class="ibox-title">
- 			<h5>站内信箱</h5>
- 			<a href="javascript:;" onClick="delMsg()">删除</a>
- 		</div>
- 		<div class="ibox-content">
- 			<div style="min-height: 300px;">
- 				<table class="user-table mt20">
- 					<thead>
- 						<tr>
- 							<th width="45px"></th>
- 							<th width="80px">发件人</th>
- 							<th>内容</th>
- 							<th>时间</th>
- 						</tr>
- 					</thead>
- 					<tbody>
- 						<?php if(is_array($msgs) || $msgs instanceof \think\Collection || $msgs instanceof \think\Paginator): if( count($msgs)==0 ) : echo "" ;else: foreach($msgs as $key=>$vo): ?>
- 						<tr>
- 							<td><input type="checkbox" name="selectsms[]" value="<?php echo $vo['id']; ?>" />
- 						    <td><!-- <?php echo $vo['admin']['nickname']; ?> -->管理员</td>
- 						    <td><?php echo $vo['content']; ?></td>
- 						    <td><?php echo $vo['create_time']; ?></td>
- 						</tr>
- 						<?php endforeach; endif; else: echo "" ;endif; ?>
- 					</tbody>
- 				</table>
- 				<div style="padding:0 20px;"><?php echo $msgs->render(); ?></div> 
- 			</div>
- 		</div>
- 	</div>
- </div><!--uright-->
+				<div class="safecard">
+					<table cellspacing="0" cellpadding="0">
+						<tr><td colspan="10"><?php echo $title; ?>用户[<?php echo $user['uid']; ?>]密保卡</span></td></tr>
+						<tr class="letter_block hc"><td>&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+						<?php $i=0;if(is_array($safepwd) || $safepwd instanceof \think\Collection || $safepwd instanceof \think\Paginator): if( count($safepwd)==0 ) : echo "" ;else: foreach($safepwd as $k=>$vo): ?>
+							<tr <?php if($i%2 == 1): ?>class="hc"<?php endif; ?>>
+							   <td class="mum_block"><?php echo $k; ?></td>
+	                           <?php if(is_array($vo) || $vo instanceof \think\Collection || $vo instanceof \think\Paginator): if( count($vo)==0 ) : echo "" ;else: foreach($vo as $key=>$vo_): ?>
+	                              <td><?php echo $vo_; ?></td>
+	                           <?php endforeach; endif; else: echo "" ;endif; ?>
+						    </tr>
+						    <?php $i++;endforeach; endif; else: echo "" ;endif; ?>
+						<!-- <tr class="letter_block hc"><td>&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+						<tr><td class="mum_block">A</td><td>25</td><td>92</td><td>17</td><td>06</td><td>09</td><td>53</td><td>60</td><td>47</td></tr>
+						<tr class="hc"><td class="mum_block">B</td><td>27</td><td>26</td><td>29</td><td>37</td><td>34</td><td>51</td><td>73</td><td>99</td></tr>
+						<tr><td class="mum_block">C</td><td>42</td><td>19</td><td>30</td><td>75</td><td>25</td><td>19</td><td>47</td><td>27</td></tr>
+						<tr class="hc"><td class="mum_block">D</td><td>32</td><td>34</td><td>87</td><td>46</td><td>26</td><td>98</td><td>64</td><td>71</td></tr>
+						<tr><td class="mum_block">E</td><td>85</td><td>60</td><td>45</td><td>38</td><td>25</td><td>74</td><td>35</td><td>67</td></tr>
+						<tr class="hc"><td class="mum_block">F</td><td>15</td><td>08</td><td>16</td><td>64</td><td>49</td><td>59</td><td>86</td><td>59</td></tr>
+						<tr><td class="mum_block">G</td><td>11</td><td>32</td><td>90</td><td>38</td><td>78</td><td>48</td><td>61</td><td>87</td></tr>
+						<tr class="hc"><td class="mum_block">H</td><td>60</td><td>58</td><td>02</td><td>22</td><td>20</td><td>18</td><td>44</td><td>59</td></tr>
+						<tr><td class="mum_block">I</td><td>21</td><td>55</td><td>96</td><td>54</td><td>47</td><td>69</td><td>52</td><td>97</td></tr>
+						<tr class="hc"><td class="mum_block">J</td><td>42</td><td>32</td><td>30</td><td>78</td><td>43</td><td>70</td><td>12</td><td>83</td></tr> -->
+						
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
-</div>
-
 <div class="clear"></div>
 <div class="foot w100">
 							<div class="w1000 oo">

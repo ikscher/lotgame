@@ -48,6 +48,11 @@ class User extends Model
         return $this->hasMany('UserLog','user_id');
     }
 
+    public function safepwd(){
+        //关联密保卡
+        return $this->hasOne('UserSafepwd','user_id');
+    }
+
     public function msg()
     {
         //关联站内信表
