@@ -1,0 +1,152 @@
+.login {background:#f5f5f5 url(../image/login_03.jpg) no-repeat center;height:495px;margin-bottom: -30px;}
+.login .pcw{ width:50px; height:20px; padding:2px;}
+.login .box{ width:1000px; background:none;position:relative;border:0;margin: 0 auto;}
+.send_btn,.bigbtn{
+	width: 105px;
+	height: 43px;
+	line-height: 43px;
+	text-align: center;
+	cursor:pointer;
+	color: #FFF;
+	font-size: 16px;
+	background: #fdbf33;
+	border:none;
+	position: absolute;
+	right: 0;
+	outline: none;
+}
+
+.send_btn_gary{
+	width:105px;
+	height: 43px;
+	line-height: 43px;
+	text-align: center;
+	color: #fff;
+	background: #ccc;
+	font-size: 16px;
+	border:none;
+	position: absolute;
+	right: 0;
+}
+
+#embed-captcha {
+	width: 300px;
+	margin: 0 auto;
+}
+.show {
+	display: block;
+}
+.hide {
+	display: none;
+}
+#notice {
+	color: red;
+}
+.login_box {width: 315px;min-height: 330px;background: rgba(0, 0, 0, 0.3);overflow: hidden;color: #fff;position:absolute;right:0;top:80px;z-index:99;padding:0 25px;box-sizing: border-box;}
+.login_box .tit1 strong{float:left;cursor: pointer;font-size: 20px;}
+.login_box .tit1 em{color: #fff;float:left;margin-left:15px;cursor: pointer;font-weight: 600;}
+.login_box .tit1 {color: #ffd078;margin: 30px 0 10px 0;font-size:15px;display: inline-block;}
+ul.regzone li {margin:10px 0;padding:0;height:43px;  line-height: 43px;display: inline-block;position: relative;}
+ul.regzone li a, ul.regzone li a:link, ul.regzone li a:visited { color: #333; }
+ul.regzone li span.lb { margin-right:5px; line-height:40px;float:left; }
+ul.regzone li span.lb img { vertical-align: middle;}
+ul.regzone li span.tbcell { display:block; text-align:left; padding-left:5px; height:18px; line-height:18px; vertical-align:middle; }
+ul.regzone li label{width: 45px;float: left;text-align: center;background: #fdbf33;height: 43px;box-sizing: border-box;color: #fff;font-size: 18px;line-height: 43px;}
+ul.regzone li label img{margin-top: 6px;}
+input.logintb {font-size: 16px; border:0; background:#fff; padding-left:10px; width:210px; color:#a8a8a8;  float:left;height:43px;line-height:43px;outline: none;}
+.regbtn { 
+	border:none; 
+	background:#f02400; 
+	width:100%; 
+	height:45px;
+	font-size:18px; 
+	color:#fff;
+	text-align:center;
+	line-height: 45px;
+	display: block;
+	margin:10px 0;
+	cursor: pointer;
+}
+.regbtn:hover{background: #f33b1a;color:#fff;}
+.tool{width: 100%;display: inline-block;}
+.tool a{
+	color: #fff;
+	display: inline-block;
+	font-size: 16px;
+	text-decoration: none;
+}
+.tool a:hover{color: #ffd078;text-decoration: none;}
+.huoqu {
+    border: 1px solid #E2E2E2;
+    padding: 16px 40px 15px;
+    background-color: #F3F3F3;
+    border-radius: 4px;
+	margin-left:5px;
+}
+
+
+.scancode {
+    position: absolute;
+    right: 5px;
+    top: 15px;
+}
+.codetab{
+	display: inline-block;
+	background: #fff;
+	width: 40px;
+	height: 40px;
+}
+.codetip {
+    clear: both;
+    padding: 5px;
+    background-color: #E6F9FC;
+    border: 1px solid #14C2DD;
+    color: #14C2DD;
+    position: relative;
+}
+.codetip em {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid #14C2DD;
+    border-right: 10px solid transparent;
+    position: absolute;
+    top: 10px;
+    right: -20px;
+}
+.codetip div {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid #E6F9FC;
+    border-right: 10px solid transparent;
+    position: absolute;
+    top: 10px;
+    right: -18px;
+}
+.QRcode{
+	display: inline-block;
+	padding: 10px;
+	background: #fff;
+	margin-top: 20px;
+	color: #000;
+}
+.tologin{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.openapp p{
+    margin: 20px 0 15px;
+}
+.totext {
+    float: right;
+    margin-bottom: 10px;
+}
+.totext a {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #fff;
+}

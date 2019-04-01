@@ -2,13 +2,16 @@ var countdown=60;
 
 $(document).ready(function(){
     $("#loginBtn").click(function () {
-        if(parseInt($("#logintype").val())==2){
-            if($("#mobile").val()==""){
-                salert("请先输入手机号!");
-                return;
+        var type=parseInt($("#logintype").val());
+        if(type==2){
+            var mobile=$('#mobile').val();
+            if(!checkmob(mobile)){
+                salert("手机号码格式不正确！",$("#mobile"));
+                return false;
             }
+
             if($("#sjyzm").val()==""){
-                salert("请先输入手机验证码!");
+                salert("请先输入手机验证码!",$('#code'));
                 return;
             }
             $("#loginbox").showLoading();
@@ -34,8 +37,19 @@ $(document).ready(function(){
                     $("#loginbox").hideLoading();
                 }
             });
-        }else{
-            $("#form1").submit();
+        }else if (type==1){
+            var account=$('#usernametb').val();
+            if(!checkmob(account) && !checkmail(account)){
+               salert('您输入的账号格式不正确！',$('#usernametb'));
+               return false;
+            }
+
+            var pwd=$('#pwdtb').val();
+            if(!pwd){
+                salert("请输入密码",$('#pwdtb'));
+                return false;
+            }
+            //$("#form1").submit();
         }
     });
     $('.tit1 em').click(function(){
@@ -69,14 +83,21 @@ function settime(){
 
 }
 
-function salert(str){
-    layer.alert(str);
+function salert(str,x){
+    layui.use('form',function(){
+        var layer=layui.layer;
+        layer.alert(str,function(index){
+            x.focus();
+            layer.close(index)
+        });
+    })
 }
 
 var handlerPopup = function (captchaObj) {
     $("#popup-submit").click(function () {
-        if(checkmob()==false){
-            return;
+        var mobile=$('#mobile').val();
+        if(checkmob(mobile)==false){
+            return false;
         }
         var validate = captchaObj.getValidate();
         if (!validate) {
@@ -139,16 +160,27 @@ $.ajax({
     }
 });
 
-function checkmob(){
-    if ($("#mobile").val() == "") {
-        salert("手机号码不能为空！");
-        $("#mobile").focus();
+function checkmob(mobile){
+    if (!mobile) {
+        // salert("手机号码不能为空！",$("#mobile"));
+        // $("#mobile").focus();
         return false;
     }
 
-    if (!$("#mobile").val().match(/^1[3|4|5|7|8]\d{9}$/)) {
-        salert("手机号码格式不正确！");
-        $("#mobile").focus();
+    if (!mobile.match(/^1[3|4|5|7|8]\d{9}$/)) {
+        // salert("手机号码格式不正确！",$("#mobile"));
+        // $("#mobile").focus();
         return false;
     }
+
+    return true;
+}
+
+function checkmail(email){
+    var pattern_ = new RegExp("^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$", "i");
+    if(!email || !pattern_.test(email)){
+        // salert('输入的邮箱格式有误！',$('#usernametb'));
+        return false;
+    }
+    return true;
 }

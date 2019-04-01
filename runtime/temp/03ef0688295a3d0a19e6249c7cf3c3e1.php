@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\index.html";i:1554115742;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554020389;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554115742;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\login.html";i:1554127823;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554020389;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -193,239 +193,209 @@
 		}(window));
 	setTimeout(window.autoAnimation, 5000);
 </script>
-<div class="umain">
-	<div class="w1200">
-		<div class="utop">
-	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
-	<div class="utop-info">
-		<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
-		<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
-		<div class="utop-info-name">ID:<?php echo $user['uid']; ?></div>
-	</div>
-	<ul class="ubase-ul">
-		<li class="li1">
-			<p class="p1">账户余额</p>
-			<p class="p2"><?php echo $user['coin']; ?></p>
-		</li>
-		<li class="li2">
-			<p class="p1">银行</p>
-			<p class="p2"><?php echo $user['bank']; ?></p>
-		</li>
-		<li class="li3">
-			<p class="p1">积分</p>
-			<p class="p2"><?php echo $user['points']; ?></p>
-		</li>
-		<li class="li4">
-			<p class="p1">经验</p>
-			<p class="p2"><?php echo $user['experiments']; ?></p>
-		</li>
-	</ul>
+<link href="/static/front/css/login.css" type="text/css" rel="stylesheet" />
+<script src="http://static.geetest.com/static/tools/gt.js"></script>
+<script src="/static/public/jquery/jquery.showLoading.min.js"></script>
+<script src="/static/public/jquery/jquery.qrcode.min.js"></script>
+<script  type="text/javascript" src="/static/front/js/login.js?v=1.1"></script>
+
+<div class="login">
+	<div class="box">
+        <div id="loginbox" class="login_box">
+           <div class="tit1"><strong>登录</strong> <em>手机快捷登录</em></div>
+           <!-- <div class="scancode" id="scancode">
+                <span class="codetip">扫码登录<em></em><div></div></span>
+                <a id="toTab" class="codetab" href="javascript:void(0);"><img src="/static/front/image/scancode.png" width="100%"></a>
+            </div> -->
+            <!-- <div id="rebackcode" class="scancode">
+                <span class="codetip">其他登录<em></em><div></div></span>
+                <a id="reTab" class="codetab" href="javascript:void(0);"><img src="/static/front/image/tokenlogin.png" width="100%"></a>
+            </div> -->
+            <div class="form-content" id="ifmFormContent">
+                <form id="loginform"  method="post">
+                    <input type="hidden" name="logintype" id="logintype" value="1">
+                    <ul class="regzone tabl">
+                       <li>
+                          <label><img src="/static/front/image/mobile.png"></label>
+                          <input id="usernametb" class="logintb" type="text" placeholder="手机号/邮箱" name="tbUserAccount">
+                      </li>
+                      <li>
+                          <label><img src="/static/front/image/pwd.png"></label>
+                          <input id="pwdtb" class="logintb" type="password"  placeholder="密码" name="tbUserPwd">
+                      </li>
+                      <li style="display:none">
+                          <label><img src="/static/front/image/mobile.png"></label>
+                          <input id="mobile" class="logintb" type="text" placeholder="手机号" name="mobile">
+                      </li>
+                      <li style="display:none">
+                          <label><img src="/static/front/image/pwd.png"></label>
+                          <input id="code" class="logintb" type="text"  maxlength="6" placeholder="验证码" name="code"><button type="button" id="popup-submit" class="send_btn">获取验证码</button>
+                      </li>
+                      <div id="embed-captcha"></div>
+                      <p id="wait" class="show"></p>
+                      <p id="notice" class="hide">请先拖动滑块到正确位置</p>
+                      <div id="popup-captcha"></div>
+                    </ul>
+                    <div class="tool">
+                       <a href="/User/FindPwd" class="fl">找回密码</a>
+                       <a href="/User/Reg" class="fr">5秒注册</a>
+                   </div>
+                   <button id="loginBtn" lay-submit lay-filter="login"   class="regbtn">登录</button>
+                   <!-- <div class="tool">
+                       <a href="/plugin/qc/login.php" class="fl">QQ登录</a>
+                       <a href="#" class="fr">微信登录</a>
+                   </div> -->
+               </form>
+
+            </div>
+            <!-- <div id="tologin" class="tologin" style="display: none;">
+            <div id="QRcode" class="QRcode"></div>
+
+                <form id="tokenform1" method="POST" action="/User/Login?act=login">
+                    <input hidden="hidden" type="text" name="randnumber" id="randnumber" value=""/>
+                    <input hidden="hidden" type="text" name="logintype" id="logintype" value="4"/>
+                    <input type="submit" style="display:none" value="提交"/>
+                    <div id="openapp" class="openapp"><p>打开 <span style="color: #f02400;font-size: 17px;">彩豆28 APP</span>
+                    扫码登录</p></div>
+                    <div class="totext">
+                        <a href="/appDownload.php">下载彩豆28 APP</a>
+                        <a href="/User/Reg">♚马上注册</a>
+                    </div>
+                </form>
+            </div> -->
+        </div>       
+    </div>
 </div>
-		<!--左侧left菜单-->
-        <div class="col-left">
-	<div class="uleft-menu" id="side-menu">
-		<p style="margin-top: 0;">用户账户</p>
-		<ul>
-			<li><a href='/User/Index'>个人信息</a></li>
-			<li><a href='/User/Edit'>资料修改</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Editpwd'>密码修改</a></li>
-			<li><a href='/User/Safe'>安全工具</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/MyRecharge'>在线充值</a></li>
-			<li><a href='/Cg/Getprize'>闯关奖励</a></li>
-		</ul>
+<script type="text/javascript">
+	var timeid;
 
-		<p>站内功能</p>
-		<ul>
-			<li><a href='/User/SelfLine'>专属域名</a></li>
-			<li><a href='/User/Recharge'>点卡使用</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Msg'>站内信箱</a></li>
-			<li><a href='/User/Bank'>金币银行</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Prize'>兑奖记录</a></li>
-			<li><a href='/User/ReWard'>亏损返利</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Bonus'>首充返利</a></li>
-		</ul>
+    //页面刚开始加载的时候
+    $(function () {
+        $("#tologin").hide();
+        $("#rebackcode").hide();
+    });
+    function _getRandomString(len) {
+        len = len || 32;
+        var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'; // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
+        var maxPos = $chars.length;
+        var pwd = '';
+        for (i = 0; i < len; i++) {
+            pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        return pwd;
+    }
 
-		<p>推广相关</p>
-		<ul>
-			<li><a href='/User/Recom'>推广下线</a></li>
-			<li><a href='/User/Recomprofit'>推广收益</a></li>
-		</ul>
+    layui.use(['layer', 'form'], function(){
+      var layer = layui.layer
+      ,form = layui.form;
+      
+      
+      form.on('submit(login)',function(){
+         $.ajax({
+              url:"<?php echo url('/user/login'); ?>",
+              data:$('#loginform').serialize(),
+              type:'post',
+              async: false,
+              success:function(res) {
+                  // console.log(res);
+                  if(res.code == 1) {
+                      layer.msg(res.msg, function(index){
+                        location.href = res.url;
+                      })
+                  } else {
+                      layer.msg(res.msg);
+                  }
+              }
+          })
+          return false;
+      })
+    });
 
-		<p>工资救济</p>
-		<ul>
-			<li><a href='/User/Sign'>签到中心</a></li>
-			<li><a href='/User/Alms'>领取救济</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Wage'>工资领取</a></li>
-			<li><a href='/Game/Egg'>金蛋砸取</a></li>
-		</ul>
 
-		<p>游戏功能</p>
-		<ul> 
-			<li><a href='/User/Auto'>方案中心</a></li>
-			<li><a href='/game/top'>玩家排行</a></li>
-		</ul>
-	</div>
-</div>
-<script type="text/javascript" language="javascript">
-	var links = $("#side-menu li");
-	var lilen = $("#side-menu a");
-	var currenturl = document.location.href;
-	var last = -1;
-	for (var i=0;i<links.length;i++)
-	{
-		var linkurl = lilen[i].getAttribute("href");
-		if(currenturl.indexOf(linkurl)!=-1)
-		{
-			last = i;
-		}
-	}
+    // function polling() {
 
-	if (last!=-1) links[last].setAttribute("class","menufirst");
+    //     var randnumber = $('#randnumber').val();
+    //     $.ajax({
+    //         url: "/Ajax_ScanLogin.php",
+    //         method: "post",
+    //         data: {
+    //             randnumber: randnumber,
+    //         },
+    //         success: function (res) {
+
+    //             if (res == 'true') {
+    //                 $('#tokenform1').submit();
+    //                 window.clearInterval(timeid);
+    //             }
+    //             if (res == '-2') {
+    //                 var str = '';
+    //                 str += "<center>";
+    //                 str += "<div><img src='/static/front/image/codeover.png' style='width:140px;height:140px;'></div>";
+    //                 str += "</center>";
+    //                 $("#QRcode").html(str + "二维码失效");
+    //                 $("#openapp").html("<a onclick='newcode()' class='regbtn'>刷新二维码</a>");
+    //                 window.clearInterval(timeid);
+    //             }
+
+    //         }
+    //     })
+    // }
+
+
+
+
+    // function newcode() {
+
+    //     var randnumber = _getRandomString(8);
+    //     $.ajax({
+    //         url: "/User/Login",
+    //         method: "post",
+    //         data: {
+    //             coderequest: 1,
+    //             randnum:randnumber
+    //         },
+    //         dataType: "json",
+    //         success: function (res) {
+    //             if (res.status==1){
+    //                 $("#QRcode").html('');
+    //                 $("#QRcode").qrcode({
+    //                     width: 126, //宽度
+    //                     height:126, //高度
+    //                     text: randnumber +' OS:'+res.os //任意内容
+    //                 });
+
+    //                 $('#randnumber').val(randnumber);
+
+
+    //                 $("#openapp").html("<p>打开 <span style='color: #f02400;font-size: 17px;'>彩豆28 APP</span> 扫码登录</p>")
+    //                 timeid = setInterval("polling()", 1000);
+    //             }
+    //         }
+    //     })
+
+    // }
+
+
+
+    //点击扫码登录的时候
+    // $("body").on("click", "#toTab", function () {
+    //     $("#ifmFormContent").hide();
+    //     $("#tologin").show();
+    //     $("#rebackcode").show();
+    //     $("#scancode").hide();
+    //     newcode();
+
+    // });
+
+    //点击其他登录
+    // $("body").on("click", "#reTab", function () {
+    //     $("#ifmFormContent").show();
+    //     $("#tologin").hide();
+    //     $("#rebackcode").hide();
+    //     $("#scancode").show();
+    //     window.clearInterval(timeid);
+    // });
 </script>
-
-		<!--左侧left菜单-->
-
-	 <div class="uright">
-	 	<div class="ibox">
-	 		<div class="ibox-title">
-	 			<h5>账户信息</h5>
-	 		</div>
-	 		<div class="ibox-content">
-	 			<ul class="safe-ul">
-	 				<!-- <li class="li1">
-	 					<i></i>
-	 					<p class="p1">专属域名</p>
-	 					<p class="p2 "><span>未开通</span><a href="/User/SelfLine">立即开通</a></p>
-	 				</li> -->
-	 				<li class="li2">
-	 					<i></i>
-	 					<p class="p1">邮箱绑定</p>
-	 					<?php if(!(empty($user['is_email']) || (($user['is_email'] instanceof \think\Collection || $user['is_email'] instanceof \think\Paginator ) && $user['is_email']->isEmpty()))): ?>
-	 						<p class="p2  yes "><span>已绑定</span><a href="/User/BindEmail">查看</a></p>
-	 					<?php else: ?>
-	 						<p class="p2  no "><span>未绑定</span><a href="/User/BindEmail">立即绑定</a></p>
-	 					<?php endif; ?>
-	 				</li>
-	 				<li class="li5">
-	 					<i></i>
-	 					<p class="p1">密保启用</p>
-	 					<?php if(!(empty($isbind) || (($isbind instanceof \think\Collection || $isbind instanceof \think\Paginator ) && $isbind->isEmpty()))): ?>
-	 						<p class="p2  yes "><span>已启用</span><a href="/User/Safe">查看</a></p>
-	 					<?php else: ?>
-	 						<p class="p2  no "><span>未启用</span><a href="/User/Safe">立即启用</a></p>
-                        <?php endif; ?>
-	 				</li>
-	 				<li class="li3" style="margin-right: 50px;">
-	 					<i></i>
-	 					<p class="p1">手机绑定</p>
-	 					<p class="p2  yes "><span>已绑定</span><a href="/User/Mobile">查看</a></p>
-	 				</li>
-	 				<!-- <li class="li4">
-	 					<i></i>
-	 					<p class="p1">QQ绑定</p>
-	 					<p class="p2 "><span>未绑定</span><a href="/plugin/qc/login.php">立即绑定</a></p>
-	 				</li> -->
-	 				
-	 				<!-- <li class="li6" style="margin-right: 50px;">
-	 					<i></i>
-	 					<p class="p1">在线充值</p>
-	 					<p class="p2"><span>未充值</span><a href="/User/MyRecharge">立即充值</a></p>
-	 				</li> -->
-	 			</ul>
-	 		</div>
-
-	 		<div class="ibox-title">
-	 			<h5>账户动态</h5>
-	 		</div>
-	 		<div class="ibox-content">
-	 			<table class="user-table mt20">
-	 				<thead>
-	 					<tr>
-	 						<th>事件</th>
-	 						<th>时间</th>
-	 						<th>金额</th>
-	 						<th>经验</th>
-	 						<th>余额</th>
-	 					</tr>
-	 				</thead>
-	 				<tbody>
-	 					<?php if(is_array($logs) || $logs instanceof \think\Collection || $logs instanceof \think\Paginator): if( count($logs)==0 ) : echo "" ;else: foreach($logs as $key=>$vo): ?>
-	 					<tr>
-	 						<td width="260px"><p class="table-p"><?php echo $vo['desc']; ?></p></td>
-	 						<td><?php echo $vo['create_time']; ?></td>
-	 						<td><span class="blue"><?php echo $vo['coin']; ?></span></td>
-	 						<td><span class="blue"><?php echo $vo['experiment']; ?></span></td>
-	 						<td><span class="blue"><?php echo $vo['user']['coin']; ?></span></td>
-	 					</tr>
-	 					<?php endforeach; endif; else: echo "" ;endif; ?>
-	 				</tbody>
-	 			</table>
-	 			<div style="padding:0 20px;"><?php echo $logs->render(); ?></div> 
-	 			<!-- <form id="chaxun" name="chaxun" method="get" action="?">
-	 				<select name="k" id="k" class="user-select">
-	 					<option value="0">全部记录</option>
-	 					<option value="8">登陆记录</option>
-	 					<option value="4">银行操作</option>
-	 					<option value="1">广告奖励</option>
-	 					<option value="5">任务记录</option>
-	 					<option value="2">道具使用</option>
-	 					<option value="3">奖罚记录</option>
-	 					<option value="7">推广奖励</option>
-	 					<option value="6">游戏记录</option>
-	 					<option value="11">工资记录</option>
-	 					<option value="12">签到记录</option>
-	 					<option value="19">专属线路</option>
-	 					<option value="25">站内红包</option>
-	 				</select>
-	 				<input type="submit" name="Submit" value="查询" />
-	 			</form> -->
-	 		</div>
-	 	</div>
-	 </div>
-	</div>
-	</div>
-
-
-	<div style="clear:both;"></div>
-
-	<script>
-		var url=window.location.href;
-		if(url.indexOf("page")>0){
-			location.hash = 'history';
-		}
-		if(readCookie('cSound')==null){
-			setCookie('cSound',1);
-		}
-		if(readCookie('zdsx')==null){
-			setCookie('zdsx',1);
-		}
-		function setCookie(cookieName,cookieValue){
-			var date = new Date();
-			date.setTime(date.getTime() + 24*60*60*1000000);
-			document.cookie = cookieName + "=" + cookieValue + ";expires=" + date.toGMTString() + ";path=/";
-		}
-		function readCookie(cookieName){
-			var aCookie = document.cookie.split("; ");
-			for (var i=0; i < aCookie.length; i++){
-				var aCrumb = aCookie[i].split("=");
-				if(cookieName == aCrumb[0])
-					return unescape(aCrumb[1]);
-			}
-			return null;
-		}
-	</script>
 <div class="clear"></div>
 <div class="foot w100">
 							<div class="w1000 oo">
