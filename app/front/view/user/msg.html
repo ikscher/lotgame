@@ -1,0 +1,118 @@
+{include file="public/header" /}
+<script type="text/javascript">
+
+	function delMsg(){
+		var idArray = new Array();
+		var items=$("input[name^='selectsms']");
+		var len = items.length;
+ 
+		$.each(items,function(i,n){
+			// console.log(n)
+            if ($(n).prop('checked')) {                        
+				idArray.push($(n).val());                    
+			}  
+		})               
+	    
+	    // console.log(smsArray);           
+		
+		if(idArray.length<=0){
+			layer.msg('请选择要删除的记录！');
+			return false;
+		}   
+
+		$.ajax({
+			url:'/user/msg',
+			type:'post',
+			data:{idArray:idArray},
+			dataType:'json',
+			success:function(res){
+                if(res.code == 1) {
+                    layer.msg(res.msg, function(index){
+                      location.href = res.url;
+                    })
+                }else{
+                    layer.msg(res.msg);
+                }
+			}
+		})
+
+		// window.location.href="/User/Msg?act=del&chkID="+smsArray;
+	}
+
+</script>
+<style type="text/css">
+	.user-table>tbody>tr>td{color: #000;}
+</style>
+<div id="wrapper" class="umain">
+	<div class="w1200">
+		<div class="utop">
+			<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);?><?php }else{ ?>__IMAGE__/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
+			<div class="utop-info">
+				<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
+				<div class="utop-info-name">昵称：{$user['username']}</div>
+				<div class="utop-info-name">ID:{$user['uid']}</div>
+			</div>
+			<ul class="ubase-ul">
+				<li class="li1">
+					<p class="p1">账户余额</p>
+					<p class="p2">{$user['coin']}</p>
+				</li>
+				<li class="li2">
+					<p class="p1">银行</p>
+					<p class="p2">{$user['bank']}</p>
+				</li>
+				<li class="li3">
+					<p class="p1">积分</p>
+					<p class="p2">{$user['points']}</p>
+				</li>
+				<li class="li4">
+					<p class="p1">经验</p>
+					<p class="p2">{$user['experiments']}</p>
+				</li>
+			</ul>
+		</div>
+		<!--左侧left菜单-->
+        {include file="user/left" /}
+		<!--左侧left菜单-->
+
+
+
+
+ <div class="uright">
+ 	<div class="ibox">
+ 		<div class="ibox-title">
+ 			<h5>站内信箱</h5>
+ 			<a href="javascript:;" onClick="delMsg()">删除</a>
+ 		</div>
+ 		<div class="ibox-content">
+ 			<div style="min-height: 300px;">
+ 				<table class="user-table mt20">
+ 					<thead>
+ 						<tr>
+ 							<th width="45px"></th>
+ 							<th width="80px">发件人</th>
+ 							<th>内容</th>
+ 							<th>时间</th>
+ 						</tr>
+ 					</thead>
+ 					<tbody>
+ 						{foreach name="msgs" item="vo" }
+ 						<tr>
+ 							<td><input type="checkbox" name="selectsms[]" value="{$vo['id']}" />
+ 						    <td><!-- {$vo.admin.nickname} -->管理员</td>
+ 						    <td>{$vo.content}</td>
+ 						    <td>{$vo.create_time}</td>
+ 						</tr>
+ 						{/foreach}
+ 					</tbody>
+ 				</table>
+ 				<div style="padding:0 20px;">{$msgs->render()}</div> 
+ 			</div>
+ 		</div>
+ 	</div>
+ </div><!--uright-->
+</div>
+
+</div>
+
+{include file="public/footer" /}

@@ -1,0 +1,72 @@
+<div class="col-left">
+	<div class="uleft-menu" id="side-menu">
+		<p style="margin-top: 0;">用户账户</p>
+		<ul>
+			<li><a href='/User/Index'>个人信息</a></li>
+			<li><a href='/User/Edit'>资料修改</a></li>
+		</ul>
+		<ul>
+			<li><a href='/User/Editpwd'>密码修改</a></li>
+			<li><a href='/User/Safe'>安全工具</a></li>
+		</ul>
+		<ul>
+			<li><a href='/User/MyRecharge'>在线充值</a></li>
+			<li><a href='/Cg/Getprize'>闯关奖励</a></li>
+		</ul>
+
+		<p>站内功能</p>
+		<ul>
+			<li><a href='/User/SelfLine'>专属域名</a></li>
+			<li><a href='/User/Recharge'>点卡使用</a></li>
+		</ul>
+		<ul>
+			<li><a href='/User/Msg'>站内信箱</a></li>
+			<li><a href='/User/Bank'>金币银行</a></li>
+		</ul>
+		<ul>
+			<li><a href='/User/Prize'>兑奖记录</a></li>
+			<li><a href='/User/ReWard'>亏损返利</a></li>
+		</ul>
+		<ul>
+			<li><a href='/User/Bonus'>首充返利</a></li>
+		</ul>
+
+		<p>推广相关</p>
+		<ul>
+			<li><a href='/User/Recom'>推广下线</a></li>
+			<li><a href='/User/Recomprofit'>推广收益</a></li>
+		</ul>
+
+		<p>工资救济</p>
+		<ul>
+			<li><a href='/User/Sign'>签到中心</a></li>
+			<li><a href='/User/Alms'>领取救济</a></li>
+		</ul>
+		<ul>
+			<li><a href='/User/Wage'>工资领取</a></li>
+			<li><a href='/Game/Egg'>金蛋砸取</a></li>
+		</ul>
+
+		<p>游戏功能</p>
+		<ul> 
+			<li><a href='/User/Auto'>方案中心</a></li>
+			<li><a href='/game/top'>玩家排行</a></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript" language="javascript">
+	var links = $("#side-menu li");
+	var lilen = $("#side-menu a");
+	var currenturl = document.location.href;
+	var last = -1;
+	for (var i=0;i<links.length;i++)
+	{
+		var linkurl = lilen[i].getAttribute("href");
+		if(currenturl.indexOf(linkurl)!=-1)
+		{
+			last = i;
+		}
+	}
+
+	links[last].setAttribute("class","menufirst");
+</script>

@@ -77,7 +77,7 @@ class Prizeexchange extends Permissions
             if(false == Db::name('user_exchange')->where('id',$id)->delete()) {
                 return $this->error('删除失败');
             } else {
-                addlog('删除兑换记录-'.$id);//写入日志
+                addlog('删除奖品兑换记录-'.$id);//写入日志
                 return $this->success('删除成功','admin/prizeexchange/index');
             }
     	}
@@ -93,12 +93,20 @@ class Prizeexchange extends Permissions
             if(false == Db::name('user_exchange')->where('id',$post['id'])->update(['status'=>$post['status']])) {
                 return $this->error('操作失败');
             } else {
-                $operation="审核用户奖品兑换";
-                addlog($operation);//写入日志
+                $uid=$post['uid'];
+                $aggregate=$post['aggregate'];
+                $operation="审核用户{$uid}奖品兑换";
 
-                $userModel=new $userModel();
+                $userModel=new userModel();
                 
-                return $this->success(','');
+                $ret=$userModel->where("uid={$uid}")->setDec('coin',$aggregate);
+                // echo $userModel->getLastSql();exit;
+                if(false ==$ret){
+                    return $this->error('操作失败');
+                }else{
+                    addlog($operation);//写入日志
+                    return $this->success($operation,'admin/prizeexchange/index');
+                }
             }
         }
     }

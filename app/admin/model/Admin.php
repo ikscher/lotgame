@@ -47,7 +47,15 @@ class Admin extends Model
         return $this->hasOne('Attachment');
     }
 
-    public function userquestion(){
+    public function userquestion()
+    {
+        //关联工单表
         return $this->hasMany('app\front\model\UserQuestion','admin_id');
+    }
+
+    public function usermsg()
+    {
+        //关联站内信表
+        return $this->hasMany('app\front\model\UserMsg','send_uid','id');
     }
 }

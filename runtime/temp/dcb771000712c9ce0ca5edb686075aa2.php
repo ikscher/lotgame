@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1553090209;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1553934206;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,7 +115,7 @@
           <td><?php echo $vo['mobile']; ?></td>
           <td><?php echo $vo['coin']; ?></td>
           <td><?php echo $vo['bank']; ?></td>
-          <td><?php echo $vo['exchange_num']; ?></td>
+          <td></td>
           <td></td>
           <td><?php echo getAddressByIp($vo['login_ip']); ?></td>
           <td><?php if($vo['is_freeze'] == 1): ?>正常<?php elseif($vo['is_freeze'] == 2): ?>冻结<?php endif; ?></td>

@@ -1,0 +1,123 @@
+{include file="public/header" /}
+<div id="wrapper" class="umain">
+    <div class="w1200">
+    {include file="user/header" /}
+    {include file="user/left" /}
+		<div class="uright">
+			<!-- <div class="ibox">
+	            <div class="ibox-title">
+	                <h5>绑定QQ</h5>
+	            </div>
+	            <div class="ibox-content">
+					<div class="tishi">绑定QQ后即可使用QQ快捷登陆。</div>
+					<div class="safe-box" style="margin:15px 0 15px 0">
+						<div class="safe-info" style="margin-left: 0">
+														<p>您的QQ号 &nbsp;&nbsp;<span class="no">(未绑定)</span></p>
+							<div class="safe-info-con"><a href="/plugin/qc/login.php">点击立即绑定</a></div>
+													</div>
+					</div>
+	             
+	            </div>
+	        </div> -->
+
+			<div class="ibox">
+	            <div class="ibox-title">
+	                <h5>口令卡</h5>
+	            </div>
+	            <div class="ibox-content">
+					<div class="tishi">为了账号安全，口令卡只可查看一次，如未保存或遗失请联系客服。</div>
+					<div class="safe-box">
+						<img src="__IMAGE__/user/safe-mb-icon.png" class="fl">
+						<div class="safe-info">
+							<p style="margin-bottom: 5px;">您的密保卡 &nbsp;&nbsp;{notempty name="$isbind"}<span class="yes">(已绑定)</span>{else /}<span class="no">(未绑定)</span>{/notempty}</p>
+							<div class="safe-info-con">
+								<!-- <form  method="post"  id="mb-form"> -->
+								    {notempty name="$isbind"}
+										<a href="/User/Safepwd">查看我的密保卡</a>
+										<a href="javascript:void(0);" id="unbind">点击解除绑定</a>
+                                    {else /}
+                                    	<a href="javascript:void(0);" id="bind">点击立即绑定</a>
+                                    {/notempty}
+						        <!-- </form> -->
+							</div>
+						</div>
+					</div>
+					<div class="safe-text">
+						<span>口令卡安全设置</span><br>
+						1.密保卡只显示一次,请生成密保卡后马上截图保存。<br>
+						2.绑定后您每次登陆时都需要输入密保卡对应的值。<br>
+						3.若不再需要密保卡,可以解绑密保卡。
+					</div>
+
+
+	             
+	            </div>
+	        </div>
+
+			<div class="ibox" style="height: 370px;margin-bottom: 0">
+	            <div class="ibox-title">
+	                <h5>短信验证</h5>
+	            </div>
+	            <div class="ibox-content">
+					<div class="tishi">开启本功能后，登录只允许使用短信快捷登录，而不能使用账号密码登录。</div>
+
+	             	<form action="?act=sms" method="post">
+	                 	<div class="checkbox-group" style="margin:15px 0;display: block;">
+							<input type="radio" id="sms1" name="sms" value="1" >
+							<label for="sms1">开启</label>
+						</div>
+						<div class="checkbox-group" style="margin:20px 0;display: block;">
+							<input type="radio" id="sms0" name="sms" value="0"  checked >
+							<label for="sms0">关闭</label>
+						</div>
+						<div class="safe-text">
+						<span>登录短信验证</span><br>
+						1.开启后，每次登录需要验证您绑定的手机
+					</div>
+						<input type="submit" name="Submit" class="user-btn edit-btn" value="保存设置" style="margin:20px 0">
+					</form>
+	            </div>
+	        </div>
+
+		</div><!--uright-->
+   	</div>
+ </div>
+<script type="text/javascript">
+	layui.use(['layer', 'form'], function(){
+		var layer = layui.layer,form = layui.form;
+        $('#bind').click(function(){
+            layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。',function(index){
+            	$.ajax({
+            		url:'/user/safepwd',
+            		type:'post',
+            	    data:{act:'bind'},
+            	    error:function(){
+                       layer.alert('出错了');
+            	    },
+            	    success:function(res){
+                       location.href='/user/safepwd';
+            	    }
+            	})
+            });
+        });
+
+        $('#unbind').click(function(){
+            layer.alert('您已经成功解除密保卡。',function(index){
+            	$.ajax({
+            		url:'/user/safepwd',
+            		type:'post',
+            	    data:{act:'unbind'},
+            	    error:function(){
+                       layer.alert('出错了');
+            	    },
+            	    success:function(res){
+                       location.href='/user/safe';
+            	    }
+            	})
+            });
+        })
+		
+	});
+	
+</script>
+{include file="public/footer" /}

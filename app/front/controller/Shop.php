@@ -119,6 +119,12 @@ class Shop extends Controller
         	}
         	
             $post['user_id']=$this->uid;
+
+            //判断用户的金币数量是否足够兑换奖品
+            $coin=$this->userModel->where("uid=$this->uid")->value('coin');
+            if($coin<$post['aggregate']){
+                return $this->error('您的金币数不足，请充值');
+            }
             // $post['aggregate']=$post['aggregate'];
             // echo json_encode($post);exit;
             $post['create_time']=time();

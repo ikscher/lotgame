@@ -178,7 +178,7 @@ layui.use(['layer', 'form'], function(){
   
   form.on('submit(order)',function(){
      var num=$('#tbExchangedCount').val();
-     var aggregate=$('#price').html();
+     var aggregate=rmoney($('#price').html());
      var prize_id=$("input[name='prizeid']").val();
      var price=$("input[name='prizeprice']").val();
      $.ajax({
@@ -187,7 +187,7 @@ layui.use(['layer', 'form'], function(){
           type:'post',
           async: false,
           success:function(res) {
-              console.log(res);
+              // console.log(res);
               if(res.code == 1) {
                   layer.msg(res.msg, function(index){
                     location.href = res.url;
