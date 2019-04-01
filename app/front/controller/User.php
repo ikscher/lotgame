@@ -14,8 +14,10 @@ class User extends Controller
     private $userMsgModel;
     private $userSafepwdModel;
 	private $site_name;
+    private $safe_q;
     private $uid;
     private $user;
+    
 	public function _initialize()
     {
         $this->userModel = new userModel();
@@ -25,6 +27,7 @@ class User extends Controller
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
         $this->site_name=Config::get('site_name');
+        $this->safe_q=Config::get('safe_q');
         $this->assign('title',$this->site_name);
         $this->uid=Cookie::get('user_id');
         $this->uid=1;
@@ -38,9 +41,13 @@ class User extends Controller
         $this->uid=Cookie::get('uid');
         $this->uid=1;
         
-        // $avatar=$user->avatar;
-        // $this->assign('avatar',$avatar);
-
+        //判断是否绑定了密保卡
+        $map['user_id']=$this->uid;
+        $id=$this->userSafepwdModel->where($map)->value('id');
+        if(!empty($id)){
+            $this->assign('isbind',1);
+        }
+    
         //日志记录
         $map_['user_id']=$this->uid;
         $logs=$this->userLogModel->where($map_)->order('create_time desc')->paginate(8,false,['query'=>$this->request->param()]);
@@ -50,6 +57,13 @@ class User extends Controller
         
 
     	return $this->fetch();
+    }
+
+    //绑定邮箱
+    public function bindemail()
+    { 
+        $this->assign("safe_q",$this->safe_q);
+        return $this->fetch();
     }
     
     //站内信

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\edit.html";i:1554081941;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554081941;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554081941;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:62:"D:\mywork\lotgame\public/../app/front\view\user\bindemail.html";i:1554102496;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554081941;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554094518;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -193,11 +193,11 @@
 		}(window));
 	setTimeout(window.autoAnimation, 5000);
 </script>
-<link href="/static/public/layui/css/layui.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="/static/front/js/birthday_jq.js" ></script>
+<script src="/static/front/js/jquery.showLoading.min.js"></script>
+<script src="http://static.geetest.com/static/tools/gt.js"></script>
+<script src="/static/front/js/bindemail.js"></script>
 <div id="wrapper" class="umain">
 	<div class="w1200">
-		<!--顶侧top-->
 		<div class="utop">
 	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
 	<div class="utop-info">
@@ -224,10 +224,7 @@
 		</li>
 	</ul>
 </div>
-		<!--顶侧top-->
-
-		<!--左侧left菜单-->
-		<div class="col-left">
+	    <div class="col-left">
 	<div class="uleft-menu" id="side-menu">
 		<p style="margin-top: 0;">用户账户</p>
 		<ul>
@@ -297,242 +294,63 @@
 		}
 	}
 
-	links[last].setAttribute("class","menufirst");
+	if (last!=-1) links[last].setAttribute("class","menufirst");
 </script>
 
-		<!--左侧left菜单-->
-
-
 		<div class="uright">
-			<div class="ibox">
-				<div class="ibox-title">
-					<h5>资料修改</h5>
-				</div>
-				<div class="ibox-content">
-					<div class="tishi tishi1">依据自由自愿的原则，您可以选择填写以下资料或不填写，但如果你需要申请提现或兑换奖品则一定要如实填写以下资料，如果所填内容涉嫌作假，我们有权冻结您的账号。</div>
+		 	<div id="user_tradpwd" class="ibox">
+		 		<div class="ibox-title">
+		 			<h5>补全资料</h5>
+		 		</div>
+		 		<div class="ibox-content">
+		 			<form action="?act=bind" method="post" >
+		 				<div id="embed-captcha"></div>
+		 				<p id="wait" class="show"></p>
+		 				<p id="notice" class="hide"></p>
+		 				<div id="popup-captcha"></div>
 
-					<form   id="userInfoForm">
-						<ul class="edit-ul">
-							<!-- <li class="pro-li">
-								<label>资料完整度: </label>
-								<div class="progress">
-									<span class="bar" id="edit-progress"></span>
-								</div>
-								<div class="progress-text"></div>
-								<div id="editName" class="edit-text">亲爱的ikscher，请填写完整的基本资料！</div>
-							</li> -->
-							<li>
-								<label>ID号：</label>
-								<input type="text" disabled="" value="<?php echo $user['uid']; ?>" class="edit-input">
-							</li>
-							<li>
-								<label>昵称：</label>
-								<input type="text" class="edit-input"  name="username" value="<?php echo $user['username']; ?>" >
-								<span class="help-text">必填</span>
-							</li>
-							<li>
-								<label>性别：</label>
-								<select class="edit-select" name="gender" id="tbUserGender">
-									<option value="1"  <?php if($user['gender'] != 2): ?>selected<?php endif; ?>>男</option>
-									<option value="2"  <?php if($user['gender'] == 2): ?>selected<?php endif; ?>>女</option>
-								</select>
-							</li>
-							<li>
-								<label>生日：</label>
-								<select class="edit-select birth-select" name="byear" id="tbBirthYear"  <?php if($user['birth'] == 0): ?>rel="2000"<?php else: ?> rel="<?php echo date('Y',$user['birth']); ?>"<?php endif; ?>></select>年
-						        <select class="edit-select birth-select" name="bmonth" id="tbBirthMonth" <?php if($user['birth'] == 0): ?>rel="2"<?php else: ?>rel="<?php echo date('m',$user['birth']); ?>"<?php endif; ?>></select>月
-						        <select class="edit-select birth-select" name="bday" id="tbBirthDay" <?php if($user['birth'] == 0): ?>rel="14"<?php else: ?>rel="<?php echo date('d',$user['birth']); ?>"<?php endif; ?>></select>日
-							</li>
-							<li>
-								<label>QQ：</label>
-								<input type="text" class="edit-input"  name="qq" id="tbUserQQ"  <?php if(!(empty($user['qq']) || (($user['qq'] instanceof \think\Collection || $user['qq'] instanceof \think\Paginator ) && $user['qq']->isEmpty()))): ?>disabled<?php endif; ?>   value="<?php echo $user['qq']; ?>">
-								<span class="help-text">设置后不可修改</span>
-							</li>
-							<li style="position: relative;left: -10px;">
-								<label style="width: 60px;">支付宝：</label>
-								<input type="text" class="edit-input"  id="tbAlipay" <?php if(!(empty($user['alipay']) || (($user['alipay'] instanceof \think\Collection || $user['alipay'] instanceof \think\Paginator ) && $user['alipay']->isEmpty()))): ?>disabled<?php endif; ?> value="<?php echo $user['alipay']; ?>"  name="alipay">
-								<span class="help-text">设置后不可修改</span>
-							</li>
-							<li style="margin: 5px 0;">
-								<label></label>
-								<input type="hidden" name="act" value="update" />
-								<button class="user-btn" lay-submit lay-filter="userInfo">保存内容</button>
-							</li>
-						</ul>
-					</form>
-				</div>
-			</div>
 
-			<div class="ibox">
-				<div class="ibox-title">
-					<h5>头像设置</h5>
-				</div>
-				<div class="ibox-content">
-					<div class="uploadhead"><div class="uploadhead-btn" id="thumb"><span>上传头像</span></div> 仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</div>
-					<div class="head-box">
-						<form class="layui-form" id="userAvatarForm">
-						    <div class="head-box-left" id="upload-thumb">
-								<div class="form-head">
-									<!-- <input type="file" class="form-control" id="chooseImage" name="tbUserPhoto" style="display: none;"> -->
-									<img src="<?php if(!(empty($user['avatar']) || (($user['avatar'] instanceof \think\Collection || $user['avatar'] instanceof \think\Paginator ) && $user['avatar']->isEmpty()))): ?><?php echo geturl($user['avatar']); else: ?>'/static/front/image/user/head-img1.jpg'<?php endif; ?>" width="260px" height="260px" onclick="F_Open_dialog('chooseImage')" id="cropedBigImg">
-								</div>
-								<?php if(!(empty($user['avatar']) || (($user['avatar'] instanceof \think\Collection || $user['avatar'] instanceof \think\Paginator ) && $user['avatar']->isEmpty()))): ?><input type="hidden" name="avatar" value="<?php echo $user['avatar']; ?>"><?php endif; ?>
-								<!-- <input type="hidden" name="tbUserNick" value="ikscher"> -->
-								<input type="hidden" name="act" value="upload">
-								<button class="user-btn" type="button"  lay-submit lay-filter="avatar" style="margin: 10px auto">确认保存</button>
-						    </div>
-						</form>
-						<div class="head-box-right">
-							<div class="head-img1">
-								<img  id="demo1" src="/static/front/image/user/head-img2.jpg" width="100px" height="100px" id="head-img2">
-								<p>大头像100*100像素</p>
-							</div>
-							<div class="head-img2">
-								<img id="demo2" src="/static/front/image/user/head-img2.jpg" width="80px" height="80px" id="head-img3">
-								<p>大头像80*80像素</p>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="ibox-title">
-					<h5>用户偏好</h5>
-				</div>
-				<div class="ibox-content" style="width: 260px;">
-					<form action="?act=modifyfav" method="post" >
-						<div class="gdsz-box">
-							<label>接收中奖弹出提示：</label>
-							<input class="fl" type="checkbox" name="zjtips" value="1" checked style="margin-top: 5px;">
-						</div>
-						<button class="user-btn" type="submit" style="margin: 20px auto 0px;">确认保存</button>
-					</form>
-				</div>
-			</div>
-
+		 				<ul class="edit-ul mt40">
+		 					<li>
+		 						<label>邮箱：</label>
+		 						<input type="text" class="edit-input" name="email" id="email"  value="">
+		 					</li>
+		 					<li>
+		 						<label>验证码：</label>
+		 						<input type="text" class="edit-input" name="code" id="code" style="width: 135px;">
+		 						<a href="javascript:;" class="hqyzm btn_model_send" id="popup-submit"  actType="email">获取验证码</a>
+		 					</li>
+		 					<li>
+		 						<label>密保问题：</label>
+		 						<select id="safe_q" name="safe_q"  class="edit-select">
+		 							<?php if(is_array($safe_q) || $safe_q instanceof \think\Collection || $safe_q instanceof \think\Paginator): if( count($safe_q)==0 ) : echo "" ;else: foreach($safe_q as $k=>$vo): ?>
+		 							<option value="<?php echo $k; ?>"><?php echo $vo; ?></option>
+		 							<?php endforeach; endif; else: echo "" ;endif; ?>
+		 						</select>
+		 					</li>
+		 					<li>
+		 						<label>密保答案：</label>
+		 						<input type="text" class="edit-input" name="safe_a" id="safe_a" placeholder="设置后无法更改">
+		 					</li>
+		 					<li>
+		 						<label>QQ号码：</label>
+		 						<input type="text" class="edit-input" name="qq" id="qq" placeholder="设置后无法更改">
+		 					</li>
+		 					<li>
+		 						<label>支付宝：</label>
+		 						<input type="text" class="edit-input" name="alipay" id="alipay" placeholder="设置后无法更改">
+		 					</li>
+		 					<li>
+		 						<label></label>
+		 						<button class="user-btn edit-btn" type="submit">保存内容</button>
+		 					</li>
+		 				</ul>
+		 			</form>
+		 		</div>
+		 	</div>
 		</div><!--uright-->
 	</div>
 </div>
-
-<script type="text/javascript">
-$(function () {
-	$.ms_DatePicker({
-            YearSelector: "#tbBirthYear",
-            MonthSelector: "#tbBirthMonth",
-            DaySelector: "#tbBirthDay"
-    });
-	// $.ms_DatePicker();
-}); 
-
-// function F_Open_dialog(id) {
-//     document.getElementById(id).click();
-// }
-
-// $(function(){
-// 	$('#chooseImage').on('change',function(){
-//     	var filePath = $(this).val(),         //获取到input的value，里面是文件的路径
-//     		fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
-//     		src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
-    		
-//     	// 检查是否是图片
-//     	if( !fileFormat.match(/.png|.jpg|.jpeg/) ) {
-//     		error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
-//         	return;  
-//         }
-  	
-//         $('#cropedBigImg').attr("src",src);
-//         $('#head-img2').attr("src",src);
-//         $('#head-img3').attr("src",src);
-// 	});
-// });
-
-</script> 
-
-<script>
-    layui.use('upload', function(){
-      var upload = layui.upload;
-      //执行实例
-      var uploadInst = upload.render({
-        elem: '#thumb' //绑定元素
-        ,url: "<?php echo url('/common/upload'); ?>" //上传接口
-        ,data:{use:'user_thumb'}
-        ,done: function(res){
-        	console.log(res)
-          //上传完毕回调
-          if(res.code == 2) {
-          	$('#cropedBigImg').attr("src",res.src);
-            $('#demo1').attr('src',res.src);
-            $('#demo2').attr('src',res.src);
-            $('#upload-thumb').append('<input type="hidden" name="avatar" value="'+ res.id +'">');
-          } else {
-            layer.msg(res.msg);
-          }
-        }
-        ,error: function(){
-          //请求异常回调
-          //演示失败状态，并实现重传
-          layer.msg('上传失败');
-          // var demoText = $('#demoText');
-          // demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
-          // demoText.find('.demo-reload').on('click', function(){
-          //   uploadInst.upload();
-          // });
-        }
-      });
-    });
-
-    layui.use('form', function(){
-	   var form = layui.form;
-	  
-	   form.on('submit(avatar)', function(data) {
-            $.ajax({
-                url:"<?php echo url('/user/edit'); ?>",
-                data:$('#userAvatarForm').serialize(),
-                type:'post',
-                async: false,
-                success:function(res) {
-                    console.log(res);
-                    if(res.code == 1) {
-                      layer.msg(res.msg);
-                      // layer.alert(res.msg, function(index){
-                      //   location.href = res.url;
-                      // })
-                    } else {
-                      layer.msg(res.msg);
-                    }
-                }
-            })
-            return false;
-       });
-
-       form.on('submit(userInfo)',function(){
-            var username=$("input[name='username']").val();
-            if(!username){
-           	   layer.msg('用户名不能为空！');
-           	   return false;
-            }
-
-            $.ajax({
-                url:"<?php echo url('/user/edit'); ?>",
-                data:$('#userInfoForm').serialize(),
-                type:'post',
-                async: false,
-                success:function(res) {
-                    console.log(res);
-                    if(res.code == 1) {
-                      layer.msg(res.msg);
-                      // layer.alert(res.msg, function(index){
-                      //   location.href = res.url;
-                      // })
-                    } else {
-                      layer.msg(res.msg);
-                    }
-                }
-            })
-            return false;
-       })
-	});
-</script>
 <div class="clear"></div>
 <div class="foot w100">
 							<div class="w1000 oo">

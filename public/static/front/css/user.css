@@ -429,7 +429,7 @@
 	clear: both;
 }
 .edit-ul li>label{
-    width: 50px;
+    width: 70px;
     float: left;
     line-height: 30px;
     text-align: right;
@@ -580,26 +580,26 @@
 }
 .edit-ul.editpwd-ul li a:hover{color: #fff;}
 .btn_model_send{ 
-    display: block;
+    display: inline-block;
     text-align: center;
     width: 95px;
     background: #ff8e1d;
     color: #fff;
     height: 30px;
     line-height: 30px;
-    float: left;
+    /*float: left;*/
     margin-left:10px; 
     border-radius: 5px;
 }
 .btn_model_send_gary{ 
-    display: block;
+    display: inline-block;
     text-align: center;
     width: 95px;
     background: #666;
     color: #fff;
     height: 30px;
     line-height: 30px;
-    float: left;
+    /*float: left;*/
     margin-left:10px; 
     border-radius: 5px;
 }

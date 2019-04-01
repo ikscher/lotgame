@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50624
+Source Server         : 127.0.0.1
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-03-31 23:02:41
+Date: 2019-04-01 17:01:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1553824467', '192.168.1.107', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1554104550', '192.168.1.107', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=544 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=545 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -625,6 +625,7 @@ INSERT INTO `hov_admin_log` VALUES ('540', '4', '1', '192.168.1.101', '103', '15
 INSERT INTO `hov_admin_log` VALUES ('541', '4', '1', '192.168.1.101', '104', '1553925351');
 INSERT INTO `hov_admin_log` VALUES ('542', '49', '1', '192.168.1.101', '40', '1553948093');
 INSERT INTO `hov_admin_log` VALUES ('543', '42', '1', '192.168.1.101', '50', '1553952761');
+INSERT INTO `hov_admin_log` VALUES ('544', '50', '1', '192.168.1.107', '', '1554104550');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -2617,7 +2618,7 @@ CREATE TABLE `hov_user` (
   `experiments` int(11) DEFAULT '0',
   `is_email` tinyint(1) DEFAULT '0' COMMENT '1:email verified,0:email unverified',
   `is_mobile` tinyint(1) DEFAULT '0' COMMENT '1:mobile verified,0:mobile unverified',
-  `safe_q` tinyint(1) DEFAULT NULL COMMENT 'question safety',
+  `safe_q` tinyint(1) DEFAULT NULL COMMENT '''1''=>''您父亲的姓名是什么'',\r\n      ''2''=>''您母亲的姓名是什么'',\r\n      ''3''=>''您的出生地'',\r\n      ''4''=>''您的宠物的名字'',\r\n      ''5''=>''您的职业是什么'',\r\n      ''6''=>''您配偶的职业是什么''',
   `safe_a` varchar(100) DEFAULT NULL COMMENT 'answer safety',
   `qq` char(12) DEFAULT NULL,
   `wechat` char(30) DEFAULT NULL,
@@ -2631,7 +2632,7 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('1', 'ikscherw', 'wwwwww', '1', '50', null, 'ikscher@163.com', '13856900659', '0', '23', null, '1554004864', '1', '114.102.155.30', null, '0', '0', null, '0', '1', '0', null, null, '2323423', null, 'sdf@163c.om', '553186800', null, '1');
+INSERT INTO `hov_user` VALUES ('1', 'ikscherw', 'wwwwww', '1', '50', null, 'ikscher@163.com', '13856900659', '0', '23', null, '1554004864', '1', '114.102.155.30', null, '0', '0', null, '0', '0', '0', null, null, '2323423', null, 'sdf@163c.om', '553186800', null, '1');
 INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '230000', '2', '0', '1553267838', '1', '116.27.147.29', null, '1553616000', '23', null, '0', '0', '1', null, null, '435345345', null, null, '20180602', null, '1');
 
 -- ----------------------------
@@ -2787,6 +2788,28 @@ INSERT INTO `hov_user_msg` VALUES ('8', '1', '1', '1', '324', '34', null, '15530
 INSERT INTO `hov_user_msg` VALUES ('9', '1', '1', '1', '12', '234324', null, '1553065110');
 
 -- ----------------------------
+-- Table structure for `hov_user_note`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_user_note`;
+CREATE TABLE `hov_user_note` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL COMMENT '收件人',
+  `type` tinyint(1) DEFAULT NULL COMMENT '1:所有人2:vip3:单用户',
+  `title` varchar(100) DEFAULT NULL,
+  `content` varchar(800) DEFAULT NULL,
+  `is_read` tinyint(1) DEFAULT NULL COMMENT '1已读0未读',
+  `create_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='站内信';
+
+-- ----------------------------
+-- Records of hov_user_note
+-- ----------------------------
+INSERT INTO `hov_user_note` VALUES ('1', '1', '1', '12222', '123', '0', '1553616000');
+INSERT INTO `hov_user_note` VALUES ('5', null, '1', 'sdfas', '<p>sdfasdf</p>', null, '1553065119');
+INSERT INTO `hov_user_note` VALUES ('6', null, '1', 'ewr', '<p>werwer<br/></p>', null, '1553090056');
+
+-- ----------------------------
 -- Table structure for `hov_user_question`
 -- ----------------------------
 DROP TABLE IF EXISTS `hov_user_question`;
@@ -2840,12 +2863,11 @@ CREATE TABLE `hov_user_safepwd` (
   `safe` varchar(1000) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_safepwd
 -- ----------------------------
-INSERT INTO `hov_user_safepwd` VALUES ('3', '1', '{\"A\":{\"1\":\"4m\",\"2\":\"q7\",\"3\":\"nh\",\"4\":\"5j\",\"5\":\"6u\",\"6\":\"5w\",\"7\":\"eb\",\"8\":\"qt\",\"9\":\"ty\"},\"B\":{\"1\":\"5j\",\"2\":\"v9\",\"3\":\"fb\",\"4\":\"pe\",\"5\":\"xj\",\"6\":\"ag\",\"7\":\"hf\",\"8\":\"6t\",\"9\":\"gk\"},\"C\":{\"1\":\"pa\",\"2\":\"pb\",\"3\":\"qa\",\"4\":\"ka\",\"5\":\"9p\",\"6\":\"pv\",\"7\":\"74\",\"8\":\"xv\",\"9\":\"xy\"},\"D\":{\"1\":\"n5\",\"2\":\"yr\",\"3\":\"4r\",\"4\":\"qy\",\"5\":\"6h\",\"6\":\"gt\",\"7\":\"sx\",\"8\":\"ct\",\"9\":\"xq\"},\"E\":{\"1\":\"9p\",\"2\":\"jr\",\"3\":\"kh\",\"4\":\"n4\",\"5\":\"gj\",\"6\":\"5r\",\"7\":\"re\",\"8\":\"6x\",\"9\":\"ba\"},\"F\":{\"1\":\"5j\",\"2\":\"8t\",\"3\":\"tb\",\"4\":\"8v\",\"5\":\"qt\",\"6\":\"tj\",\"7\":\"fb\",\"8\":\"ky\",\"9\":\"xv\"},\"G\":{\"1\":\"s4\",\"2\":\"me\",\"3\":\"wp\",\"4\":\"8d\",\"5\":\"pd\",\"6\":\"p9\",\"7\":\"ms\",\"8\":\"e7\",\"9\":\"mq\"},\"H\":{\"1\":\"tg\",\"2\":\"bd\",\"3\":\"ej\",\"4\":\"4n\",\"5\":\"uc\",\"6\":\"qf\",\"7\":\"k8\",\"8\":\"nw\",\"9\":\"ay\"},\"I\":{\"1\":\"59\",\"2\":\"qy\",\"3\":\"sj\",\"4\":\"kx\",\"5\":\"3s\",\"6\":\"hf\",\"7\":\"dp\",\"8\":\"aq\",\"9\":\"ev\"}}', '1554043911');
 
 -- ----------------------------
 -- Table structure for `hov_webconfig`
