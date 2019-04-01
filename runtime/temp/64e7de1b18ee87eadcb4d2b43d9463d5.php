@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553490019;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553746313;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553649154;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553490019;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553746313;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553845857;}*/ ?>
 
 <!DOCTYPE html>
 <html>
