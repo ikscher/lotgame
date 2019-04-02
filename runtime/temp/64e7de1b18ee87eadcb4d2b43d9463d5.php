@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1553506839;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554020389;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1554190575;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554187952;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -50,7 +50,7 @@
 			<span class="barr fr">
 				<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
 				<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
-				<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
+				<a id="LinkButton1" href="/common/logout">退出</a>
 
 				<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
 			</span> 
@@ -216,21 +216,56 @@
 <div class="banner">
 	<div class="loginbg"></div>
 	<div id="loginbox" class="alogin">
-		<div class="logtit"><strong>登录成功</strong></div>
-		<div style="height:20px;"></div>
-		<div class="logtit" style="font-size:14px;">登录账号：ikscher (891435)</div>
-		<div class="captcha mt10 mb10">
-			<label>账户余额：500 </label>
-		</div>
-		<a href="/User/Index" class="sub mt20">会员中心</a>
-		<a href="/Game/Index" class="sub mt20">游戏中心</a>
+		<?php if(!(empty($uid) || (($uid instanceof \think\Collection || $uid instanceof \think\Paginator ) && $uid->isEmpty()))): ?>
+			<div class="logtit"><strong>登录成功</strong></div>
+			<div style="height:20px;"></div>
+			<div class="logtit" style="font-size:14px;">登录账号：ikscher (891435)</div>
+			<div class="captcha mt10 mb10">
+				<label>账户余额：500 </label>
+			</div>
+			<a href="/User/Index" class="sub mt20">会员中心</a>
+			<a href="/Game/Index" class="sub mt20">游戏中心</a>
 
-		<div class="forget fr mt10">
-			<a id="LinkButton1" class="outlink" href="/User/Login?act=logout">退出</a>
-		</div>
+			<div class="forget fr mt10">
+				<a id="LinkButton1" class="outlink" href="/common/logout">退出</a>
+			</div>
+        <?php else: ?>
+            <div class="logtit"><strong>登录</strong> <em>手机快捷登录</em></div>
+			<form id="loginform"  method="post">
+			<input type="hidden" name="logintype" id="logintype" value="1">
+		    <div class="id mt20">
+					<label><span class="idi icon fl">用户名：</span></label>
+					<input type="text"  class="input" name="tbUserAccount"  value="" autocomplete="off" maxlength="100" placeholder="邮箱/手机号" id="usernametb">
+					
+			</div>
+			<div class="pass oo mt20">
+					<label><span class="passi icon fl">密码：</span></label>
+					<input type="password"  class="input" name="tbUserPwd"  value="" autocomplete="off" maxlength="100" placeholder="密码" id="pwdtb">	
+			</div>
 
+			<div class="send_mobi oo mt20" style="display:none">
+			    <label><span class="idi icon fl">用户名：</span></label>
+				<input id="mobile" class="input" type="text" placeholder="手机号" name="mobile">
+			</div>
+		    
+			<div class="send_num mt20" style="display:none">
+				<label><span class="passi icon fl">验证码：</span></label>
+				<input id="code" class="input" type="text"  placeholder="验证码" name="code" style="width:105px;border-bottom-right-radius: 5px; border-top-right-radius: 5px;"><button type="button" id="popup-submit" class="send_btn">获取验证码</button>
+			</div>
+				<div id="embed-captcha"></div>
+				<p id="wait" class="show"></p>
+				<p id="notice" style="display:none">请先拖动滑块到正确位置</p>
+				<div id="popup-captcha"></div>
+
+            
+			<div class="reg oo mt10"><a href="/User/FindPwd" class="fl">找回密码</a> <a href="/User/Reg" class="fr"> 5 秒注册</a></div>
+			<!-- <input id="loginBtn" type="button" value="登 录" class="sub mt10" > -->
+			<button id="loginBtn" lay-submit lay-filter="login"   class="sub mt10">登录</button>
+			
+            </form>
+        <?php endif; ?>
 	</div>
-	<SCRIPT type="text/javascript">
+	<script type="text/javascript">
 		$('.logtit em').click(function(){
 			$(this).css({"color": "#FFD77D","font-size": "18px","font-weight": "700"});
 			$(this).prev().css({"color": "#f1f1f1","font-size": "14px","font-weight": "100"});
@@ -245,7 +280,7 @@
 			$('.id, .pass').show();
 			$("#logintype").attr("value","1");
 		});
-	</SCRIPT>
+	</script>
 
 	<div id="slideBox" class="slideBox">
 		<div class="hd">
@@ -503,7 +538,33 @@
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript">
+	layui.use(['layer', 'form'], function(){
+      var layer = layui.layer
+      ,form = layui.form;
+      
+      
+      form.on('submit(login)',function(){
+         $.ajax({
+              url:"<?php echo url('/common/login'); ?>",
+              data:$('#loginform').serialize(),
+              type:'post',
+              async: false,
+              success:function(res) {
+                  // console.log(res);
+                  if(res.code == 1) {
+                      layer.msg(res.msg, function(index){
+                        location.href = res.url;
+                      })
+                  } else {
+                      layer.msg(res.msg);
+                  }
+              }
+          })
+          return false;
+      })
+    });
+</script>
 <div class="client">
 	<div class="text-block">
 		<h1>合作伙伴</h1>

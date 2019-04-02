@@ -83,7 +83,7 @@ function settime(){
 
 }
 
-function salert(str,x){
+function salert_f(str,x){
     layui.use('form',function(){
         var layer=layui.layer;
         layer.alert(str,function(index){
@@ -93,10 +93,18 @@ function salert(str,x){
     })
 }
 
+function salert(str){
+    layui.use('form',function(){
+        var layer=layui.layer;
+        layer.alert(str);
+    })
+}
+
 var handlerPopup = function (captchaObj) {
     $("#popup-submit").click(function () {
         var mobile=$('#mobile').val();
         if(checkmob(mobile)==false){
+            salert_f("手机号码格式不正确！",$("#mobile"));
             return false;
         }
         var validate = captchaObj.getValidate();
@@ -106,13 +114,13 @@ var handlerPopup = function (captchaObj) {
         }
         $("#loginbox").showLoading();
         $.ajax({
-            url: "/Ajax_mobile.php",
+            url: "/common/sendmsg",
             type: "post",
             data: {
                 geetest_challenge: validate.geetest_challenge,
                 geetest_validate: validate.geetest_validate,
                 geetest_seccode: validate.geetest_seccode,
-                number: $("#mobile").val(),
+                mobile: mobile,
                 action: "post",
                 type: "login"
             },
@@ -142,12 +150,12 @@ var handlerPopup = function (captchaObj) {
             }
         });
     });
-    captchaObj.bindOn("#popup-submit");
+    // captchaObj.bindOn("#popup-submit");
     captchaObj.appendTo("#popup-captcha");
 };
 
 $.ajax({
-    url: "/class/geetest/web/StartCaptchaServlet.php?t=" + (new Date()).getTime(),
+    url: "/common/gtValidate?t=" + (new Date()).getTime(),
     type: "get",
     dataType: "json",
     success: function (data) {

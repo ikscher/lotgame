@@ -23,6 +23,6 @@ define('VENDOR_PATH', __DIR__ . '/../vendor/');
 define('SESSION_PATH', __DIR__.'./../runtime/session/');
 //定义加密cookie的
 define('THKPHP_AUTHKEY','zdfsdfioasjfiowe');
+
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';
-

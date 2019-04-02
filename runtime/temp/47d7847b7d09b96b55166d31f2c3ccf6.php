@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:62:"D:\mywork\lotgame\public/../app/front\view\user\bindemail.html";i:1554115742;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554020389;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554115742;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:62:"D:\mywork\lotgame\public/../app/front\view\user\bindemail.html";i:1554178172;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554081941;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554094518;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -302,15 +302,18 @@
 		 		<div class="ibox-title">
 		 			<h5>补全资料</h5>
 		 		</div>
+
 		 		<div class="ibox-content">
-		 			<form action="?act=bind" method="post" >
-		 				<div id="embed-captcha"></div>
-		 				<p id="wait" class="show"></p>
-		 				<p id="notice" class="hide"></p>
-		 				<div id="popup-captcha"></div>
-
-
+		 			<?php if($user['is_email'] == 0): ?>
+		 			<div id="embed-captcha"></div>
+	 				<p id="wait" class="show"></p>
+	 				<p id="notice" class="hide"></p>
+	 				<div id="popup-captcha"></div>
+	 				<?php endif; ?>
+		 			<form id="bindform"  >
+		 				
 		 				<ul class="edit-ul mt40">
+		 					<?php if($user['is_email'] == 0): ?>
 		 					<li>
 		 						<label>邮箱：</label>
 		 						<input type="text" class="edit-input" name="email" id="email"  value="">
@@ -320,29 +323,32 @@
 		 						<input type="text" class="edit-input" name="code" id="code" style="width: 135px;">
 		 						<a href="javascript:;" class="hqyzm btn_model_send" id="popup-submit"  actType="email">获取验证码</a>
 		 					</li>
+                            <?php else: ?>
+                                <div class="tishi">您的邮箱已经绑定，如需修改请联系客服。</div>
+                            <?php endif; ?>
 		 					<li>
 		 						<label>密保问题：</label>
-		 						<select id="safe_q" name="safe_q"  class="edit-select">
+		 						<select id="safe_q" name="safe_q" <?php if(!(empty($user['safe_q']) || (($user['safe_q'] instanceof \think\Collection || $user['safe_q'] instanceof \think\Paginator ) && $user['safe_q']->isEmpty()))): ?>disabled <?php endif; ?> class="edit-select">
 		 							<?php if(is_array($safe_q) || $safe_q instanceof \think\Collection || $safe_q instanceof \think\Paginator): if( count($safe_q)==0 ) : echo "" ;else: foreach($safe_q as $k=>$vo): ?>
-		 							<option value="<?php echo $k; ?>"><?php echo $vo; ?></option>
+		 							<option value="<?php echo $k; ?>" <?php if($user['safe_q'] == $k): ?>selected<?php endif; ?>><?php echo $vo; ?></option>
 		 							<?php endforeach; endif; else: echo "" ;endif; ?>
 		 						</select>
 		 					</li>
 		 					<li>
 		 						<label>密保答案：</label>
-		 						<input type="text" class="edit-input" name="safe_a" id="safe_a" placeholder="设置后无法更改">
+		 						<input type="text" class="edit-input" name="safe_a" id="safe_a"  <?php if(!(empty($user['safe_a']) || (($user['safe_a'] instanceof \think\Collection || $user['safe_a'] instanceof \think\Paginator ) && $user['safe_a']->isEmpty()))): ?>disabled value="<?php echo $user['safe_a']; ?>"<?php endif; ?> placeholder="设置后无法更改">
 		 					</li>
 		 					<li>
 		 						<label>QQ号码：</label>
-		 						<input type="text" class="edit-input" name="qq" id="qq" placeholder="设置后无法更改">
+		 						<input type="text" class="edit-input" name="qq" id="qq"   <?php if(!(empty($user['qq']) || (($user['qq'] instanceof \think\Collection || $user['qq'] instanceof \think\Paginator ) && $user['qq']->isEmpty()))): ?>disabled value="<?php echo $user['qq']; ?>"<?php endif; ?> placeholder="设置后无法更改">
 		 					</li>
 		 					<li>
 		 						<label>支付宝：</label>
-		 						<input type="text" class="edit-input" name="alipay" id="alipay" placeholder="设置后无法更改">
+		 						<input type="text" class="edit-input" name="alipay" id="alipay" <?php if(!(empty($user['alipay']) || (($user['alipay'] instanceof \think\Collection || $user['alipay'] instanceof \think\Paginator ) && $user['alipay']->isEmpty()))): ?>disabled value="<?php echo $user['alipay']; ?>"<?php endif; ?> placeholder="设置后无法更改">
 		 					</li>
 		 					<li>
 		 						<label></label>
-		 						<button class="user-btn edit-btn" type="submit">保存内容</button>
+		 						<button class="user-btn edit-btn" lay-submit lay-filter="save" id="btnbind">保存内容</button>
 		 					</li>
 		 				</ul>
 		 			</form>

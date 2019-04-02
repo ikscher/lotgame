@@ -25,12 +25,108 @@ class Common extends Controller
 {   
     private $geetest;
     private $userModel;
+    private $site_name;
     //初始化
     public function _initialize()
     {
         $this->geetest=Config::get('geetest');
         $this->userModel=new userModel();
+        $controller=$this->request->controller();
+        $this->assign('controller',$controller);
+        $this->site_name=Config::get('site_name');
+        $this->assign('title',$this->site_name);
     }
+
+
+    /**
+     * 会员登录
+     * @return [type] [description]
+     */
+    public function login()
+    {
+        if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+        if(Session::has('uid') == false) { 
+            if($this->request->isPost()) {
+                //是登录操作
+                $post = $this->request->post();
+                //验证  唯一规则： 表名，字段名，排除主键值，主键名
+                // $validate = new \think\Validate([
+                //     ['name', 'require|alphaDash', '用户名不能为空|用户名格式只能是字母、数字、——或_'],
+                //     ['password', 'require', '密码不能为空'],
+                //     ['captcha','require|captcha','验证码不能为空|验证码不正确'],
+                // ]);
+                // //验证部分数据合法性
+                // if (!$validate->check($post)) {
+                //     $this->error('提交失败：' . $validate->getError());
+                // }
+                $logintype=$post['logintype'];
+                if($logintype==1){ //账号密码登录
+                    $username=$post['tbUserAccount'];
+                    $user = $this->userModel->where("email='$username'")->whereor("mobile='$username'")->find();
+                }elseif($logintype==2){
+                    $mobile=$post['mobile'];
+                    $user = $this->userModel->where("mobile='$mobile'")->find();
+                }
+                
+                if(empty($user['username'])) {
+                    //不存在该用户名
+                    return $this->error('用户名不存在');
+                } else {
+                    
+                    if($logintype==1){ //账号密码登录
+                        $password = password($post['tbUserPwd']);
+                        if($user['password'] != $password) {
+                            return $this->error('密码错误');
+                        } else {
+                            Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
+
+                            // Session::set("admin",$name['id']); //保存新的
+                            // Session::set("admin_cate_id",$name['admin_cate_id']); //保存新的
+                            //记录登录时间和ip
+                            $this->userModel->where('uid',$user['uid'])->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
+                            //记录操作日志
+                            adduserlog($user['uid'],'登录');
+                            return $this->success('登录成功,正在跳转...','/user/index');
+                        }
+                    }elseif($logintype==2){ //短信验证登录
+                        if(!empty($post['code']) && $post['code']==Session::get('smscode_t')){
+                            Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
+                            $this->userModel->where('uid',$user['uid'])->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
+                            //记录操作日志
+                            adduserlog($user['uid'],'登录');
+                            return $this->success('登录成功,正在跳转...','/user/index');
+                        }
+                    }
+                }
+            } else {
+
+                if(Cookie::has('usermember')) {
+                    $this->assign('usermember',Cookie::get('usermember'));
+                }
+                return $this->fetch();
+            }
+        } else {
+            $this->redirect('/user/login');
+        }   
+    }
+
+    /**
+     * 会员退出，清除session
+     * @return [type] [description]
+     */
+    public function logout()
+    {
+        Session::delete('uid');
+        //Session::clear();//会清除后台的session
+        Cookie::delete('auth');
+        if(Session::has('uid')) {
+            return $this->error('退出失败');
+        } else {
+            //return $this->success('正在退出...','/common/login');
+            $this->redirect('/common/login');
+        }
+    }
+
     /**
      * 图片上传方法
      * @return [type] [description]
@@ -77,14 +173,13 @@ class Common extends Controller
     }
 
     /***
-    *  极速验证
+    *  极速验证API1
     */
     public function gtvalidate()
     {   
         $gtcfg=$this->geetest;
 
         $GtSdk = new \geetest\lib\GeetestLib($gtcfg['captcha_id'], $gtcfg['private_key']);
-        session_start();
 
         $data = array(
                 "user_id" => "test", # 网站用户id
@@ -93,9 +188,78 @@ class Common extends Controller
             );
 
         $status = $GtSdk->pre_process($data, 1);
-        $_SESSION['gtserver'] = $status;
-        $_SESSION['user_id'] = $data['user_id'];
+        Session::set('gtserver',$status);
+        Session::set('user_id', $data['user_id']);
         echo $GtSdk->get_response_str();
+    }
+    /**
+    * 发送短信
+    */
+    public function sendmsg()
+    {
+        //判断是否邮箱已经存在
+        if($this->request->isPost()){
+            $post=$this->request->post();
+
+            //引用geetest验证API2 (暂时保留)
+            // $gtcfg=$this->geetest;
+            // $GtSdk = new \geetest\lib\GeetestLib($gtcfg['captcha_id'], $gtcfg['private_key']);
+
+            // $data = array(
+            //         "user_id" => Session::get('user_id'), # 网站用户id
+            //         "client_type" => "web", #web:电脑上的浏览器；h5:手机上的浏览器，包括移动应用内完全内置的web_view；native：通过原生SDK植入APP应用的方式
+            //         "ip_address" => "127.0.0.1" # 请在此处传输用户请求验证时所携带的IP
+            //     );
+
+
+            // if (Session::get('gtserver') == 1) {   //服务器正常
+            //     $result = $GtSdk->success_validate($post['geetest_challenge'], $post['geetest_validate'], $post['geetest_seccode'], $data);
+            //     if ($result) {
+            //         // echo '{"status":"success"}';
+            //     } else{
+            //         // echo '{"status":"fail"}';
+            //         echo 2;exit;
+            //     }
+            // }else{  //服务器宕机,走failback模式
+            //     if ($GtSdk->fail_validate($post['geetest_challenge'],$post['geetest_validate'],$post['geetest_seccode'])) {
+            //         // echo '{"status":"success"}';
+            //     }else{
+            //         // echo '{"status":"fail"}';
+            //         echo 2;exit;
+            //     }
+            // }
+
+           $mobile=$post['mobile'];
+           $map['mobile']=$mobile;
+           $uid=$this->userModel->where($map)->value('uid');
+           if(!empty($uid)){
+              echo -3;exit;
+           }
+        }
+
+        //判断不能频繁点击
+        $t1=time();
+        $t0=Session::get('smscode_t');
+
+        // if(empty($t0)){
+        //     Session::set('sendmail_t',time());
+        // } else{
+        if($t1-$t0<60){
+            echo -1;exit;
+        }
+        // }
+        
+
+        $str = '1234567890';
+        $code=$str[rand(0,9)].$str[rand(0,9)].$str[rand(0,9)].$str[rand(0,9)];
+        Cookie::set('smscode_t',$smscode);exit;
+
+        if(sendsms($mobile,$code)){
+            Session::set('smscode_t',$code);
+            echo 1;exit;
+        }else{
+            echo -1;exit;
+        }
     }
 
     /**
@@ -103,10 +267,39 @@ class Common extends Controller
     */
     public function sendmail()
     {   
-
+        
         //判断是否邮箱已经存在
         if($this->request->isPost()){
-           $post=$this->request->post();
+            $post=$this->request->post();
+
+            //引用geetest验证API2（暂收保留）
+            $gtcfg=$this->geetest;
+            $GtSdk = new \geetest\lib\GeetestLib($gtcfg['captcha_id'], $gtcfg['private_key']);
+
+            $data = array(
+                    "user_id" => Session::get('user_id'), # 网站用户id
+                    "client_type" => "web", #web:电脑上的浏览器；h5:手机上的浏览器，包括移动应用内完全内置的web_view；native：通过原生SDK植入APP应用的方式
+                    "ip_address" => "127.0.0.1" # 请在此处传输用户请求验证时所携带的IP
+                );
+
+
+            if (Session::get('gtserver') == 1) {   //服务器正常
+                $result = $GtSdk->success_validate($post['geetest_challenge'], $post['geetest_validate'], $post['geetest_seccode'], $data);
+                if ($result) {
+                    // echo '{"status":"success"}';
+                } else{
+                    // echo '{"status":"fail"}';
+                    echo 2;exit;
+                }
+            }else{  //服务器宕机,走failback模式
+                if ($GtSdk->fail_validate($post['geetest_challenge'],$post['geetest_validate'],$post['geetest_seccode'])) {
+                    // echo '{"status":"success"}';
+                }else{
+                    // echo '{"status":"fail"}';
+                    echo 2;exit;
+                }
+            }
+
            $email=$post['email'];
            $map['email']=$email;
            $uid=$this->userModel->where($map)->value('uid');
@@ -127,22 +320,12 @@ class Common extends Controller
             echo -1;exit;
         }
         // }
-        echo 1;exit;
+        
 
         $str = '1234567890abcdefghijklmnopqrstuvwxyz';
         $emailcode=$str[rand(0,35)].$str[rand(0,35)].$str[rand(0,35)].$str[rand(0,35)];
-        //https://github.com/PHPMailer/PHPMailer/issues/1176
-        //https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
-        //require_once('./web_manage/include/class.phpmailer.php');
-
-        // $sql = "select varvalue from dy_config where varname='smtp'";
-        // $rsmtp=$db->sql_query($sql);
-        // $varvalue=$db->sql_fetchrow($rsmtp);
-        // $smtparr=unserialize($varvalue['varvalue']);
-        // $smtp_host = $smtparr['smtp_server'];
-        // $smtp_user = $smtparr['smtp_user'];
-        // $smtp_password = $smtparr['smtp_password'];
-        // $smtp_port = $smtparr['smtp_port'];''
+        Cookie::set('emailcode',$emailcode);exit;
+        // Session::set('emailcode',$emailcode)
         $smtp_host='smtp.163.com';
         $smtp_user="ikscher@163.com";
         $smtp_password="hongwinter@520";
@@ -161,7 +344,7 @@ class Common extends Controller
         $mail->Password = $smtp_password;  //你的密码
         $mail->Subject = '注册验证码'; //邮件标题
         $mail->From = $smtp_user;  //发件人地址（也就是你的邮箱）
-        $mail->FromName = "HHlife";  //发件人姓名
+        $mail->FromName = "www";  //发件人姓名
         // $mail->SMTPDebug = 2;
         // $mail->SMTPOptions = array(
         //     'ssl' => array(
@@ -171,7 +354,7 @@ class Common extends Controller
         //     )
         // );
 
-        $user_email='45397312@qq.com';
+        $user_email=$email;
 
         $address = $user_email;//收件人email
         $mail->AddAddress($address, "亲");//添加收件人（地址，昵称）
