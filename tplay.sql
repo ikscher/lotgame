@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50505
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-02 16:39:59
+Date: 2019-04-02 23:19:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2633,7 +2633,7 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('1', 'ikscherw', '5c342d4716c542309fd37be867b9403f', '1', '50', null, '45397312@qq.com', '13856900659', '0', '23', null, '1554194054', '1554004864', '1', '192.168.1.107', null, '0', '0', null, '0', '1', '0', '1', 'sdf', '2036383878', null, 'sdf', '553186800', null, '1');
+INSERT INTO `hov_user` VALUES ('1', 'ikscherw', '5c342d4716c542309fd37be867b9403f', '1', '50', null, '45397312@qq.com', '13856900659', '0', '23', null, '1554215407', '1554004864', '1', '192.168.1.101', null, '0', '0', null, '0', '1', '0', '1', 'sdf', '2036383878', null, 'sdf', '553186800', null, '1');
 INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '230000', '2', '0', null, '1553267838', '1', '116.27.147.29', null, '1553616000', '23', null, '0', '0', '1', null, null, '435345345', null, null, '20180602', null, '1');
 
 -- ----------------------------
@@ -2718,7 +2718,7 @@ CREATE TABLE `hov_user_log` (
   `experiment` int(11) DEFAULT '0',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -2771,6 +2771,16 @@ INSERT INTO `hov_user_log` VALUES ('45', '1', '登录', '0', '0', '1554189611');
 INSERT INTO `hov_user_log` VALUES ('46', '1', '登录', '0', '0', '1554190538');
 INSERT INTO `hov_user_log` VALUES ('47', '1', '登录', '0', '0', '1554191609');
 INSERT INTO `hov_user_log` VALUES ('48', '1', '登录', '0', '0', '1554194054');
+INSERT INTO `hov_user_log` VALUES ('49', '1', '登录', '0', '0', '1554213417');
+INSERT INTO `hov_user_log` VALUES ('50', '1', '登录', '0', '0', '1554214065');
+INSERT INTO `hov_user_log` VALUES ('51', '1', '登录', '0', '0', '1554214102');
+INSERT INTO `hov_user_log` VALUES ('52', '1', '登录', '0', '0', '1554214327');
+INSERT INTO `hov_user_log` VALUES ('53', '1', '登录', '0', '0', '1554215157');
+INSERT INTO `hov_user_log` VALUES ('54', '1', '登录', '0', '0', '1554215228');
+INSERT INTO `hov_user_log` VALUES ('55', '1', '登录', '0', '0', '1554215283');
+INSERT INTO `hov_user_log` VALUES ('56', '1', '登录', '0', '0', '1554215346');
+INSERT INTO `hov_user_log` VALUES ('57', '1', '登录', '0', '0', '1554215366');
+INSERT INTO `hov_user_log` VALUES ('58', '1', '登录', '0', '0', '1554215407');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`
