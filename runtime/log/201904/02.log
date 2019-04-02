@@ -1,0 +1,840 @@
+---------------------------------------------------------------
+[ 2019-04-02T09:05:44+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.193011s] [吞吐率：5.18req/s] [内存消耗：3,633.29kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.016001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.035002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:05:54+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.159009s] [吞吐率：6.29req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.030002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.031002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:06:04+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.148008s] [吞吐率：6.76req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.028002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:06:15+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.291017s] [吞吐率：3.44req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.048002s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.056004s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.064004s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.020001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.008000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:06:25+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.174010s] [吞吐率：5.75req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.029001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.030001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:06:35+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.121007s] [吞吐率：8.26req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:06:45+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.147008s] [吞吐率：6.80req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.030001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.030001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:06:55+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.139008s] [吞吐率：7.19req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.027001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.021001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:07:05+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.146008s] [吞吐率：6.85req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.028002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.017001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.002001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:07:15+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.176010s] [吞吐率：5.68req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.035002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:07:25+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.149008s] [吞吐率：6.71req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.028001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.033002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:07:34+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.164010s] [吞吐率：6.10req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.028001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.027001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:07:45+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.176011s] [吞吐率：5.68req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.013000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.005000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:07:55+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.163009s] [吞吐率：6.13req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.030001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:08:05+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.152009s] [吞吐率：6.58req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.025001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.026001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:08:15+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.155008s] [吞吐率：6.45req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.028001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:08:25+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.152009s] [吞吐率：6.58req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.026001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.029001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:08:35+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.181010s] [吞吐率：5.52req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.028001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.044002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:08:45+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.163009s] [吞吐率：6.13req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.029001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.031001s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-02T09:08:55+08:00 ] 192.168.1.107 GET test.lotgame.com/User/bindemail
+[运行时间：0.146008s] [吞吐率：6.85req/s] [内存消耗：3,633.30kb] [文件加载：57]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'bindemail',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/bindemail',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=6g1jptb0c504in079p9loel4s7; cSound=1; zdsx=1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\front\controller\User->bindemail[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ VIEW ] D:\mywork\lotgame\public/../app/front\view\user\bindemail.html [ array (
+  0 => 'controller',
+  1 => 'title',
+  2 => 'user',
+  3 => 'safe_q',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.026002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_attachment` [ RunTime:0.026002s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_attachment` WHERE  `id` = 50 LIMIT 1 [ RunTime:0.001000s ]
