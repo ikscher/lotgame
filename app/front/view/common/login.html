@@ -98,7 +98,7 @@
       
       form.on('submit(login)',function(){
          $.ajax({
-              url:"{:url('/user/login')}",
+              url:"{:url('/common/login')}",
               data:$('#loginform').serialize(),
               type:'post',
               async: false,

@@ -11,15 +11,18 @@
 		 		<div class="ibox-title">
 		 			<h5>补全资料</h5>
 		 		</div>
+
 		 		<div class="ibox-content">
-		 			<form action="?act=bind" method="post" >
-		 				<div id="embed-captcha"></div>
-		 				<p id="wait" class="show"></p>
-		 				<p id="notice" class="hide"></p>
-		 				<div id="popup-captcha"></div>
-
-
+		 			{if condition="$user['is_email'] eq 0"}
+		 			<div id="embed-captcha"></div>
+	 				<p id="wait" class="show"></p>
+	 				<p id="notice" class="hide"></p>
+	 				<div id="popup-captcha"></div>
+	 				{/if}
+		 			<form id="bindform"  >
+		 				
 		 				<ul class="edit-ul mt40">
+		 					{if condition="$user['is_email'] eq 0"}
 		 					<li>
 		 						<label>邮箱：</label>
 		 						<input type="text" class="edit-input" name="email" id="email"  value="">
@@ -29,29 +32,32 @@
 		 						<input type="text" class="edit-input" name="code" id="code" style="width: 135px;">
 		 						<a href="javascript:;" class="hqyzm btn_model_send" id="popup-submit"  actType="email">获取验证码</a>
 		 					</li>
+                            {else /}
+                                <div class="tishi">您的邮箱已经绑定，如需修改请联系客服。</div>
+                            {/if}
 		 					<li>
 		 						<label>密保问题：</label>
-		 						<select id="safe_q" name="safe_q"  class="edit-select">
+		 						<select id="safe_q" name="safe_q" {notempty name="$user['safe_q']"}disabled {/notempty} class="edit-select">
 		 							{foreach name="safe_q" item="vo" key="k"}
-		 							<option value="{$k}">{$vo}</option>
+		 							<option value="{$k}" {if condition="$user['safe_q'] eq $k"}selected{/if}>{$vo}</option>
 		 							{/foreach}
 		 						</select>
 		 					</li>
 		 					<li>
 		 						<label>密保答案：</label>
-		 						<input type="text" class="edit-input" name="safe_a" id="safe_a" placeholder="设置后无法更改">
+		 						<input type="text" class="edit-input" name="safe_a" id="safe_a"  {notempty name="$user['safe_a']"}disabled value="{$user['safe_a']}"{/notempty} placeholder="设置后无法更改">
 		 					</li>
 		 					<li>
 		 						<label>QQ号码：</label>
-		 						<input type="text" class="edit-input" name="qq" id="qq" placeholder="设置后无法更改">
+		 						<input type="text" class="edit-input" name="qq" id="qq"   {notempty name="$user['qq']"}disabled value="{$user['qq']}"{/notempty} placeholder="设置后无法更改">
 		 					</li>
 		 					<li>
 		 						<label>支付宝：</label>
-		 						<input type="text" class="edit-input" name="alipay" id="alipay" placeholder="设置后无法更改">
+		 						<input type="text" class="edit-input" name="alipay" id="alipay" {notempty name="$user['alipay']"}disabled value="{$user['alipay']}"{/notempty} placeholder="设置后无法更改">
 		 					</li>
 		 					<li>
 		 						<label></label>
-		 						<button class="user-btn edit-btn" type="submit">保存内容</button>
+		 						<button class="user-btn edit-btn" lay-submit lay-filter="save" id="btnbind">保存内容</button>
 		 					</li>
 		 				</ul>
 		 			</form>

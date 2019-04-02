@@ -55,7 +55,41 @@ function settime(){
     }
 
 }
+layui.use(['layer', 'form'], function(){
+    var layer = layui.layer,form = layui.form;
+    form.on('submit(save)',function(){
+        if($("#email").length>0 && $("#email").val()==""){
+            salert('请先填写您的邮箱地址');
+            return false;
+        }
 
+        if($('#code').length>0 && $("#code").val()==""){
+            salert('请先填写验证码');
+            return false;
+        }
+
+        $.ajax({
+            url:'/user/bindemail',
+            type:'post',
+            data:$('#bindform').serialize(),
+            dataType:'json',
+            error:function(){
+               salert('出错了');
+            },
+            success:function(res){
+               if(res.code==0){
+                  salert(res.msg);
+                  return false;
+               }else{
+                  salert(res.msg);
+                  location.href='/user/index';
+               }
+               
+            }
+        })
+        return false;
+    })
+});
 
 var handlerPopup = function (captchaObj) {
     $("#popup-submit").click(function () {

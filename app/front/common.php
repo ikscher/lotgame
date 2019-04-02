@@ -206,19 +206,78 @@ function ThkAuthCode($string, $operation = 'DECODE', $key = 'kvzcddfsdfawer5wrew
 }
 
 /**
-*  获取登录用户的uid保存到session
+*  短信接口
 */
-function getUserInfo(){
-    if(isset($_COOKIE['auth'])) {   
-        $arr = explode("\t", ThkAuthCode($_COOKIE['auth'], 'DECODE'));
-        if (!session_id()) session_start();
-        if (isset($arr[1])){
-            list($uid, $password) = $arr;           
-
-            $_SESSION['uid']=$uid;
-        }
-    }
+function sendmsg($mobile,$code)
+{
+    $uid='8SDK-EMY-6699-REWRS';
+    // $pwd=$msgconfig['sms']['pass3']; //密码
+    $pwd='029427';
+    // $mob=$mob; //发送号码用逗号分隔
+    // $content=urlencode($content,"utf-8",'gbk');  //短信内容
+        
+    $content='【红顶金融】验证码：'.$code; 
+    $content=urlencode(auto_charset($content,"gbk",'utf-8'));  //短信内容
+    
+    //$sendurl="http://sdk229ws.eucp.b2m.cn:8080/sdkproxy/sendsms.action?";
+    //$sendurl.='cdkey='.$serialNumber.'&password='.$pwd.'&phone='.$mob.'&message='.$content.'&addserial=';
+    $sendurl="http://hprpt2.eucp.b2m.cn:8080/sdkproxy/sendsms.action?cdkey={$uid}&password={$pwd}&phone={$mob}&message={$content}";
+    $d = @file_get_contents($sendurl,false);
+    
+    
+    if($d==0){
+        return true;
+    }else{
+        return false;
+    } 
 
 }
+// 自动转换字符集 支持数组转换
+function auto_charset($fContents, $from='gbk', $to='utf-8') 
+{
+    $from = strtoupper($from) == 'UTF8' ? 'utf-8' : $from;
+    $to = strtoupper($to) == 'UTF8' ? 'utf-8' : $to;
+    if ( ($to=='utf-8'&&is_utf8($fContents)) || strtoupper($from) === strtoupper($to) || empty($fContents) || (is_scalar($fContents) && !is_string($fContents))) {
+        //如果编码相同或者非字符串标量则不转换
+        return $fContents;
+    }
+    if (is_string($fContents)) {
+        if (function_exists('mb_convert_encoding')) {
+            return mb_convert_encoding($fContents, $to, $from);
+        } elseif (function_exists('iconv')) {
+            return iconv($from, $to, $fContents);
+        } else {
+            return $fContents;
+        }
+    } elseif (is_array($fContents)) {
+        foreach ($fContents as $key => $val) {
+            $_key = auto_charset($key, $from, $to);
+            $fContents[$_key] = auto_charset($val, $from, $to);
+            if ($key != $_key)
+                unset($fContents[$key]);
+        }
+        return $fContents;
+    }
+    else {
+        return $fContents;
+    }
+}
+
+//判断是否utf8
+function is_utf8($string) 
+{
+    return preg_match('%^(?:
+         [\x09\x0A\x0D\x20-\x7E]            # ASCII
+       | [\xC2-\xDF][\x80-\xBF]             # non-overlong 2-byte
+       |  \xE0[\xA0-\xBF][\x80-\xBF]        # excluding overlongs
+       | [\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}  # straight 3-byte
+       |  \xED[\x80-\x9F][\x80-\xBF]        # excluding surrogates
+       |  \xF0[\x90-\xBF][\x80-\xBF]{2}     # planes 1-3
+       | [\xF1-\xF3][\x80-\xBF]{3}          # planes 4-15
+       |  \xF4[\x80-\x8F][\x80-\xBF]{2}     # plane 16
+   )*$%xs', $string);
+}
+
+
 
 

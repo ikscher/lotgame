@@ -37,6 +37,8 @@ use \think\Route;
 //   // ':controller/:action'=>'front/:controller/:action', //控制器方法
 // ];
 Route::rule('/','front/index/index');
+Route::rule('/index/index','front/index/index');
+Route::rule('/index','front/index/index');
 Route::rule('board/detail/:id','front/board/detail');
 Route::rule('board/index','front/board/index');
 Route::rule('article/index','front/article/index');
@@ -50,7 +52,8 @@ Route::rule('user/edit','front/user/edit');
 Route::rule('user/safe','front/user/safe');
 Route::rule('user/safepwd','front/user/safepwd');
 Route::rule('user/bindemail','front/user/bindemail');
-Route::rule('user/login','front/user/login');
+Route::rule('common/login','front/common/login');
+Route::rule('common/logout','front/common/logout');
 Route::rule('agent/index','front/agent/index');
 Route::rule('site/index','front/site/index');
 Route::rule('prize/ind','front/prize/init');
@@ -63,5 +66,6 @@ Route::rule('shop/order','front/shop/order');
 Route::rule('common/upload','front/common/upload');
 Route::rule('common/gtvalidate','front/common/gtvalidate');
 Route::rule('common/sendmail','front/common/sendmail');
+Route::rule('common/sendmsg','front/common/sendmsg');
 
 
