@@ -226,4 +226,81 @@ class User extends Controller
 
     }
 
+    /**
+     * 登录
+     * @return [type] [description]
+     */
+    public function login()
+    {
+      
+        if(Cookie::has('user_id') == false) { 
+            if($this->request->isPost()) {
+                //是登录操作
+                $post = $this->request->post();
+                //验证  唯一规则： 表名，字段名，排除主键值，主键名
+                // $validate = new \think\Validate([
+                //     ['name', 'require|alphaDash', '用户名不能为空|用户名格式只能是字母、数字、——或_'],
+                //     ['password', 'require', '密码不能为空'],
+                //     ['captcha','require|captcha','验证码不能为空|验证码不正确'],
+                // ]);
+                // //验证部分数据合法性
+                // if (!$validate->check($post)) {
+                //     $this->error('提交失败：' . $validate->getError());
+                // }
+                $logintype=$post['logintype'];
+                if($logintype==1){ //账号密码登录
+                    $username=$post['tbUserAccount'];
+                    $user = $this->userModel->where("email='$username'")->whereor("mobile='$username'")->find();
+                }elseif($logintype==2){
+                    $mobile=$post['mobile'];
+                    $user = $this->userModel->where("mobile='$mobile'")->find();
+                }
+                
+                if(empty($user['username'])) {
+                    //不存在该用户名
+                    return $this->error('用户名不存在');
+                } else {
+                    //验证密码
+                    $password = password($post['tbUserPwd']);
+                    if($user['password'] != $password) {
+                        return $this->error('密码错误');
+                    } else {
+                        Cookie::set('_auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
+
+                        // Session::set("admin",$name['id']); //保存新的
+                        // Session::set("admin_cate_id",$name['admin_cate_id']); //保存新的
+                        //记录登录时间和ip
+                        $this->userModel->where('uid',$user['uid'])->update(['login_ip' =>  $this->request->ip(),'login_time' => time()]);
+                        //记录操作日志
+                        adduserlog('登录');
+                        return $this->success('登录成功,正在跳转...','/user/index');
+                    }
+                }
+            } else {
+
+                if(Cookie::has('usermember')) {
+                    $this->assign('usermember',Cookie::get('usermember'));
+                }
+                return $this->fetch();
+            }
+        } else {
+            $this->redirect('/user/login');
+        }   
+    }
+
+    /**
+     * 管理员退出，清除名字为admin的session
+     * @return [type] [description]
+     */
+    public function logout()
+    {
+        Session::delete('admin');
+        Session::delete('admin_cate_id');
+        if(Session::has('admin') or Session::has('admin_cate_id')) {
+            return $this->error('退出失败');
+        } else {
+            return $this->success('正在退出...','admin/common/login');
+        }
+    }
+
 }

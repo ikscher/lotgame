@@ -50,6 +50,7 @@ Route::rule('user/edit','front/user/edit');
 Route::rule('user/safe','front/user/safe');
 Route::rule('user/safepwd','front/user/safepwd');
 Route::rule('user/bindemail','front/user/bindemail');
+Route::rule('user/login','front/user/login');
 Route::rule('agent/index','front/agent/index');
 Route::rule('site/index','front/site/index');
 Route::rule('prize/ind','front/prize/init');

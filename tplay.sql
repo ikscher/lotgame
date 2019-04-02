@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50505
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-01 17:01:52
+Date: 2019-04-01 23:01:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2608,6 +2608,7 @@ CREATE TABLE `hov_user` (
   `coin` int(11) DEFAULT NULL COMMENT '金币数',
   `bank` int(11) DEFAULT NULL COMMENT '银行金币数',
   `create_time` int(11) DEFAULT NULL,
+  `login_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   `user_grade_id` tinyint(2) DEFAULT NULL COMMENT '用户等级',
   `login_ip` char(30) DEFAULT NULL COMMENT '登录IP',
@@ -2632,8 +2633,8 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('1', 'ikscherw', 'wwwwww', '1', '50', null, 'ikscher@163.com', '13856900659', '0', '23', null, '1554004864', '1', '114.102.155.30', null, '0', '0', null, '0', '0', '0', null, null, '2323423', null, 'sdf@163c.om', '553186800', null, '1');
-INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '230000', '2', '0', '1553267838', '1', '116.27.147.29', null, '1553616000', '23', null, '0', '0', '1', null, null, '435345345', null, null, '20180602', null, '1');
+INSERT INTO `hov_user` VALUES ('1', 'ikscherw', '', '1', '50', null, 'ikscher@163.com', '13856900659', '0', '23', null, null, '1554004864', '1', '114.102.155.30', null, '0', '0', null, '0', '0', '0', null, null, '2323423', null, 'sdf@163c.om', '553186800', null, '1');
+INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '230000', '2', '0', null, '1553267838', '1', '116.27.147.29', null, '1553616000', '23', null, '0', '0', '1', null, null, '435345345', null, null, '20180602', null, '1');
 
 -- ----------------------------
 -- Table structure for `hov_user_charge`
