@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1554207547;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554207547;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1554257468;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554187952;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -198,7 +198,7 @@
 <!--[if lt IE 7]>
 	<script src="/static/front/js/oldbowers.js" type="text/javascript"></script>
 <![endif]-->
-<script src="http://static.geetest.com/static/tools/gt.js"></script>
+<script src="/static/front/js/gt.js"></script>
 <script src="/static/front/js/jquery.showLoading.min.js"></script>
 <script type="text/javascript" src="/static/front/js/jeeslide.js"></script>
 <script type="text/javascript" src="/static/front/js/login.js"></script>
@@ -250,12 +250,9 @@
 		    
 			<div class="send_num mt20" style="display:none">
 				<label><span class="passi icon fl">验证码：</span></label>
-				<input id="code" class="input" type="text"  placeholder="验证码" name="code" style="width:105px;border-bottom-right-radius: 5px; border-top-right-radius: 5px;"><button type="button" id="popup-submit" class="send_btn">获取验证码</button>
+				<input id="code" class="input" type="text" maxlength="6"  placeholder="验证码" name="code" style="width:105px;border-bottom-right-radius: 5px; border-top-right-radius: 5px;"><button type="button" id="popup-submit" class="send_btn">获取验证码</button>
 			</div>
-				<div id="embed-captcha"></div>
-				<p id="wait" class="show"></p>
-				<p id="notice" style="display:none">请先拖动滑块到正确位置</p>
-				<div id="popup-captcha"></div>
+			<div id="popup-captcha"></div>
 
             
 			<div class="reg oo mt10"><a href="/User/FindPwd" class="fl">找回密码</a> <a href="/User/Reg" class="fr"> 5 秒注册</a></div>

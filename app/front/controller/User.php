@@ -196,6 +196,30 @@ class User extends Site
         $this->assign('safepwd',json_decode($safepwd,true));
         return $this->fetch();
     }
+
+    //绑定短信登录
+    public function safemsg(){
+        $data=array();
+        $map['uid']=$this->uid;
+        if($this->request->isAjax()){
+            $act=$this->request->has('act')?$this->request->post('act'):'';
+        
+            $login_by_msg=$this->request->post('login_by_msg');
+            $login_by_msg=$login_by_msg?1:0;
+            if($act=='bind'){
+                $ret=$this->userModel->where($map)->update(['login_by_msg' => $login_by_msg]);
+                // echo $this->userModel->getLastSql();exit;
+                if(false==$ret){
+                    return $this->error('短信登录设置失败');
+                } else {
+                    $operation='短信登录设置成功';
+                    adduserlog($this->uid,$operation);//写入日志
+
+                    return $this->success($operation,'/user/safe');
+                }
+            }
+        }
+    }
     
    
 

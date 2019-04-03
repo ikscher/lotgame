@@ -22,7 +22,7 @@ $(document).ready(function(){
                 }
 
                 if($("#code").val()==""){
-                    salert("请先输入手机验证码!",$('#code'));
+                    salert("请输入验证码!",$('#code'));
                     return false;
                 }
                 // $("#loginbox").showLoading();
@@ -112,71 +112,80 @@ function salert(str){
 }
 
 var handlerPopup = function (captchaObj) {
-    $("#popup-submit").click(function () {
-        var mobile=$('#mobile').val();
-        if(checkmob(mobile)==false){
-            salert_f("手机号码格式不正确！",$("#mobile"));
-            return false;
-        }
-        $('')
-        var validate = captchaObj.getValidate();
-        if (!validate) {
-            salert('请先完成滑动验证！');
-            return;
-        }
-
-        $("#loginbox").showLoading();
-        $.ajax({
-            url: "/common/sendmsg",
-            type: "post",
-            data: {
-                geetest_challenge: validate.geetest_challenge,
-                geetest_validate: validate.geetest_validate,
-                geetest_seccode: validate.geetest_seccode,
-                mobile: mobile,
-                action: "post",
-                type: "login"
-            },
-            success: function (result) {
-                result=parseInt(result);
-                switch (result){
-                    case -1:
-                        salert('短信发送失败');
-                        break;
-                    case 1:
-                        $("#popup-submit").attr("disabled","disabled");
-                        $("#popup-submit").attr("class","send_btn_gary");
-                        countdown=60;
-                        salert('短信发送成功,请注意查收!');
-                        settime();
-                        break;
-                    case -3:
-                        salert("该手机号尚未注册,请先注册!");
-                        break;
-                    default:
-                        salert("短信发送失败:未知错误");
-                        break;
-                }
-            },
-            complete: function () {
-                $("#loginbox").hideLoading();
+        captchaObj.onReady(function () {
+            $("#wait").hide();
+        }).onSuccess(function () {
+            
+            var result = captchaObj.getValidate();
+            if (!result) {
+                salert('请先完成滑动验证！');
+                return;
             }
-        });
-    });
-    // captchaObj.bindOn("#popup-submit");
     
-    captchaObj.appendTo("#popup-captcha");
-};
+            $("#loginbox").showLoading();
+            $.ajax({
+                url: "/common/sendmsg",
+                type: "post",
+                data: {
+                    geetest_challenge: result.geetest_challenge,
+                    geetest_validate: result.geetest_validate,
+                    geetest_seccode: result.geetest_seccode,
+                    mobile: $('#mobile').val(),
+                    action: "post",
+                    type: "login"
+                },
+                success: function (res) {
+                    console.log(res);
+                    // result=parseInt(result);
+                    switch (res.code){
+                        case -1:
+                            salert('短信发送失败');
+                            break;
+                        case 1:
+                            $("#popup-submit").attr("disabled","disabled");
+                            $("#popup-submit").attr("class","send_btn_gary");
+                            countdown=60;
+                            salert('短信发送成功,请注意查收!');
+                            settime();
+                            break;
+                        case -3:
+                            salert("该手机号尚未注册,请先注册!");
+                            break;
+                        default:
+                            salert("短信发送失败:未知错误");
+                            break;
+                    }
+                },
+                complete: function () {
+                    $("#loginbox").hideLoading();
+                }
+            });
+        });
+        $('#popup-submit').click(function () {
+            var mobile=$('#mobile').val();
+            if(checkmob(mobile)==false){
+                salert_f("手机号码格式不正确！",$("#mobile"));
+                return false;
+            }
+           
+            captchaObj.verify();
+        })
+        // 更多前端接口说明请参见：http://docs.geetest.com/install/client/web-front/
+    };
 
 $.ajax({
     url: "/common/gtValidate?t=" + (new Date()).getTime(),
     type: "get",
     dataType: "json",
     success: function (data) {
+        $('#text').hide();
+        $('#wait').show();
         initGeetest({
             gt: data.gt,
             challenge: data.challenge,
-            product: "popup",
+            product: "bind",
+            timeout: '5000',
+            new_captcha: data.new_captcha, // 用于宕机时表示是新验证码的宕机
             offline: !data.success
         }, handlerPopup);
     }

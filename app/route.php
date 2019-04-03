@@ -51,6 +51,7 @@ Route::rule('user/msg','front/user/msg');
 Route::rule('user/edit','front/user/edit');
 Route::rule('user/safe','front/user/safe');
 Route::rule('user/safepwd','front/user/safepwd');
+Route::rule('user/safemsg','front/user/safemsg');
 Route::rule('user/bindemail','front/user/bindemail');
 Route::rule('common/login','front/common/login');
 Route::rule('common/logout','front/common/logout');
