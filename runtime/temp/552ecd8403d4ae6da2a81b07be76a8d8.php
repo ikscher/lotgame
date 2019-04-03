@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:60:"D:\mywork\lotgame\public/../app/front\view\common\login.html";i:1554217217;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554207547;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\agent\index.html";i:1553687019;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554020389;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +49,7 @@
 			<span class="barr fr">
 				<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
 				<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
-				<a id="LinkButton1" href="/common/logout">退出</a>
+				<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
 
 				<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
 			</span> 
@@ -193,207 +193,20 @@
 		}(window));
 	setTimeout(window.autoAnimation, 5000);
 </script>
-<link href="/static/front/css/login.css" type="text/css" rel="stylesheet" />
-<script src="http://static.geetest.com/static/tools/gt.js"></script>
-<script src="/static/public/jquery/jquery.showLoading.min.js"></script>
-<script src="/static/public/jquery/jquery.qrcode.min.js"></script>
-<script  type="text/javascript" src="/static/front/js/login.js?v=1.1"></script>
+<div class="agent">
+    <div class="top">
+        <h1>合作商家列表</h1>
+    </div>
 
-<div class="login">
-	<div class="box">
-        <div id="loginbox" class="login_box">
-           <div class="tit1"><strong>登录</strong> <em>手机快捷登录</em></div>
-           <!-- <div class="scancode" id="scancode">
-                <span class="codetip">扫码登录<em></em><div></div></span>
-                <a id="toTab" class="codetab" href="javascript:void(0);"><img src="/static/front/image/scancode.png" width="100%"></a>
-            </div> -->
-            <!-- <div id="rebackcode" class="scancode">
-                <span class="codetip">其他登录<em></em><div></div></span>
-                <a id="reTab" class="codetab" href="javascript:void(0);"><img src="/static/front/image/tokenlogin.png" width="100%"></a>
-            </div> -->
-            <div class="form-content" id="ifmFormContent">
-                <form id="loginform"  method="post">
-                    <input type="hidden" name="logintype" id="logintype" value="1">
-                    <ul class="regzone tabl">
-                       <li>
-                          <label><img src="/static/front/image/mobile.png"></label>
-                          <input id="usernametb" class="logintb" type="text" placeholder="手机号/邮箱" name="tbUserAccount">
-                      </li>
-                      <li>
-                          <label><img src="/static/front/image/pwd.png"></label>
-                          <input id="pwdtb" class="logintb" type="password"  placeholder="密码" name="tbUserPwd">
-                      </li>
-                      <li style="display:none">
-                          <label><img src="/static/front/image/mobile.png"></label>
-                          <input id="mobile" class="logintb" type="text" placeholder="手机号" name="mobile">
-                      </li>
-                      <li style="display:none">
-                          <label><img src="/static/front/image/pwd.png"></label>
-                          <input id="code" class="logintb" type="text"  maxlength="6" placeholder="验证码" name="code"><button type="button" id="popup-submit" class="send_btn">获取验证码</button>
-                      </li>
-
-                      <div id="popup-captcha"></div>
-                    </ul>
-                    <div class="tool">
-                       <a href="/User/FindPwd" class="fl">找回密码</a>
-                       <a href="/User/Reg" class="fr">5秒注册</a>
-                   </div>
-                   <button id="loginBtn" lay-submit lay-filter="login"   class="regbtn">登录</button>
-                   <!-- <div class="tool">
-                       <a href="/plugin/qc/login.php" class="fl">QQ登录</a>
-                       <a href="#" class="fr">微信登录</a>
-                   </div> -->
-               </form>
-
-            </div>
-            <!-- <div id="tologin" class="tologin" style="display: none;">
-            <div id="QRcode" class="QRcode"></div>
-
-                <form id="tokenform1" method="POST" action="/User/Login?act=login">
-                    <input hidden="hidden" type="text" name="randnumber" id="randnumber" value=""/>
-                    <input hidden="hidden" type="text" name="logintype" id="logintype" value="4"/>
-                    <input type="submit" style="display:none" value="提交"/>
-                    <div id="openapp" class="openapp"><p>打开 <span style="color: #f02400;font-size: 17px;">彩豆28 APP</span>
-                    扫码登录</p></div>
-                    <div class="totext">
-                        <a href="/appDownload.php">下载彩豆28 APP</a>
-                        <a href="/User/Reg">♚马上注册</a>
-                    </div>
-                </form>
-            </div> -->
-        </div>       
+	<div class="xiaji">
+		<?php if(is_array($agents) || $agents instanceof \think\Collection || $agents instanceof \think\Paginator): if( count($agents)==0 ) : echo "" ;else: foreach($agents as $key=>$vo): ?>
+	   	<div class="hdq">
+			<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $vo['qq']; ?>&site=qq&menu=yes"><img  <?php if(!(empty($vo['thumb']) || (($vo['thumb'] instanceof \think\Collection || $vo['thumb'] instanceof \think\Paginator ) && $vo['thumb']->isEmpty()))): ?>src="<?php echo geturl($vo['thumb']); ?>"<?php endif; ?> style="width:280px;height:180px">
+			
+		</div>
+	    <?php endforeach; endif; else: echo "" ;endif; ?>
     </div>
 </div>
-<script type="text/javascript">
-	var timeid;
-
-    //页面刚开始加载的时候
-    $(function () {
-        $("#tologin").hide();
-        $("#rebackcode").hide();
-    });
-    function _getRandomString(len) {
-        len = len || 32;
-        var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'; // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
-        var maxPos = $chars.length;
-        var pwd = '';
-        for (i = 0; i < len; i++) {
-            pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
-        }
-        return pwd;
-    }
-
-    // layui.use(['layer', 'form'], function(){
-    //   var layer = layui.layer
-    //   ,form = layui.form;
-      
-      
-    //   form.on('submit(login)',function(){
-    //      $.ajax({
-    //           url:"<?php echo url('/common/login'); ?>",
-    //           data:$('#loginform').serialize(),
-    //           type:'post',
-    //           async: false,
-    //           success:function(res) {
-    //               // console.log(res);
-    //               if(res.code == 1) {
-    //                   layer.msg(res.msg, function(index){
-    //                     location.href = res.url;
-    //                   })
-    //               } else {
-    //                   layer.msg(res.msg);
-    //               }
-    //           }
-    //       })
-    //       return false;
-    //   })
-    // });
-
-
-    // function polling() {
-
-    //     var randnumber = $('#randnumber').val();
-    //     $.ajax({
-    //         url: "/Ajax_ScanLogin.php",
-    //         method: "post",
-    //         data: {
-    //             randnumber: randnumber,
-    //         },
-    //         success: function (res) {
-
-    //             if (res == 'true') {
-    //                 $('#tokenform1').submit();
-    //                 window.clearInterval(timeid);
-    //             }
-    //             if (res == '-2') {
-    //                 var str = '';
-    //                 str += "<center>";
-    //                 str += "<div><img src='/static/front/image/codeover.png' style='width:140px;height:140px;'></div>";
-    //                 str += "</center>";
-    //                 $("#QRcode").html(str + "二维码失效");
-    //                 $("#openapp").html("<a onclick='newcode()' class='regbtn'>刷新二维码</a>");
-    //                 window.clearInterval(timeid);
-    //             }
-
-    //         }
-    //     })
-    // }
-
-
-
-
-    // function newcode() {
-
-    //     var randnumber = _getRandomString(8);
-    //     $.ajax({
-    //         url: "/User/Login",
-    //         method: "post",
-    //         data: {
-    //             coderequest: 1,
-    //             randnum:randnumber
-    //         },
-    //         dataType: "json",
-    //         success: function (res) {
-    //             if (res.status==1){
-    //                 $("#QRcode").html('');
-    //                 $("#QRcode").qrcode({
-    //                     width: 126, //宽度
-    //                     height:126, //高度
-    //                     text: randnumber +' OS:'+res.os //任意内容
-    //                 });
-
-    //                 $('#randnumber').val(randnumber);
-
-
-    //                 $("#openapp").html("<p>打开 <span style='color: #f02400;font-size: 17px;'>彩豆28 APP</span> 扫码登录</p>")
-    //                 timeid = setInterval("polling()", 1000);
-    //             }
-    //         }
-    //     })
-
-    // }
-
-
-
-    //点击扫码登录的时候
-    // $("body").on("click", "#toTab", function () {
-    //     $("#ifmFormContent").hide();
-    //     $("#tologin").show();
-    //     $("#rebackcode").show();
-    //     $("#scancode").hide();
-    //     newcode();
-
-    // });
-
-    //点击其他登录
-    // $("body").on("click", "#reTab", function () {
-    //     $("#ifmFormContent").show();
-    //     $("#tologin").hide();
-    //     $("#rebackcode").hide();
-    //     $("#scancode").show();
-    //     window.clearInterval(timeid);
-    // });
-</script>
 <div class="clear"></div>
 <div class="foot w100">
 							<div class="w1000 oo">

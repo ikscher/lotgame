@@ -208,7 +208,7 @@ function ThkAuthCode($string, $operation = 'DECODE', $key = 'kvzcddfsdfawer5wrew
 /**
 *  短信接口
 */
-function sendmsg($mobile,$code)
+function sendmessage($mobile,$code)
 {
     $uid='8SDK-EMY-6699-REWRS';
     // $pwd=$msgconfig['sms']['pass3']; //密码
@@ -217,11 +217,11 @@ function sendmsg($mobile,$code)
     // $content=urlencode($content,"utf-8",'gbk');  //短信内容
         
     $content='【红顶金融】验证码：'.$code; 
-    $content=urlencode(auto_charset($content,"gbk",'utf-8'));  //短信内容
+    // $content=urlencode(auto_charset($content,"gbk",'utf-8'));  //短信内容
     
     //$sendurl="http://sdk229ws.eucp.b2m.cn:8080/sdkproxy/sendsms.action?";
     //$sendurl.='cdkey='.$serialNumber.'&password='.$pwd.'&phone='.$mob.'&message='.$content.'&addserial=';
-    $sendurl="http://hprpt2.eucp.b2m.cn:8080/sdkproxy/sendsms.action?cdkey={$uid}&password={$pwd}&phone={$mob}&message={$content}";
+    $sendurl="http://hprpt2.eucp.b2m.cn:8080/sdkproxy/sendsms.action?cdkey={$uid}&password={$pwd}&phone={$mobile}&message={$content}";
     $d = @file_get_contents($sendurl,false);
     
     

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\edit.html";i:1554081941;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554081941;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554081941;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\edit.html";i:1554009598;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554020389;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554115742;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -297,7 +297,7 @@
 		}
 	}
 
-	links[last].setAttribute("class","menufirst");
+	if (last!=-1) links[last].setAttribute("class","menufirst");
 </script>
 
 		<!--左侧left菜单-->

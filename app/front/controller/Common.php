@@ -95,6 +95,8 @@ class Common extends Controller
                             //记录操作日志
                             adduserlog($user['uid'],'登录');
                             return $this->success('登录成功,正在跳转...','/user/index');
+                        }else{
+                            return $this->error('验证码错误');
                         }
                     }
                 }
@@ -106,7 +108,7 @@ class Common extends Controller
                 return $this->fetch();
             }
         } else {
-            $this->redirect('/user/login');
+            $this->redirect('/common/login');
         }   
     }
 
@@ -229,36 +231,38 @@ class Common extends Controller
             //     }
             // }
 
-           $mobile=$post['mobile'];
-           $map['mobile']=$mobile;
-           $uid=$this->userModel->where($map)->value('uid');
-           if(!empty($uid)){
-              echo -3;exit;
-           }
-        }
+            $mobile=$post['mobile'];
+            $map['mobile']=$mobile;
+            $uid=$this->userModel->where($map)->value('uid');
+            if(empty($uid)){
+               echo -3;exit;
+            }
 
-        //判断不能频繁点击
-        $t1=time();
-        $t0=Session::get('smscode_t');
 
-        // if(empty($t0)){
-        //     Session::set('sendmail_t',time());
-        // } else{
-        if($t1-$t0<60){
-            echo -1;exit;
-        }
-        // }
-        
+           //判断不能频繁点击
+            $t1=time();
+            $t0=Session::get('smscode_t');
 
-        $str = '1234567890';
-        $code=$str[rand(0,9)].$str[rand(0,9)].$str[rand(0,9)].$str[rand(0,9)];
-        Cookie::set('smscode_t',$smscode);exit;
+            // if(empty($t0)){
+            //     Session::set('sendmail_t',time());
+            // } else{
+            if(!empty($t0)){
+                if($t1-$t0<60){
+                    echo -1;exit;
+                }
+            }
+            
 
-        if(sendsms($mobile,$code)){
-            Session::set('smscode_t',$code);
-            echo 1;exit;
-        }else{
-            echo -1;exit;
+            $str = '1234567890';
+            $smscode_t=$str[rand(0,9)].$str[rand(0,9)].$str[rand(0,9)].$str[rand(0,9)];
+            Cookie::set('smscode_t',$smscode_t);
+
+            // if(sendmessage($mobile,$smscode_t)){
+                Session::set('smscode_t',$smscode_t);
+                echo 1;exit;
+            // }else{
+            //     echo -1;exit;
+            // }
         }
     }
 
