@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1553603701;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1553911713;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1553603701;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554207547;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,195 +17,182 @@
 	<title><?php echo $title; ?></title>
 </head>
 <body>
-	<script>
-		layui.use(['layer', 'form'], function(){
-			var layer = layui.layer
-			,form = layui.form;
-		});
-	</script> 
-	<style type="text/css">
-	#callboard {    width: 150px;
-		overflow: hidden;
-		display: inline-block;
-		vertical-align: middle;
-		font-size: 12px;
-		position: relative;
-		top: -1px;
-		margin-left: 30px;float:left}
-		#callboard ul { padding:0; }
-		#callboard li { padding:0; }
-	</style>
-	<div style="width: 100%;background: #fff;">
-		<div class="bar">
-			<div class="w1000">
-				<span class="barl fl">欢迎光临！<a href="/SaveToHome.php">保存到桌面</a> <a href="/mobile.php">手机版</a><a href="/User/Sign?act=qd" class="qd">签到</a></span>
-				<div id="callboard">
-					<ul>
-						<li>
-							<a style="color:red;" target="_blank" href="/News/Detail/116" >游戏已经全部恢复！祝您游戏愉快！</a>
-						</li>
-						<li>
-							<a style="color:red;" target="_blank" href="/News/Detail/115" >2019年春节蛋蛋/北京类游戏停机公告</a>
-						</li>
-						<li>
-							<a style="color:red;" target="_blank" href="/News/Detail/114" >妞妞点卡解除合作</a>
-						</li>
-						<li>
-							<a style="color:red;" target="_blank" href="/News/Detail/113" >全新界面！带给您更好的游戏体验！app正在内测！</a>
-						</li>
-						<li>
-							<a style="color:red;" target="_blank" href="/News/Detail/111" >跨年红包中奖用户如下！</a>
-						</li>
+<style type="text/css">
+#callboard {width: 150px; overflow: hidden; display: inline-block; vertical-align: middle; font-size: 12px; position: relative; top: -1px; margin-left: 30px;float:left} 
+#callboard ul { padding:0; } 
+#callboard li { padding:0; } 
+</style>
+<div style="width: 100%;background: #fff;">
+	<div class="bar">
+		<div class="w1000">
+			<span class="barl fl">欢迎光临！<a href="/SaveToHome.php">保存到桌面</a> <a href="/mobile.php">手机版</a><a href="/User/Sign?act=qd" class="qd">签到</a></span>
+			<div id="callboard">
+				<ul>
+					<li>
+						<a style="color:red;" target="_blank" href="/News/Detail/116" >游戏已经全部恢复！祝您游戏愉快！</a>
+					</li>
+					<li>
+						<a style="color:red;" target="_blank" href="/News/Detail/115" >2019年春节蛋蛋/北京类游戏停机公告</a>
+					</li>
+					<li>
+						<a style="color:red;" target="_blank" href="/News/Detail/114" >妞妞点卡解除合作</a>
+					</li>
+					<li>
+						<a style="color:red;" target="_blank" href="/News/Detail/113" >全新界面！带给您更好的游戏体验！app正在内测！</a>
+					</li>
+					<li>
+						<a style="color:red;" target="_blank" href="/News/Detail/111" >跨年红包中奖用户如下！</a>
+					</li>
 
-					</ul>
-				</div>
-				<span class="barr fr">
-					<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
-					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
-					<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
-
-					<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
-				</span> 
-			</div>
-		</div>
-		<div class="w1000"> 
-			<div class="logobox">
-				<h1 class="fl"><a href="/"><img src="/static/front/image/logo.png?v=2.3" class="logo"></a><img src="/static/front/image/logor.png" class="logor"></h1>
-				<ul class="nav-ul">
-					<li class="select"><a href="/" class="nli">首页</a></li>
-					<li><a href="/Game/Index" class="nli">游戏中心</a></li>
-					<li><a href="/Shop/Index" class="nli">兑换商城</a></li>
-					<li><a href="/Article/Index" class="nli">活动专场</a></li>
-					<div class="dropdown fl">
-						<li>
-							<a href="#" class="nli">福利时代</a>
-							<div class="dropdown-main">
-								<div class="dropdown-content">
-									<a href="/Hd/Qiangka">抢卡风暴</a>
-									<a href="/Prize/Shatter">砸金蛋</a>
-									<a href="/Prize/Index">抽奖转盘</a>
-								</div>
-							</div>
-						</li>
-					</div>
-					<li><a href="/Game/top" class="nli">排行榜</a></li>
-					<li><a href="/User/Index" class="nli">会员中心</a></li>
-					<li><a href="/site/index" class="nli">了解彩豆</a></li>
-					<li><a href="/agent/index" class="nli">合作商家</a></li>
-					<!-- <li><a style="color:red" href="/appdownload.php" class="nli">APP下载</a></li> -->
 				</ul>
 			</div>
-			<div class="clear"></div>
+			<span class="barr fr">
+				<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
+				<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
+				<a id="LinkButton1" href="/common/logout">退出</a>
+
+				<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
+			</span> 
 		</div>
 	</div>
+	<div class="w1000"> 
+		<div class="logobox">
+			<h1 class="fl"><a href="/"><img src="/static/front/image/logo.png?v=2.3" class="logo"></a><img src="/static/front/image/logor.png" class="logor"></h1>
+			<ul class="nav-ul">
+				<li class="select"><a href="/" class="nli">首页</a></li>
+				<li><a href="/Game/Index" class="nli">游戏中心</a></li>
+				<li><a href="/Shop/Index" class="nli">兑换商城</a></li>
+				<li><a href="/Article/Index" class="nli">活动专场</a></li>
+				<div class="dropdown fl">
+					<li>
+						<a href="#" class="nli">福利时代</a>
+						<div class="dropdown-main">
+							<div class="dropdown-content">
+								<a href="/Hd/Qiangka">抢卡风暴</a>
+								<a href="/Prize/Shatter">砸金蛋</a>
+								<a href="/Prize/Index">抽奖转盘</a>
+							</div>
+						</div>
+					</li>
+				</div>
+				<li><a href="/Game/top" class="nli">排行榜</a></li>
+				<li><a href="/User/Index" class="nli">会员中心</a></li>
+				<li><a href="/site/index" class="nli">了解彩豆</a></li>
+				<li><a href="/agent/index" class="nli">合作商家</a></li>
+				<!-- <li><a style="color:red" href="/appdownload.php" class="nli">APP下载</a></li> -->
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
 
-	<SCRIPT type=text/javascript>
+<SCRIPT type=text/javascript>
 
-		$('.ucen').click(function(){
-			$('.nav ul .nli').fadeToggle(100);
-		});
-		$(document).ready(function(){
-			$('.nav ul .nli').fadeToggle(100);
-		});
-	</SCRIPT>
+	$('.ucen').click(function(){
+		$('.nav ul .nli').fadeToggle(100);
+	});
+	$(document).ready(function(){
+		$('.nav ul .nli').fadeToggle(100);
+	});
+</SCRIPT>
 
-	<script>
-		$(function(){
-			var pNall = window.location.pathname;
-			$(".nav-ul").find('li').each(function(i) {
-				$(this).attr('class','');
-				if(pNall.toLowerCase().indexOf("game/top") > 0){
-					if(i==5){
-						$(this).attr('class','select');
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("shatter") > 0){
-					if(i==4){
-						$(this).attr('class','select');
-						$(".dropdown-content a:eq(1)").addClass("select");
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("hd/qiangka") > 0){
-					if(i==4){
-						$(this).attr('class','select');
-						$(".dropdown-content a:eq(0)").addClass("select");
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("prize/index") > 0){
-					if(i==4){
-						$(this).attr('class','select');
-						$(".dropdown-content a:eq(2)").addClass("select");
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("game/") > 0){
-					if(i==1){
-						$(this).attr('class','select');
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("hd/") > 0){
-					if(i==3){
-						$(this).attr('class','select');
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("shop/") > 0){
-					if(i==2){
-						$(this).attr('class','select');
-					}
-					return;
-				}
-				if(pNall.toLowerCase().indexOf("user/") > 0){
-					if(i==6){
-						$(this).attr('class','select');
-					}
-					return;
-				}
-
-
-				if(i==0){
+<script>
+	$(function(){
+		var pNall = window.location.pathname;
+		$(".nav-ul").find('li').each(function(i) {
+			$(this).attr('class','');
+			if(pNall.toLowerCase().indexOf("game/top") > 0){
+				if(i==5){
 					$(this).attr('class','select');
 				}
 				return;
-
-
-			});
-		});
-	</script>
-
-	<script type="text/javascript">
-		(function (win){
-			var callboarTimer;
-			var callboard = $('#callboard');
-			var callboardUl = callboard.find('ul');
-			var callboardLi = callboard.find('li');
-			var liLen = callboard.find('li').length;
-			var initHeight = callboardLi.first().outerHeight(true);
-			win.autoAnimation = function (){
-				if (liLen <= 1) return;
-				var self = arguments.callee;
-				var callboardLiFirst = callboard.find('li').first();
-				callboardLiFirst.animate({
-					marginTop:-initHeight
-				}, 500, function (){
-					clearTimeout(callboarTimer);
-					callboardLiFirst.appendTo(callboardUl).css({marginTop:0});
-					callboarTimer = setTimeout(self, 5000);
-				});
 			}
-			callboard.mouseenter(
-				function (){
-					clearTimeout(callboarTimer);
-				}).mouseleave(function (){
-					callboarTimer = setTimeout(win.autoAnimation, 5000);
-				});
-			}(window));
-		setTimeout(window.autoAnimation, 5000);
-	</script>
+			if(pNall.toLowerCase().indexOf("shatter") > 0){
+				if(i==4){
+					$(this).attr('class','select');
+					$(".dropdown-content a:eq(1)").addClass("select");
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("hd/qiangka") > 0){
+				if(i==4){
+					$(this).attr('class','select');
+					$(".dropdown-content a:eq(0)").addClass("select");
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("prize/index") > 0){
+				if(i==4){
+					$(this).attr('class','select');
+					$(".dropdown-content a:eq(2)").addClass("select");
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("game/") > 0){
+				if(i==1){
+					$(this).attr('class','select');
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("hd/") > 0){
+				if(i==3){
+					$(this).attr('class','select');
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("shop/") > 0){
+				if(i==2){
+					$(this).attr('class','select');
+				}
+				return;
+			}
+			if(pNall.toLowerCase().indexOf("user/") > 0){
+				if(i==6){
+					$(this).attr('class','select');
+				}
+				return;
+			}
+
+
+			if(i==0){
+				$(this).attr('class','select');
+			}
+			return;
+
+
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	(function (win){
+		var callboarTimer;
+		var callboard = $('#callboard');
+		var callboardUl = callboard.find('ul');
+		var callboardLi = callboard.find('li');
+		var liLen = callboard.find('li').length;
+		var initHeight = callboardLi.first().outerHeight(true);
+		win.autoAnimation = function (){
+			if (liLen <= 1) return;
+			var self = arguments.callee;
+			var callboardLiFirst = callboard.find('li').first();
+			callboardLiFirst.animate({
+				marginTop:-initHeight
+			}, 500, function (){
+				clearTimeout(callboarTimer);
+				callboardLiFirst.appendTo(callboardUl).css({marginTop:0});
+				callboarTimer = setTimeout(self, 5000);
+			});
+		}
+		callboard.mouseenter(
+			function (){
+				clearTimeout(callboarTimer);
+			}).mouseleave(function (){
+				callboarTimer = setTimeout(win.autoAnimation, 5000);
+			});
+		}(window));
+	setTimeout(window.autoAnimation, 5000);
+</script>
 <style type="text/css">
 	.egg{width:1100px; height:770px; margin:0 auto 20px auto;padding-top: 360px;}
 	.egg ul li{z-index:999;}

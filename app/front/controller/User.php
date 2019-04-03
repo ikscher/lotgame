@@ -31,7 +31,8 @@ class User extends Site
         $this->site_name=Config::get('site_name');
         $this->safe_q=Config::get('safe_q');
         $this->assign('title',$this->site_name);
-        $this->uid=Cookie::get('user_id');
+        $this->uid=Session::get('uid');
+        // $this->uid=Cookie::get('user_id');
         $this->uid=1;
         $map['uid']=$this->uid;
         $this->user=$this->userModel->where($map)->find();
@@ -42,8 +43,8 @@ class User extends Site
     public function index()
     {   
 
-        $this->uid=Cookie::get('uid');
-        $this->uid=1;
+        // $this->uid=Cookie::get('uid');
+        // $this->uid=1;
         
         //判断是否绑定了密保卡
         $map['user_id']=$this->uid;
@@ -221,6 +222,62 @@ class User extends Site
         }
     }
     
+    //修改密码
+    public function changepwd()
+    {   
+        $data=array();
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $action=$post['action'];
+            if($action=='validate'){
+                $answer=$post['answer'];
+                $code=$post['code'];
+                $password=$post['password'];
+
+                if(password($password)!=$this->user['password']){//输入了错误的密码
+                    $data['code']='EP';
+                    echo json_encode($data);exit;
+                }
+
+
+                if($answer!=$this->user['safe_a']){//输入了错误的密保答案
+                    $data['code']='EA';
+                    echo json_encode($data);exit;
+                }
+
+                if($code!=Session::get('changepwd_smscode_t')){//输入了错误的验证码
+                    $data['code']='EC';
+                    echo json_encode($data);exit;
+                }
+
+                $data['code']='RA';
+                echo json_encode($data);exit;
+            }else if($action=='change'){
+                $newpwd=password($post['newpwd']);
+                $map['uid']=$this->uid;
+                $ret=$this->userModel->where($map)->update(['password'=>$newpwd]);
+                if(false==$ret){
+                    return $this->error('密码修改失败');
+                } else {
+                    $operation='密码修改成功';
+                    adduserlog($this->uid,$operation);//写入日志
+
+                    return $this->success($operation,'');
+                }
+            }
+        }
+        
+        
+
+        $q=$this->user['safe_q'];
+        if($q){
+            $safe_qs=Config::get('safe_q');
+            $this->assign('safe_q',$safe_qs[$q]);
+        }else{
+            $this->assign('safe_q','');
+        }
+        return $this->fetch();
+    }
    
 
     public function point()
@@ -265,7 +322,14 @@ class User extends Site
     //获取用户的金币和投注信息
     public function ajaxpoint(){
         //对应footer模板 ajax_points页面返回的{"points":"501","xnb":"0","nearBetList":[]}
-        $map['uid']=1;
+        $map['uid']=$this->uid;
+        $coin=$this->userModel->where($map)->value('coin');
+
+        $data['points']=$coin;
+        $data['xnb']=0;
+        $data['nearBetList']=array();
+
+        echo json_encode($data);exit;
     }
 
     //用户奖品评论

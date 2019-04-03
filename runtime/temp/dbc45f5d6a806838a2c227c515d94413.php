@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:56:"D:\mywork\lotgame\public/../app/front\view\user\msg.html";i:1554010425;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554207547;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554282520;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:62:"D:\mywork\lotgame\public/../app/front\view\user\changepwd.html";i:1554297457;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554207547;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554282520;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -193,79 +193,35 @@
 		}(window));
 	setTimeout(window.autoAnimation, 5000);
 </script>
-<script type="text/javascript">
-
-	function delMsg(){
-		var idArray = new Array();
-		var items=$("input[name^='selectsms']");
-		var len = items.length;
- 
-		$.each(items,function(i,n){
-			// console.log(n)
-            if ($(n).prop('checked')) {                        
-				idArray.push($(n).val());                    
-			}  
-		})               
-	    
-	    // console.log(smsArray);           
-		
-		if(idArray.length<=0){
-			layer.msg('请选择要删除的记录！');
-			return false;
-		}   
-
-		$.ajax({
-			url:'/user/msg',
-			type:'post',
-			data:{idArray:idArray},
-			dataType:'json',
-			success:function(res){
-                if(res.code == 1) {
-                    layer.msg(res.msg, function(index){
-                      location.href = res.url;
-                    })
-                }else{
-                    layer.msg(res.msg);
-                }
-			}
-		})
-
-		// window.location.href="/User/Msg?act=del&chkID="+smsArray;
-	}
-
-</script>
-<style type="text/css">
-	.user-table>tbody>tr>td{color: #000;}
-</style>
+<script type="text/javascript" src="/static/front/js/changepwd.js"></script>
 <div id="wrapper" class="umain">
-	<div class="w1200">
-		<div class="utop">
-			<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
-			<div class="utop-info">
-				<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
-				<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
-				<div class="utop-info-name">ID:<?php echo $user['uid']; ?></div>
-			</div>
-			<ul class="ubase-ul">
-				<li class="li1">
-					<p class="p1">账户余额</p>
-					<p class="p2"><?php echo $user['coin']; ?></p>
-				</li>
-				<li class="li2">
-					<p class="p1">银行</p>
-					<p class="p2"><?php echo $user['bank']; ?></p>
-				</li>
-				<li class="li3">
-					<p class="p1">积分</p>
-					<p class="p2"><?php echo $user['points']; ?></p>
-				</li>
-				<li class="li4">
-					<p class="p1">经验</p>
-					<p class="p2"><?php echo $user['experiments']; ?></p>
-				</li>
-			</ul>
-		</div>
-		<!--左侧left菜单-->
+    <div class="w1200">
+        <div class="utop">
+	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
+	<div class="utop-info">
+		<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
+		<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
+		<div class="utop-info-name">ID:<?php echo $user['uid']; ?></div>
+	</div>
+	<ul class="ubase-ul">
+		<li class="li1">
+			<p class="p1">账户余额</p>
+			<p class="p2"><?php echo $user['coin']; ?></p>
+		</li>
+		<li class="li2">
+			<p class="p1">银行</p>
+			<p class="p2"><?php echo $user['bank']; ?></p>
+		</li>
+		<li class="li3">
+			<p class="p1">积分</p>
+			<p class="p2"><?php echo $user['points']; ?></p>
+		</li>
+		<li class="li4">
+			<p class="p1">经验</p>
+			<p class="p2"><?php echo $user['experiments']; ?></p>
+		</li>
+	</ul>
+</div>
         <div class="col-left">
 	<div class="uleft-menu" id="side-menu">
 		<p style="margin-top: 0;">用户账户</p>
@@ -339,48 +295,64 @@
 	if (last!=-1) links[last].setAttribute("class","menufirst");
 </script>
 
-		<!--左侧left菜单-->
+        <div class="uright" id="user_tradpwd">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>密码修改</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="tishi">为确保您的账户安全，请牢记您的登录密码且不要轻易泄露给他人</div>
 
+                    <div id="safe_wrap" class="editpwd_wrap">
+                        <img src="/static/front/image/editpwd-lc1.png" width="690px">
+                        <ul class="edit-ul editpwd-ul">
+                            <li>
+                                <label>原登录密码：</label>
+                                <input type="password" class="edit-input" name="originalpwd" id="password" placeholder="请输入您的原密码">
+                            </li>
+                            <li>
+                                <label><?php echo $safe_q; ?>：</label>
+                                <input type="text" class="edit-input" name="answer" id="answer" placeholder="请输入密保答案">
+                            </li>
+                            <li>
+                                <label>手机验证码：</label>
+                                <input type="text" class="edit-input" name="code" id="code" style="width: 135px;">
+                                <a class="hqyzm btn_model_send" id="popup-submit">获取验证码</a>
+                            </li>
+                        </ul>
+                        <button class="user-btn" type="button" id="firstBtn" style="margin:20px auto">下一步</button>
+                    </div>
 
+                    <div id="pwd_wrap" class="editpwd_wrap" style="display: none;">
+                        <img src="/static/front/image/editpwd-lc2.png" width="690px">
+                            <ul class="edit-ul editpwd-ul">
+                                <input type="hidden" name="tbOldPwd" id="tbOldPwd">
+                                <li>
+                                    <label>新登录密码：</label>
+                                    <input type="password" class="edit-input" name="tbNewPwd" id="tbNewPwd" placeholder="请输入新密码">
+                                </li>
+                                <li>
+                                    <label>再次确认密码：</label>
+                                    <input type="password" class="edit-input" name="tbRePwd" id="tbRePwd" placeholder="请再次输入新密码">
+                                </li>
+                                <li><label></label></li>
+                            </ul>
+                            <button class="user-btn" type="button" id="secondBtn" style="margin:20px auto">下一步</button>
+                    </div>
 
+                    <div id="success_wrap" class="editpwd_wrap" style="display: none;">
+                        <img src="/static/front/image/editpwd-lc3.png" width="690px">
+                        <div class="success-box">
+                            <div class="success-text"><span>重置成功!</span></div>
+                        </div>
+                    </div>
 
- <div class="uright">
- 	<div class="ibox">
- 		<div class="ibox-title">
- 			<h5>站内信箱</h5>
- 			<a href="javascript:;" onClick="delMsg()">删除</a>
- 		</div>
- 		<div class="ibox-content">
- 			<div style="min-height: 300px;">
- 				<table class="user-table mt20">
- 					<thead>
- 						<tr>
- 							<th width="45px"></th>
- 							<th width="80px">发件人</th>
- 							<th>内容</th>
- 							<th>时间</th>
- 						</tr>
- 					</thead>
- 					<tbody>
- 						<?php if(is_array($msgs) || $msgs instanceof \think\Collection || $msgs instanceof \think\Paginator): if( count($msgs)==0 ) : echo "" ;else: foreach($msgs as $key=>$vo): ?>
- 						<tr>
- 							<td><input type="checkbox" name="selectsms[]" value="<?php echo $vo['id']; ?>" />
- 						    <td><!-- <?php echo $vo['admin']['nickname']; ?> -->管理员</td>
- 						    <td><?php echo $vo['content']; ?></td>
- 						    <td><?php echo $vo['create_time']; ?></td>
- 						</tr>
- 						<?php endforeach; endif; else: echo "" ;endif; ?>
- 					</tbody>
- 				</table>
- 				<div style="padding:0 20px;"><?php echo $msgs->render(); ?></div> 
- 			</div>
- 		</div>
- 	</div>
- </div><!--uright-->
+                </div>
+            </div>
+
+        </div><!--uright-->
+    </div>
 </div>
-
-</div>
-
 <div class="clear"></div>
 <div class="foot w100">
 							<div class="w1000 oo">

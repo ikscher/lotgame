@@ -159,6 +159,7 @@ return [
         '__CSS__'      => '/static/front/css',
         '__PUBLIC__'   => '/static/public',
         '__IMAGE__'    => '/static/front/image',
+        '__SOUND__'    => '/static/front/sound',
         '__JS__'       => '/static/front/js',
         '__AGENT__'    =>'/static/agent/'
     ],

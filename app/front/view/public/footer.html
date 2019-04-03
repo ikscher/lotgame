@@ -112,7 +112,7 @@
 
 <script>
 	$(document).ready(function(){
-		$('<audio id="chatAudio"><source src="notify.ogg" type="audio/ogg"> <source src="/images/sound/tips.wav" type="audio/wav"></audio>').appendTo('body');
+		$('<audio id="chatAudio"><source src="__SOUND__/notify.ogg" type="audio/ogg"> <source src="__SOUND__/sound/tips.wav" type="audio/wav"></audio>').appendTo('body');
 	});
 
 	Notification.requestPermission( function(status) {
@@ -178,7 +178,7 @@
 	function reflushPoints(){
 		var html = "";
 		$.ajax({
-			// url:"/Ajax_points.php",
+			url:"/User/Ajaxpoint",
 			dataType:"json",
 			type:"get",
 			success: function (rs) {
