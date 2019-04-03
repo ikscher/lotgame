@@ -61,21 +61,21 @@
 	            <div class="ibox-content">
 					<div class="tishi">开启本功能后，登录只允许使用短信快捷登录，而不能使用账号密码登录。</div>
 
-	             	<form action="?act=sms" method="post">
-	                 	<div class="checkbox-group" style="margin:15px 0;display: block;">
-							<input type="radio" id="sms1" name="sms" value="1" >
-							<label for="sms1">开启</label>
-						</div>
-						<div class="checkbox-group" style="margin:20px 0;display: block;">
-							<input type="radio" id="sms0" name="sms" value="0"  checked >
-							<label for="sms0">关闭</label>
-						</div>
-						<div class="safe-text">
-						<span>登录短信验证</span><br>
-						1.开启后，每次登录需要验证您绑定的手机
+	             	
+                 	<div class="checkbox-group" style="margin:15px 0;display: block;">
+						<input type="radio" id="sms1" name="login_by_msg" value="1" {if condition="$user['login_by_msg'] eq 1"}checked{/if}>
+						<label for="sms1">开启</label>
 					</div>
-						<input type="submit" name="Submit" class="user-btn edit-btn" value="保存设置" style="margin:20px 0">
-					</form>
+					<div class="checkbox-group" style="margin:20px 0;display: block;">
+						<input type="radio" id="sms0" name="login_by_msg" value="0"  {if condition="$user['login_by_msg'] eq 0"}checked{/if} >
+						<label for="sms0">关闭</label>
+					</div>
+					<div class="safe-text">
+						<span>登录短信验证</span><br>
+						提示：开启后，每次登录需要验证您绑定的手机
+					</div>
+					<button id="loginmsgbtn"   class="user-btn edit-btn"  style="margin:20px 0">保存设置</button>
+					
 	            </div>
 	        </div>
 
@@ -86,7 +86,7 @@
 	layui.use(['layer', 'form'], function(){
 		var layer = layui.layer,form = layui.form;
         $('#bind').click(function(){
-            layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。',function(index){
+            
             	$.ajax({
             		url:'/user/safepwd',
             		type:'post',
@@ -95,14 +95,15 @@
                        layer.alert('出错了');
             	    },
             	    success:function(res){
+            	       layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。');
                        location.href='/user/safepwd';
             	    }
             	})
-            });
+            
         });
 
         $('#unbind').click(function(){
-            layer.alert('您已经成功解除密保卡。',function(index){
+            // layer.alert('您已经成功解除密保卡。',function(index){
             	$.ajax({
             		url:'/user/safepwd',
             		type:'post',
@@ -111,10 +112,35 @@
                        layer.alert('出错了');
             	    },
             	    success:function(res){
+            	       layer.alert('您已经成功解除密保卡。');
                        location.href='/user/safe';
             	    }
             	})
-            });
+            // });
+        })
+
+        $('#loginmsgbtn').click(function(){
+        	var login_by_msg=$("input[name='login_by_msg']:checked").val();
+        	$.ajax({
+        		url:'/user/safemsg',
+        		type:'post',
+        	    data:{act:'bind',login_by_msg:login_by_msg},
+        	    error:function(){
+                   layer.alert('出错了');
+                   return false;
+        	    },
+        	    dataType:'json',
+        	    success:function(res){
+        	    	console.log(res)
+                   if(res.code == 1) {
+	                    layer.alert(res.msg, function(index){
+	                       location.href = res.url;
+	                    })
+	                } else {
+	                    layer.msg(res.msg);
+	                }
+        	    }
+        	})
         })
 		
 	});

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\safe.html";i:1554081941;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554081941;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554094518;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\safe.html";i:1554262790;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554187952;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554094518;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +49,7 @@
 			<span class="barr fr">
 				<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
 				<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
-				<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
+				<a id="LinkButton1" href="/common/logout">退出</a>
 
 				<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
 			</span> 
@@ -352,21 +352,21 @@
 	            <div class="ibox-content">
 					<div class="tishi">开启本功能后，登录只允许使用短信快捷登录，而不能使用账号密码登录。</div>
 
-	             	<form action="?act=sms" method="post">
-	                 	<div class="checkbox-group" style="margin:15px 0;display: block;">
-							<input type="radio" id="sms1" name="sms" value="1" >
-							<label for="sms1">开启</label>
-						</div>
-						<div class="checkbox-group" style="margin:20px 0;display: block;">
-							<input type="radio" id="sms0" name="sms" value="0"  checked >
-							<label for="sms0">关闭</label>
-						</div>
-						<div class="safe-text">
-						<span>登录短信验证</span><br>
-						1.开启后，每次登录需要验证您绑定的手机
+	             	
+                 	<div class="checkbox-group" style="margin:15px 0;display: block;">
+						<input type="radio" id="sms1" name="login_by_msg" value="1" <?php if($user['login_by_msg'] == 1): ?>checked<?php endif; ?>>
+						<label for="sms1">开启</label>
 					</div>
-						<input type="submit" name="Submit" class="user-btn edit-btn" value="保存设置" style="margin:20px 0">
-					</form>
+					<div class="checkbox-group" style="margin:20px 0;display: block;">
+						<input type="radio" id="sms0" name="login_by_msg" value="0"  <?php if($user['login_by_msg'] == 0): ?>checked<?php endif; ?> >
+						<label for="sms0">关闭</label>
+					</div>
+					<div class="safe-text">
+						<span>登录短信验证</span><br>
+						提示：开启后，每次登录需要验证您绑定的手机
+					</div>
+					<button id="loginmsgbtn"   class="user-btn edit-btn"  style="margin:20px 0">保存设置</button>
+					
 	            </div>
 	        </div>
 
@@ -377,7 +377,7 @@
 	layui.use(['layer', 'form'], function(){
 		var layer = layui.layer,form = layui.form;
         $('#bind').click(function(){
-            layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。',function(index){
+            
             	$.ajax({
             		url:'/user/safepwd',
             		type:'post',
@@ -386,14 +386,15 @@
                        layer.alert('出错了');
             	    },
             	    success:function(res){
+            	       layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。');
                        location.href='/user/safepwd';
             	    }
             	})
-            });
+            
         });
 
         $('#unbind').click(function(){
-            layer.alert('您已经成功解除密保卡。',function(index){
+            // layer.alert('您已经成功解除密保卡。',function(index){
             	$.ajax({
             		url:'/user/safepwd',
             		type:'post',
@@ -402,10 +403,35 @@
                        layer.alert('出错了');
             	    },
             	    success:function(res){
+            	       layer.alert('您已经成功解除密保卡。');
                        location.href='/user/safe';
             	    }
             	})
-            });
+            // });
+        })
+
+        $('#loginmsgbtn').click(function(){
+        	var login_by_msg=$("input[name='login_by_msg']:checked").val();
+        	$.ajax({
+        		url:'/user/safemsg',
+        		type:'post',
+        	    data:{act:'bind',login_by_msg:login_by_msg},
+        	    error:function(){
+                   layer.alert('出错了');
+                   return false;
+        	    },
+        	    dataType:'json',
+        	    success:function(res){
+        	    	console.log(res)
+                   if(res.code == 1) {
+	                    layer.alert(res.msg, function(index){
+	                       location.href = res.url;
+	                    })
+	                } else {
+	                    layer.msg(res.msg);
+	                }
+        	    }
+        	})
         })
 		
 	});

@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50624
+Source Server         : 127.0.0.1
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-04-02 23:19:03
+Date: 2019-04-03 14:38:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2619,6 +2619,7 @@ CREATE TABLE `hov_user` (
   `experiments` int(11) DEFAULT '0',
   `is_email` tinyint(1) DEFAULT '0' COMMENT '1:email verified,0:email unverified',
   `is_mobile` tinyint(1) DEFAULT '0' COMMENT '1:mobile verified,0:mobile unverified',
+  `login_by_msg` tinyint(4) DEFAULT '0' COMMENT '开启短信验证登录',
   `safe_q` tinyint(1) DEFAULT NULL COMMENT '''1''=>''您父亲的姓名是什么'',\r\n      ''2''=>''您母亲的姓名是什么'',\r\n      ''3''=>''您的出生地'',\r\n      ''4''=>''您的宠物的名字'',\r\n      ''5''=>''您的职业是什么'',\r\n      ''6''=>''您配偶的职业是什么''',
   `safe_a` varchar(100) DEFAULT NULL COMMENT 'answer safety',
   `qq` char(12) DEFAULT NULL,
@@ -2633,8 +2634,8 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('1', 'ikscherw', '5c342d4716c542309fd37be867b9403f', '1', '50', null, '45397312@qq.com', '13856900659', '0', '23', null, '1554215407', '1554004864', '1', '192.168.1.101', null, '0', '0', null, '0', '1', '0', '1', 'sdf', '2036383878', null, 'sdf', '553186800', null, '1');
-INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '230000', '2', '0', null, '1553267838', '1', '116.27.147.29', null, '1553616000', '23', null, '0', '0', '1', null, null, '435345345', null, null, '20180602', null, '1');
+INSERT INTO `hov_user` VALUES ('1', 'ikscherw', '5c342d4716c542309fd37be867b9403f', '1', '50', null, '45397312@qq.com', '13856900659', '0', '23', null, '1554266469', '1554004864', '1', '192.168.1.107', null, '0', '0', null, '0', '1', '0', '1', '1', 'sdf', '2036383878', null, 'sdf', '553186800', null, '1');
+INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '230000', '2', '0', null, '1553267838', '1', '116.27.147.29', null, '1553616000', '23', null, '0', '0', '1', null, null, null, '435345345', null, null, '20180602', null, '1');
 
 -- ----------------------------
 -- Table structure for `hov_user_charge`
@@ -2718,7 +2719,7 @@ CREATE TABLE `hov_user_log` (
   `experiment` int(11) DEFAULT '0',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -2781,6 +2782,15 @@ INSERT INTO `hov_user_log` VALUES ('55', '1', '登录', '0', '0', '1554215283');
 INSERT INTO `hov_user_log` VALUES ('56', '1', '登录', '0', '0', '1554215346');
 INSERT INTO `hov_user_log` VALUES ('57', '1', '登录', '0', '0', '1554215366');
 INSERT INTO `hov_user_log` VALUES ('58', '1', '登录', '0', '0', '1554215407');
+INSERT INTO `hov_user_log` VALUES ('59', '1', '登录', '0', '0', '1554258424');
+INSERT INTO `hov_user_log` VALUES ('60', '1', '登录', '0', '0', '1554258762');
+INSERT INTO `hov_user_log` VALUES ('61', '1', '短信登录设置成功', '0', '0', '1554262486');
+INSERT INTO `hov_user_log` VALUES ('62', '1', '短信登录设置成功', '0', '0', '1554262634');
+INSERT INTO `hov_user_log` VALUES ('63', '1', '短信登录设置成功', '0', '0', '1554262669');
+INSERT INTO `hov_user_log` VALUES ('64', '1', '短信登录设置成功', '0', '0', '1554262675');
+INSERT INTO `hov_user_log` VALUES ('65', '1', '短信登录设置成功', '0', '0', '1554262690');
+INSERT INTO `hov_user_log` VALUES ('66', '1', '短信登录设置成功', '0', '0', '1554262805');
+INSERT INTO `hov_user_log` VALUES ('67', '1', '登录', '0', '0', '1554266469');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`

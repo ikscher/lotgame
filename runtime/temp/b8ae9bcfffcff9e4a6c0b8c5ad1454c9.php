@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:60:"D:\mywork\lotgame\public/../app/front\view\common\login.html";i:1554217217;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554207547;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:60:"D:\mywork\lotgame\public/../app/front\view\common\login.html";i:1554265947;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554187952;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -194,7 +194,8 @@
 	setTimeout(window.autoAnimation, 5000);
 </script>
 <link href="/static/front/css/login.css" type="text/css" rel="stylesheet" />
-<script src="http://static.geetest.com/static/tools/gt.js"></script>
+<script src="/static/front/js/gt.js"></script>
+<!-- <script src="http://static.geetest.com/static/tools/gt.js"></script> -->
 <script src="/static/public/jquery/jquery.showLoading.min.js"></script>
 <script src="/static/public/jquery/jquery.qrcode.min.js"></script>
 <script  type="text/javascript" src="/static/front/js/login.js?v=1.1"></script>

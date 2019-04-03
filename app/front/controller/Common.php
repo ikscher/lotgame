@@ -45,6 +45,7 @@ class Common extends Controller
     public function login()
     {
         if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+
         if(Session::has('uid') == false) { 
             if($this->request->isPost()) {
                 //是登录操作
@@ -61,6 +62,7 @@ class Common extends Controller
                 // }
                 $logintype=$post['logintype'];
                 if($logintype==1){ //账号密码登录
+                    //判断是否只支持短信登录
                     $username=$post['tbUserAccount'];
                     $user = $this->userModel->where("email='$username'")->whereor("mobile='$username'")->find();
                 }elseif($logintype==2){
@@ -78,6 +80,13 @@ class Common extends Controller
                         if($user['password'] != $password) {
                             return $this->error('密码错误');
                         } else {
+                            //判断是否只支持短信登录
+                            $username=$post['tbUserAccount'];
+                            $login_by_msg=$this->userModel->where("email='$username'")->whereor("mobile='$username'")->value('login_by_msg');
+                            if($login_by_msg==1){
+                                $this->error("对不起,您的账户仅支持短信登录,请使用短信快捷登录");
+                            }
+
                             Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
 
                             // Session::set("admin",$name['id']); //保存新的
@@ -200,7 +209,7 @@ class Common extends Controller
     public function sendmsg()
     {
         //判断是否邮箱已经存在
-        if($this->request->isPost()){
+        if($this->request->isAjax()){
             $post=$this->request->post();
 
             //引用geetest验证API2 (暂时保留)
@@ -235,9 +244,10 @@ class Common extends Controller
             $map['mobile']=$mobile;
             $uid=$this->userModel->where($map)->value('uid');
             if(empty($uid)){
-               echo -3;exit;
+                $data['code']=-3;
+                echo json_encode($data);exit;
             }
-
+            
 
            //判断不能频繁点击
             $t1=time();
@@ -248,7 +258,8 @@ class Common extends Controller
             // } else{
             if(!empty($t0)){
                 if($t1-$t0<60){
-                    echo -1;exit;
+                    $data['code']=-1;
+                    echo json_encode($data);exit;
                 }
             }
             
@@ -257,12 +268,14 @@ class Common extends Controller
             $smscode_t=$str[rand(0,9)].$str[rand(0,9)].$str[rand(0,9)].$str[rand(0,9)];
             Cookie::set('smscode_t',$smscode_t);
 
-            // if(sendmessage($mobile,$smscode_t)){
+            if(sendmessage($mobile,$smscode_t)){
                 Session::set('smscode_t',$smscode_t);
-                echo 1;exit;
-            // }else{
-            //     echo -1;exit;
-            // }
+                $data['code']=1;
+                echo json_encode($data);exit;
+            }else{
+                $data['code']=-1;
+                echo json_encode($data);exit;
+            }
         }
     }
 
