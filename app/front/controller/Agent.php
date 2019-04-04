@@ -3,14 +3,15 @@ namespace app\front\controller;
 use think\Controller;
 use think\Config;
 use app\agent\model\Agent as agentModel;
-class Agent extends Controller
+class Agent extends Site
 {   
 	private $agentModel;
-	private $site_name;
+	// private $site_name;
 	public function _initialize()
-    {
+    {   
+        parent::_initialize();
         $this->agentModel = new agentModel();
-        $this->site_name=Config::get('site_name');
+        // $this->site_name=Config::get('site_name');
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
     }
@@ -19,7 +20,7 @@ class Agent extends Controller
     {
         $agents=$this->agentModel->select();
         $this->assign('agents',$agents);
-        $this->assign('title',$this->site_name);
+        // $this->assign('title',$this->site_name);
         return $this->fetch();
     }
 

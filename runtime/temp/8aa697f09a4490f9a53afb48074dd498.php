@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"D:\mywork\lotgame\public/../app/admin\view\user\publish.html";i:1553947744;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"D:\mywork\lotgame\public/../app/admin\view\user\publish.html";i:1554364273;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +71,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="password" autocomplete="off"  class="layui-input" type="password" <?php if(!(empty($user['password']) || (($user['password'] instanceof \think\Collection || $user['password'] instanceof \think\Paginator ) && $user['password']->isEmpty()))): ?>value="<?php echo $user['password']; ?>"<?php endif; ?>>
+          <input name="password" autocomplete="off"  class="layui-input" type="password" >
         </div>
       </div>
 
@@ -92,28 +92,28 @@
       <div class="layui-form-item">
         <label class="layui-form-label">QQ</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="qq" autocomplete="off"  class="layui-input" lay-verify="required|number" type="text" <?php if(!(empty($user['qq']) || (($user['qq'] instanceof \think\Collection || $user['qq'] instanceof \think\Paginator ) && $user['qq']->isEmpty()))): ?>value="<?php echo $user['qq']; ?>"<?php endif; ?>>
+          <input name="qq" autocomplete="off"  class="layui-input"  type="text" <?php if(!(empty($user['qq']) || (($user['qq'] instanceof \think\Collection || $user['qq'] instanceof \think\Paginator ) && $user['qq']->isEmpty()))): ?>value="<?php echo $user['qq']; ?>"<?php endif; ?>>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">用户金币</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="units" autocomplete="off" lay-verify="required|number"  class="layui-input" type="text" <?php if(!(empty($user['units']) || (($user['units'] instanceof \think\Collection || $user['units'] instanceof \think\Paginator ) && $user['units']->isEmpty()))): ?>value="<?php echo $user['units']; ?>"<?php endif; ?>>
+          <input name="units" autocomplete="off"   class="layui-input" type="text" <?php if(!(empty($user['units']) || (($user['units'] instanceof \think\Collection || $user['units'] instanceof \think\Paginator ) && $user['units']->isEmpty()))): ?>value="<?php echo $user['units']; ?>"<?php endif; ?>>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">金币银行</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="bank" autocomplete="off"  lay-verify="required|number" class="layui-input" type="text" <?php if(!(empty($user['bank']) || (($user['bank'] instanceof \think\Collection || $user['bank'] instanceof \think\Paginator ) && $user['bank']->isEmpty()))): ?>value="<?php echo $user['bank']; ?>"<?php endif; ?>>
+          <input name="bank" autocomplete="off"   class="layui-input" type="text" <?php if(!(empty($user['bank']) || (($user['bank'] instanceof \think\Collection || $user['bank'] instanceof \think\Paginator ) && $user['bank']->isEmpty()))): ?>value="<?php echo $user['bank']; ?>"<?php endif; ?>>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">用户积分</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="points" autocomplete="off"  class="layui-input"  lay-verify="required|number" type="text" <?php if(!(empty($user['points']) || (($user['points'] instanceof \think\Collection || $user['points'] instanceof \think\Paginator ) && $user['points']->isEmpty()))): ?>value="<?php echo $user['points']; ?>"<?php endif; ?>>
+          <input name="points" autocomplete="off"  class="layui-input"   type="text" <?php if(!(empty($user['points']) || (($user['points'] instanceof \think\Collection || $user['points'] instanceof \think\Paginator ) && $user['points']->isEmpty()))): ?>value="<?php echo $user['points']; ?>"<?php endif; ?>>
         </div>
       </div>
 

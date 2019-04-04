@@ -4,7 +4,7 @@ namespace app\front\controller;
 use think\Controller;
 use think\Config;
 use think\Cookie;
-use app\front\model\User as userModel;
+// use app\front\model\User as userModel;
 use app\front\model\UserGrade as usergradeModel;
 use app\front\model\UserRemark as userremarkModel;
 use app\admin\model\Prize as prizeModel;
@@ -13,10 +13,10 @@ use app\admin\model\Chargeconfig as chargeConfigModel; //兑奖手续费次数�
 use app\admin\model\Webconfig as webconfigModel;
 use app\front\model\UserExchange as userExchangeModel;
 
-class Shop extends Controller
+class Shop extends Site
 {   
-    private $site_name;
-    private $userModel;
+    // private $site_name;
+    // private $userModel;
     private $usergradeModel;
     private $userremarkModel;
     private $userExchangeModel;
@@ -29,7 +29,7 @@ class Shop extends Controller
 
     public function _initialize()
     {
-        $this->userModel = new userModel();
+        // $this->userModel = new userModel();
         $this->usergradeModel = new usergradeModel();
         $this->userremarkModel = new userremarkModel();
         $this->prizeModel = new prizeModel();
@@ -39,8 +39,8 @@ class Shop extends Controller
         $this->coefficient=1000;
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
-        $this->site_name=Config::get('site_name');
-        $this->assign('title',$this->site_name);
+        // $this->site_name=Config::get('site_name');
+        // $this->assign('title',$this->site_name);
         
         $this->uid=Cookie::get('user_id');
         $this->uid=1;

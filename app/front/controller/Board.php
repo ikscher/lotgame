@@ -1,16 +1,17 @@
 <?php
 namespace app\front\controller;
-use think\Controller;
+// use think\Controller;
 use think\Config;
 use app\admin\model\Board as boardModel;
-class Board extends Controller
+class Board extends Site
 {   
-	private $boardModel;
-	private $site_name;
+	// private $boardModel;
+	// private $site_name;
 	public function _initialize()
-    {
-        $this->boardModel = new boardModel();
-        $this->site_name=Config::get('site_name');
+    {   
+        parent::_initialize();
+        // $this->boardModel = new boardModel();
+        // $this->site_name=Config::get('site_name');
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
     }

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\agent\index.html";i:1553687019;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554020389;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\agent\index.html";i:1553675412;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554345226;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
 </head>
 <body>
 <style type="text/css">
-#callboard {width: 150px; overflow: hidden; display: inline-block; vertical-align: middle; font-size: 12px; position: relative; top: -1px; margin-left: 30px;float:left} 
+#callboard {width: 253px; overflow: hidden; display: inline-block; vertical-align: middle; font-size: 12px; position: relative; top: -1px; margin-left: 30px;float:left} 
 #callboard ul { padding:0; } 
 #callboard li { padding:0; } 
 </style>
@@ -28,29 +28,21 @@
 			<span class="barl fl">欢迎光临！<a href="/SaveToHome.php">保存到桌面</a> <a href="/mobile.php">手机版</a><a href="/User/Sign?act=qd" class="qd">签到</a></span>
 			<div id="callboard">
 				<ul>
+					<?php if(is_array($boardlist) || $boardlist instanceof \think\Collection || $boardlist instanceof \think\Paginator): $i = 0; $__LIST__ = $boardlist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/116" >游戏已经全部恢复！祝您游戏愉快！</a>
+						<a style="color:red;" target="_blank" href="/Board/Detail/<?php echo $vo['id']; ?>" ><?php echo $vo['title']; ?></a>
 					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/115" >2019年春节蛋蛋/北京类游戏停机公告</a>
-					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/114" >妞妞点卡解除合作</a>
-					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/113" >全新界面！带给您更好的游戏体验！app正在内测！</a>
-					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/111" >跨年红包中奖用户如下！</a>
-					</li>
-
+					<?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 			</div>
 			<span class="barr fr">
-				<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
-				<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
-				<a id="LinkButton1" href="/User/Login?act=logout">退出</a>
-
+				<?php if($uid != 0): ?>
+					<b ><?php echo $user['username']; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php echo $user['coin']; ?></b></span> &nbsp;
+					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
+					<a id="LinkButton1" href="/common/logout">退出</a>
+                <?php else: ?>
+                	<a href="/Common/Login" class="dl line">HI, 请登录</a>  <a href="/Common/Register" class="line">注册</a> <a href="/User/FindPwd" class="line">找回密码</a>
+                <?php endif; ?>
 				<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
 			</span> 
 		</div>
@@ -209,23 +201,23 @@
 </div>
 <div class="clear"></div>
 <div class="foot w100">
-							<div class="w1000 oo">
-								<div class="footl fl">
+	<div class="w1000 oo">
+		<div class="footl fl">
 
-									<b>尊敬的彩豆28游戏中心玩家：</b><br />
-									彩豆28游戏中心为休闲娱乐平台，倡导玩家健康游戏。禁止非法组织或个人利用本平台进行赌博或倒卖虚拟货币的非法行为，一经查证核实，将做封号处理并没收其所有虚拟货币，请广大玩家相互转告！
-									祝玩家朋友们游戏愉快！<br />
-									<span style="float:right">—— 彩豆28官方</span>
-								</div>
+			<b>尊敬的彩豆28游戏中心玩家：</b><br />
+			彩豆28游戏中心为休闲娱乐平台，倡导玩家健康游戏。禁止非法组织或个人利用本平台进行赌博或倒卖虚拟货币的非法行为，一经查证核实，将做封号处理并没收其所有虚拟货币，请广大玩家相互转告！
+			祝玩家朋友们游戏愉快！<br />
+			<span style="float:right">—— 彩豆28官方</span>
+		</div>
 
-								<div class="footr fr">
-									<img src="/static/front/image/logo.png" style="margin-left:40px"><br />
-									官方QQ群：<a href="https://ssl.pop800.com/chat/368923" target="_blank">2577000</a> <a href='http://www.miitbeian.gov.cn/'> </a><br />
-									COPYRIGHT ◎2017 彩豆28 caidou28.com All Rights Reserved. 
-								</div>
+		<div class="footr fr">
+			<img src="/static/front/image/logo.png" style="margin-left:40px"><br />
+			官方QQ群：<a href="https://ssl.pop800.com/chat/368923" target="_blank">2577000</a> <a href='http://www.miitbeian.gov.cn/'> </a><br />
+			COPYRIGHT ◎2017 彩豆28 caidou28.com All Rights Reserved. 
+		</div>
 
-							</div>
-						</div>
+	</div>
+</div>
 						<!--
 						<div class="leftbar" id="moveBar">
 							<ul class="leftbar-main">
@@ -317,29 +309,29 @@
 
 <script>
 	$(document).ready(function(){
-		$('<audio id="chatAudio"><source src="notify.ogg" type="audio/ogg"> <source src="/images/sound/tips.wav" type="audio/wav"></audio>').appendTo('body');
+		$('<audio id="chatAudio"><source src="/static/front/sound/notify.ogg" type="audio/ogg"> <source src="/static/front/sound/sound/tips.wav" type="audio/wav"></audio>').appendTo('body');
 	});
 
 	Notification.requestPermission( function(status) {
 		
 	});
-    
+	
     //数字加千分位符号fmoney(“12345.675910”, 3)，返回12,345.676
-	function fmoney(s, n) {
-		n = n > 0 && n <= 20 ? n : 2;
-		f = s < 0 ? "-" : "";
-		s = parseFloat((Math.abs(s) + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
-		var l = s.split(".")[0].split("").reverse(),
-		r = s.split(".")[1];
-		t = "";
-		for (i = 0; i < l.length; i++) {
-			t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
-		}
-		return f + t.split("").reverse().join("");
-	}
+    function fmoney(s, n) {
+    	n = n > 0 && n <= 20 ? n : 2;
+    	f = s < 0 ? "-" : "";
+    	s = parseFloat((Math.abs(s) + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
+    	var l = s.split(".")[0].split("").reverse(),
+    	r = s.split(".")[1];
+    	t = "";
+    	for (i = 0; i < l.length; i++) {
+    		t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
+    	}
+    	return f + t.split("").reverse().join("");
+    }
 	//数字去掉千分位符号
 	function rmoney(s){   
-	   return parseFloat(s.replace(/[^\d\.-]/g, ""));   
+		return parseFloat(s.replace(/[^\d\.-]/g, ""));   
 	}
 
 	function getSimpleResult(game,text){
@@ -383,7 +375,7 @@
 	function reflushPoints(){
 		var html = "";
 		$.ajax({
-			// url:"/Ajax_points.php",
+			url:"/User/Ajaxpoint",
 			dataType:"json",
 			type:"get",
 			success: function (rs) {

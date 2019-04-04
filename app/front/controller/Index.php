@@ -4,15 +4,15 @@ namespace app\front\controller;
 use think\Config;
 use think\Session;
 
-use app\admin\model\Board as boardModel;
+// use app\admin\model\Board as boardModel;
 class Index extends Site
 {   
-	private $boardModel;
+	// private $boardModel;
 	
 	public function _initialize()
     {
         parent::_initialize();
-        $this->boardModel = new boardModel();
+        // $this->boardModel = new boardModel();
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
     }

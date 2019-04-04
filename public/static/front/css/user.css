@@ -1068,7 +1068,7 @@
     border-radius: 5px;
 }
 .form-group .control-span{
-    background: url('..../image/user/jb-icon.png') no-repeat center right;
+    background: url('../image/user/jb-icon.png') no-repeat center right;
     padding-right: 30px;
     line-height: 45px;
     font-size: 18px;

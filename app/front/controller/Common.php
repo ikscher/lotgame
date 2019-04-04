@@ -19,23 +19,24 @@ use think\Db;
 use think\Config;
 use \think\Cookie;
 use \think\Session;
-use app\front\model\User as userModel;
+// use app\front\model\User as userModel;
 
 class Common extends Site
 {   
     private $geetest;
-    private $userModel;
-    private $site_name;
+    // private $userModel;
+    // private $site_name;
+    private $uid;
     //初始化
     public function _initialize()
     {   
         parent::_initialize();
         $this->geetest=Config::get('geetest');
-        $this->userModel=new userModel();
+        // $this->userModel=new userModel();
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
-        $this->site_name=Config::get('site_name');
-        $this->assign('title',$this->site_name);
+        // $this->site_name=Config::get('site_name');
+        // $this->assign('title',$this->site_name);
 
     }
 
@@ -122,6 +123,49 @@ class Common extends Site
         } else {
             $this->redirect('/common/login');
         }   
+    }
+    
+    /**
+     * 会员注册
+     * @return [type] [description]
+     */
+    public function register()
+    {   
+        if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+         
+        if(Session::has('uid') == false) { 
+
+            if($this->request->isPost()) {
+                //注册操作
+                $post = $this->request->post();
+                
+                //判断验证码是否正确
+                $code=$post['tbSafeCode'];
+                if(empty($code) || $code!=Session::get('register_smscode_t')){
+                    $this->error("验证码错误");
+                }
+                // $data=array();
+                $this->userModel->mobile=$post['mobile'];
+                $this->userModel->username=$post['tbUserNick'];
+                $this->userModel->password= password($post['tbUserPwd']);
+                $this->userModel->is_mobile=1;
+                $this->userModel->login_ip=$this->request->ip();
+                $ret=$this->userModel->save();
+
+                if($ret==false){
+                    $this->error("出错了");
+                }else{
+                    $uid=$this->userModel->uid;
+                    $password=$this->userModel->password;
+                    Cookie::set('auth',ThkAuthCode("$uid\t$password",'ENCODE'),86400*7);
+                    // $this->userModel->where('uid',$uid)->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
+                    //记录操作日志
+                    adduserlog($uid,'注册');
+                    $this->success("注册成功",'/user/index');
+                }
+            }
+        }
+        return $this->fetch();
     }
 
     /**
@@ -242,9 +286,9 @@ class Common extends Site
             //         echo 2;exit;
             //     }
             // }
-            $action=$post['action'];//login登录验证，changepwd修改密码验证
+            $action=$post['action'];//login登录验证，changepwd修改密码验证，register注册
             
-            if($action=='login'){
+            if($action=='login'){ //判断用户是否存在，不存在则不能登录
                 $mobile=$post['mobile'];
                 $map['mobile']=$mobile;
                 $uid=$this->userModel->where($map)->value('uid');
@@ -252,10 +296,18 @@ class Common extends Site
                     $data['code']=-3;
                     echo json_encode($data);exit;
                 }
-            }elseif($action=='changepwd'){
+            }elseif($action=='changepwd'){ //更改密码，获取手机号
                 $uid=Session::get('uid');
                 $map['uid']=$uid;
                 $mobile=$this->userModel->where($map)->value('mobile');
+            }elseif($action=='register'){ //判断手机号是否已经注册，如果已注册则退出
+                $mobile=$post['mobile'];
+                $map['mobile']=$mobile;
+                $uid=$this->userModel->where($map)->value('uid');
+                if(!empty($uid)){
+                    $data['code']=-3;
+                    echo json_encode($data);exit;
+                }
             }
 
            //判断不能频繁点击
@@ -283,6 +335,9 @@ class Common extends Site
                 }elseif($action=='changepwd'){
                     Session::set('changepwd_smscode_t',$smscode_t);
                     // Cookie::set('changepwd_smscode_t',$smscode_t);
+                }elseif($action=='register'){
+                    Session::set('register_smscode_t',$smscode_t);
+                    Cookie::set('register_smscode_t',$smscode_t);
                 }
                 $data['code']=1;
                 echo json_encode($data);exit;

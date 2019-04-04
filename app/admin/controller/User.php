@@ -16,16 +16,22 @@ use \think\Cache;
 use \think\Controller;
 use think\Loader;
 use think\Db;
-// use \think\Cookie;
+use \think\Cookie;
 use \think\Session;
 use app\admin\controller\Permissions;
 use app\front\model\User as userModel;
 
 class User extends Permissions
-{
+{   
+    private $userModel;
+    public function _initialize()
+    {
+       $this->userModel = new userModel();
+    }
+
     public function index()
     {
-        $model = new userModel();
+        
         $post = $this->request->param();
         if (isset($post['username']) and !empty($post['username'])) {
             $where['username'] = ['like', '%' . $post['username'] . '%'];
@@ -56,7 +62,7 @@ class User extends Permissions
         //     $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
         // }
         
-        $users = empty($where) ? $model->order('create_time desc')->paginate(15) : $model->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
+        $users = empty($where) ? $this->userModel->order('create_time desc')->paginate(15) : $this->userModel->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
         
         // echo $model->getLastSql();
         // $arc=collection($articles->toArray());var_dump($arc['data']);exit;
@@ -77,7 +83,7 @@ class User extends Permissions
     {
     	//获取菜单id
     	$uid = $this->request->has('uid') ? $this->request->param('uid', 0, 'intval') : 0;
-    	$model = new userModel();
+    	// $model = new userModel();
         
         if(empty($uid)) {
             $uid=Session::get('userid_edit');
@@ -102,7 +108,7 @@ class User extends Permissions
 	                $this->error('提交失败：' . $validate->getError());
 	            }
 	            //验证菜单是否存在
-	            $user = $model->where('uid',$uid)->find();
+	            $user = $this->userModel->where('uid',$uid)->find();
 	            if(empty($user)) {
 	            	return $this->error('uid不正确');
 	            }
@@ -112,8 +118,11 @@ class User extends Permissions
                 $post['vip_expire']=strtotime($post['vip_expire']);
                 $post['is_email']= empty($post['is_email'])?0:1;
                 $post['is_mobile']= empty($post['is_mobile'])?0:1;
+                if(!empty($post['password'])){
+                    $post['password']=password($post['password'], 'front_wew234ewAsSUrUOwWV');//前台加密方式
+                }
                 // $post['end_time']=strtotime($post['end_time']);
-                $ret=$model->allowField(true)->save($post,['uid'=>$uid]);
+                $ret=$this->userModel->allowField(true)->save($post,['uid'=>$uid]);
                 // echo $model->getLastSql();exit;
 	            if(false == $ret) {
 	            	return $this->error('修改失败');
@@ -124,7 +133,7 @@ class User extends Permissions
 	            }
     		} else {
     			//非提交操作
-    			$user = $model->where('uid',$uid)->find();
+    			$user = $this->userModel->where('uid',$uid)->find();
     			$this->assign('user',$user);
     			if(!empty($user)) {
     				$this->assign('user',$user);
@@ -143,7 +152,7 @@ class User extends Permissions
     {
     	if($this->request->isAjax()) {
     		$uid = $this->request->has('uid') ? $this->request->param('uid', 0, 'intval') : 0;
-            if(false == Db::name('user')->where('uid',$uid)->delete()) {
+            if(false == $this->userModel->where('uid',$uid)->delete()) {
                 return $this->error('删除失败');
             } else {
                 $operation='删除用户成功';
@@ -159,8 +168,8 @@ class User extends Permissions
         if($this->request->isAjax()) {
             $uid = $this->request->has('uid') ? $this->request->param('uid', 0, 'intval') : 0;
             $is_freeze = $this->request->param('is_freeze','2','intval');
-            $model = new userModel();
-            if(false !== $model::where('uid',$uid)->update(['is_freeze'=>$is_freeze])){
+            // $model = new userModel();
+            if(false !== $this->userModel->where('uid',$uid)->update(['is_freeze'=>$is_freeze])){
                 $operation=($is_freeze==1)?'解冻用户成功':'冻结用户成功';
                 addlog($operation.'-'.$uid);//写入日志
                 return $this->success($operation,'admin/user/index');
@@ -171,6 +180,18 @@ class User extends Permissions
         }
     }
 
+    //后台管理员模拟用户登录
+    public function login(){
+        $uid = $this->request->has('uid') ? $this->request->param('uid', 0, 'intval') : 0;
+        if(empty($uid)) 
+            return $this->error('用户不存在！');
+        $password=$this->userModel->where('uid',$uid)->value('password');
+        if(empty($password)) 
+            return $this->error('用户不存在！');
+        Cookie::set('auth',ThkAuthCode("$uid\t$password",'ENCODE'),86400*7);
+
+        return $this->success('正在跳转...','/user/index');
+    }
 
     
 }

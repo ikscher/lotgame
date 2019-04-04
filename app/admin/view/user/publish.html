@@ -70,7 +70,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="password" autocomplete="off"  class="layui-input" type="password" {notempty name="$user.password"}value="{$user.password}"{/notempty}>
+          <input name="password" autocomplete="off"  class="layui-input" type="password" >
         </div>
       </div>
 
@@ -91,28 +91,28 @@
       <div class="layui-form-item">
         <label class="layui-form-label">QQ</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="qq" autocomplete="off"  class="layui-input" lay-verify="required|number" type="text" {notempty name="$user.qq"}value="{$user.qq}"{/notempty}>
+          <input name="qq" autocomplete="off"  class="layui-input"  type="text" {notempty name="$user.qq"}value="{$user.qq}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">用户金币</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="units" autocomplete="off" lay-verify="required|number"  class="layui-input" type="text" {notempty name="$user.units"}value="{$user.units}"{/notempty}>
+          <input name="units" autocomplete="off"   class="layui-input" type="text" {notempty name="$user.units"}value="{$user.units}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">金币银行</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="bank" autocomplete="off"  lay-verify="required|number" class="layui-input" type="text" {notempty name="$user.bank"}value="{$user.bank}"{/notempty}>
+          <input name="bank" autocomplete="off"   class="layui-input" type="text" {notempty name="$user.bank"}value="{$user.bank}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">用户积分</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="points" autocomplete="off"  class="layui-input"  lay-verify="required|number" type="text" {notempty name="$user.points"}value="{$user.points}"{/notempty}>
+          <input name="points" autocomplete="off"  class="layui-input"   type="text" {notempty name="$user.points"}value="{$user.points}"{/notempty}>
         </div>
       </div>
 
