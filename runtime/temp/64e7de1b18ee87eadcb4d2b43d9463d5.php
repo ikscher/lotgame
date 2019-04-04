@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1554257468;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554187952;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1554280929;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554207547;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554301872;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -697,7 +697,7 @@
 
 <script>
 	$(document).ready(function(){
-		$('<audio id="chatAudio"><source src="notify.ogg" type="audio/ogg"> <source src="/images/sound/tips.wav" type="audio/wav"></audio>').appendTo('body');
+		$('<audio id="chatAudio"><source src="/static/front/sound/notify.ogg" type="audio/ogg"> <source src="/static/front/sound/sound/tips.wav" type="audio/wav"></audio>').appendTo('body');
 	});
 
 	Notification.requestPermission( function(status) {
@@ -763,7 +763,7 @@
 	function reflushPoints(){
 		var html = "";
 		$.ajax({
-			// url:"/Ajax_points.php",
+			url:"/User/Ajaxpoint",
 			dataType:"json",
 			type:"get",
 			success: function (rs) {

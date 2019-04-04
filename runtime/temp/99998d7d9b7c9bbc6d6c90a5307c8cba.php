@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\edit.html";i:1554081941;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554187952;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554094518;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554081941;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\edit.html";i:1554009598;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554207547;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554282520;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1553934667;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -235,7 +235,7 @@
 			<li><a href='/User/Edit'>资料修改</a></li>
 		</ul>
 		<ul>
-			<li><a href='/User/Editpwd'>密码修改</a></li>
+			<li><a href='/User/Changepwd'>密码修改</a></li>
 			<li><a href='/User/Safe'>安全工具</a></li>
 		</ul>
 		<ul>

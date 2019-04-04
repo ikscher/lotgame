@@ -47,6 +47,7 @@ $(document).ready(function(){
                 data:$('#loginform').serialize(),
                 type:'post',
                 async: false,
+                dataType:'json',
                 success:function(res) {
                   // console.log(res);
                     if(res.code == 1) {
@@ -131,11 +132,10 @@ var handlerPopup = function (captchaObj) {
                     geetest_validate: result.geetest_validate,
                     geetest_seccode: result.geetest_seccode,
                     mobile: $('#mobile').val(),
-                    action: "post",
-                    type: "login"
+                    action: "login"
                 },
+                dataType:'json',
                 success: function (res) {
-                    console.log(res);
                     // result=parseInt(result);
                     switch (res.code){
                         case -1:

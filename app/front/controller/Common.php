@@ -13,7 +13,7 @@
 namespace app\front\controller;
 
 use \think\Cache;
-use \think\Controller;
+// use \think\Controller;
 use think\Loader;
 use think\Db;
 use think\Config;
@@ -21,20 +21,22 @@ use \think\Cookie;
 use \think\Session;
 use app\front\model\User as userModel;
 
-class Common extends Controller
+class Common extends Site
 {   
     private $geetest;
     private $userModel;
     private $site_name;
     //初始化
     public function _initialize()
-    {
+    {   
+        parent::_initialize();
         $this->geetest=Config::get('geetest');
         $this->userModel=new userModel();
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
         $this->site_name=Config::get('site_name');
         $this->assign('title',$this->site_name);
+
     }
 
 
@@ -47,6 +49,7 @@ class Common extends Controller
         if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
 
         if(Session::has('uid') == false) { 
+
             if($this->request->isPost()) {
                 //是登录操作
                 $post = $this->request->post();
@@ -82,15 +85,15 @@ class Common extends Controller
                         } else {
                             //判断是否只支持短信登录
                             $username=$post['tbUserAccount'];
+                            
                             $login_by_msg=$this->userModel->where("email='$username'")->whereor("mobile='$username'")->value('login_by_msg');
+                            // $this->error($this->userModel->getLastSql());
                             if($login_by_msg==1){
                                 $this->error("对不起,您的账户仅支持短信登录,请使用短信快捷登录");
                             }
 
                             Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
 
-                            // Session::set("admin",$name['id']); //保存新的
-                            // Session::set("admin_cate_id",$name['admin_cate_id']); //保存新的
                             //记录登录时间和ip
                             $this->userModel->where('uid',$user['uid'])->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
                             //记录操作日志
@@ -98,7 +101,7 @@ class Common extends Controller
                             return $this->success('登录成功,正在跳转...','/user/index');
                         }
                     }elseif($logintype==2){ //短信验证登录
-                        if(!empty($post['code']) && $post['code']==Session::get('smscode_t')){
+                        if(!empty($post['code']) && $post['code']==Session::get('login_smscode_t')){
                             Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
                             $this->userModel->where('uid',$user['uid'])->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
                             //记录操作日志
@@ -209,7 +212,7 @@ class Common extends Controller
     public function sendmsg()
     {
         //判断是否邮箱已经存在
-        if($this->request->isAjax()){
+        if($this->request->isPost()){
             $post=$this->request->post();
 
             //引用geetest验证API2 (暂时保留)
@@ -239,37 +242,48 @@ class Common extends Controller
             //         echo 2;exit;
             //     }
             // }
-
-            $mobile=$post['mobile'];
-            $map['mobile']=$mobile;
-            $uid=$this->userModel->where($map)->value('uid');
-            if(empty($uid)){
-                $data['code']=-3;
-                echo json_encode($data);exit;
-            }
+            $action=$post['action'];//login登录验证，changepwd修改密码验证
             
-
-           //判断不能频繁点击
-            $t1=time();
-            $t0=Session::get('smscode_t');
-
-            // if(empty($t0)){
-            //     Session::set('sendmail_t',time());
-            // } else{
-            if(!empty($t0)){
-                if($t1-$t0<60){
-                    $data['code']=-1;
+            if($action=='login'){
+                $mobile=$post['mobile'];
+                $map['mobile']=$mobile;
+                $uid=$this->userModel->where($map)->value('uid');
+                if(empty($uid)){
+                    $data['code']=-3;
                     echo json_encode($data);exit;
                 }
+            }elseif($action=='changepwd'){
+                $uid=Session::get('uid');
+                $map['uid']=$uid;
+                $mobile=$this->userModel->where($map)->value('mobile');
             }
+
+           //判断不能频繁点击
+            // $t1=time();
+            // $t0=Session::get('smscode_t');
+
+            
+            // if(!empty($t0)){
+            //     if($t1-$t0<60){
+            //         $data['code']=-1;
+            //         echo json_encode($data);exit;
+            //     }
+            // }
             
 
             $str = '1234567890';
             $smscode_t=$str[rand(0,9)].$str[rand(0,9)].$str[rand(0,9)].$str[rand(0,9)];
-            Cookie::set('smscode_t',$smscode_t);
+            // Cookie::set('smscode_t',$smscode_t);
 
-            if(sendmessage($mobile,$smscode_t)){
-                Session::set('smscode_t',$smscode_t);
+            // if(sendmessage($mobile,$smscode_t)){
+            if(true){
+                if($action=='login'){
+                    Session::set('login_smscode_t',$smscode_t);
+                    Cookie::set('login_smscode_t',$smscode_t);
+                }elseif($action=='changepwd'){
+                    Session::set('changepwd_smscode_t',$smscode_t);
+                    // Cookie::set('changepwd_smscode_t',$smscode_t);
+                }
                 $data['code']=1;
                 echo json_encode($data);exit;
             }else{

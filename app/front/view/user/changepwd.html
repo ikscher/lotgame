@@ -1,0 +1,65 @@
+{include file="public/header" /}
+<script type="text/javascript" src="__JS__/changepwd.js"></script>
+<div id="wrapper" class="umain">
+    <div class="w1200">
+        {include file="user/header" /}
+        {include file="user/left" /}
+        <div class="uright" id="user_tradpwd">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>密码修改</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="tishi">为确保您的账户安全，请牢记您的登录密码且不要轻易泄露给他人</div>
+
+                    <div id="safe_wrap" class="editpwd_wrap">
+                        <img src="__IMAGE__/editpwd-lc1.png" width="690px">
+                        <ul class="edit-ul editpwd-ul">
+                            <li>
+                                <label>原登录密码：</label>
+                                <input type="password" class="edit-input" name="originalpwd" id="password" placeholder="请输入您的原密码">
+                            </li>
+                            <li>
+                                <label>{$safe_q}：</label>
+                                <input type="text" class="edit-input" name="answer" id="answer" placeholder="请输入密保答案">
+                            </li>
+                            <li>
+                                <label>手机验证码：</label>
+                                <input type="text" class="edit-input" name="code" id="code" style="width: 135px;">
+                                <a class="hqyzm btn_model_send" id="popup-submit">获取验证码</a>
+                            </li>
+                        </ul>
+                        <button class="user-btn" type="button" id="firstBtn" style="margin:20px auto">下一步</button>
+                    </div>
+
+                    <div id="pwd_wrap" class="editpwd_wrap" style="display: none;">
+                        <img src="__IMAGE__/editpwd-lc2.png" width="690px">
+                            <ul class="edit-ul editpwd-ul">
+                                <input type="hidden" name="tbOldPwd" id="tbOldPwd">
+                                <li>
+                                    <label>新登录密码：</label>
+                                    <input type="password" class="edit-input" name="tbNewPwd" id="tbNewPwd" placeholder="请输入新密码">
+                                </li>
+                                <li>
+                                    <label>再次确认密码：</label>
+                                    <input type="password" class="edit-input" name="tbRePwd" id="tbRePwd" placeholder="请再次输入新密码">
+                                </li>
+                                <li><label></label></li>
+                            </ul>
+                            <button class="user-btn" type="button" id="secondBtn" style="margin:20px auto">下一步</button>
+                    </div>
+
+                    <div id="success_wrap" class="editpwd_wrap" style="display: none;">
+                        <img src="__IMAGE__/editpwd-lc3.png" width="690px">
+                        <div class="success-box">
+                            <div class="success-text"><span>重置成功!</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!--uright-->
+    </div>
+</div>
+{include file="public/footer" /}
