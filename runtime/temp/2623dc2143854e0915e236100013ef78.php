@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\edit.html";i:1554081941;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554345226;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554340771;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\board\index.html";i:1553563476;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554345226;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -185,346 +185,37 @@
 		}(window));
 	setTimeout(window.autoAnimation, 5000);
 </script>
-<link href="/static/public/layui/css/layui.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="/static/front/js/birthday_jq.js" ></script>
-<div id="wrapper" class="umain">
-	<div class="w1200">
-		<!--顶侧top-->
-		<div class="utop">
-	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
-	<div class="utop-info">
-		<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
-		<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
-		<div class="utop-info-name">ID:<?php echo $user['uid']; ?></div>
+<script src="/static/front/js/js.js"></script>
+<div class="area oo" style="min-height:600px;">
+
+	<div class="newsleft fr">
+		<div class="help">
+			<h2>常见问题</h2>
+			<ul>
+			</ul>
+		</div>
+		<div class="comm">
+			<h2>最新推荐</h2>
+			<img src="/static/front/image/hd1.jpg" >
+			<img src="/static/front/image/hd3.jpg" style="margin-top:10px;">
+		</div>
 	</div>
-	<ul class="ubase-ul">
-		<li class="li1">
-			<p class="p1">账户余额</p>
-			<p class="p2"><?php echo $user['coin']; ?></p>
-		</li>
-		<li class="li2">
-			<p class="p1">银行</p>
-			<p class="p2"><?php echo $user['bank']; ?></p>
-		</li>
-		<li class="li3">
-			<p class="p1">积分</p>
-			<p class="p2"><?php echo $user['points']; ?></p>
-		</li>
-		<li class="li4">
-			<p class="p1">经验</p>
-			<p class="p2"><?php echo $user['experiments']; ?></p>
-		</li>
-	</ul>
-</div>
-		<!--顶侧top-->
 
-		<!--左侧left菜单-->
-		<div class="col-left">
-	<div class="uleft-menu" id="side-menu">
-		<p style="margin-top: 0;">用户账户</p>
-		<ul>
-			<li><a href='/User/Index'>个人信息</a></li>
-			<li><a href='/User/Edit'>资料修改</a></li>
+	<div class="newsli fl">
+		<div class="top">
+			<h1>网站公告</h1>
+		</div>
+		<ul  id="ContentPlaceHolder1_GridView1">
+			<?php if(is_array($boards) || $boards instanceof \think\Collection || $boards instanceof \think\Paginator): $i = 0; $__LIST__ = $boards;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+			<li><a href="/board/detail/<?php echo $vo['id']; ?>"><?php echo $vo['title']; ?></a>
+				<span><?php echo date('Y-m-d',strtotime($vo['create_time'])); ?></span>
+			</li>
+			<?php endforeach; endif; else: echo "" ;endif; ?>
 		</ul>
-		<ul>
-			<li><a href='/User/Changepwd'>密码修改</a></li>
-			<li><a href='/User/Safe'>安全工具</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/MyRecharge'>在线充值</a></li>
-			<li><a href='/Cg/Getprize'>闯关奖励</a></li>
-		</ul>
-
-		<p>站内功能</p>
-		<ul>
-			<li><a href='/User/SelfLine'>专属域名</a></li>
-			<li><a href='/User/Recharge'>点卡使用</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Msg'>站内信箱</a></li>
-			<li><a href='/User/Bank'>金币银行</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Prize'>兑奖记录</a></li>
-			<li><a href='/User/ReWard'>亏损返利</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Bonus'>首充返利</a></li>
-		</ul>
-
-		<p>推广相关</p>
-		<ul>
-			<li><a href='/User/Recom'>推广下线</a></li>
-			<li><a href='/User/Recomprofit'>推广收益</a></li>
-		</ul>
-
-		<p>工资救济</p>
-		<ul>
-			<li><a href='/User/Sign'>签到中心</a></li>
-			<li><a href='/User/Alms'>领取救济</a></li>
-		</ul>
-		<ul>
-			<li><a href='/User/Wage'>工资领取</a></li>
-			<li><a href='/Game/Egg'>金蛋砸取</a></li>
-		</ul>
-
-		<p>游戏功能</p>
-		<ul> 
-			<li><a href='/User/Auto'>方案中心</a></li>
-			<li><a href='/game/top'>玩家排行</a></li>
-		</ul>
+        <div style="padding:0 20px;"><?php echo $boards->render(); ?></div> 
 	</div>
+
 </div>
-<script type="text/javascript" language="javascript">
-	var links = $("#side-menu li");
-	var lilen = $("#side-menu a");
-	var currenturl = document.location.href;
-	var last = -1;
-	for (var i=0;i<links.length;i++)
-	{
-		var linkurl = lilen[i].getAttribute("href");
-		if(currenturl.indexOf(linkurl)!=-1)
-		{
-			last = i;
-		}
-	}
-
-	if (last!=-1) links[last].setAttribute("class","menufirst");
-</script>
-
-		<!--左侧left菜单-->
-
-
-		<div class="uright">
-			<div class="ibox">
-				<div class="ibox-title">
-					<h5>资料修改</h5>
-				</div>
-				<div class="ibox-content">
-					<div class="tishi tishi1">依据自由自愿的原则，您可以选择填写以下资料或不填写，但如果你需要申请提现或兑换奖品则一定要如实填写以下资料，如果所填内容涉嫌作假，我们有权冻结您的账号。</div>
-
-					<form   id="userInfoForm">
-						<ul class="edit-ul">
-							<!-- <li class="pro-li">
-								<label>资料完整度: </label>
-								<div class="progress">
-									<span class="bar" id="edit-progress"></span>
-								</div>
-								<div class="progress-text"></div>
-								<div id="editName" class="edit-text">亲爱的ikscher，请填写完整的基本资料！</div>
-							</li> -->
-							<li>
-								<label>ID号：</label>
-								<input type="text" disabled="" value="<?php echo $user['uid']; ?>" class="edit-input">
-							</li>
-							<li>
-								<label>昵称：</label>
-								<input type="text" class="edit-input"  name="username" value="<?php echo $user['username']; ?>" >
-								<span class="help-text">必填</span>
-							</li>
-							<li>
-								<label>性别：</label>
-								<select class="edit-select" name="gender" id="tbUserGender">
-									<option value="1"  <?php if($user['gender'] != 2): ?>selected<?php endif; ?>>男</option>
-									<option value="2"  <?php if($user['gender'] == 2): ?>selected<?php endif; ?>>女</option>
-								</select>
-							</li>
-							<li>
-								<label>生日：</label>
-								<select class="edit-select birth-select" name="byear" id="tbBirthYear"  <?php if($user['birth'] == 0): ?>rel="2000"<?php else: ?> rel="<?php echo date('Y',$user['birth']); ?>"<?php endif; ?>></select>年
-						        <select class="edit-select birth-select" name="bmonth" id="tbBirthMonth" <?php if($user['birth'] == 0): ?>rel="2"<?php else: ?>rel="<?php echo date('m',$user['birth']); ?>"<?php endif; ?>></select>月
-						        <select class="edit-select birth-select" name="bday" id="tbBirthDay" <?php if($user['birth'] == 0): ?>rel="14"<?php else: ?>rel="<?php echo date('d',$user['birth']); ?>"<?php endif; ?>></select>日
-							</li>
-							<li>
-								<label>QQ：</label>
-								<input type="text" class="edit-input"  name="qq" id="tbUserQQ"  <?php if(!(empty($user['qq']) || (($user['qq'] instanceof \think\Collection || $user['qq'] instanceof \think\Paginator ) && $user['qq']->isEmpty()))): ?>disabled<?php endif; ?>   value="<?php echo $user['qq']; ?>">
-								<span class="help-text">设置后不可修改</span>
-							</li>
-							<li style="position: relative;left: -10px;">
-								<label style="width: 60px;">支付宝：</label>
-								<input type="text" class="edit-input"  id="tbAlipay" <?php if(!(empty($user['alipay']) || (($user['alipay'] instanceof \think\Collection || $user['alipay'] instanceof \think\Paginator ) && $user['alipay']->isEmpty()))): ?>disabled<?php endif; ?> value="<?php echo $user['alipay']; ?>"  name="alipay">
-								<span class="help-text">设置后不可修改</span>
-							</li>
-							<li style="margin: 5px 0;">
-								<label></label>
-								<input type="hidden" name="act" value="update" />
-								<button class="user-btn" lay-submit lay-filter="userInfo">保存内容</button>
-							</li>
-						</ul>
-					</form>
-				</div>
-			</div>
-
-			<div class="ibox">
-				<div class="ibox-title">
-					<h5>头像设置</h5>
-				</div>
-				<div class="ibox-content">
-					<div class="uploadhead"><div class="uploadhead-btn" id="thumb"><span>上传头像</span></div> 仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</div>
-					<div class="head-box">
-						<form class="layui-form" id="userAvatarForm">
-						    <div class="head-box-left" id="upload-thumb">
-								<div class="form-head">
-									<!-- <input type="file" class="form-control" id="chooseImage" name="tbUserPhoto" style="display: none;"> -->
-									<img src="<?php if(!(empty($user['avatar']) || (($user['avatar'] instanceof \think\Collection || $user['avatar'] instanceof \think\Paginator ) && $user['avatar']->isEmpty()))): ?><?php echo geturl($user['avatar']); else: ?>'/static/front/image/user/head-img1.jpg'<?php endif; ?>" width="260px" height="260px" onclick="F_Open_dialog('chooseImage')" id="cropedBigImg">
-								</div>
-								<?php if(!(empty($user['avatar']) || (($user['avatar'] instanceof \think\Collection || $user['avatar'] instanceof \think\Paginator ) && $user['avatar']->isEmpty()))): ?><input type="hidden" name="avatar" value="<?php echo $user['avatar']; ?>"><?php endif; ?>
-								<!-- <input type="hidden" name="tbUserNick" value="ikscher"> -->
-								<input type="hidden" name="act" value="upload">
-								<button class="user-btn" type="button"  lay-submit lay-filter="avatar" style="margin: 10px auto">确认保存</button>
-						    </div>
-						</form>
-						<div class="head-box-right">
-							<div class="head-img1">
-								<img  id="demo1" src="/static/front/image/user/head-img2.jpg" width="100px" height="100px" id="head-img2">
-								<p>大头像100*100像素</p>
-							</div>
-							<div class="head-img2">
-								<img id="demo2" src="/static/front/image/user/head-img2.jpg" width="80px" height="80px" id="head-img3">
-								<p>大头像80*80像素</p>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="ibox-title">
-					<h5>用户偏好</h5>
-				</div>
-				<div class="ibox-content" style="width: 260px;">
-					<form action="?act=modifyfav" method="post" >
-						<div class="gdsz-box">
-							<label>接收中奖弹出提示：</label>
-							<input class="fl" type="checkbox" name="zjtips" value="1" checked style="margin-top: 5px;">
-						</div>
-						<button class="user-btn" type="submit" style="margin: 20px auto 0px;">确认保存</button>
-					</form>
-				</div>
-			</div>
-
-		</div><!--uright-->
-	</div>
-</div>
-
-<script type="text/javascript">
-$(function () {
-	$.ms_DatePicker({
-            YearSelector: "#tbBirthYear",
-            MonthSelector: "#tbBirthMonth",
-            DaySelector: "#tbBirthDay"
-    });
-	// $.ms_DatePicker();
-}); 
-
-// function F_Open_dialog(id) {
-//     document.getElementById(id).click();
-// }
-
-// $(function(){
-// 	$('#chooseImage').on('change',function(){
-//     	var filePath = $(this).val(),         //获取到input的value，里面是文件的路径
-//     		fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
-//     		src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
-    		
-//     	// 检查是否是图片
-//     	if( !fileFormat.match(/.png|.jpg|.jpeg/) ) {
-//     		error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
-//         	return;  
-//         }
-  	
-//         $('#cropedBigImg').attr("src",src);
-//         $('#head-img2').attr("src",src);
-//         $('#head-img3').attr("src",src);
-// 	});
-// });
-
-</script> 
-
-<script>
-    layui.use('upload', function(){
-      var upload = layui.upload;
-      //执行实例
-      var uploadInst = upload.render({
-        elem: '#thumb' //绑定元素
-        ,url: "<?php echo url('/common/upload'); ?>" //上传接口
-        ,data:{use:'user_thumb'}
-        ,done: function(res){
-        	console.log(res)
-          //上传完毕回调
-          if(res.code == 2) {
-          	$('#cropedBigImg').attr("src",res.src);
-            $('#demo1').attr('src',res.src);
-            $('#demo2').attr('src',res.src);
-            $('#upload-thumb').append('<input type="hidden" name="avatar" value="'+ res.id +'">');
-          } else {
-            layer.msg(res.msg);
-          }
-        }
-        ,error: function(){
-          //请求异常回调
-          //演示失败状态，并实现重传
-          layer.msg('上传失败');
-          // var demoText = $('#demoText');
-          // demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
-          // demoText.find('.demo-reload').on('click', function(){
-          //   uploadInst.upload();
-          // });
-        }
-      });
-    });
-
-    layui.use('form', function(){
-	   var form = layui.form;
-	  
-	   form.on('submit(avatar)', function(data) {
-            $.ajax({
-                url:"<?php echo url('/user/edit'); ?>",
-                data:$('#userAvatarForm').serialize(),
-                type:'post',
-                async: false,
-                success:function(res) {
-                    console.log(res);
-                    if(res.code == 1) {
-                      layer.msg(res.msg);
-                      // layer.alert(res.msg, function(index){
-                      //   location.href = res.url;
-                      // })
-                    } else {
-                      layer.msg(res.msg);
-                    }
-                }
-            })
-            return false;
-       });
-
-       form.on('submit(userInfo)',function(){
-            var username=$("input[name='username']").val();
-            if(!username){
-           	   layer.msg('用户名不能为空！');
-           	   return false;
-            }
-
-            $.ajax({
-                url:"<?php echo url('/user/edit'); ?>",
-                data:$('#userInfoForm').serialize(),
-                type:'post',
-                async: false,
-                success:function(res) {
-                    console.log(res);
-                    if(res.code == 1) {
-                      layer.msg(res.msg);
-                      // layer.alert(res.msg, function(index){
-                      //   location.href = res.url;
-                      // })
-                    } else {
-                      layer.msg(res.msg);
-                    }
-                }
-            })
-            return false;
-       })
-	});
-</script>
 <div class="clear"></div>
 <div class="foot w100">
 	<div class="w1000 oo">

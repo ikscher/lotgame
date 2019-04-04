@@ -17,7 +17,7 @@
 </head>
 <body>
 <style type="text/css">
-#callboard {width: 150px; overflow: hidden; display: inline-block; vertical-align: middle; font-size: 12px; position: relative; top: -1px; margin-left: 30px;float:left} 
+#callboard {width: 253px; overflow: hidden; display: inline-block; vertical-align: middle; font-size: 12px; position: relative; top: -1px; margin-left: 30px;float:left} 
 #callboard ul { padding:0; } 
 #callboard li { padding:0; } 
 </style>
@@ -27,29 +27,21 @@
 			<span class="barl fl">欢迎光临！<a href="/SaveToHome.php">保存到桌面</a> <a href="/mobile.php">手机版</a><a href="/User/Sign?act=qd" class="qd">签到</a></span>
 			<div id="callboard">
 				<ul>
+					{volist name="boardlist" id="vo"  }
 					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/116" >游戏已经全部恢复！祝您游戏愉快！</a>
+						<a style="color:red;" target="_blank" href="/Board/Detail/{$vo['id']}" >{$vo.title}</a>
 					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/115" >2019年春节蛋蛋/北京类游戏停机公告</a>
-					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/114" >妞妞点卡解除合作</a>
-					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/113" >全新界面！带给您更好的游戏体验！app正在内测！</a>
-					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/111" >跨年红包中奖用户如下！</a>
-					</li>
-
+					{/volist}
 				</ul>
 			</div>
 			<span class="barr fr">
-				<b >ikscher(891435)</b> <b style="background:url(__IMAGE__/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
-				<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
-				<a id="LinkButton1" href="/common/logout">退出</a>
-
+				{if condition="$uid neq 0"}
+					<b >{$user['username']}({$uid})</b> <b style="background:url(__IMAGE__/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">{$user['coin']}</b></span> &nbsp;
+					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
+					<a id="LinkButton1" href="/common/logout">退出</a>
+                {else /}
+                	<a href="/Common/Login" class="dl line">HI, 请登录</a>  <a href="/Common/Register" class="line">注册</a> <a href="/User/FindPwd" class="line">找回密码</a>
+                {/if}
 				<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
 			</span> 
 		</div>

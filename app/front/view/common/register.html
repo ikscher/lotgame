@@ -1,0 +1,70 @@
+{include file="public/header" /}
+<script type="text/javascript" src="__JS__/gt.js"></script>
+<script type="text/javascript" src="__JS__/reg.js"></script>
+<script src="__PUBLIC__/jquery/jquery.showLoading.min.js"></script>
+<link href="__CSS__/register.css" rel="stylesheet"/>
+
+<div class="regbox">
+    <!--第一步-->
+    <div class="register" style="background:none">
+
+
+        <div class="reg_items">
+            <div class="reg_items_step_1">
+                <ul>
+                    <form id="regform">
+                        <li><span>手机号</span><input  name="mobile" id="mobile"  type="text" class="register_txt a1" placeholder="输入您的手机号">
+                         <span id="info_dv_1" style="display:none;">
+                            <div id="info_1" class="register_tip_box"><font id="sUserMail" class="fo fo1"></font></div>
+                        </span>
+                        </li>
+                        <li>
+                             <span>验证码</span><input  name="tbSafeCode"  id="tbSafeCode"  type="text" class="register_txt a2">
+                             <button type="button" id="popup-submit" class="send_btn">获取验证码</button>
+                             <div id="embed-captcha"></div>
+                             <p id="wait" class="show"></p>
+                             <p id="notice" class="hide">请先拖动滑块到正确位置</p>
+                             <div id="popup-captcha"></div>
+                             <font id="sjNumMes" class="fo fo1"></font>
+                        </li>
+
+                        <li><span>昵称</span><input  name="tbUserNick" id="tbUserNick"  type="text" class="register_txt a1" placeholder="输入您的昵称">
+                          <font id="sUserNick" class="fo fo1"></font>
+                        </li>
+                        <li><span>密码</span><input name="tbUserPwd" id="tbUserPwd" type="password"  class="register_txt a1" placeholder="请输入密码">
+                          <font id="sUserPwd" class="fo fo1"></font>
+                        </li>
+                        <li><span>确认密码</span><input  name="tbRePwd" id="tbRePwd" type="password"  class="register_txt a1" placeholder="请确认密码">
+                          <font id="sRePwd" class="fo fo1"></font>
+                        </li>
+
+                        <li><span></span>
+                            <button id="regBtn" lay-submit lay-filter="register"   class="register_btn_gary">立即注册</button>
+                          
+                        </li>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </div> 
+</div>
+<div class="foot w100">
+    <div class="w1000 oo">
+        <div class="footl fl">
+
+            <b>尊敬的彩豆28游戏中心玩家：</b><br />
+            彩豆28游戏中心为休闲娱乐平台，倡导玩家健康游戏。禁止非法组织或个人利用本平台进行赌博或倒卖虚拟货币的非法行为，一经查证核实，将做封号处理并没收其所有虚拟货币，请广大玩家相互转告！
+            祝玩家朋友们游戏愉快！<br />
+            <span style="float:right">—— 彩豆28官方</span>
+        </div>
+
+        <div class="footr fr">
+         <img src="__IMAGE__/logo.png" style="margin-left:40px"><br />
+         官方QQ群：<a href="https://ssl.pop800.com/chat/368923" target="_blank">2577000</a> <a href='http://www.miitbeian.gov.cn/'> </a><br />
+         COPYRIGHT ◎2017 彩豆28 caidou28.com All Rights Reserved. 
+     </div>
+
+ </div>
+</div>
+</body>
+</html>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-04-03 14:38:24
+Date: 2019-04-04 16:43:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1554104550', '192.168.1.107', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1554360434', '192.168.1.107', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -63,7 +63,7 @@ CREATE TABLE `hov_admin_cate` (
 -- ----------------------------
 -- Records of hov_admin_cate
 -- ----------------------------
-INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,25,26,28,29,34,35,37,38,39,40,60,61,62,63,71,72,73,74,75,76,77,78,79,80,81,83,84,85,92,93,94,95,96,97,98,99,100,104,108,109,111,112,122,123,124,125,126,127,128', '0', '1553415442', '超级管理员，拥有最高权限！');
+INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,25,26,28,29,34,35,37,38,39,40,60,61,62,63,71,72,73,74,75,76,77,78,79,80,81,83,84,85,92,93,94,95,96,97,98,129,99,100,104,108,109,111,112,122,123,124,125,126,127,128', '0', '1554360684', '超级管理员，拥有最高权限！');
 
 -- ----------------------------
 -- Table structure for `hov_admin_log`
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=545 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=556 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -626,6 +626,17 @@ INSERT INTO `hov_admin_log` VALUES ('541', '4', '1', '192.168.1.101', '104', '15
 INSERT INTO `hov_admin_log` VALUES ('542', '49', '1', '192.168.1.101', '40', '1553948093');
 INSERT INTO `hov_admin_log` VALUES ('543', '42', '1', '192.168.1.101', '50', '1553952761');
 INSERT INTO `hov_admin_log` VALUES ('544', '50', '1', '192.168.1.107', '', '1554104550');
+INSERT INTO `hov_admin_log` VALUES ('545', '50', '1', '192.168.1.107', '', '1554360435');
+INSERT INTO `hov_admin_log` VALUES ('546', '4', '1', '192.168.1.107', '129', '1554360642');
+INSERT INTO `hov_admin_log` VALUES ('547', '28', '1', '192.168.1.107', '修改角色信息成功', '1554360684');
+INSERT INTO `hov_admin_log` VALUES ('548', '96', '1', '192.168.1.107', '冻结用户成功-4', '1554361168');
+INSERT INTO `hov_admin_log` VALUES ('549', '96', '1', '192.168.1.107', '解冻用户成功-4', '1554361172');
+INSERT INTO `hov_admin_log` VALUES ('550', '96', '1', '192.168.1.107', '冻结用户成功-4', '1554361185');
+INSERT INTO `hov_admin_log` VALUES ('551', '95', '1', '192.168.1.107', '删除用户成功-4', '1554362834');
+INSERT INTO `hov_admin_log` VALUES ('552', '95', '1', '192.168.1.107', '删除用户成功-3', '1554362838');
+INSERT INTO `hov_admin_log` VALUES ('553', '95', '1', '192.168.1.107', '删除用户成功-2', '1554362843');
+INSERT INTO `hov_admin_log` VALUES ('554', '95', '1', '192.168.1.107', '删除用户成功-1', '1554362847');
+INSERT INTO `hov_admin_log` VALUES ('555', '94', '1', '192.168.1.107', '修改用户信息成功-5', '1554364285');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -654,7 +665,7 @@ CREATE TABLE `hov_admin_menu` (
   KEY `function` (`function`) USING BTREE,
   KEY `is_display` (`is_display`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=129 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of hov_admin_menu
@@ -784,6 +795,7 @@ INSERT INTO `hov_admin_menu` VALUES ('125', '游戏配置', 'admin', 'game', 'se
 INSERT INTO `hov_admin_menu` VALUES ('126', '游戏管理', 'admin', 'game', 'manage', '', '', '2', '1', '106', '1553329824', '1553329824', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('127', '判断游戏表存在', 'admin', 'game', 'istable', '', '', '2', '1', '106', '1553408992', '1553408992', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('128', '创建游戏表', 'admin', 'game', 'createtable', '', '', '2', '1', '106', '1553415373', '1553415373', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('129', '模拟会员登录', 'admin', 'user', 'login', '', '模拟会员登录', '2', '1', '88', '1554360642', '1554360642', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `hov_agent`
@@ -2600,7 +2612,7 @@ CREATE TABLE `hov_user` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(32) DEFAULT NULL,
-  `gender` tinyint(1) unsigned DEFAULT NULL COMMENT '1:male,2:female',
+  `gender` tinyint(1) unsigned DEFAULT '1' COMMENT '1:male,2:female',
   `avatar` int(11) DEFAULT NULL COMMENT '用户头像',
   `user_type` tinyint(1) DEFAULT '1' COMMENT '用户类型1:普通，2：vip类型',
   `email` varchar(100) NOT NULL,
@@ -2629,13 +2641,12 @@ CREATE TABLE `hov_user` (
   `address` varchar(100) DEFAULT NULL,
   `is_freeze` tinyint(1) DEFAULT '1' COMMENT '1:normal,2:frozen',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('1', 'ikscherw', '5c342d4716c542309fd37be867b9403f', '1', '50', null, '45397312@qq.com', '13856900659', '0', '23', null, '1554266469', '1554004864', '1', '192.168.1.107', null, '0', '0', null, '0', '1', '0', '1', '1', 'sdf', '2036383878', null, 'sdf', '553186800', null, '1');
-INSERT INTO `hov_user` VALUES ('2', 'wenthuang', '', '2', '16', null, 'wenthuang@sina.com', '13856900456', '230000', '2', '0', null, '1553267838', '1', '116.27.147.29', null, '1553616000', '23', null, '0', '0', '1', null, null, null, '435345345', null, null, '20180602', null, '1');
+INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856900659', '23999', '1', '1554362992', '1554364304', '1554364285', null, '192.168.1.107', '0', '0', '0', '0', '0', '0', '1', '0', '1', null, '', null, null, '1970', null, '1');
 
 -- ----------------------------
 -- Table structure for `hov_user_charge`
@@ -2719,7 +2730,7 @@ CREATE TABLE `hov_user_log` (
   `experiment` int(11) DEFAULT '0',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -2791,6 +2802,11 @@ INSERT INTO `hov_user_log` VALUES ('64', '1', '短信登录设置成功', '0', '
 INSERT INTO `hov_user_log` VALUES ('65', '1', '短信登录设置成功', '0', '0', '1554262690');
 INSERT INTO `hov_user_log` VALUES ('66', '1', '短信登录设置成功', '0', '0', '1554262805');
 INSERT INTO `hov_user_log` VALUES ('67', '1', '登录', '0', '0', '1554266469');
+INSERT INTO `hov_user_log` VALUES ('68', '1', '登录', '0', '0', '1554341456');
+INSERT INTO `hov_user_log` VALUES ('69', '1', '登录', '0', '0', '1554343538');
+INSERT INTO `hov_user_log` VALUES ('70', '4', '注册', '0', '0', '1554360404');
+INSERT INTO `hov_user_log` VALUES ('71', '5', '注册', '0', '0', '1554362992');
+INSERT INTO `hov_user_log` VALUES ('72', '5', '登录', '0', '0', '1554364304');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`
@@ -2892,7 +2908,7 @@ CREATE TABLE `hov_user_safepwd` (
   `safe` varchar(1000) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_safepwd

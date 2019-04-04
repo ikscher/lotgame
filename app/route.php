@@ -55,8 +55,7 @@ Route::rule('user/safepwd','front/user/safepwd');
 Route::rule('user/safemsg','front/user/safemsg');
 Route::rule('user/bindemail','front/user/bindemail');
 Route::rule('user/changepwd','front/user/changepwd');
-Route::rule('common/login','front/common/login');
-Route::rule('common/logout','front/common/logout');
+Route::rule('user/bank','front/user/bank');
 Route::rule('agent/index','front/agent/index');
 Route::rule('site/index','front/site/index');
 Route::rule('prize/ind','front/prize/init');
@@ -66,9 +65,12 @@ Route::rule('shop/index','front/shop/index');
 Route::rule('shop/index/:id','front/shop/index');
 Route::rule('shop/detail','front/shop/detail');
 Route::rule('shop/order','front/shop/order');
+Route::rule('common/logout','front/common/logout');
+Route::rule('common/login','front/common/login');
 Route::rule('common/upload','front/common/upload');
 Route::rule('common/gtvalidate','front/common/gtvalidate');
 Route::rule('common/sendmail','front/common/sendmail');
 Route::rule('common/sendmsg','front/common/sendmsg');
+Route::rule('common/register','front/common/register');
 
 

@@ -1,50 +1,42 @@
-var countdown=60;
-var t;
 $(document).ready(function(){
-    // $("#loginBtn").click(function () {
-        
-    // });
-
-
     layui.use(['layer', 'form'], function(){
       var layer = layui.layer
       ,form = layui.form;
       
         
-        form.on('submit(login)',function(){
+        form.on('submit(register)',function(){
        
-            var type=parseInt($("#logintype").val());
-            if(type==2){
-                var mobile=$('#mobile').val();
-                if(!checkmob(mobile)){
-                    salert("手机号码格式不正确！",$("#mobile"));
-                    return false;
-                }
-
-                if($("#code").val()==""){
-                    salert("请输入验证码!",$('#code'));
-                    return false;
-                }
-                // $("#loginbox").showLoading();
-               
-            }else if (type==1){
-                var account=$('#usernametb').val();
-                if(!checkmob(account) && !checkmail(account)){
-                   salert('您输入的账号格式不正确！',$('#usernametb'));
-                   return false;
-                }
-
-                var pwd=$('#pwdtb').val();
-                if(!pwd){
-                    salert("请输入密码",$('#pwdtb'));
-                    return false;
-                }
-                //$("#form1").submit();
+            var mobile=$('#mobile').val();
+            if(!checkmob(mobile)){
+                salert("手机号码格式不正确！",$("#mobile"));
+                return false;
             }
 
+            if($("#tbSafeCode").val()==""){
+                salert("请输入验证码!",$('#tbSafeCode'));
+                return false;
+            }
+            // $("#loginbox").showLoading();
+           if($('#tbUserNick').val()==''){
+                salert("请输入昵称!",$('#tbUserNick'));
+                return false;
+           }
+
+            var pwd1=$('#tbUserPwd').val();
+            if(!pwd1){
+                salert("请输入密码",$('#tbUserPwd'));
+                return false;
+            }
+            var pwd2=$('#tbRePwd').val();
+            if(pwd1!=pwd2){
+                salert("两次输入的密码不一致",$('#tbRePwd'));
+                return false;
+            }
+
+
             $.ajax({
-                url:"/common/login",
-                data:$('#loginform').serialize(),
+                url:"/common/register",
+                data:$('#regform').serialize(),
                 type:'post',
                 async: false,
                 dataType:'json',
@@ -62,38 +54,7 @@ $(document).ready(function(){
             return false;
         })
     });
-
-    $('.tit1 em').click(function(){
-        $(this).css({"color": "#ffd078"});
-        $(this).prev().css({"color": "#fff"});
-        $('.tabl li:eq(0),.tabl li:eq(1)').hide();
-        $('.tabl li:eq(2),.tabl li:eq(3)').show();
-        $("#logintype").attr("value","2");
-    });
-    $('.tit1 strong').click(function(){
-        $(this).css({"color": "#ffd078"});
-        $(this).next().css({"color": "#fff"});
-        $('.tabl li:eq(0),.tabl li:eq(1)').show();
-        $('.tabl li:eq(2),.tabl li:eq(3)').hide();
-        $("#logintype").attr("value","1");
-    });
 });
-
-function settime(){
-    if(countdown == 0){
-        $("#popup-submit").removeAttr("disabled");
-        $("#popup-submit").attr("class","send_btn");
-        $("#popup-submit").html("重新发送");
-        countdown=60;
-        return;
-    }else{
-        $("#popup-submit").html("重新发送("+ countdown+")");
-        $("#popup-submit").attr("class","send_btn");
-        countdown--;
-        t=setTimeout("settime()",1000);
-    }
-
-}
 
 function salert_f(str,x){
     layui.use('form',function(){
@@ -112,18 +73,37 @@ function salert(str){
     })
 }
 
+var countdown=60;
+var t;
+function settime(){
+    if(countdown == 0){
+        $("#popup-submit").removeAttr("disabled");
+        $("#popup-submit").attr("class","send_btn");
+        $("#popup-submit").html("重新发送");
+        countdown=60;
+        return;
+    }else{
+        $("#popup-submit").html("重新发送 ("+ countdown+")");
+        countdown--;
+        t=setTimeout("settime()",1000);
+        if(countdown==0) clearTimeOut(t);
+    }
+
+}
+
+
 var handlerPopup = function (captchaObj) {
     captchaObj.onReady(function () {
         $("#wait").hide();
     }).onSuccess(function () {
-        
+ 
         var result = captchaObj.getValidate();
         if (!result) {
             salert('请先完成滑动验证！');
             return;
         }
 
-        $("#loginbox").showLoading();
+        $('body').bodyshowLoading();
         $.ajax({
             url: "/common/sendmsg",
             type: "post",
@@ -132,7 +112,7 @@ var handlerPopup = function (captchaObj) {
                 geetest_validate: result.geetest_validate,
                 geetest_seccode: result.geetest_seccode,
                 mobile: $('#mobile').val(),
-                action: "login"
+                action: "register"
             },
             dataType:'json',
             success: function (res) {
@@ -149,7 +129,7 @@ var handlerPopup = function (captchaObj) {
                         settime();
                         break;
                     case -3:
-                        salert("该手机号尚未注册,请先注册!");
+                        salert("该手机号已注册,请直接登录!");
                         break;
                     default:
                         salert("短信发送失败:未知错误");
@@ -157,9 +137,10 @@ var handlerPopup = function (captchaObj) {
                 }
             },
             complete: function () {
-                $("#loginbox").hideLoading();
+                $("body").hideLoading();
             }
         });
+        
     });
     $('#popup-submit').click(function () {
         var mobile=$('#mobile').val();
@@ -204,14 +185,5 @@ function checkmob(mobile){
         return false;
     }
 
-    return true;
-}
-
-function checkmail(email){
-    var pattern_ = new RegExp("^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$", "i");
-    if(!email || !pattern_.test(email)){
-        // salert('输入的邮箱格式有误！',$('#usernametb'));
-        return false;
-    }
     return true;
 }

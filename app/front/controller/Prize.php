@@ -2,24 +2,24 @@
 namespace app\front\controller;
 use think\Controller;
 use think\Config;
-use app\front\model\User as userModel;
-class Prize extends Controller
+// use app\front\model\User as userModel;
+class Prize extends Site
 {   
-	private $userModel;
-	private $site_name;
+	// private $userModel;
+	// private $site_name;
     private $map;
     private $can;
     private $per;
 	public function _initialize()
     {
-        $this->userModel = new userModel();
-        $this->site_name=Config::get('site_name');
+        // $this->userModel = new userModel();
+        // $this->site_name=Config::get('site_name');
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
 
-        $this->map['uid']=1;
-        $user=$this->userModel->where($this->map)->find();
-        $coin=$user['coin'];
+        // $this->map['uid']=1;
+        // $user=$this->userModel->where($this->map)->find();
+        // $coin=$user['coin'];
         $this->per=1000;//一次抽奖所需的金币数
         $this->can=floor($coin/$this->per);
     }

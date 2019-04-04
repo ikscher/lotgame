@@ -1,0 +1,112 @@
+
+{include file="public/header" /}
+<div id="wrapper" class="umain">
+  <div class="w1200">
+    {include file="user/header" /}
+    {include file="user/left" /}
+    <div class="uright">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>银行存入</h5>
+        </div>
+        <div class="ibox-content mt20">
+          <form  id="creditform"> 
+            <input type="hidden" name="tbAccessType" id="tbAccessType" value="1" />
+            <div class="form-group">
+              <label class="control-label">您的账户余额：</label>
+              <span class="control-span">{notempty name="$user['coin']"}{$user['coin']|number_format}{else /}0{/notempty}</span>
+            </div>
+            <div class="form-group">
+              <label class="control-label">您的银行存款：</label>
+              <span class="control-span">{notempty name="$user['bank']"}{$user['bank']|number_format}{else /}0{/notempty}</span>
+            </div>
+            <div class="form-group">
+              <label class="control-label">存入金币数量：</label>
+              <input type="text" class="form-control"  name="coin" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')" id="tbAccessG" placeholder="设置存入金币数量">
+            </div>
+            <div class="form-group">
+              <label class="control-label">{$safe_q}</label>
+              <input type="text" class="form-control" name="answer" id="tbUserSecAns" placeholder="请输入密保答案">
+            </div>
+            <div class="form-group" style="margin-top: 40px;">
+              <label class="control-label"></label>
+              <button class="user-btn" lay-submit lay-filter="credit">确定存入</button>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="ibox-title" style="margin-top: 20px;">
+          <h5>银行取出</h5>
+        </div>
+        <div class="ibox-content mt20">
+          <form id="debitform">  
+            <input type="hidden" name="tbAccessType" id="tbAccessType" value="2" />
+            <div class="form-group">
+              <label class="control-label">您的账户余额：</label>
+              <span class="control-span">{notempty name="$user['coin']"}{$user['coin']|number_format}{else /}0{/notempty}</span>
+            </div>
+            <div class="form-group">
+              <label class="control-label">您的银行存款：</label>
+              <span class="control-span">{notempty name="$user['bank']"}{$user['bank']|number_format}{else /}0{/notempty}</span>
+            </div>
+            <div class="form-group">
+              <label class="control-label">取出金币数量：</label>
+              <input type="text" class="form-control" name="coin" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')" placeholder="设置取出金币数量">
+            </div>
+            <div class="form-group">
+              <label class="control-label">{$safe_q}</label>
+              <input type="text" class="form-control" name="answer" id="tbUserSecAns" placeholder="请输入密保答案">
+            </div>
+            <div class="form-group" style="margin-top: 40px;">
+              <label class="control-label"></label>
+              <button class="user-btn edit-btn" lay-submit lay-filter="debit" style="margin-bottom: 0;">确定取出</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+layui.use(['layer', 'form'], function(){
+    var layer = layui.layer,form = layui.form;
+    form.on('submit(credit)',function(){
+        $.ajax({
+          url:'/user/bank',
+          type:'post',
+            data:$('#creditform').serialize(),
+            error:function(){
+                 layer.alert('出错了');
+            },
+            success:function(res){
+              console.log(res)
+                // layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。');
+                //  location.href='/user/safepwd';
+            }
+        })
+        return false;
+    });
+
+
+    form.on('submit(debit)',function(){
+        $.ajax({
+          url:'/user/bank',
+          type:'post',
+            data:$('#debitform').serialize(),
+            error:function(){
+                 layer.alert('出错了');
+            },
+            success:function(res){
+              console.log(res)
+                // layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。');
+                //  location.href='/user/safepwd';
+            }
+        })
+        return false;
+       
+    });
+});
+</script>
+{include file="public/footer" /}

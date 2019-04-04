@@ -4,39 +4,28 @@ namespace app\front\controller;
 use think\Config;
 use think\Cookie;
 use think\Session;
-use app\front\model\User as userModel;
+// use app\front\model\User as userModel;
 use app\front\model\UserLog as userLogModel;
 use app\front\model\UserMsg as userMsgModel;
 use app\front\model\UserSafepwd as userSafepwdModel;
 class User extends Site
 {   
-	private $userModel;
+	// private $userModel;
     private $userLogModel;
     private $userMsgModel;
     private $userSafepwdModel;
-	private $site_name;
     private $safe_q;
-    private $uid;
-    private $user;
     
 	public function _initialize()
     {
         parent::_initialize();
-        $this->userModel = new userModel();
+        // $this->userModel = new userModel();
         $this->userLogModel = new userlogModel();
         $this->userMsgModel = new userMsgModel();
         $this->userSafepwdModel = new userSafepwdModel();
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
-        $this->site_name=Config::get('site_name');
         $this->safe_q=Config::get('safe_q');
-        $this->assign('title',$this->site_name);
-        $this->uid=Session::get('uid');
-        // $this->uid=Cookie::get('user_id');
-        $this->uid=1;
-        $map['uid']=$this->uid;
-        $this->user=$this->userModel->where($map)->find();
-        $this->assign('user',$this->user);
         // echo Session::get('uid');exit;
         if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
     }
@@ -333,8 +322,31 @@ class User extends Site
     }
 
     //用户奖品评论
-    public function remark(){
+    public function remark()
+    {
 
+    }
+    
+    //虚拟银行
+    public function bank()
+    {   
+        if($this->request->isPost()){
+            $post=$this->request->post();
+
+            echo json_encode($post);exit;
+        }
+
+        $user=$this->user;
+        $this->assign('user',$user);
+
+        $q=$this->user['safe_q'];
+        if($q){
+            $safe_qs=Config::get('safe_q');
+            $this->assign('safe_q',$safe_qs[$q]);
+        }else{
+            $this->assign('safe_q','');
+        }
+        return $this->fetch();
     }
 
     

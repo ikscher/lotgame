@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1553934206;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/admin\view\user\index.html";i:1554363744;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,7 +123,7 @@
             <div class="layui-btn-group">
               <!-- <a href="<?php echo url('admin/user/edit',['uid'=>$vo['uid']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['uid']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a> -->
-              <a href="<?php echo url('admin/user/login',['uid'=>$vo['uid']]); ?>" class="a_menu"  style="margin: 0;font-size:12px;">进入</a><span style="margin:0 3px;"></span>
+              <a href="javascript:;"  class="flogin" id="<?php echo $vo['uid']; ?>" style="margin: 0;font-size:12px;">进入</a><span style="margin:0 3px;"></span>
               <a href="<?php echo url('admin/user/publish',['uid'=>$vo['uid']]); ?>" class="a_menu" style="margin: 0;font-size:12px;">修改</a><span style="margin:0 3px;"></span>
               <?php if($vo['is_freeze'] == 1): ?>
                  <a href="javascript:;" class="freeze" id="<?php echo $vo['uid']; ?>" data-val="2" style="margin: 0;font-size:12px;">冻结</a><span style="margin:0 3px;"></span>
@@ -250,6 +250,23 @@
         })
       })
     })
+
+    $('.flogin').click(function(){
+       var uid = $(this).attr('id');
+        $.ajax({
+          url:"<?php echo url('admin/user/login'); ?>",
+          data:{uid:uid},
+          success:function(res) {
+            if(res.code == 1) {
+              layer.msg(res.msg);
+              setTimeout(function(){
+                 window.open(res.url);
+              },1500)
+            }
+          }
+        })
+
+    });
 
     $('.freeze').click(function(){
       var uid = $(this).attr('id');
