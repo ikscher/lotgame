@@ -26,7 +26,7 @@ class Common extends Site
     private $geetest;
     // private $userModel;
     // private $site_name;
-    private $uid;
+    // protected $uid;
     //初始化
     public function _initialize()
     {   

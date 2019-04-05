@@ -25,11 +25,12 @@ class Shop extends Site
     private $webconfigModel;
     private $coefficient; //系数
     private static $data=array();
-    private $uid;
+    // private $uid;
 
     public function _initialize()
     {
         // $this->userModel = new userModel();
+        parent::_initialize();
         $this->usergradeModel = new usergradeModel();
         $this->userremarkModel = new userremarkModel();
         $this->prizeModel = new prizeModel();
@@ -41,9 +42,8 @@ class Shop extends Site
         $this->assign('controller',$controller);
         // $this->site_name=Config::get('site_name');
         // $this->assign('title',$this->site_name);
+           
         
-        $this->uid=Cookie::get('user_id');
-        $this->uid=1;
         $user=$this->userModel->where("uid={$this->uid}")->find();
         if($user['user_grade_id']==1){
         	$this->coefficient=1.05*1000;

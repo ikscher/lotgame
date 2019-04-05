@@ -70,22 +70,24 @@
 	    });
 	}
 
+    layui.use('layer',function(){
+    	var layer=layui.layer;
+		$(".eggList  .liup").click(function() {
+			eggClick($(this),'160px','110px');
+		});
 
-	$(".eggList  .liup").click(function() {
-		eggClick($(this),'160px','110px');
-	});
+		$(".eggList .lidown").click(function() {
+			eggClick($(this),'510px','460px');
+		});
 
-	$(".eggList .lidown").click(function() {
-		eggClick($(this),'510px','460px');
-	});
-
-	$(".eggList .liup").hover(function() {
-		var posL = $(this).position().left + $(this).width();
-		$("#hammer").show().css({'left': posL,'top': '170px'});
-	})
-	$(".eggList .lidown").hover(function() {
-		var posL = $(this).position().left + $(this).width();
-		$("#hammer").show().css({'left': posL,'top': '520px'});;
+		$(".eggList .liup").hover(function() {
+			var posL = $(this).position().left + $(this).width();
+			$("#hammer").show().css({'left': posL,'top': '170px'});
+		})
+		$(".eggList .lidown").hover(function() {
+			var posL = $(this).position().left + $(this).width();
+			$("#hammer").show().css({'left': posL,'top': '520px'});;
+		})
 	})
 </script>
 {include file="public/footer" /}

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\index.html";i:1554083876;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554345226;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554364469;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\index.html";i:1554115742;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554377533;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +38,7 @@
 			<span class="barr fr">
 				<?php if($uid != 0): ?>
 					<b ><?php echo $user['username']; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php echo $user['coin']; ?></b></span> &nbsp;
-					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
+					<a href="/User/Index">我的账号</a> <a href="/User/Msg">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/common/logout">退出</a>
                 <?php else: ?>
                 	<a href="/Common/Login" class="dl line">HI, 请登录</a>  <a href="/Common/Register" class="line">注册</a> <a href="/User/FindPwd" class="line">找回密码</a>

@@ -4,15 +4,18 @@ namespace app\front\controller;
 use think\Config;
 use think\Cookie;
 use think\Session;
+use think\Db;
 // use app\front\model\User as userModel;
 use app\front\model\UserLog as userLogModel;
 use app\front\model\UserMsg as userMsgModel;
+use app\front\model\UserExchange as userExchangeModel;
 use app\front\model\UserSafepwd as userSafepwdModel;
 class User extends Site
 {   
 	// private $userModel;
     private $userLogModel;
     private $userMsgModel;
+    private $userExchangeModel;
     private $userSafepwdModel;
     private $safe_q;
     
@@ -21,6 +24,7 @@ class User extends Site
         parent::_initialize();
         // $this->userModel = new userModel();
         $this->userLogModel = new userlogModel();
+        $this->userExchangeModel = new userExchangeModel();
         $this->userMsgModel = new userMsgModel();
         $this->userSafepwdModel = new userSafepwdModel();
         $controller=$this->request->controller();
@@ -81,6 +85,40 @@ class User extends Site
     
     //站内信
     public function msg()
+    {
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $id_str=implode(',',$post['idArray']);
+            $map['id']=array('in',$id_str);
+
+            if(false==$this->userMsgModel->where($map)->delete()){
+                return $this->error('删除失败');
+            } else {
+                $operation='删除站内信成功';
+                adduserlog($this->uid,$operation);//写入日志
+
+                return $this->success($operation,'/user/msg');
+            }
+            
+            // echo json_encode($post['idArray']);exit;
+        }
+   
+        // $map['uid']=$this->uid;
+        // $user=$this->userModel->where($map)->find();
+
+        //日志记录
+        $map_['user_id']=$this->uid;
+        $msgs=$this->userMsgModel->where($map_)->order('create_time desc')->paginate(8,false,['query'=>$this->request->param()]);
+        $this->assign('msgs',$msgs);
+        // $this->assign('user',$user);
+        
+
+        return $this->fetch();
+    }
+
+
+    //兑奖记录
+    public function prize()
     {
         if($this->request->isPost()){
             $post=$this->request->post();
@@ -333,7 +371,74 @@ class User extends Site
         if($this->request->isPost()){
             $post=$this->request->post();
 
-            echo json_encode($post);exit;
+            $type=$post['tbAccessType'];
+            if($type==1){//存入金币
+                
+                $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                if($post['coin']>$coin){
+                    return $this->error("您的账户余额不足，请存入少于您的账户余额！");
+                }
+
+                if($post['answer']!=$this->user['safe_a']){
+                    return $this->error('密保答案错误！');
+                }
+                
+                Db::startTrans();
+                try{
+                    $ret=$this->userModel->where('uid',$this->uid)->setInc('bank',$post['coin']);
+                    // echo $this->userModel->getLastSql();exit;
+                    $ret_=$this->userModel->where('uid',$this->uid)->setDec('coin',$post['coin']);
+                    
+                    // 提交事务
+                    Db::commit(); 
+                    
+                }catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+                    
+                }
+
+                if($ret && $ret_){
+                    $operation='存入金币'.$post['coin'];
+                    adduserlog($this->uid,$operation);
+                    $this->success($operation,'/user/bank');
+                }else{
+                    return $this->error('存入失败！');
+                }
+
+            }elseif($type==2){//取出金币
+               
+                $bank=$this->userModel->where('uid',$this->uid)->value('bank');
+                if($post['coin']>$bank){
+                    return $this->error('您的银行存款数不足，请取出少于您的银行存款！');
+                }
+
+                if($post['answer']!=$this->user['safe_a']){
+                    return $this->error('密保答案错误！');
+                }
+
+                Db::startTrans();
+                try{
+                    $ret=$this->userModel->where('uid',$this->uid)->setInc('coin',$post['coin']);
+                    $ret_=$this->userModel->where('uid',$this->uid)->setDec('bank',$post['coin']);
+                    Db::commit();
+                    
+                }catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+                    
+                }
+
+                if($ret && $ret_){
+                    $operation='取出金币'.$post['coin'];
+                    adduserlog($this->uid,$operation);
+                    $this->success($operation,'/user/bank');
+                }else{
+                    return $this->error('取出失败！');
+                }
+
+                
+            }
         }
 
         $user=$this->user;
@@ -348,6 +453,8 @@ class User extends Site
         }
         return $this->fetch();
     }
+
+    //
 
     
 

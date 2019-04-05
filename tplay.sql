@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50505
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-04 16:43:49
+Date: 2019-04-05 10:15:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,12 +35,12 @@ CREATE TABLE `hov_admin` (
   KEY `admin_cate_id` (`admin_cate_id`) USING BTREE,
   KEY `nickname` (`nickname`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1554360434', '192.168.1.107', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1554430284', '192.168.1.101', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -58,7 +58,7 @@ CREATE TABLE `hov_admin_cate` (
   KEY `id` (`id`) USING BTREE,
   KEY `name` (`name`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_cate
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=556 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=557 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -637,6 +637,7 @@ INSERT INTO `hov_admin_log` VALUES ('552', '95', '1', '192.168.1.107', '删除�
 INSERT INTO `hov_admin_log` VALUES ('553', '95', '1', '192.168.1.107', '删除用户成功-2', '1554362843');
 INSERT INTO `hov_admin_log` VALUES ('554', '95', '1', '192.168.1.107', '删除用户成功-1', '1554362847');
 INSERT INTO `hov_admin_log` VALUES ('555', '94', '1', '192.168.1.107', '修改用户信息成功-5', '1554364285');
+INSERT INTO `hov_admin_log` VALUES ('556', '50', '1', '192.168.1.101', '', '1554430284');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -665,7 +666,7 @@ CREATE TABLE `hov_admin_menu` (
   KEY `function` (`function`) USING BTREE,
   KEY `is_display` (`is_display`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of hov_admin_menu
@@ -840,7 +841,7 @@ CREATE TABLE `hov_agent_cate` (
   `pid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_agent_cate
@@ -900,7 +901,7 @@ CREATE TABLE `hov_article` (
   KEY `article_cate_id` (`article_cate_id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='活动表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='活动表';
 
 -- ----------------------------
 -- Records of hov_article
@@ -927,7 +928,7 @@ CREATE TABLE `hov_article_cate` (
   `pid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_article_cate
@@ -1133,6 +1134,7 @@ INSERT INTO `hov_chargeconfig` VALUES ('1', '1', '1', '100000000', '2', '2.00', 
 -- ----------------------------
 DROP TABLE IF EXISTS `hov_emailconfig`;
 CREATE TABLE `hov_emailconfig` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(5) NOT NULL COMMENT '邮箱配置标识',
   `from_email` varchar(50) NOT NULL COMMENT '邮件来源也就是邮件地址',
   `from_name` varchar(50) NOT NULL,
@@ -1141,13 +1143,14 @@ CREATE TABLE `hov_emailconfig` (
   `password` varchar(100) NOT NULL COMMENT '邮箱密码',
   `title` varchar(200) NOT NULL COMMENT '邮件标题',
   `content` text NOT NULL COMMENT '邮件模板',
+  PRIMARY KEY (`id`),
   KEY `email` (`email`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_emailconfig
 -- ----------------------------
-INSERT INTO `hov_emailconfig` VALUES ('email', '', '', '', '', '', '', '');
+INSERT INTO `hov_emailconfig` VALUES ('1', 'email', '', '', '', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for `hov_game`
@@ -2472,7 +2475,7 @@ CREATE TABLE `hov_messages` (
   KEY `id` (`id`) USING BTREE,
   KEY `is_look` (`is_look`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_messages
@@ -2524,7 +2527,7 @@ CREATE TABLE `hov_prize_cate` (
   `pid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id` (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_prize_cate
@@ -2575,7 +2578,7 @@ CREATE TABLE `hov_smsconfig` (
   `code` varchar(100) NOT NULL COMMENT '短信模板ID',
   `content` text NOT NULL COMMENT '短信默认模板',
   KEY `sms` (`sms`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_smsconfig
@@ -2597,7 +2600,7 @@ CREATE TABLE `hov_urlconfig` (
   PRIMARY KEY (`id`),
   KEY `id` (`id`) USING BTREE,
   KEY `status` (`status`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_urlconfig
@@ -2646,7 +2649,7 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856900659', '23999', '1', '1554362992', '1554364304', '1554364285', null, '192.168.1.107', '0', '0', '0', '0', '0', '0', '1', '0', '1', null, '', null, null, '1970', null, '1');
+INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856900659', '20782', '3218', '1554362992', '1554378041', '1554364285', null, '192.168.1.101', '0', '0', '0', '0', '0', '0', '1', '0', '1', 'ok', '', null, null, '1970', null, '1');
 
 -- ----------------------------
 -- Table structure for `hov_user_charge`
@@ -2730,7 +2733,7 @@ CREATE TABLE `hov_user_log` (
   `experiment` int(11) DEFAULT '0',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -2807,6 +2810,16 @@ INSERT INTO `hov_user_log` VALUES ('69', '1', '登录', '0', '0', '1554343538');
 INSERT INTO `hov_user_log` VALUES ('70', '4', '注册', '0', '0', '1554360404');
 INSERT INTO `hov_user_log` VALUES ('71', '5', '注册', '0', '0', '1554362992');
 INSERT INTO `hov_user_log` VALUES ('72', '5', '登录', '0', '0', '1554364304');
+INSERT INTO `hov_user_log` VALUES ('73', '5', '登录', '0', '0', '1554378042');
+INSERT INTO `hov_user_log` VALUES ('74', '5', '存入金币999', '0', '0', '1554381833');
+INSERT INTO `hov_user_log` VALUES ('75', '5', '存入金币1000', '0', '0', '1554382119');
+INSERT INTO `hov_user_log` VALUES ('76', '5', '存入金币2000', '0', '0', '1554382148');
+INSERT INTO `hov_user_log` VALUES ('77', '5', '取出金币788', '0', '0', '1554382255');
+INSERT INTO `hov_user_log` VALUES ('78', '5', '存入金币6', '0', '0', '1554382285');
+INSERT INTO `hov_user_log` VALUES ('79', '5', '取出金币1000', '0', '0', '1554382297');
+INSERT INTO `hov_user_log` VALUES ('80', '5', '存入金币1000', '0', '0', '1554382386');
+INSERT INTO `hov_user_log` VALUES ('81', '5', '取出金币2000', '0', '0', '1554382395');
+INSERT INTO `hov_user_log` VALUES ('82', '5', '存入金币2000', '0', '0', '1554382412');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`
@@ -2945,7 +2958,7 @@ CREATE TABLE `hov_webconfig` (
   `flow_autobid` tinyint(1) DEFAULT '0' COMMENT '兑换奖品-自动投资算流水（1：算入，0：不算入）',
   PRIMARY KEY (`id`),
   KEY `web` (`id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_webconfig
