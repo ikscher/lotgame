@@ -23,6 +23,7 @@ class Site extends Controller
     	$this->site_name=Config::get('site_name');
         $this->assign('title',$this->site_name);
     	$this->uid=0;
+    	$this->user=array();
 	    if(null!==Cookie::get('auth')) {  
 	        $arr = explode("\t", ThkAuthCode(Cookie::get('auth'), 'DECODE'));
 	        // if (!session_id()) session_start();

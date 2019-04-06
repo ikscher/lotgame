@@ -57,6 +57,7 @@ Route::rule('user/bindemail','front/user/bindemail');
 Route::rule('user/changepwd','front/user/changepwd');
 Route::rule('user/bank','front/user/bank');
 Route::rule('user/prize','front/user/prize');
+Route::rule('user/charge','front/user/charge');
 Route::rule('agent/index','front/agent/index');
 Route::rule('site/index','front/site/index');
 Route::rule('prize/ind','front/prize/init');

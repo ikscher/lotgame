@@ -8,6 +8,7 @@ use think\Db;
 // use app\front\model\User as userModel;
 use app\front\model\UserLog as userLogModel;
 use app\front\model\UserMsg as userMsgModel;
+use app\admin\model\CardPwd as cardPwdModel;
 use app\front\model\UserExchange as userExchangeModel;
 use app\front\model\UserSafepwd as userSafepwdModel;
 class User extends Site
@@ -15,6 +16,7 @@ class User extends Site
 	// private $userModel;
     private $userLogModel;
     private $userMsgModel;
+    private $cardPwdModel;
     private $userExchangeModel;
     private $userSafepwdModel;
     private $safe_q;
@@ -26,6 +28,7 @@ class User extends Site
         $this->userLogModel = new userlogModel();
         $this->userExchangeModel = new userExchangeModel();
         $this->userMsgModel = new userMsgModel();
+        $this->cardPwdModel= new cardPwdModel();
         $this->userSafepwdModel = new userSafepwdModel();
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
@@ -62,22 +65,33 @@ class User extends Site
     {   
         if($this->request->isPost()){
             $post=$this->request->post();
-            if(empty($post['code']) || $post['code']!==Cookie::get('emailcode')){
-                return $this->error('验证码错误');
-            }else{
-                unset($post['code']);
-                $post['is_email']=1;
-                $map['uid']=$this->uid;
-                $ret=$this->userModel->where($map)->update($post);
-                if(false==$ret){
-                    return $this->error('保存资料失败');
-                } else {
-                    $operation='保存资料成功';
-                    adduserlog($this->uid,$operation);//写入日志
+            if(empty($post['email'])){
 
-                    return $this->success($operation,'/user/index');
+                if(empty($post['safe_a'])){
+                   return $this->error('请输入密保答案');
+                }
+            }else{
+                if(empty($post['code']) || $post['code']!=Session::get('emailcode')){
+                   return $this->error('验证码错误');
+                }else{
+                   unset($post['code']);
+                   $post['is_email']=1;
                 }
             }
+
+            unset($post['safe_a']);
+            
+            $map['uid']=$this->uid;
+            $ret=$this->userModel->where($map)->update($post);
+            if(false==$ret){
+                return $this->error('保存资料失败');
+            } else {
+                $operation='保存资料成功';
+                adduserlog($this->uid,$operation);//写入日志
+
+                return $this->success($operation,'/user/index');
+            }
+            
         }
         $this->assign("safe_q",$this->safe_q);
         return $this->fetch();
@@ -142,9 +156,8 @@ class User extends Site
 
         //日志记录
         $map_['user_id']=$this->uid;
-        $msgs=$this->userMsgModel->where($map_)->order('create_time desc')->paginate(8,false,['query'=>$this->request->param()]);
-        $this->assign('msgs',$msgs);
-        // $this->assign('user',$user);
+        $exchanges=$this->userExchangeModel->where($map_)->order('create_time desc')->paginate(8,false,['query'=>$this->request->param()]);
+        $this->assign('exchanges',$exchanges);
         
 
         return $this->fetch();
@@ -222,6 +235,130 @@ class User extends Site
         $safepwd=$this->userSafepwdModel->where($map)->value('safe');
         
         $this->assign('safepwd',json_decode($safepwd,true));
+        return $this->fetch();
+    }
+
+    //点卡充值（使用卡密充值）
+    public function charge()
+    {   
+        $map=array();
+        $card=array();
+        $data=array();
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            if($post['action']=='singular'){ //单个操作
+                $card_no=$post['CardNo'];
+                $card_pwd=$post['CardPwd'];
+                $type=$post['tbMode'];
+                $map['card_no']=$card_no;
+                $map['card_pwd']=$card_pwd;
+                // $map['status']=1;//未充值
+                $card=$this->cardPwdModel->where($map)->find();
+                if($type==1){//charge
+                    if($card['status']==1){
+                        $coin=$card->cate->coin;
+                        Db::startTrans();
+                        try{
+                            $ret=$this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
+                            $data['use_time']=time();
+                            $data['status']=4;//已充值
+                            $data['user_id']=$this->uid;
+
+                            $ret_=$this->cardPwdModel->where($map)->update($data);
+                            // 提交事务
+                            Db::commit(); 
+                            
+                        }catch (\Exception $e) {
+                            // 回滚事务
+                            Db::rollback();
+                        }
+
+                        
+                        if($ret==false || $ret_==false){
+                           return $this->error('充值失败！');
+                        }else{
+                           $operation='点卡成功充值';
+                           adduserlog($this->uid,$operation);
+                           return $this->success($operation,'/user/charge');
+                        }
+                    }elseif (in_array($card['status'],array(2,3,4))){
+                        return $this->error('此卡已经被使用过了！');
+                    }else{
+                        return $this->error('错误的卡号或密码！');
+                    }
+                }elseif($type==2){//query
+                    if($card['status']==1){
+                        return $this->error('此卡可以充值（您查询的卡未被使用过）！');
+                    }else{
+                        return $this->error('此卡不能充值（此卡已经使用过了）！');
+                    }
+                }
+            }elseif($post['action']=='plural'){ //批量操作
+                $card_no_arr=$post['card_no'];
+                $card_pwd_arr=$post['card_pwd'];
+                foreach($card_no_arr as $k=>$card_no){
+                    $card=null;
+                    if(empty($card_no) || empty($card_pwd_arr[$k])){ //卡号或者卡密为空的都剔除
+                        unset($card_no_arr[$k]);
+                    }else{
+                        $card_no=$card_no;  //卡号
+                        $card_pwd=$card_pwd_arr[$k]; //卡密
+                        
+                        $map['card_no']=$card_no;
+                        $map['card_pwd']=$card_pwd;
+                        // $map['status']=1;//未充值
+                        $card=$this->cardPwdModel->where($map)->find();
+                        
+                        $card_cate_name=$card->cate->name;
+                        if(!strpos($card_cate_name,'贵宾卡')==false || !strpos($card_cate_name,'红包卡')==false){ //贵宾卡，红包卡不能批量充值
+                            return $this->error('卡号：'.$card_no.'，卡密：'.$card_pwd.'，贵宾卡或者红包卡不能批量充值！请清空输入框再提交');
+                        }
+                        if($card['status']!=1 && in_array($card['status'],array(2,3,4))){
+                            return $this->error('卡号：'.$card_no.'，卡密：'.$card_pwd.'已经被使用过了！请清空输入框再提交');
+                        }elseif(!in_array($card['status'],array(1,2,3,4))){
+                            return $this->error('卡号：'.$card_no.'，卡密：'.$card_pwd.'此卡不存在！请清空输入框再提交');
+                        }
+
+                    }
+                }
+                
+                foreach($card_no_arr as $k=>$card_no){
+                    $card=null;
+                    $card_no=$card_no;  //卡号
+                    $card_pwd=$card_pwd_arr[$k]; //卡密
+                    
+                    $map['card_no']=$card_no;
+                    $map['card_pwd']=$card_pwd;
+                    // $map['status']=1;//未充值
+                    $card=$this->cardPwdModel->where($map)->find();
+
+                    $coin=$card->cate->coin;
+                    Db::startTrans();
+                    try{
+                        $ret=$this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
+                        $data['use_time']=time();
+                        $data['status']=4;//已充值
+                        $data['user_id']=$this->uid;
+
+                        $ret_=$this->cardPwdModel->where($map)->update($data);
+
+                        if($ret==false || $ret_==false){
+                           return $this->error('充值失败！');
+                        }
+                        // 提交事务
+                        Db::commit(); 
+                        
+                    }catch (\Exception $e) {
+                        // 回滚事务
+                        Db::rollback();
+                    }
+                }
+                
+                $operation='点卡成功充值（批量操作）';
+                adduserlog($this->uid,$operation);
+                return $this->success($operation,'/user/charge');
+            }
+        }
         return $this->fetch();
     }
 

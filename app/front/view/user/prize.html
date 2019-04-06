@@ -4,49 +4,49 @@
 	<div class="w1200">
 		{include file="user/header" /}
 		<!--左侧left菜单-->
-        {include file="user/left" /}
+		{include file="user/left" /}
 		<!--左侧left菜单-->
 
 
 
 
- <div class="uright">
- 	<div class="ibox">
- 		<div class="ibox-title">
- 			<h5>兑换记录</h5>
- 			<a href="javascript:;" onClick="delMsg()">删除</a>
- 		</div>
- 		<div class="ibox-content">
- 			<div style="min-height: 300px;">
- 				<table class="user-table mt20">
- 					<thead>
- 						<tr>
- 							 <th>奖品</th>
-							 <th>数量</th>
-							 <th>时间</th>
-							 <th>状态</th>
-							 <!-- <th>操作</th> -->
- 						</tr>
- 					</thead>
- 					<tbody>
- 						{foreach name="msgs" item="vo" }
- 						<!-- <tr class="unread"> -->
-						  <td width="260px"><p class="table-p"><a href="/Prize/Detail?id=180">移动充值卡100元</a></p></td>
-						  <td> 1 </td>
-						  <td>2019-04-02 12:13:19</td>
-						  <td>已发货</td>
-						  <!-- <td> <A href="?act=chongfa&id=176299">重发</A> </td> -->
+		<div class="uright">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>兑换记录</h5>
+					<!-- <a href="javascript:;" onClick="delMsg()">删除</a> -->
+				</div>
+				<div class="ibox-content">
+					<div style="min-height: 300px;">
+						<table class="user-table mt20">
+							<thead>
+								<tr>
+									<th>奖品</th>
+									<th>数量</th>
+									<th>时间</th>
+									<th>状态</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								{foreach name="exchanges" item="vo" }
+								<tr class="unread">
+									<td width="260px"><p class="table-p"><a href="/Prize/Detail?id={$vo.id}">{$vo.prize.name}</a></p></td>
+									<td>{$vo.num}</td>
+									<td>{$vo.create_time}</td>
+									<td>{if condition="$vo.status eq 1"}已发货{elsif condition="$vo.status eq 2}审核不通过{else /}等待审核{/if}</td>
+									<td> <a href="javascript:;" data-id="{$vo.id}" >重发</a> </td>
 
- 						</tr>
- 						{/foreach}
- 					</tbody>
- 				</table>
- 				<div style="padding:0 20px;">{$msgs->render()}</div> 
- 			</div>
- 		</div>
- 	</div>
- </div><!--uright-->
-</div>
+								</tr>
+								{/foreach}
+							</tbody>
+						</table>
+						<div style="padding:0 20px;">{$exchanges->render()}</div> 
+					</div>
+				</div>
+			</div>
+		</div><!--uright-->
+	</div>
 
 </div>
 

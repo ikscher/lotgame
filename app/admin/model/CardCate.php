@@ -20,4 +20,9 @@ class CardCate extends Model
         //关联卡密表
         return $this->hasMany('CatePwd','card_cate_id');
     }
+
+    public function prize(){
+    	//关联兑换奖品
+    	return $this->hasMany('prize','card_cate_id');
+    }
 }

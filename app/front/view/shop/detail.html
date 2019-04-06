@@ -76,7 +76,7 @@
 					    </tr>
 					    <tr>
 							{foreach name="grade" item="vo_"}
-							    <td><font class="money money_bg">{if condition="$vo_.grade eq 1"}{$prize['price']*$c1}{else /}{$prize['price']*$c2}{/if}</font></td>
+							    <td><font class="money money_bg">{if condition="$vo_.grade eq 0"}{$prize['price']*$c1}{else /}{$prize['price']*$c2}{/if}</font></td>
 							{/foreach}
 						</tr>
 				    </table>

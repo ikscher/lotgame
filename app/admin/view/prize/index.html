@@ -54,21 +54,18 @@
               </div>
             </div>
           </div> -->
-          <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" lay-filter="serch">查询</button>
+          <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit lay-filter="serch">查询</button>
         </div>
       </form> 
     <table class="layui-table" lay-size="sm">
       <colgroup>
         <col width="50">
         <col width="200">
-        <col width="50">
-        <col width="100">
-        <col width="100">
         <col width="150">
         <col width="100">
-        <col width="150">
-        <col width="50">
-        <col width="50">
+        <col width="100">
+        <col width="100">
+        <col width="100">
         <col width="100">
       </colgroup>
       <thead>
@@ -90,8 +87,8 @@
           <td>{$vo.id}</td>
           <td>{$vo.name}</td>
           <td>{$vo.cate.name}</td>
-          <td>{$vo.price}</td>
-          <td>{$vo.units}</td>
+          <td>{$vo.price|number_format}</td>
+          <td>{$vo.coin|number_format}</td>
           <td>{$vo.num}</td>
           <td>{$vo.stock}</td>
           <td class="operation-menu">

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-05 10:15:46
+Date: 2019-04-06 21:46:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=557 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=577 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -638,6 +638,26 @@ INSERT INTO `hov_admin_log` VALUES ('553', '95', '1', '192.168.1.107', '删除�
 INSERT INTO `hov_admin_log` VALUES ('554', '95', '1', '192.168.1.107', '删除用户成功-1', '1554362847');
 INSERT INTO `hov_admin_log` VALUES ('555', '94', '1', '192.168.1.107', '修改用户信息成功-5', '1554364285');
 INSERT INTO `hov_admin_log` VALUES ('556', '50', '1', '192.168.1.101', '', '1554430284');
+INSERT INTO `hov_admin_log` VALUES ('557', '13', '1', '192.168.1.101', '', '1554431179');
+INSERT INTO `hov_admin_log` VALUES ('558', '14', '1', '192.168.1.101', '45397312@qq.com', '1554431198');
+INSERT INTO `hov_admin_log` VALUES ('559', '14', '1', '192.168.1.101', '45397312@qq.com', '1554432698');
+INSERT INTO `hov_admin_log` VALUES ('560', '92', '1', '192.168.1.101', '添加用户级别成功-4', '1554446281');
+INSERT INTO `hov_admin_log` VALUES ('561', '92', '1', '192.168.1.101', '修改用户级别成功-1', '1554446292');
+INSERT INTO `hov_admin_log` VALUES ('562', '92', '1', '192.168.1.101', '添加用户级别成功-5', '1554446322');
+INSERT INTO `hov_admin_log` VALUES ('563', '92', '1', '192.168.1.101', '添加用户级别成功-6', '1554446352');
+INSERT INTO `hov_admin_log` VALUES ('564', '92', '1', '192.168.1.101', '添加用户级别成功-7', '1554446381');
+INSERT INTO `hov_admin_log` VALUES ('565', '92', '1', '192.168.1.101', '修改用户级别成功-1', '1554446393');
+INSERT INTO `hov_admin_log` VALUES ('566', '73', '1', '192.168.1.101', '修改奖品成功-10', '1554460239');
+INSERT INTO `hov_admin_log` VALUES ('567', '73', '1', '192.168.1.101', '修改奖品成功-10', '1554465967');
+INSERT INTO `hov_admin_log` VALUES ('568', '73', '1', '192.168.1.101', '修改奖品成功-10', '1554465975');
+INSERT INTO `hov_admin_log` VALUES ('569', '73', '1', '192.168.1.101', '修改奖品成功-10', '1554465982');
+INSERT INTO `hov_admin_log` VALUES ('570', '73', '1', '192.168.1.101', '修改奖品成功-10', '1554466246');
+INSERT INTO `hov_admin_log` VALUES ('571', '73', '1', '192.168.1.101', '修改奖品成功-10', '1554466254');
+INSERT INTO `hov_admin_log` VALUES ('572', '114', '1', '192.168.1.101', '成功生成卡密', '1554468991');
+INSERT INTO `hov_admin_log` VALUES ('573', '73', '1', '192.168.1.101', '修改奖品成功-8', '1554510788');
+INSERT INTO `hov_admin_log` VALUES ('574', '73', '1', '192.168.1.101', '修改奖品成功-8', '1554510806');
+INSERT INTO `hov_admin_log` VALUES ('575', '73', '1', '192.168.1.101', '修改奖品成功-8', '1554511036');
+INSERT INTO `hov_admin_log` VALUES ('576', '114', '1', '192.168.1.102', '成功生成卡密', '1554556313');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -673,7 +693,6 @@ CREATE TABLE `hov_admin_menu` (
 -- ----------------------------
 INSERT INTO `hov_admin_menu` VALUES ('1', '系统', '', '', '', '', '系统设置。', '1', '2', '0', '0', '1517015748', 'fa-cog', '1', '0');
 INSERT INTO `hov_admin_menu` VALUES ('2', '菜单', '', '', '', '', '菜单管理。', '1', '2', '1', '0', '1517015764', 'fa-paw', '0', '0');
-INSERT INTO `hov_admin_menu` VALUES ('51', '系统菜单排序', 'admin', 'menu', 'orders', '', '系统菜单排序。', '2', '1', '3', '1517562047', '1517562047', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('3', '系统菜单', 'admin', 'menu', 'index', null, '系统菜单管理', '1', '2', '2', '0', '0', 'fa-share-alt', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('4', '新增/修改系统菜单', 'admin', 'menu', 'publish', '', '新增/修改系统菜单.', '2', '1', '3', '1516948769', '1516948769', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('5', '删除系统菜单', 'admin', 'menu', 'delete', '', '删除系统菜单。', '2', '1', '3', '1516948857', '1516948857', '', '0', '0');
@@ -722,6 +741,7 @@ INSERT INTO `hov_admin_menu` VALUES ('47', '留言处理', 'admin', 'tomessages'
 INSERT INTO `hov_admin_menu` VALUES ('48', '留言删除', 'admin', 'tomessages', 'delete', '', '留言删除。', '2', '1', '46', '1516953648', '1516953648', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('49', '图片上传', 'admin', 'common', 'upload', '', '图片上传。', '2', '2', '0', '1516954491', '1516954491', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('50', '管理员登录', 'admin', 'common', 'login', '', '管理员登录。', '2', '2', '0', '1516954517', '1516954517', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('51', '系统菜单排序', 'admin', 'menu', 'orders', '', '系统菜单排序。', '2', '1', '3', '1517562047', '1517562047', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('52', '签到设置', 'admin', 'signinconfig', 'index', '', '签到设置', '1', '2', '9', '1552443044', '1552789871', 'fa-check', '1', '0');
 INSERT INTO `hov_admin_menu` VALUES ('53', '新增/修改签到等级', 'admin', 'signinconfig', 'publish', '', '新增/修改签到设置', '2', '1', '52', '1552449405', '1552789887', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('54', '启用/禁用签到等级', 'admin', 'signinconfig', 'status', '', '启用/禁用签到等级', '2', '1', '52', '1552449499', '1552789900', '', '0', '0');
@@ -1092,20 +1112,25 @@ CREATE TABLE `hov_card_pwd` (
   `card_no` varchar(30) DEFAULT NULL,
   `card_pwd` varchar(30) DEFAULT NULL,
   `card_cate_id` int(11) DEFAULT NULL,
-  `agent_id` int(11) DEFAULT NULL,
+  `agent_id` int(11) DEFAULT '0',
   `user_id` int(11) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT '1' COMMENT '2已回收 | 3已充值 | 1未充值 | 4已兑出(未回收)',
+  `status` tinyint(1) DEFAULT '1' COMMENT '3已回收 | 4已充值 | 1未充值 | 2已兑出(未回收)',
   `create_time` int(11) DEFAULT NULL,
   `use_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_card_pwd
 -- ----------------------------
 INSERT INTO `hov_card_pwd` VALUES ('8', 'd200HjtCpKzvmYQY7Tc', 'CVbfn8uJpLcu2yp', '8', null, null, '1', '1553225623', null);
-INSERT INTO `hov_card_pwd` VALUES ('9', 'd200nr2TAaRVr7ajWCW', 'jw1iQlimi0D3Chn', '8', null, null, '1', '1553225623', null);
-INSERT INTO `hov_card_pwd` VALUES ('10', 'd200yDAg1K0T3kcqX34', 'fipzwIIG45Gk9ar', '8', null, null, '1', '1553225623', null);
+INSERT INTO `hov_card_pwd` VALUES ('9', 'd200nr2TAaRVr7ajWCW', 'jw1iQlimi0D3Chn', '8', null, '5', '4', '1553225623', '1554557823');
+INSERT INTO `hov_card_pwd` VALUES ('10', 'd200yDAg1K0T3kcqX34', 'fipzwIIG45Gk9ar', '8', null, '5', '4', '1553225623', '1554558177');
+INSERT INTO `hov_card_pwd` VALUES ('11', 'd1ruGtx6zv', 'U17NIHQB', '4', null, null, '4', '1554468991', null);
+INSERT INTO `hov_card_pwd` VALUES ('12', 'd1iKMeTl2V', 'tHY2tdu1', '4', null, '5', '4', '1554468991', '1554558177');
+INSERT INTO `hov_card_pwd` VALUES ('13', 'd1mZRkK1m9', 'ngguCHPf', '4', null, null, '1', '1554468991', null);
+INSERT INTO `hov_card_pwd` VALUES ('14', 'vimehbXM2R', 'c6wpp9sy', '5', '0', null, '1', '1554556313', null);
+INSERT INTO `hov_card_pwd` VALUES ('15', 'viV7vdMplT', 'OMNUS5kY', '5', '0', null, '1', '1554556313', null);
 
 -- ----------------------------
 -- Table structure for `hov_chargeconfig`
@@ -1150,7 +1175,7 @@ CREATE TABLE `hov_emailconfig` (
 -- ----------------------------
 -- Records of hov_emailconfig
 -- ----------------------------
-INSERT INTO `hov_emailconfig` VALUES ('1', 'email', '', '', '', '', '', '', '');
+INSERT INTO `hov_emailconfig` VALUES ('1', 'email', 'ikscher@163.com', 'ikscher', 'smtp.163.com', 'ikscher@163.com', 'hongwinter@520', 'ceshi', '&amp;lt;p&amp;gt;nihao,qingmingjie清明节&amp;lt;/p&amp;gt;');
 
 -- ----------------------------
 -- Table structure for `hov_game`
@@ -2492,10 +2517,13 @@ CREATE TABLE `hov_prize` (
   `thumb` varchar(120) NOT NULL,
   `prize_cate_id` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `units` int(11) NOT NULL,
+  `coin` int(11) NOT NULL,
   `num` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
   `desc` text NOT NULL,
+  `de_exp` int(11) DEFAULT '0' COMMENT '扣除经验',
+  `de_point` int(11) DEFAULT '0' COMMENT '扣除积分',
+  `card_cate_id` int(11) DEFAULT NULL,
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
@@ -2505,13 +2533,13 @@ CREATE TABLE `hov_prize` (
 -- ----------------------------
 -- Records of hov_prize
 -- ----------------------------
-INSERT INTO `hov_prize` VALUES ('4', null, '移动充值卡100元', '11', '10', '100.00', '100000', '0', '0', '<p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">奖品兑换流程：</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\"><br/></strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">1. 奖品价格已经包含邮寄费用在内，您无须另行支付。兑奖前请确认您的帐户中有足够数量的金额！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">2. 在您要兑奖的奖品页面点击“立即兑换”按钮，提交您的兑奖申请！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">3. 实物奖品将在您的兑奖确认后的2-5工作日内发出(奖品状态您可通过“站内信-兑奖发货通知”查询)！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">4. 兑奖中心所有奖品颜色均为随机发送, 敬请谅解！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">5. 奖品受供货商库存影响，会有缺货情况，如有缺货，客服会取消兑奖，退还金额。dd</strong></span></p><p><br/></p>', '1552636993', '1553824559', '0');
-INSERT INTO `hov_prize` VALUES ('5', null, '移动充值卡5000元', '12', '10', '5000.00', '5000000', '0', '0', '<p>移动充值卡5000元问问</p>', '1552637483', '1553762802', '0');
-INSERT INTO `hov_prize` VALUES ('6', null, '华为手机', '32', '11', '8000.00', '8000000', '0', '0', '', '1553762909', '1553762909', '0');
-INSERT INTO `hov_prize` VALUES ('7', null, '移动充值卡50000元', '33', '10', '50000.00', '50000000', '0', '0', '', '1553776674', '1553776674', '0');
-INSERT INTO `hov_prize` VALUES ('8', null, '移动充值卡1000元', '37', '10', '5000.00', '5000000', '0', '0', '', '1553776727', '1553776774', '0');
-INSERT INTO `hov_prize` VALUES ('9', null, '移动充值卡30000元', '38', '10', '30000.00', '30000000', '0', '0', '', '1553776816', '1553776816', '0');
-INSERT INTO `hov_prize` VALUES ('10', null, '移动充值卡10000元', '39', '10', '10000.00', '10000000', '0', '0', '', '1553776882', '1553776882', '0');
+INSERT INTO `hov_prize` VALUES ('4', null, '移动充值卡100元', '11', '10', '100.00', '100000', '0', '0', '<p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">奖品兑换流程：</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\"><br/></strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">1. 奖品价格已经包含邮寄费用在内，您无须另行支付。兑奖前请确认您的帐户中有足够数量的金额！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">2. 在您要兑奖的奖品页面点击“立即兑换”按钮，提交您的兑奖申请！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">3. 实物奖品将在您的兑奖确认后的2-5工作日内发出(奖品状态您可通过“站内信-兑奖发货通知”查询)！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">4. 兑奖中心所有奖品颜色均为随机发送, 敬请谅解！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">5. 奖品受供货商库存影响，会有缺货情况，如有缺货，客服会取消兑奖，退还金额。dd</strong></span></p><p><br/></p>', null, null, null, '1552636993', '1553824559', '0');
+INSERT INTO `hov_prize` VALUES ('5', null, '移动充值卡5000元', '12', '10', '5000.00', '5000000', '0', '0', '<p>移动充值卡5000元问问</p>', null, null, null, '1552637483', '1553762802', '0');
+INSERT INTO `hov_prize` VALUES ('6', null, '华为手机', '32', '11', '8000.00', '8000000', '0', '0', '', null, null, null, '1553762909', '1553762909', '0');
+INSERT INTO `hov_prize` VALUES ('7', null, '移动充值卡50000元', '33', '10', '50000.00', '50000000', '0', '0', '', null, null, null, '1553776674', '1553776674', '0');
+INSERT INTO `hov_prize` VALUES ('8', null, '移动充值卡1000元', '37', '10', '1000.00', '1000000', '0', '0', '', '0', '0', '4', '1553776727', '1554511036', '0');
+INSERT INTO `hov_prize` VALUES ('9', null, '移动充值卡30000元', '38', '10', '30000.00', '30000000', '0', '0', '', null, null, null, '1553776816', '1553776816', '0');
+INSERT INTO `hov_prize` VALUES ('10', null, '移动充值卡10000元', '39', '10', '10000.00', '10000000', '12', '2333', '', '0', '0', '4', '1553776882', '1554466254', '0');
 
 -- ----------------------------
 -- Table structure for `hov_prize_cate`
@@ -2532,9 +2560,9 @@ CREATE TABLE `hov_prize_cate` (
 -- ----------------------------
 -- Records of hov_prize_cate
 -- ----------------------------
-INSERT INTO `hov_prize_cate` VALUES ('10', '广告体验卡', '', '', '1553760669', '1553760669', '8');
 INSERT INTO `hov_prize_cate` VALUES ('8', '手机充值卡', '', '', '1553760641', '1553760641', '0');
 INSERT INTO `hov_prize_cate` VALUES ('9', '生活用品', '', '', '1553760654', '1553760654', '0');
+INSERT INTO `hov_prize_cate` VALUES ('10', '广告体验卡', '', '', '1553760669', '1553760669', '8');
 INSERT INTO `hov_prize_cate` VALUES ('11', '数码产品', '', '', '1553760681', '1553760681', '9');
 INSERT INTO `hov_prize_cate` VALUES ('13', '奢侈品', '', '', '1553760704', '1553760704', '9');
 
@@ -2649,7 +2677,7 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856900659', '20782', '3218', '1554362992', '1554378041', '1554364285', null, '192.168.1.101', '0', '0', '0', '0', '0', '0', '1', '0', '1', 'ok', '', null, null, '1970', null, '1');
+INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '45397312@qq.com', '13856900659', '2607820', '3218', '1554362992', '1554378041', '1554364285', null, '192.168.1.101', '0', '0', '0', '0', '0', '1', '1', '0', '1', 'ok', '3', null, '4', '1970', null, '1');
 
 -- ----------------------------
 -- Table structure for `hov_user_charge`
@@ -2681,6 +2709,8 @@ CREATE TABLE `hov_user_exchange` (
   `aggregate` varchar(20) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `cardno` varchar(50) DEFAULT NULL,
+  `cardpwd` varchar(50) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '0' COMMENT '奖品是否通过审核1：通过，2：不通过，0：默认未审核',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
@@ -2688,16 +2718,16 @@ CREATE TABLE `hov_user_exchange` (
 -- ----------------------------
 -- Records of hov_user_exchange
 -- ----------------------------
-INSERT INTO `hov_user_exchange` VALUES ('1', '1', '2', '100.00', null, null, '1552636993', null, '1');
-INSERT INTO `hov_user_exchange` VALUES ('2', '1', '3', '366.00', null, null, '1552096993', null, '1');
-INSERT INTO `hov_user_exchange` VALUES ('5', '1', '2', '88.00', null, null, '1552776993', null, '1');
-INSERT INTO `hov_user_exchange` VALUES ('6', '1', '3', '47.00', null, null, '1552786993', null, '0');
-INSERT INTO `hov_user_exchange` VALUES ('7', '2', '1', '99.00', null, null, '1552566993', null, '1');
-INSERT INTO `hov_user_exchange` VALUES ('8', '1', '1', '334.00', null, null, '1552436993', null, '1');
-INSERT INTO `hov_user_exchange` VALUES ('11', '2', '2', '333.00', null, null, '1552136993', null, '1');
-INSERT INTO `hov_user_exchange` VALUES ('14', '1', '4', '100.00', '1', '107,100', '1553908586', null, '1');
-INSERT INTO `hov_user_exchange` VALUES ('15', '1', '4', '100.00', '1', '107100', '1553909934', null, '1');
-INSERT INTO `hov_user_exchange` VALUES ('16', '1', '4', '100.00', '1', '107100', '1553909984', null, '1');
+INSERT INTO `hov_user_exchange` VALUES ('1', '1', '2', '100.00', null, null, '1552636993', null, null, null, '1');
+INSERT INTO `hov_user_exchange` VALUES ('2', '1', '3', '366.00', null, null, '1552096993', null, null, null, '1');
+INSERT INTO `hov_user_exchange` VALUES ('5', '1', '2', '88.00', null, null, '1552776993', null, null, null, '1');
+INSERT INTO `hov_user_exchange` VALUES ('6', '1', '3', '47.00', null, null, '1552786993', null, null, null, '0');
+INSERT INTO `hov_user_exchange` VALUES ('7', '2', '1', '99.00', null, null, '1552566993', null, null, null, '1');
+INSERT INTO `hov_user_exchange` VALUES ('8', '1', '1', '334.00', null, null, '1552436993', null, null, null, '1');
+INSERT INTO `hov_user_exchange` VALUES ('11', '2', '2', '333.00', null, null, '1552136993', null, null, null, '1');
+INSERT INTO `hov_user_exchange` VALUES ('14', '1', '4', '100.00', '1', '107,100', '1553908586', null, null, null, '1');
+INSERT INTO `hov_user_exchange` VALUES ('15', '1', '4', '100.00', '1', '107100', '1553909934', null, null, null, '1');
+INSERT INTO `hov_user_exchange` VALUES ('16', '1', '4', '100.00', '1', '107100', '1553909984', null, null, null, '1');
 
 -- ----------------------------
 -- Table structure for `hov_user_grade`
@@ -2712,14 +2742,18 @@ CREATE TABLE `hov_user_grade` (
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_grade
 -- ----------------------------
-INSERT INTO `hov_user_grade` VALUES ('1', 'VIP0', '6', '1000', '3', null, '1553434751');
+INSERT INTO `hov_user_grade` VALUES ('1', 'VIP0', '0', '1000', '0', null, '1554446393');
 INSERT INTO `hov_user_grade` VALUES ('2', 'VIP1', '1001', '2000', '1', null, '1553002578');
 INSERT INTO `hov_user_grade` VALUES ('3', 'VIP2', '2001', '3000', '2', null, null);
+INSERT INTO `hov_user_grade` VALUES ('4', 'VIP3', '3000', '8999', '3', '1554446281', '1554446281');
+INSERT INTO `hov_user_grade` VALUES ('5', 'VIP4', '8000', '29999', '4', '1554446322', '1554446322');
+INSERT INTO `hov_user_grade` VALUES ('6', 'VIP5', '30000', '59999', '5', '1554446352', '1554446352');
+INSERT INTO `hov_user_grade` VALUES ('7', 'VIP', '60000', '2147483647', '6', '1554446381', '1554446381');
 
 -- ----------------------------
 -- Table structure for `hov_user_log`
@@ -2733,7 +2767,7 @@ CREATE TABLE `hov_user_log` (
   `experiment` int(11) DEFAULT '0',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -2820,6 +2854,11 @@ INSERT INTO `hov_user_log` VALUES ('79', '5', '取出金币1000', '0', '0', '155
 INSERT INTO `hov_user_log` VALUES ('80', '5', '存入金币1000', '0', '0', '1554382386');
 INSERT INTO `hov_user_log` VALUES ('81', '5', '取出金币2000', '0', '0', '1554382395');
 INSERT INTO `hov_user_log` VALUES ('82', '5', '存入金币2000', '0', '0', '1554382412');
+INSERT INTO `hov_user_log` VALUES ('83', '5', '保存资料成功', '0', '0', '1554434321');
+INSERT INTO `hov_user_log` VALUES ('84', '5', '保存资料成功', '0', '0', '1554435412');
+INSERT INTO `hov_user_log` VALUES ('85', '5', '点卡成功充值1000000', '0', '0', '1554516870');
+INSERT INTO `hov_user_log` VALUES ('86', '5', 'd200nr2TAaRVr7ajWCW,jw1iQlimi0D3Chn点卡成功充值（批量操作）200000', '0', '0', '1554557823');
+INSERT INTO `hov_user_log` VALUES ('87', '5', '点卡成功充值（批量操作）', '0', '0', '1554558177');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`
@@ -2840,10 +2879,10 @@ CREATE TABLE `hov_user_msg` (
 -- ----------------------------
 -- Records of hov_user_msg
 -- ----------------------------
-INSERT INTO `hov_user_msg` VALUES ('3', '1', '1', '1', '3423', 'ewrer', null, '1553065113');
-INSERT INTO `hov_user_msg` VALUES ('4', '1', '1', '1', 'wer', 'wer', null, '1553065113');
-INSERT INTO `hov_user_msg` VALUES ('8', '1', '1', '1', '324', '34', null, '1553065113');
-INSERT INTO `hov_user_msg` VALUES ('9', '1', '1', '1', '12', '234324', null, '1553065110');
+INSERT INTO `hov_user_msg` VALUES ('3', null, '1', '1', '3423', 'ewrer', null, '1553065113');
+INSERT INTO `hov_user_msg` VALUES ('4', null, '1', '1', 'wer', 'wer', null, '1553065113');
+INSERT INTO `hov_user_msg` VALUES ('8', null, '1', '1', '324', '34', null, '1553065113');
+INSERT INTO `hov_user_msg` VALUES ('9', null, '1', '1', '12', '234324', null, '1553065110');
 
 -- ----------------------------
 -- Table structure for `hov_user_note`
@@ -2921,11 +2960,12 @@ CREATE TABLE `hov_user_safepwd` (
   `safe` varchar(1000) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_safepwd
 -- ----------------------------
+INSERT INTO `hov_user_safepwd` VALUES ('1', '5', '{\"A\":{\"1\":\"3f\",\"2\":\"4s\",\"3\":\"6b\",\"4\":\"5p\",\"5\":\"qy\",\"6\":\"9v\",\"7\":\"sk\",\"8\":\"yg\",\"9\":\"5g\"},\"B\":{\"1\":\"au\",\"2\":\"qk\",\"3\":\"nh\",\"4\":\"pu\",\"5\":\"sj\",\"6\":\"qp\",\"7\":\"ew\",\"8\":\"hw\",\"9\":\"yn\"},\"C\":{\"1\":\"u8\",\"2\":\"fy\",\"3\":\"vx\",\"4\":\"yr\",\"5\":\"dx\",\"6\":\"qh\",\"7\":\"xn\",\"8\":\"ra\",\"9\":\"6k\"},\"D\":{\"1\":\"5j\",\"2\":\"pb\",\"3\":\"46\",\"4\":\"d5\",\"5\":\"6s\",\"6\":\"4j\",\"7\":\"uj\",\"8\":\"37\",\"9\":\"uw\"},\"E\":{\"1\":\"wc\",\"2\":\"n6\",\"3\":\"ks\",\"4\":\"wd\",\"5\":\"k9\",\"6\":\"cv\",\"7\":\"5k\",\"8\":\"jn\",\"9\":\"uf\"},\"F\":{\"1\":\"mp\",\"2\":\"mc\",\"3\":\"pq\",\"4\":\"7q\",\"5\":\"e9\",\"6\":\"cf\",\"7\":\"b5\",\"8\":\"sw\",\"9\":\"8p\"},\"G\":{\"1\":\"a7\",\"2\":\"jq\",\"3\":\"sa\",\"4\":\"nt\",\"5\":\"px\",\"6\":\"hk\",\"7\":\"rp\",\"8\":\"r4\",\"9\":\"ae\"},\"H\":{\"1\":\"vj\",\"2\":\"eu\",\"3\":\"nu\",\"4\":\"eh\",\"5\":\"6s\",\"6\":\"hb\",\"7\":\"hv\",\"8\":\"3k\",\"9\":\"an\"},\"I\":{\"1\":\"f9\",\"2\":\"q8\",\"3\":\"fg\",\"4\":\"94\",\"5\":\"bg\",\"6\":\"6y\",\"7\":\"ws\",\"8\":\"u7\",\"9\":\"yq\"}}', '1554511387');
 
 -- ----------------------------
 -- Table structure for `hov_webconfig`

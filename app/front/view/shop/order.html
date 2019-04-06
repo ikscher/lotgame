@@ -1,6 +1,7 @@
 {include file="public/header" /}
-<script src="http://static.geetest.com/static/tools/gt.js"></script>
+<script src="__JS__/gt.js"></script>
 <script  type="text/javascript" src="__JS__/js.js"></script>
+<script  type="text/javascript" src="__PUBLIC__/jquery/jquery.showLoading.min.js"></script>
 <script  type="text/javascript" src="__JS__/prize_buy.js"></script>
 
 <style type="text/css">
@@ -61,18 +62,18 @@
                                     </span>
                                 </div>
 
-                            <div id="sxfsm" class="sxfsm"></div>
+                                <div id="sxfsm" class="sxfsm"></div>
 
 
-                                    <!--<div style="background-color: #F2F7FF;width: auto;clear: both;height: 128px;padding: 8px">
-                                     <span>你的职业是什么?</span>
-                                     <br>
-                                     <input type="text" style="width: 150px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="tbUserSecAns">
-                                     <br>
-                                     <span>手机验证码</span>
-                                     <br>
-                                     <input id="code" type="text" style="width: 100px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="code"><button type="button" id="popup-submit" style="width: 50px;height: 29px;border: none;background-color: #90C626;padding:0 10px;color: #FFFFFF;font-weight: 900;position: relative;bottom: 1px">获取</button>
-                                    </div> -->
+                                  <div style="background-color: #F2F7FF;width: auto;clear: both;height: 128px;padding: 8px">
+                                   <span>{$safe_q}</span>
+                                   <br>
+                                   <input type="text" style="width: 150px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="safe_a" id="safe_a">
+                                   <br>
+                                   <span>手机验证码</span>
+                                   <br>
+                                   <input id="code" type="text" style="width: 100px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="code"><button type="button" id="popup-submit" style="width: 50px;height: 29px;border: none;background-color: #90C626;padding:0 10px;color: #FFFFFF;font-weight: 900;position: relative;bottom: 1px">获取</button>
+                                  </div> 
 
                             </td>
 
@@ -171,34 +172,6 @@
           cacusxf();
       });
 
-layui.use(['layer', 'form'], function(){
-  var layer = layui.layer
-  ,form = layui.form;
-  
-  
-  form.on('submit(order)',function(){
-     var num=$('#tbExchangedCount').val();
-     var aggregate=rmoney($('#price').html());
-     var prize_id=$("input[name='prizeid']").val();
-     var price=$("input[name='prizeprice']").val();
-     $.ajax({
-          url:"{:url('/shop/order')}",
-          data:{prize_id:prize_id,num:num,aggregate:aggregate,price:price},
-          type:'post',
-          async: false,
-          success:function(res) {
-              // console.log(res);
-              if(res.code == 1) {
-                  layer.msg(res.msg, function(index){
-                    location.href = res.url;
-                  })
-              } else {
-                  layer.msg(res.msg);
-              }
-          }
-      })
-      return false;
-  })
-});
+
 </script> 
 {include file="public/footer" /}

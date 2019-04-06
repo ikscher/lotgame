@@ -288,27 +288,38 @@ class Common extends Site
             // }
             $action=$post['action'];//login登录验证，changepwd修改密码验证，register注册
             
-            if($action=='login'){ //判断用户是否存在，不存在则不能登录
-                $mobile=$post['mobile'];
-                $map['mobile']=$mobile;
-                $uid=$this->userModel->where($map)->value('uid');
-                if(empty($uid)){
-                    $data['code']=-3;
-                    echo json_encode($data);exit;
-                }
-            }elseif($action=='changepwd'){ //更改密码，获取手机号
-                $uid=Session::get('uid');
-                $map['uid']=$uid;
-                $mobile=$this->userModel->where($map)->value('mobile');
-            }elseif($action=='register'){ //判断手机号是否已经注册，如果已注册则退出
-                $mobile=$post['mobile'];
-                $map['mobile']=$mobile;
-                $uid=$this->userModel->where($map)->value('uid');
-                if(!empty($uid)){
-                    $data['code']=-3;
-                    echo json_encode($data);exit;
-                }
+            switch($action){
+                case 'login'://判断用户是否存在，不存在则不能登录
+                    $mobile=$post['mobile'];
+                    $map['mobile']=$mobile;
+                    $uid=$this->userModel->where($map)->value('uid');
+                    if(empty($uid)){
+                        $data['code']=-3;
+                        echo json_encode($data);exit;
+                    }
+                    break;
+                case 'changepwd': //更改密码，获取手机号
+                    $uid=Session::get('uid');
+                    $map['uid']=$uid;
+                    $mobile=$this->userModel->where($map)->value('mobile');
+                    break;
+                case 'register'://判断手机号是否已经注册，如果已注册则退出
+
+                    $mobile=$post['mobile'];
+                    $map['mobile']=$mobile;
+                    $uid=$this->userModel->where($map)->value('uid');
+                    if(!empty($uid)){
+                        $data['code']=-3;
+                        echo json_encode($data);exit;
+                    }
+                    break;
+                case 'order':
+                    $uid=Session::get('uid');
+                    $map['uid']=$uid;
+                    $mobile=$this->userModel->where($map)->value('mobile');
+                    break;
             }
+          
 
            //判断不能频繁点击
             // $t1=time();
@@ -331,13 +342,15 @@ class Common extends Site
             if(true){
                 if($action=='login'){
                     Session::set('login_smscode_t',$smscode_t);
-                    Cookie::set('login_smscode_t',$smscode_t);
+                    // Cookie::set('login_smscode_t',$smscode_t);
                 }elseif($action=='changepwd'){
                     Session::set('changepwd_smscode_t',$smscode_t);
                     // Cookie::set('changepwd_smscode_t',$smscode_t);
                 }elseif($action=='register'){
                     Session::set('register_smscode_t',$smscode_t);
-                    Cookie::set('register_smscode_t',$smscode_t);
+                }elseif($action=='order') {
+                    Cookie::set('order_smscode_t',$smscode_t);
+                    Session::set('order_smscode_t',$smscode_t);
                 }
                 $data['code']=1;
                 echo json_encode($data);exit;
@@ -349,9 +362,9 @@ class Common extends Site
     }
 
     /**
-    * 发送邮件
+    * 暂时作废的发送邮件
     */
-    public function sendmail()
+    public function sendmail__()
     {   
         
         //判断是否邮箱已经存在
@@ -359,38 +372,39 @@ class Common extends Site
             $post=$this->request->post();
 
             //引用geetest验证API2（暂收保留）
-            $gtcfg=$this->geetest;
-            $GtSdk = new \geetest\lib\GeetestLib($gtcfg['captcha_id'], $gtcfg['private_key']);
+            // $gtcfg=$this->geetest;
+            // $GtSdk = new \geetest\lib\GeetestLib($gtcfg['captcha_id'], $gtcfg['private_key']);
 
-            $data = array(
-                    "user_id" => Session::get('user_id'), # 网站用户id
-                    "client_type" => "web", #web:电脑上的浏览器；h5:手机上的浏览器，包括移动应用内完全内置的web_view；native：通过原生SDK植入APP应用的方式
-                    "ip_address" => "127.0.0.1" # 请在此处传输用户请求验证时所携带的IP
-                );
+            // $data = array(
+            //         "user_id" => Session::get('user_id'), # 网站用户id
+            //         "client_type" => "web", #web:电脑上的浏览器；h5:手机上的浏览器，包括移动应用内完全内置的web_view；native：通过原生SDK植入APP应用的方式
+            //         "ip_address" => "127.0.0.1" # 请在此处传输用户请求验证时所携带的IP
+            //     );
 
 
-            if (Session::get('gtserver') == 1) {   //服务器正常
-                $result = $GtSdk->success_validate($post['geetest_challenge'], $post['geetest_validate'], $post['geetest_seccode'], $data);
-                if ($result) {
-                    // echo '{"status":"success"}';
-                } else{
-                    // echo '{"status":"fail"}';
-                    echo 2;exit;
-                }
-            }else{  //服务器宕机,走failback模式
-                if ($GtSdk->fail_validate($post['geetest_challenge'],$post['geetest_validate'],$post['geetest_seccode'])) {
-                    // echo '{"status":"success"}';
-                }else{
-                    // echo '{"status":"fail"}';
-                    echo 2;exit;
-                }
-            }
+            // if (Session::get('gtserver') == 1) {   //服务器正常
+            //     $result = $GtSdk->success_validate($post['geetest_challenge'], $post['geetest_validate'], $post['geetest_seccode'], $data);
+            //     if ($result) {
+            //         // echo '{"status":"success"}';
+            //     } else{
+            //         // echo '{"status":"fail"}';
+            //         echo 2;exit;
+            //     }
+            // }else{  //服务器宕机,走failback模式
+            //     if ($GtSdk->fail_validate($post['geetest_challenge'],$post['geetest_validate'],$post['geetest_seccode'])) {
+            //         // echo '{"status":"success"}';
+            //     }else{
+            //         // echo '{"status":"fail"}';
+            //         echo 2;exit;
+            //     }
+            // }
 
            $email=$post['email'];
            $map['email']=$email;
            $uid=$this->userModel->where($map)->value('uid');
            if(!empty($uid)){
-              echo -3;exit;
+               $data['code']=-3;
+               echo json_encode($data);exit;
            }
 
         }
@@ -403,7 +417,8 @@ class Common extends Site
         //     Session::set('sendmail_t',time());
         // } else{
         if($t1-$t0<60){
-            echo -1;exit;
+            $data['code']=-1;
+            echo json_encode($data);exit;
         }
         // }
         
@@ -412,10 +427,10 @@ class Common extends Site
         $emailcode=$str[rand(0,35)].$str[rand(0,35)].$str[rand(0,35)].$str[rand(0,35)];
         Cookie::set('emailcode',$emailcode);exit;
         // Session::set('emailcode',$emailcode)
-        $smtp_host='smtp.163.com';
-        $smtp_user="ikscher@163.com";
-        $smtp_password="hongwinter@520";
-        $smtp_port="465";
+        $smtp_host='';
+        $smtp_user="";
+        $smtp_password="";
+        $smtp_port="";
 
 
         $mail = new \phpmailer\Phpmailer(); //实例化
@@ -455,10 +470,96 @@ class Common extends Site
             if(empty($t0)){
                 Session::set('sendmail_t',time());
             } 
-            echo 1;exit;
+            $data['code']=1;
+            echo json_encode($data);exit;
             
         }else{
-            echo 'fail';exit;
+            $data['code']=0;
+            echo json_encode($data);exit;
+        }
+    }
+
+    /**
+    * @发送邮件
+    */
+    public function sendmail()
+    {   
+        
+        //判断是否邮箱已经存在
+        if($this->request->isPost()){
+            $post=$this->request->post();
+
+            //引用geetest验证API2（暂收保留）
+            // $gtcfg=$this->geetest;
+            // $GtSdk = new \geetest\lib\GeetestLib($gtcfg['captcha_id'], $gtcfg['private_key']);
+
+            // $data = array(
+            //         "user_id" => Session::get('user_id'), # 网站用户id
+            //         "client_type" => "web", #web:电脑上的浏览器；h5:手机上的浏览器，包括移动应用内完全内置的web_view；native：通过原生SDK植入APP应用的方式
+            //         "ip_address" => "127.0.0.1" # 请在此处传输用户请求验证时所携带的IP
+            //     );
+
+
+            // if (Session::get('gtserver') == 1) {   //服务器正常
+            //     $result = $GtSdk->success_validate($post['geetest_challenge'], $post['geetest_validate'], $post['geetest_seccode'], $data);
+            //     if ($result) {
+            //         // echo '{"status":"success"}';
+            //     } else{
+            //         // echo '{"status":"fail"}';
+            //         echo 2;exit;
+            //     }
+            // }else{  //服务器宕机,走failback模式
+            //     if ($GtSdk->fail_validate($post['geetest_challenge'],$post['geetest_validate'],$post['geetest_seccode'])) {
+            //         // echo '{"status":"success"}';
+            //     }else{
+            //         // echo '{"status":"fail"}';
+            //         echo 2;exit;
+            //     }
+            // }
+
+           
+            $email=$post['email'];
+
+
+            
+            $map['email']=$email;
+            $uid=$this->userModel->where($map)->value('uid');
+            if(!empty($uid)){
+               $data['code']=-3;
+               echo json_encode($data);exit;
+            }
+
+            //判断不能频繁点击
+            $t1=time();
+            $t0=Session::get('sendmail_t');
+
+            // if(empty($t0)){
+            //     Session::set('sendmail_t',time());
+            // } else{
+            if($t1-$t0<60){
+                $data['code']=-1;
+                echo json_encode($data);exit;
+            }
+
+            $address = $email;
+            $str = '1234567890abcdefghijklmnopqrstuvwxyz';
+            $emailcode=$str[rand(0,35)].$str[rand(0,35)].$str[rand(0,35)].$str[rand(0,35)];
+            
+
+            $mailto = SendMail($address,$this->site_name."绑定邮箱","您的验证码：".$emailcode);
+
+            if($mailto){
+                if(empty($t0)){
+                  Session::set('sendmail_t',time());
+                } 
+                Session::set('emailcode',$emailcode);
+                $data['code']=1;
+                echo json_encode($data);exit;
+                
+            }else{
+                $data['code']=0;
+                echo json_encode($data);exit;
+            }
         }
     }
     

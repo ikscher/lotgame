@@ -36,7 +36,7 @@ class Cardpwd extends Permissions
         $post = $this->request->param();
         if($this->request->isPost()) {
             if (isset($post['keywords']) and !empty($post['keywords'])) {
-                $where['card_no'] = ['like', '%' . $post['keywords'] . '%'];
+                $where['card_no|card_pwd'] = ['like', '%' . $post['keywords'] . '%'];
                 $this->assign('keywords',$post['keywords']);
             }
         }
