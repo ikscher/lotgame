@@ -13,7 +13,7 @@
     #bd .tb-stock .tb-increase {border-left: 0 !important; margin-right: 8px; }
     #bd .tb-stock a, #bd .tb-stock a:hover {display: block; _display: inline; float: left; width: 26px; height: 26px; border: 1px solid #ccc; line-height: 26px; padding: 0; vertical-align: top; overflow: hidden; text-align: center; background-color: #ededed; overflow: hidden; }
     .text-overflow{display:block;/*内联对象需加*/ width:31em; word-break:keep-all;/* 不换行 */ white-space:nowrap;/* 不换行 */ overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ } 
-    .sxfsm{width: 400px; height: 100px; border: 1px #FF4400 dotted; float: left; border-radius: 5px; padding: 5px 10px; margin: 5px; color: #737573; font-size: 12px;}
+    .sxfsm{width: 400px;  border: 1px #FF4400 dotted; float: left; border-radius: 5px; padding: 5px 10px; margin: 5px; color: #737573; font-size: 12px;}
     .ordbtn{font-size: 12px;color: #FFFFFF;width: 182px;height: 39px;background-color: #FF4400;border: none;font-weight: 900;margin-left: 100px;}
 </style>
 
@@ -42,14 +42,14 @@
                 <tbody>
                     <form  method="post" id="prizeform">
                         <input type="hidden" name="prizeid" value="{$id}" />
-                        <input type="hidden" name="prizeprice" value="{$prize['price']}" />
+                        <!-- <input type="hidden" name="prizeprice" value="{$prize['price']}" /> -->
                         <tr>
                              <td style="width: 250px"><img src="{$prize['thumb']|geturl}" alt="" width="250"></td>
                              <td style="vertical-align: top;background-color: #FBFCFF;border-top:1px #B2D1FF dotted;width: 100%">
                                 <div style="width:175px;float:left">
                                           <h1 style="font-size: 18px;font-weight: 100;margin-top: 10px">{$prize['name']}</h1>
 
-                                          <span>单价：</span><span id="oneprice" style="font-size: 21px" class="money money_bg">	{$prize['price']*$coefficient}</span>
+                                          <span>单价：</span><span id="oneprice" style="font-size: 21px" class="money money_bg">{$prize['price']*$coefficient}</span>
                                           <br>
                                          <span>额外手续费：</span><span  id="lssxf" style="color:green">-</span><span style="color:green;">金币</span><a id="sxfdetail" onmouseover="sxfdetail()" onmouseout="sxfdetail_clo()" style="display:none;background:url('__IMAGE__/wenh2.png');background-size:16px;width:16px;height:16px;    position: relative;top: 2px" ></a>
                                       <div style="height:3px"></div>
@@ -70,9 +70,11 @@
                                    <br>
                                    <input type="text" style="width: 150px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="safe_a" id="safe_a">
                                    <br>
+                                   {if condition="$smscode_show eq 1"}
                                    <span>手机验证码</span>
                                    <br>
                                    <input id="code" type="text" style="width: 100px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="code"><button type="button" id="popup-submit" style="width: 50px;height: 29px;border: none;background-color: #90C626;padding:0 10px;color: #FFFFFF;font-weight: 900;position: relative;bottom: 1px">获取</button>
+                                   {/if}
                                   </div> 
 
                             </td>
@@ -98,13 +100,15 @@
     </div>
 </div>
 <script> 
-      var lssxfopen = 1; //按照流水   手续费开区
+      var lssxfopen = 1; //按照流水   手续费开
 
-      var cssxfopen = 0; //按次数     手续费关闭
+      var cssxfopen = {$charge_times['id']}; //按次数     手续费关
       var oldprice;
-      var lsbs = {$charge['flow_times']}; //流水倍数
-      var yxls = 0; //7天内一共有的流水
-      var lssxbl = {$charge['charge_ratio']}; //流水手续比例
+      var lsbs = {$charge_f['flow_times']}; //流水倍数
+      var yxls = {$bidmoney}; //7天内一共有的游戏流水
+      var lssxbl = {$charge_f['charge_ratio']}; //流水手续比例
+      var days={$charge_f['flow_days']};
+      var prized=0;//近7天兑奖总额
       var xsf;
       var tipsStr='';
       var sumSxf;
@@ -116,31 +120,32 @@
               var freeprice = parseInt(yxls/lsbs);
 
 
-              if(oldprice>freeprice){
-                 xsf = (oldprice-freeprice)*lssxbl/100;
+              if(oldprice+prized>freeprice){ //正兑换的+已兑换的>免费限额
+                 var exceed=prized>freeprice?oldprice:(oldprice+prized-freeprice);
+                 xsf = exceed*lssxbl/100;
 
                  sumSxf = xsf;
-                 tipsStr = '●游戏流水手续费:您最近7日游戏流水：0<br/>您最近7日兑奖：0<br/>您当前可用流水：0<br/>可免额外手续费兑奖'+fmoney(parseInt(yxls/lsbs))+'金币,本次兑奖'+fmoney(oldprice)+"金币,超出部分："+fmoney(oldprice-parseInt(yxls/lsbs))+"按"+lssxbl+"%收取手续费："+fmoney(parseInt(xsf))+"金币";
-             }else{
+                 tipsStr = '●游戏流水手续费:您最近'+days+'日游戏流水：0,可免额外手续费兑奖'+fmoney(freeprice)+'金币<br/>您最近'+days+'日兑奖：'+prized+'<br/>本次兑奖'+fmoney(oldprice)+"金币,超出部分："+fmoney(exceed)+"按"+lssxbl+"%收取手续费："+fmoney(parseInt(xsf))+"金币";
+              }else{
                  $("#lssxf").html('无');
-                 tipsStr = '●游戏流水手续费:您最近7日游戏流水：0<br/>您最近7日兑奖：0<br/>您当前可用流水：0<br/>可免额外手续费兑奖'+fmoney(parseInt(yxls/lsbs))+'金币,本次兑奖'+fmoney(oldprice)+"金币,不收取额外手续费！";
-             }
+                 tipsStr = '●游戏流水手续费:您最近'+days+'日游戏流水：0,可免额外手续费兑奖'+fmoney(freeprice)+'金币<br/>您最近'+days+'日兑奖：'+prized+'<br/>,本次兑奖'+fmoney(oldprice)+"金币,不收取额外手续费！";
+              }
          }
-         if(cssxfopen == 1){
-             var feetype = 0;
+         if(cssxfopen){
+             var feetype = {$charge_times['by']};//按比例还是固定金额收取
              if(feetype == 1){
-                var curfee = parseInt(0);
+                var curfee = parseInt({$charge_times['charge']});
                 sumSxf += parseInt(curfee);
-                tipsStr += "<br/>●兑奖次数手续费:您今天是第1次兑奖，需收取"+curfee+"金币的手续费!";
+                tipsStr += '<br/>●兑奖次数手续费:您今天是第'+{$today_exchange_times}+'次兑奖，需收取'+curfee+'金币的手续费!';
             }else{
-                var curfee = parseInt(0*oldprice/100);
+                var curfee = parseInt({$charge_times['charge']}*oldprice/100);
                 sumSxf += curfee;
-                tipsStr += "<br/>●兑奖次数手续费:您今天是第1次兑奖，本次兑奖"+oldprice+"金币,需收取0%的手续费,即"+curfee+"金币!";
+                tipsStr += '<br/>●兑奖次数手续费:您今天是第'+{$today_exchange_times}+'次兑奖，本次兑奖'+oldprice+'金币,需收取'+{$charge_times['charge']}+'%的手续费,即'+curfee+'金币!';
             }
 
         }
         $("#sxfsm").html(tipsStr);
-        if(cssxfopen == 1 || lssxfopen == 1){
+        if(cssxfopen  || lssxfopen == 1){
              var aggregate=fmoney(parseInt(oldprice)+sumSxf);
              $("#price").html(aggregate);
              $("#lssxf").html(fmoney(sumSxf));

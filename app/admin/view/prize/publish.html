@@ -84,6 +84,13 @@
       </div>
 
       <div class="layui-form-item">
+        <label class="layui-form-label">每次兑奖审核</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input type="checkbox" name="must_check" lay-filter="check" title="" {notempty name="$prize.must_check"}checked value="1"{else /} value="0"{/notempty} >
+        </div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">对应卡类型</label>
         <div class="layui-input-block" style="max-width:300px;">
           <select name="card_cate_id"  lay-filter="catesel" >
@@ -195,6 +202,16 @@
               elem: '#create_time',
               type: 'datetime'
             });
+
+          //取反
+          form.on('checkbox(check)',function(data){
+             var x=$("input[name='must_check']");
+             if(x.prop('checked')){
+                x.val(1);
+             }else{
+                x.val(0);
+             }
+          })
       });
     </script>
 

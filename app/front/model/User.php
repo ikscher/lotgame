@@ -74,4 +74,9 @@ class User extends Model
         return $this->hasOne('app\admin\model\Agent','user_id');
     }
 
+    public function bid(){
+        //关联投注表
+        return $this->hasMany('UserBid','user_id');
+    }
+
 }

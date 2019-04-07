@@ -12,7 +12,8 @@ function fmoney(s, n) {
 }
 function add(){
     $("#tbExchangedCount").val(parseInt($("#tbExchangedCount").val())+1);
-    $("#price").html(fmoney(parseInt($("#price1").html())*parseInt($("#tbExchangedCount").val()),2));
+    var mny=fmoney(parseInt($("#oneprice").html())*parseInt($("#tbExchangedCount").val()),2);
+    $("#price").html(mny);
 }
 function minus(){
     if(parseInt($("#tbExchangedCount").val()) <= 1){
@@ -20,7 +21,7 @@ function minus(){
     }else{
         $("#tbExchangedCount").val(parseInt($("#tbExchangedCount").val())-1);
     }
-    $("#price").html(fmoney(parseInt($("#price1").html())*parseInt($("#tbExchangedCount").val()),2));
+    $("#price").html(fmoney(parseInt($("#oneprice").html())*parseInt($("#tbExchangedCount").val()),2));
 }
 function adjust(){
     if(isNaN($("#tbExchangedCount").val())){
@@ -33,7 +34,7 @@ function adjust(){
     if(parseInt($("#tbExchangedCount").val()) <= 1){
         $("#tbExchangedCount").val("1");
     }
-        $("#price").html(fmoney(parseInt($("#price1").html())*parseInt($("#tbExchangedCount").val()),2));
+        $("#price").html(fmoney(parseInt($("#oneprice").html())*parseInt($("#tbExchangedCount").val()),2));
 
 }
 var countdown=60;
@@ -164,7 +165,7 @@ layui.use(['layer', 'form'], function(){
         return false;
      }
 
-     if(!code){
+     if(!code && $('#code').length>0){
         salert_f("请输入验证码！",$('#code'));
         return false;
      }
@@ -172,15 +173,15 @@ layui.use(['layer', 'form'], function(){
      var num=$('#tbExchangedCount').val();
      var aggregate=rmoney($('#price').html());
      var prize_id=$("input[name='prizeid']").val();
-     var price=$("input[name='prizeprice']").val();
+     // var price=$("input[name='prizeprice']").val();
 
      $.ajax({
           url:'/shop/order',
-          data:{prize_id:prize_id,num:num,aggregate:aggregate,price:price,code:code,safe_a:safe_a},
+          data:{prize_id:prize_id,num:num,aggregate:aggregate,code:code,safe_a:safe_a},
           type:'post',
           async: false,
           success:function(res) {
-              // console.log(res);
+              console.log(res);
               if(res.code == 1) {
                   layer.msg(res.msg, function(index){
                     location.href = res.url;

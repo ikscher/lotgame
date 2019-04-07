@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:56:"D:\mywork\lotgame\public/../app/front\view\user\msg.html";i:1554010425;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554377533;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:56:"D:\mywork\lotgame\public/../app/front\view\user\msg.html";i:1554010425;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554511860;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -277,7 +277,7 @@
 		<p>站内功能</p>
 		<ul>
 			<!-- <li><a href='/User/SelfLine'>专属域名</a></li> -->
-			<li><a href='/User/Recharge'>点卡使用</a></li>
+			<li><a href='/User/Charge'>点卡使用</a></li>
 		</ul>
 		<ul>
 			<li><a href='/User/Msg'>站内信箱</a></li>

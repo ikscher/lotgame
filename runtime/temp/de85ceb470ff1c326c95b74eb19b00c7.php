@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:61:"D:\mywork\lotgame\public/../app/admin\view\prize\publish.html";i:1554466226;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:61:"D:\mywork\lotgame\public/../app/admin\view\prize\publish.html";i:1554618950;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,6 +81,13 @@
         <label class="layui-form-label">扣除积分</label>
         <div class="layui-input-block" style="max-width:300px;">
           <input name="de_point" autocomplete="off"  class="layui-input layui-input-fix" type="text" <?php if(!(empty($prize['de_point']) || (($prize['de_point'] instanceof \think\Collection || $prize['de_point'] instanceof \think\Paginator ) && $prize['de_point']->isEmpty()))): ?>value="<?php echo $prize['de_point']; ?>"<?php else: ?>value="0"<?php endif; ?>>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">每次兑奖审核</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input type="checkbox" name="must_check" lay-filter="check" title="" <?php if(!(empty($prize['must_check']) || (($prize['must_check'] instanceof \think\Collection || $prize['must_check'] instanceof \think\Paginator ) && $prize['must_check']->isEmpty()))): ?>checked value="1"<?php else: ?> value="0"<?php endif; ?> >
         </div>
       </div>
 
@@ -196,6 +203,16 @@
               elem: '#create_time',
               type: 'datetime'
             });
+
+          //取反
+          form.on('checkbox(check)',function(data){
+             var x=$("input[name='must_check']");
+             if(x.prop('checked')){
+                x.val(1);
+             }else{
+                x.val(0);
+             }
+          })
       });
     </script>
 

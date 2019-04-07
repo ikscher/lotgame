@@ -5,6 +5,8 @@ use think\Db;
 use app\admin\model\Admin as adminModel;//管理员模型
 use app\admin\model\AdminLog;//管理员模型
 use app\admin\model\CardPwd as cardPwdModel;
+use app\admin\model\Chargeconfig as chargeConfigModel;
+use app\front\model\UserExchange as userExchangeModel;
 
 class Index extends Controller
 {   
@@ -12,6 +14,8 @@ class Index extends Controller
     public function _initialize()
     {
         $this->cardPwdModel=new cardPwdModel();
+        $this->chargeConfigModel=new chargeConfigModel();
+        $this->userExchangeModel=new userExchangeModel();
     }
     public function index()
     {
@@ -55,16 +59,29 @@ class Index extends Controller
         //模型操作
         // print_r(Db::name('admin_menu')->where('id','>',40)->limit(1)->select());
         // print_r(Db::name('admin_menu')->where('id','>',40)->find());
-        $map['card_no']='d1ruGtx6zv';
-        $map['card_pwd']='U17NIHQB';
-        $card=$this->cardPwdModel->where($map)->find();
-        $card=null;
-        var_dump($card);
-        $card=$this->cardPwdModel->where($map)->find();
-        var_dump($card);
-        echo '<br/>';
+        // $map['card_no']='d1ruGtx6zv';
+        // $map['card_pwd']='U17NIHQB';
+        // $card=$this->cardPwdModel->where($map)->find();
+        // $card=null;
+        // var_dump($card);
+        // $card=$this->cardPwdModel->where($map)->find();
+        // var_dump($card);
+        // echo '<br/>';
 
-        // echo $card->cate->coin;
+        //次数流水手续费
+        // $charge_times=0;
+        // $charge_t=$this->chargeConfigModel->where('status',1)->select();
+        // // var_dump($charge_t);
+        // $charge_t_=collection($charge_t)->toArray();
+        // foreach($charge_t_ as $v){
+        //     var_dump($v);
+        // }
+
+        $map['user_id']=1;
+        $map['status']=array('in',array(1,2));
+        $ids=$this->userExchangeModel->where($map)->count('id'); //兑换过多少次
+        echo $this->userExchangeModel->getLastSql();
+        // echo $card->cate->coin; 
 
         // $url = \think\Db::name("urlconfig")->where(['status' => 0])->column('aliases,url');
         // var_dump($url);

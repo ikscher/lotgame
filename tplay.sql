@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-06 21:46:21
+Date: 2019-04-07 21:36:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=577 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=589 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -658,6 +658,18 @@ INSERT INTO `hov_admin_log` VALUES ('573', '73', '1', '192.168.1.101', '修改�
 INSERT INTO `hov_admin_log` VALUES ('574', '73', '1', '192.168.1.101', '修改奖品成功-8', '1554510806');
 INSERT INTO `hov_admin_log` VALUES ('575', '73', '1', '192.168.1.101', '修改奖品成功-8', '1554511036');
 INSERT INTO `hov_admin_log` VALUES ('576', '114', '1', '192.168.1.102', '成功生成卡密', '1554556313');
+INSERT INTO `hov_admin_log` VALUES ('577', '73', '1', '192.168.1.102', '修改奖品成功-10', '1554618879');
+INSERT INTO `hov_admin_log` VALUES ('578', '73', '1', '192.168.1.102', '修改奖品成功-10', '1554618956');
+INSERT INTO `hov_admin_log` VALUES ('579', '83', '1', '192.168.1.102', '流水手续费修改成功', '1554620437');
+INSERT INTO `hov_admin_log` VALUES ('580', '80', '1', '192.168.1.102', '兑换手续费规则修改成功', '1554621799');
+INSERT INTO `hov_admin_log` VALUES ('581', '80', '1', '192.168.1.102', '兑换手续费规则添加成功-2', '1554621839');
+INSERT INTO `hov_admin_log` VALUES ('582', '80', '1', '192.168.1.102', '兑换手续费规则添加成功-3', '1554621863');
+INSERT INTO `hov_admin_log` VALUES ('583', '83', '1', '192.168.1.102', '流水手续费修改成功', '1554622355');
+INSERT INTO `hov_admin_log` VALUES ('584', '80', '1', '192.168.1.102', '兑换手续费规则修改成功', '1554627793');
+INSERT INTO `hov_admin_log` VALUES ('585', '80', '1', '192.168.1.102', '兑换手续费规则修改成功', '1554627803');
+INSERT INTO `hov_admin_log` VALUES ('586', '80', '1', '192.168.1.102', '兑换手续费规则修改成功', '1554627817');
+INSERT INTO `hov_admin_log` VALUES ('587', '80', '1', '192.168.1.102', '兑换手续费规则修改成功', '1554627829');
+INSERT INTO `hov_admin_log` VALUES ('588', '80', '1', '192.168.1.102', '兑换手续费规则修改成功', '1554627840');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -1147,12 +1159,14 @@ CREATE TABLE `hov_chargeconfig` (
   `update_time` int(11) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1' COMMENT '1:启用0禁用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_chargeconfig
 -- ----------------------------
-INSERT INTO `hov_chargeconfig` VALUES ('1', '1', '1', '100000000', '2', '2.00', null, '1553830976', '1');
+INSERT INTO `hov_chargeconfig` VALUES ('1', '1', '1', '5', '2', '2.00', null, '1554627817', '1');
+INSERT INTO `hov_chargeconfig` VALUES ('2', '1', '6', '15', '2', '5.00', '1554621839', '1554627829', '1');
+INSERT INTO `hov_chargeconfig` VALUES ('3', '1', '16', '100', '2', '7.00', '1554621863', '1554627840', '1');
 
 -- ----------------------------
 -- Table structure for `hov_emailconfig`
@@ -1277,6 +1291,7 @@ CREATE TABLE `hov_game_bj10` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1297,6 +1312,7 @@ CREATE TABLE `hov_game_bj11` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1317,6 +1333,7 @@ CREATE TABLE `hov_game_bj16` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1337,6 +1354,7 @@ CREATE TABLE `hov_game_bj28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1357,6 +1375,7 @@ CREATE TABLE `hov_game_bj36` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1377,6 +1396,7 @@ CREATE TABLE `hov_game_cqssc` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1397,6 +1417,7 @@ CREATE TABLE `hov_game_dd16` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1417,6 +1438,7 @@ CREATE TABLE `hov_game_dd28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1437,6 +1459,7 @@ CREATE TABLE `hov_game_dd36` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1457,6 +1480,7 @@ CREATE TABLE `hov_game_dddw` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1477,6 +1501,7 @@ CREATE TABLE `hov_game_ddww` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1497,6 +1522,7 @@ CREATE TABLE `hov_game_ft10` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1517,6 +1543,7 @@ CREATE TABLE `hov_game_ft22` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1537,6 +1564,7 @@ CREATE TABLE `hov_game_ftgj` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1557,6 +1585,7 @@ CREATE TABLE `hov_game_gdbj28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1577,6 +1606,7 @@ CREATE TABLE `hov_game_gddd28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1597,6 +1627,7 @@ CREATE TABLE `hov_game_gdhg28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1617,6 +1648,7 @@ CREATE TABLE `hov_game_gdjnd28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1637,6 +1669,7 @@ CREATE TABLE `hov_game_hg10` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1657,6 +1690,7 @@ CREATE TABLE `hov_game_hg11` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1677,6 +1711,7 @@ CREATE TABLE `hov_game_hg16` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1697,6 +1732,7 @@ CREATE TABLE `hov_game_hg28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1717,6 +1753,7 @@ CREATE TABLE `hov_game_hg36` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1737,6 +1774,7 @@ CREATE TABLE `hov_game_hgdw` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1757,6 +1795,7 @@ CREATE TABLE `hov_game_hgww` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1777,6 +1816,7 @@ CREATE TABLE `hov_game_jnd10` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1797,6 +1837,7 @@ CREATE TABLE `hov_game_jnd11` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1817,6 +1858,7 @@ CREATE TABLE `hov_game_jnd16` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1837,6 +1879,7 @@ CREATE TABLE `hov_game_jnd28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1857,6 +1900,7 @@ CREATE TABLE `hov_game_jnd36` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1877,6 +1921,7 @@ CREATE TABLE `hov_game_jnddw` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1897,6 +1942,7 @@ CREATE TABLE `hov_game_jndww` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1917,6 +1963,7 @@ CREATE TABLE `hov_game_js10` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1937,6 +1984,7 @@ CREATE TABLE `hov_game_js11` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1957,6 +2005,7 @@ CREATE TABLE `hov_game_js16` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1977,6 +2026,7 @@ CREATE TABLE `hov_game_js22` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1997,13 +2047,14 @@ CREATE TABLE `hov_game_js28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_game_js28
 -- ----------------------------
-INSERT INTO `hov_game_js28` VALUES ('1', '1223423', null, null, '3', '3', '23423424', null);
+INSERT INTO `hov_game_js28` VALUES ('1', '1223423', null, null, '3', '3', '23423424', null, null);
 
 -- ----------------------------
 -- Table structure for `hov_game_js36`
@@ -2018,6 +2069,7 @@ CREATE TABLE `hov_game_js36` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2038,6 +2090,7 @@ CREATE TABLE `hov_game_jsgy` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2058,6 +2111,7 @@ CREATE TABLE `hov_game_pk10` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2078,6 +2132,7 @@ CREATE TABLE `hov_game_pk22` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2098,6 +2153,7 @@ CREATE TABLE `hov_game_pkgj` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2118,6 +2174,7 @@ CREATE TABLE `hov_game_pkgy` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2138,6 +2195,7 @@ CREATE TABLE `hov_game_pklh` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2158,6 +2216,7 @@ CREATE TABLE `hov_game_pksc` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2178,6 +2237,7 @@ CREATE TABLE `hov_game_qb16` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2198,6 +2258,7 @@ CREATE TABLE `hov_game_rs11` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2218,6 +2279,7 @@ CREATE TABLE `hov_game_rs16` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2238,6 +2300,7 @@ CREATE TABLE `hov_game_rs28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2258,6 +2321,7 @@ CREATE TABLE `hov_game_rs36` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2278,6 +2342,7 @@ CREATE TABLE `hov_game_tx11` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2298,6 +2363,7 @@ CREATE TABLE `hov_game_tx16` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2318,6 +2384,7 @@ CREATE TABLE `hov_game_tx28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2338,6 +2405,7 @@ CREATE TABLE `hov_game_tx36` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2358,6 +2426,7 @@ CREATE TABLE `hov_game_xdl10` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2378,6 +2447,7 @@ CREATE TABLE `hov_game_xdl11` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2398,6 +2468,7 @@ CREATE TABLE `hov_game_xdl16` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2418,6 +2489,7 @@ CREATE TABLE `hov_game_xdl28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2438,6 +2510,7 @@ CREATE TABLE `hov_game_xdl36` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2458,6 +2531,7 @@ CREATE TABLE `hov_game_xdlww` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2478,6 +2552,7 @@ CREATE TABLE `hov_game_xn28` (
   `bids` int(11) DEFAULT NULL COMMENT '投注次数',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
+  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2523,6 +2598,7 @@ CREATE TABLE `hov_prize` (
   `desc` text NOT NULL,
   `de_exp` int(11) DEFAULT '0' COMMENT '扣除经验',
   `de_point` int(11) DEFAULT '0' COMMENT '扣除积分',
+  `must_check` tinyint(1) DEFAULT '0' COMMENT '1：每次兑奖必须审核，0：不是',
   `card_cate_id` int(11) DEFAULT NULL,
   `create_time` int(11) NOT NULL,
   `update_time` int(11) NOT NULL,
@@ -2533,13 +2609,13 @@ CREATE TABLE `hov_prize` (
 -- ----------------------------
 -- Records of hov_prize
 -- ----------------------------
-INSERT INTO `hov_prize` VALUES ('4', null, '移动充值卡100元', '11', '10', '100.00', '100000', '0', '0', '<p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">奖品兑换流程：</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\"><br/></strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">1. 奖品价格已经包含邮寄费用在内，您无须另行支付。兑奖前请确认您的帐户中有足够数量的金额！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">2. 在您要兑奖的奖品页面点击“立即兑换”按钮，提交您的兑奖申请！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">3. 实物奖品将在您的兑奖确认后的2-5工作日内发出(奖品状态您可通过“站内信-兑奖发货通知”查询)！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">4. 兑奖中心所有奖品颜色均为随机发送, 敬请谅解！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">5. 奖品受供货商库存影响，会有缺货情况，如有缺货，客服会取消兑奖，退还金额。dd</strong></span></p><p><br/></p>', null, null, null, '1552636993', '1553824559', '0');
-INSERT INTO `hov_prize` VALUES ('5', null, '移动充值卡5000元', '12', '10', '5000.00', '5000000', '0', '0', '<p>移动充值卡5000元问问</p>', null, null, null, '1552637483', '1553762802', '0');
-INSERT INTO `hov_prize` VALUES ('6', null, '华为手机', '32', '11', '8000.00', '8000000', '0', '0', '', null, null, null, '1553762909', '1553762909', '0');
-INSERT INTO `hov_prize` VALUES ('7', null, '移动充值卡50000元', '33', '10', '50000.00', '50000000', '0', '0', '', null, null, null, '1553776674', '1553776674', '0');
-INSERT INTO `hov_prize` VALUES ('8', null, '移动充值卡1000元', '37', '10', '1000.00', '1000000', '0', '0', '', '0', '0', '4', '1553776727', '1554511036', '0');
-INSERT INTO `hov_prize` VALUES ('9', null, '移动充值卡30000元', '38', '10', '30000.00', '30000000', '0', '0', '', null, null, null, '1553776816', '1553776816', '0');
-INSERT INTO `hov_prize` VALUES ('10', null, '移动充值卡10000元', '39', '10', '10000.00', '10000000', '12', '2333', '', '0', '0', '4', '1553776882', '1554466254', '0');
+INSERT INTO `hov_prize` VALUES ('4', null, '移动充值卡100元', '11', '10', '100.00', '100000', '0', '0', '<p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">奖品兑换流程：</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\"><br/></strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">1. 奖品价格已经包含邮寄费用在内，您无须另行支付。兑奖前请确认您的帐户中有足够数量的金额！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">2. 在您要兑奖的奖品页面点击“立即兑换”按钮，提交您的兑奖申请！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">3. 实物奖品将在您的兑奖确认后的2-5工作日内发出(奖品状态您可通过“站内信-兑奖发货通知”查询)！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">4. 兑奖中心所有奖品颜色均为随机发送, 敬请谅解！</strong></span></p><p><span style=\"color:#ff0000\"><strong style=\"margin: 0px; padding: 0px;\">5. 奖品受供货商库存影响，会有缺货情况，如有缺货，客服会取消兑奖，退还金额。dd</strong></span></p><p><br/></p>', null, null, '0', null, '1552636993', '1553824559', '0');
+INSERT INTO `hov_prize` VALUES ('5', null, '移动充值卡5000元', '12', '10', '5000.00', '5000000', '0', '0', '<p>移动充值卡5000元问问</p>', null, null, '0', null, '1552637483', '1553762802', '0');
+INSERT INTO `hov_prize` VALUES ('6', null, '华为手机', '32', '11', '8000.00', '8000000', '0', '0', '', null, null, '0', null, '1553762909', '1553762909', '0');
+INSERT INTO `hov_prize` VALUES ('7', null, '移动充值卡50000元', '33', '10', '50000.00', '50000000', '0', '0', '', null, null, '0', null, '1553776674', '1553776674', '0');
+INSERT INTO `hov_prize` VALUES ('8', null, '移动充值卡1000元', '37', '10', '1000.00', '1000000', '0', '0', '', '0', '0', '0', '4', '1553776727', '1554511036', '0');
+INSERT INTO `hov_prize` VALUES ('9', null, '移动充值卡30000元', '38', '10', '30000.00', '30000000', '0', '0', '', null, null, '0', null, '1553776816', '1553776816', '0');
+INSERT INTO `hov_prize` VALUES ('10', null, '移动充值卡10000元', '39', '10', '10000.00', '10000000', '12', '2333', '', '0', '0', '1', '4', '1553776882', '1554618956', '0');
 
 -- ----------------------------
 -- Table structure for `hov_prize_cate`
@@ -2680,6 +2756,27 @@ CREATE TABLE `hov_user` (
 INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '45397312@qq.com', '13856900659', '2607820', '3218', '1554362992', '1554378041', '1554364285', null, '192.168.1.101', '0', '0', '0', '0', '0', '1', '1', '0', '1', 'ok', '3', null, '4', '1970', null, '1');
 
 -- ----------------------------
+-- Table structure for `hov_user_bid`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_user_bid`;
+CREATE TABLE `hov_user_bid` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `game_type` char(50) NOT NULL COMMENT '投注的比赛类型，比如加拿大10，这里的值就是jnd10',
+  `game_lot_num` int(11) NOT NULL COMMENT '开奖期号',
+  `bidinfo` varchar(300) DEFAULT NULL COMMENT '投注情况具体(每个数投了多少注）',
+  `bidmoney` int(11) DEFAULT NULL COMMENT '投注总金额',
+  `create_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hov_user_bid
+-- ----------------------------
+INSERT INTO `hov_user_bid` VALUES ('1', '5', '1', '1', '1', '6000', '1554118833', null);
+
+-- ----------------------------
 -- Table structure for `hov_user_charge`
 -- ----------------------------
 DROP TABLE IF EXISTS `hov_user_charge`;
@@ -2711,7 +2808,7 @@ CREATE TABLE `hov_user_exchange` (
   `update_time` int(11) DEFAULT NULL,
   `cardno` varchar(50) DEFAULT NULL,
   `cardpwd` varchar(50) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT '0' COMMENT '奖品是否通过审核1：通过，2：不通过，0：默认未审核',
+  `status` tinyint(1) DEFAULT '1' COMMENT '奖品是否通过审核1：待审核，2：通过，3：不通过',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
@@ -2767,7 +2864,7 @@ CREATE TABLE `hov_user_log` (
   `experiment` int(11) DEFAULT '0',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -2859,6 +2956,8 @@ INSERT INTO `hov_user_log` VALUES ('84', '5', '保存资料成功', '0', '0', '1
 INSERT INTO `hov_user_log` VALUES ('85', '5', '点卡成功充值1000000', '0', '0', '1554516870');
 INSERT INTO `hov_user_log` VALUES ('86', '5', 'd200nr2TAaRVr7ajWCW,jw1iQlimi0D3Chn点卡成功充值（批量操作）200000', '0', '0', '1554557823');
 INSERT INTO `hov_user_log` VALUES ('87', '5', '点卡成功充值（批量操作）', '0', '0', '1554558177');
+INSERT INTO `hov_user_log` VALUES ('88', '5', '兑奖次数额外手续费', '0', '0', '1554643064');
+INSERT INTO `hov_user_log` VALUES ('89', '5', '兑奖次数额外手续费', '0', '0', '1554643108');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`
@@ -3003,4 +3102,4 @@ CREATE TABLE `hov_webconfig` (
 -- ----------------------------
 -- Records of hov_webconfig
 -- ----------------------------
-INSERT INTO `hov_webconfig` VALUES ('101', 'Tplay后台管理框架', 'Tplay,后台管理,thinkphp5,layui', 'Tplay是一款基于ThinkPHP5.0.12 + layui2.2.45 + ECharts + Mysql开发的后台管理框架，集成了一般应用所必须的基础性功能，为开发者节省大量的时间。', '1', 'jpg,png,gif,mp4,zip,jpeg', '500', '', '', null, '金币', '0', '0', '1000', '0.4', '0.5000', '0.05', '0.9920', '50', '50', '7', '2.0000', '3.00', '1');
+INSERT INTO `hov_webconfig` VALUES ('101', 'Tplay后台管理框架', 'Tplay,后台管理,thinkphp5,layui', 'Tplay是一款基于ThinkPHP5.0.12 + layui2.2.45 + ECharts + Mysql开发的后台管理框架，集成了一般应用所必须的基础性功能，为开发者节省大量的时间。', '1', 'jpg,png,gif,mp4,zip,jpeg', '500', '', '', null, '金币', '0', '0', '1000', '0.4', '0.5000', '0.05', '0.9920', '50', '50', '10', '2.0000', '3.00', '0');
