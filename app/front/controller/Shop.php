@@ -211,28 +211,46 @@ class Shop extends Site
             }
             // $post['aggregate']=$post['aggregate'];
             // echo json_encode($post);exit;
+            unset($post['safe_a']);
+            unset($post['code']);
             $post['create_time']=time();
-            
             
 
             //判断是否第一次兑奖
             
             if(empty($ids)){//第一次兑奖需要管理员审核，既然设置了$must_check==0，那么就不需要短信验证，反之必须
-
+    
                 Db::startTrans();
                 try{
+                    
                     $ret=$this->userModel->where('uid',$this->uid)->setDec('coin',$post['aggregate']);
                     $ret_=$this->userExchangeModel->insert($post);
+                    
+
+                    // 提交事务
+                    Db::commit(); 
+                    
+                }catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+                    
+                    
+                }
+
+                if($ret && $ret_){
+                    //设置当日兑奖次数
+                    $today_exchage_times=Session::get('today_exchange_times')?Session::get('today_exchange_times')+1:1;
+                    Session::set('today_exchange_times',$today_exchange_times);
 
                     //游戏流水手续费写入日志
-                    $originalprice=$post['num']*$prize['price']*$this->coefficient;
+                    $originalprice=$post['num']*$post['price']*$this->coefficient;
                     if($originalprice+$aggregate>$freebidmoney){ //正兑换的+已兑换的>免费限额
-                         $exceed=$aggregate>$freebidmoney?$post['num']*$prize['price']:($post['num']*$prize['price']+$aggregate-$freebidmoney);
+                         $exceed=$aggregate>$freebidmoney?$post['num']*$post['price']:($post['num']*$post['price']+$aggregate-$freebidmoney);
                          $exceed_fee= intval($exceed*$charge_f['charge_ratio']/100);
 
                          adduserlog($this->uid,'兑奖流水额外手续费',-$exceed_fee);
                     }
-
+           
 
                     //次数流水手续费写入日志
                     $feetype = $charge_times['by'];//按比例还是固定金额收取
@@ -244,23 +262,10 @@ class Shop extends Site
                         $curfee = intval($charge_times['charge']*$originalprice/100);
                         adduserlog($this->uid,'兑奖次数额外手续费',-$curfee);
                     }
-                    
-                    // 提交事务
-                    Db::commit(); 
-                    
-                }catch (\Exception $e) {
-                    // 回滚事务
-                    Db::rollback();
-                    
-                }
 
-                if($ret && $ret_){
-                    //设置当日兑奖次数
-                    $today_exchage_times=Session::get('today_exchange_times')?Session::get('today_exchange_times')+1:1;
-                    Session::set('today_exchange_times',$today_exchange_times);
-                    // $prize_name=$this->prizeModel->where('id',$post['prize_id'])->value('name')
-                    $operation='兑换奖品'.$prize['name'];
-                    adduserlog($this->uid,$operation);
+                    //兑换奖品写入日志
+                    $operation='兑换奖品';
+                    adduserlog($this->uid,$operation,-$originalprice);
                     return $this->success($operation,'/shop/index');
                 }else{
                     return $this->error('兑换奖品失败！');

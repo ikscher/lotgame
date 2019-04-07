@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-07 21:36:33
+Date: 2019-04-07 23:10:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2753,7 +2753,7 @@ CREATE TABLE `hov_user` (
 -- ----------------------------
 -- Records of hov_user
 -- ----------------------------
-INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '45397312@qq.com', '13856900659', '2607820', '3218', '1554362992', '1554378041', '1554364285', null, '192.168.1.101', '0', '0', '0', '0', '0', '1', '1', '0', '1', 'ok', '3', null, '4', '1970', null, '1');
+INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '45397312@qq.com', '13856900659', '1515860', '3218', '1554362992', '1554378041', '1554364285', null, '192.168.1.101', '0', '0', '0', '0', '0', '1', '1', '0', '1', 'ok', '3', null, '4', '1970', null, '1');
 
 -- ----------------------------
 -- Table structure for `hov_user_bid`
@@ -2810,7 +2810,7 @@ CREATE TABLE `hov_user_exchange` (
   `cardpwd` varchar(50) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1' COMMENT '奖品是否通过审核1：待审核，2：通过，3：不通过',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_exchange
@@ -2825,6 +2825,7 @@ INSERT INTO `hov_user_exchange` VALUES ('11', '2', '2', '333.00', null, null, '1
 INSERT INTO `hov_user_exchange` VALUES ('14', '1', '4', '100.00', '1', '107,100', '1553908586', null, null, null, '1');
 INSERT INTO `hov_user_exchange` VALUES ('15', '1', '4', '100.00', '1', '107100', '1553909934', null, null, null, '1');
 INSERT INTO `hov_user_exchange` VALUES ('16', '1', '4', '100.00', '1', '107100', '1553909984', null, null, null, '1');
+INSERT INTO `hov_user_exchange` VALUES ('17', '5', '8', null, '1', '1091960', '1554649197', null, null, null, '1');
 
 -- ----------------------------
 -- Table structure for `hov_user_grade`
@@ -2864,7 +2865,7 @@ CREATE TABLE `hov_user_log` (
   `experiment` int(11) DEFAULT '0',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -2958,6 +2959,8 @@ INSERT INTO `hov_user_log` VALUES ('86', '5', 'd200nr2TAaRVr7ajWCW,jw1iQlimi0D3C
 INSERT INTO `hov_user_log` VALUES ('87', '5', '点卡成功充值（批量操作）', '0', '0', '1554558177');
 INSERT INTO `hov_user_log` VALUES ('88', '5', '兑奖次数额外手续费', '0', '0', '1554643064');
 INSERT INTO `hov_user_log` VALUES ('89', '5', '兑奖次数额外手续费', '0', '0', '1554643108');
+INSERT INTO `hov_user_log` VALUES ('90', '5', '兑奖次数额外手续费', '0', '0', '1554649197');
+INSERT INTO `hov_user_log` VALUES ('91', '5', '兑换奖品', '0', '0', '1554649197');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`

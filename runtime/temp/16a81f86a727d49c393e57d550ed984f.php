@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\order.html";i:1554642051;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\order.html";i:1554649423;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -228,7 +228,7 @@
                 <tbody>
                     <form  method="post" id="prizeform">
                         <input type="hidden" name="prizeid" value="<?php echo $id; ?>" />
-                        <!-- <input type="hidden" name="prizeprice" value="<?php echo $prize['price']; ?>" /> -->
+                        <input type="hidden" name="prizeprice" value="<?php echo $prize['price']; ?>" />
                         <tr>
                              <td style="width: 250px"><img src="<?php echo geturl($prize['thumb']); ?>" alt="" width="250"></td>
                              <td style="vertical-align: top;background-color: #FBFCFF;border-top:1px #B2D1FF dotted;width: 100%">

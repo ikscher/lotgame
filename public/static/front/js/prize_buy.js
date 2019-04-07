@@ -173,11 +173,11 @@ layui.use(['layer', 'form'], function(){
      var num=$('#tbExchangedCount').val();
      var aggregate=rmoney($('#price').html());
      var prize_id=$("input[name='prizeid']").val();
-     // var price=$("input[name='prizeprice']").val();
+     var price=$("input[name='prizeprice']").val();
 
      $.ajax({
           url:'/shop/order',
-          data:{prize_id:prize_id,num:num,aggregate:aggregate,code:code,safe_a:safe_a},
+          data:{prize_id:prize_id,num:num,aggregate:aggregate,code:code,safe_a:safe_a,price:price},
           type:'post',
           async: false,
           success:function(res) {
