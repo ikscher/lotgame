@@ -34,7 +34,7 @@
 									<td width="260px"><p class="table-p"><a href="/Prize/Detail?id={$vo.id}">{$vo.prize.name}</a></p></td>
 									<td>{$vo.num}</td>
 									<td>{$vo.create_time}</td>
-									<td>{if condition="$vo.status eq 1"}已发货{elsif condition="$vo.status eq 2}审核不通过{else /}等待审核{/if}</td>
+									<td>{if condition="$vo.status eq 1"}待审核{elseif condition="$vo.status eq 2" /}已发货{else /}拒绝{/if}</td>
 									<td> <a href="javascript:;" data-id="{$vo.id}" >重发</a> </td>
 
 								</tr>

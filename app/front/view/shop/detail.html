@@ -88,7 +88,7 @@
 		         <div class="top">
 				     <h1>奖品详情</h1>
 			     </div>
-		        <div class="intr">{$prize['desc']}</div>
+		        <div class="intr">{$prize['desc']|htmlspecialchars_decode|}</div>
 		      </div>
 	        <div style="margin-top:20px;" >
 	            <div class="top"><h1>奖品评论</h1></div>

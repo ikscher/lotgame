@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\prize.html";i:1554442998;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554511860;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\prize.html";i:1554712983;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554686874;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554686874;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -261,7 +261,7 @@
 		</ul>
 		<ul>
 			<li><a href='/User/Wage'>工资领取</a></li>
-			<li><a href='/Game/Egg'>金蛋砸取</a></li>
+			<li><a href='/Prize/Shatter'>金蛋砸取</a></li>
 		</ul>
 
 		<!-- <p>游戏功能</p>
@@ -317,7 +317,7 @@
 									<td width="260px"><p class="table-p"><a href="/Prize/Detail?id=<?php echo $vo['id']; ?>"><?php echo $vo['prize']['name']; ?></a></p></td>
 									<td><?php echo $vo['num']; ?></td>
 									<td><?php echo $vo['create_time']; ?></td>
-									<td><?php if($vo['status'] == 1): ?>已发货{elsif condition="$vo.status eq 2}审核不通过<?php else: ?>等待审核<?php endif; ?></td>
+									<td><?php if($vo['status'] == 1): ?>待审核<?php elseif($vo['status'] == 2): ?>已发货<?php else: ?>拒绝<?php endif; ?></td>
 									<td> <a href="javascript:;" data-id="<?php echo $vo['id']; ?>" >重发</a> </td>
 
 								</tr>

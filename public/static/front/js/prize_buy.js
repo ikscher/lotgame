@@ -130,6 +130,7 @@ var handlerPopup = function (captchaObj) {
     // 更多前端接口说明请参见：http://docs.geetest.com/install/client/web-front/
 };
 
+
 $.ajax({
     url: "/common/gtValidate?t=" + (new Date()).getTime(),
     type: "get",
@@ -147,7 +148,6 @@ $.ajax({
         }, handlerPopup);
     }
 });
-
 
 
 layui.use(['layer', 'form'], function(){
@@ -180,6 +180,7 @@ layui.use(['layer', 'form'], function(){
           data:{prize_id:prize_id,num:num,aggregate:aggregate,code:code,safe_a:safe_a,price:price},
           type:'post',
           async: false,
+          dataType:'json',
           success:function(res) {
               console.log(res);
               if(res.code == 1) {

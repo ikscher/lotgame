@@ -158,7 +158,7 @@ class User extends Site
         $map_['user_id']=$this->uid;
         $exchanges=$this->userExchangeModel->where($map_)->order('create_time desc')->paginate(8,false,['query'=>$this->request->param()]);
         $this->assign('exchanges',$exchanges);
-        
+        // var_dump(collection($exchanges)->toArray());
 
         return $this->fetch();
     }
@@ -277,8 +277,12 @@ class User extends Site
                         if($ret==false || $ret_==false){
                            return $this->error('充值失败！');
                         }else{
-                           $operation='点卡成功充值';
-                           adduserlog($this->uid,$operation);
+                           $operation='用户点卡自充值'.$coin;
+                           $usercoin=$this->userModel->where('uid',$this->uid)->value('coin');
+                           //充值增加经验对等金额（元）
+                           $this->userModel->where('uid',$this->uid)->setInc('experiments',$coin/1000);
+                           //写入日志
+                           adduserlog($this->uid,$operation,$coin,$coin/1000,$usercoin);
                            return $this->success($operation,'/user/charge');
                         }
                     }elseif (in_array($card['status'],array(2,3,4))){
@@ -322,6 +326,7 @@ class User extends Site
                     }
                 }
                 
+                $sum_coin=0;
                 foreach($card_no_arr as $k=>$card_no){
                     $card=null;
                     $card_no=$card_no;  //卡号
@@ -341,21 +346,26 @@ class User extends Site
                         $data['user_id']=$this->uid;
 
                         $ret_=$this->cardPwdModel->where($map)->update($data);
-
+                         
                         if($ret==false || $ret_==false){
                            return $this->error('充值失败！');
                         }
+                        $sum_coin+=$coin;
                         // 提交事务
                         Db::commit(); 
                         
                     }catch (\Exception $e) {
                         // 回滚事务
                         Db::rollback();
+                        return $this->error('充值失败！');
                     }
                 }
                 
-                $operation='点卡成功充值（批量操作）';
-                adduserlog($this->uid,$operation);
+                $operation='用户点卡自充值（批量操作）';
+                $usercoin=$this->userModel->where('uid',$this->uid)->value('coin');
+                //充值增加经验对等金额（元）
+                $this->userModel->where('uid',$this->uid)->setInc('experiments',$sum_coin/1000);
+                adduserlog($this->uid,$operation,$sum_coin,$sum_coin/1000,$usercoin);
                 return $this->success($operation,'/user/charge');
             }
         }

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\index.html";i:1554115742;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554603822;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\index.html";i:1554690205;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554686874;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554686874;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -357,9 +357,9 @@
 	 					<tr>
 	 						<td width="260px"><p class="table-p"><?php echo $vo['desc']; ?></p></td>
 	 						<td><?php echo $vo['create_time']; ?></td>
+	 						<td><span class="blue"><?php echo $vo['mp_coin']; ?></span></td>
+	 						<td><span class="blue"><?php echo $vo['mp_exp']; ?></span></td>
 	 						<td><span class="blue"><?php echo $vo['coin']; ?></span></td>
-	 						<td><span class="blue"><?php echo $vo['experiment']; ?></span></td>
-	 						<td><span class="blue"><?php echo $vo['user']['coin']; ?></span></td>
 	 					</tr>
 	 					<?php endforeach; endif; else: echo "" ;endif; ?>
 	 				</tbody>

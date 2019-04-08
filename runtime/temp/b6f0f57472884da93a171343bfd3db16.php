@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:56:"D:\mywork\lotgame\public/../app/front\view\user\msg.html";i:1554010425;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554511860;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:56:"D:\mywork\lotgame\public/../app/front\view\user\msg.html";i:1554081941;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554686874;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554686874;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -304,7 +304,7 @@
 		</ul>
 		<ul>
 			<li><a href='/User/Wage'>工资领取</a></li>
-			<li><a href='/Game/Egg'>金蛋砸取</a></li>
+			<li><a href='/Prize/Shatter'>金蛋砸取</a></li>
 		</ul>
 
 		<!-- <p>游戏功能</p>

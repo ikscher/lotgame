@@ -1,6 +1,8 @@
 {include file="public/header" /}
 <script src="__JS__/gt.js"></script>
+{if condition="$smscode_show eq 1"}
 <script  type="text/javascript" src="__JS__/js.js"></script>
+{/if}
 <script  type="text/javascript" src="__PUBLIC__/jquery/jquery.showLoading.min.js"></script>
 <script  type="text/javascript" src="__JS__/prize_buy.js"></script>
 
@@ -108,7 +110,7 @@
       var yxls = {$bidmoney}; //7天内一共有的游戏流水
       var lssxbl = {$charge_f['charge_ratio']}; //流水手续比例
       var days={$charge_f['flow_days']};
-      var prized=0;//近7天兑奖总额
+      var prized={$aggregate};//近7天兑奖总额
       var xsf;
       var tipsStr='';
       var sumSxf;

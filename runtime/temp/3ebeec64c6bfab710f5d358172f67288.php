@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:59:"D:\mywork\lotgame\public/../app/admin\view\agent\index.html";i:1553477457;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"D:\mywork\lotgame\public/../app/admin\view\agentcate\index.html";i:1553156665;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,87 +27,38 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">代理管理</li>
-        <li><a href="<?php echo url('admin/agent/publish'); ?>" class="a_menu">新增代理</a></li>
+        <li class="layui-this">代理分类管理</li>
+        <li><a href="<?php echo url('admin/agentcate/publish'); ?>" class="a_menu">新增分类</a></li>
       </ul>
-    </div> 
-      <form class="layui-form serch" action="<?php echo url('admin/agent/index'); ?>" method="post">
-        <div class="layui-inline">
-          <div class="layui-input-inline">
-            <select name="agent_id"  lay-filter="agentsel">
-                <option  value="">所有代理</option>
-                <?php if(is_array($agents_sel) || $agents_sel instanceof \think\Collection || $agents_sel instanceof \think\Paginator): if( count($agents_sel)==0 ) : echo "" ;else: foreach($agents_sel as $key=>$vo): ?>
-                <option value="<?php echo $vo['id']; ?>" <?php if(!(empty($agent_id) || (($agent_id instanceof \think\Collection || $agent_id instanceof \think\Paginator ) && $agent_id->isEmpty()))): if($agent_id == $vo['id']): ?>selected<?php endif; endif; ?>><?php echo $vo['name']; ?></option>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-              </select>
-          </div>
-        </div>
-
-        <div class="layui-inline">
-          <label class="layui-form-label">分类查询</label>
-          <div class="layui-input-inline">
-              <select name="agent_log_type">
-                <option  value="">全部卡</option>
-                <?php if(is_array($agent_log_types) || $agent_log_types instanceof \think\Collection || $agent_log_types instanceof \think\Paginator): if( count($agent_log_types)==0 ) : echo "" ;else: foreach($agent_log_types as $k=>$vo): ?>
-                <option value="<?php echo $k; ?>" <?php if(!(empty($agent_log_type) || (($agent_log_type instanceof \think\Collection || $agent_log_type instanceof \think\Paginator ) && $agent_log_type->isEmpty()))): if($agent_log_type == $k): ?>selected<?php endif; endif; ?>><?php echo $vo; ?></option>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-              </select>
-          </div>
-        </div>
-        <button class="layui-btn layui-btn-primary layui-btn-sm" lay-submit="" lay-filter="serch">查询</button>
-      </form> 
-    
+    </div>
     <table class="layui-table" lay-size="sm">
       <colgroup>
         <col width="50">
+        <col width="150">
+        <col width="500">
         <col width="200">
         <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="150">
       </colgroup>
       <thead>
         <tr>
-          <th>ID</th>
+          <th>编号</th>
           <th>名称</th>
-          <th>铺货量（元）</th>
-          <th>余额（元）</th>
-          <th>库存量（元）</th>
-          <th>折扣</th>
-          <th>可提额</th>
-          <th>操作</th>
-          <th>今日业绩</th>
-          <th>近7天业绩</th>
-          <th>近30天业绩</th>
-          <th>日志</th>
+          <th>描述</th>
+          <th>创建时间</th>
           <th>操作</th>
         </tr> 
       </thead>
       <tbody>
-        <?php if(is_array($agents) || $agents instanceof \think\Collection || $agents instanceof \think\Paginator): $i = 0; $__LIST__ = $agents;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): $i = 0; $__LIST__ = $cates;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
           <td><?php echo $vo['id']; ?></td>
-          <td><?php echo $vo['name']; ?></td>
-          <td><?php echo $vo['advance']; ?></td>
-          <td><?php echo $vo['balance']; ?></td>
-          <td><?php echo $vo['stock']; ?></td>
-          <td><?php echo $vo['discount']; ?></td>
-          <td><?php echo $vo['balance']-$vo['advance']+$vo['stock']*$vo['discount']; ?></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><span style="font-weight:500;"><?php echo $vo['str']; ?></span><?php echo $vo['name']; ?></td>
+          <td><?php echo $vo['description']; ?></td>
+          <td><?php echo $vo['create_time']; ?></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="<?php echo url('admin/agent/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="<?php echo url('admin/agentcate/publish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="<?php echo url('admin/agentcate/publish',['pid'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -115,7 +66,7 @@
         <?php endforeach; endif; else: echo "" ;endif; ?>
       </tbody>
     </table>
-    <div style="padding:0 20px;"><?php echo $agents->render(); ?></div> 
+            
         <script src="/static/public/layui/layui.js" charset="utf-8"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
     <script>
@@ -214,10 +165,9 @@
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"<?php echo url('admin/agent/delete'); ?>",
+          url:"<?php echo url('admin/agentcate/delete'); ?>",
           data:{id:id},
           success:function(res) {
-            // console.log(res)
             layer.msg(res.msg);
             if(res.code == 1) {
               setTimeout(function(){
@@ -228,21 +178,6 @@
         })
       })
     })
-    </script>
-
-    <script>
-      layui.use(['layer', 'form','laydate'], function() {
-          var layer = layui.layer,
-          $ = layui.jquery,
-          form = layui.form,
-          laydate = layui.laydate;
-          $(window).on('load', function() {
-              form.on('select(catesel)', function(data) {
-                  var id=data.value;
-                  location.href='index?card_cate_id='+id;
-              });
-          });
-      });
     </script>
   </div>
 </body>

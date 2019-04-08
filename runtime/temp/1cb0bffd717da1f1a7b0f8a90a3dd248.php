@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:67:"D:\mywork\lotgame\public/../app/admin\view\prizeexchange\index.html";i:1553909344;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:67:"D:\mywork\lotgame\public/../app/admin\view\prizeexchange\index.html";i:1554713585;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,8 +48,8 @@ td span a{
             <div class="layui-inline">
                 <select name="status" lay-search="">
                   <option value="">状态</option>
-                  <option value="0">待审核</option>
-                  <option value="1">已审核通过</option>
+                  <option value="1">待审核</option>
+                  <option value="2">已发货</option>
                   <option value="2">审核未通过</option>
                 </select>
             </div>
@@ -109,10 +109,10 @@ td span a{
           <td><?php echo $vo['aggregate']; ?></td>
           <td><?php echo date('Y-m-d H:i:s',$vo['create_time']); ?></td><!--如果是model不是Db::name创建的 A non well formed numeric value encountered  不需要用date转换  -->
           <td>
-             <?php if($vo['status'] == 1): ?>
-              已通过
+             <?php if($vo['status'] == 3): ?>
+              审核未通过
              <?php elseif($vo['status'] == 2): ?>
-             未通过
+             已发货
              <?php else: ?>
              <span><a class="exchange"  data-id="<?php echo $vo['id']; ?>" data-aggregate="<?php echo $vo['aggregate']; ?>" data-uid="<?php echo $vo['user_id']; ?>" data-status="1" href="javascript:;">通过</a><a class="exchange"  data-id="<?php echo $vo['id']; ?>" data-status="2" href="javascript:;">拒绝</a></span>
              <?php endif; ?>

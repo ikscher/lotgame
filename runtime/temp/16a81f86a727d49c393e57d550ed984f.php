@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\order.html";i:1554649423;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\order.html";i:1554708450;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554686874;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,7 +186,9 @@
 	setTimeout(window.autoAnimation, 5000);
 </script>
 <script src="/static/front/js/gt.js"></script>
+<?php if($smscode_show == 1): ?>
 <script  type="text/javascript" src="/static/front/js/js.js"></script>
+<?php endif; ?>
 <script  type="text/javascript" src="/static/public/jquery/jquery.showLoading.min.js"></script>
 <script  type="text/javascript" src="/static/front/js/prize_buy.js"></script>
 
@@ -294,7 +296,7 @@
       var yxls = <?php echo $bidmoney; ?>; //7天内一共有的游戏流水
       var lssxbl = <?php echo $charge_f['charge_ratio']; ?>; //流水手续比例
       var days=<?php echo $charge_f['flow_days']; ?>;
-      var prized=0;//近7天兑奖总额
+      var prized=<?php echo $aggregate; ?>;//近7天兑奖总额
       var xsf;
       var tipsStr='';
       var sumSxf;

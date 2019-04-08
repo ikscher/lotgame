@@ -168,7 +168,7 @@ class Shop extends Site
         $map['status']= array('in',array(1,2));
         //用户7天内已兑换过总价累积
         $aggregate=$this->userExchangeModel->where($map)->where('create_time','between',[$begin_time,$end_time])->sum('aggregate'); 
-        
+        $this->assign('aggregate',$aggregate);
         
         //次数流水手续费
         $charge_times=array('by'=>0,'charge'=>0,'id'=>0);
@@ -197,10 +197,8 @@ class Shop extends Site
             if($this->user['safe_a']!=$post['safe_a']){
                 return $this->error('密保答案不正确！');
             }
-
-            if(Session::get("order_smscode_t")!=$post['code']){
-                return $this->error('验证码错误！');
-            }
+            
+            
         	
             $post['user_id']=$this->uid;
 
@@ -219,7 +217,11 @@ class Shop extends Site
             //判断是否第一次兑奖
             
             if(empty($ids)){//第一次兑奖需要管理员审核，既然设置了$must_check==0，那么就不需要短信验证，反之必须
-    
+                
+                if(Session::get("order_smscode_t")!=$post['code']){
+                    return $this->error('验证码错误！');
+                }
+
                 Db::startTrans();
                 try{
                     
@@ -245,10 +247,13 @@ class Shop extends Site
                     //游戏流水手续费写入日志
                     $originalprice=$post['num']*$post['price']*$this->coefficient;
                     if($originalprice+$aggregate>$freebidmoney){ //正兑换的+已兑换的>免费限额
-                         $exceed=$aggregate>$freebidmoney?$post['num']*$post['price']:($post['num']*$post['price']+$aggregate-$freebidmoney);
+                         
+                         //如果已兑换的大于免费额度
+                         $exceed=$aggregate>$freebidmoney?$originalprice:($originalprice+$aggregate-$freebidmoney);
                          $exceed_fee= intval($exceed*$charge_f['charge_ratio']/100);
 
-                         adduserlog($this->uid,'兑奖流水额外手续费',-$exceed_fee);
+                         $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                         adduserlog($this->uid,'兑奖流水额外手续费',-$exceed_fee,0,$coin-$exceed_fee);
                     }
            
 
@@ -256,69 +261,125 @@ class Shop extends Site
                     $feetype = $charge_times['by'];//按比例还是固定金额收取
                      if($feetype == 1){
                         $curfee = intval($charge_times['charge']);
-                        
-                        adduserlog($this->uid,'兑奖次数额外手续费',-$curfee);
+                        $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                        adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin-$curfee);
                     }else{
+                        $coin=$this->userModel->where('uid',$this->uid)->value('coin');
                         $curfee = intval($charge_times['charge']*$originalprice/100);
-                        adduserlog($this->uid,'兑奖次数额外手续费',-$curfee);
+                        adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin-$curfee);
                     }
 
                     //兑换奖品写入日志
-                    $operation='兑换奖品';
-                    adduserlog($this->uid,$operation,-$originalprice);
+                    $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                    $prize_name=$this->prizeModel->where("id={$post['prize_id']}")->value('name');
+                    $operation='兑换奖品'.$prize_name;
+                    adduserlog($this->uid,$operation,-$originalprice,0,$coin-$originalprice);
                     return $this->success($operation,'/shop/index');
                 }else{
                     return $this->error('兑换奖品失败！');
                 }
             }else{//不是第一次兑奖（以前兑换过奖品）
+
+                $prize=$this->prizeModel->where('id',$post['prize_id'])->find();
+                 // $prize=$this->prizeModel->where('id',$post['prize_id'])->find();
+                $card_cate_id=$prize['card_cate_id'];//卡类型ID
+          
+                //对应的卡密取一条
+                $map=array();
+                $map['card_cate_id']=$card_cate_id;
+                $map['status']=1;
+                $cardpwd=$this->cardPwdModel->where($map)->find();
+                
+                $card_no=$cardpwd['card_no'];
+                $card_pwd=$cardpwd['card_pwd'];
+
+                if(empty($cardpwd['id'])){
+                    return $this->error('没有对应的充值卡，请联系代理或网站客服！');
+                }
+                
+                $result_trans=true;
+                $operation='兑换奖品'.$prize['name'];
+
                 Db::startTrans();
                 try{
-                    $ret=$this->userModel->where('uid',$this->uid)->setDec('coin',$post['aggregate']);
-                    $post['status']=$must_check?1:2;;//直接通过审核2,但是如果设置了此奖品必须审核，那么还是1状态
-                    $ret_=$this->userExchangeModel->insert($post);
+                    $ret1=$this->userModel->where('uid',$this->uid)->setDec('coin',$post['aggregate']);
                     
+                    $post['status']=$prize['must_check']?1:2;;//直接通过审核2,但是如果设置了此奖品必须审核，那么还是1状态
+                    $ret2=$this->userExchangeModel->insert($post);
+                    
+                    //设置当日兑奖次数
+                    $today_exchange_times=Session::get('today_exchange_times')?Session::get('today_exchange_times')+1:1;
+                    Session::set('today_exchange_times',$today_exchange_times);
+                    // ===================== 以下操作 如果是第一次兑奖 均在后台执行begin 取对应的奖品=========================
+                    //更改卡密的状态为已兑出（未回收）
+                    $map=array();
+                    $map['card_no']=$card_no;
+                    $map['card_pwd']=$card_pwd;
+                    $this->cardPwdModel->where($map)->update(['status'=>2]);
+                    
+                    //发站内信
+                    $data=array();
+                    $prize_name=$prize['name']; //奖品名称
+                    $data['send_uid']=1; //ID=1代表的是管理员（官方后台）
+                    $data['user_id']=$this->uid;
+                    $data['type']=3;
+                    $data['create_time']=time();
+                    $data['title']='兑奖发货通知';
+                    $data['content']='内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$card_no.' '.$card_pwd;
+                    $ret3=$this->userMsgModel->insert($data);
+                    
+                    //发邮件
+                    //$ret4=SendMail($this->user['email'],$this->site_name."邮件",'内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$card_no.' '.$card_pwd);
+                    //==============================end=========================
+                   
+                    
+                    // $originalprice=$post['num']*$post['price']*$this->coefficient;
+                    $originalprice=$post['aggregate'];
+                    //兑换奖品写入日志
+                    $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                    // $prize_name=$this->prizeModel->where("id={$post['prize_id']}")->value('name');
+                    $ret7=adduserlog($this->uid,$operation,-$originalprice,0,$coin-$originalprice);
+
+                    //游戏流水手续费写入日志
+                    if($originalprice+$aggregate>$freebidmoney){ //正兑换的+已兑换的>免费限额
+                         //如果已兑换的大于免费额度
+                         $exceed=$aggregate>$freebidmoney?$originalprice:($originalprice+$aggregate-$freebidmoney);
+                         $exceed_fee= intval($exceed*$charge_f['charge_ratio']/100);
+                         $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                         $ret5=adduserlog($this->uid,'兑奖流水额外手续费',-$exceed_fee,0,$coin-$exceed_fee);
+                    }
+           
+
+                    //次数流水手续费写入日志
+                    $feetype = $charge_times['by'];//按比例还是固定金额收取
+                     if($feetype == 1){
+                        $curfee = intval($charge_times['charge']);
+                        $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                        $ret6=adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin-$curfee);
+                    }else{
+                        $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                        $curfee = intval($charge_times['charge']*$originalprice/100);
+                        $ret6=adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin-$curfee);
+                    }
+
+                    
+
                     // 提交事务
                     Db::commit(); 
                     
                 }catch (\Exception $e) {
+                    $result_trans=false;
                     // 回滚事务
                     Db::rollback();
+                    $msg=$e->getErrorMessage();
                     
                 }
 
-                if($ret && $ret_){
-                    //设置当日兑奖次数
-                    $today_exchage_times=Session::get('today_exchange_times')?Session::get('today_exchange_times')+1:1;
-                    Session::set('today_exchange_times',$today_exchange_times);
-                    //取对应的奖品
-                    $prize=$this->prizeModel->where('id',$post['prize_id'])->find();
-                    $card_cate_id=$prize['card_cate_id'];//卡类型ID
-                    
-                    //对应的卡密取一条
-                    $map=array();
-                    $map['card_cate_id']=$card_cate_id;
-                    $map['status']=1;
-                    $cardpwd=$this->cardPwdModel->where($map)->find();
-                    $card_no=$cardpwd['card_no'];
-                    $card_pwd=$cardpwd['card_pwd'];
-                    
-                    //发站内信
-                    $prize_name=$prize['name']; //奖品名称
-                    $this->userMsgModel->send_uid=1; //ID=1代表的是管理员（官方后台）
-                    $this->userMsgModel->user_id=$this->uid;
-                    $this->userMsgModel->type=3;
-                    $this->userMsgModel->title='兑奖发货通知';
-                    $this->userMsgModel->content='内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$card_no.' '.$card_pwd;
-                    $this->userMsgModel->save();
-                    //发邮件
-
-                    SendMail($this->user['email'],$this->site_name."邮件",'内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$card_no.' '.$card_pwd);
-                    
-                    $operation='您已兑换奖品，请查看邮箱';
-                    adduserlog($this->uid,$operation);
+                if($result_trans){
+                    // $operation='您已兑换奖品，请查看邮箱';
                     return $this->success($operation,'/shop/index');
                 }else{
-                    return $this->error('兑换奖品失败！');
+                    return $this->error('兑换奖品失败！'.$msg);
                 }
                 
             } 
