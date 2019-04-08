@@ -20,7 +20,8 @@ use \think\Cookie;
 use \think\Session;
 use app\admin\controller\Permissions;
 use app\admin\model\Prize as prizeModel;
-use app\admin\model\PrizeCate as cateModel;
+use app\admin\model\PrizeCate as prizeCateModel;
+use app\admin\model\CardCate as cardCateModel;
 use app\front\model\UserGrade as gradeModel;
 use app\front\model\User as userModel;
 use app\front\model\UserLog as logModel;
@@ -77,8 +78,15 @@ class Prize extends Permissions
     {
     	//获取菜单id
     	$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
+
+        $cardCateModel= new cardCateModel();
+        $cates_= $cardCateModel->select();
+        $cardcates=collection($cates_)->toArray();
+        $this->assign('cardcates',$cardcates);
+
+
     	$model = new prizeModel();
-        $cateModel = new cateModel();
+        $prizeCateModel = new prizeCateModel();
 		//是正常添加操作
 		if($id > 0) {
     		//是修改操作
@@ -89,6 +97,7 @@ class Prize extends Permissions
 	            $validate = new \think\Validate([
 	                ['name', 'require', '奖品不能为空'],
 	                ['prize_cate_id', 'require', '请选择分类'],
+                    ['card_cate_id', 'require', '请选择对应卡类型'],
                     ['thumb', 'require', '请上传缩略图'],
                     ['price', 'require', '奖品价格不能为空']
 	            ]);
@@ -96,6 +105,7 @@ class Prize extends Permissions
 	            if (!$validate->check($post)) {
 	                $this->error('提交失败：' . $validate->getError());
 	            }
+                
 	            //验证菜单是否存在
 	            $prize = $model->where('id',$id)->find();
 	            if(empty($prize)) {
@@ -103,6 +113,7 @@ class Prize extends Permissions
 	            }
                 //设置修改人
                 // $post['edit_admin_id'] = Session::get('admin');
+                $post['coin']=$post['price']*1000;
           
 	            if(false == $model->allowField(true)->save($post,['id'=>$id])) {
 	            	return $this->error('修改失败');
@@ -114,9 +125,9 @@ class Prize extends Permissions
     		} else {
     			//非提交操作
     			$prize = $model->where('id',$id)->find();
-    			$cates = $cateModel->select();
-    			$cates_all = $cateModel->catelist($cates);
-    			$this->assign('cates',$cates_all);
+    			$cates = $prizeCateModel->select();
+    			$cates_all = $prizeCateModel->catelist($cates);
+    			$this->assign('prizecates',$cates_all);
     			if(!empty($prize)) {
     				$this->assign('prize',$prize);
     				return $this->fetch();
@@ -133,6 +144,7 @@ class Prize extends Permissions
 	            $validate = new \think\Validate([
 	                ['name', 'require', '奖品不能为空'],
                     ['prize_cate_id', 'require', '请选择分类'],
+                    ['card_cate_id', 'require', '请选择对应卡类型'],
                     ['thumb', 'require', '请上传缩略图'],
                     ['price', 'require', '奖品价格不能为空']
 	            ]);
@@ -155,9 +167,9 @@ class Prize extends Permissions
 	            }
     		} else {
     			//非提交操作
-    			$cate = $cateModel->select();
-    			$cates = $cateModel->catelist($cate);
-    			$this->assign('cates',$cates);
+    			$prizecate = $prizeCateModel->select();
+    			$prizecates = $prizeCateModel->catelist($prizecate);
+    			$this->assign('prizecates',$prizecates);
     			return $this->fetch();
     		}
     	}

@@ -12,7 +12,8 @@ function fmoney(s, n) {
 }
 function add(){
     $("#tbExchangedCount").val(parseInt($("#tbExchangedCount").val())+1);
-    $("#price").html(fmoney(parseInt($("#price1").html())*parseInt($("#tbExchangedCount").val()),2));
+    var mny=fmoney(parseInt($("#oneprice").html())*parseInt($("#tbExchangedCount").val()),2);
+    $("#price").html(mny);
 }
 function minus(){
     if(parseInt($("#tbExchangedCount").val()) <= 1){
@@ -20,7 +21,7 @@ function minus(){
     }else{
         $("#tbExchangedCount").val(parseInt($("#tbExchangedCount").val())-1);
     }
-    $("#price").html(fmoney(parseInt($("#price1").html())*parseInt($("#tbExchangedCount").val()),2));
+    $("#price").html(fmoney(parseInt($("#oneprice").html())*parseInt($("#tbExchangedCount").val()),2));
 }
 function adjust(){
     if(isNaN($("#tbExchangedCount").val())){
@@ -33,10 +34,11 @@ function adjust(){
     if(parseInt($("#tbExchangedCount").val()) <= 1){
         $("#tbExchangedCount").val("1");
     }
-        $("#price").html(fmoney(parseInt($("#price1").html())*parseInt($("#tbExchangedCount").val()),2));
+        $("#price").html(fmoney(parseInt($("#oneprice").html())*parseInt($("#tbExchangedCount").val()),2));
 
 }
 var countdown=60;
+var t;
 function settime(){
     if(countdown == 0){
         $("#popup-submit").removeAttr("disabled");
@@ -47,31 +49,57 @@ function settime(){
     }else{
         $("#popup-submit").html( countdown);
         countdown--;
-        setTimeout("settime()",1000);
+        t=setTimeout("settime()",1000);
+        if(t==0) clearTimeout(t);
     }
 
 }
+
+
+
+//======================================================//
+function salert_f(str,x){
+    layui.use('form',function(){
+        var layer=layui.layer;
+        layer.alert(str,function(index){
+            x.focus();
+            layer.close(index)
+        });
+    })
+}
+
+function salert(str){
+    layui.use('form',function(){
+        var layer=layui.layer;
+        layer.alert(str);
+    })
+}
+
 var handlerPopup = function (captchaObj) {
-    $("#popup-submit").click(function () {
-        var validate = captchaObj.getValidate();
-        if (!validate) {
+    captchaObj.onReady(function () {
+        $("#wait").hide();
+    }).onSuccess(function () {
+        
+        var result = captchaObj.getValidate();
+        if (!result) {
             salert('请先完成滑动验证！');
             return;
         }
-        $('#buybox').showLoading();
+
+        $("body").showLoading();
         $.ajax({
-            url: "/Ajax_mobile.php",
+            url: "/common/sendmsg",
             type: "post",
             data: {
-                geetest_challenge: validate.geetest_challenge,
-                geetest_validate: validate.geetest_validate,
-                geetest_seccode: validate.geetest_seccode,
-                action: "post",
-                type: "buyprize"
+                geetest_challenge: result.geetest_challenge,
+                geetest_validate: result.geetest_validate,
+                geetest_seccode: result.geetest_seccode,
+                action: "order"
             },
-            success: function (result) {
-                result=parseInt(result);
-                switch (result){
+            dataType:'json',
+            success: function (res) {
+                // result=parseInt(result);
+                switch (res.code){
                     case -1:
                         salert('短信发送失败');
                         break;
@@ -82,63 +110,87 @@ var handlerPopup = function (captchaObj) {
                         salert('短信发送成功,请注意查收!');
                         settime();
                         break;
-                    case -2:
-                        salert("该手机号已经注册,请直接登录");
+                    case -3:
+                        salert("该手机号尚未注册,请先注册!");
                         break;
-					case -13: 
-						salert("发送频率过高,请稍后发送！"); 
-						break;
                     default:
                         salert("短信发送失败:未知错误");
                         break;
                 }
             },
             complete: function () {
-                $('#buybox').hideLoading();
+                $("body").hideLoading();
             }
         });
     });
-    captchaObj.bindOn("#popup-submit");
-    captchaObj.appendTo("#popup-captcha");
+    $('#popup-submit').click(function () {
+       
+        captchaObj.verify();
+    })
+    // 更多前端接口说明请参见：http://docs.geetest.com/install/client/web-front/
 };
+
 $.ajax({
-    url: "/class/geetest/web/StartCaptchaServlet.php?t=" + (new Date()).getTime(),
+    url: "/common/gtValidate?t=" + (new Date()).getTime(),
     type: "get",
     dataType: "json",
     success: function (data) {
+        $('#text').hide();
+        $('#wait').show();
         initGeetest({
             gt: data.gt,
             challenge: data.challenge,
-            product: "popup",
+            product: "bind",
+            timeout: '5000',
+            new_captcha: data.new_captcha, // 用于宕机时表示是新验证码的宕机
             offline: !data.success
         }, handlerPopup);
     }
 });
 
-function salert(str){
-    layer.alert(str);
-}
-$(document).ready(function(){
-    $("#qrsubmit").click(function (){
-        $('#buybox').showLoading();
-        $.ajax({
-            url: "/Ajax_mobile.php",
-            type: "post",
-            data: {
-                action: "yz",
-                code: $("#code").val()
-            },
-            success: function(result){
-                if(result==1){
-                    $("form").submit();
-                }else{
-                    salert('对不起,您的手机验证码错误!');
-                }
-            },
-            complete: function () {
-                $('#buybox').hideLoading();
-            }
-        });
-    });
 
+
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+  
+  form.on('submit(order)',function(){
+     
+     var code=$('#code').val();
+     var safe_a=$('#safe_a').val()
+
+     if(!safe_a){
+        salert_f("请输入密保答案！",$('#safe_a'));
+        return false;
+     }
+
+     if(!code && $('#code').length>0){
+        salert_f("请输入验证码！",$('#code'));
+        return false;
+     }
+     // $("body").showLoading();
+     var num=$('#tbExchangedCount').val();
+     var aggregate=rmoney($('#price').html());
+     var prize_id=$("input[name='prizeid']").val();
+     var price=$("input[name='prizeprice']").val();
+
+     $.ajax({
+          url:'/shop/order',
+          data:{prize_id:prize_id,num:num,aggregate:aggregate,code:code,safe_a:safe_a,price:price},
+          type:'post',
+          async: false,
+          success:function(res) {
+              console.log(res);
+              if(res.code == 1) {
+                  layer.msg(res.msg, function(index){
+                    location.href = res.url;
+                  })
+              } else {
+                  layer.msg(res.msg);
+              }
+          }
+      })
+      return false;
+  })
 });

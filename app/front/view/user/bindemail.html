@@ -1,6 +1,6 @@
 {include file="public/header" /}
 <script src="__JS__/jquery.showLoading.min.js"></script>
-<script src="http://static.geetest.com/static/tools/gt.js"></script>
+<script src="__JS__/gt.js"></script>
 <script src="__JS__/bindemail.js"></script>
 <div id="wrapper" class="umain">
 	<div class="w1200">
@@ -13,12 +13,12 @@
 		 		</div>
 
 		 		<div class="ibox-content">
-		 			{if condition="$user['is_email'] eq 0"}
+		 			<!-- {if condition="$user['is_email'] eq 0"}
 		 			<div id="embed-captcha"></div>
 	 				<p id="wait" class="show"></p>
 	 				<p id="notice" class="hide"></p>
 	 				<div id="popup-captcha"></div>
-	 				{/if}
+	 				{/if} -->
 		 			<form id="bindform"  >
 		 				
 		 				<ul class="edit-ul mt40">
@@ -45,7 +45,7 @@
 		 					</li>
 		 					<li>
 		 						<label>密保答案：</label>
-		 						<input type="text" class="edit-input" name="safe_a" id="safe_a"  {notempty name="$user['safe_a']"}disabled value="{$user['safe_a']}"{/notempty} placeholder="设置后无法更改">
+		 						<input type="text" class="edit-input" name="safe_a" id="safe_a"  placeholder="">
 		 					</li>
 		 					<li>
 		 						<label>QQ号码：</label>

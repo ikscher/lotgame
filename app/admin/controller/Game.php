@@ -344,7 +344,7 @@ class Game extends Permissions
     public function createtable(){
         
         $codes=$this->model->column('code');
-        $code='js22';
+        // $code='js22';
         foreach($codes as $code){
             $table=$this->prefix.'game_'.$code;
             $exist = $this->model->query("show tables like '{$table}'");
@@ -366,8 +366,8 @@ class Game extends Permissions
 
                 echo $code;
             }else{
-                // $sql="alter table {$table} MODIFY result VARCHAR(49)";
-                // $this->model->query($sql);
+                $sql="alter table {$table} add column `odd` varchar(300)   COMMENT  '开奖赔率'"; //json保存
+                $this->model->query($sql);
             }
         }
 

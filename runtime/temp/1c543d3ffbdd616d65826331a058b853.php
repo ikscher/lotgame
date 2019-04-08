@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\bank.html";i:1554367267;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554345226;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554364469;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\bank.html";i:1554382377;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554603822;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -39,7 +39,7 @@
 			<span class="barr fr">
 				<?php if($uid != 0): ?>
 					<b ><?php echo $user['username']; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php echo $user['coin']; ?></b></span> &nbsp;
-					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
+					<a href="/User/Index">我的账号</a> <a href="/User/Msg">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/common/logout">退出</a>
                 <?php else: ?>
                 	<a href="/Common/Login" class="dl line">HI, 请登录</a>  <a href="/Common/Register" class="line">注册</a> <a href="/User/FindPwd" class="line">找回密码</a>
@@ -233,7 +233,7 @@
 		<p>站内功能</p>
 		<ul>
 			<!-- <li><a href='/User/SelfLine'>专属域名</a></li> -->
-			<li><a href='/User/Recharge'>点卡使用</a></li>
+			<li><a href='/User/Charge'>点卡使用</a></li>
 		</ul>
 		<ul>
 			<li><a href='/User/Msg'>站内信箱</a></li>
@@ -260,7 +260,7 @@
 		</ul>
 		<ul>
 			<li><a href='/User/Wage'>工资领取</a></li>
-			<li><a href='/Game/Egg'>金蛋砸取</a></li>
+			<li><a href='/Prize/Shatter'>金蛋砸取</a></li>
 		</ul>
 
 		<!-- <p>游戏功能</p>
@@ -364,9 +364,16 @@ layui.use(['layer', 'form'], function(){
                  layer.alert('出错了');
             },
             success:function(res){
-              console.log(res)
-                // layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。');
-                //  location.href='/user/safepwd';
+               // console.log(res)
+               if(res.code==1){
+                  layer.alert(res.msg, function(index){
+                    location.href = res.url;
+                  })
+                  
+               }else{
+                  layer.alert(res.msg);
+               }
+                
             }
         })
         return false;
@@ -382,9 +389,14 @@ layui.use(['layer', 'form'], function(){
                  layer.alert('出错了');
             },
             success:function(res){
-              console.log(res)
-                // layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。');
-                //  location.href='/user/safepwd';
+              // console.log(res)
+               if(res.code==1){
+                  layer.alert(res.msg, function(index){
+                    location.href = res.url;
+                  })
+               }else{
+                  layer.alert(res.msg);
+               }
             }
         })
         return false;

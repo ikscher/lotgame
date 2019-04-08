@@ -32,7 +32,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">最小经验值</label>
         <div class="layui-input-block" style="max-width:500px;">
-          <input name="exp_min" autocomplete="off" placeholder="标签之间用,隔开" class="layui-input" type="text" {notempty name="$usergrade.exp_min"}value="{$usergrade.exp_min}"{/notempty}>
+          <input name="exp_min" autocomplete="off" placeholder="标签之间用,隔开" class="layui-input" type="text" {notempty name="$usergrade.exp_min"}value="{$usergrade.exp_min}"{else /}value="0"{/notempty}>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">等级</label>
         <div class="layui-input-block" style="max-width:500px;">
-          <input name="grade" autocomplete="off" placeholder="标签之间用,隔开" class="layui-input" type="text" {notempty name="$usergrade.grade"}value="{$usergrade.grade}"{/notempty}>
+          <input name="grade" autocomplete="off" placeholder="标签之间用,隔开" class="layui-input" type="text" {notempty name="$usergrade.grade"}value="{$usergrade.grade}"{else /}value="0"{/notempty}>
         </div>
       </div>
 

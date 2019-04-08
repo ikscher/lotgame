@@ -29,7 +29,7 @@
         <div class="layui-input-block" style="max-width:600px;">
           <select name="prize_cate_id" lay-filter="aihao">
             <option value="">请选择分类</option>
-            {volist name="$cates" id="vo"}
+            {volist name="$prizecates" id="vo"}
             <option value="{$vo.id}" {notempty name="$prize.prize_cate_id"}{eq name="$prize.prize_cate_id" value="$vo.id"} selected=""{/eq}{/notempty}>{$vo.str}{$vo.name}</option>
             {/volist}
           </select>
@@ -62,19 +62,49 @@
       </div>
 
       <div class="layui-form-item">
-        <label class="layui-form-label">兑换原价</label>
+        <label class="layui-form-label">奖品价值</label>
         <div class="layui-input-block" style="max-width:300px;">
-          <input name="units" autocomplete="off"  class="layui-input layui-input-fix" type="text" {notempty name="$prize.units"}value="{$prize.units}"{/notempty}>（金币）
+          <input name="price" autocomplete="off"  class="layui-input layui-input-fix" type="text" {notempty name="$prize.price"}value="{$prize.price}"{/notempty}>（元）
         </div>
       </div>
 
-    
 
+      <div class="layui-form-item">
+        <label class="layui-form-label">扣除经验</label>
+        <div class="layui-input-block" style="max-width:300px;">
+          <input name="de_exp" autocomplete="off"  class="layui-input layui-input-fix" type="text" {notempty name="$prize.de_exp"}value="{$prize.de_exp}"{else /}value="0"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">扣除积分</label>
+        <div class="layui-input-block" style="max-width:300px;">
+          <input name="de_point" autocomplete="off"  class="layui-input layui-input-fix" type="text" {notempty name="$prize.de_point"}value="{$prize.de_point}"{else /}value="0"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">每次兑奖审核</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input type="checkbox" name="must_check" lay-filter="check" title="" {notempty name="$prize.must_check"}checked value="1"{else /} value="0"{/notempty} >
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">对应卡类型</label>
+        <div class="layui-input-block" style="max-width:300px;">
+          <select name="card_cate_id"  lay-filter="catesel" >
+            {foreach name="cardcates" item="vo" }
+            <option value="{$vo['id']}" {notempty name="$prize['card_cate_id']"}{eq name="$prize['card_cate_id']" value="$vo['id']"}selected{/eq}{/notempty}>{$vo['name']}</option>
+            {/foreach}
+          </select>
+        </div>
+      </div>
 
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">内容</label>
         <div class="layui-input-block" style="max-width:1000px;">
-          <textarea placeholder="请输入内容" class="layui-textarea" name="desc" id="container" style="border:0;padding:0">{notempty name="$prize.desc"}{$prize.desc}{/notempty}</textarea>
+          <textarea placeholder="请输入内容" class="layui-textarea" name="desc" id="container" style="border:0;padding:0;z-index: -9999">{notempty name="$prize.desc"}{$prize.desc}{/notempty}</textarea>
         </div>
       </div>
       
@@ -154,7 +184,7 @@
                       type:'post',
                       async: false,
                       success:function(res) {
-                          // console.log(res);
+                          console.log(res);
                           if(res.code == 1) {
                               layer.alert(res.msg, function(index){
                                 location.href = res.url;
@@ -172,6 +202,16 @@
               elem: '#create_time',
               type: 'datetime'
             });
+
+          //取反
+          form.on('checkbox(check)',function(data){
+             var x=$("input[name='must_check']");
+             if(x.prop('checked')){
+                x.val(1);
+             }else{
+                x.val(0);
+             }
+          })
       });
     </script>
 

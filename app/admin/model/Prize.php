@@ -21,6 +21,12 @@ class Prize extends Model
         return $this->belongsTo('PrizeCate');
     }
 
+    public function cardcate()
+    {
+        //关联分类表
+        return $this->belongsTo('CardCate');
+    }
+
     public function remark()
     {
         //关联user_remark表

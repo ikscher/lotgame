@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\order.html";i:1554300654;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554207547;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554301872;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\order.html";i:1554649423;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
 </head>
 <body>
 <style type="text/css">
-#callboard {width: 150px; overflow: hidden; display: inline-block; vertical-align: middle; font-size: 12px; position: relative; top: -1px; margin-left: 30px;float:left} 
+#callboard {width: 253px; overflow: hidden; display: inline-block; vertical-align: middle; font-size: 12px; position: relative; top: -1px; margin-left: 30px;float:left} 
 #callboard ul { padding:0; } 
 #callboard li { padding:0; } 
 </style>
@@ -28,29 +28,21 @@
 			<span class="barl fl">欢迎光临！<a href="/SaveToHome.php">保存到桌面</a> <a href="/mobile.php">手机版</a><a href="/User/Sign?act=qd" class="qd">签到</a></span>
 			<div id="callboard">
 				<ul>
+					<?php if(is_array($boardlist) || $boardlist instanceof \think\Collection || $boardlist instanceof \think\Paginator): $i = 0; $__LIST__ = $boardlist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/116" >游戏已经全部恢复！祝您游戏愉快！</a>
+						<a style="color:red;" target="_blank" href="/Board/Detail/<?php echo $vo['id']; ?>" ><?php echo $vo['title']; ?></a>
 					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/115" >2019年春节蛋蛋/北京类游戏停机公告</a>
-					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/114" >妞妞点卡解除合作</a>
-					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/113" >全新界面！带给您更好的游戏体验！app正在内测！</a>
-					</li>
-					<li>
-						<a style="color:red;" target="_blank" href="/News/Detail/111" >跨年红包中奖用户如下！</a>
-					</li>
-
+					<?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 			</div>
 			<span class="barr fr">
-				<b >ikscher(891435)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney">500</b></span> &nbsp;
-				<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
-				<a id="LinkButton1" href="/common/logout">退出</a>
-
+				<?php if($uid != 0): ?>
+					<b ><?php echo $user['username']; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php echo $user['coin']; ?></b></span> &nbsp;
+					<a href="/User/Index">我的账号</a> <a href="/User/Msg">站内信</a>&nbsp;
+					<a id="LinkButton1" href="/common/logout">退出</a>
+                <?php else: ?>
+                	<a href="/Common/Login" class="dl line">HI, 请登录</a>  <a href="/Common/Register" class="line">注册</a> <a href="/User/FindPwd" class="line">找回密码</a>
+                <?php endif; ?>
 				<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
 			</span> 
 		</div>
@@ -193,8 +185,9 @@
 		}(window));
 	setTimeout(window.autoAnimation, 5000);
 </script>
-<script src="http://static.geetest.com/static/tools/gt.js"></script>
+<script src="/static/front/js/gt.js"></script>
 <script  type="text/javascript" src="/static/front/js/js.js"></script>
+<script  type="text/javascript" src="/static/public/jquery/jquery.showLoading.min.js"></script>
 <script  type="text/javascript" src="/static/front/js/prize_buy.js"></script>
 
 <style type="text/css">
@@ -206,7 +199,7 @@
     #bd .tb-stock .tb-increase {border-left: 0 !important; margin-right: 8px; }
     #bd .tb-stock a, #bd .tb-stock a:hover {display: block; _display: inline; float: left; width: 26px; height: 26px; border: 1px solid #ccc; line-height: 26px; padding: 0; vertical-align: top; overflow: hidden; text-align: center; background-color: #ededed; overflow: hidden; }
     .text-overflow{display:block;/*内联对象需加*/ width:31em; word-break:keep-all;/* 不换行 */ white-space:nowrap;/* 不换行 */ overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ } 
-    .sxfsm{width: 400px; height: 100px; border: 1px #FF4400 dotted; float: left; border-radius: 5px; padding: 5px 10px; margin: 5px; color: #737573; font-size: 12px;}
+    .sxfsm{width: 400px;  border: 1px #FF4400 dotted; float: left; border-radius: 5px; padding: 5px 10px; margin: 5px; color: #737573; font-size: 12px;}
     .ordbtn{font-size: 12px;color: #FFFFFF;width: 182px;height: 39px;background-color: #FF4400;border: none;font-weight: 900;margin-left: 100px;}
 </style>
 
@@ -242,7 +235,7 @@
                                 <div style="width:175px;float:left">
                                           <h1 style="font-size: 18px;font-weight: 100;margin-top: 10px"><?php echo $prize['name']; ?></h1>
 
-                                          <span>单价：</span><span id="oneprice" style="font-size: 21px" class="money money_bg">	<?php echo $prize['price']*$coefficient; ?></span>
+                                          <span>单价：</span><span id="oneprice" style="font-size: 21px" class="money money_bg"><?php echo $prize['price']*$coefficient; ?></span>
                                           <br>
                                          <span>额外手续费：</span><span  id="lssxf" style="color:green">-</span><span style="color:green;">金币</span><a id="sxfdetail" onmouseover="sxfdetail()" onmouseout="sxfdetail_clo()" style="display:none;background:url('/static/front/image/wenh2.png');background-size:16px;width:16px;height:16px;    position: relative;top: 2px" ></a>
                                       <div style="height:3px"></div>
@@ -255,18 +248,20 @@
                                     </span>
                                 </div>
 
-                            <div id="sxfsm" class="sxfsm"></div>
+                                <div id="sxfsm" class="sxfsm"></div>
 
 
-                                    <!--<div style="background-color: #F2F7FF;width: auto;clear: both;height: 128px;padding: 8px">
-                                     <span>你的职业是什么?</span>
-                                     <br>
-                                     <input type="text" style="width: 150px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="tbUserSecAns">
-                                     <br>
-                                     <span>手机验证码</span>
-                                     <br>
-                                     <input id="code" type="text" style="width: 100px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="code"><button type="button" id="popup-submit" style="width: 50px;height: 29px;border: none;background-color: #90C626;padding:0 10px;color: #FFFFFF;font-weight: 900;position: relative;bottom: 1px">获取</button>
-                                    </div> -->
+                                  <div style="background-color: #F2F7FF;width: auto;clear: both;height: 128px;padding: 8px">
+                                   <span><?php echo $safe_q; ?></span>
+                                   <br>
+                                   <input type="text" style="width: 150px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="safe_a" id="safe_a">
+                                   <br>
+                                   <?php if($smscode_show == 1): ?>
+                                   <span>手机验证码</span>
+                                   <br>
+                                   <input id="code" type="text" style="width: 100px;height: 28px;font-size: 16px;border: 1px solid #d5d5d5" name="code"><button type="button" id="popup-submit" style="width: 50px;height: 29px;border: none;background-color: #90C626;padding:0 10px;color: #FFFFFF;font-weight: 900;position: relative;bottom: 1px">获取</button>
+                                   <?php endif; ?>
+                                  </div> 
 
                             </td>
 
@@ -291,13 +286,15 @@
     </div>
 </div>
 <script> 
-      var lssxfopen = 1; //按照流水   手续费开区
+      var lssxfopen = 1; //按照流水   手续费开
 
-      var cssxfopen = 0; //按次数     手续费关闭
+      var cssxfopen = <?php echo $charge_times['id']; ?>; //按次数     手续费关
       var oldprice;
-      var lsbs = <?php echo $charge['flow_times']; ?>; //流水倍数
-      var yxls = 0; //7天内一共有的流水
-      var lssxbl = <?php echo $charge['charge_ratio']; ?>; //流水手续比例
+      var lsbs = <?php echo $charge_f['flow_times']; ?>; //流水倍数
+      var yxls = <?php echo $bidmoney; ?>; //7天内一共有的游戏流水
+      var lssxbl = <?php echo $charge_f['charge_ratio']; ?>; //流水手续比例
+      var days=<?php echo $charge_f['flow_days']; ?>;
+      var prized=0;//近7天兑奖总额
       var xsf;
       var tipsStr='';
       var sumSxf;
@@ -309,31 +306,32 @@
               var freeprice = parseInt(yxls/lsbs);
 
 
-              if(oldprice>freeprice){
-                 xsf = (oldprice-freeprice)*lssxbl/100;
+              if(oldprice+prized>freeprice){ //正兑换的+已兑换的>免费限额
+                 var exceed=prized>freeprice?oldprice:(oldprice+prized-freeprice);
+                 xsf = exceed*lssxbl/100;
 
                  sumSxf = xsf;
-                 tipsStr = '●游戏流水手续费:您最近7日游戏流水：0<br/>您最近7日兑奖：0<br/>您当前可用流水：0<br/>可免额外手续费兑奖'+fmoney(parseInt(yxls/lsbs))+'金币,本次兑奖'+fmoney(oldprice)+"金币,超出部分："+fmoney(oldprice-parseInt(yxls/lsbs))+"按"+lssxbl+"%收取手续费："+fmoney(parseInt(xsf))+"金币";
-             }else{
+                 tipsStr = '●游戏流水手续费:您最近'+days+'日游戏流水：0,可免额外手续费兑奖'+fmoney(freeprice)+'金币<br/>您最近'+days+'日兑奖：'+prized+'<br/>本次兑奖'+fmoney(oldprice)+"金币,超出部分："+fmoney(exceed)+"按"+lssxbl+"%收取手续费："+fmoney(parseInt(xsf))+"金币";
+              }else{
                  $("#lssxf").html('无');
-                 tipsStr = '●游戏流水手续费:您最近7日游戏流水：0<br/>您最近7日兑奖：0<br/>您当前可用流水：0<br/>可免额外手续费兑奖'+fmoney(parseInt(yxls/lsbs))+'金币,本次兑奖'+fmoney(oldprice)+"金币,不收取额外手续费！";
-             }
+                 tipsStr = '●游戏流水手续费:您最近'+days+'日游戏流水：0,可免额外手续费兑奖'+fmoney(freeprice)+'金币<br/>您最近'+days+'日兑奖：'+prized+'<br/>,本次兑奖'+fmoney(oldprice)+"金币,不收取额外手续费！";
+              }
          }
-         if(cssxfopen == 1){
-             var feetype = 0;
+         if(cssxfopen){
+             var feetype = <?php echo $charge_times['by']; ?>;//按比例还是固定金额收取
              if(feetype == 1){
-                var curfee = parseInt(0);
+                var curfee = parseInt(<?php echo $charge_times['charge']; ?>);
                 sumSxf += parseInt(curfee);
-                tipsStr += "<br/>●兑奖次数手续费:您今天是第1次兑奖，需收取"+curfee+"金币的手续费!";
+                tipsStr += '<br/>●兑奖次数手续费:您今天是第'+<?php echo $today_exchange_times; ?>+'次兑奖，需收取'+curfee+'金币的手续费!';
             }else{
-                var curfee = parseInt(0*oldprice/100);
+                var curfee = parseInt(<?php echo $charge_times['charge']; ?>*oldprice/100);
                 sumSxf += curfee;
-                tipsStr += "<br/>●兑奖次数手续费:您今天是第1次兑奖，本次兑奖"+oldprice+"金币,需收取0%的手续费,即"+curfee+"金币!";
+                tipsStr += '<br/>●兑奖次数手续费:您今天是第'+<?php echo $today_exchange_times; ?>+'次兑奖，本次兑奖'+oldprice+'金币,需收取'+<?php echo $charge_times['charge']; ?>+'%的手续费,即'+curfee+'金币!';
             }
 
         }
         $("#sxfsm").html(tipsStr);
-        if(cssxfopen == 1 || lssxfopen == 1){
+        if(cssxfopen  || lssxfopen == 1){
              var aggregate=fmoney(parseInt(oldprice)+sumSxf);
              $("#price").html(aggregate);
              $("#lssxf").html(fmoney(sumSxf));
@@ -365,55 +363,27 @@
           cacusxf();
       });
 
-layui.use(['layer', 'form'], function(){
-  var layer = layui.layer
-  ,form = layui.form;
-  
-  
-  form.on('submit(order)',function(){
-     var num=$('#tbExchangedCount').val();
-     var aggregate=rmoney($('#price').html());
-     var prize_id=$("input[name='prizeid']").val();
-     var price=$("input[name='prizeprice']").val();
-     $.ajax({
-          url:"<?php echo url('/shop/order'); ?>",
-          data:{prize_id:prize_id,num:num,aggregate:aggregate,price:price},
-          type:'post',
-          async: false,
-          success:function(res) {
-              // console.log(res);
-              if(res.code == 1) {
-                  layer.msg(res.msg, function(index){
-                    location.href = res.url;
-                  })
-              } else {
-                  layer.msg(res.msg);
-              }
-          }
-      })
-      return false;
-  })
-});
+
 </script> 
 <div class="clear"></div>
 <div class="foot w100">
-							<div class="w1000 oo">
-								<div class="footl fl">
+	<div class="w1000 oo">
+		<div class="footl fl">
 
-									<b>尊敬的彩豆28游戏中心玩家：</b><br />
-									彩豆28游戏中心为休闲娱乐平台，倡导玩家健康游戏。禁止非法组织或个人利用本平台进行赌博或倒卖虚拟货币的非法行为，一经查证核实，将做封号处理并没收其所有虚拟货币，请广大玩家相互转告！
-									祝玩家朋友们游戏愉快！<br />
-									<span style="float:right">—— 彩豆28官方</span>
-								</div>
+			<b>尊敬的彩豆28游戏中心玩家：</b><br />
+			彩豆28游戏中心为休闲娱乐平台，倡导玩家健康游戏。禁止非法组织或个人利用本平台进行赌博或倒卖虚拟货币的非法行为，一经查证核实，将做封号处理并没收其所有虚拟货币，请广大玩家相互转告！
+			祝玩家朋友们游戏愉快！<br />
+			<span style="float:right">—— 彩豆28官方</span>
+		</div>
 
-								<div class="footr fr">
-									<img src="/static/front/image/logo.png" style="margin-left:40px"><br />
-									官方QQ群：<a href="https://ssl.pop800.com/chat/368923" target="_blank">2577000</a> <a href='http://www.miitbeian.gov.cn/'> </a><br />
-									COPYRIGHT ◎2017 彩豆28 caidou28.com All Rights Reserved. 
-								</div>
+		<div class="footr fr">
+			<img src="/static/front/image/logo.png" style="margin-left:40px"><br />
+			官方QQ群：<a href="https://ssl.pop800.com/chat/368923" target="_blank">2577000</a> <a href='http://www.miitbeian.gov.cn/'> </a><br />
+			COPYRIGHT ◎2017 彩豆28 caidou28.com All Rights Reserved. 
+		</div>
 
-							</div>
-						</div>
+	</div>
+</div>
 						<!--
 						<div class="leftbar" id="moveBar">
 							<ul class="leftbar-main">
@@ -511,23 +481,23 @@ layui.use(['layer', 'form'], function(){
 	Notification.requestPermission( function(status) {
 		
 	});
-    
+	
     //数字加千分位符号fmoney(“12345.675910”, 3)，返回12,345.676
-	function fmoney(s, n) {
-		n = n > 0 && n <= 20 ? n : 2;
-		f = s < 0 ? "-" : "";
-		s = parseFloat((Math.abs(s) + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
-		var l = s.split(".")[0].split("").reverse(),
-		r = s.split(".")[1];
-		t = "";
-		for (i = 0; i < l.length; i++) {
-			t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
-		}
-		return f + t.split("").reverse().join("");
-	}
+    function fmoney(s, n) {
+    	n = n > 0 && n <= 20 ? n : 2;
+    	f = s < 0 ? "-" : "";
+    	s = parseFloat((Math.abs(s) + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
+    	var l = s.split(".")[0].split("").reverse(),
+    	r = s.split(".")[1];
+    	t = "";
+    	for (i = 0; i < l.length; i++) {
+    		t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
+    	}
+    	return f + t.split("").reverse().join("");
+    }
 	//数字去掉千分位符号
 	function rmoney(s){   
-	   return parseFloat(s.replace(/[^\d\.-]/g, ""));   
+		return parseFloat(s.replace(/[^\d\.-]/g, ""));   
 	}
 
 	function getSimpleResult(game,text){

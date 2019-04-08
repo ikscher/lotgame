@@ -1,0 +1,229 @@
+{include file="public/header" /}
+
+<div id="wrapper" class="umain">
+	<div class="w1200">
+		<!--顶侧top-->
+		{include file="user/header" /}
+		<!--顶侧top-->
+
+		<!--左侧left菜单-->
+		{include file="user/left" /}
+		<!--左侧left菜单-->
+
+
+		<div class="uright">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>普通充值</h5>
+				</div>
+				<div class="ibox-content mt40">
+					<form id="singleform">
+						<ul class="edit-ul">
+							<li>
+								<label>卡号：</label>
+								<input type="text" class="edit-input" name="CardNo" placeholder="请输入卡号">
+							</li>
+							<li>
+								<label>密码：</label>
+								<input type="text" class="edit-input" name="CardPwd" placeholder="请输入密码">
+							</li>
+							<li>
+								<label>操作类型：</label>
+								<div class="radio-box fl" style="margin-left: 0;">
+									<input type="radio" name="tbMode" id="tbMode1" value="1" checked="">
+									<label for="tbMode1">使用</label>
+								</div>
+								<div class="radio-box fl">
+									<input type="radio" name="tbMode" id="tbMode2" value="2">
+									<label for="tbMode2">查询</label>
+								</div>
+							</li>
+							<li>
+								<!-- <label></label> -->
+								<input type="hidden" name="action" value="singular" />
+								<button class="user-btn mb20" lay-submit lay-filter="single">确认提交</button>
+							</li>
+						</ul>
+					</form>
+				</div>
+			</div>
+
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>批量充值</h5>
+				</div>
+				<div class="tishi" style="margin-left: 15px;">批量充值不支持红包卡和Vip卡</div>
+                <form  id="batchform">
+					<div class="recharge-plcz-wrap">
+						<div class="plcz-main plcz-main1 fl">
+							<!-- <span class="addplcz" >+</span> -->
+							<ul class="ul1">
+								<li>卡号</li>
+								<li>卡密</li>
+							</ul>
+							<ul>
+								<li><input type="text" name="card_no[0]" class="plcz-input"></li>
+								<li><input type="text" name="card_pwd[0]" class="plcz-input"></li>
+							</ul>
+							<ul>
+								<li><input type="text" name="card_no[1]" class="plcz-input"></li>
+								<li><input type="text" name="card_pwd[1]" class="plcz-input"></li>
+							</ul>
+							<ul>
+								<li><input type="text" name="card_no[2]" class="plcz-input"></li>
+								<li><input type="text" name="card_pwd[2]" class="plcz-input"></li>
+							</ul>
+							<ul>
+								<li><input type="text" name="card_no[3]" class="plcz-input"></li>
+								<li><input type="text" name="card_pwd[3]" class="plcz-input"></li>
+							</ul>
+							
+							</ul>
+							<ul>
+								<li><input type="text" name="card_no[4]" class="plcz-input"></li>
+								<li><input type="text" name="card_pwd[4]" class="plcz-input"></li>
+							</ul>
+
+						</div>
+
+						<div class="plcz-main fr">
+							<!-- <span class="addplcz">+</span> -->
+							<ul class="ul1">
+								<li>卡号</li>
+								<li>卡密</li>
+							</ul>
+							
+							<ul>
+								<li><input type="text" name="card_no[5]" class="plcz-input"></li>
+								<li><input type="text" name="card_pwd[5]" class="plcz-input"></li>
+							</ul>
+							<ul>
+								<li><input type="text" name="card_no[6]" class="plcz-input"></li>
+								<li><input type="text" name="card_pwd[6]" class="plcz-input"></li>
+							<ul>
+								<li><input type="text" name="card_no[7]" class="plcz-input"></li>
+								<li><input type="text" name="card_pwd[7]" class="plcz-input"></li>
+							</ul>
+							<ul>
+								<li><input type="text" name="card_no[8]" class="plcz-input"></li>
+								<li><input type="text" name="card_pwd[8]" class="plcz-input"></li>
+							</ul>
+							<ul>
+								<li><input type="text" name="card_no[9]" class="plcz-input"></li>
+								<li><input type="text" name="card_pwd[9]" class="plcz-input"></li>
+							</ul>
+					
+							
+
+						</div>
+					</div>
+				    <input type='hidden' name="action" value="plural" />
+					<!-- <input type="hidden" name="pilcard" id="pilcard"> -->
+					<button class="user-btn edit-btn" lay-submit style="margin:20px 0;" lay-filter='batch'>确认提交</button>
+				</form>
+			</div>
+
+
+		</div><!--uright-->
+	</div>
+
+</div>
+<script type="text/javascript">
+	layui.use(['layer', 'form'], function(){
+		var layer = layui.layer
+		,form = layui.form;
+
+        form.on('submit(single)',function(){
+        	var CardNo=$("input[name='CardNo']").val();
+        	var CardPwd=$("input[name='CardPwd']").val();
+        	if(!CardNo){
+        		layer.alert('请输入卡号',function(index){
+        			$("input[name='CardNo']").focus();
+        		    layer.close(index);
+        		});
+        		return false;
+        	}
+        	if(!CardPwd){
+        		layer.alert('请输入卡密',function(index){
+        			$("input[name='CardPwd']").focus();
+        			layer.close(index);
+        		});
+        		return false;
+        	}
+
+            $.ajax({
+	            url:'/user/charge',
+	            data:$('#singleform').serialize(),
+	            type:'post',
+	            async: false,
+	            dataType:'json',
+	            success:function(res) {
+	                // console.log(res);
+		            if(res.code == 1) {
+		                  layer.msg(res.msg, function(index){
+		                    location.href = res.url;
+		                  })
+		            } else {
+						layer.alert(res.msg);
+		            }
+                }
+            })
+            return false;
+        })
+ 
+
+		form.on('submit(batch)',function(){
+			var arr = new Array();
+
+			$("input[name^='card_no']").each(function(i,el){
+				var c=$(el).val();
+				if(c){
+					var cp = $("input[name^='card_pwd']:eq("+i+")").val();
+					if(cp) arr[i]=c+','+cp;
+				}
+			});
+			
+			if(arr.length<=0){
+				layer.alert("对不起，请输入卡号和卡密！");
+				return false;
+			}
+
+			$.ajax({
+	            url:'/user/charge',
+	            data:$('#batchform').serialize(),
+	            type:'post',
+	            async: false,
+	            dataType:'json',
+	            success:function(res) {
+	                console.log(res);
+		            if(res.code == 1) {
+		                  layer.msg(res.msg, function(index){
+		                     location.href = res.url;
+		                  })
+		            } else {
+						layer.alert(res.msg);
+						
+		            }
+
+                }
+            })
+            return false;
+
+        });
+
+		$(".addplcz").click(function(){
+			var sum = $("input[name^='card_no']").length;
+			var html = '';
+			html += '<ul>';
+			html += '<li><input type="text" name="card_no['+sum+']" class="plcz-input"></li>';
+			html += '<li><input type="text" name="card_pwd['+sum+']" class="plcz-input"></li>';
+			html += '</ul>';
+			$(this).parents(".plcz-main").append(html);
+		})
+
+	});
+</script>
+
+</div>
+</div>
+{include file="public/footer" /}

@@ -1,46 +1,23 @@
-﻿$(document).ready(function(){
-    $("#qrsubmit").click(function (){
-        if($("#tbNewPwd").val()!="" && $("#tbRePwd").val()!=""){
-            if($("#tbNewPwd").val()!=$("#tbRePwd").val()){
-                salert("两次输入的密码不一致,请检查!");
-            }else{
-                $("#qrsubmit").attr("disabled","disabled");
-                $("#qrsubmit").attr("value","正在提交");
-            }
-        }else{
-            salert("请设置密码!");
-        }
-        $('#user_tradpwd').showLoading();
-        $.ajax({
-            url: "/Ajax_mobile.php",
-            type: "post",
-            data: {
-                action: "yz",
-                code: $("#code").val()
-            },
-            success: function(result){
-                if(result==1){
-                    $("form").submit();
-                }else{
-                    salert('对不起,您的手机验证码错误!');
-                }
-            },
-            complete: function () {
-                $('#user_tradpwd').hideLoading();
-            }
+﻿
+function salert_f(str,x){
+    layui.use('form',function(){
+        var layer=layui.layer;
+        layer.alert(str,function(index){
+            x.focus();
+            layer.close(index)
         });
-    });
-
-});
+    })
+}
 
 function salert(str){
-    layui.use('layer', function(){
-    var layer = layui.layer;
-      layer.msg(str);
-    });
-    // layer.alert(str);
+    layui.use('form',function(){
+        var layer=layui.layer;
+        layer.alert(str);
+    })
 }
+
 var countdown=60;
+var t;
 function settime(){
     if(countdown == 0){
         $("#popup-submit").removeAttr("disabled");
@@ -51,7 +28,8 @@ function settime(){
     }else{
         $("#popup-submit").html("重新发送 ("+ countdown+")");
         countdown--;
-        setTimeout("settime()",1000);
+        t=setTimeout("settime()",1000);
+        if(t==0) clearTimeout(t);
     }
 
 }
@@ -91,31 +69,34 @@ layui.use(['layer', 'form'], function(){
     })
 });
 
+
+
 var handlerPopup = function (captchaObj) {
-    $("#popup-submit").click(function () {
-        var validate = captchaObj.getValidate();
-        if (!validate) {
+    captchaObj.onReady(function () {
+        $("#wait").hide();
+    }).onSuccess(function () {
+        
+        var result = captchaObj.getValidate();
+        if (!result) {
             salert('请先完成滑动验证！');
             return;
         }
-        if($("#email").val()==""){
-            salert('请先填写您的邮箱地址');
-            return;
-        }
-        $('#user_tradpwd').showLoading();
+
+        $("#user_tradpwd").showLoading();
         $.ajax({
             url: "/common/sendmail",
             type: "post",
             data: {
-                geetest_challenge: validate.geetest_challenge,
-                geetest_validate: validate.geetest_validate,
-                geetest_seccode: validate.geetest_seccode,
-                action: "post",
-                email: $("#email").val()
+                geetest_challenge: result.geetest_challenge,
+                geetest_validate: result.geetest_validate,
+                geetest_seccode: result.geetest_seccode,
+                mobile: $('#email').val(),
+                action: "post"
             },
-            success: function (result) {
-                result=parseInt(result);
-                switch (result){
+            dataType:'json',
+            success: function (res) {
+                // result=parseInt(result);
+                switch (res.code){
                     case -1:
                         salert('邮件发送过于频繁，请等待1分钟后重试。');
                         break;
@@ -135,24 +116,45 @@ var handlerPopup = function (captchaObj) {
                 }
             },
             complete: function () {
-                $('#user_tradpwd').hideLoading();
+                $("#user_tradpwd").hideLoading();
             }
         });
     });
-    // captchaObj.bindOn("#popup-submit");
-    captchaObj.appendTo("#popup-captcha");
+    $('#popup-submit').click(function () {
+        var email=$('#email').val();
+        if(checkmail(email)==false){
+            salert_f("邮箱格式不正确！",$("#email"));
+            return false;
+        }
+       
+        captchaObj.verify();
+    })
+    // 更多前端接口说明请参见：http://docs.geetest.com/install/client/web-front/
 };
+
 $.ajax({
     url: "/common/gtValidate?t=" + (new Date()).getTime(),
     type: "get",
     dataType: "json",
     success: function (data) {
+        $('#text').hide();
+        $('#wait').show();
         initGeetest({
             gt: data.gt,
             challenge: data.challenge,
-            new_captcha: data.new_captcha,
-            product: "popup",
+            product: "bind",
+            timeout: '5000',
+            new_captcha: data.new_captcha, // 用于宕机时表示是新验证码的宕机
             offline: !data.success
         }, handlerPopup);
     }
 });
+
+function checkmail(email){
+    var pattern_ = new RegExp("^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$", "i");
+    if(!email || !pattern_.test(email)){
+        // salert('输入的邮箱格式有误！',$('#usernametb'));
+        return false;
+    }
+    return true;
+}

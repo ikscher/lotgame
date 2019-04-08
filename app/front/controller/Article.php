@@ -8,7 +8,8 @@ class Article extends Site
 	private $articleModel;
 	// private $site_name;
 	public function _initialize()
-    {
+    {   
+        parent::_initialize();
         $this->articleModel = new articleModel();
         // $this->site_name=Config::get('site_name');
         $controller=$this->request->controller();

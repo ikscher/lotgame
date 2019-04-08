@@ -81,9 +81,16 @@ layui.use(['layer', 'form'], function(){
                  layer.alert('出错了');
             },
             success:function(res){
-              console.log(res)
-                // layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。');
-                //  location.href='/user/safepwd';
+               // console.log(res)
+               if(res.code==1){
+                  layer.alert(res.msg, function(index){
+                    location.href = res.url;
+                  })
+                  
+               }else{
+                  layer.alert(res.msg);
+               }
+                
             }
         })
         return false;
@@ -99,9 +106,14 @@ layui.use(['layer', 'form'], function(){
                  layer.alert('出错了');
             },
             success:function(res){
-              console.log(res)
-                // layer.alert('恭喜您成功申请密保卡。请用截图软件把密保卡保存下来。');
-                //  location.href='/user/safepwd';
+              // console.log(res)
+               if(res.code==1){
+                  layer.alert(res.msg, function(index){
+                    location.href = res.url;
+                  })
+               }else{
+                  layer.alert(res.msg);
+               }
             }
         })
         return false;

@@ -23,6 +23,7 @@ class Site extends Controller
     	$this->site_name=Config::get('site_name');
         $this->assign('title',$this->site_name);
     	$this->uid=0;
+    	$this->user=array();
 	    if(null!==Cookie::get('auth')) {  
 	        $arr = explode("\t", ThkAuthCode(Cookie::get('auth'), 'DECODE'));
 	        // if (!session_id()) session_start();
@@ -38,7 +39,7 @@ class Site extends Controller
 		        $this->assign('user',$this->user);
 	        }
 	    }
-	    $this->assign('uid',$uid);
+	    $this->assign('uid',$this->uid);
 
 	    //加载头部滚动（公告）
 	    $boardlist=array();

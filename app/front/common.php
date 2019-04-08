@@ -4,10 +4,12 @@
  * @param  [type] $data [description]
  * @return [type]       [description]
  */
-function adduserlog($user_id,$desc)
+function adduserlog($user_id,$desc='',$coin=0,$exp=0)
 {  
 	$data['user_id'] = $user_id;
 	$data['desc'] = $desc;
+    $data['coin'] = $coin;
+    $data['experiment']=$exp;
 	$data['create_time'] = time();
     \think\Db::name('user_log')->insert($data);
 }

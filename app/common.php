@@ -47,7 +47,7 @@ function geturl($id)
  * @param [type] $username [description]
  * @param [type] $password [description]
  */
-function SendMail($address)
+function SendMail($address,$title='',$message='')
 {
     vendor('phpmailer.PHPMailerAutoload');
     //vendor('PHPMailer.class#PHPMailer');
@@ -59,8 +59,8 @@ function SendMail($address)
     // 添加收件人地址，可以多次使用来添加多个收件人
     $mail->AddAddress($address); 
     $data = \think\Db::name('emailconfig')->where('email','email')->find();
-            $title = $data['title'];
-            $message = $data['content'];
+            $title =!empty($title)?$title:$data['title'];
+            $message = !empty($message)?$message:$data['content'];
             $from = $data['from_email'];
             $fromname = $data['from_name'];
             $smtp = $data['smtp'];
