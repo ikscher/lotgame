@@ -1,0 +1,81 @@
+{include file="public/header" /}
+<link href="__PUBLIC__/layui/css/layui.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="__JS__/birthday_jq.js" ></script>
+<div id="wrapper" class="umain">
+	<div class="w1200">
+		<!--顶侧top-->
+		{include file="user/header" /}
+		<!--顶侧top-->
+
+		<!--左侧left菜单-->
+		{include file="user/left" /}
+		<!--左侧left菜单-->
+
+		<div class="uright">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>推广下线</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="tishi">推荐好友加入，当他升级时，您将获得奖励。</div>
+					<table class="recom-table">
+						<tbody>
+							<tr>
+								<td><p class="recom-table-p">当他升级到 <i class="user-dj user-dj1"></i> 时，您获得<span>888</span></p></td>
+							</tr>
+							<tr>
+								<td><p class="recom-table-p">当他升级到 <i class="user-dj user-dj2"></i> 时，您获得<span>1,888</span></p></td>
+							</tr>
+							<tr>
+								<td><p class="recom-table-p">当他升级到 <i class="user-dj user-dj3"></i> 时，您获得<span>2,888</span></p></td>
+							</tr>
+							<tr>
+								<td><p class="recom-table-p">当他升级到 <i class="user-dj user-dj4"></i> 时，您获得<span>2,888</span></p></td>
+							</tr>
+							<tr>
+								<td><p class="recom-table-p">当他升级到 <i class="user-dj user-dj5"></i> 时，您获得<span>3,888</span></p></td>
+							</tr>
+							<tr>
+								<td><p class="recom-table-p">当他升级到 <i class="user-dj user-dj6"></i> 时，您获得<span>0</span></p></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="recom-form">
+						<label class="fl">我的推广地址：</label>
+						<input type="text" value="http://test.lotgame.com/common/recom?userid={$uid}">
+					</div>
+					<!-- <div class="safe-text" style="padding:10px">
+						<span>注:</span><br/>
+						下线手动投注，上线获得0%奖励!<br/>
+						下线使用广告体验卡，上线获得2%奖励!
+					</div> -->
+				</div>
+
+			</div>
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>我的下线</h5>
+				</div>
+				<div style="min-height: 160px;">
+					<table class="user-table mt20">
+						<thead>
+							<tr>
+								<th>下线ID</th>
+								<th>等级</th>
+								<th>注册时间</th>
+								<th>最后登录</th>
+								<th>身份认证</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+				<div class="page"><li ><a  href="/User/Recom?page=1">首页</a></li> <li ><a  href="#">上一页</a></li> <li ><a  href="/User/Recom?page=2">下一页</a></li> <li ><a  href="/User/Recom?page=0">尾页</a></li>　(当前第<span style="color:#C16012; font-size:12pt;">1</span>页 共<span style="color:#C16012; font-size:12pt;">0</span>页 <span style="color:#C16012; font-size:12pt;">0</span>条记录)</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{include file="public/footer" /}

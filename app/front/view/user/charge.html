@@ -119,7 +119,9 @@
 					</div>
 				    <input type='hidden' name="action" value="plural" />
 					<!-- <input type="hidden" name="pilcard" id="pilcard"> -->
+					
 					<button class="user-btn edit-btn" lay-submit style="margin:20px 0;" lay-filter='batch'>确认提交</button>
+					<button class="user-btn edit-btn"  type="reset">清空</button>
 				</form>
 			</div>
 
@@ -181,7 +183,7 @@
 					var cp = $("input[name^='card_pwd']:eq("+i+")").val();
 					if(cp) arr[i]=c+','+cp;
 				}
-			});
+			});``
 			
 			if(arr.length<=0){
 				layer.alert("对不起，请输入卡号和卡密！");

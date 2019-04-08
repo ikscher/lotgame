@@ -35,6 +35,7 @@ class User extends Site
         $this->safe_q=Config::get('safe_q');
         // echo Session::get('uid');exit;
         if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+        
     }
     public function index()
     {   
@@ -254,35 +255,40 @@ class User extends Site
                 $map['card_pwd']=$card_pwd;
                 // $map['status']=1;//未充值
                 $card=$this->cardPwdModel->where($map)->find();
+
+                
                 if($type==1){//charge
                     if($card['status']==1){
                         $coin=$card->cate->coin;
+                        $exp=$card->cate->experiment;
+                        $result_trans=true;
                         Db::startTrans();
                         try{
-                            $ret=$this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
+                            $this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
                             $data['use_time']=time();
                             $data['status']=4;//已充值
                             $data['user_id']=$this->uid;
 
-                            $ret_=$this->cardPwdModel->where($map)->update($data);
+                            $this->cardPwdModel->where($map)->update($data);
                             // 提交事务
                             Db::commit(); 
                             
                         }catch (\Exception $e) {
+                            $result_trans=false;
                             // 回滚事务
                             Db::rollback();
                         }
 
                         
-                        if($ret==false || $ret_==false){
+                        if($result_trans==false){
                            return $this->error('充值失败！');
                         }else{
                            $operation='用户点卡自充值'.$coin;
                            $usercoin=$this->userModel->where('uid',$this->uid)->value('coin');
                            //充值增加经验对等金额（元）
-                           $this->userModel->where('uid',$this->uid)->setInc('experiments',$coin/1000);
+                           $this->userModel->where('uid',$this->uid)->setInc('experiments',$exp);
                            //写入日志
-                           adduserlog($this->uid,$operation,$coin,$coin/1000,$usercoin);
+                           adduserlog($this->uid,$operation,$coin,$exp,$usercoin);
                            return $this->success($operation,'/user/charge');
                         }
                     }elseif (in_array($card['status'],array(2,3,4))){
@@ -300,6 +306,7 @@ class User extends Site
             }elseif($post['action']=='plural'){ //批量操作
                 $card_no_arr=$post['card_no'];
                 $card_pwd_arr=$post['card_pwd'];
+
                 foreach($card_no_arr as $k=>$card_no){
                     $card=null;
                     if(empty($card_no) || empty($card_pwd_arr[$k])){ //卡号或者卡密为空的都剔除
@@ -313,7 +320,12 @@ class User extends Site
                         // $map['status']=1;//未充值
                         $card=$this->cardPwdModel->where($map)->find();
                         
+                        if(empty($card['id'])){
+                            return $this->error('卡号：'.$card_no.'，卡密：'.$card_pwd.'此卡不存在！请清空输入框再提交');
+                        }
                         $card_cate_name=$card->cate->name;
+                        
+                        
                         if(!strpos($card_cate_name,'贵宾卡')==false || !strpos($card_cate_name,'红包卡')==false){ //贵宾卡，红包卡不能批量充值
                             return $this->error('卡号：'.$card_no.'，卡密：'.$card_pwd.'，贵宾卡或者红包卡不能批量充值！请清空输入框再提交');
                         }
@@ -327,19 +339,24 @@ class User extends Site
                 }
                 
                 $sum_coin=0;
-                foreach($card_no_arr as $k=>$card_no){
-                    $card=null;
-                    $card_no=$card_no;  //卡号
-                    $card_pwd=$card_pwd_arr[$k]; //卡密
-                    
-                    $map['card_no']=$card_no;
-                    $map['card_pwd']=$card_pwd;
-                    // $map['status']=1;//未充值
-                    $card=$this->cardPwdModel->where($map)->find();
+                $sum_exp=0;
+                $result_trans=true;
+                Db::startTrans();
+                try{
+                    foreach($card_no_arr as $k=>$card_no){
+                        $card=null;
+                        $card_no=$card_no;  //卡号
+                        $card_pwd=$card_pwd_arr[$k]; //卡密
+                        
+                        $map['card_no']=$card_no;
+                        $map['card_pwd']=$card_pwd;
+                        // $map['status']=1;//未充值
+                        $card=$this->cardPwdModel->where($map)->find();
 
-                    $coin=$card->cate->coin;
-                    Db::startTrans();
-                    try{
+                        $coin=$card->cate->coin;
+                        $exp=$card->cate->experiment;
+                        
+                        
                         $ret=$this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
                         $data['use_time']=time();
                         $data['status']=4;//已充值
@@ -347,26 +364,30 @@ class User extends Site
 
                         $ret_=$this->cardPwdModel->where($map)->update($data);
                          
-                        if($ret==false || $ret_==false){
-                           return $this->error('充值失败！');
-                        }
+                      
                         $sum_coin+=$coin;
-                        // 提交事务
-                        Db::commit(); 
-                        
-                    }catch (\Exception $e) {
-                        // 回滚事务
-                        Db::rollback();
-                        return $this->error('充值失败！');
+                        $sum_exp+=$exp;
                     }
+                        // 提交事务
+                    Db::commit(); 
+                        
+                }catch (\Exception $e) {
+                    $result_trans=false;
+                    // 回滚事务
+                    Db::rollback();
                 }
                 
-                $operation='用户点卡自充值（批量操作）';
-                $usercoin=$this->userModel->where('uid',$this->uid)->value('coin');
-                //充值增加经验对等金额（元）
-                $this->userModel->where('uid',$this->uid)->setInc('experiments',$sum_coin/1000);
-                adduserlog($this->uid,$operation,$sum_coin,$sum_coin/1000,$usercoin);
-                return $this->success($operation,'/user/charge');
+                if($result_trans==false){
+                    return $this->error('充值失败！');
+                }else{
+                    $operation='用户点卡自充值（批量）';
+                    $usercoin=$this->userModel->where('uid',$this->uid)->value('coin');
+                    //充值增加经验
+                    $this->userModel->where('uid',$this->uid)->setInc('experiments',$sum_exp);
+                    adduserlog($this->uid,$operation,$sum_coin,$sum_exp,$usercoin);
+                    return $this->success($operation,'/user/charge');
+                }
+            
             }
         }
         return $this->fetch();
@@ -601,8 +622,22 @@ class User extends Site
         return $this->fetch();
     }
 
-    //
+    /**
+    * 推广下线
+    */
+    public function recom()
+    {   
 
+        return $this->fetch();
+    }
+
+    /**
+    * 推广收益
+    */
+    public function recomyield()
+    {
+        return $this->fetch();
+    }
     
 
 }
