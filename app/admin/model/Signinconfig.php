@@ -15,5 +15,9 @@ namespace app\admin\model;
 use \think\Model;
 class Signinconfig extends Model
 {
-    
+    public function grade()
+    {
+    	//关联用户等级表
+    	return $this->belongsTo('app\front\model\UserGrade');
+    }
 }

@@ -17,12 +17,15 @@
                 <div class="ibox-title">
                     <h5>签到中心</h5>
                 </div>
-				<div class="qd-text">您已连续签到<span class="red">2</span>天,累计获得签到奖励<span class="red">4</span></div>
+				<div class="qd-text">您已连续签到<span class="red">{$j}</span>天,累计获得签到奖励<span class="red">4</span></div>
                 <div class="sign-box">
                     <div class="sign-left">
                         <div class="qd-state">
-                            <a href="?act=qd" class="qd-btn">点击签到</a>
-                        
+                            {if condition="$cansignin eq 1"}
+                            <a href="/user/signin?act=signin"  class="qd-btn">点击签到</a>
+                            {else /}
+                            <a href="javascript:;"  class="qd-btn">已签到</a>
+                            {/if}
                             <div class="qdtime">
                                 <div class="sign-today-year" id="today-year"></div>
                                 <div class="sign-today-date" id="today-date"></div>
@@ -43,34 +46,12 @@
                             </tr>
                             </thead>
                             <tbody>
+                                {volist name="signingrade" id="vo"  }
                                 <tr>
-                                    <td><i class="user-dj user-dj0"></i></td>
-                                    <td>0 + 1 x 天数</td>
+                                    <td><i class="user-dj user-dj{$vo.user_grade_id}"></i></td>
+                                    <td>{$vo.base_num} + {$vo.increment_num} x 天数</td>
                                 </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj1"></i></td>
-                                    <td>20 + 1 x 天数</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj2"></i></td>
-                                    <td>30 + 1 x 天数</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj3"></i></td>
-                                    <td>60 + 1 x 天数</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj4"></i></td>
-                                    <td>100 + 1 x 天数</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj5"></i></td>
-                                    <td>150 + 1 x 天数</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj6"></i></td>
-                                    <td>200 + 1 x 天数</td>
-                                </tr>
+                                {/volist}
 
                             </tbody>
                         </table>
@@ -82,7 +63,7 @@
                     <h5>签到记录</h5>
                 </div>
                 <div style="min-height: 100px;">
-                <table class="user-table mt40">
+                <table class="user-table">
                     <thead>
                     <tr>
                          <th>事件</th>
@@ -93,31 +74,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                                        <tr>
+                    {volist name="signinlist" id="vo"  }
+                    <tr>
                         <td>每日签到</td>
-                        <td>2019-04-08 23:11:51</td>
-                        <td>1</td>
-                        <td>0</td>
-                        <td>42397</td>
+                        <td>{$vo.create_time}</td>
+                        <td>{$vo.mp_coin}</td>
+                        <td>{$vo.mp_exp}</td>
+                        <td>{$vo.coin}</td>
                     </tr>
-                                        <tr>
-                        <td>每日签到</td>
-                        <td>2019-04-09 11:11:44</td>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>42399</td>
-                    </tr>
-                    
+                    {/volist}
                     </tbody>
                 </table>
-                <div class="page"><li ><a  href="/User/Sign?page=1">首页</a></li> <li ><a  href="#">上一页</a></li> <li ><a  href="/User/Sign?page=2">下一页</a></li> <li ><a  href="/User/Sign?page=1">尾页</a></li>　(当前第<span style="color:#C16012; font-size:12pt;">1</span>页 共<span style="color:#C16012; font-size:12pt;">1</span>页 <span style="color:#C16012; font-size:12pt;">2</span>条记录)</div>
+                <div style="padding:0 20px;">{$signinlist->render()}</div> 
                 </div>
 		    </div>
 
-
-   
-
-			
 			
         </div><!--uright-->
 
@@ -130,7 +101,7 @@
             this.opt = options;
             this.defaults = {
                 height: 'auto',
-                dateArray: [7,8], // 假设已签到的天数+1
+                dateArray: [{$signin_day}], // 假设已签到的天数+1
             };
             this.obj = $.extend({}, this.defaults, this.opt);
         }
@@ -227,8 +198,8 @@
     })(jQuery);
     // 插件调用
     $(".checkin").Checkin();
-    $(".qd-btn").text("已签到");
-    $(".qd-btn").attr("href","#");
+    // $(".qd-btn").text("已签到");
+    // $(".qd-btn").attr("href","#");
 </script>
 
 {include file="public/footer" /}

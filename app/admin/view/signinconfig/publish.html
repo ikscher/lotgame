@@ -15,7 +15,7 @@
     <div class="layui-tab">
       <ul class="layui-tab-title">
         <li><a href="{:url('admin/signinconfig/index')}" class="a_menu">签到管理</a></li>
-        <li class="layui-this">新增等级</li>
+        <li class="layui-this">修改签到配置</li>
       </ul>
     </div>
     <div style="margin-top: 20px;">
@@ -25,7 +25,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">等级</label>
         <div class="layui-input-inline">
-          <input name="rank" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$signinconfig.rank"}value="{$signinconfig.rank}"{/notempty}>
+          <input name="user_grade_id" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$signinconfig.user_grade_id"}value="{$signinconfig.user_grade_id}"{/notempty}>
         </div>
         <div class="layui-form-mid layui-word-aux">例：V0</div>
       </div>

@@ -11,13 +11,15 @@
 		</ul>
 		<ul>
 			<li><a href='/Agent/Index'>在线充值</a></li>
-			<li><a href='/Cg/Getprize'>闯关奖励</a></li>
+			{if condition="$agent_id gt 0"}<li><a href='/Agent'>代理后台</a></li>{/if}
+			<!-- <li><a href='/Cg/Getprize'>闯关奖励</a></li> -->
 		</ul>
 
 		<p>站内功能</p>
 		<ul>
 			<!-- <li><a href='/User/SelfLine'>专属域名</a></li> -->
 			<li><a href='/User/Charge'>点卡使用</a></li>
+			<li><a href='/User/Bonus'>首充返利</a></li>
 		</ul>
 		<ul>
 			<li><a href='/User/Msg'>站内信箱</a></li>
@@ -27,9 +29,7 @@
 			<li><a href='/User/Prize'>兑奖记录</a></li>
 			<li><a href='/User/ReWard'>亏损返利</a></li>
 		</ul>
-		<ul>
-			<li><a href='/User/Bonus'>首充返利</a></li>
-		</ul>
+	
 
 		<p>推广相关</p>
 		<ul>

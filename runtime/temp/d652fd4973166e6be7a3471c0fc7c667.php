@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:59:"D:\mywork\lotgame\public/../app/front\view\user\signin.html";i:1554783036;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554774388;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554781895;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:59:"D:\mywork\lotgame\public/../app/front\view\user\signin.html";i:1554817028;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554734797;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554821243;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -233,13 +233,15 @@
 		</ul>
 		<ul>
 			<li><a href='/Agent/Index'>在线充值</a></li>
-			<li><a href='/Cg/Getprize'>闯关奖励</a></li>
+			<?php if($agent_id > 0): ?><li><a href='/Agent'>代理后台</a></li><?php endif; ?>
+			<!-- <li><a href='/Cg/Getprize'>闯关奖励</a></li> -->
 		</ul>
 
 		<p>站内功能</p>
 		<ul>
 			<!-- <li><a href='/User/SelfLine'>专属域名</a></li> -->
 			<li><a href='/User/Charge'>点卡使用</a></li>
+			<li><a href='/User/Bonus'>首充返利</a></li>
 		</ul>
 		<ul>
 			<li><a href='/User/Msg'>站内信箱</a></li>
@@ -249,9 +251,7 @@
 			<li><a href='/User/Prize'>兑奖记录</a></li>
 			<li><a href='/User/ReWard'>亏损返利</a></li>
 		</ul>
-		<ul>
-			<li><a href='/User/Bonus'>首充返利</a></li>
-		</ul>
+	
 
 		<p>推广相关</p>
 		<ul>
@@ -301,12 +301,15 @@
                 <div class="ibox-title">
                     <h5>签到中心</h5>
                 </div>
-				<div class="qd-text">您已连续签到<span class="red">2</span>天,累计获得签到奖励<span class="red">4</span></div>
+				<div class="qd-text">您已连续签到<span class="red"><?php echo $j; ?></span>天,累计获得签到奖励<span class="red">4</span></div>
                 <div class="sign-box">
                     <div class="sign-left">
                         <div class="qd-state">
-                            <a href="?act=qd" class="qd-btn">点击签到</a>
-                        
+                            <?php if($cansignin == 1): ?>
+                            <a href="/user/signin?act=signin"  class="qd-btn">点击签到</a>
+                            <?php else: ?>
+                            <a href="javascript:;"  class="qd-btn">已签到</a>
+                            <?php endif; ?>
                             <div class="qdtime">
                                 <div class="sign-today-year" id="today-year"></div>
                                 <div class="sign-today-date" id="today-date"></div>
@@ -327,34 +330,12 @@
                             </tr>
                             </thead>
                             <tbody>
+                                <?php if(is_array($signingrade) || $signingrade instanceof \think\Collection || $signingrade instanceof \think\Paginator): $i = 0; $__LIST__ = $signingrade;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                                 <tr>
-                                    <td><i class="user-dj user-dj0"></i></td>
-                                    <td>0 + 1 x 天数</td>
+                                    <td><i class="user-dj user-dj<?php echo $vo['user_grade_id']; ?>"></i></td>
+                                    <td><?php echo $vo['base_num']; ?> + <?php echo $vo['increment_num']; ?> x 天数</td>
                                 </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj1"></i></td>
-                                    <td>20 + 1 x 天数</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj2"></i></td>
-                                    <td>30 + 1 x 天数</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj3"></i></td>
-                                    <td>60 + 1 x 天数</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj4"></i></td>
-                                    <td>100 + 1 x 天数</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj5"></i></td>
-                                    <td>150 + 1 x 天数</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="user-dj user-dj6"></i></td>
-                                    <td>200 + 1 x 天数</td>
-                                </tr>
+                                <?php endforeach; endif; else: echo "" ;endif; ?>
 
                             </tbody>
                         </table>
@@ -366,7 +347,7 @@
                     <h5>签到记录</h5>
                 </div>
                 <div style="min-height: 100px;">
-                <table class="user-table mt40">
+                <table class="user-table">
                     <thead>
                     <tr>
                          <th>事件</th>
@@ -377,31 +358,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                                        <tr>
+                    <?php if(is_array($signinlist) || $signinlist instanceof \think\Collection || $signinlist instanceof \think\Paginator): $i = 0; $__LIST__ = $signinlist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <tr>
                         <td>每日签到</td>
-                        <td>2019-04-08 23:11:51</td>
-                        <td>1</td>
-                        <td>0</td>
-                        <td>42397</td>
+                        <td><?php echo $vo['create_time']; ?></td>
+                        <td><?php echo $vo['mp_coin']; ?></td>
+                        <td><?php echo $vo['mp_exp']; ?></td>
+                        <td><?php echo $vo['coin']; ?></td>
                     </tr>
-                                        <tr>
-                        <td>每日签到</td>
-                        <td>2019-04-09 11:11:44</td>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>42399</td>
-                    </tr>
-                    
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
                     </tbody>
                 </table>
-                <div class="page"><li ><a  href="/User/Sign?page=1">首页</a></li> <li ><a  href="#">上一页</a></li> <li ><a  href="/User/Sign?page=2">下一页</a></li> <li ><a  href="/User/Sign?page=1">尾页</a></li>　(当前第<span style="color:#C16012; font-size:12pt;">1</span>页 共<span style="color:#C16012; font-size:12pt;">1</span>页 <span style="color:#C16012; font-size:12pt;">2</span>条记录)</div>
+                <div style="padding:0 20px;"><?php echo $signinlist->render(); ?></div> 
                 </div>
 		    </div>
 
-
-   
-
-			
 			
         </div><!--uright-->
 
@@ -414,7 +385,7 @@
             this.opt = options;
             this.defaults = {
                 height: 'auto',
-                dateArray: [7,8], // 假设已签到的天数+1
+                dateArray: [<?php echo $signin_day; ?>], // 假设已签到的天数+1
             };
             this.obj = $.extend({}, this.defaults, this.opt);
         }
@@ -511,8 +482,8 @@
     })(jQuery);
     // 插件调用
     $(".checkin").Checkin();
-    $(".qd-btn").text("已签到");
-    $(".qd-btn").attr("href","#");
+    // $(".qd-btn").text("已签到");
+    // $(".qd-btn").attr("href","#");
 </script>
 
 <div class="clear"></div>

@@ -20,4 +20,10 @@ class UserGrade extends Model
         //关联管理员表
         return $this->hasMany('user','user_grade_id');
     }
+
+    public function signin()
+    {
+    	//关联签到设置表
+    	return $this->hasOne('app\admin\model\Signinconfig','user_grade_id');
+    }
 }

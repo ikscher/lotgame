@@ -88,14 +88,14 @@ class Agent extends Permissions
                 $post = $this->request->post();
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
                 $rule = [
-                    'password'  => 'max:20',
-                    'name'   => 'require|max:30',
+                    'password'  => 'require|max:30',
+                    'name'   => 'require|max:50',
                 ];
 
                 $msg = [
-                    'password.require' => '密码不能超过20位',
+                    'password.require' => '密码请填写，不能超过30位',
                     'name.require' => '代理名称必须填写',
-                    'name.max' => '代理名称不能超过30个字符'
+                    'name.max' => '代理名称不能超过50个字符'
                 ];
                 $validate = new \think\Validate($rule,$msg);
                 //验证部分数据合法性
@@ -111,11 +111,11 @@ class Agent extends Permissions
 
                 $post['is_freeze']= empty($post['is_freeze'])?0:1;
                 $post['is_show']= empty($post['is_show'])?0:1;
-                //修改对应的用户密码
-                if($post['user_id']){
-                    $data['password']=$post['password'];
-                    $this->usermodel->allowField(['password'])->save($data, ['uid' => $post['user_id']]);
-                }
+                //修改对应的用户密码  这段代码需要商讨
+                // if($post['user_id']){
+                //     $data['password']=$post['password'];
+                //     $this->usermodel->allowField(['password'])->save($data, ['uid' => $post['user_id']]);
+                // }
                 //更改代理信息
                 $ret=$this->model->allowField(true)->save($post,['id'=>$id]);
                 // echo $this->model->getLastSql();exit;
@@ -146,14 +146,14 @@ class Agent extends Permissions
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
 
                 $rule = [
-                    'password'  => 'max:20',
-                    'name'   => 'require|max:30',
+                    'password'  => 'require|max:30',
+                    'name'   => 'require|max:50',
                 ];
 
                 $msg = [
-                    'password.require' => '密码不能超过20位',
+                    'password.require' => '密码请填写，不能超过30位',
                     'name.require' => '代理名称必须填写',
-                    'name.max' => '代理名称不能超过30个字符'
+                    'name.max' => '代理名称不能超过50个字符'
                 ];
                 $validate = new \think\Validate($rule,$msg);
                 //验证部分数据合法性
