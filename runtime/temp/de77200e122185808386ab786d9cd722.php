@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\prize.html";i:1554725352;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554603822;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:63:"D:\mywork\lotgame\public/../app/front\view\user\recomyield.html";i:1554732867;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554732769;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -185,9 +185,11 @@
 		}(window));
 	setTimeout(window.autoAnimation, 5000);
 </script>
-
+<link href="/static/public/layui/css/layui.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="/static/front/js/birthday_jq.js" ></script>
 <div id="wrapper" class="umain">
 	<div class="w1200">
+		<!--顶侧top-->
 		<div class="utop">
 	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
 	<div class="utop-info">
@@ -214,6 +216,8 @@
 		</li>
 	</ul>
 </div>
+		<!--顶侧top-->
+
 		<!--左侧left菜单-->
 		<div class="col-left">
 	<div class="uleft-menu" id="side-menu">
@@ -251,7 +255,7 @@
 		<p>推广相关</p>
 		<ul>
 			<li><a href='/User/Recom'>推广下线</a></li>
-			<li><a href='/User/Recomprofit'>推广收益</a></li>
+			<li><a href='/User/Recomyield'>推广收益</a></li>
 		</ul>
 
 		<p>工资救济</p>
@@ -290,47 +294,34 @@
 
 		<!--左侧left菜单-->
 
-
-
-
 		<div class="uright">
+		
 			<div class="ibox">
-				<div class="ibox-title">
-					<h5>兑换记录</h5>
-					<!-- <a href="javascript:;" onClick="delMsg()">删除</a> -->
+	            <div class="ibox-title">
+	                <h5>推广收益</h5>
+	            </div>
+	            <div style="min-height: 250px;">
+					<table class="user-table mt20">
+		                <thead>
+						<tr>
+							 <th>下线ID</th>
+							 <th>类型</th>
+							 <th>注册时间</th>
+							 <th>奖励时间</th>
+							 <th>获得奖励</th>
+						</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
 				</div>
-				<div class="ibox-content">
-					<div style="min-height: 300px;">
-						<table class="user-table mt20">
-							<thead>
-								<tr>
-									<th>奖品</th>
-									<th>数量</th>
-									<th>时间</th>
-									<th>状态</th>
-									<th>操作</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php if(is_array($exchanges) || $exchanges instanceof \think\Collection || $exchanges instanceof \think\Paginator): if( count($exchanges)==0 ) : echo "" ;else: foreach($exchanges as $key=>$vo): ?>
-								<tr class="unread">
-									<td width="260px"><p class="table-p"><a href="/Prize/Detail?id=<?php echo $vo['id']; ?>"><?php echo $vo['prize']['name']; ?></a></p></td>
-									<td><?php echo $vo['num']; ?></td>
-									<td><?php echo $vo['create_time']; ?></td>
-									<td><?php if($vo['status'] == 1): ?>待审核<?php elseif($vo['status'] == 2): ?>已发货<?php else: ?>拒绝<?php endif; ?></td>
-									<td> <a href="javascript:;" data-id="<?php echo $vo['id']; ?>" >重发</a> </td>
+				<div class="page"><li ><a  href="/User/Recomprofit?page=1">首页</a></li> <li ><a  href="#">上一页</a></li> <li ><a  href="/User/Recomprofit?page=2">下一页</a></li> <li ><a  href="/User/Recomprofit?page=0">尾页</a></li>　(当前第<span style="color:#C16012; font-size:12pt;">1</span>页 共<span style="color:#C16012; font-size:12pt;">0</span>页 <span style="color:#C16012; font-size:12pt;">0</span>条记录)</div>
 
-								</tr>
-								<?php endforeach; endif; else: echo "" ;endif; ?>
-							</tbody>
-						</table>
-						<div style="padding:0 20px;"><?php echo $exchanges->render(); ?></div> 
-					</div>
-				</div>
-			</div>
-		</div><!--uright-->
+	        </div>
+			
+   		</div><!--uright-->
+
 	</div>
-
 </div>
 
 <div class="clear"></div>

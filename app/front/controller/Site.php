@@ -36,9 +36,10 @@ class Site extends Controller
 	            
 	            $this->uid=$uid;
 		        $this->user=$this->userModel->where($map)->find();
-		        $this->assign('user',$this->user);
+		        
 	        }
 	    }
+	    $this->assign('user',$this->user);
 	    $this->assign('uid',$this->uid);
 
 	    //加载头部滚动（公告）

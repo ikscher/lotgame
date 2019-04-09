@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:59:"D:\mywork\lotgame\public/../app/front\view\user\charge.html";i:1554686874;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554686874;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554081941;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554686874;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:59:"D:\mywork\lotgame\public/../app/front\view\user\charge.html";i:1554729258;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554603822;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -402,7 +402,9 @@
 					</div>
 				    <input type='hidden' name="action" value="plural" />
 					<!-- <input type="hidden" name="pilcard" id="pilcard"> -->
+					
 					<button class="user-btn edit-btn" lay-submit style="margin:20px 0;" lay-filter='batch'>确认提交</button>
+					<button class="user-btn edit-btn"  type="reset">清空</button>
 				</form>
 			</div>
 
@@ -464,7 +466,7 @@
 					var cp = $("input[name^='card_pwd']:eq("+i+")").val();
 					if(cp) arr[i]=c+','+cp;
 				}
-			});
+			});``
 			
 			if(arr.length<=0){
 				layer.alert("对不起，请输入卡号和卡密！");

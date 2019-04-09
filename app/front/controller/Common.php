@@ -98,7 +98,9 @@ class Common extends Site
                             //记录登录时间和ip
                             $this->userModel->where('uid',$user['uid'])->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
                             //记录操作日志
-                            adduserlog($user['uid'],'登录');
+                            $coin=$this->userModel->where('uid',$user['uid'])->value('coin');
+                            // $this->userModel->where('uid',$user['uid'])->setInc('experiments',5);
+                            adduserlog($user['uid'],'登录',0,0,$coin);
                             return $this->success('登录成功,正在跳转...','/user/index');
                         }
                     }elseif($logintype==2){ //短信验证登录
@@ -106,7 +108,9 @@ class Common extends Site
                             Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
                             $this->userModel->where('uid',$user['uid'])->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
                             //记录操作日志
-                            adduserlog($user['uid'],'登录');
+                            $coin=$this->userModel->where('uid',$user['uid'])->value('coin');
+                            // $this->userModel->where('uid',$user['uid'])->setInc('experiments',5);
+                            adduserlog($user['uid'],'登录',0,0,$coin);
                             return $this->success('登录成功,正在跳转...','/user/index');
                         }else{
                             return $this->error('验证码错误');
@@ -132,7 +136,7 @@ class Common extends Site
     public function register()
     {   
         if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
-         
+
         if(Session::has('uid') == false) { 
 
             if($this->request->isPost()) {
@@ -145,6 +149,8 @@ class Common extends Site
                     $this->error("验证码错误");
                 }
                 // $data=array();
+                
+                if(Session::get('referee_id')>0) $this->userModel->referee_id=Session::get('referee_id');
                 $this->userModel->mobile=$post['mobile'];
                 $this->userModel->username=$post['tbUserNick'];
                 $this->userModel->password= password($post['tbUserPwd']);
@@ -166,6 +172,16 @@ class Common extends Site
             }
         }
         return $this->fetch();
+    }
+
+    /**
+    *  只是作为一个跳转
+    */
+    public function recom()
+    {
+        $userid=$this->request->param('userid');
+        if($userid>0) Session::set('referee_id',$userid);
+        $this->redirect('/common/register');
     }
 
     /**
@@ -348,8 +364,8 @@ class Common extends Site
                     // Cookie::set('changepwd_smscode_t',$smscode_t);
                 }elseif($action=='register'){
                     Session::set('register_smscode_t',$smscode_t);
+                    Cookie::set('register_smscode_t',$smscode_t);
                 }elseif($action=='order') {
-                    Cookie::set('order_smscode_t',$smscode_t);
                     Session::set('order_smscode_t',$smscode_t);
                 }
                 $data['code']=1;
