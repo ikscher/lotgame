@@ -29,11 +29,21 @@
 						</tr>
 						</thead>
 						<tbody>
+							{foreach name="recomyield" item="vo" }
+                            <tr>
+                                <td>{$vo['referee_id']}</td>
+                                <td>{$vo['type']}</td>
+                                <td>{$vo.user.create_time}</td>
+                                <td>{$vo['create_time']}</td>
+                                <td>{$vo['reward']}</td>
+                                <!-- <td></td> -->
+
+                            </tr>
+                            {/foreach}
 						</tbody>
 					</table>
 				</div>
-				<div class="page"><li ><a  href="/User/Recomprofit?page=1">首页</a></li> <li ><a  href="#">上一页</a></li> <li ><a  href="/User/Recomprofit?page=2">下一页</a></li> <li ><a  href="/User/Recomprofit?page=0">尾页</a></li>　(当前第<span style="color:#C16012; font-size:12pt;">1</span>页 共<span style="color:#C16012; font-size:12pt;">0</span>页 <span style="color:#C16012; font-size:12pt;">0</span>条记录)</div>
-
+                <div style="padding:0 20px;">{$recomyield->render()}</div> 
 	        </div>
 			
    		</div><!--uright-->

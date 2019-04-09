@@ -98,8 +98,8 @@ class User extends Permissions
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
 	            $validate = new \think\Validate([
-	                ['username', 'require', '用户名不能为空'],
-	                ['password', 'require', '密码不能为空'],
+	                ['username', 'require', '用户名不能为空']
+	                // ['password', 'require', '密码不能为空'],
                     // ['thumb', 'require', '请上传缩略图'],
                     // ['content', 'require', '文章内容不能为空'],
 	            ]);
@@ -113,13 +113,15 @@ class User extends Permissions
 	            	return $this->error('uid不正确');
 	            }
                 //设置被修改的UID
-                $post['birth']=$post['year'].'-'.$post['month'].'-'.$post['day'];
+                $post['birth']=strtotime($post['year'].'-'.$post['month'].'-'.$post['day']);
                 
                 $post['vip_expire']=strtotime($post['vip_expire']);
                 $post['is_email']= empty($post['is_email'])?0:1;
                 $post['is_mobile']= empty($post['is_mobile'])?0:1;
                 if(!empty($post['password'])){
                     $post['password']=password($post['password'], 'front_wew234ewAsSUrUOwWV');//前台加密方式
+                }else{
+                    unset($post['password']);
                 }
                 // $post['end_time']=strtotime($post['end_time']);
                 $ret=$this->userModel->allowField(true)->save($post,['uid'=>$uid]);

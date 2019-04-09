@@ -38,6 +38,14 @@
       </div>
 
       <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline" style="max-width:600px;">
+          <input name="password" autocomplete="off"  class="layui-input" type="password" >
+        </div>
+        <div class="layui-form-mid layui-word-aux">密码为空 保持不变</div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">性别</label>
         <div class="layui-input-block">
           <input type="radio" name="gender" value="1" title="男"  {if condition="$user.gender eq 1"}checked{/if}>
@@ -67,12 +75,6 @@
         </div>
       </div>
       
-      <div class="layui-form-item">
-        <label class="layui-form-label">密码</label>
-        <div class="layui-input-block" style="max-width:600px;">
-          <input name="password" autocomplete="off"  class="layui-input" type="password" >
-        </div>
-      </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">手机号码</label>
@@ -96,23 +98,30 @@
       </div>
 
       <div class="layui-form-item">
+        <label class="layui-form-label">上线ID</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input name="referee_id" autocomplete="off"  class="layui-input"  type="text" {notempty name="$user.referee_id"}value="{$user.referee_id}"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">用户金币</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="units" autocomplete="off"   class="layui-input" type="text" {notempty name="$user.units"}value="{$user.units}"{/notempty}>
+          <input name="coin" autocomplete="off"   class="layui-input" type="text" {notempty name="$user.coin"}value="{$user.coin}"{else /}value="0"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">金币银行</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="bank" autocomplete="off"   class="layui-input" type="text" {notempty name="$user.bank"}value="{$user.bank}"{/notempty}>
+          <input name="bank" autocomplete="off"   class="layui-input" type="text" {notempty name="$user.bank"}value="{$user.bank}"{else /}value="0"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">用户积分</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="points" autocomplete="off"  class="layui-input"   type="text" {notempty name="$user.points"}value="{$user.points}"{/notempty}>
+          <input name="points" autocomplete="off"  class="layui-input"   type="text" {notempty name="$user.points"}value="{$user.points}"{else /}value="0"{/notempty}>
         </div>
       </div>
 
@@ -130,9 +139,9 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">出生日期</label>
         <div class="layui-input-inline birth" style="max-width:900px;">
-          <select name="year" class="sel_year" rel="{:date('Y',strtotime($user.birth))}" lay-filter="birth" ></select>年
-          <select name="month" class="sel_month" rel="{:date('m',strtotime($user.birth))}" lay-filter="birth"></select>月
-          <select name="day" class="sel_day" rel="{:date('d',strtotime($user.birth))}" ></select>日
+          <select name="year" class="sel_year" rel="{:date('Y',$user.birth)}" lay-filter="birth" ></select>年
+          <select name="month" class="sel_month" rel="{:date('m',$user.birth)}" lay-filter="birth"></select>月
+          <select name="day" class="sel_day" rel="{:date('d',$user.birth)}" ></select>日
         </div>
       </div>
       <style type="text/css">

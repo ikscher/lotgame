@@ -60,6 +60,7 @@ Route::rule('user/prize','front/user/prize');
 Route::rule('user/charge','front/user/charge');
 Route::rule('user/recom','front/user/recom');
 Route::rule('user/recomyield','front/user/recomyield');
+Route::rule('user/signin','front/user/signin');
 Route::rule('agent/index','front/agent/index');
 Route::rule('site/index','front/site/index');
 Route::rule('prize/ind','front/prize/init');

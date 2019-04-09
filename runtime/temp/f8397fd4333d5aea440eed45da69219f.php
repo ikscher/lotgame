@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"D:\mywork\lotgame\public/../app/admin\view\signinconfig\index.html";i:1552912333;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"D:\mywork\lotgame\public/../app/admin\view\signinconfig\index.html";i:1554780047;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,17 +36,19 @@
       <colgroup>
         <col width="50">
         <col width="100">
-        <col width="50">
-        <col width="300">
+        <col width="100">
+        <col width="100">
+        <col width="200">
         <col width="200">
         <col width="100">
         <col width="100">
-        <col width="150">
+        <col width="100">
       </colgroup>
       <thead>
         <tr>
           <th>编号</th>
           <th>签到等级</th>
+          <th>基数</th>
           <th>增数</th>
           <th>备注</th>
           <th>创建时间</th>
@@ -60,6 +62,7 @@
         <tr>
           <td><?php echo $vo['id']; ?></td>
           <td><?php echo $vo['rank']; ?></td>
+          <td><?php echo $vo['base_num']; ?></td>
           <td><?php echo $vo['increment_num']; ?></td>
           <td><?php echo $vo['menu']; ?></td>
           <td><?php echo $vo['create_time']; ?></td>

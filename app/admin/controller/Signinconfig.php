@@ -41,6 +41,7 @@ class Signinconfig extends Permissions
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
                 $validate = new \think\Validate([
                     ['rank', 'require', '等级不能为空'],
+                    ['base_num', 'require', '基数不能为空'],
                     ['increment_num', 'require', '增数不能为空'],
                     ['max_successive_day', 'require', '最大连续天数不能为空']
                 ]);
@@ -53,6 +54,7 @@ class Signinconfig extends Permissions
                 if(empty($signinconfig)) {
                     return $this->error('id不正确');
                 }
+                $post['status']= empty($post['status'])?0:1;
                 if(false == $model->allowField(true)->save($post,['id'=>$id])) {
                     return $this->error('修改失败');
                 } else {
@@ -78,6 +80,7 @@ class Signinconfig extends Permissions
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
                 $validate = new \think\Validate([
                     ['rank', 'require', '等级不能为空'],
+                    ['base_num', 'require', '基数不能为空'],
                     ['increment_num', 'require', '增数不能为空'],
                     ['max_successive_day', 'require', '最大连续天数不能为空']
                 ]);

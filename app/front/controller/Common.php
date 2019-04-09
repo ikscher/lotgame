@@ -156,6 +156,7 @@ class Common extends Site
                 $this->userModel->password= password($post['tbUserPwd']);
                 $this->userModel->is_mobile=1;
                 $this->userModel->login_ip=$this->request->ip();
+                $this->userModel->login_time=time();
                 $ret=$this->userModel->save();
 
                 if($ret==false){

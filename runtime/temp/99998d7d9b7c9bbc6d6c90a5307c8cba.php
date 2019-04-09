@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\edit.html";i:1554009598;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554377533;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\edit.html";i:1554081941;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554774388;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554774388;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,7 @@
 				</ul>
 			</div>
 			<span class="barr fr">
-				<?php if($uid != 0): ?>
+				<?php if($uid > 0): ?>
 					<b ><?php echo $user['username']; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php echo $user['coin']; ?></b></span> &nbsp;
 					<a href="/User/Index">我的账号</a> <a href="/User/Msg">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/common/logout">退出</a>
@@ -191,7 +191,8 @@
 	<div class="w1200">
 		<!--顶侧top-->
 		<div class="utop">
-	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
+	<div class="utop-head">
+		<img src="<?php if(!empty($user['avatar']) && geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
 	<div class="utop-info">
 		<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
 		<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
@@ -238,7 +239,7 @@
 		<p>站内功能</p>
 		<ul>
 			<!-- <li><a href='/User/SelfLine'>专属域名</a></li> -->
-			<li><a href='/User/Recharge'>点卡使用</a></li>
+			<li><a href='/User/Charge'>点卡使用</a></li>
 		</ul>
 		<ul>
 			<li><a href='/User/Msg'>站内信箱</a></li>
@@ -255,7 +256,7 @@
 		<p>推广相关</p>
 		<ul>
 			<li><a href='/User/Recom'>推广下线</a></li>
-			<li><a href='/User/Recomprofit'>推广收益</a></li>
+			<li><a href='/User/Recomyield'>推广收益</a></li>
 		</ul>
 
 		<p>工资救济</p>
@@ -265,7 +266,7 @@
 		</ul>
 		<ul>
 			<li><a href='/User/Wage'>工资领取</a></li>
-			<li><a href='/Game/Egg'>金蛋砸取</a></li>
+			<li><a href='/Prize/Shatter'>金蛋砸取</a></li>
 		</ul>
 
 		<!-- <p>游戏功能</p>
