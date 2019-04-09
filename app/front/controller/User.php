@@ -7,18 +7,22 @@ use think\Session;
 use think\Db;
 // use app\front\model\User as userModel;
 use app\front\model\UserLog as userLogModel;
+use app\front\model\UserSignin as userSigninModel;
 use app\front\model\UserMsg as userMsgModel;
 use app\admin\model\CardPwd as cardPwdModel;
 use app\front\model\UserExchange as userExchangeModel;
 use app\front\model\UserSafepwd as userSafepwdModel;
+use app\front\model\UserRecomyield as userRecomyieldModel;
 class User extends Site
 {   
 	// private $userModel;
     private $userLogModel;
     private $userMsgModel;
+    private $userSigninModel;
     private $cardPwdModel;
     private $userExchangeModel;
     private $userSafepwdModel;
+    private $userRecomyieldModel;
     private $safe_q;
     
 	public function _initialize()
@@ -29,7 +33,9 @@ class User extends Site
         $this->userExchangeModel = new userExchangeModel();
         $this->userMsgModel = new userMsgModel();
         $this->cardPwdModel= new cardPwdModel();
+        $this->userSigninModel= new userSigninModel();
         $this->userSafepwdModel = new userSafepwdModel();
+        $this->userRecomyieldModel=new userRecomyieldModel();
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
         $this->safe_q=Config::get('safe_q');
@@ -623,21 +629,40 @@ class User extends Site
     }
 
     /**
-    * 推广下线
+    * 推广下线  会员升级，具体怎么一个升级，达到多少？如何操作呢 
     */
     public function recom()
     {   
-
+        $recomlist=array();
+        $recomlist=$this->userModel->where('referee_id',$this->uid)->paginate(5,false,['query'=>$this->request->param()]);
+        
+        $this->assign('recomlist',$recomlist);
         return $this->fetch();
     }
 
     /**
-    * 推广收益
+    * 推广收益 如何奖励，在哪里奖励呢，投注可以，注册也可以，奖励多少
     */
     public function recomyield()
     {
+        $recomyield=array();
+        $recomyield=$this->userRecomyieldModel->where('referee_id',$this->uid)->paginate(15,false,['query'=>$this->request->param()]);
+        $this->assign('recomyield',$recomyield);
         return $this->fetch();
     }
-    
+
+    /**
+    * 用户签到
+    */
+    public function signin()
+    {
+        $map['user_id']=$this->uid;
+        //$BeginDate=date("Y-m-01")当前月份第一天：strtotime($BeginDate)，当前月份最后一天strtotime("$BeginDate +1 month -1 day")+86399)
+        $BeginDate=date("Y-m-01");
+        
+        $map['cur_date']=
+        $singin=$this->userSigninModel->where($map)->find();
+        return $this->fetch();
+    }
 
 }

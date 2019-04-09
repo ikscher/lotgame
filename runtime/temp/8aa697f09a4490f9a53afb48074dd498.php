@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"D:\mywork\lotgame\public/../app/admin\view\user\publish.html";i:1554364273;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:60:"D:\mywork\lotgame\public/../app/admin\view\user\publish.html";i:1554775678;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +39,14 @@
       </div>
 
       <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline" style="max-width:600px;">
+          <input name="password" autocomplete="off"  class="layui-input" type="password" >
+        </div>
+        <div class="layui-form-mid layui-word-aux">密码为空 保持不变</div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">性别</label>
         <div class="layui-input-block">
           <input type="radio" name="gender" value="1" title="男"  <?php if($user['gender'] == 1): ?>checked<?php endif; ?>>
@@ -68,12 +76,6 @@
         </div>
       </div>
       
-      <div class="layui-form-item">
-        <label class="layui-form-label">密码</label>
-        <div class="layui-input-block" style="max-width:600px;">
-          <input name="password" autocomplete="off"  class="layui-input" type="password" >
-        </div>
-      </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">手机号码</label>
@@ -97,23 +99,30 @@
       </div>
 
       <div class="layui-form-item">
+        <label class="layui-form-label">上线ID</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input name="referee_id" autocomplete="off"  class="layui-input"  type="text" <?php if(!(empty($user['referee_id']) || (($user['referee_id'] instanceof \think\Collection || $user['referee_id'] instanceof \think\Paginator ) && $user['referee_id']->isEmpty()))): ?>value="<?php echo $user['referee_id']; ?>"<?php endif; ?>>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">用户金币</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="units" autocomplete="off"   class="layui-input" type="text" <?php if(!(empty($user['units']) || (($user['units'] instanceof \think\Collection || $user['units'] instanceof \think\Paginator ) && $user['units']->isEmpty()))): ?>value="<?php echo $user['units']; ?>"<?php endif; ?>>
+          <input name="coin" autocomplete="off"   class="layui-input" type="text" <?php if(!(empty($user['coin']) || (($user['coin'] instanceof \think\Collection || $user['coin'] instanceof \think\Paginator ) && $user['coin']->isEmpty()))): ?>value="<?php echo $user['coin']; ?>"<?php else: ?>value="0"<?php endif; ?>>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">金币银行</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="bank" autocomplete="off"   class="layui-input" type="text" <?php if(!(empty($user['bank']) || (($user['bank'] instanceof \think\Collection || $user['bank'] instanceof \think\Paginator ) && $user['bank']->isEmpty()))): ?>value="<?php echo $user['bank']; ?>"<?php endif; ?>>
+          <input name="bank" autocomplete="off"   class="layui-input" type="text" <?php if(!(empty($user['bank']) || (($user['bank'] instanceof \think\Collection || $user['bank'] instanceof \think\Paginator ) && $user['bank']->isEmpty()))): ?>value="<?php echo $user['bank']; ?>"<?php else: ?>value="0"<?php endif; ?>>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">用户积分</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="points" autocomplete="off"  class="layui-input"   type="text" <?php if(!(empty($user['points']) || (($user['points'] instanceof \think\Collection || $user['points'] instanceof \think\Paginator ) && $user['points']->isEmpty()))): ?>value="<?php echo $user['points']; ?>"<?php endif; ?>>
+          <input name="points" autocomplete="off"  class="layui-input"   type="text" <?php if(!(empty($user['points']) || (($user['points'] instanceof \think\Collection || $user['points'] instanceof \think\Paginator ) && $user['points']->isEmpty()))): ?>value="<?php echo $user['points']; ?>"<?php else: ?>value="0"<?php endif; ?>>
         </div>
       </div>
 
@@ -131,9 +140,9 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">出生日期</label>
         <div class="layui-input-inline birth" style="max-width:900px;">
-          <select name="year" class="sel_year" rel="<?php echo date('Y',strtotime($user['birth'])); ?>" lay-filter="birth" ></select>年
-          <select name="month" class="sel_month" rel="<?php echo date('m',strtotime($user['birth'])); ?>" lay-filter="birth"></select>月
-          <select name="day" class="sel_day" rel="<?php echo date('d',strtotime($user['birth'])); ?>" ></select>日
+          <select name="year" class="sel_year" rel="<?php echo date('Y',$user['birth']); ?>" lay-filter="birth" ></select>年
+          <select name="month" class="sel_month" rel="<?php echo date('m',$user['birth']); ?>" lay-filter="birth"></select>月
+          <select name="day" class="sel_day" rel="<?php echo date('d',$user['birth']); ?>" ></select>日
         </div>
       </div>
       <style type="text/css">

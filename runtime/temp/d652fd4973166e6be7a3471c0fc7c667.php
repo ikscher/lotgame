@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\index.html";i:1554690205;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554774388;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554774388;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:59:"D:\mywork\lotgame\public/../app/front\view\user\signin.html";i:1554783036;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554774388;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554781895;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -185,8 +185,11 @@
 		}(window));
 	setTimeout(window.autoAnimation, 5000);
 </script>
-<div class="umain">
+<link href="/static/public/layui/css/layui.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="/static/front/js/birthday_jq.js" ></script>
+<div id="wrapper" class="umain">
 	<div class="w1200">
+		<!--顶侧top-->
 		<div class="utop">
 	<div class="utop-head">
 		<img src="<?php if(!empty($user['avatar']) && geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
@@ -214,8 +217,10 @@
 		</li>
 	</ul>
 </div>
+		<!--顶侧top-->
+
 		<!--左侧left菜单-->
-        <div class="col-left">
+		<div class="col-left">
 	<div class="uleft-menu" id="side-menu">
 		<p style="margin-top: 0;">用户账户</p>
 		<ul>
@@ -256,7 +261,7 @@
 
 		<p>工资救济</p>
 		<ul>
-			<li><a href='/User/Sign'>签到中心</a></li>
+			<li><a href='/User/Signin'>签到中心</a></li>
 			<li><a href='/User/Alms'>领取救济</a></li>
 		</ul>
 		<ul>
@@ -290,135 +295,226 @@
 
 		<!--左侧left菜单-->
 
-	 <div class="uright">
-	 	<div class="ibox">
-	 		<div class="ibox-title">
-	 			<h5>账户信息</h5>
-	 		</div>
-	 		<div class="ibox-content">
-	 			<ul class="safe-ul">
-	 				<!-- <li class="li1">
-	 					<i></i>
-	 					<p class="p1">专属域名</p>
-	 					<p class="p2 "><span>未开通</span><a href="/User/SelfLine">立即开通</a></p>
-	 				</li> -->
-	 				<li class="li2">
-	 					<i></i>
-	 					<p class="p1">邮箱绑定</p>
-	 					<?php if(!(empty($user['is_email']) || (($user['is_email'] instanceof \think\Collection || $user['is_email'] instanceof \think\Paginator ) && $user['is_email']->isEmpty()))): ?>
-	 						<p class="p2  yes "><span>已绑定</span><a href="/User/BindEmail">查看</a></p>
-	 					<?php else: ?>
-	 						<p class="p2  no "><span>未绑定</span><a href="/User/BindEmail">立即绑定</a></p>
-	 					<?php endif; ?>
-	 				</li>
-	 				<li class="li5">
-	 					<i></i>
-	 					<p class="p1">密保启用</p>
-	 					<?php if(!(empty($isbind) || (($isbind instanceof \think\Collection || $isbind instanceof \think\Paginator ) && $isbind->isEmpty()))): ?>
-	 						<p class="p2  yes "><span>已启用</span><a href="/User/Safe">查看</a></p>
-	 					<?php else: ?>
-	 						<p class="p2  no "><span>未启用</span><a href="/User/Safe">立即启用</a></p>
-                        <?php endif; ?>
-	 				</li>
-	 				<li class="li3" style="margin-right: 50px;">
-	 					<i></i>
-	 					<p class="p1">手机绑定</p>
-	 					<p class="p2  yes "><span>已绑定</span><a href="/User/Mobile">查看</a></p>
-	 				</li>
-	 				<!-- <li class="li4">
-	 					<i></i>
-	 					<p class="p1">QQ绑定</p>
-	 					<p class="p2 "><span>未绑定</span><a href="/plugin/qc/login.php">立即绑定</a></p>
-	 				</li> -->
-	 				
-	 				<!-- <li class="li6" style="margin-right: 50px;">
-	 					<i></i>
-	 					<p class="p1">在线充值</p>
-	 					<p class="p2"><span>未充值</span><a href="/User/MyRecharge">立即充值</a></p>
-	 				</li> -->
-	 			</ul>
-	 		</div>
+		<div class="uright">
+		
+			<div class="ibox">
+                <div class="ibox-title">
+                    <h5>签到中心</h5>
+                </div>
+				<div class="qd-text">您已连续签到<span class="red">2</span>天,累计获得签到奖励<span class="red">4</span></div>
+                <div class="sign-box">
+                    <div class="sign-left">
+                        <div class="qd-state">
+                            <a href="?act=qd" class="qd-btn">点击签到</a>
+                        
+                            <div class="qdtime">
+                                <div class="sign-today-year" id="today-year"></div>
+                                <div class="sign-today-date" id="today-date"></div>
+                            </div>
+                        </div>
+                        <div class="checkin"></div>
+                        
+                    </div>
+                    
+                    <div class="sign-right">
+                        <div class="qdjl-tit">签到奖励规则</div>
+                        <div class="qdjl-text">(连续签到天数超过7天按7天计算奖励)</div>
+                        <table class="signjl-table">
+                            <thead>
+                            <tr>
+                                 <th width="80px">等级</th>
+                                 <th>签到奖励</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i class="user-dj user-dj0"></i></td>
+                                    <td>0 + 1 x 天数</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="user-dj user-dj1"></i></td>
+                                    <td>20 + 1 x 天数</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="user-dj user-dj2"></i></td>
+                                    <td>30 + 1 x 天数</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="user-dj user-dj3"></i></td>
+                                    <td>60 + 1 x 天数</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="user-dj user-dj4"></i></td>
+                                    <td>100 + 1 x 天数</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="user-dj user-dj5"></i></td>
+                                    <td>150 + 1 x 天数</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="user-dj user-dj6"></i></td>
+                                    <td>200 + 1 x 天数</td>
+                                </tr>
 
-	 		<div class="ibox-title">
-	 			<h5>账户动态</h5>
-	 		</div>
-	 		<div class="ibox-content">
-	 			<table class="user-table mt20">
-	 				<thead>
-	 					<tr>
-	 						<th>事件</th>
-	 						<th>时间</th>
-	 						<th>金额</th>
-	 						<th>经验</th>
-	 						<th>余额</th>
-	 					</tr>
-	 				</thead>
-	 				<tbody>
-	 					<?php if(is_array($logs) || $logs instanceof \think\Collection || $logs instanceof \think\Paginator): if( count($logs)==0 ) : echo "" ;else: foreach($logs as $key=>$vo): ?>
-	 					<tr>
-	 						<td width="260px"><p class="table-p"><?php echo $vo['desc']; ?></p></td>
-	 						<td><?php echo $vo['create_time']; ?></td>
-	 						<td><span class="blue"><?php echo $vo['mp_coin']; ?></span></td>
-	 						<td><span class="blue"><?php echo $vo['mp_exp']; ?></span></td>
-	 						<td><span class="blue"><?php echo $vo['coin']; ?></span></td>
-	 					</tr>
-	 					<?php endforeach; endif; else: echo "" ;endif; ?>
-	 				</tbody>
-	 			</table>
-	 			<div style="padding:0 20px;"><?php echo $logs->render(); ?></div> 
-	 			<!-- <form id="chaxun" name="chaxun" method="get" action="?">
-	 				<select name="k" id="k" class="user-select">
-	 					<option value="0">全部记录</option>
-	 					<option value="8">登陆记录</option>
-	 					<option value="4">银行操作</option>
-	 					<option value="1">广告奖励</option>
-	 					<option value="5">任务记录</option>
-	 					<option value="2">道具使用</option>
-	 					<option value="3">奖罚记录</option>
-	 					<option value="7">推广奖励</option>
-	 					<option value="6">游戏记录</option>
-	 					<option value="11">工资记录</option>
-	 					<option value="12">签到记录</option>
-	 					<option value="19">专属线路</option>
-	 					<option value="25">站内红包</option>
-	 				</select>
-	 				<input type="submit" name="Submit" value="查询" />
-	 			</form> -->
-	 		</div>
-	 	</div>
-	 </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="ibox-title">
+                    <h5>签到记录</h5>
+                </div>
+                <div style="min-height: 100px;">
+                <table class="user-table mt40">
+                    <thead>
+                    <tr>
+                         <th>事件</th>
+                         <th>时间</th>
+                         <th>金额</th>
+                         <th>经验</th>
+                         <th>余额</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                        <tr>
+                        <td>每日签到</td>
+                        <td>2019-04-08 23:11:51</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>42397</td>
+                    </tr>
+                                        <tr>
+                        <td>每日签到</td>
+                        <td>2019-04-09 11:11:44</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>42399</td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+                <div class="page"><li ><a  href="/User/Sign?page=1">首页</a></li> <li ><a  href="#">上一页</a></li> <li ><a  href="/User/Sign?page=2">下一页</a></li> <li ><a  href="/User/Sign?page=1">尾页</a></li>　(当前第<span style="color:#C16012; font-size:12pt;">1</span>页 共<span style="color:#C16012; font-size:12pt;">1</span>页 <span style="color:#C16012; font-size:12pt;">2</span>条记录)</div>
+                </div>
+		    </div>
+
+
+   
+
+			
+			
+        </div><!--uright-->
+
 	</div>
-	</div>
+</div>
+<script type="text/javascript">
+    ;(function($) {
+        var Checkin = function(ele, options) {
+            this.ele = ele;
+            this.opt = options;
+            this.defaults = {
+                height: 'auto',
+                dateArray: [7,8], // 假设已签到的天数+1
+            };
+            this.obj = $.extend({}, this.defaults, this.opt);
+        }
+        Checkin.prototype.init = function() {
+            var _self = this.ele,
+                html = '',
+                myDate = new Date(),
+                year = myDate.getFullYear(),
+                month = myDate.getMonth(),
+                day = myDate.getDate(),
+                weekText = ['日', '一', '二', '三', '四', '五', '六'];
+            _self.css({
+                width: this.obj.width + 'px',
+                height: this.obj.height,
+                background: this.obj.background,
+                borderRadius: this.obj.radius,
+                color: this.obj.color,
+                padding: this.obj.padding
+            });
+            $("#today-year").html(year);
+            $("#today-date").html((month + 1) + '-' + day);
+            $("<ul class='week clearfix'></ul><ul class='calendarList clearfix'></ul>").appendTo(_self);
+            for (var i = 0; i < 7; i++) {
+                _self.find(".week").append("<li>" + weekText[i] + "</li>")
+            };
+            for (var i = 0; i < 42; i++) {
+                html += "<li><span></span></li>"
+            };
+            _self.find(".calendarList").append(html);
+            var $li = _self.find(".calendarList").find("li");
+            /*_self.find(".calendarList").find("li:nth-child(7n)").css('borderRight', 'none');
+            _self.find(".week li:nth-child(7n)").css('borderRight', 'none');*/
+            var monthFirst = new Date(year, month, 1).getDay();
+            var d = new Date(year, (month + 1), 0)
+            var totalDay = d.getDate(); //获取当前月的天数
+            for (var i = 0; i < totalDay; i++) {
+                $li.eq(i + monthFirst).html("<span>"+(i + 1)+"</span>");
+                $li.eq(i + monthFirst).addClass('data' + (i + 1))
+                if (isArray(this.obj.dateArray)) {
+                    for (var j = 0; j < this.obj.dateArray.length; j++) {
+                        if (i == this.obj.dateArray[j]) {
+                            // 假设已经签到的
+                            $li.eq(i + monthFirst).addClass('checked');
+                        }
+                    }
+                }
+            }
+            //$li.eq(monthFirst+day-1).css('background','#f7ca8e')
+            _self.find($(".data" + day)).addClass('able-qiandao');
+        }
+        var isChecked = false;
+        Checkin.prototype.events = function() {
+            var _self = this.ele;
+            var $li = _self.find(".calendarList").find("li");
+            $li.on('click', function(event) {
+                event.preventDefault();
+                /* Act on the event */
+                if ($(this).hasClass('able-qiandao')) {
+                    $(this).addClass('checked');
+                    modal(_self);
+                    isChecked = true;
+                }
+            });
+            var checkBtn = _self.find(".checkBtn");
+            checkBtn.click(function(event) {
+                modal(_self);
+                _self.find('.able-qiandao').addClass('checked');
+                isChecked = true;
+            });
+        }
+        var modal = function(e) {
+            var mask = e.parents().find(".mask");
+            var close = e.parents().find(".closeBtn");
+            if (mask && !isChecked) {
+                mask.addClass('trf');
+            } else {
+                return
+            };
+            close.click(function(event) {
+                event.preventDefault();
+                mask.removeClass('trf')
+            });
+            /*e.parents().find('.checkBtn').text("已签到");*/
+            
+        }
+        $.fn.Checkin = function(options) {
+            var checkin = new Checkin(this, options);
+            var obj = [checkin.init(), checkin.events()]
+            return obj;
+        }
+        var isArray = function(arg) {
+            return Object.prototype.toString.call(arg) === '[object Array]';
+        };
+    })(jQuery);
+    // 插件调用
+    $(".checkin").Checkin();
+    $(".qd-btn").text("已签到");
+    $(".qd-btn").attr("href","#");
+</script>
 
-
-	<div style="clear:both;"></div>
-
-	<script>
-		var url=window.location.href;
-		if(url.indexOf("page")>0){
-			location.hash = 'history';
-		}
-		if(readCookie('cSound')==null){
-			setCookie('cSound',1);
-		}
-		if(readCookie('zdsx')==null){
-			setCookie('zdsx',1);
-		}
-		function setCookie(cookieName,cookieValue){
-			var date = new Date();
-			date.setTime(date.getTime() + 24*60*60*1000000);
-			document.cookie = cookieName + "=" + cookieValue + ";expires=" + date.toGMTString() + ";path=/";
-		}
-		function readCookie(cookieName){
-			var aCookie = document.cookie.split("; ");
-			for (var i=0; i < aCookie.length; i++){
-				var aCrumb = aCookie[i].split("=");
-				if(cookieName == aCrumb[0])
-					return unescape(aCrumb[1]);
-			}
-			return null;
-		}
-	</script>
 <div class="clear"></div>
 <div class="foot w100">
 	<div class="w1000 oo">

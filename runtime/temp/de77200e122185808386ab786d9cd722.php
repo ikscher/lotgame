@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:63:"D:\mywork\lotgame\public/../app/front\view\user\recomyield.html";i:1554732867;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554732769;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:63:"D:\mywork\lotgame\public/../app/front\view\user\recomyield.html";i:1554779329;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554774388;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554774388;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,7 @@
 				</ul>
 			</div>
 			<span class="barr fr">
-				<?php if($uid != 0): ?>
+				<?php if($uid > 0): ?>
 					<b ><?php echo $user['username']; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php echo $user['coin']; ?></b></span> &nbsp;
 					<a href="/User/Index">我的账号</a> <a href="/User/Msg">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/common/logout">退出</a>
@@ -191,7 +191,8 @@
 	<div class="w1200">
 		<!--顶侧top-->
 		<div class="utop">
-	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
+	<div class="utop-head">
+		<img src="<?php if(!empty($user['avatar']) && geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
 	<div class="utop-info">
 		<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
 		<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
@@ -312,11 +313,21 @@
 						</tr>
 						</thead>
 						<tbody>
+							<?php if(is_array($recomyield) || $recomyield instanceof \think\Collection || $recomyield instanceof \think\Paginator): if( count($recomyield)==0 ) : echo "" ;else: foreach($recomyield as $key=>$vo): ?>
+                            <tr>
+                                <td><?php echo $vo['referee_id']; ?></td>
+                                <td><?php echo $vo['type']; ?></td>
+                                <td><?php echo $vo['user']['create_time']; ?></td>
+                                <td><?php echo $vo['create_time']; ?></td>
+                                <td><?php echo $vo['reward']; ?></td>
+                                <!-- <td></td> -->
+
+                            </tr>
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
 						</tbody>
 					</table>
 				</div>
-				<div class="page"><li ><a  href="/User/Recomprofit?page=1">首页</a></li> <li ><a  href="#">上一页</a></li> <li ><a  href="/User/Recomprofit?page=2">下一页</a></li> <li ><a  href="/User/Recomprofit?page=0">尾页</a></li>　(当前第<span style="color:#C16012; font-size:12pt;">1</span>页 共<span style="color:#C16012; font-size:12pt;">0</span>页 <span style="color:#C16012; font-size:12pt;">0</span>条记录)</div>
-
+                <div style="padding:0 20px;"><?php echo $recomyield->render(); ?></div> 
 	        </div>
 			
    		</div><!--uright-->

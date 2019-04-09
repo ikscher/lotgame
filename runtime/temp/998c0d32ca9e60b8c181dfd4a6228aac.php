@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\recom.html";i:1554735407;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554734797;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554732769;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\recom.html";i:1554779549;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554774388;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554781895;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -261,7 +261,7 @@
 
 		<p>工资救济</p>
 		<ul>
-			<li><a href='/User/Sign'>签到中心</a></li>
+			<li><a href='/User/Signin'>签到中心</a></li>
 			<li><a href='/User/Alms'>领取救济</a></li>
 		</ul>
 		<ul>
@@ -348,15 +348,24 @@
 								<th>等级</th>
 								<th>注册时间</th>
 								<th>最后登录</th>
-								<th>身份认证</th>
+								<!-- <th>身份认证</th> -->
 							</tr>
 						</thead>
 						<tbody>
+							<?php if(is_array($recomlist) || $recomlist instanceof \think\Collection || $recomlist instanceof \think\Paginator): if( count($recomlist)==0 ) : echo "" ;else: foreach($recomlist as $key=>$vo): ?>
+                            <tr>
+                                <td><?php echo $vo['uid']; ?></td>
+                                <td><i class="user-dj user-dj<?php echo $vo['user_grade_id']; ?>"></i></td>
+                                <td><?php echo $vo['create_time']; ?></td>
+                                <td><?php echo date('Y-m-d H:i:s',$vo['login_time']); ?></td>
+                                <!-- <td></td> -->
 
+                            </tr>
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
 						</tbody>
 					</table>
 				</div>
-				<div class="page"><li ><a  href="/User/Recom?page=1">首页</a></li> <li ><a  href="#">上一页</a></li> <li ><a  href="/User/Recom?page=2">下一页</a></li> <li ><a  href="/User/Recom?page=0">尾页</a></li>　(当前第<span style="color:#C16012; font-size:12pt;">1</span>页 共<span style="color:#C16012; font-size:12pt;">0</span>页 <span style="color:#C16012; font-size:12pt;">0</span>条记录)</div>
+				<div style="padding:0 20px;"><?php echo $recomlist->render(); ?></div> 
 			</div>
 		</div>
 	</div>

@@ -48,7 +48,8 @@ class User extends Model
         return $this->hasMany('UserLog','user_id');
     }
 
-    public function safepwd(){
+    public function safepwd()
+    {
         //关联密保卡
         return $this->hasOne('UserSafepwd','user_id');
     }
@@ -64,19 +65,34 @@ class User extends Model
         return $this->hasMany('app\admin\model\UserQuestion','user_id');
     }
 
-    public function card(){
+    public function card()
+    {
         //关联卡密表（兑奖）
         return $this->hasMany('app\admin\model\CardPwd','user_id');
     }
 
-    public function agent(){
+    public function agent()
+    {
         //关联代理表
         return $this->hasOne('app\admin\model\Agent','user_id');
     }
 
-    public function bid(){
+    public function bid()
+    {
         //关联投注表
         return $this->hasMany('UserBid','user_id');
+    }
+
+    public function recomyield()
+    {
+        //关联推广奖励表
+        return $this->hasMany('UserRecomyield','user_id');
+    }
+
+    public function signin()
+    {
+        //关联签到表
+        return $this->hasMany('UserSignin','user_id');
     }
 
 }
