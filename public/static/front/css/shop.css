@@ -1,0 +1,34 @@
+
+.hotgoods {margin-top:20px;width:248px;}
+.hotgoods li{  text-align: center; margin: 15px 0;}
+.hotgoods li img{height:230px; width: 230px;}
+.hotgoods li p{ line-height: 35px; color: #666;}
+.goods{margin-top: 20px;color:#666}
+.goods .pic{}
+.goods .ginfo{width:580px;}
+.goods .ginfo h1{ color: #666; font-weight: 100; padding: 5px 0 15px 0;} 
+.goods .ginfo .price{    line-height: 60px; background: #f5f5f5; padding-left: 10px;}
+.goods .ginfo .price font{ color: #ff5113; font-size: 25px;}
+.goods .ginfo .li{ line-height: 35px; font-size: 12px;}
+.goods .ginfo table{ border-collapse: collapse; width: 100%;}
+.goods .ginfo table td{ border: 1px solid #ECECEC; text-align: center;    line-height: 35px; }
+.goods .ginfo .gbtn{ width: 228px; height: 45px; line-height: 45px; text-align: center; color: #FFF; background: #FF5113; border: none; border-radius: 5px; font-size: 18px; display: block; margin-top:25px;}
+.intr{	padding: 10px; border: 1px solid #eee;}
+#div_comment{	padding: 10px; border: 1px solid #eee;}
+#div_comment dl{ margin-bottom: 10px;}
+#div_comment dd{ margin-left: 15px; float: left; width: 780px;}
+#div_comment dd em{  display: block; border-bottom: 1px solid #eee; background-color: #FFFFFF; color: #777; font-size: 12px;}
+#div_comment dd p{padding: 6px 0; color: #333;}
+#div_comment dt{float:left}
+#div_comment dt img{width:80px;height:80px; border-radius: 50%;}
+#div_comment dt span{ display: block; font-size: 12px; text-align: center;color: #FF5113;}
+.money_bg{font-size: 12px;}
+.djdt {border-bottom: 1px solid #eee;}
+.newsleft .djdt ul {height: 275px; overflow: hidden;padding:0}
+.newsleft .djdt ul li{background:none;padding: 10px 5px;border-bottom:#ddd dotted 1px;overflow:auto;zoom:1;margin: 0;}
+.newsleft .djdt ul li:hover{background: #FBFBFB;}
+.djdt ul li h3 , .mxyh ul li h3{font-size:16px;font-weight:100;color:#333;height:21px;line-height:21px; display:block; width:160px; word-break:keep-all; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; } .djdt ul li div , .mxyh ul li div{width:166px;float:right}
+.djdt ul li span{font-size:13px;height:30px;line-height:30px;display:block;color:#888;overflow:hidden}
+.djdt ul li em{color:#FF9100;font:12px/20px 'microsoft yahei';}
+.djdt ul li .djnum{float: right;line-height: 16px;margin-right: 20px }
+.djdt ul li img{width:65px;height:65px; float:left; margin: 0 0 0 5px;}

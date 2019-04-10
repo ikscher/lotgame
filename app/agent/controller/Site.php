@@ -9,9 +9,10 @@ use app\admin\model\Agent as agentModel;
 
 class Site extends Controller
 {   
-    private $site_name;
-    private $userModel;
-    private $agentModel;
+    protected $site_name;
+    protected $userModel;
+    protected $agentModel;
+    protected $agent;
 
     public function _initialize()
     {   
@@ -29,8 +30,8 @@ class Site extends Controller
 	        if (null!==$arr[1]){
 	            list($uid, $password) = $arr;      
 	            //判断此用户是否绑定了代理，没有则跳出     
-                $id=$this->agentModel->where('user_id',$uid)->value('id');
-                if(empty($id)){
+                $this->agent=$this->agentModel->where('user_id',$uid)->find();
+                if(empty($this->agent['id'])){
                 	// return $this->error('unknown error');
                 	$this->redirect('/user/index');
                 }

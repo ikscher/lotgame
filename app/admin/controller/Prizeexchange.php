@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: 听雨 < 389625819@qq.com >
+// | 
 // +----------------------------------------------------------------------
 
 
@@ -16,13 +16,30 @@ use \think\Cache;
 use \think\Controller;
 use think\Loader;
 use think\Db;
+use think\Config;
 use \think\Cookie;
 use \think\Session;
 use app\admin\controller\Permissions;
 use app\front\model\User as userModel;
+use app\admin\model\Prize as prizeModel;
+use app\admin\model\CardPwd as cardPwdModel;
 use app\front\model\UserExchange as exchangeModel;
+use app\front\model\UserMsg as userMsgModel;
 class Prizeexchange extends Permissions
-{
+{   
+    private $prizeModel;
+    private $cardPwdModel;
+    private $userMsgModel;
+    private $userModel;
+    private $site_name;
+    public function _initialize()
+    {  
+        $this->prizeModel=new prizeModel();
+        $this->cardPwdModel=new cardPwdModel();
+        $this->userMsgModel=new userMsgModel();
+        $this->userModel= new userModel();
+        $this->site_name=Config::get('site_name');
+    }
     public function index()
     {
         // $model = new exchangeModel();
@@ -90,24 +107,113 @@ class Prizeexchange extends Permissions
     {
         if($this->request->isPost()){
             $post = $this->request->post();
-            if(false == Db::name('user_exchange')->where('id',$post['id'])->update(['status'=>$post['status']])) {
-                return $this->error('操作失败');
-            } else {
-                $uid=$post['uid'];
-                $aggregate=$post['aggregate'];
-                $operation="审核用户{$uid}奖品兑换";
+            $result_trans=true;
+            $status=$post['status'];
 
-                $userModel=new userModel();
+            if($status==2){//审核通过
+
+                $prize=$this->prizeModel->where('id',$post['prize_id'])->find();
+                 // $prize=$this->prizeModel->where('id',$post['prize_id'])->find();
+                $card_cate_id=$prize['card_cate_id'];//卡类型ID
+          
+                //对应的卡密取一条
+                $map=array();
+                $map['card_cate_id']=$card_cate_id;
+                $map['status']=1;
+                $cardpwd=$this->cardPwdModel->where($map)->find();
                 
-                $ret=$userModel->where("uid={$uid}")->setDec('coin',$aggregate);
-                // echo $userModel->getLastSql();exit;
-                if(false ==$ret){
-                    return $this->error('操作失败');
-                }else{
-                    addlog($operation);//写入日志
-                    return $this->success($operation,'admin/prizeexchange/index');
+                $card_no=$cardpwd['card_no'];
+                $card_pwd=$cardpwd['card_pwd'];
+
+                if(empty($cardpwd['id'])){
+                    return $this->error('没有对应的充值卡，请联系代理或网站客服！');
                 }
+
+                Db::startTrans();
+                try{
+
+                    //更改卡密的状态为已兑出（未回收）
+                    $map=array();
+                    $map['card_no']=$card_no;
+                    $map['card_pwd']=$card_pwd;
+                    $this->cardPwdModel->where($map)->update(['status'=>2]);
+                    
+                    //发站内信
+                    $data=array();
+                    $prize_name=$prize['name']; //奖品名称
+                    $data['send_uid']=1; //ID=1代表的是管理员（官方后台）
+                    $data['user_id']=$post['uid'];
+                    $data['type']=3; //单独用户
+                    $data['create_time']=time();
+                    $data['title']='兑奖发货通知';
+                    $data['content']='内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$card_no.' '.$card_pwd;
+                    $ret3=$this->userMsgModel->insert($data);
+
+                    //发邮件
+                    $ret4=SendMail($this->user['email'],$this->site_name."邮件",'内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$card_no.' '.$card_pwd);
+                    //==============================end=========================
+                    // 提交事务
+                    Db::commit(); 
+                    
+                }catch (\Exception $e) {
+                    $result_trans=false;
+                    // 回滚事务
+                    Db::rollback();
+                    
+                }
+
+                if($result_trans){
+                    addlog("审核用户{$post['uid']}兑换的奖品");//写入日志
+                    return $this->success('奖品审核成功！','admin/prizeexchange/index');
+                }else{
+                    return $this->error('兑换奖品审核失败！');
+                }
+            }elseif($status==3){//拒绝
+                $aggregate=$post['aggregate'];
+                $uid=$post['uid'];
+                $prize=$this->prizeModel->where('id',$post['prize_id'])->find();
+                
+                Db::startTrans();
+                try{
+                    //返还用户的金币
+                    $this->userModel->where('uid',$uid)->setInc('coin',$aggregate);
+                    //更改状态
+                    $id=$post['id'];
+                    $this->UserExchange->where('id',$id)->update(['status'=>3]);
+
+                    //发站内信
+                    $data=array();
+                    $prize_name=$prize['name']; //奖品名称
+                    $data['send_uid']=1; //ID=1代表的是管理员（官方后台）
+                    $data['user_id']=$uid;
+                    $data['type']=3; //单独用户
+                    $data['create_time']=time();
+                    $data['title']='兑奖缺货通知';
+                    $data['content']='内容：您兑换的奖品'.$prize_name.'缺货，谢谢您对我们的支持。<br/>';
+                    $ret3=$this->userMsgModel->insert($data);
+
+                    //发邮件
+                    // $ret4=SendMail($this->user['email'],$this->site_name."邮件",'内容：您兑换的奖品'.$prize_name.'缺货，谢谢您对我们的支持。<br/>');
+                    //==============================end=========================
+                    // 提交事务
+                    Db::commit(); 
+                    
+                }catch (\Exception $e) {
+                    $result_trans=false;
+                    // 回滚事务
+                    Db::rollback();
+                    
+                }
+
+                if($result_trans){
+                    addlog("拒绝用户{$post['uid']}兑换的奖品");//写入日志
+                    return $this->success('奖品拒绝成功！','admin/prizeexchange/index');
+                }else{
+                    return $this->error('兑换奖品拒绝失败！');
+                }
+
             }
+            
         }
     }
     

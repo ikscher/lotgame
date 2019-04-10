@@ -117,6 +117,16 @@ class Shop extends Site
         
         return $this->fetch();
     }
+
+    public function qualify()
+    {
+        //查看用户资料是否齐全
+        if($this->user['is_email']==false || $this->user['safe_q']==false || $this->user['safe_a']==false){
+            return $this->error('请补全资料再兑换奖品');
+        }else{
+            return $this->success('跳转中...','');
+        }
+    }
     
     //确认订单
     public function order()
@@ -125,6 +135,7 @@ class Shop extends Site
         //兑换奖品的信息
         $id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
         // if(empty($id)) return ;
+
         
         $prize=$this->prizeModel->where("id={$id}")->find();
         $this->assign('prize',$prize);
@@ -209,14 +220,12 @@ class Shop extends Site
             }
             // $post['aggregate']=$post['aggregate'];
             // echo json_encode($post);exit;
-            unset($post['safe_a']);
-            unset($post['code']);
-            $post['create_time']=time();
             
-
+            
+            $result_trans=true;
             //判断是否第一次兑奖
             
-            if(empty($ids)){//第一次兑奖需要管理员审核，既然设置了$must_check==0，那么就不需要短信验证，反之必须
+            if(empty($ids) || $must_check==1){//第一次兑奖需要管理员审核或者设置了此奖品每次兑换都需要审核
                 
                 if(Session::get("order_smscode_t")!=$post['code']){
                     return $this->error('验证码错误！');
@@ -224,25 +233,21 @@ class Shop extends Site
 
                 Db::startTrans();
                 try{
-                    
+                    unset($post['safe_a']);
+                    unset($post['code']);
+                    $post['create_time']=time();
+                    $coin=$this->userModel->where('uid',$this->uid)->value('coin');
                     $ret=$this->userModel->where('uid',$this->uid)->setDec('coin',$post['aggregate']);
                     $ret_=$this->userExchangeModel->insert($post);
                     
-
-                    // 提交事务
-                    Db::commit(); 
-                    
-                }catch (\Exception $e) {
-                    // 回滚事务
-                    Db::rollback();
-                    
-                    
-                }
-
-                if($ret && $ret_){
                     //设置当日兑奖次数
                     $today_exchage_times=Session::get('today_exchange_times')?Session::get('today_exchange_times')+1:1;
                     Session::set('today_exchange_times',$today_exchange_times);
+                    
+                    //兑换奖品写入日志
+                    $prize_name=$this->prizeModel->where("id={$post['prize_id']}")->value('name');
+                    $operation='兑换奖品'.$prize_name;
+                    adduserlog($this->uid,$operation,-$originalprice,0,$coin-$originalprice,'prize');
 
                     //游戏流水手续费写入日志
                     $originalprice=$post['num']*$post['price']*$this->coefficient;
@@ -251,9 +256,8 @@ class Shop extends Site
                          //如果已兑换的大于免费额度
                          $exceed=$aggregate>$freebidmoney?$originalprice:($originalprice+$aggregate-$freebidmoney);
                          $exceed_fee= intval($exceed*$charge_f['charge_ratio']/100);
-
-                         $coin=$this->userModel->where('uid',$this->uid)->value('coin');
-                         adduserlog($this->uid,'兑奖流水额外手续费',-$exceed_fee,0,$coin-$exceed_fee);
+                           
+                         adduserlog($this->uid,'兑奖流水额外手续费',-$exceed_fee,0,$coin-$originalprice-$exceed_fee,'prize');
                     }
            
 
@@ -262,19 +266,29 @@ class Shop extends Site
                      if($feetype == 1){
                         $curfee = intval($charge_times['charge']);
                         $coin=$this->userModel->where('uid',$this->uid)->value('coin');
-                        adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin-$curfee);
+                        $coin_=$coin-$originalprice-$exceed_fee-$curfee;
+                        adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin_,'prize');
                     }else{
                         $coin=$this->userModel->where('uid',$this->uid)->value('coin');
                         $curfee = intval($charge_times['charge']*$originalprice/100);
-                        adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin-$curfee);
+                        $coin_=$coin-$originalprice-$exceed_fee-$curfee;
+                        adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin_,'prize');
                     }
 
-                    //兑换奖品写入日志
-                    $coin=$this->userModel->where('uid',$this->uid)->value('coin');
-                    $prize_name=$this->prizeModel->where("id={$post['prize_id']}")->value('name');
-                    $operation='兑换奖品'.$prize_name;
-                    adduserlog($this->uid,$operation,-$originalprice,0,$coin-$originalprice);
-                    return $this->success($operation,'/shop/index');
+                    
+                    // 提交事务
+                    Db::commit(); 
+                    
+                }catch (\Exception $e) {
+                    $result_trans=false;
+                    // 回滚事务
+                    Db::rollback();
+                    
+                    
+                }
+
+                if($result_trans){
+                    return $this->success('兑换奖品成功！','/shop/index');
                 }else{
                     return $this->error('兑换奖品失败！');
                 }
@@ -297,14 +311,17 @@ class Shop extends Site
                     return $this->error('没有对应的充值卡，请联系代理或网站客服！');
                 }
                 
-                $result_trans=true;
+                
                 $operation='兑换奖品'.$prize['name'];
 
                 Db::startTrans();
                 try{
+                    unset($post['safe_a']);
+                    $post['create_time']=time();
+                    $coin=$this->userModel->where('uid',$this->uid)->value('coin');
                     $ret1=$this->userModel->where('uid',$this->uid)->setDec('coin',$post['aggregate']);
                     
-                    $post['status']=$prize['must_check']?1:2;;//直接通过审核2,但是如果设置了此奖品必须审核，那么还是1状态
+                    $post['status']=2;//直接通过审核2,但是如果设置了此奖品必须审核，那么还是1状态
                     $ret2=$this->userExchangeModel->insert($post);
                     
                     //设置当日兑奖次数
@@ -336,17 +353,20 @@ class Shop extends Site
                     // $originalprice=$post['num']*$post['price']*$this->coefficient;
                     $originalprice=$post['aggregate'];
                     //兑换奖品写入日志
-                    $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                   
                     // $prize_name=$this->prizeModel->where("id={$post['prize_id']}")->value('name');
-                    $ret7=adduserlog($this->uid,$operation,-$originalprice,0,$coin-$originalprice);
+                    $coin_=$coin-$originalprice;
+                    $ret7=adduserlog($this->uid,$operation,-$originalprice,0,$coin_,'prize');
 
                     //游戏流水手续费写入日志
+                    $exceed_fee=0;
                     if($originalprice+$aggregate>$freebidmoney){ //正兑换的+已兑换的>免费限额
                          //如果已兑换的大于免费额度
                          $exceed=$aggregate>$freebidmoney?$originalprice:($originalprice+$aggregate-$freebidmoney);
                          $exceed_fee= intval($exceed*$charge_f['charge_ratio']/100);
-                         $coin=$this->userModel->where('uid',$this->uid)->value('coin');
-                         $ret5=adduserlog($this->uid,'兑奖流水额外手续费',-$exceed_fee,0,$coin-$exceed_fee);
+                         // $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                         $coin_-=$exceed_fee;
+                         $ret5=adduserlog($this->uid,'兑奖流水额外手续费',-$exceed_fee,0,$coin_,'prize');
                     }
            
 
@@ -354,12 +374,14 @@ class Shop extends Site
                     $feetype = $charge_times['by'];//按比例还是固定金额收取
                      if($feetype == 1){
                         $curfee = intval($charge_times['charge']);
-                        $coin=$this->userModel->where('uid',$this->uid)->value('coin');
-                        $ret6=adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin-$curfee);
+                        // $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                        $coin_-=$curfee;
+                        $ret6=adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin_,'prize');
                     }else{
-                        $coin=$this->userModel->where('uid',$this->uid)->value('coin');
+                        // $coin=$this->userModel->where('uid',$this->uid)->value('coin');
                         $curfee = intval($charge_times['charge']*$originalprice/100);
-                        $ret6=adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin-$curfee);
+                        $coin_-=$curfee;
+                        $ret6=adduserlog($this->uid,'兑奖次数额外手续费',-$curfee,0,$coin_,'prize');
                     }
 
                     

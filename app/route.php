@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: 听雨 < 389625819@qq.com >
+// | 
 // +----------------------------------------------------------------------
 
 use \think\Route;
@@ -69,6 +69,7 @@ Route::rule('prize/start','front/prize/start');
 Route::rule('shop/index','front/shop/index');
 Route::rule('shop/index/:id','front/shop/index');
 Route::rule('shop/detail','front/shop/detail');
+Route::rule('shop/qualify','front/shop/qualify');
 Route::rule('shop/order','front/shop/order');
 Route::rule('common/logout','front/common/logout');
 Route::rule('common/login','front/common/login');
@@ -78,7 +79,6 @@ Route::rule('common/sendmail','front/common/sendmail');
 Route::rule('common/sendmsg','front/common/sendmsg');
 Route::rule('common/register','front/common/register');
 Route::rule('common/recom','front/common/recom');
-Route::rule('agent','agent/other/info');
 Route::rule('agent/index','agent/other/info');
 
 

@@ -18,7 +18,7 @@
 		<div class="layui-form-item">
 		    <label class="layui-form-label">代理ID：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid" required  lay-verify="required|number" placeholder="请输入UID" autocomplete="off" class="layui-input">
+		      <input type="text" name="id" disabled value="{$agent['id']}" class="layui-input">
 		    </div>
 		    <!-- <div class="layui-form-mid layui-word-aux"><a href="">查询</a></div> -->
 		</div>
@@ -26,42 +26,42 @@
 		<div class="layui-form-item">
 		    <label class="layui-form-label">代理名称：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"  disabled   autocomplete="off" class="layui-input">
+		      <input type="text" name="name"  disabled  value="{$agent['name']}" class="layui-input">
 		    </div>
 		</div>
 
 		<div class="layui-form-item">
 		    <label class="layui-form-label" >账户余额：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		      <input type="text" name="balance"    value="{$agent['balance']}" class="layui-input">
 		    </div>
 		</div>
 
 		<div class="layui-form-item">
 		    <label class="layui-form-label" >制卡折扣：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		      <input type="text" name="discount"    value="{$agent['discount']}" class="layui-input">
 		    </div>
 		</div>
 
 		<div class="layui-form-item">
-		    <label class="layui-form-label" >收卡额外奖励比例：</label>
+		    <label class="layui-form-label" >收卡额外奖励比例(%)：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		      <input type="text" name="reclaim_reward"  value="{$agent['reclaim_reward']}" class="layui-input">
 		    </div>
 		</div>
 
 		<div class="layui-form-item">
 		    <label class="layui-form-label" >铺货金额：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		      <input type="text" name="advance"   value="{$agent['advance']}"  class="layui-input">
 		    </div>
 		</div>
 
 		<div class="layui-form-item">
 		    <label class="layui-form-label" >可提现金额：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		      <input type="text" name="candebitcount"  value="{$agent['balance']-$agent['advance']+$agent['stock']*$agent['discount']}"   class="layui-input">
 		    </div>
 		</div>
 

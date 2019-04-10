@@ -81,22 +81,23 @@ class User extends Site
     public function bindemail()
     {   
         if($this->request->isPost()){
+            if($this->user['is_email']==1){
+                return $this->error('您已通过邮箱验证，如需更改请联系客服！');
+            }
             $post=$this->request->post();
             if(empty($post['email'])){
-
-                if(empty($post['safe_a'])){
-                   return $this->error('请输入密保答案');
-                }
-            }else{
+                return $this->error("请输入电子邮箱");
+            }else if(empty($post['safe_a'])){
+                return $this->error('请输入密保答案');
+            }else {
                 if(empty($post['code']) || $post['code']!=Session::get('emailcode')){
                    return $this->error('验证码错误');
-                }else{
-                   unset($post['code']);
-                   $post['is_email']=1;
                 }
             }
 
-            unset($post['safe_a']);
+            unset($post['code']);
+            $post['is_email']=1;
+            // unset($post['safe_a']);
             
             $map['uid']=$this->uid;
             $ret=$this->userModel->where($map)->update($post);
@@ -704,7 +705,7 @@ class User extends Site
       
         foreach($signin_day_r as $k=>$v){
             if($k==0){
-                if($cur_day!=$v){
+                if($cur_day!=$v ){
                     break;
                 }else{
                     $j++;
@@ -722,6 +723,13 @@ class User extends Site
         
         
         $this->assign('j',$j);
+
+        $user_grade_id=$this->user['user_grade_id'];
+    
+        $usersignin=$this->signinConfigModel->where('user_grade_id',$user_grade_id)->find();
+        $reward=$usersignin['base_num']+$this->addnum($j)*1;
+        $this->assign('reward',$reward);
+       // var_dump(collection($usersignin)->toArray());
 
         //签到记录
         $map['user_id']=$this->uid;
@@ -746,12 +754,15 @@ class User extends Site
             }
 
             //写入日志事件
-            $user_grade_id=$this->user['user_grade_id'];
-    
-            $usersignin=$this->signinConfigModel->where('user_grade_id',$user_grade_id)->find();
-           // var_dump(collection($usersignin)->toArray());
-            if($j==0)  $j=1;
-            $coin=$usersignin['base_num']+$j*1;
+            
+            if($j==0) {
+                $j=1;
+            }else if($j>6){
+                $j=6;
+            }
+            
+
+            $coin=$usersignin['base_num']+($j+1)*1;
 
             $this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
             $usercoin=$this->userModel->where('uid',$this->uid)->value('coin');
@@ -763,6 +774,20 @@ class User extends Site
         
         $this->assign('signin',$signin);
         return $this->fetch();
+    }
+    
+    /**
+    * 计算一个整数，小于此整数的所有数累加
+    */
+    private function addnum($i)
+    {   
+        $sum=0;
+        if(is_numeric($i) && $i>0){
+            for(;$i>0;$i--){
+                $sum+=$i;
+            }
+        }
+        return $sum;
     }
 
 }
