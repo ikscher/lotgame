@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"D:\mywork\lotgame\public/../app/agent\view\operate\retract.html";i:1554906083;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1554889404;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"D:\mywork\lotgame\public/../app/agent\view\operate\retracty.html";i:1554905478;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1554889404;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="/static/public/layui/css/layui.css">
 	<script src="/static/public/layui/layui.js"></script>
-	<title>卡密收回</title>
+	<title>卡密回收</title>
 </head>
 <body>
 	<style type="text/css">
@@ -65,68 +65,58 @@ layui.use(['layer','jquery','form'], function(){
   })
 });
 </script> 
-    <div class="right">
-        <h1>卡密回收</h1>
-        <hr>
-		<form id="retractform">
-		  <div class="layui-form-item">
-		    <label class="layui-form-label">卡号</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="card_no" id="card_no" placeholder="请输入卡号" onkeyup="value=value.replace(/[^\w]/ig,'')" autocomplete="off" class="layui-input">
-		    </div>
-		  </div>
 
-		  <div class="layui-form-item">
-		    <label class="layui-form-label">卡密</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="card_pwd" id="card_pwd"   placeholder="请输入卡密" onkeyup="value=value.replace(/[^\w]/ig,'')" autocomplete="off" class="layui-input">
-		    </div>
-		  </div>
-
-		  <div class="layui-form-item">
-		    <div class="layui-input-block">
-		      <button class="layui-btn layui-btn-primary" lay-submit lay-filter="retract">确认回收</button>
-		      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
-		    </div>
-		  </div>
-		</form>
-    </div>
+	<div class="right">
+		<h1>卡密回收</h1>
+	    
+		<table class="layui-table">
+		  <colgroup>
+		    <col width="150">
+		    <col width="150">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		  </colgroup>
+		  <thead>
+		    <tr>
+		      <th>卡号</th>
+		      <th>卡密</th>
+		      <th>面额</th>
+		      <th>兑奖用户</th>
+		      <th>QQ</th>
+		      <th>支付宝</th>
+		      <th>状态</th>
+		    </tr> 
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    
+		  </tbody>
+        </table>
+	</div>
 </body>
 <script type="text/javascript">
-   layui.use(['form','jquery'], function(){
-	   var form = layui.form,
-	       $=layui.jquery;
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
 	  
-	   form.on('submit(retract)', function(data) {
-	   	    var card_no=$('#card_no').val();
-	   	    var card_pwd=$('#card_pwd').val();
+	  //执行一个laydate实例
+	  laydate.render({
+	    elem: '#begin_time' //指定元素
+	  });
 
-	   	    if(!card_no){
-	   	    	layer.msg('请输入卡号');
-	   	    	return false;
-	   	    }
-
-	   	    if(!card_pwd){
-	   	    	layer.msg('请输入卡密');
-	   	    	return false;
-	   	    }
-            $.ajax({
-                url:"<?php echo url('agent/operate/retract'); ?>",
-                data:$('#retractform').serialize(),
-                type:'post',
-                async: false,
-                success:function(res) {
-                    if(res.code == 1) {
-                        // layer.alert(res.msg, function(index){
-                           location.href = res.url;
-                        // })
-                    } else {
-                        layer.msg(res.msg);
-                    }
-                }
-            })
-            return false;
-       });
-    });
+	  laydate.render({
+	    elem: '#end_time' //指定元素
+	  });
+	});
 </script>
 </html>

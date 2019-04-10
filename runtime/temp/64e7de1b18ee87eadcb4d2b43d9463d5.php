@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1554280929;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:59:"D:\mywork\lotgame\public/../app/front\view\index\index.html";i:1554889404;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -211,9 +211,9 @@
 		<?php if(!(empty($uid) || (($uid instanceof \think\Collection || $uid instanceof \think\Paginator ) && $uid->isEmpty()))): ?>
 			<div class="logtit"><strong>登录成功</strong></div>
 			<div style="height:20px;"></div>
-			<div class="logtit" style="font-size:14px;">登录账号：ikscher (891435)</div>
+			<div class="logtit" style="font-size:14px;">登录账号：<?php echo $user['username']; ?>(<?php echo $uid; ?>)</div>
 			<div class="captcha mt10 mb10">
-				<label>账户余额：500 </label>
+				<label>账户余额：<?php echo $user['coin']; ?> </label>
 			</div>
 			<a href="/User/Index" class="sub mt20">会员中心</a>
 			<a href="/Game/Index" class="sub mt20">游戏中心</a>
