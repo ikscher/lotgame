@@ -4,7 +4,7 @@
  * @param  [type] $data [description]
  * @return [type]       [description]
  */
-function adduserlog($user_id,$desc='',$mp_coin=0,$mp_exp=0,$coin=0,$exp=0)
+function adduserlog($user_id,$desc='',$mp_coin=0,$mp_exp=0,$coin=0,$type='')
 {  
 	$data['user_id'] = $user_id;
 	$data['desc'] = $desc;

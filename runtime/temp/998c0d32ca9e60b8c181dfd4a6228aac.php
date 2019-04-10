@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\recom.html";i:1554779549;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554774388;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554781895;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\recom.html";i:1554791007;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554734797;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554819701;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -233,7 +233,8 @@
 		</ul>
 		<ul>
 			<li><a href='/Agent/Index'>在线充值</a></li>
-			<li><a href='/Cg/Getprize'>闯关奖励</a></li>
+			<?php if($agent_id > 0): ?><li><a href='/Agent'>代理后台</a></li><?php endif; ?>
+			<!-- <li><a href='/Cg/Getprize'>闯关奖励</a></li> -->
 		</ul>
 
 		<p>站内功能</p>

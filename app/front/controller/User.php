@@ -10,6 +10,8 @@ use app\front\model\UserLog as userLogModel;
 use app\front\model\UserSignin as userSigninModel;
 use app\front\model\UserMsg as userMsgModel;
 use app\admin\model\CardPwd as cardPwdModel;
+use app\admin\model\Agent as agentModel;
+use app\admin\model\Signinconfig as signinConfigModel;
 use app\front\model\UserExchange as userExchangeModel;
 use app\front\model\UserSafepwd as userSafepwdModel;
 use app\front\model\UserRecomyield as userRecomyieldModel;
@@ -20,8 +22,10 @@ class User extends Site
     private $userMsgModel;
     private $userSigninModel;
     private $cardPwdModel;
+    private $agentModel;
     private $userExchangeModel;
     private $userSafepwdModel;
+    private $signinConfigModel;
     private $userRecomyieldModel;
     private $safe_q;
     
@@ -33,14 +37,20 @@ class User extends Site
         $this->userExchangeModel = new userExchangeModel();
         $this->userMsgModel = new userMsgModel();
         $this->cardPwdModel= new cardPwdModel();
+        $this->signinConfigModel= new signinConfigModel();
         $this->userSigninModel= new userSigninModel();
         $this->userSafepwdModel = new userSafepwdModel();
+        $this->agentModel=new agentModel();
         $this->userRecomyieldModel=new userRecomyieldModel();
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
         $this->safe_q=Config::get('safe_q');
-        // echo Session::get('uid');exit;
+        //是否绑定了代理,可以进入代理后台
+        $agent_id=$this->agentModel->where('user_id',$this->uid)->value('id');
+        $this->assign('agent_id',$agent_id);
+
         if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+
         
     }
     public function index()
@@ -656,12 +666,102 @@ class User extends Site
     */
     public function signin()
     {
-        $map['user_id']=$this->uid;
         //$BeginDate=date("Y-m-01")当前月份第一天：strtotime($BeginDate)，当前月份最后一天strtotime("$BeginDate +1 month -1 day")+86399)
         $BeginDate=date("Y-m-01");
+        $begin=strtotime($BeginDate);
+        $end=strtotime("$BeginDate +1 month -1 day")+86399;
+
+        //每个月份签到记录只保留一条，签到记录用json格式
+        $signin=$this->userSigninModel->where('user_id',$this->uid)->where('cur_date','between',[$begin,$end])->find();
         
-        $map['cur_date']=
-        $singin=$this->userSigninModel->where($map)->find();
+        
+        if(!empty($signin['id'])) $signin_day=json_decode($signin['signin_day'],true);
+
+        $cansignin=true;//默认可以签到
+        $cur_day=date('j')-1;
+        //如果已经签到了
+        if (empty($signin_day)) $signin_day=array();
+        if(in_array($cur_day,$signin_day)){
+            $cansignin=false;
+        }
+
+        sort($signin_day,SORT_NUMERIC);//排序
+        
+        $this->assign('cansignin',$cansignin);
+        $this->assign('signin_day',implode(',',$signin_day));//签到日期表
+
+        //读取签到等级配置
+        $signingrade=collection($this->signinConfigModel->select())->toArray();
+        
+        $this->assign('signingrade',$signingrade);
+
+        //连续签到日计算
+        $signin_day_r=$signin_day;
+        rsort($signin_day_r,SORT_NUMERIC);//逆向排序
+
+        $temp=0;
+        $j=0;//初始化连续签到日
+      
+        foreach($signin_day_r as $k=>$v){
+            if($k==0){
+                if($cur_day!=$v){
+                    break;
+                }else{
+                    $j++;
+                    $temp=$v;
+                }
+            }else{
+                if($v==$temp-1){
+                    $j++;
+                    $temp=$v;
+                }else{
+                    break;
+                }
+            }
+        }
+        
+        
+        $this->assign('j',$j);
+
+        //签到记录
+        $map['user_id']=$this->uid;
+        $map['type']='signin';
+        $signinlist=$this->userLogModel->where($map)->order('create_time desc')->paginate(5,false,['query'=>$this->request->param()]);
+        $this->assign('signinlist',$signinlist);
+        
+        //签到操作
+        $data=array();
+        $act=$this->request->has('act')?$this->request->get('act'):'';
+        if($act=='signin' && $cansignin==true){
+
+            array_push($signin_day,$cur_day);
+            $sign_day_=json_encode($signin_day);
+            $data['signin_day']=$sign_day_;
+            $data['cur_date']=time();
+            $data['user_id']=$this->uid;
+            if($signin['id']){//update
+                $this->userSigninModel->where('user_id',$this->uid)->where('cur_date','between',[$begin,$end])->update($data);
+            }else{//insert
+                $this->userSigninModel->where('user_id',$this->uid)->where('cur_date','between',[$begin,$end])->insert($data);
+            }
+
+            //写入日志事件
+            $user_grade_id=$this->user['user_grade_id'];
+    
+            $usersignin=$this->signinConfigModel->where('user_grade_id',$user_grade_id)->find();
+           // var_dump(collection($usersignin)->toArray());
+            if($j==0)  $j=1;
+            $coin=$usersignin['base_num']+$j*1;
+
+            $this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
+            $usercoin=$this->userModel->where('uid',$this->uid)->value('coin');
+
+            adduserlog($this->uid,'每日签到',$coin,0,$usercoin,'signin');
+            $this->redirect('/user/signin');
+        }
+        
+        
+        $this->assign('signin',$signin);
         return $this->fetch();
     }
 

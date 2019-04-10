@@ -40,7 +40,7 @@ class Signinconfig extends Permissions
                 $post = $this->request->post();
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
                 $validate = new \think\Validate([
-                    ['rank', 'require', '等级不能为空'],
+                    ['user_grade_id', 'require', '等级不能为空'],
                     ['base_num', 'require', '基数不能为空'],
                     ['increment_num', 'require', '增数不能为空'],
                     ['max_successive_day', 'require', '最大连续天数不能为空']
@@ -74,12 +74,13 @@ class Signinconfig extends Permissions
             }
         } else {
             //是新增操作
+            return $this->error('暂时屏蔽，请联系系统管理员');
             if($this->request->isPost()) {
                 //是提交操作
                 $post = $this->request->post();
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
                 $validate = new \think\Validate([
-                    ['rank', 'require', '等级不能为空'],
+                    ['user_grade_id', 'require', '等级不能为空'],
                     ['base_num', 'require', '基数不能为空'],
                     ['increment_num', 'require', '增数不能为空'],
                     ['max_successive_day', 'require', '最大连续天数不能为空']

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\mywork\lotgame\public/../app/admin\view\signinconfig\publish.html";i:1554780707;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\mywork\lotgame\public/../app/admin\view\signinconfig\publish.html";i:1554813094;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +16,7 @@
     <div class="layui-tab">
       <ul class="layui-tab-title">
         <li><a href="<?php echo url('admin/signinconfig/index'); ?>" class="a_menu">签到管理</a></li>
-        <li class="layui-this">新增等级</li>
+        <li class="layui-this">修改签到配置</li>
       </ul>
     </div>
     <div style="margin-top: 20px;">
@@ -26,7 +26,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">等级</label>
         <div class="layui-input-inline">
-          <input name="rank" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($signinconfig['rank']) || (($signinconfig['rank'] instanceof \think\Collection || $signinconfig['rank'] instanceof \think\Paginator ) && $signinconfig['rank']->isEmpty()))): ?>value="<?php echo $signinconfig['rank']; ?>"<?php endif; ?>>
+          <input name="user_grade_id" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" <?php if(!(empty($signinconfig['user_grade_id']) || (($signinconfig['user_grade_id'] instanceof \think\Collection || $signinconfig['user_grade_id'] instanceof \think\Paginator ) && $signinconfig['user_grade_id']->isEmpty()))): ?>value="<?php echo $signinconfig['user_grade_id']; ?>"<?php endif; ?>>
         </div>
         <div class="layui-form-mid layui-word-aux">例：V0</div>
       </div>

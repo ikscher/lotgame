@@ -78,5 +78,7 @@ Route::rule('common/sendmail','front/common/sendmail');
 Route::rule('common/sendmsg','front/common/sendmsg');
 Route::rule('common/register','front/common/register');
 Route::rule('common/recom','front/common/recom');
+Route::rule('agent','agent/other/info');
+Route::rule('agent/index','agent/other/info');
 
 

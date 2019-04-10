@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"D:\mywork\lotgame\public/../app/admin\view\signinconfig\index.html";i:1554780047;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:66:"D:\mywork\lotgame\public/../app/admin\view\signinconfig\index.html";i:1554812210;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553088615;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +61,7 @@
         <?php if(is_array($signinconfig) || $signinconfig instanceof \think\Collection || $signinconfig instanceof \think\Paginator): $i = 0; $__LIST__ = $signinconfig;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
           <td><?php echo $vo['id']; ?></td>
-          <td><?php echo $vo['rank']; ?></td>
+          <td>V<?php echo $vo['user_grade_id']; ?></td>
           <td><?php echo $vo['base_num']; ?></td>
           <td><?php echo $vo['increment_num']; ?></td>
           <td><?php echo $vo['menu']; ?></td>

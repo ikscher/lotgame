@@ -192,7 +192,7 @@ class Common extends Site
     public function logout()
     {
         Session::delete('uid');
-        //Session::clear();//会清除后台的session
+        // Session::clear();//会清除后台的session
         Cookie::delete('auth');
         if(Session::has('uid')) {
             return $this->error('退出失败');
