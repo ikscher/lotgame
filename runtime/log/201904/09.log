@@ -13725,3 +13725,601 @@
 [ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.010000s ]
 [ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
 [ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:13:55+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：1.960003s] [吞吐率：0.51req/s] [内存消耗：3,956.94kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/Signin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'cSound=1; zdsx=1; PHPSESSID=qmfossibso4m8o1cj10shr15b2; auth=sZvSr4ZZuMLKFNkYgYMBRRC7qqNcoUZ4YSTauBsXzKLu4XFbvoMKRakimsMaFIimjkCOvjsWEieFUGLD',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:02+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.170000s] [吞吐率：5.88req/s] [内存消耗：3,956.37kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://test.lotgame.com/user/index',
+  'x-requested-with' => 'XMLHttpRequest',
+  'cookie' => 'register_smscode_t=0695; auth=sZvSr4ZZuMLKFIFN24RXEEboqPZa9095Z3rTgCsSyPSw5HQA79QNFv0mzMQYHIqsjEHQ72FBRHGKAWKWwA; cSound=1; zdsx=1; PHPSESSID=gdhfjtmnchuhkkq549cd8r6ni3',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.020000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.030000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:04+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.310000s] [吞吐率：3.23req/s] [内存消耗：3,956.94kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/Signin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'cSound=1; zdsx=1; PHPSESSID=qmfossibso4m8o1cj10shr15b2; auth=sZvSr4ZZuMLKFNkYgYMBRRC7qqNcoUZ4YSTauBsXzKLu4XFbvoMKRakimsMaFIimjkCOvjsWEieFUGLD',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.150000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.040000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.020000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:12+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.140000s] [吞吐率：7.14req/s] [内存消耗：3,956.37kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://test.lotgame.com/user/index',
+  'x-requested-with' => 'XMLHttpRequest',
+  'cookie' => 'register_smscode_t=0695; auth=sZvSr4ZZuMLKFIFN24RXEEboqPZa9095Z3rTgCsSyPSw5HQA79QNFv0mzMQYHIqsjEHQ72FBRHGKAWKWwA; cSound=1; zdsx=1; PHPSESSID=gdhfjtmnchuhkkq549cd8r6ni3',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:13+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.130000s] [吞吐率：7.69req/s] [内存消耗：3,956.94kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/Signin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'cSound=1; zdsx=1; PHPSESSID=qmfossibso4m8o1cj10shr15b2; auth=sZvSr4ZZuMLKFNkYgYMBRRC7qqNcoUZ4YSTauBsXzKLu4XFbvoMKRakimsMaFIimjkCOvjsWEieFUGLD',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.020000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.010000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:22+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.120001s] [吞吐率：8.33req/s] [内存消耗：3,956.37kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://test.lotgame.com/user/index',
+  'x-requested-with' => 'XMLHttpRequest',
+  'cookie' => 'register_smscode_t=0695; auth=sZvSr4ZZuMLKFIFN24RXEEboqPZa9095Z3rTgCsSyPSw5HQA79QNFv0mzMQYHIqsjEHQ72FBRHGKAWKWwA; cSound=1; zdsx=1; PHPSESSID=gdhfjtmnchuhkkq549cd8r6ni3',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.020000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.020000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:23+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.120000s] [吞吐率：8.33req/s] [内存消耗：3,956.94kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/Signin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'cSound=1; zdsx=1; PHPSESSID=qmfossibso4m8o1cj10shr15b2; auth=sZvSr4ZZuMLKFNkYgYMBRRC7qqNcoUZ4YSTauBsXzKLu4XFbvoMKRakimsMaFIimjkCOvjsWEieFUGLD',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:32+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.150000s] [吞吐率：6.67req/s] [内存消耗：3,956.37kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://test.lotgame.com/user/index',
+  'x-requested-with' => 'XMLHttpRequest',
+  'cookie' => 'register_smscode_t=0695; auth=sZvSr4ZZuMLKFIFN24RXEEboqPZa9095Z3rTgCsSyPSw5HQA79QNFv0mzMQYHIqsjEHQ72FBRHGKAWKWwA; cSound=1; zdsx=1; PHPSESSID=gdhfjtmnchuhkkq549cd8r6ni3',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:33+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.131001s] [吞吐率：7.63req/s] [内存消耗：3,956.94kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/Signin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'cSound=1; zdsx=1; PHPSESSID=qmfossibso4m8o1cj10shr15b2; auth=sZvSr4ZZuMLKFNkYgYMBRRC7qqNcoUZ4YSTauBsXzKLu4XFbvoMKRakimsMaFIimjkCOvjsWEieFUGLD',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.020000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:42+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.120000s] [吞吐率：8.33req/s] [内存消耗：3,956.37kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://test.lotgame.com/user/index',
+  'x-requested-with' => 'XMLHttpRequest',
+  'cookie' => 'register_smscode_t=0695; auth=sZvSr4ZZuMLKFIFN24RXEEboqPZa9095Z3rTgCsSyPSw5HQA79QNFv0mzMQYHIqsjEHQ72FBRHGKAWKWwA; cSound=1; zdsx=1; PHPSESSID=gdhfjtmnchuhkkq549cd8r6ni3',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.020000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.020000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:43+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.141000s] [吞吐率：7.09req/s] [内存消耗：3,956.94kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/Signin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'cSound=1; zdsx=1; PHPSESSID=qmfossibso4m8o1cj10shr15b2; auth=sZvSr4ZZuMLKFNkYgYMBRRC7qqNcoUZ4YSTauBsXzKLu4XFbvoMKRakimsMaFIimjkCOvjsWEieFUGLD',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:52+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.150000s] [吞吐率：6.67req/s] [内存消耗：3,956.37kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'accept-language' => 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://test.lotgame.com/user/index',
+  'x-requested-with' => 'XMLHttpRequest',
+  'cookie' => 'register_smscode_t=0695; auth=sZvSr4ZZuMLKFIFN24RXEEboqPZa9095Z3rTgCsSyPSw5HQA79QNFv0mzMQYHIqsjEHQ72FBRHGKAWKWwA; cSound=1; zdsx=1; PHPSESSID=gdhfjtmnchuhkkq549cd8r6ni3',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.020000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.020000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 11 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-09T13:14:53+08:00 ] 192.168.1.107 GET test.lotgame.com/User/Ajaxpoint
+[运行时间：0.120000s] [吞吐率：8.33req/s] [内存消耗：3,956.94kb] [文件加载：60]
+[ info ] [ LANG ] D:\mywork\lotgame\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'front',
+    1 => 'user',
+    2 => 'ajaxpoint',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.lotgame.com',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
+  'referer' => 'http://test.lotgame.com/User/Signin',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'cSound=1; zdsx=1; PHPSESSID=qmfossibso4m8o1cj10shr15b2; auth=sZvSr4ZZuMLKFNkYgYMBRRC7qqNcoUZ4YSTauBsXzKLu4XFbvoMKRakimsMaFIimjkCOvjsWEieFUGLD',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'use_trans_sid' => 1,
+  'path' => 'D:\\mywork\\lotgame\\public./../runtime/session/',
+  'type' => '',
+  'auto_start' => true,
+  'expire' => 86400,
+)
+[ info ] [ RUN ] app\front\controller\User->ajaxpoint[ D:\mywork\lotgame\app\front\controller\User.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=tplay;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_user` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hov_board` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hov_board` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `coin` FROM `hov_user` WHERE  `uid` = 8 LIMIT 1 [ RunTime:0.000000s ]
