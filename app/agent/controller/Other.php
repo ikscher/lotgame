@@ -10,14 +10,14 @@ use app\admin\model\CardCate as cardcateModel;
 
 class Other extends Site
 {   
-	private $agentModel;
+	// private $agentModel;
     private $agentCateModel;
     private $agentLogModel;
     private $cardcateModel;
 	public function _initialize()
     {   
         parent::_initialize();
-        $this->agentModel = new agentModel();
+        // $this->agentModel = new agentModel();
         $this->agentCateModel = new agentCateModel();
         $this->agentLogModel = new agentLogModel();
         $this->cardcateModel = new CardCateModel();
@@ -27,9 +27,7 @@ class Other extends Site
     //代理信息
     public function info()
     {   
-        $map['id']=10000;
-    	$agent=$this->agentModel->where($map)->find();
-    	$this->assign('agetn',$agent);
+    	$this->assign('agent',$this->agent);
     	return $this->fetch();
     }
 

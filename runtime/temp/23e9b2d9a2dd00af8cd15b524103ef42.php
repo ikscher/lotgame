@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/agent\view\other\info.html";i:1553687019;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1553687019;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/agent\view\other\info.html";i:1554866881;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1554865636;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +28,7 @@
 		<li class="layui-nav-item layui-nav-itemed">
 			<a href="javascript:;">其他功能</a>
 			<dl class="layui-nav-child">
-				<dd><a href="/agent/other/info">代理信息</a></dd>
+				<dd><a href="/agent/index">代理信息</a></dd>
 				<dd><a href="/agent/other/bussiness">业务统计</a></dd>
 				<dd><a href="/agent/other/rank">排行榜</a></dd>
 				<dd><a href="/agent/other/transfer">资金互转</a></dd>
@@ -74,7 +74,7 @@ layui.use(['layer','jquery','form'], function(){
 		<div class="layui-form-item">
 		    <label class="layui-form-label">代理ID：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid" required  lay-verify="required|number" placeholder="请输入UID" autocomplete="off" class="layui-input">
+		      <input type="text" name="id" disabled value="<?php echo $agent['id']; ?>" class="layui-input">
 		    </div>
 		    <!-- <div class="layui-form-mid layui-word-aux"><a href="">查询</a></div> -->
 		</div>
@@ -82,42 +82,42 @@ layui.use(['layer','jquery','form'], function(){
 		<div class="layui-form-item">
 		    <label class="layui-form-label">代理名称：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"  disabled   autocomplete="off" class="layui-input">
+		      <input type="text" name="name"  disabled  value="<?php echo $agent['name']; ?>" class="layui-input">
 		    </div>
 		</div>
 
 		<div class="layui-form-item">
 		    <label class="layui-form-label" >账户余额：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		      <input type="text" name="balance"    value="<?php echo $agent['balance']; ?>" class="layui-input">
 		    </div>
 		</div>
 
 		<div class="layui-form-item">
 		    <label class="layui-form-label" >制卡折扣：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		      <input type="text" name="discount"    value="<?php echo $agent['discount']; ?>" class="layui-input">
 		    </div>
 		</div>
 
 		<div class="layui-form-item">
-		    <label class="layui-form-label" >收卡额外奖励比例：</label>
+		    <label class="layui-form-label" >收卡额外奖励比例(%)：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		      <input type="text" name="reclaim_reward"  value="<?php echo $agent['reclaim_reward']; ?>" class="layui-input">
 		    </div>
 		</div>
 
 		<div class="layui-form-item">
 		    <label class="layui-form-label" >铺货金额：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		      <input type="text" name="advance"   value="<?php echo $agent['advance']; ?>"  class="layui-input">
 		    </div>
 		</div>
 
 		<div class="layui-form-item">
 		    <label class="layui-form-label" >可提现金额：</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+		      <input type="text" name="candebitcount"  value="<?php echo $agent['balance']-$agent['advance']+$agent['stock']*$agent['discount']; ?>"   class="layui-input">
 		    </div>
 		</div>
 

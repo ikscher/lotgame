@@ -12,6 +12,7 @@ function adduserlog($user_id,$desc='',$mp_coin=0,$mp_exp=0,$coin=0,$type='')
     $data['mp_exp']=$mp_exp;
     $data['coin']=$coin;
 	$data['create_time'] = time();
+    $data['type']=$type;
     return \think\Db::name('user_log')->insert($data);
 }
 

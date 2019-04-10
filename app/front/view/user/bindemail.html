@@ -1,7 +1,7 @@
 {include file="public/header" /}
 <script src="__JS__/jquery.showLoading.min.js"></script>
 <script src="__JS__/gt.js"></script>
-<script src="__JS__/bindemail.js"></script>
+
 <div id="wrapper" class="umain">
 	<div class="w1200">
 		{include file="user/header" /}
@@ -37,7 +37,7 @@
                             {/if}
 		 					<li>
 		 						<label>密保问题：</label>
-		 						<select id="safe_q" name="safe_q" {notempty name="$user['safe_q']"}disabled {/notempty} class="edit-select">
+		 						<select id="safe_q" name="safe_q"  class="edit-select"> <!--{notempty name="$user['safe_q']"}disabled {/notempty}-->
 		 							{foreach name="safe_q" item="vo" key="k"}
 		 							<option value="{$k}" {if condition="$user['safe_q'] eq $k"}selected{/if}>{$vo}</option>
 		 							{/foreach}
@@ -66,4 +66,5 @@
 		</div><!--uright-->
 	</div>
 </div>
+<script src="__JS__/bindemail.js"></script>
 {include file="public/footer" /}

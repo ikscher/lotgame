@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:67:"D:\mywork\lotgame\public/../app/admin\view\prizeexchange\index.html";i:1554713585;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:67:"D:\mywork\lotgame\public/../app/admin\view\prizeexchange\index.html";i:1554882723;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,7 +114,10 @@ td span a{
              <?php elseif($vo['status'] == 2): ?>
              已发货
              <?php else: ?>
-             <span><a class="exchange"  data-id="<?php echo $vo['id']; ?>" data-aggregate="<?php echo $vo['aggregate']; ?>" data-uid="<?php echo $vo['user_id']; ?>" data-status="1" href="javascript:;">通过</a><a class="exchange"  data-id="<?php echo $vo['id']; ?>" data-status="2" href="javascript:;">拒绝</a></span>
+             <span>
+              <a class="exchange"  data-prizeid="<?php echo $vo['prize_id']; ?>" data-id="<?php echo $vo['id']; ?>" data-aggregate="<?php echo $vo['aggregate']; ?>" data-uid="<?php echo $vo['user_id']; ?>" data-status="2" href="javascript:;">通过</a>
+              <a class="exchange"  data-prizeid="<?php echo $vo['prize_id']; ?>" data-id="<?php echo $vo['id']; ?>" data-uid="<?php echo $vo['user_id']; ?>" data-status="3" data-aggregate="<?php echo $vo['aggregate']; ?>" href="javascript:;">拒绝</a>
+             </span>
              <?php endif; ?>
           </td>
           <td class="operation-menu">
@@ -245,20 +248,21 @@ td span a{
           var id = $(this).attr('data-id');
           var uid = $(this).attr('data-uid');
           var aggregate = $(this).attr('data-aggregate');
+          var prize_id=$(this).attr('data-prizeid');
           var that = $(this);
           var str='';
-          if(status==1){
+          if(status==2){
             str='已通过';
-          }else if(status==2){
+          }else if(status==3){
             str='未通过';
           }
           layer.confirm("您确定"+str+"吗?", {btn: ['确定', '取消'], title: "提示"}, function (index) {
             $.ajax({
               type:"post",
               url:"<?php echo url('admin/prizeexchange/status'); ?>",
-              data:{status:status,id:id,uid:uid,aggregate:aggregate},
+              data:{status:status,id:id,uid:uid,aggregate:aggregate,prize_id:prize_id},
               success:function(res){
-                // console.log(res)
+                console.log(res)
                 layer.close(layer.index);
                 if(res.code == 1) {
                   that.parent('span').html(str);

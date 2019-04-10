@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: 听雨 < 389625819@qq.com >
+// | 
 // +----------------------------------------------------------------------
 
 
@@ -368,6 +368,7 @@ class Common extends Site
                     Cookie::set('register_smscode_t',$smscode_t);
                 }elseif($action=='order') {
                     Session::set('order_smscode_t',$smscode_t);
+                    Cookie::set('order_smscode_t',$smscode_t);
                 }
                 $data['code']=1;
                 echo json_encode($data);exit;

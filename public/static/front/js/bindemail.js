@@ -90,11 +90,12 @@ var handlerPopup = function (captchaObj) {
                 geetest_challenge: result.geetest_challenge,
                 geetest_validate: result.geetest_validate,
                 geetest_seccode: result.geetest_seccode,
-                mobile: $('#email').val(),
+                email: $('#email').val(),
                 action: "post"
             },
             dataType:'json',
             success: function (res) {
+                console.log(res);
                 // result=parseInt(result);
                 switch (res.code){
                     case -1:

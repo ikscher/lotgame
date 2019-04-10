@@ -88,12 +88,12 @@ class Agent extends Permissions
                 $post = $this->request->post();
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
                 $rule = [
-                    'password'  => 'require|max:30',
+                    'password'  => 'max:32',
                     'name'   => 'require|max:50',
                 ];
 
                 $msg = [
-                    'password.require' => '密码请填写，不能超过30位',
+                    'password.max' => '不能超过32位',
                     'name.require' => '代理名称必须填写',
                     'name.max' => '代理名称不能超过50个字符'
                 ];
@@ -146,12 +146,12 @@ class Agent extends Permissions
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
 
                 $rule = [
-                    'password'  => 'require|max:30',
+                    'password'  => 'max:32',
                     'name'   => 'require|max:50',
                 ];
 
                 $msg = [
-                    'password.require' => '密码请填写，不能超过30位',
+                    'password.max' => '不能超过32位',
                     'name.require' => '代理名称必须填写',
                     'name.max' => '代理名称不能超过50个字符'
                 ];

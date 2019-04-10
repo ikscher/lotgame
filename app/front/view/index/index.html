@@ -25,9 +25,9 @@
 		{notempty name="$uid"}
 			<div class="logtit"><strong>登录成功</strong></div>
 			<div style="height:20px;"></div>
-			<div class="logtit" style="font-size:14px;">登录账号：ikscher (891435)</div>
+			<div class="logtit" style="font-size:14px;">登录账号：{$user['username']}({$uid})</div>
 			<div class="captcha mt10 mb10">
-				<label>账户余额：500 </label>
+				<label>账户余额：{$user['coin']} </label>
 			</div>
 			<a href="/User/Index" class="sub mt20">会员中心</a>
 			<a href="/Game/Index" class="sub mt20">游戏中心</a>
