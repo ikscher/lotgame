@@ -23,13 +23,14 @@ use app\admin\controller\Permissions;
 use app\front\model\User as userModel;
 use app\admin\model\Prize as prizeModel;
 use app\admin\model\CardPwd as cardPwdModel;
-use app\front\model\UserExchange as exchangeModel;
+use app\front\model\UserExchange as userExchangeModel;
 use app\front\model\UserMsg as userMsgModel;
 class Prizeexchange extends Permissions
 {   
     private $prizeModel;
     private $cardPwdModel;
     private $userMsgModel;
+    private $userExchangeModel;
     private $userModel;
     private $site_name;
     public function _initialize()
@@ -37,6 +38,7 @@ class Prizeexchange extends Permissions
         $this->prizeModel=new prizeModel();
         $this->cardPwdModel=new cardPwdModel();
         $this->userMsgModel=new userMsgModel();
+        $this->userExchangeModel=new userExchangeModel();
         $this->userModel= new userModel();
         $this->site_name=Config::get('site_name');
     }
@@ -131,6 +133,9 @@ class Prizeexchange extends Permissions
 
                 Db::startTrans();
                 try{
+                    //设置兑奖对应的卡密
+                    $id=$post['id'];
+                    $this->userExchangeModel->where('id',$id)->update(['cardno'=>$card_no,'cardpwd'=>$card_pwd,'update_time'=>time()]);
 
                     //更改卡密的状态为已兑出（未回收）
                     $map=array();

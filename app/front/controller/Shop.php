@@ -322,6 +322,8 @@ class Shop extends Site
                     $ret1=$this->userModel->where('uid',$this->uid)->setDec('coin',$post['aggregate']);
                     
                     $post['status']=2;//直接通过审核2,但是如果设置了此奖品必须审核，那么还是1状态
+                    $post['cardno']=$card_no;
+                    $post['cardpwd']=$card_pwd;
                     $ret2=$this->userExchangeModel->insert($post);
                     
                     //设置当日兑奖次数

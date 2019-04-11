@@ -12,28 +12,65 @@
     <div class="right">
         <h1>卡密回收</h1>
         <hr>
-		<form class="layui-form" action="">
+		<form id="retractform">
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">卡号</label>
 		    <div class="layui-input-block">
-		      <input type="text" name="title" required  lay-verify="required" placeholder="请输入卡号" autocomplete="off" class="layui-input">
+		      <input type="text" name="card_no" id="card_no" placeholder="请输入卡号" onkeyup="value=value.replace(/[^\w]/ig,'')" autocomplete="off" class="layui-input">
 		    </div>
 		  </div>
 
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">卡密</label>
 		    <div class="layui-input-block">
-		      <input type="text" name="title" required  lay-verify="required" placeholder="请输入卡密" autocomplete="off" class="layui-input">
+		      <input type="text" name="card_pwd" id="card_pwd"   placeholder="请输入卡密" onkeyup="value=value.replace(/[^\w]/ig,'')" autocomplete="off" class="layui-input">
 		    </div>
 		  </div>
 
 		  <div class="layui-form-item">
 		    <div class="layui-input-block">
-		      <button class="layui-btn layui-btn-primary" lay-submit lay-filter="formDemo">确认回收</button>
+		      <button class="layui-btn layui-btn-primary" lay-submit lay-filter="retract">确认回收</button>
 		      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
 		    </div>
 		  </div>
 		</form>
     </div>
 </body>
+<script type="text/javascript">
+   layui.use(['form','jquery'], function(){
+	   var form = layui.form,
+	       $=layui.jquery;
+	  
+	   form.on('submit(retract)', function(data) {
+	   	    var card_no=$('#card_no').val();
+	   	    var card_pwd=$('#card_pwd').val();
+
+	   	    if(!card_no){
+	   	    	layer.msg('请输入卡号');
+	   	    	return false;
+	   	    }
+
+	   	    if(!card_pwd){
+	   	    	layer.msg('请输入卡密');
+	   	    	return false;
+	   	    }
+            $.ajax({
+                url:"{:url('agent/operate/retract')}",
+                data:$('#retractform').serialize(),
+                type:'post',
+                async: false,
+                success:function(res) {
+                    if(res.code == 1) {
+                        // layer.alert(res.msg, function(index){
+                           location.href = res.url;
+                        // })
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            })
+            return false;
+       });
+    });
+</script>
 </html>

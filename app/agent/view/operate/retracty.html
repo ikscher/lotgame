@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<script src="__PUBLIC__/layui/layui.js"></script>
+	<title>卡密回收</title>
+</head>
+<body>
+	{include file="public/left" /}
+
+	<div class="right">
+		<h1>卡密回收</h1>
+	    
+		<table class="layui-table">
+		  <colgroup>
+		    <col width="150">
+		    <col width="150">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
+		  </colgroup>
+		  <thead>
+		    <tr>
+		      <th>卡号</th>
+		      <th>卡密</th>
+		      <th>面额</th>
+		      <th>兑奖用户</th>
+		      <th>QQ</th>
+		      <th>支付宝</th>
+		      <th>状态</th>
+		    </tr> 
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
+		    
+		  </tbody>
+        </table>
+	</div>
+</body>
+<script type="text/javascript">
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	  //执行一个laydate实例
+	  laydate.render({
+	    elem: '#begin_time' //指定元素
+	  });
+
+	  laydate.render({
+	    elem: '#end_time' //指定元素
+	  });
+	});
+</script>
+</html>
