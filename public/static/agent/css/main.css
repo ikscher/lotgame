@@ -1,5 +1,5 @@
-body{font-family: SimHei,"\9ED1\4F53",Arial,HELVETICA;}
-.sidebar-wrap{float: left;width: 300px;min-height:900px;background: #545d73;}
+
+/*.sidebar-wrap{float: left;width: 300px;min-height:900px;background: #545d73;}
 .sidebar-title{height: 80px;line-height: 80px;text-align: center;background: #5398e6;}
 .sidebar-title h1{font-weight: 600;font-size: 29px;color: #fff;}
 .sidebar-content{}
@@ -9,7 +9,7 @@ body{font-family: SimHei,"\9ED1\4F53",Arial,HELVETICA;}
 .sub-menu li{line-height: 36px;background: #545d73;width: 100%;}
 .sub-menu li a{color: #fff;font-size: 15px;display: block;padding-left: 90px;}
 .sub-menu li a:hover{color: #5398e6;}
-.sub-menu li a.on{color: #5398e6;}
+.sub-menu li a.on{color: #5398e6;}*/
 
 /* main */
 .main-wrap{margin-left: 300px;min-height:100%;margin-bottom: 40px}
@@ -46,7 +46,7 @@ body{font-family: SimHei,"\9ED1\4F53",Arial,HELVETICA;}
 .user-input{display: inline-block;width: 300px;height: 35px;border:1px solid #ccc;border-radius: 5px;color: #282828;padding-left: 20px;margin-right: 10px;background: #fff;}
 .cxyh{border: 0;color: #5398e6;display: inline-block;background: #fff;cursor: pointer;}
 .cxyh:hover{color: #297fe0;}
-.dc-table .quickchong{color: #989898;padding:7px 20px;border: 1px solid #989898;border-radius: 5px;margin-right: 10px;display: inline-block;}
+.quickcharge{color: #989898;padding:7px 20px;border: 1px solid #989898;border-radius: 5px;margin-right: 10px;display: inline-block;}
 .dccg{width: 100%;text-align: center;color: red;font-size: 20px;margin-bottom: 20px;}
 .search-wrap{width: 100%;display: inline-block;color: #282828;font-size: 15px;}
 .search-wrap span,.search-wrap a{color: #5398e6;margin-right: 10px}
