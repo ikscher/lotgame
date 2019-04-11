@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:67:"D:\mywork\lotgame\public/../app/admin\view\prizeexchange\index.html";i:1554882723;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:67:"D:\mywork\lotgame\public/../app/admin\view\prizeexchange\index.html";i:1554954986;s:49:"D:\mywork\lotgame\app\admin\view\public\foot.html";i:1553048572;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,8 +115,8 @@ td span a{
              已发货
              <?php else: ?>
              <span>
-              <a class="exchange"  data-prizeid="<?php echo $vo['prize_id']; ?>" data-id="<?php echo $vo['id']; ?>" data-aggregate="<?php echo $vo['aggregate']; ?>" data-uid="<?php echo $vo['user_id']; ?>" data-status="2" href="javascript:;">通过</a>
-              <a class="exchange"  data-prizeid="<?php echo $vo['prize_id']; ?>" data-id="<?php echo $vo['id']; ?>" data-uid="<?php echo $vo['user_id']; ?>" data-status="3" data-aggregate="<?php echo $vo['aggregate']; ?>" href="javascript:;">拒绝</a>
+              <a class="exchange"  data-prizeid="<?php echo $vo['prize_id']; ?>" data-num="<?php echo $vo['num']; ?>" data-id="<?php echo $vo['id']; ?>" data-aggregate="<?php echo $vo['aggregate']; ?>" data-uid="<?php echo $vo['user_id']; ?>" data-status="2" href="javascript:;">通过</a>
+              <a class="exchange"  data-prizeid="<?php echo $vo['prize_id']; ?>" data-num="<?php echo $vo['num']; ?>" ata-id="<?php echo $vo['id']; ?>" data-uid="<?php echo $vo['user_id']; ?>" data-status="3" data-aggregate="<?php echo $vo['aggregate']; ?>" href="javascript:;">拒绝</a>
              </span>
              <?php endif; ?>
           </td>
@@ -247,6 +247,7 @@ td span a{
           var status = $(this).attr('data-status');
           var id = $(this).attr('data-id');
           var uid = $(this).attr('data-uid');
+          var num=$(this).attr('data-num');
           var aggregate = $(this).attr('data-aggregate');
           var prize_id=$(this).attr('data-prizeid');
           var that = $(this);
@@ -260,7 +261,7 @@ td span a{
             $.ajax({
               type:"post",
               url:"<?php echo url('admin/prizeexchange/status'); ?>",
-              data:{status:status,id:id,uid:uid,aggregate:aggregate,prize_id:prize_id},
+              data:{status:status,id:id,num:num,uid:uid,aggregate:aggregate,prize_id:prize_id},
               success:function(res){
                 console.log(res)
                 layer.close(layer.index);

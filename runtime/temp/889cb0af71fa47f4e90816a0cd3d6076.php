@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"D:\mywork\lotgame\public/../app/agent\view\operate\retracty.html";i:1554905478;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1554889404;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"D:\mywork\lotgame\public/../app/agent\view\operate\retracty.html";i:1554967811;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1554865636;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,22 +68,25 @@ layui.use(['layer','jquery','form'], function(){
 
 	<div class="right">
 		<h1>卡密回收</h1>
-	    
+	    <hr>
+	    <form id="agentform">
 		<table class="layui-table">
 		  <colgroup>
+		    <col width="240">
+		    <col width="240">
+		    <col width="200">
+		    <col width="100">
+		    <col width="200">
+		    <col width="200">
+		    <col width="200">
 		    <col width="150">
-		    <col width="150">
-		    <col width="200">
-		    <col width="200">
-		    <col width="200">
-		    <col width="200">
-		    <col width="200">
 		  </colgroup>
 		  <thead>
 		    <tr>
 		      <th>卡号</th>
 		      <th>卡密</th>
 		      <th>面额</th>
+		      <th>数量</th>
 		      <th>兑奖用户</th>
 		      <th>QQ</th>
 		      <th>支付宝</th>
@@ -92,31 +95,53 @@ layui.use(['layer','jquery','form'], function(){
 		  </thead>
 		  <tbody>
 		    <tr>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
+		      <td><?php echo $cardpwd['card_no']; ?></td>
+		      <td><?php echo $cardpwd['card_pwd']; ?></td>
+		      <td><?php echo $userexchange['price']; ?></td>
+		      <td><?php echo $userexchange['num']; ?></td>
+		      <td><?php echo $userexchange->user->username; ?></td>
+		      <td><?php echo $userexchange->user->qq; ?></td>
+		      <td><?php echo $userexchange->user->alipay; ?></td>
+		      <td><?php if($cardpwd['status'] == 2): ?>可回收<?php else: ?>不可回收<?php endif; ?></td>
 		    </tr>
-		    
+		    <tr><td colspan="8" align="center">总面额：<?php echo $userexchange['price']*$userexchange['num']; ?></td></tr>
+
 		  </tbody>
         </table>
+
+        <button class="layui-btn layui-btn-primary" data-enabled="<?php echo $enabled; ?>" lay-submit lay-filter="reclaim">确定回收</button>
+        </form>
 	</div>
 </body>
 <script type="text/javascript">
-	layui.use('laydate', function(){
-	  var laydate = layui.laydate;
-	  
-	  //执行一个laydate实例
-	  laydate.render({
-	    elem: '#begin_time' //指定元素
-	  });
+	layui.use(['form','jquery'], function(){
+	    var form=layui.form,$=layui.jquery;
 
-	  laydate.render({
-	    elem: '#end_time' //指定元素
-	  });
+        form.on('submit(reclaim)',function(){
+        	var enabled=$(this).attr('data-enabled');
+        	if(!enabled){
+                layer.msg('不可回收');
+        	    return false;
+        	}
+      	    $.ajax({
+                url:"<?php echo url('agent/operate/retracty'); ?>",
+                data:$('#agentform').serialize(),
+                type:'post',
+                async: false,
+                dataType:'json',
+                success:function(res) {
+                    if(res.code == 1) {
+                        // layer.alert(res.msg, function(index){
+                           location.href = res.url;
+                        // })
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            })
+            return false;
+        })
+
 	});
 </script>
 </html>

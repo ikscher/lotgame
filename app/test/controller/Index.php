@@ -122,6 +122,42 @@ class Index extends Controller
         return $this->fetch();
     }
 
+    public function order(){
+        $map=array();
+        $map['card_cate_id']=10;
+        $map['status']=1;
+        $num=5;
+        $cardpwd=collection($this->cardPwdModel->where($map)->limit($num)->select())->toArray();
+        $strcardpwd='';
+        $comma='<br/>';
+        foreach($cardpwd as $k=>$v){
+            $card_pwd[$k]['card_no']=$v['card_no'];
+            $card_pwd[$k]['card_pwd']=$v['card_pwd'];
+            
+            $strcardpwd.=$v['card_no'].'  '.$v['card_pwd'];
+            $strcardpwd.=$comma;
+
+            //更改卡密的状态为已兑出（未回收）
+            $map=array();
+            $map['card_no']=$v['card_no'];
+            $map['card_pwd']=$v['card_pwd'];
+            // $this->cardPwdModel->where($map)->update(['status'=>2]);
+        }
+
+        echo $strcardpwd;
+    }
+
+    public function exchange()
+    {   
+        $card_no='d200HjtCpKzvmYQY7Tc';
+        // $map['card_pwd']='AXV854ZMS2FJ7VQK';
+        
+        $userexchange=$this->userExchangeModel->where('status',2)->where("instr(`card`,'{$card_no}')>0")->find();
+                // echo $this->userExchangeModel->getLastSql();
+        echo $userexchange['id'];
+        // var_dump($userexchange);
+    }
+
     public function prize(){
         $post['prize_id']=4;
         $post['aggregate']=109160;

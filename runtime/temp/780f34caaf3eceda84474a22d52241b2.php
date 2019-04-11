@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"D:\mywork\lotgame\public/../app/agent\view\operate\recharge.html";i:1553672743;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1554865636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"D:\mywork\lotgame\public/../app/agent\view\operate\recharge.html";i:1554973536;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1554865636;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,18 +72,40 @@ layui.use(['layer','jquery','form'], function(){
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">用户UID</label>
 		    <div class="layui-input-inline">
-		      <input type="text" name="title" required  lay-verify="required" placeholder="请输入用户UID" autocomplete="off" class="layui-input">
+		      <input type="text" name="uid" id="uid" required  lay-verify="required" placeholder="请输入用户UID" autocomplete="off" class="layui-input">
 		    </div>
-		    <div class="layui-form-mid layui-word-aux"><a href="">查询用户</a></div>
+		    <div class="layui-form-mid layui-word-aux"><a id="queryuser" href="javascript:;">查询用户</a></div>
 		  </div>
+          
+          <div id="userinfo"  style="display: none;">
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">用户昵称</label>
+			    <div class="layui-input-block">
+			      <label></label>
+			    </div>
+			  </div>
 
-		  <div class="layui-form-item">
-		    <label class="layui-form-label">用户昵称</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="title" disabled  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
-		    </div>
-		  </div>
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">余额</label>
+			    <div class="layui-input-block">
+			      <label></label>
+			    </div>
+			  </div>
 
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">银行</label>
+			    <div class="layui-input-block">
+			      <label></label>
+			    </div>
+			  </div>
+
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">等级</label>
+			    <div class="layui-input-block">
+			      <label></label>
+			    </div>
+			  </div>
+          </div>
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">代充金额</label>
 		    <div class="layui-input-block">
@@ -100,4 +122,54 @@ layui.use(['layer','jquery','form'], function(){
 		</form>
     </div>
 </body>
+<script type="text/javascript">
+	layui.use(['form','jquery'], function(){
+	    var form=layui.form,$=layui.jquery;
+        
+        $('#queryuser').click(function(){
+        	var uid=$.trim($('#uid').val());
+        	$.ajax({
+                url:"<?php echo url('agent/operate/queryuser'); ?>",
+                data:{uid:uid},
+                type:'post',
+                async: false,
+                dataType:'json',
+                success:function(res) {
+                    if(res.code == 1) {
+                        $('#userinfo').css('display','block');
+                    } else {
+                    	$('#userinfo').css('display','none');
+                        layer.msg(res.msg);
+                    }
+                }
+            })
+        })
+
+        form.on('submit(reclaim)',function(){
+        	var enabled=$(this).attr('data-enabled');
+        	if(!enabled){
+                layer.msg('不可回收');
+        	    return false;
+        	}
+      	    $.ajax({
+                url:"<?php echo url('agent/operate/retracty'); ?>",
+                data:$('#agentform').serialize(),
+                type:'post',
+                async: false,
+                dataType:'json',
+                success:function(res) {
+                    if(res.code == 1) {
+                        // layer.alert(res.msg, function(index){
+                           location.href = res.url;
+                        // })
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            })
+            return false;
+        })
+
+	});
+</script>
 </html>
