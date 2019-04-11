@@ -21,11 +21,15 @@ class CardPwd extends Model
         return $this->belongsTo('CardCate');
     }
 
-    public function user(){
+    public function user()
+    {
     	return $this->belongsTo('app\front\model\User');
     }
 
-    public function agent(){
+    
+
+    public function agent()
+    {
     	return $this->belongsTo('Agent');
     }
 

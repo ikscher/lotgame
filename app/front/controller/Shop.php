@@ -302,13 +302,13 @@ class Shop extends Site
                 $map=array();
                 $map['card_cate_id']=$card_cate_id;
                 $map['status']=1;
-                $cardpwd=$this->cardPwdModel->where($map)->find();
+                $cn=$this->cardPwdModel->where($map)->count();
                 
-                $card_no=$cardpwd['card_no'];
-                $card_pwd=$cardpwd['card_pwd'];
+                // $card_no=$cardpwd['card_no'];
+                // $card_pwd=$cardpwd['card_pwd'];
 
-                if(empty($cardpwd['id'])){
-                    return $this->error('没有对应的充值卡，请联系代理或网站客服！');
+                if($cn<$post['num']){
+                    return $this->error('奖品数量不足，请减少兑换数量或者联系代理或网站客服！');
                 }
                 
                 
@@ -321,20 +321,42 @@ class Shop extends Site
                     $coin=$this->userModel->where('uid',$this->uid)->value('coin');
                     $ret1=$this->userModel->where('uid',$this->uid)->setDec('coin',$post['aggregate']);
                     
+                    //兑换卡密数量多少就插入多少条兑换记录
+                    $map=array();
+                    $cardpwd=array();
+                    $card_pwd=array();
+                    $map['card_cate_id']=$card_cate_id;
+                    $map['status']=1;
+                    $num=$post['num'];
+                    $cardpwd=collection($this->cardPwdModel->where($map)->limit($num)->select())->toArray();
+                    
+                    $strcardpwd='';
+                    $comma='<br/>';
+                    foreach($cardpwd as $k=>$v){
+                        $card_pwd[$k]['card_no']=$v['card_no'];
+                        $card_pwd[$k]['card_pwd']=$v['card_pwd'];
+                        
+                        $strcardpwd.=$v['card_no'].' '.$v['card_pwd'];
+                        $strcardpwd.=$comma;
+
+                        //更改卡密的状态为已兑出（未回收）
+                        $map=array();
+                        $map['card_no']=$v['card_no'];
+                        $map['card_pwd']=$v['card_pwd'];
+                        $this->cardPwdModel->where($map)->update(['status'=>2,'use_time'=>time(),'user_id'=>$this->uid]);
+                    }
+
+                    //插入兑换记录表
+                    $data=array();
                     $post['status']=2;//直接通过审核2,但是如果设置了此奖品必须审核，那么还是1状态
-                    $post['cardno']=$card_no;
-                    $post['cardpwd']=$card_pwd;
+                    $post['card']=json_encode($card_pwd);
                     $ret2=$this->userExchangeModel->insert($post);
                     
                     //设置当日兑奖次数
                     $today_exchange_times=Session::get('today_exchange_times')?Session::get('today_exchange_times')+1:1;
                     Session::set('today_exchange_times',$today_exchange_times);
                     // ===================== 以下操作 如果是第一次兑奖 均在后台执行begin 取对应的奖品=========================
-                    //更改卡密的状态为已兑出（未回收）
-                    $map=array();
-                    $map['card_no']=$card_no;
-                    $map['card_pwd']=$card_pwd;
-                    $this->cardPwdModel->where($map)->update(['status'=>2]);
+                    
                     
                     //发站内信
                     $data=array();
@@ -344,11 +366,11 @@ class Shop extends Site
                     $data['type']=3;
                     $data['create_time']=time();
                     $data['title']='兑奖发货通知';
-                    $data['content']='内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$card_no.' '.$card_pwd;
+                    $data['content']='内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$strcardpwd;
                     $ret3=$this->userMsgModel->insert($data);
                     
                     //发邮件
-                    //$ret4=SendMail($this->user['email'],$this->site_name."邮件",'内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$card_no.' '.$card_pwd);
+                    //$ret4=SendMail($this->user['email'],$this->site_name."邮件",'内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$strcardpwd);
                     //==============================end=========================
                    
                     

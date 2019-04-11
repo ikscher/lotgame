@@ -114,8 +114,8 @@ td span a{
              已发货
              {else /}
              <span>
-              <a class="exchange"  data-prizeid="{$vo.prize_id}" data-id="{$vo.id}" data-aggregate="{$vo.aggregate}" data-uid="{$vo.user_id}" data-status="2" href="javascript:;">通过</a>
-              <a class="exchange"  data-prizeid="{$vo.prize_id}" data-id="{$vo.id}" data-uid="{$vo.user_id}" data-status="3" data-aggregate="{$vo.aggregate}" href="javascript:;">拒绝</a>
+              <a class="exchange"  data-prizeid="{$vo.prize_id}" data-num="{$vo.num}" data-id="{$vo.id}" data-aggregate="{$vo.aggregate}" data-uid="{$vo.user_id}" data-status="2" href="javascript:;">通过</a>
+              <a class="exchange"  data-prizeid="{$vo.prize_id}" data-num="{$vo.num}" ata-id="{$vo.id}" data-uid="{$vo.user_id}" data-status="3" data-aggregate="{$vo.aggregate}" href="javascript:;">拒绝</a>
              </span>
              {/if}
           </td>
@@ -155,6 +155,7 @@ td span a{
           var status = $(this).attr('data-status');
           var id = $(this).attr('data-id');
           var uid = $(this).attr('data-uid');
+          var num=$(this).attr('data-num');
           var aggregate = $(this).attr('data-aggregate');
           var prize_id=$(this).attr('data-prizeid');
           var that = $(this);
@@ -168,7 +169,7 @@ td span a{
             $.ajax({
               type:"post",
               url:"{:url('admin/prizeexchange/status')}",
-              data:{status:status,id:id,uid:uid,aggregate:aggregate,prize_id:prize_id},
+              data:{status:status,id:id,num:num,uid:uid,aggregate:aggregate,prize_id:prize_id},
               success:function(res){
                 console.log(res)
                 layer.close(layer.index);

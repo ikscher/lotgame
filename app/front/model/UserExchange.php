@@ -28,5 +28,7 @@ class UserExchange extends Model
         // return $this->belongsTo('Prize');
     }
 
+    
+
   
 }

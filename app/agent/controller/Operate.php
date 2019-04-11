@@ -9,7 +9,7 @@ use app\admin\model\AgentCate as agentCateModel;
 use app\admin\model\AgentLog as agentLogModel;
 use app\admin\model\CardCate as cardcateModel;
 use app\admin\model\CardPwd as cardPwdModel;
-
+use app\front\model\UserExchange as userExchangeModel;
 class Operate extends Site
 {   
 	// private $agentModel;
@@ -17,6 +17,7 @@ class Operate extends Site
     private $agentLogModel;
     private $cardcateModel;
     private $cardPwdModel;
+    private $userExchangeModel;
     private $card_no;
     private $card_pwd;
 	public function _initialize()
@@ -27,6 +28,7 @@ class Operate extends Site
         $this->agentLogModel = new agentLogModel();
         $this->cardcateModel = new cardcateModel();
         $this->cardPwdModel = new cardPwdModel();
+        $this->userExchangeModel=new userExchangeModel();
         if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
     }
 
@@ -36,18 +38,18 @@ class Operate extends Site
     {
         if($this->request->isPost()){
             $post=$this->request->post();
-            $this->__set('card_no',$post['card_no']);
-            $this->__set('card_pwd',$post['card_pwd']);
+            Session::set('reclaim_card_no',$post['card_no']);
+            Session::set('reclaim_card_pwd',$post['card_pwd']);
             
             $map=array();
-            $map['card_no']=$this->card_no;
-            $map['card_pwd']=$this->card_pwd;
+            $map['card_no']=$post['card_no'];
+            $map['card_pwd']=$post['card_pwd'];
             $map['status']=2;//必须为已兑出的卡才能回收
             
             $cardpwd=$this->cardPwdModel->where($map)->find();
 
             if(empty($cardpwd['id'])){
-                return $this->error('此卡还未兑出，或者不存在！');
+                return $this->error('此卡不能回收，请确认！');
             }
             
             return $this->success('正在跳转...','/agent/operate/retracty');
@@ -60,48 +62,77 @@ class Operate extends Site
     //卡密回收第二步
     public function retracty()
     {   
+        
 
         $map=array();
-        $map['card_no']=$this->__get('card_no');
-        $map['card_pwd']=$this->__get('card_pwd');
+        $card_no=Session::get('reclaim_card_no');
+        $card_pwd=Session::get('reclaim_card_pwd');
+        $map['card_no']=$card_no;
+        $map['card_pwd']=$card_pwd;
         $map['status']=2;//必须为已兑出的卡才能回收
-        var_dump($map);
-        $cardpwd=$this->cardPwdModel->where($map)->find();
-  
-        var_dump($cardpwd);
-        // $result_trans=true;
-        // Db::startTrans();
-        // try{
-        //     //更改状态为已回收3
-        //     $this->cardPwdModel->where($map)->setField('status',3);
-            
-        //     //代理账户增加金额元
-        //     // 提交事务
-        //     Db::commit(); 
+        
+        $userexchange=$this->userExchangeModel->where('status',2)->where("instr(`card`,'{$card_no}')>0")->find();
+
+        if($this->request->isPost()){
+            $status=$this->cardPwdModel->where('card_no',$card_no)->where('card_pwd',$card_pwd)->value('status');
+            if($status==3){
+                return $this->error('此卡已经被回收过了！');
+            }
+            $result_trans=true;
+            Db::startTrans();
+            try{
+                //更改状态为已回收3
+                $data=array();
+                $data['status']=3;
+                $data['user_id']=$userexchange['user_id'];
+                $data['use_time']=$userexchange['create_time'];
+                $this->cardPwdModel->where($map)->save($data);
                 
-        // }catch (\Exception $e) {
-        //     $result_trans=false;
-        //     // 回滚事务
-        //     Db::rollback();
-            
-            
-        // }
+                //代理账户增加金额元
+                $agent_id=$this->agent['id'];
+                $mp_money=$userexchange['price']*$userexchange['num'];
+                //先获取代理余额
+                $balance=$this->agentModel->where('id',$agent_id)->value('balance');
+                //更新代理余额
+                $this->agentModel->where('id',$agent_id)->setField('balance',$balance+$mp_money);
+                
+                //写入代理日志
+                
+                addagentlog($agent_id,'2',$mp_money,$balance+$mp_money,"{$card_no}|{$userexchange['user_id']}");
+                // 提交事务
+                Db::commit(); 
+                    
+            }catch (\Exception $e) {
+                $result_trans=false;
+                // 回滚事务
+                Db::rollback();
+            }
+
+            if($result_trans==true){
+                return $this->success('收卡成功，您需支付给会员'.$mp_money*0.98,'/agent/operate/retract'); //代理线下直接打给用户扣除2%手续费
+            }else{
+                return $this->error('收卡出错，请联系管理员！'); //可能此卡没有被兑换（不在兑换列表），所以出错
+            }
+        }
+        
+
+        $cardpwd=$this->cardPwdModel->where($map)->find();
+        
+        $enabled=true;
+        if(empty($cardpwd['id'])) $enabled=false;
+        $this->assign('cardpwd',$cardpwd);
+        $this->assign('enabled',$enabled);
+
+        
+
+        $this->assign('userexchange',$userexchange);
+        
+       
+        
         return $this->fetch();
     }
 
-    public function __set($k,$v)
-    {
-        $this->$k=$v;
-    }
 
-    public function __get($k)
-    {   
-        if(isset($k)){
-            return $this->$k;
-        }else{
-            return null;
-        }
-    }
     //金币代充
     public function recharge()
     {
@@ -115,6 +146,26 @@ class Operate extends Site
         $cates=collection($cates_)->toArray();
         $this->assign('cates',$cates);
         return $this->fetch();
+    }
+    
+    //查询用户是否存在
+    public function queryuser(){
+        $data=array();
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $uid=$post['uid'];
+            $user=$this->userModel->where('uid',$uid)->find();
+            if(empty($user['uid'])){
+                return $this->error("此用户不存在！");
+            }else{
+                $data['code']=1;
+                $data['username']=$user['username'];
+                $data['balance']=$user['coin'];
+                $data['bank']=$user['bank'];
+                $data['user_grade_id']=$user['user_grade_id'];
+                echo json_encode($data);exit;
+            }
+        }
     }
 
 }

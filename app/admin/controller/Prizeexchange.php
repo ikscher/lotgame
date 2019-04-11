@@ -118,30 +118,50 @@ class Prizeexchange extends Permissions
                  // $prize=$this->prizeModel->where('id',$post['prize_id'])->find();
                 $card_cate_id=$prize['card_cate_id'];//卡类型ID
           
-                //对应的卡密取一条
+                //查看对应的卡密数量是否足够
                 $map=array();
                 $map['card_cate_id']=$card_cate_id;
                 $map['status']=1;
-                $cardpwd=$this->cardPwdModel->where($map)->find();
+                $cn=$this->cardPwdModel->where($map)->count();
                 
-                $card_no=$cardpwd['card_no'];
-                $card_pwd=$cardpwd['card_pwd'];
+                // $card_no=$cardpwd['card_no'];
+                // $card_pwd=$cardpwd['card_pwd'];
 
-                if(empty($cardpwd['id'])){
-                    return $this->error('没有对应的充值卡，请联系代理或网站客服！');
+                if($cn<$post['num']){
+                    return $this->error('充值卡密数量不足，请联生成卡密！');
                 }
 
                 Db::startTrans();
                 try{
+                    //取出对应数量的兑换卡密
+                    $map=array();
+                    $cardpwd=array();
+                    $card_pwd=array();
+                    $map['card_cate_id']=$card_cate_id;
+                    $map['status']=1;
+                    $num=$post['num'];
+                    $cardpwd=collection($this->cardPwdModel->where($map)->limit($num)->select())->toArray();
+
+                    $strcardpwd='';
+                    $comma='<br/>';
+                    foreach($cardpwd as $k=>$v){
+                        $card_pwd[$k]['card_no']=$v['card_no'];
+                        $card_pwd[$k]['card_pwd']=$v['card_pwd'];
+                        
+                        $strcardpwd.=$v['card_no'].' '.$v['card_pwd'];
+                        $strcardpwd.=$comma;
+
+                        //更改卡密的状态为已兑出（未回收）
+                        $map=array();
+                        $map['card_no']=$v['card_no'];
+                        $map['card_pwd']=$v['card_pwd'];
+                        $this->cardPwdModel->where($map)->update(['status'=>2,'user_id'=>$post['uid'],'use_time'=>time()]);
+                    }
                     //设置兑奖对应的卡密
                     $id=$post['id'];
-                    $this->userExchangeModel->where('id',$id)->update(['cardno'=>$card_no,'cardpwd'=>$card_pwd,'update_time'=>time()]);
+                    $card_json=json_encode($card_pwd);
+                    $this->userExchangeModel->where('id',$id)->update(['card'=>$card_json,'update_time'=>time()]);
 
-                    //更改卡密的状态为已兑出（未回收）
-                    $map=array();
-                    $map['card_no']=$card_no;
-                    $map['card_pwd']=$card_pwd;
-                    $this->cardPwdModel->where($map)->update(['status'=>2]);
                     
                     //发站内信
                     $data=array();
@@ -151,11 +171,11 @@ class Prizeexchange extends Permissions
                     $data['type']=3; //单独用户
                     $data['create_time']=time();
                     $data['title']='兑奖发货通知';
-                    $data['content']='内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$card_no.' '.$card_pwd;
+                    $data['content']='内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$strcardpwd;
                     $ret3=$this->userMsgModel->insert($data);
 
                     //发邮件
-                    $ret4=SendMail($this->user['email'],$this->site_name."邮件",'内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$card_no.' '.$card_pwd);
+                    $ret4=SendMail($this->user['email'],$this->site_name."邮件",'内容：您兑换的奖品'.$prize_name.'已经发货，谢谢您对我们的支持。<br/>'.$strcardpwd);
                     //==============================end=========================
                     // 提交事务
                     Db::commit(); 
