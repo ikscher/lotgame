@@ -13,68 +13,136 @@
 	<div class="right">
 		<h1>业务统计</h1>
 		<hr>
+		<form id="agentform" action="/agent/other/bussiness" method="post">
 		<span>您的代充折扣：{$agent['discount']}， 您的收卡奖励：{$agent['reclaim_reward']}% <!-- 您的收卡奖励：0.00% --></span>
 		
 		<div class="layui-form-item" style="display: inline;">
 			<div class="layui-inline">
-			    <label class="layui-form-label">日期查询</label>
-			    <div class="layui-input-inline" style="width: 100px;">
-			      <input type="text" name="begin_time" id="begin_time"  autocomplete="off" class="layui-input">
-			    </div>
-			    <div class="layui-form-mid">-</div>
-			    <div class="layui-input-inline" style="width: 100px;">
-			      <input type="text" name="end_time" id="end_time"  autocomplete="off" class="layui-input">
-			    </div>
-		    </div>
+				<label class="layui-form-label">日期查询</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="begin_time" id="begin_time" {notempty name="$begin_time"}value="{$begin_time}"{/notempty}  autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid">-</div>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="end_time" id="end_time" {notempty name="$end_time"}value="{$end_time}"{/notempty} autocomplete="off" class="layui-input">
+				</div>
+			</div>
 
-            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="formDemo">查询</button>
-        </div>
-	    
+			<button class="layui-btn layui-btn-primary" lay-submit lay-filter="query">查询</button>
+		</div>
+        </form>
 		<table class="layui-table">
-		  <colgroup>
-		    <col width="150">
-		    <col width="150">
-		    <col width="200">
-		    <col width="200">
+			<colgroup>
+				<col width="150">
+				<col width="150">
+				<col width="200">
+				<col width="200">
 
-		  </colgroup>
-		  <thead>
-		    <tr>
-		      <th>日期</th>
-		      <!-- <th>售出</th> -->
-		      <th>代充(<?php echo (1-$agent['discount'])*100?>%利润)</th>
-		      <th>回收({$agent['reclaim_reward']}%利润)</th>
-		      <!-- <th>收卡奖励</th> -->
-		      <th>利润</th>
-		    </tr> 
-		  </thead>
-		  <tbody>
-		  	{volist name="lists" id="vo"}
-		    <tr>
-		      <td>{$vo.create_date}</td>
-		      <td>{$vo.cmoney}</td>
-		      <td>{$vo.rmoney}</td>
-		      <td><?php echo $vo['cmoney']*(1-$agent['discount'])+$vo['rmoney']*$agent['reclaim_reward']/100;?></td>
-	
-		    </tr>
-		    {/volist}
-		  </tbody>
-        </table>
-        <div>{$lists->render();}</div>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>日期</th>
+					<!-- <th>售出</th> -->
+					<th>代充(<?php echo (1-$agent['discount'])*100?>%利润)</th>
+					<th>回收({$agent['reclaim_reward']}%利润)</th>
+					<!-- <th>收卡奖励</th> -->
+					<th>利润</th>
+				</tr> 
+			</thead>
+			<tbody>
+				{volist name="lists" id="vo"}
+				<tr>
+					<td>{$vo.create_date}</td>
+					<td class="charge">{$vo.cmoney|abs}</td>
+					<td class="retract">{$vo.rmoney}</td>
+					<td class="margin"><?php echo $vo['cmoney']*(1-$agent['discount'])+$vo['rmoney']*$agent['reclaim_reward']/100;?></td>
+
+				</tr>
+				{/volist}
+				<tr>
+					<td>合计</td>
+					<td id="allcharge"></td>
+					<td id="allretract"></td>
+					<td id="allmargin"></td>
+
+				</tr>
+			</tbody>
+		</table>
+
+		<div>{$lists->render();}</div>
 	</div>
 </body>
 <script type="text/javascript">
-	layui.use('laydate', function(){
-	  var laydate = layui.laydate;
-	  
-	  //执行一个laydate实例
-	  laydate.render({
-	    elem: '#begin_time' //指定元素
-	  });
+	layui.use(['laydate','jquery','form'], function(){
+		var laydate = layui.laydate,$=layui.jquery,form=layui.form;
 
-	  laydate.render({
-	    elem: '#end_time' //指定元素
-	  });
+		  //执行一个laydate实例
+		  laydate.render({
+		    elem: '#begin_time' //指定元素
+		});
+
+		  laydate.render({
+		    elem: '#end_time' //指定元素
+		});
+
+		// form.on('submit(query)',function(){
+		// 	$.ajax({
+		// 		url:'/agent/other/bussiness',
+		// 		type:'post',
+		// 		dataType:'text',
+		// 		data:$('#agentform').serialize(),
+		// 		success:function(res){
+  //                  console.log(res)
+		// 		}
+		// 	})
+		// 	return false;
+		// })
+
+		var sum_allcharge=0;
+		$('.charge').each(function(i,w){
+		  	var x=$(w).text();
+		  	sum_allcharge+=parseFloat(x);
+		})
+		$('#allcharge').html(changeTwoDecimal_f(sum_allcharge));
+
+		var sum_allretract=0;
+		$('.retract').each(function(i,w){
+		  	var x=$(w).text();
+		  	sum_allretract+=parseFloat(x);
+		})
+		$('#allretract').html(changeTwoDecimal_f(sum_allretract,2));
+
+		var sum_allmargin=0;
+		$('.margin').each(function(i,w){
+		  	var x=$(w).text();
+		  	sum_allmargin+=parseFloat(x);
+		})
+		$('#allmargin').html(changeTwoDecimal_f(sum_allmargin,2));
 	});
+
+    //小数位后保留2位
+    function changeTwoDecimal_f(floatvar)
+    {
+    	var f_x = parseFloat(floatvar);
+    	if (isNaN(f_x))
+    	{
+    		alert('function:changeTwoDecimal->parameter error');
+    		return false;
+    	}
+    	var f_x = Math.round(f_x*100)/100;
+    	var s_x = f_x.toString();
+    	var pos_decimal = s_x.indexOf('.');
+    	if (pos_decimal < 0)
+    	{
+    		pos_decimal = s_x.length;
+    		s_x += '.';
+    	}
+    	while (s_x.length <= pos_decimal + 2)
+    	{
+    		s_x += '0';
+    	}
+    	return s_x;
+    }
+
 </script>
 </html>

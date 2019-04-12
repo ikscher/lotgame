@@ -15,45 +15,130 @@
 		<h1>代充撤回</h1>
 		<hr>
 		<div style="margin:40px 0 0 0;">
-			<form class="layui-form" action="" id="agent">
+			<form class="layui-form" id="agentform">
 				<div class="layui-form-item" >
-				    <label class="layui-form-label" style="width: 200px;">用户UID</label>
+					<span style="color:red;">*说明：可撤回时间为5分钟，不支持卡密充值撤回，如有需要请联系管理员。</span>
+			    </div>
+				<div class="layui-form-item" >
+				    <label class="layui-form-label" >用户UID</label>
 				    <div class="layui-input-inline" style="width: 300px;">
-				      <input type="text" name="keyword" autocomplete="off" class="layui-input">
+				      <input type="text" name="uid" id="uid" autocomplete="off" class="layui-input">
 				    </div>
-				    <input type="hidden" name="act" value="post">
+                    
+
+				    <!-- input type="hidden" name="act" value="post">
                     <input type="hidden" name="sub" value="recharge">
                     <input type="hidden" name="uid" value="">
 
-                    <input name="safecode" style="display:none" type="text" value=""/>
-		            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="formAgent">提交</button>
+                    <input name="safecode" style="display:none" type="text" value=""/> -->
+		            <div class="layui-form-mid layui-word-aux">
+                        <a id="queryuser" href="javascript:;">查询用户</a>
+                    </div>
 		        </div>
+
+		        <div id="userinfo"  style="display: none;">
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">用户UID</label>
+					    <div class="layui-input-block">
+					      <input type="text" id="userid" disabled  class="layui-input">
+					    </div>
+					  </div>
+
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">最后代充金额</label>
+					    <div class="layui-input-block">
+					      <input type="text" id="money" disabled class="layui-input">
+					    </div>
+					  </div>
+
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">最后代充时间</label>
+					    <div class="layui-input-block">
+					      <input type="text" id="time" disabled class="layui-input">
+					    </div>
+					  </div>
+
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">可撤回</label>
+					    <div class="layui-input-block">
+					      <input type="text" id="revoke" disabled  autocomplete="off" class="layui-input">
+					    </div>
+					  </div>
+				
+					<div class="layui-form-item">
+						<label class="layui-form-label"></label>
+					    <div class="layui-input-block">
+							<button class="layui-btn layui-btn-primary" lay-submit lay-filter="revoke">撤回</button>
+						</div>
+					</div>
 	        </form>
         </div>
-        <!--卡密充值的不支持，只有 在代充记录(代充金币）里面的 才可以撤回-->
         
-        <!--  <div class="state">*说明：可撤回时间为5分钟，不支持卡密充值撤回，如有需要请联系管理员。</div>
-	        <form id="form1" name="form1" method="post" action="?act=post">
-	            <table class="dc-table">
-	                
-	                <tr>
-	                    <td class="td1">用户UID：</td>
-	                    <td>
-	                        <input type="text" value="" name="userid" class="user-input">
-	                        <input type="hidden" name="act" value="post">
-	                        <input type="hidden" name="sub" value="recharge">
-	                        <input type="hidden" name="uid" value="">
-
-	                        <input name="safecode" style="display:none" type="text" value=""/>
-	                        <input type="submit" name="hqinfo" class="cxyh"  value="查询用户">
-	                    </td>
-	                </tr>
-	            
-	                            </table>
-	        </form>
-	    </div> -->
 
 
 	</div>
 </body>
+<script type="text/javascript">
+	layui.use(['form','jquery'], function(){
+	    var form=layui.form,$=layui.jquery;
+        
+        $('#queryuser').click(function(){
+        	var uid=$.trim($('#uid').val());
+
+        	$.ajax({
+                url:"{:url('agent/other/queryuser')}",
+                data:{uid:uid},
+                type:'post',
+                dataType:'json',
+                success:function(res) {
+                	// console.log(res)
+                    if(res.code == 1) {
+                        $('#userinfo').css('display','block');
+                        $('#userid').val(res.uid);
+                        $('#money').val(res.money);
+                        $('#time').val(res.time);
+                        $('#revoke').val(res.revoke);
+                    } else {
+                    	$('#userinfo').css('display','none');
+                        layer.msg(res.msg);
+                    }
+                }
+            })
+        })
+
+                    
+       
+
+
+        form.on('submit(revoke)',function(){
+        	var uid=$('#uid').val();
+        	if(!uid){
+        		layer.msg("请输入用户UID");
+        		return false;
+        	}
+        	
+        	
+        		
+      	    $.ajax({
+                url:"{:url('agent/other/cancel')}",
+                data:{uid:uid},
+                type:'post',
+                async: false,
+                dataType:'json',
+                success:function(res) {
+                    if(res.code == 1) {
+                        layer.alert(res.msg, function(index){
+	                       location.href = res.url;
+	                    })
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            })
+	        
+            return false;
+        })
+
+	});
+</script>
 </html>

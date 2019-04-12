@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"D:\mywork\lotgame\public/../app/agent\view\operate\recharge.html";i:1555043438;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555045200;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"D:\mywork\lotgame\public/../app/agent\view\operate\recharge.html";i:1555070402;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555073719;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +30,7 @@
 			<dl class="layui-nav-child">
 				<dd><a href="/agent/index">代理信息</a></dd>
 				<dd><a href="/agent/other/bussiness">业务统计</a></dd>
-				<dd><a href="/agent/other/rank">排行榜</a></dd>
+				<!-- <dd><a href="/agent/other/rank">排行榜</a></dd> -->
 				<dd><a href="/agent/other/transfer">资金互转</a></dd>
 <!-- 				<dd><a href="/agent/other/allstock">库存管理（全部）</a></dd>
 				<dd><a href="/agent/other/unsalestock">库存管理（未售）</a></dd> -->
