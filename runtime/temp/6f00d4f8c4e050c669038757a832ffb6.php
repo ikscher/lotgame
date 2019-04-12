@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"D:\mywork\lotgame\public/../app/agent\view\operate\retract.html";i:1554991711;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1554889404;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"D:\mywork\lotgame\public/../app/agent\view\operate\retract.html";i:1554945195;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555045200;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +21,7 @@
 			<dl class="layui-nav-child">
 				<dd><a href="/agent/operate/retract">卡密回收</a></dd>
 				<dd><a href="/agent/operate/recharge">金币代充</a></dd>
-				<dd><a href="/agent/operate/gencard">生产卡密</a></dd>
+				<!-- <dd><a href="/agent/operate/gencard">生产卡密</a></dd> -->
 			</dl>
 		</li>
 		<li class="layui-nav-item layui-nav-itemed">
@@ -31,8 +31,8 @@
 				<dd><a href="/agent/other/bussiness">业务统计</a></dd>
 				<dd><a href="/agent/other/rank">排行榜</a></dd>
 				<dd><a href="/agent/other/transfer">资金互转</a></dd>
-				<dd><a href="/agent/other/allstock">库存管理（全部）</a></dd>
-				<dd><a href="/agent/other/unsalestock">库存管理（未售）</a></dd>
+<!-- 				<dd><a href="/agent/other/allstock">库存管理（全部）</a></dd>
+				<dd><a href="/agent/other/unsalestock">库存管理（未售）</a></dd> -->
 				<dd><a href="/agent/other/cancel">代充撤回</a></dd>
 			</dl>
 		</li>
@@ -40,8 +40,8 @@
 			<a href="javascript:;">代理记录</a>
 			<dl class="layui-nav-child">
 				<dd><a href="/agent/record/all">全部记录</a></dd>
-				<dd><a href="/agent/record/generate">制卡记录</a></dd>
-				<dd><a href="/agent/record/sale">售卡记录</a></dd>
+				<!-- <dd><a href="/agent/record/generate">制卡记录</a></dd> -->
+				<!-- <dd><a href="/agent/record/sale">售卡记录</a></dd> -->
 				<dd><a href="/agent/record/retract">收卡记录</a></dd>
 				<dd><a href="/agent/record/recharge">代充记录</a></dd>
 			</dl>

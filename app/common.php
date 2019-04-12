@@ -283,7 +283,7 @@ function sendmessage($mobile,$code)
     // $mob=$mob; //发送号码用逗号分隔
     // $content=urlencode($content,"utf-8",'gbk');  //短信内容
         
-    $content='【红顶金融】验证码：'.$code; 
+    $content='【哈哈哈】验证码：'.$code; 
     // $content=urlencode(auto_charset($content,"gbk",'utf-8'));  //短信内容
     
     //$sendurl="http://sdk229ws.eucp.b2m.cn:8080/sdkproxy/sendsms.action?";
@@ -343,6 +343,23 @@ function is_utf8($string)
        | [\xF1-\xF3][\x80-\xBF]{3}          # planes 4-15
        |  \xF4[\x80-\x8F][\x80-\xBF]{2}     # plane 16
    )*$%xs', $string);
+}
+
+/**
+ * 用户操作日志
+ * @param  [type] $data [description]
+ * @return [type]       [description]
+ */
+function adduserlog($user_id,$desc='',$mp_coin=0,$mp_exp=0,$coin=0,$type='')
+{  
+    $data['user_id'] = $user_id;
+    $data['desc'] = $desc;
+    $data['mp_coin'] = $mp_coin;
+    $data['mp_exp']=$mp_exp;
+    $data['coin']=$coin;
+    $data['create_time'] = time();
+    $data['type']=$type;
+    return \think\Db::name('user_log')->insert($data);
 }
 
 

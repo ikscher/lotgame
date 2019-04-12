@@ -111,12 +111,26 @@ class Index extends Controller
         //     var_dump($v);
         // }
 
-        $map['user_id']=1;
-        $map['status']=array('in',array(1,2));
-        $ids=$this->userExchangeModel->where($map)->count('id'); //兑换过多少次
-        echo $this->userExchangeModel->getLastSql();
+        // $map['user_id']=1;
+        // $map['status']=array('in',array(1,2));
+        // $ids=$this->userExchangeModel->where($map)->count('id'); //兑换过多少次
+        // echo $this->userExchangeModel->getLastSql();
         // echo $card->cate->coin; 
+        $card_no='d10DI5MID1GC5L91L3K';
+        $map['card_no']='d10DI5MID1GC5L91L3K';
+        $map['card_pwd']='O4K8MZGV4G9CWGFJ';
+        $map['status']=2;//必须为已兑出的卡才能回收
+        
+        $userexchange=$this->userExchangeModel->where('status',2)->where("instr(`card`,'{$card_no}')>0")->find();
+        
+        var_dump($userexchange);
+        $data=array();
+        $data['status']=3;
+        $data['user_id']=$userexchange['user_id'];
+        $data['use_time']=$userexchange['create_time'];
+        $r=$this->cardPwdModel->where($map)->update($data);
 
+        echo $r;
         // $url = \think\Db::name("urlconfig")->where(['status' => 0])->column('aliases,url');
         // var_dump($url);
         return $this->fetch();

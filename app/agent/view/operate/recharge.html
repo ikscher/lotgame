@@ -120,7 +120,7 @@
         		layer.msg('请输入金额');
         		return false;
         	}
-        	if(layer.confirm('确定充值麽？',function(index){
+        	if(layer.confirm('请再次核对信息，确定代充吗？\r\n用户UID：'+uid,function(index){
 
         		
 	      	    $.ajax({
@@ -131,12 +131,15 @@
 	                dataType:'json',
 	                success:function(res) {
 	                    if(res.code == 1) {
-	                        
+	                        layer.alert(res.msg, function(index){
+		                       location.href = res.url;
+		                    })
 	                    } else {
 	                        layer.msg(res.msg);
 	                    }
 	                }
 	            })
+	            layer.close(index);
 	        }))
             return false;
         })

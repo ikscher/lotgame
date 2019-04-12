@@ -30,7 +30,7 @@
 		      <th>卡号</th>
 		      <th>卡密</th>
 		      <th>面额</th>
-		      <th>数量</th>
+		      <!-- <th>数量</th> -->
 		      <th>兑奖用户</th>
 		      <th>QQ</th>
 		      <th>支付宝</th>
@@ -42,13 +42,13 @@
 		      <td>{$cardpwd['card_no']}</td>
 		      <td>{$cardpwd['card_pwd']}</td>
 		      <td>{$userexchange['price']}</td>
-		      <td>{$userexchange['num']}</td>
+		      <!-- <td>1</td> -->
 		      <td>{$userexchange->user->username}</td>
 		      <td>{$userexchange->user->qq}</td>
 		      <td>{$userexchange->user->alipay}</td>
 		      <td>{if condition="$cardpwd['status'] eq 2"}可回收{else /}不可回收{/if}</td>
 		    </tr>
-		    <tr><td colspan="8" align="center">总面额：{$userexchange['price']*$userexchange['num']}</td></tr>
+		    <tr><td colspan="7" align="center">总面额：{$userexchange['price']}</td></tr>
 
 		  </tbody>
         </table>

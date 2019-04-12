@@ -13,7 +13,7 @@
 	<div class="right">
 		<h1>业务统计</h1>
 		<hr>
-		<span>您的制卡折扣：0.98 您的收卡折扣：0.98 您的收卡奖励：0.00%</span>
+		<span>您的代充折扣：{$agent['discount']}， 您的收卡奖励：{$agent['reclaim_reward']}% <!-- 您的收卡奖励：0.00% --></span>
 		
 		<div class="layui-form-item" style="display: inline;">
 			<div class="layui-inline">
@@ -36,31 +36,31 @@
 		    <col width="150">
 		    <col width="200">
 		    <col width="200">
-		    <col width="200">
-		    <col width="200">
+
 		  </colgroup>
 		  <thead>
 		    <tr>
 		      <th>日期</th>
-		      <th>售出</th>
-		      <th>代充</th>
-		      <th>回收</th>
-		      <th>收卡奖励</th>
+		      <!-- <th>售出</th> -->
+		      <th>代充(<?php echo (1-$agent['discount'])*100?>%利润)</th>
+		      <th>回收({$agent['reclaim_reward']}%利润)</th>
+		      <!-- <th>收卡奖励</th> -->
 		      <th>利润</th>
 		    </tr> 
 		  </thead>
 		  <tbody>
+		  	{volist name="lists" id="vo"}
 		    <tr>
-		      <td>贤心</td>
-		      <td>2016-11-29</td>
-		      <td>人生就像是一场修行</td>
-		      <td>人生就像是一场修行</td>
-		      <td>人生就像是一场修行</td>
-		      <td>人生就像是一场修行</td>
+		      <td>{$vo.create_date}</td>
+		      <td>{$vo.cmoney}</td>
+		      <td>{$vo.rmoney}</td>
+		      <td><?php echo $vo['cmoney']*(1-$agent['discount'])+$vo['rmoney']*$agent['reclaim_reward']/100;?></td>
+	
 		    </tr>
-		    
+		    {/volist}
 		  </tbody>
         </table>
+        <div>{$lists->render();}</div>
 	</div>
 </body>
 <script type="text/javascript">

@@ -59,8 +59,8 @@ class Agent extends Permissions
 
         $agents_sel=collection($this->model->select())->toArray();
         
-        // $agents = empty($where) ? $this->model->order('create_time desc')->paginate(15) : $this->model->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
-        $agents=empty($where)?Db::name('agent')->alias('a')->field('a.*')->join('agent_log l',' a.id=l.agent_id','left')->order('a.create_time desc')->paginate(15):Db::name('agent')->alias('a')->join('agent_log l',' a.id=l.agent_id','left')->where($where)->order('a.create_time desc')->paginate(15);
+        $agents = empty($where) ? $this->model->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]) : $this->model->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
+        // $agents=empty($where)?Db::name('agent')->alias('a')->field('a.*')->join('agent_log l',' a.id=l.agent_id','left')->order('a.create_time desc')->paginate(15):Db::name('agent')->alias('a')->join('agent_log l',' a.id=l.agent_id','left')->where($where)->order('a.create_time desc')->paginate(15);
         // echo Db::name('agent')->getLastSql();
         $this->assign('agents_sel',$agents_sel);
         $this->assign('agents',$agents);

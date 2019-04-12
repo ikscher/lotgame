@@ -34,9 +34,20 @@ class Other extends Site
     //业务统计
     public function bussiness()
     {   
-        $map['id']=10000;
-        $agent=$this->agentModel->where($map)->find();
-        $this->assign('agetn',$agent);
+        $agent_id=$this->agent['id'];
+        $agent=$this->agentModel->where('id',$agent_id)->find();
+        $this->assign('agent',$agent);
+        
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $begin_time=$post['begin_time'];
+            $end_time=$post['end_time'];
+        }
+        $lists=$this->agentLogModel->field('sum(charge_money) as cmoney ,sum(reclaim_money) as rmoney ,type,create_date')->where('agent_id',$agent_id)->group('create_date')->order('create_time desc')->paginate(10,false,['query'=>$this->request->param()]);
+        
+
+
+        $this->assign('lists',$lists);
         return $this->fetch();
     }
 

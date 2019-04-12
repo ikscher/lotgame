@@ -52,7 +52,7 @@ class Article extends Permissions
             $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
         }
         
-        $articles = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
+        $articles = empty($where) ? $model->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
         
     
         // $arc=collection($articles->toArray());var_dump($arc['data']);exit;
