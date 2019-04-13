@@ -7,7 +7,7 @@
 	<!-- <link rel="stylesheet" href="__AGENT__/css/common.css"> -->
 	<!-- <link rel="stylesheet" href="__AGENT__/css/main.css"> -->
 	<script src="__PUBLIC__/layui/layui.js"></script>
-	<title>Document</title>
+	<title>资金提现</title>
 </head>
 <body>
 	{include file="public/left" /}
@@ -16,18 +16,18 @@
 		<h1>资金提现</h1>
 		<hr>
 		<div style="margin:40px 0 0 0;">
-			<form class="layui-form" action="" id="agent">
+			<form class="layui-form" id="agentform">
 				<div class="layui-form-item">
 					<label class="layui-form-label">可提现金额</label>
 					<div class="layui-input-block">
-						<input type="text" name="title" disabled value="¥ 99,966,808"  autocomplete="off" class="layui-input">
+						<input type="text" name="balance" disabled value="¥ {$agent['balance']}"  autocomplete="off" class="layui-input">
 					</div>
 				</div>
 
 				<div class="layui-form-item">
 					<label class="layui-form-label">提现金额</label>
 					<div class="layui-input-block">
-						<input type="text" name="title" required  lay-verify="required|number" placeholder="请输入" autocomplete="off" class="layui-input">
+						<input type="text" name="money" required  lay-verify="required|number" placeholder="请输入" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 
@@ -36,7 +36,7 @@
 
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button class="layui-btn layui-btn-primary" lay-submit lay-filter="formAgent">申请提现</button>
+						<button class="layui-btn layui-btn-primary" lay-submit lay-filter="apply">申请提现</button>
 					</div>
 				</div>
 			</form>
@@ -79,7 +79,7 @@
 	  
 
 	  //监听提交
-	  form.on('submit(formAgent)', function(data){
+	  form.on('submit(apply)', function(data){
 	    // layer.msg(JSON.stringify(data.field));
 	    if(layer.confirm('确定要提现么？')){ 
            

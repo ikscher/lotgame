@@ -9,7 +9,9 @@ use app\admin\model\CardPwd as cardPwdModel;
 use app\admin\model\Chargeconfig as chargeConfigModel;
 use app\front\model\UserExchange as userExchangeModel;
 use app\front\model\User as userModel;
+use app\admin\model\Agent as agentModel;
 use app\front\model\UserMsg as userMsgModel;
+use app\front\model\UserLog as userLogModel;
 use app\admin\model\Prize as prizeModel;
 use app\admin\model\Webconfig as webconfigModel;
 
@@ -19,6 +21,8 @@ class Index extends Controller
     private $userModel;
     private $prizeModel;
     private $userMsgModel;
+    private $userLogModel;
+    private $agentModel;
     private $uid;
     private $user;
     private $site_name;
@@ -29,7 +33,9 @@ class Index extends Controller
         $this->userExchangeModel=new userExchangeModel();
         $this->userModel= new userModel();
         $this->prizeModel=new prizeModel();
+        $this->agentModel=new agentModel();
         $this->userMsgModel=new userMsgModel();
+        $this->userLogModel=new userLogModel();
         $this->webconfigModel= new webconfigModel();
         $this->site_name='彩豆网';
        
@@ -134,6 +140,56 @@ class Index extends Controller
         // $url = \think\Db::name("urlconfig")->where(['status' => 0])->column('aliases,url');
         // var_dump($url);
         return $this->fetch();
+    }
+
+    public function charge()
+    {
+        $result_trans=true;
+        Db::startTrans();
+        $uid=10;
+        // $agent_id=10001;
+        $agentname='longfa';
+        $agent_id=10001;
+        try{
+            //用户减少金币和经验
+            $map=array();
+            $map['user_id']=$uid;
+            $map['create_time']=array('egt',time()-300);
+            $map['type']='recharge';
+            $coins=$this->userLogModel->where($map)->where("instr(`desc`,'{$agent_id}')>0")->value('mp_coin');
+            $exp=intval($coins/2);
+            $this->userModel->where('uid',$uid)->setDec('coin',$coins*1000);
+            $this->userModel->where('uid',$uid)->setDec('experiments',$exp);
+ 
+            //记录用户日志
+            $desc=$agentname.'('.$agent_id.')充值撤回';
+            $usercoins=$this->userModel->where('uid',$uid)->value('coin');
+            adduserlog($uid,$desc,-$coins*1000,-$exp,$usercoins,'revoke');
+
+            $money=9.8;
+            //代理账户返还钱
+            $this->agentModel->where('id',$agent_id)->setInc('balance',$money);
+
+            //记录代理日志
+            $userbalance=$this->agentModel->where('id',$agent_id)->value('balance');
+            addagentlog($agent_id,'5',$money,$userbalance,$uid);
+
+            
+            //提交事务
+            Db::commit(); 
+            
+        }catch (\Exception $e) {
+            $result_trans=false;
+            // 回滚事务
+            Db::rollback();
+            
+        }  
+        
+        if($result_trans==true){
+            return $this->success('充值撤回成功，增加余额￥'.$money,'/agent/operate/recharge'); //代理线下直接打给用户扣除2%手续费
+        }else{
+            return $this->error('充值撤回出错，请联系管理员！'); //可能此卡没有被兑换（不在兑换列表），所以出错
+        }
     }
 
     public function order(){

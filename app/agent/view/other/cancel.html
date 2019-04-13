@@ -126,6 +126,7 @@
                 async: false,
                 dataType:'json',
                 success:function(res) {
+                	console.log(res)
                     if(res.code == 1) {
                         layer.alert(res.msg, function(index){
 	                       location.href = res.url;

@@ -3,18 +3,18 @@ namespace app\agent\controller;
 // use think\Controller;
 use think\Config;
 use think\Session;
-use app\admin\model\Agent as agentModel;
+// use app\admin\model\Agent as agentModel;
 use app\admin\model\AgentCate as agentCateModel;
 use app\admin\model\AgentLog as agentLogModel;
 class Record extends Site
 {   
-	private $agentModel;
+	// private $agentModel;
     private $agentCateModel;
     private $agentLogModel;
 	public function _initialize()
     {   
         parent::_initialize();
-        $this->agentModel = new agentModel();
+        // $this->agentModel = new agentModel();
         $this->agentCateModel = new agentCateModel();
         $this->agentLogModel = new agentLogModel();
         if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
@@ -23,45 +23,62 @@ class Record extends Site
     //全部记录
     public function all()
     {   
-        $map['id']=10000;
-    	$agent=$this->agentModel->where($map)->find();
-    	$this->assign('agetn',$agent);
+        $map['agent_id']=$this->agent['id'];
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $desc=$post['keyword'];
+            $map['desc']=array('like',$desc.'%');
+        }
+    	$logs=$this->agentLogModel->where($map)->order('create_time desc')->paginate(10,false,['query'=>$this->request->param()]);
+        $this->assign('logs',$logs);
     	return $this->fetch();
     }
 
     //制卡记录
     public function generate()
     {   
-        $map['id']=10000;
+        $map['id']=$this->agent['id'];
         $agent=$this->agentModel->where($map)->find();
-        $this->assign('agetn',$agent);
+        $this->assign('agent',$agent);
         return $this->fetch();
     }
 
     //售卡记录
     public function sale()
     {   
-        $map['id']=10000;
+        $map['id']=$this->agent['id'];
         $agent=$this->agentModel->where($map)->find();
-        $this->assign('agetn',$agent);
+        $this->assign('agent',$agent);
         return $this->fetch();
     }
 
     //收卡记录
     public function retract()
     {   
-        $map['id']=10000;
-        $agent=$this->agentModel->where($map)->find();
-        $this->assign('agetn',$agent);
+        $map['agent_id']=$this->agent['id'];
+        $map['type']=2;
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $desc=$post['keyword'];
+            $map['desc']=array('like',$desc.'%');
+        }
+        $logs=$this->agentLogModel->where($map)->order('create_time desc')->paginate(10,false,['query'=>$this->request->param()]);
+        $this->assign('logs',$logs);
         return $this->fetch();
     }
 
     //代充记录
     public function recharge()
     {   
-        $map['id']=10000;
-        $agent=$this->agentModel->where($map)->find();
-        $this->assign('agetn',$agent);
+        $map['agent_id']=$this->agent['id'];
+        $map['type']=array('in','1,5');
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $desc=$post['keyword'];
+            $map['desc']=array('like',$desc.'%');
+        }
+        $logs=$this->agentLogModel->where($map)->order('create_time desc')->paginate(10,false,['query'=>$this->request->param()]);
+        $this->assign('logs',$logs);
         return $this->fetch();
     }
 

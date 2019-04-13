@@ -11,16 +11,17 @@ function addagentlog($agent_id=0,$type='',$mp_money=0,$balance=0,$desc='')
 	$data['type'] = $type;
 	$data['desc'] = $desc;
 	switch($type){
-		case '1':
+		case '1': //代充
 		  $data['charge_money'] = -$mp_money;
+		  $data['flag']=1;//记录代充标志位
 		  break;
-		case '2':
+		case '2'://回收
 		  $data['reclaim_money']=$mp_money;
 		  break;
 		case '3':
           $data['sale_money']=$mp_money;
 		  break;
-		case '5':
+		case '5'://代充撤回
 		  $data['charge_money'] = $mp_money;
 		  break;
 	};

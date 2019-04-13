@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
 	<script src="__PUBLIC__/layui/layui.js"></script>
-	<title>Document</title>
+	<title>代理记录</title>
 </head>
 <body>
 	{include file="public/left" /}
@@ -14,27 +14,27 @@
 		<h1>全部记录</h1>
 		<hr>
 		<div style="margin:40px 0 0 0;">
-			<form class="layui-form" action="" id="agent">
+			<form action="/agent/record/all" method="post" id="agentform">
 				<div class="layui-form-item" style="display:inline;">
 				    <label class="layui-form-label" style="width: 200px;">备注(支持模糊查找)</label>
 				    <div class="layui-input-inline" style="width: 300px;">
 				      <input type="text" name="keyword" autocomplete="off" class="layui-input">
 				    </div>
 				
-		            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="formAgent">查询</button>
+		            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="query">查询</button>
 		        </div>
 	        </form>
         </div>
 	    
 		<table class="layui-table">
 		  <colgroup>
+		    <col width="110">
+		    <col width="180">
+		    <col width="200">
+		    <col width="200">
+		    <col width="300">
 		    <col width="150">
-		    <col width="150">
-		    <col width="200">
-		    <col width="200">
-		    <col width="200">
-		    <col width="200">
-		    <col width="200">
+		    <col width="300">
 		  </colgroup>
 		  <thead>
 		    <tr>
@@ -48,18 +48,20 @@
 		    </tr> 
 		  </thead>
 		  <tbody>
+		  	{volist name="logs" id="vo"  }
 		    <tr>
-		      <td>贤心</td>
-		      <td>2016-11-29</td>
-		      <td>人生就像是一场修行</td>
-		      <td>人生就像是一场修行</td>
-		      <td>人生就像是一场修行</td>
-		      <td>人生就像是一场修行</td>
-		      <td>人生就像是一场修行</td>
+		      <td>{$vo.id}</td>
+		      <td>{if condition="$vo.type eq 1"}代充{elseif condition="$vo.type eq 2"}回收{elseif condition="$vo.type eq 5"}代充撤回{else /}未知{/if}</td>
+		      <td>{if condition="($vo.type==1) or ($vo.type==5)"}{$vo.charge_money}{elseif condition="$vo.type eq 2"}{$vo.reclaim_money}{/if}</td>
+		      <td>{$vo.balance}</td>
+		      <td>{$vo.create_time}</td>
+		      <td>{$vo.ip}</td>
+		      <td>{$vo.desc}</td>
 		    </tr>
-		    
+		    {/volist}
 		  </tbody>
         </table>
+        <div>{$logs->render();}</div>
 	</div>
 </body>
 
