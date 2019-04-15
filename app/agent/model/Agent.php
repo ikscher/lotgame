@@ -38,4 +38,10 @@ class Agent extends Model
         //关联日志表
         return $this->hasMany('AgentLog','agent_id');
     }
+
+    public function deposit()
+    {
+        //关联提现表
+        return $this->hasMany('AgentDeposit','agent_id');
+    }
 }

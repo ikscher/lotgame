@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:56:"D:\mywork\lotgame\public/../app/front\view\user\msg.html";i:1554010425;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554889404;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:56:"D:\mywork\lotgame\public/../app/front\view\user\msg.html";i:1555130257;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554889404;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -185,47 +185,7 @@
 		}(window));
 	setTimeout(window.autoAnimation, 5000);
 </script>
-<script type="text/javascript">
 
-	function delMsg(){
-		var idArray = new Array();
-		var items=$("input[name^='selectsms']");
-		var len = items.length;
- 
-		$.each(items,function(i,n){
-			// console.log(n)
-            if ($(n).prop('checked')) {                        
-				idArray.push($(n).val());                    
-			}  
-		})               
-	    
-	    // console.log(smsArray);           
-		
-		if(idArray.length<=0){
-			layer.msg('请选择要删除的记录！');
-			return false;
-		}   
-
-		$.ajax({
-			url:'/user/msg',
-			type:'post',
-			data:{idArray:idArray},
-			dataType:'json',
-			success:function(res){
-                if(res.code == 1) {
-                    layer.msg(res.msg, function(index){
-                      location.href = res.url;
-                    })
-                }else{
-                    layer.msg(res.msg);
-                }
-			}
-		})
-
-		// window.location.href="/User/Msg?act=del&chkID="+smsArray;
-	}
-
-</script>
 <style type="text/css">
 	.user-table>tbody>tr>td{color: #000;}
 </style>
@@ -258,7 +218,7 @@
 			</ul>
 		</div>
 		<!--左侧left菜单-->
-        <div class="col-left">
+		<div class="col-left">
 	<div class="uleft-menu" id="side-menu">
 		<p style="margin-top: 0;">用户账户</p>
 		<ul>
@@ -336,43 +296,82 @@
 
 
 
- <div class="uright">
- 	<div class="ibox">
- 		<div class="ibox-title">
- 			<h5>站内信箱</h5>
- 			<a href="javascript:;" onClick="delMsg()">删除</a>
- 		</div>
- 		<div class="ibox-content">
- 			<div style="min-height: 300px;">
- 				<table class="user-table mt20">
- 					<thead>
- 						<tr>
- 							<th width="45px"></th>
- 							<th width="80px">发件人</th>
- 							<th>内容</th>
- 							<th>时间</th>
- 						</tr>
- 					</thead>
- 					<tbody>
- 						<?php if(is_array($msgs) || $msgs instanceof \think\Collection || $msgs instanceof \think\Paginator): if( count($msgs)==0 ) : echo "" ;else: foreach($msgs as $key=>$vo): ?>
- 						<tr>
- 							<td><input type="checkbox" name="selectsms[]" value="<?php echo $vo['id']; ?>" />
- 						    <td><!-- <?php echo $vo['admin']['nickname']; ?> -->管理员</td>
- 						    <td><?php echo $vo['content']; ?></td>
- 						    <td><?php echo $vo['create_time']; ?></td>
- 						</tr>
- 						<?php endforeach; endif; else: echo "" ;endif; ?>
- 					</tbody>
- 				</table>
- 				<div style="padding:0 20px;"><?php echo $msgs->render(); ?></div> 
- 			</div>
- 		</div>
- 	</div>
- </div><!--uright-->
-</div>
+		<div class="uright">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>站内信箱</h5>
+					<a href="javascript:;" id="delmsg">删除</a>
+				</div>
+				<div class="ibox-content">
+					<div style="min-height: 300px;">
+						<table class="user-table mt20">
+							<thead>
+								<tr>
+									<th width="45px"></th>
+									<th width="80px">发件人</th>
+									<th>内容</th>
+									<th>时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php if(is_array($msgs) || $msgs instanceof \think\Collection || $msgs instanceof \think\Paginator): if( count($msgs)==0 ) : echo "" ;else: foreach($msgs as $key=>$vo): ?>
+								<tr>
+									<td><input type="checkbox" name="selectsms[]" value="<?php echo $vo['id']; ?>" />
+										<td><!-- <?php echo $vo['admin']['nickname']; ?> -->管理员</td>
+										<td><?php echo $vo['content']; ?></td>
+										<td><?php echo $vo['create_time']; ?></td>
+									</tr>
+									<?php endforeach; endif; else: echo "" ;endif; ?>
+								</tbody>
+							</table>
+							<div style="padding:0 20px;"><?php echo $msgs->render(); ?></div> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </div>
+<script type="text/javascript">
+	layui.use(['form'],function(){
+		var layer=layui.layer;
+		$('#delmsg').click(function(){
+			var idArray = new Array();
+			var items=$("input[name^='selectsms']");
+			var len = items.length;
 
+			$.each(items,function(i,n){
+				if ($(n).prop('checked')) {                        
+					idArray.push($(n).val());                    
+				}
+			})               
+        
+		    // console.log(smsArray);           
+
+		    if(idArray.length<=0){
+		    	layer.msg('请选择要删除的记录！');
+		    	return false;
+		    }   
+
+		    $.ajax({
+		    	url:'/user/msg',
+		    	type:'post',
+		    	data:{idArray:idArray},
+		    	dataType:'json',
+		    	success:function(res){
+		    		if(res.code == 1) {
+		    			layer.msg(res.msg, function(index){
+		    				location.href = res.url;
+		    			})
+		    		}else{
+		    			layer.msg(res.msg);
+		    		}
+		    	}
+		    })
+	    })
+
+    }) 
+</script>
 <div class="clear"></div>
 <div class="foot w100">
 	<div class="w1000 oo">

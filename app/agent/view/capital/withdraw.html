@@ -20,19 +20,19 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">可提现金额</label>
 					<div class="layui-input-block">
-						<input type="text" name="balance" disabled value="¥ {$agent['balance']}"  autocomplete="off" class="layui-input">
+						<input type="text" name="deposit_money" id="deposit_money" disabled value="¥ {$deposit_money}"  disabled  class="layui-input">
 					</div>
 				</div>
 
 				<div class="layui-form-item">
 					<label class="layui-form-label">提现金额</label>
 					<div class="layui-input-block">
-						<input type="text" name="money" required  lay-verify="required|number" placeholder="请输入" autocomplete="off" class="layui-input">
+						<input type="text" name="money"  id="money"　required  lay-verify="required|number" placeholder="请输入" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 
-				<input type="hidden" name="cxinfo" value="cx">
-				<input type="hidden" name="act" value="post">
+				<!-- <input type="hidden" name="cxinfo" value="cx">
+				<input type="hidden" name="act" value="post"> -->
 
 				<div class="layui-form-item">
 					<div class="layui-input-block">
@@ -81,10 +81,37 @@
 	  //监听提交
 	  form.on('submit(apply)', function(data){
 	    // layer.msg(JSON.stringify(data.field));
-	    if(layer.confirm('确定要提现么？')){ 
-           
-           layer.close();
-	    }
+	    var deposit_money=$('#deposit_money').val().replace(/[^\w\.]/g,'');
+        var money=$('#money').val();
+        if(money<0 || !money){
+       	   layer.msg("提现金额输入有误！");
+       	   return false;
+        }
+        console.log(money+','+deposit_money);
+        if(money>deposit_money){
+       	   layer.msg("您的提现超额，请核对！");
+       	   return false;
+        }
+	    if(layer.confirm('确定要提现么？'),function(index){ 
+            $.ajax({
+                url:"{:url('agent/capital/withdraw')}",
+                data:$('#agentform').serialize(),
+                type:'post',
+                async: false,
+                dataType:'json',
+                success:function(res) {
+                    if(res.code == 1) {
+                        layer.alert(res.msg, function(index){
+	                       location.href = res.url;
+	                    })
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            })
+
+            layer.close(index);
+	    })
 	    return false;
 	  });
 	});

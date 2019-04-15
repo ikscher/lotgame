@@ -1,45 +1,5 @@
 {include file="public/header" /}
-<script type="text/javascript">
 
-	function delMsg(){
-		var idArray = new Array();
-		var items=$("input[name^='selectsms']");
-		var len = items.length;
- 
-		$.each(items,function(i,n){
-			// console.log(n)
-            if ($(n).prop('checked')) {                        
-				idArray.push($(n).val());                    
-			}  
-		})               
-	    
-	    // console.log(smsArray);           
-		
-		if(idArray.length<=0){
-			layer.msg('请选择要删除的记录！');
-			return false;
-		}   
-
-		$.ajax({
-			url:'/user/msg',
-			type:'post',
-			data:{idArray:idArray},
-			dataType:'json',
-			success:function(res){
-                if(res.code == 1) {
-                    layer.msg(res.msg, function(index){
-                      location.href = res.url;
-                    })
-                }else{
-                    layer.msg(res.msg);
-                }
-			}
-		})
-
-		// window.location.href="/User/Msg?act=del&chkID="+smsArray;
-	}
-
-</script>
 <style type="text/css">
 	.user-table>tbody>tr>td{color: #000;}
 </style>
@@ -72,47 +32,86 @@
 			</ul>
 		</div>
 		<!--左侧left菜单-->
-        {include file="user/left" /}
+		{include file="user/left" /}
 		<!--左侧left菜单-->
 
 
 
 
- <div class="uright">
- 	<div class="ibox">
- 		<div class="ibox-title">
- 			<h5>站内信箱</h5>
- 			<a href="javascript:;" onClick="delMsg()">删除</a>
- 		</div>
- 		<div class="ibox-content">
- 			<div style="min-height: 300px;">
- 				<table class="user-table mt20">
- 					<thead>
- 						<tr>
- 							<th width="45px"></th>
- 							<th width="80px">发件人</th>
- 							<th>内容</th>
- 							<th>时间</th>
- 						</tr>
- 					</thead>
- 					<tbody>
- 						{foreach name="msgs" item="vo" }
- 						<tr>
- 							<td><input type="checkbox" name="selectsms[]" value="{$vo['id']}" />
- 						    <td><!-- {$vo.admin.nickname} -->管理员</td>
- 						    <td>{$vo.content}</td>
- 						    <td>{$vo.create_time}</td>
- 						</tr>
- 						{/foreach}
- 					</tbody>
- 				</table>
- 				<div style="padding:0 20px;">{$msgs->render()}</div> 
- 			</div>
- 		</div>
- 	</div>
- </div><!--uright-->
-</div>
+		<div class="uright">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>站内信箱</h5>
+					<a href="javascript:;" id="delmsg">删除</a>
+				</div>
+				<div class="ibox-content">
+					<div style="min-height: 300px;">
+						<table class="user-table mt20">
+							<thead>
+								<tr>
+									<th width="45px"></th>
+									<th width="80px">发件人</th>
+									<th>内容</th>
+									<th>时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								{foreach name="msgs" item="vo" }
+								<tr>
+									<td><input type="checkbox" name="selectsms[]" value="{$vo['id']}" />
+										<td><!-- {$vo.admin.nickname} -->管理员</td>
+										<td>{$vo.content}</td>
+										<td>{$vo.create_time}</td>
+									</tr>
+									{/foreach}
+								</tbody>
+							</table>
+							<div style="padding:0 20px;">{$msgs->render()}</div> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </div>
+<script type="text/javascript">
+	layui.use(['form'],function(){
+		var layer=layui.layer;
+		$('#delmsg').click(function(){
+			var idArray = new Array();
+			var items=$("input[name^='selectsms']");
+			var len = items.length;
 
+			$.each(items,function(i,n){
+				if ($(n).prop('checked')) {                        
+					idArray.push($(n).val());                    
+				}
+			})               
+        
+		    // console.log(smsArray);           
+
+		    if(idArray.length<=0){
+		    	layer.msg('请选择要删除的记录！');
+		    	return false;
+		    }   
+
+		    $.ajax({
+		    	url:'/user/msg',
+		    	type:'post',
+		    	data:{idArray:idArray},
+		    	dataType:'json',
+		    	success:function(res){
+		    		if(res.code == 1) {
+		    			layer.msg(res.msg, function(index){
+		    				location.href = res.url;
+		    			})
+		    		}else{
+		    			layer.msg(res.msg);
+		    		}
+		    	}
+		    })
+	    })
+
+    }) 
+</script>
 {include file="public/footer" /}
