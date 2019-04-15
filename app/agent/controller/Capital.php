@@ -5,9 +5,9 @@ use think\Session;
 use think\Config;
 use think\Db;
 // use app\admin\model\Agent as agentModel;
-use app\admin\model\AgentCate as agentCateModel;
-use app\admin\model\AgentLog as agentLogModel;
-use app\admin\model\AgentDeposit as agentDepositModel;
+use app\agent\model\AgentCate as agentCateModel;
+use app\agent\model\AgentLog as agentLogModel;
+use app\agent\model\AgentDeposit as agentDepositModel;
 class Capital extends Site
 {   
 	// private $agentModel;
@@ -32,11 +32,17 @@ class Capital extends Site
     	$this->assign('agent',$agent);
 
         //可提现金额
-        $deposit_money=$agent['balance']-$agent['advance']+$agent['stock']*$agent['discount'];
+        $deposit_money=$agent['balance']-$agent['advance']+$agent['stock']*$agent['discount'];//账户额-铺货额+库存*折扣
         $this->assign('deposit_money',$deposit_money);
 
         if($this->request->isPost()){
             $post=$this->request->post();
+            
+            $data=array();
+            $data['agent_id']=$this->agent['id'];
+            $data['money']=$post['money'];
+            $this->agentDepositModel->save($data);
+            echo json_encode($post);exit;
 
         }
     	return $this->fetch();

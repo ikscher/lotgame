@@ -6,7 +6,9 @@
 	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
 	<!-- <link rel="stylesheet" href="__AGENT__/css/common.css"> -->
 	<!-- <link rel="stylesheet" href="__AGENT__/css/main.css"> -->
+
 	<script src="__PUBLIC__/layui/layui.js"></script>
+	<!-- <script src="__PUBLIC__/jquery/jquery.min.js"></script> -->
 	<title>资金提现</title>
 </head>
 <body>
@@ -75,45 +77,51 @@
 	</div>
 <script tyep="text/javascript">
 	layui.use(['layer', 'form','jquery'], function(){
-	  var layer = layui.layer, form = layui.form, $=layui.jquery;
+	  var layer = layui.layer, form = layui.form,$=layui.jquery;
 	  
+      $(window).on('load', function() {
+		  //监听提交
+		  form.on('submit(apply)', function(data){
+		    // layer.msg(JSON.stringify(data.field));
+		    var deposit_money=parseFloat($.trim($('#deposit_money').val().replace(/[^\w\.]/g,'')));
+	        var money=parseFloat($.trim($('#money').val()));
+	        if(money<0 || !money){
+	       	   layer.msg("提现金额输入有误！");
+	       	   return false;
+	        }
+	        // console.log(money+','+deposit_money);
+	        if(money>deposit_money){
+	       	   layer.msg("您的提现超额，请核对！");
+	       	   return false;
+	        }
+		    layer.confirm('确定要提现么？',function(){  //no availble
+	            $.ajax({
+	                // url:"{:url('agent/capital/withdraw')}",
+	                url:"/agent/capital/withdraw",
+	                data:$('#agentform').serialize(),
+	                type:'post',
+	                async: false,
+	                dataType:'json',
+	                success:function(res) {
+	                	// console.log(res)
+	                    if(res.code == 1) {
+	                        layer.alert(res.msg, function(index){ //申请提现成功,请等待管理员打款！
+		                       // location.href = res.url;
+                           
+		                       layer.close(index);
+		                    })
 
-	  //监听提交
-	  form.on('submit(apply)', function(data){
-	    // layer.msg(JSON.stringify(data.field));
-	    var deposit_money=$('#deposit_money').val().replace(/[^\w\.]/g,'');
-        var money=$('#money').val();
-        if(money<0 || !money){
-       	   layer.msg("提现金额输入有误！");
-       	   return false;
-        }
-        console.log(money+','+deposit_money);
-        if(money>deposit_money){
-       	   layer.msg("您的提现超额，请核对！");
-       	   return false;
-        }
-	    if(layer.confirm('确定要提现么？'),function(index){ 
-            $.ajax({
-                url:"{:url('agent/capital/withdraw')}",
-                data:$('#agentform').serialize(),
-                type:'post',
-                async: false,
-                dataType:'json',
-                success:function(res) {
-                    if(res.code == 1) {
-                        layer.alert(res.msg, function(index){
-	                       location.href = res.url;
-	                    })
-                    } else {
-                        layer.msg(res.msg);
-                    }
-                }
-            })
-
-            layer.close(index);
-	    })
-	    return false;
-	  });
+	                    } else {
+	                        layer.msg(res.msg);
+	                    }
+	                }
+	            });
+	            
+	            
+		    });
+		    return false;
+		  });
+		});
 	});
 </script> 
 </body>

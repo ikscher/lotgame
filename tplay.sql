@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50624
+Source Server         : 127.0.0.1
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-04-13 10:33:52
+Date: 2019-04-15 17:07:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1555114323', '192.168.1.102', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1555310794', '192.168.1.107', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=640 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=645 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -721,6 +721,11 @@ INSERT INTO `hov_admin_log` VALUES ('636', '50', '1', '192.168.1.107', '', '1555
 INSERT INTO `hov_admin_log` VALUES ('637', '50', '1', '192.168.1.102', '', '1555114323');
 INSERT INTO `hov_admin_log` VALUES ('638', '114', '1', '192.168.1.102', '成功生成卡密', '1555121515');
 INSERT INTO `hov_admin_log` VALUES ('639', '114', '1', '192.168.1.102', '成功生成卡密', '1555121928');
+INSERT INTO `hov_admin_log` VALUES ('640', '50', '1', '192.168.1.107', '', '1555310794');
+INSERT INTO `hov_admin_log` VALUES ('641', '119', '1', '192.168.1.107', '修改代理成功-10001', '1555312775');
+INSERT INTO `hov_admin_log` VALUES ('642', '119', '1', '192.168.1.107', '修改代理成功-10000', '1555312783');
+INSERT INTO `hov_admin_log` VALUES ('643', '119', '1', '192.168.1.107', '添加代理成功-10002', '1555312799');
+INSERT INTO `hov_admin_log` VALUES ('644', '120', '1', '192.168.1.107', '删除代理成功-10002', '1555312802');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -902,13 +907,13 @@ CREATE TABLE `hov_agent` (
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10002 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10003 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_agent
 -- ----------------------------
-INSERT INTO `hov_agent` VALUES ('10000', '0', '阿尔法', '1200.00', '234598983', '2333.00', '211.00', '0.00', '0.00', '0', '1', '0', '30', '1553608821', '1553608821');
-INSERT INTO `hov_agent` VALUES ('10001', '0', '龙发点卡', '1054.40', '4543566', '12.00', '2.00', '0.98', '2.00', '10', '1', '0', '31', '1553675514', '1554865305');
+INSERT INTO `hov_agent` VALUES ('10000', '0', '阿尔法', '1200.00', '234598983', '2333.00', '211.00', '0.00', '0.00', '0', '1', '1', '30', '1553608821', '1555312783');
+INSERT INTO `hov_agent` VALUES ('10001', '0', '龙发点卡', '1054.40', '4543566', '12.00', '2.00', '0.98', '2.00', '10', '1', '0', '31', '1553675514', '1555312775');
 
 -- ----------------------------
 -- Table structure for `hov_agent_cate`
@@ -936,6 +941,26 @@ INSERT INTO `hov_agent_cate` VALUES ('9', '江西省', '', '', '1553261427', '15
 INSERT INTO `hov_agent_cate` VALUES ('10', '南昌市', '', '', '1553261438', '1553261438', '9');
 INSERT INTO `hov_agent_cate` VALUES ('11', '东湖区', '', '', '1553261477', '1553261477', '10');
 INSERT INTO `hov_agent_cate` VALUES ('12', '西湖区', '', '', '1553261484', '1553261484', '10');
+
+-- ----------------------------
+-- Table structure for `hov_agent_deposit`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_agent_deposit`;
+CREATE TABLE `hov_agent_deposit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `agent_id` int(11) DEFAULT NULL,
+  `money` decimal(10,2) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1' COMMENT '3：提现取消，2：提现成功，1：待审核',
+  `create_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hov_agent_deposit
+-- ----------------------------
+INSERT INTO `hov_agent_deposit` VALUES ('1', '10001', '22.00', '1', '1555318191', '1555318191');
+INSERT INTO `hov_agent_deposit` VALUES ('2', '10001', '23.00', '1', '1555318197', '1555318197');
 
 -- ----------------------------
 -- Table structure for `hov_agent_log`
