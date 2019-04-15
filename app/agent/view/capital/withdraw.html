@@ -29,7 +29,7 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">提现金额</label>
 					<div class="layui-input-block">
-						<input type="text" name="money"  id="money"　required  lay-verify="required|number" placeholder="请输入" autocomplete="off" class="layui-input">
+						<input type="text" name="money"  id="money"　required  lay-verify="required|number" placeholder="请输入"  class="layui-input">
 					</div>
 				</div>
 
@@ -59,19 +59,23 @@
 		    </tr> 
 		  </thead>
 		  <tbody>
+		  	{volist name="lists" id="vo"  }
 		    <tr>
-						<td>2018-10-14 20:13:17</td>
-						<td>2300.00</td>
-						<td>
-							<span style="color:#1ab144">提现成功</span>
-						</td>
-						<td>
-							-
-						</td>
-					</tr>
+				<td>{$vo.create_time}</td>
+				<td>{$vo.money}</td>
+				<td>
+					<span style="color:#1ab144">
+					   {if condition="$vo.status eq 1"}等待审核{elseif condition="$vo.status eq 2"/}提现成功{elseif condition="$vo.status eq 3"/}提现取消{elseif condition="$vo.status eq 4"/}提现失败{/if}
+				    </span>
+				</td>
+				<td>
+					   {if condition="$vo.status eq 1"}<a data-id="{$vo.id}" href="javascript:;" class="cancel">取消提现</a>{else /}-{/if}
+				</td>
+			</tr>
+			{/volist}
 		  </tbody>
 		</table>
-
+        <div>{$lists->render();}</div>
 	
 
 	</div>
@@ -79,49 +83,66 @@
 	layui.use(['layer', 'form','jquery'], function(){
 	  var layer = layui.layer, form = layui.form,$=layui.jquery;
 	  
-      $(window).on('load', function() {
-		  //监听提交
-		  form.on('submit(apply)', function(data){
-		    // layer.msg(JSON.stringify(data.field));
-		    var deposit_money=parseFloat($.trim($('#deposit_money').val().replace(/[^\w\.]/g,'')));
-	        var money=parseFloat($.trim($('#money').val()));
-	        if(money<0 || !money){
-	       	   layer.msg("提现金额输入有误！");
-	       	   return false;
-	        }
-	        // console.log(money+','+deposit_money);
-	        if(money>deposit_money){
-	       	   layer.msg("您的提现超额，请核对！");
-	       	   return false;
-	        }
-		    layer.confirm('确定要提现么？',function(){  //no availble
-	            $.ajax({
-	                // url:"{:url('agent/capital/withdraw')}",
-	                url:"/agent/capital/withdraw",
-	                data:$('#agentform').serialize(),
-	                type:'post',
-	                async: false,
-	                dataType:'json',
-	                success:function(res) {
-	                	// console.log(res)
-	                    if(res.code == 1) {
-	                        layer.alert(res.msg, function(index){ //申请提现成功,请等待管理员打款！
-		                       // location.href = res.url;
-                           
-		                       layer.close(index);
-		                    })
+	  //监听提交
+	  form.on('submit(apply)', function(data){
+	    // layer.msg(JSON.stringify(data.field));
+	    var deposit_money=parseFloat($.trim($('#deposit_money').val().replace(/[^\w\.]/g,'')));
+        var money=parseFloat($.trim($('#money').val()));
+        if(money<0 || !money){
+       	   layer.msg("提现金额输入有误！");
+       	   return false;
+        }
+        console.log(money+','+deposit_money);
+        if(money>deposit_money){
+       	   layer.msg("您的提现超额，请核对！");
+       	   return false;
+        }
+	    layer.confirm('确定要提现么？',function(){  //no availble
+            $.ajax({
+                // url:"{:url('agent/capital/withdraw')}",
+                url:"/agent/capital/withdraw",
+                data:$('#agentform').serialize(),
+                type:'post',
+                async: false,
+                dataType:'json',
+                success:function(res) {
+                	// console.log(res)
+                    if(res.code == 1) {
+                        layer.alert(res.msg, function(index){ 
+	                       location.href = res.url;
+	                       layer.close(index);
+	                    })
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            });
+	    });
+	    return false;
+	  });
 
-	                    } else {
-	                        layer.msg(res.msg);
-	                    }
-	                }
-	            });
-	            
-	            
-		    });
-		    return false;
-		  });
-		});
+	  $('.cancel').click(function(){
+	  	var id=$(this).attr('data-id');
+        $.ajax({
+            // url:"{:url('agent/capital/withdraw')}",
+            url:"/agent/capital/cancel",
+            data:{id:id},
+            type:'post',
+            async: false,
+            dataType:'json',
+            success:function(res) {
+            	// console.log(res)
+                if(res.code == 1) {
+                    layer.alert(res.msg, function(index){ 
+                       location.href = res.url;
+                       layer.close(index);
+                    })
+                } else {
+                    layer.msg(res.msg);
+                }
+            }
+        });
+	  })
 	});
 </script> 
 </body>

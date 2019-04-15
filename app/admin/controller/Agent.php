@@ -20,22 +20,25 @@ use \think\Cookie;
 use think\Config;
 use \think\Session;
 use app\admin\controller\Permissions;
-use app\admin\model\Agent as agentModel;
+use app\agent\model\Agent as agentModel;
 use app\front\model\User as userModel;
+use app\agent\model\AgentDeposit as agentDepositModel;
 use app\admin\model\AgentCate as agentcateModel;
 use app\admin\model\AgentLog as agentlogModel;
 class Agent extends Permissions
 {   
-    private $model;
     private $agentcatemodel;
+    private $agentDepositModel;
     private $agent_log_types;
     private $usermodel;
+    private $agentModel;
     private $agentlog;
 
     public function _initialize()
     {
-        $this->model=new agentModel();
+        $this->agentModel=new agentModel();
         $this->agentcatemodel=new agentcateModel();
+        $this->agentDepositModel=new agentDepositModel();
         $this->usermodel=new userModel();
         $this->agentlogmodel=new agentlogModel();
         $this->agent_log_types=Config::get('agent_log_type');
@@ -57,9 +60,9 @@ class Agent extends Permissions
 
         }
 
-        $agents_sel=collection($this->model->select())->toArray();
+        $agents_sel=collection($this->agentModel->select())->toArray();
         
-        $agents = empty($where) ? $this->model->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]) : $this->model->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
+        $agents = empty($where) ? $this->agentModel->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]) : $this->agentModel->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
         // $agents=empty($where)?Db::name('agent')->alias('a')->field('a.*')->join('agent_log l',' a.id=l.agent_id','left')->order('a.create_time desc')->paginate(15):Db::name('agent')->alias('a')->join('agent_log l',' a.id=l.agent_id','left')->where($where)->order('a.create_time desc')->paginate(15);
         // echo Db::name('agent')->getLastSql();
         $this->assign('agents_sel',$agents_sel);
@@ -104,7 +107,7 @@ class Agent extends Permissions
                 }
              
                 //验证菜单是否存在
-                $agent = $this->model->where('id',$id)->find();
+                $agent = $this->agentModel->where('id',$id)->find();
                 if(empty($agent)) {
                     return $this->error('id不正确');
                 }
@@ -117,8 +120,8 @@ class Agent extends Permissions
                 //     $this->usermodel->allowField(['password'])->save($data, ['uid' => $post['user_id']]);
                 // }
                 //更改代理信息
-                $ret=$this->model->allowField(true)->save($post,['id'=>$id]);
-                // echo $this->model->getLastSql();exit;
+                $ret=$this->agentModel->allowField(true)->save($post,['id'=>$id]);
+                // echo $this->agentModel->getLastSql();exit;
                 if(false ==$ret ) {
                     return $this->error('修改失败');
                 } else {
@@ -128,7 +131,7 @@ class Agent extends Permissions
                 }
             } else {
                 //非提交操作
-                $agent = $this->model->where('id',$id)->find();
+                $agent = $this->agentModel->where('id',$id)->find();
                 $cates = $this->agentcatemodel->select();
                 $this->assign('cates',$cates);
                 if(!empty($agent)) {
@@ -164,11 +167,11 @@ class Agent extends Permissions
 
                 // $post['is_vip']= empty($post['is_vip'])?0:1;
                 // $post['is_proxy']= empty($post['is_proxy'])?0:1;
-                if(false == $this->model->allowField(true)->save($post)) {
+                if(false == $this->agentModel->allowField(true)->save($post)) {
                     return $this->error('添加失败');
                 } else {
                     $operation='添加代理成功';
-                    addlog($operation.'-'.$this->model->id);//写入日志
+                    addlog($operation.'-'.$this->agentModel->id);//写入日志
                     return $this->success($operation,'admin/agent/index');
                 }
             } else {
@@ -197,8 +200,8 @@ class Agent extends Permissions
                return $this->error('代理已经有日志，删除失败');
             }
            
-            $ret=$this->model->where('id',$id)->delete();
-            // echo $this->model->getLastSql();exit;
+            $ret=$this->agentModel->where('id',$id)->delete();
+            // echo $this->agentModel->getLastSql();exit;
             if(false == $ret) {
                 return $this->error('删除代理失败');
             } else {
@@ -207,6 +210,57 @@ class Agent extends Permissions
                 return $this->success($operation,'admin/agent/index');
             }
     	}
+    }
+
+    //代理提现
+    public function withdraw()
+    {
+        $deposits = $this->agentDepositModel->select();
+        // var_dump($remarks);exit;
+        $this->assign('deposits',$deposits);
+        return $this->fetch();
+    }
+
+    //打款完毕
+    public function dealed()
+    {
+        $id=$this->request->has('id')?$this->request->param('id'):0;
+        $this->agentDepositModel->where('id',$id)->setField('status',2);
+        addlog('打款给代理,流水号：'.$id);
+        $this->redirect('/admin/agent/withdraw');
+    }
+
+    //拒绝代理提现
+    public function rejected()
+    {
+        $id=$this->request->has('id')?$this->request->param('id'):0;
+        $result_trans=true;
+        Db::startTrans();
+        try{
+            //更改状态
+            $this->agentDepositModel->where('id',$id)->setField('status',4);
+
+            //代理增加金额
+            $deposit=$this->agentDepositModel->where('id',$id)->find();
+            $agent_id=$deposit['agent_id'];
+            $money=$deposit['money'];
+
+            $this->agentModel->where('id',$agent_id)->setInc('balance',$money);
+            addlog('拒绝代理('.$agent_id.')提现');//写入日志
+
+            //提交事务
+            Db::commit(); 
+        }catch (\Exception $e) {
+            $result_trans=false;
+            // 回滚事务
+            Db::rollback();
+        }
+
+        if($result_trans==true){
+            return $this->success('拒绝代理提现','/admin/agent/withdraw'); 
+        }else{
+            return $this->error('出错，请联系管理员！'); 
+        }
     }
 
 }

@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50505
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-15 17:07:02
+Date: 2019-04-15 23:37:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1555310794', '192.168.1.107', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1555335459', '192.168.1.104', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -63,7 +63,7 @@ CREATE TABLE `hov_admin_cate` (
 -- ----------------------------
 -- Records of hov_admin_cate
 -- ----------------------------
-INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,25,26,28,29,34,35,37,38,39,40,60,61,62,63,71,72,73,74,75,76,77,78,79,80,81,83,84,85,92,93,94,95,96,97,98,129,99,100,104,108,109,111,112,122,123,124,125,126,127,128', '0', '1554360684', '超级管理员，拥有最高权限！');
+INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,25,26,28,29,34,35,37,38,39,40,60,61,62,63,71,72,73,74,75,76,77,78,79,80,81,83,84,85,92,93,94,95,96,97,98,129,99,100,104,108,109,111,112,119,120,130,131,122,123,124,125,126,127,128', '0', '1555342377', '超级管理员，拥有最高权限！');
 
 -- ----------------------------
 -- Table structure for `hov_admin_log`
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=645 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=654 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -726,6 +726,15 @@ INSERT INTO `hov_admin_log` VALUES ('641', '119', '1', '192.168.1.107', '修改�
 INSERT INTO `hov_admin_log` VALUES ('642', '119', '1', '192.168.1.107', '修改代理成功-10000', '1555312783');
 INSERT INTO `hov_admin_log` VALUES ('643', '119', '1', '192.168.1.107', '添加代理成功-10002', '1555312799');
 INSERT INTO `hov_admin_log` VALUES ('644', '120', '1', '192.168.1.107', '删除代理成功-10002', '1555312802');
+INSERT INTO `hov_admin_log` VALUES ('645', '50', '1', '192.168.1.104', '', '1555335459');
+INSERT INTO `hov_admin_log` VALUES ('646', '4', '1', '192.168.1.104', '118', '1555336860');
+INSERT INTO `hov_admin_log` VALUES ('647', '4', '1', '192.168.1.104', '130', '1555342304');
+INSERT INTO `hov_admin_log` VALUES ('648', '4', '1', '192.168.1.104', '131', '1555342355');
+INSERT INTO `hov_admin_log` VALUES ('649', '28', '1', '192.168.1.104', '修改角色信息成功', '1555342377');
+INSERT INTO `hov_admin_log` VALUES ('650', '131', '1', '192.168.1.104', '拒绝代理(10001)提现', '1555342384');
+INSERT INTO `hov_admin_log` VALUES ('651', '131', '1', '192.168.1.104', '拒绝代理(10001)提现', '1555342423');
+INSERT INTO `hov_admin_log` VALUES ('652', '131', '1', '192.168.1.104', '拒绝代理(10001)提现', '1555342436');
+INSERT INTO `hov_admin_log` VALUES ('653', '131', '1', '192.168.1.104', '拒绝代理(10001)提现', '1555342504');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -754,7 +763,7 @@ CREATE TABLE `hov_admin_menu` (
   KEY `function` (`function`) USING BTREE,
   KEY `is_display` (`is_display`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of hov_admin_menu
@@ -873,7 +882,7 @@ INSERT INTO `hov_admin_menu` VALUES ('114', '生成新卡密', 'admin', 'cardpwd
 INSERT INTO `hov_admin_menu` VALUES ('115', '删除卡密', 'admin', 'cardpwd', 'delete', '', '', '2', '1', '113', '1553174913', '1553174913', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('116', '代理管理', 'admin', 'agent', 'index', '', '', '1', '2', '105', '1553231481', '1553231481', 'fa-film', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('117', '代理提现', 'admin', 'agent', 'withdraw', '', '', '1', '2', '105', '1553231607', '1553231607', 'fa-upload', '0', '0');
-INSERT INTO `hov_admin_menu` VALUES ('118', '代理充值', 'admin', 'agent', 'deposit', '', '', '1', '2', '105', '1553231643', '1553231643', 'fa-download', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('118', '代理充值', 'admin', 'agent', 'charge', '', '', '1', '2', '105', '1553231643', '1555336860', 'fa-download', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('119', '新增/修改代理', 'admin', 'agent', 'publish', '', '', '2', '1', '116', '1553241725', '1553241725', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('120', '删除代理', 'admin', 'agent', 'delete', '', '', '2', '1', '116', '1553241824', '1553241824', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('121', '游戏开关', 'admin', 'game', 'index', '', '', '1', '2', '106', '1553309362', '1553309362', 'fa-gamepad', '0', '0');
@@ -885,6 +894,8 @@ INSERT INTO `hov_admin_menu` VALUES ('126', '游戏管理', 'admin', 'game', 'ma
 INSERT INTO `hov_admin_menu` VALUES ('127', '判断游戏表存在', 'admin', 'game', 'istable', '', '', '2', '1', '106', '1553408992', '1553408992', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('128', '创建游戏表', 'admin', 'game', 'createtable', '', '', '2', '1', '106', '1553415373', '1553415373', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('129', '模拟会员登录', 'admin', 'user', 'login', '', '模拟会员登录', '2', '1', '88', '1554360642', '1554360642', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('130', '确认打款', 'admin', 'agent', 'dealed', '', '打款完毕（到代理）', '2', '1', '117', '1555342304', '1555342304', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('131', '拒绝提现', 'admin', 'agent', 'rejected', '', '拒绝代理提现', '2', '1', '117', '1555342355', '1555342355', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `hov_agent`
@@ -913,7 +924,7 @@ CREATE TABLE `hov_agent` (
 -- Records of hov_agent
 -- ----------------------------
 INSERT INTO `hov_agent` VALUES ('10000', '0', '阿尔法', '1200.00', '234598983', '2333.00', '211.00', '0.00', '0.00', '0', '1', '1', '30', '1553608821', '1555312783');
-INSERT INTO `hov_agent` VALUES ('10001', '0', '龙发点卡', '1054.40', '4543566', '12.00', '2.00', '0.98', '2.00', '10', '1', '0', '31', '1553675514', '1555312775');
+INSERT INTO `hov_agent` VALUES ('10001', '0', '龙发点卡', '925.88', '4543566', '12.00', '2.00', '0.98', '2.00', '10', '1', '0', '31', '1553675514', '1555312775');
 
 -- ----------------------------
 -- Table structure for `hov_agent_cate`
@@ -950,17 +961,23 @@ CREATE TABLE `hov_agent_deposit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `agent_id` int(11) DEFAULT NULL,
   `money` decimal(10,2) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT '1' COMMENT '3：提现取消，2：提现成功，1：待审核',
+  `status` tinyint(1) DEFAULT '1' COMMENT '3：提现取消，2：提现成功，1：待审核，4：提现失败（后台拒绝）',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_agent_deposit
 -- ----------------------------
-INSERT INTO `hov_agent_deposit` VALUES ('1', '10001', '22.00', '1', '1555318191', '1555318191');
-INSERT INTO `hov_agent_deposit` VALUES ('2', '10001', '23.00', '1', '1555318197', '1555318197');
+INSERT INTO `hov_agent_deposit` VALUES ('6', '10001', '9.00', '3', '1555332513', '1555332513');
+INSERT INTO `hov_agent_deposit` VALUES ('7', '10001', '10.00', '3', '1555333076', '1555333076');
+INSERT INTO `hov_agent_deposit` VALUES ('8', '10001', '19.00', '3', '1555335028', '1555335028');
+INSERT INTO `hov_agent_deposit` VALUES ('9', '10001', '100.00', '2', '1555335391', '1555335391');
+INSERT INTO `hov_agent_deposit` VALUES ('10', '10001', '10.00', '2', '1555338352', '1555338352');
+INSERT INTO `hov_agent_deposit` VALUES ('11', '10001', '10.00', '4', '1555338688', '1555338688');
+INSERT INTO `hov_agent_deposit` VALUES ('12', '10001', '8.96', '4', '1555340499', '1555340499');
+INSERT INTO `hov_agent_deposit` VALUES ('13', '10001', '0.04', '4', '1555340551', '1555340551');
 
 -- ----------------------------
 -- Table structure for `hov_agent_log`
@@ -972,22 +989,33 @@ CREATE TABLE `hov_agent_log` (
   `reclaim_money` decimal(11,2) DEFAULT '0.00' COMMENT '回收金额',
   `charge_money` decimal(11,2) DEFAULT '0.00' COMMENT '代充金额',
   `sale_money` decimal(11,2) DEFAULT '0.00' COMMENT '售卡金额',
+  `deposit_money` decimal(11,2) DEFAULT '0.00' COMMENT '提现金额',
   `balance` decimal(11,2) DEFAULT NULL,
-  `type` tinyint(2) DEFAULT NULL COMMENT '1：代理代充2：代理收卡3：代理售卡4：代理制卡,5:代充撤回',
+  `type` tinyint(2) DEFAULT NULL COMMENT '1：代理代充2：代理收卡3：代理售卡4：代理制卡,5:代充撤回,6：提现，7：提现取消',
   `ip` varchar(40) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   `create_date` date DEFAULT NULL,
   `desc` varchar(200) DEFAULT NULL,
   `flag` tinyint(1) DEFAULT '0' COMMENT '主要记录代充和代充撤回的标志位',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_agent_log
 -- ----------------------------
-INSERT INTO `hov_agent_log` VALUES ('26', '10001', '0.00', '-98.00', '0.00', '856.40', '1', '192.168.1.102', '1555119094', '2019-04-13', '10', '2');
-INSERT INTO `hov_agent_log` VALUES ('27', '10001', '0.00', '98.00', '0.00', '954.40', '5', '192.168.1.102', '1555119140', '2019-04-13', '10', '0');
-INSERT INTO `hov_agent_log` VALUES ('28', '10001', '100.00', '0.00', '0.00', '1054.40', '2', '192.168.1.102', '1555121988', '2019-04-13', 'd10LVPT61SCDYA3GQJH|10', '0');
+INSERT INTO `hov_agent_log` VALUES ('26', '10001', '0.00', '-98.00', '0.00', null, '856.40', '1', '192.168.1.102', '1555119094', '2019-04-13', '10', '2');
+INSERT INTO `hov_agent_log` VALUES ('27', '10001', '0.00', '98.00', '0.00', null, '954.40', '5', '192.168.1.102', '1555119140', '2019-04-13', '10', '0');
+INSERT INTO `hov_agent_log` VALUES ('28', '10001', '100.00', '0.00', '0.00', null, '1054.40', '2', '192.168.1.102', '1555121988', '2019-04-13', 'd10LVPT61SCDYA3GQJH|10', '0');
+INSERT INTO `hov_agent_log` VALUES ('29', '10001', '0.00', '0.00', '0.00', '-10.00', '990.00', '6', '192.168.1.104', '1555333076', '2019-04-15', '提现', '0');
+INSERT INTO `hov_agent_log` VALUES ('30', '10001', '0.00', '0.00', '0.00', '10.00', '1000.00', '7', '192.168.1.104', '1555334606', '2019-04-15', '提现取消', '0');
+INSERT INTO `hov_agent_log` VALUES ('31', '10001', '0.00', '0.00', '0.00', '9.00', '1009.00', '7', '192.168.1.104', '1555334853', '2019-04-15', '提现取消', '0');
+INSERT INTO `hov_agent_log` VALUES ('32', '10001', '0.00', '0.00', '0.00', '0.00', '990.00', '6', '192.168.1.104', '1555335028', '2019-04-15', '提现', '0');
+INSERT INTO `hov_agent_log` VALUES ('33', '10001', '0.00', '0.00', '0.00', '19.00', '1009.00', '7', '192.168.1.104', '1555335340', '2019-04-15', '提现取消', '0');
+INSERT INTO `hov_agent_log` VALUES ('34', '10001', '0.00', '0.00', '0.00', '-100.00', '909.00', '6', '192.168.1.104', '1555335391', '2019-04-15', '提现', '0');
+INSERT INTO `hov_agent_log` VALUES ('35', '10001', '0.00', '0.00', '0.00', '-10.00', '899.00', '6', '192.168.1.104', '1555338352', '2019-04-15', '提现', '0');
+INSERT INTO `hov_agent_log` VALUES ('36', '10001', '0.00', '0.00', '0.00', '-10.00', '889.00', '6', '192.168.1.104', '1555338688', '2019-04-15', '提现', '0');
+INSERT INTO `hov_agent_log` VALUES ('37', '10001', '0.00', '0.00', '0.00', '-8.96', '880.04', '6', '192.168.1.104', '1555340499', '2019-04-15', '提现', '0');
+INSERT INTO `hov_agent_log` VALUES ('38', '10001', '0.00', '0.00', '0.00', '-0.04', '880.00', '6', '192.168.1.104', '1555340551', '2019-04-15', '提现', '0');
 
 -- ----------------------------
 -- Table structure for `hov_article`

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/agent\view\record\all.html";i:1555122345;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555073719;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/agent\view\record\all.html";i:1555334582;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555073719;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,8 +107,8 @@ layui.use(['layer','jquery','form'], function(){
 		  	<?php if(is_array($logs) || $logs instanceof \think\Collection || $logs instanceof \think\Paginator): $i = 0; $__LIST__ = $logs;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
 		    <tr>
 		      <td><?php echo $vo['id']; ?></td>
-		      <td><?php if($vo['type'] == 1): ?>代充<?php elseif($vo['type'] == 2): ?>回收<?php elseif($vo['type'] == 5): ?>代充撤回<?php else: ?>未知<?php endif; ?></td>
-		      <td><?php if(($vo['type']==1) or ($vo['type']==5)): ?><?php echo $vo['charge_money']; elseif($vo['type'] == 2): ?><?php echo $vo['reclaim_money']; endif; ?></td>
+		      <td><?php if($vo['type'] == 1): ?>代充<?php elseif($vo['type'] == 2): ?>回收<?php elseif($vo['type'] == 5): ?>代充撤回<?php elseif($vo['type'] == 6): ?>提现<?php elseif($vo['type'] == 7): ?>取消提现<?php endif; ?></td>
+		      <td><?php if(($vo['type']==1) or ($vo['type']==5)): ?><?php echo $vo['charge_money']; elseif($vo['type'] == 2): ?><?php echo $vo['reclaim_money']; elseif(($vo['type'] == 6) or ($vo['type'] == 7)): ?><?php echo $vo['deposit_money']; endif; ?></td>
 		      <td><?php echo $vo['balance']; ?></td>
 		      <td><?php echo $vo['create_time']; ?></td>
 		      <td><?php echo $vo['ip']; ?></td>

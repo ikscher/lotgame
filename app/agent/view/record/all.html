@@ -51,8 +51,8 @@
 		  	{volist name="logs" id="vo"  }
 		    <tr>
 		      <td>{$vo.id}</td>
-		      <td>{if condition="$vo.type eq 1"}代充{elseif condition="$vo.type eq 2"}回收{elseif condition="$vo.type eq 5"}代充撤回{else /}未知{/if}</td>
-		      <td>{if condition="($vo.type==1) or ($vo.type==5)"}{$vo.charge_money}{elseif condition="$vo.type eq 2"}{$vo.reclaim_money}{/if}</td>
+		      <td>{if condition="$vo.type eq 1"}代充{elseif condition="$vo.type eq 2"}回收{elseif condition="$vo.type eq 5"}代充撤回{elseif condition="$vo.type eq 6" /}提现{elseif condition="$vo.type eq 7" /}取消提现{/if}</td>
+		      <td>{if condition="($vo.type==1) or ($vo.type==5)"}{$vo.charge_money}{elseif condition="$vo.type eq 2" /}{$vo.reclaim_money}{elseif condition="($vo.type eq 6) or ($vo.type eq 7)" /}{$vo.deposit_money}{/if}</td>
 		      <td>{$vo.balance}</td>
 		      <td>{$vo.create_time}</td>
 		      <td>{$vo.ip}</td>
