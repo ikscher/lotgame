@@ -139,7 +139,7 @@ class Other extends Site
                     //记录用户日志
                     $desc=$agent_name.'('.$agent_id.')充值撤回';
                     $usercoins=$this->userModel->where('uid',$uid)->value('coin');
-                    adduserlog($uid,$desc,-$coins,-$exp,$usercoins,'revoke');
+                    adduserlog($uid,$desc,-$coins,-$exp,$usercoins,'charge_revoke'); //充值类型
 
                     //代理账户返还钱
                     $this->agentModel->where('id',$agent_id)->setInc('balance',$money);

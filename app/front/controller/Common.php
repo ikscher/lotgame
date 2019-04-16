@@ -19,11 +19,13 @@ use think\Db;
 use think\Config;
 use \think\Cookie;
 use \think\Session;
+use app\front\model\UserSafepwd as userSafepwdModel;
 // use app\front\model\User as userModel;
 
 class Common extends Site
 {   
     private $geetest;
+    private $userSafepwdModel;
     // private $userModel;
     // private $site_name;
     // protected $uid;
@@ -31,6 +33,7 @@ class Common extends Site
     public function _initialize()
     {   
         parent::_initialize();
+        $this->userSafepwdModel=new userSafepwdModel();
         $this->geetest=Config::get('geetest');
         // $this->userModel=new userModel();
         $controller=$this->request->controller();
@@ -87,12 +90,19 @@ class Common extends Site
                             //判断是否只支持短信登录
                             $username=$post['tbUserAccount'];
                             
-                            $login_by_msg=$this->userModel->where("email='$username'")->whereor("mobile='$username'")->value('login_by_msg');
+                            $userlogin=$this->userModel->where("email='$username'")->whereor("mobile='$username'")->find();
+                            $login_by_msg=$userlogin['login_by_msg'];
+                            $uid=$userlogin['uid'];
                             // $this->error($this->userModel->getLastSql());
                             if($login_by_msg==1){
                                 $this->error("对不起,您的账户仅支持短信登录,请使用短信快捷登录");
                             }
-
+                            
+                            //如果设置了密码卡，跳转
+                            $id_sf=$this->userSafepwdModel->where('user_id',$uid)->value('id');
+                            if(!empty($id_sf)) $this->success('','/common/logins');
+                           
+                            //记录登录cookie
                             Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
 
                             //记录登录时间和ip
@@ -100,7 +110,7 @@ class Common extends Site
                             //记录操作日志
                             $coin=$this->userModel->where('uid',$user['uid'])->value('coin');
                             // $this->userModel->where('uid',$user['uid'])->setInc('experiments',5);
-                            adduserlog($user['uid'],'登录',0,0,$coin);
+                            adduserlog($user['uid'],'登录',0,0,$coin,'login');
                             return $this->success('登录成功,正在跳转...','/user/index');
                         }
                     }elseif($logintype==2){ //短信验证登录
@@ -110,7 +120,7 @@ class Common extends Site
                             //记录操作日志
                             $coin=$this->userModel->where('uid',$user['uid'])->value('coin');
                             // $this->userModel->where('uid',$user['uid'])->setInc('experiments',5);
-                            adduserlog($user['uid'],'登录',0,0,$coin);
+                            adduserlog($user['uid'],'登录',0,0,$coin,'login');
                             return $this->success('登录成功,正在跳转...','/user/index');
                         }else{
                             return $this->error('验证码错误');
@@ -127,6 +137,11 @@ class Common extends Site
         } else {
             $this->redirect('/common/login');
         }   
+    }
+
+    public function logins()
+    {
+        return $this->fetch();
     }
     
     /**

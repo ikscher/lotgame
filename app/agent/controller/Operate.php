@@ -162,7 +162,7 @@ class Operate extends Site
                 //记录用户日志
                 $desc=$this->agent['name'].'('.$this->agent['id'].')代充';
                 $usercoins=$this->userModel->where('uid',$uid)->value('coin');
-                adduserlog($uid,$desc,$coins*1000,$exp,$usercoins,'recharge'); //type=recharge
+                adduserlog($uid,$desc,$coins*1000,$exp,$usercoins,'charge_agent'); //type=charge_gent(代理代充，用户自充charge_user)
 
                 //代理代充折扣
                 $discount=$this->agent['discount'];

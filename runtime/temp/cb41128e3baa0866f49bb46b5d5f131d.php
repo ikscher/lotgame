@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:60:"D:\mywork\lotgame\public/../app/front\view\user\safepwd.html";i:1554511479;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554511860;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:60:"D:\mywork\lotgame\public/../app/front\view\user\safepwd.html";i:1555402656;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554774388;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554865678;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,7 @@
 				</ul>
 			</div>
 			<span class="barr fr">
-				<?php if($uid != 0): ?>
+				<?php if($uid > 0): ?>
 					<b ><?php echo $user['username']; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php echo $user['coin']; ?></b></span> &nbsp;
 					<a href="/User/Index">我的账号</a> <a href="/User/Msg">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/common/logout">退出</a>
@@ -189,7 +189,8 @@
 	<div class="w1200">
 		<!--顶侧top-->
 		<div class="utop">
-	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
+	<div class="utop-head">
+		<img src="<?php if(!empty($user['avatar']) && geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
 	<div class="utop-info">
 		<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
 		<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
@@ -230,13 +231,15 @@
 		</ul>
 		<ul>
 			<li><a href='/Agent/Index'>在线充值</a></li>
-			<li><a href='/Cg/Getprize'>闯关奖励</a></li>
+			<?php if($agent_id > 0): ?><li><a href='/Agent/Index'>代理后台</a></li><?php endif; ?>
+			<!-- <li><a href='/Cg/Getprize'>闯关奖励</a></li> -->
 		</ul>
 
 		<p>站内功能</p>
 		<ul>
 			<!-- <li><a href='/User/SelfLine'>专属域名</a></li> -->
 			<li><a href='/User/Charge'>点卡使用</a></li>
+			<li><a href='/User/Bonus'>首充返利</a></li>
 		</ul>
 		<ul>
 			<li><a href='/User/Msg'>站内信箱</a></li>
@@ -246,24 +249,22 @@
 			<li><a href='/User/Prize'>兑奖记录</a></li>
 			<li><a href='/User/ReWard'>亏损返利</a></li>
 		</ul>
-		<ul>
-			<li><a href='/User/Bonus'>首充返利</a></li>
-		</ul>
+	
 
 		<p>推广相关</p>
 		<ul>
 			<li><a href='/User/Recom'>推广下线</a></li>
-			<li><a href='/User/Recomprofit'>推广收益</a></li>
+			<li><a href='/User/Recomyield'>推广收益</a></li>
 		</ul>
 
 		<p>工资救济</p>
 		<ul>
-			<li><a href='/User/Sign'>签到中心</a></li>
+			<li><a href='/User/Signin'>签到中心</a></li>
 			<li><a href='/User/Alms'>领取救济</a></li>
 		</ul>
 		<ul>
 			<li><a href='/User/Wage'>工资领取</a></li>
-			<li><a href='/Game/Egg'>金蛋砸取</a></li>
+			<li><a href='/Prize/Shatter'>金蛋砸取</a></li>
 		</ul>
 
 		<!-- <p>游戏功能</p>
@@ -298,8 +299,9 @@
 				<div class="ibox-title">
 					<h5>我的密保卡</h5>
 				</div>
-				<p style="text-align:center;margin-bottom:10px" class="mt40">您还有<font style="color:red">53</font>分钟可查看此卡，过期将无法再查看，请尽快截图保存，或按Ctrl+S保存。</p>
-
+				<?php if(!(empty($access) || (($access instanceof \think\Collection || $access instanceof \think\Paginator ) && $access->isEmpty()))): ?>
+				<p style="text-align:center;margin-bottom:10px" class="mt40">您还有<font style="color:red"><?php echo intval($remain/60); ?></font>分钟可查看此卡，过期将无法再查看，请尽快截图保存，或按Ctrl+S保存。</p>
+                
 				<div class="safecard">
 					<table cellspacing="0" cellpadding="0">
 						<tr><td colspan="10"><?php echo $title; ?>用户[<?php echo $user['uid']; ?>]密保卡</span></td></tr>
@@ -312,20 +314,12 @@
 	                           <?php endforeach; endif; else: echo "" ;endif; ?>
 						    </tr>
 						    <?php $i++;endforeach; endif; else: echo "" ;endif; ?>
-						<!-- <tr class="letter_block hc"><td>&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
-						<tr><td class="mum_block">A</td><td>25</td><td>92</td><td>17</td><td>06</td><td>09</td><td>53</td><td>60</td><td>47</td></tr>
-						<tr class="hc"><td class="mum_block">B</td><td>27</td><td>26</td><td>29</td><td>37</td><td>34</td><td>51</td><td>73</td><td>99</td></tr>
-						<tr><td class="mum_block">C</td><td>42</td><td>19</td><td>30</td><td>75</td><td>25</td><td>19</td><td>47</td><td>27</td></tr>
-						<tr class="hc"><td class="mum_block">D</td><td>32</td><td>34</td><td>87</td><td>46</td><td>26</td><td>98</td><td>64</td><td>71</td></tr>
-						<tr><td class="mum_block">E</td><td>85</td><td>60</td><td>45</td><td>38</td><td>25</td><td>74</td><td>35</td><td>67</td></tr>
-						<tr class="hc"><td class="mum_block">F</td><td>15</td><td>08</td><td>16</td><td>64</td><td>49</td><td>59</td><td>86</td><td>59</td></tr>
-						<tr><td class="mum_block">G</td><td>11</td><td>32</td><td>90</td><td>38</td><td>78</td><td>48</td><td>61</td><td>87</td></tr>
-						<tr class="hc"><td class="mum_block">H</td><td>60</td><td>58</td><td>02</td><td>22</td><td>20</td><td>18</td><td>44</td><td>59</td></tr>
-						<tr><td class="mum_block">I</td><td>21</td><td>55</td><td>96</td><td>54</td><td>47</td><td>69</td><td>52</td><td>97</td></tr>
-						<tr class="hc"><td class="mum_block">J</td><td>42</td><td>32</td><td>30</td><td>78</td><td>43</td><td>70</td><td>12</td><td>83</td></tr> -->
 						
 					</table>
 				</div>
+			    <?php else: ?>
+			    <p style="text-align:center;margin-bottom:10px" class="mt40">您无法再查看口令卡，如口令卡遗失请联系客服。</p>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>

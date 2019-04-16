@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50624
+Source Server         : 127.0.0.1
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-04-15 23:37:40
+Date: 2019-04-16 17:12:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1555335459', '192.168.1.104', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1555391457', '192.168.1.100', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=654 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=656 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -735,6 +735,8 @@ INSERT INTO `hov_admin_log` VALUES ('650', '131', '1', '192.168.1.104', '拒绝�
 INSERT INTO `hov_admin_log` VALUES ('651', '131', '1', '192.168.1.104', '拒绝代理(10001)提现', '1555342423');
 INSERT INTO `hov_admin_log` VALUES ('652', '131', '1', '192.168.1.104', '拒绝代理(10001)提现', '1555342436');
 INSERT INTO `hov_admin_log` VALUES ('653', '131', '1', '192.168.1.104', '拒绝代理(10001)提现', '1555342504');
+INSERT INTO `hov_admin_log` VALUES ('654', '4', '1', '192.168.1.100', '118', '1555388522');
+INSERT INTO `hov_admin_log` VALUES ('655', '50', '1', '192.168.1.100', '', '1555391457');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -882,7 +884,7 @@ INSERT INTO `hov_admin_menu` VALUES ('114', '生成新卡密', 'admin', 'cardpwd
 INSERT INTO `hov_admin_menu` VALUES ('115', '删除卡密', 'admin', 'cardpwd', 'delete', '', '', '2', '1', '113', '1553174913', '1553174913', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('116', '代理管理', 'admin', 'agent', 'index', '', '', '1', '2', '105', '1553231481', '1553231481', 'fa-film', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('117', '代理提现', 'admin', 'agent', 'withdraw', '', '', '1', '2', '105', '1553231607', '1553231607', 'fa-upload', '0', '0');
-INSERT INTO `hov_admin_menu` VALUES ('118', '代理充值', 'admin', 'agent', 'charge', '', '', '1', '2', '105', '1553231643', '1555336860', 'fa-download', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('118', '充值管理', 'admin', 'agent', 'charge', '', '', '1', '2', '105', '1553231643', '1555388522', 'fa-download', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('119', '新增/修改代理', 'admin', 'agent', 'publish', '', '', '2', '1', '116', '1553241725', '1553241725', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('120', '删除代理', 'admin', 'agent', 'delete', '', '', '2', '1', '116', '1553241824', '1553241824', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('121', '游戏开关', 'admin', 'game', 'index', '', '', '1', '2', '106', '1553309362', '1553309362', 'fa-gamepad', '0', '0');
@@ -998,7 +1000,7 @@ CREATE TABLE `hov_agent_log` (
   `desc` varchar(200) DEFAULT NULL,
   `flag` tinyint(1) DEFAULT '0' COMMENT '主要记录代充和代充撤回的标志位',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_agent_log
@@ -1016,6 +1018,8 @@ INSERT INTO `hov_agent_log` VALUES ('35', '10001', '0.00', '0.00', '0.00', '-10.
 INSERT INTO `hov_agent_log` VALUES ('36', '10001', '0.00', '0.00', '0.00', '-10.00', '889.00', '6', '192.168.1.104', '1555338688', '2019-04-15', '提现', '0');
 INSERT INTO `hov_agent_log` VALUES ('37', '10001', '0.00', '0.00', '0.00', '-8.96', '880.04', '6', '192.168.1.104', '1555340499', '2019-04-15', '提现', '0');
 INSERT INTO `hov_agent_log` VALUES ('38', '10001', '0.00', '0.00', '0.00', '-0.04', '880.00', '6', '192.168.1.104', '1555340551', '2019-04-15', '提现', '0');
+INSERT INTO `hov_agent_log` VALUES ('39', '10001', '0.00', '-98.00', '0.00', '0.00', '827.88', '1', '192.168.1.100', '1555388271', '2019-04-16', '10', '2');
+INSERT INTO `hov_agent_log` VALUES ('40', '10001', '0.00', '98.00', '0.00', '0.00', '925.88', '5', '192.168.1.100', '1555388305', '2019-04-16', '10', '0');
 
 -- ----------------------------
 -- Table structure for `hov_article`
@@ -2910,9 +2914,9 @@ CREATE TABLE `hov_user` (
 INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '45397311@qq.com', '13856911659', '2600880', '3218', '1554362992', '1554733351', '1554775182', '0', '192.168.1.102', '8', null, '0', '0', '0', '1855', '1', '1', '0', null, '1', 'ok', '3', null, '4', '1970', null, '1');
 INSERT INTO `hov_user` VALUES ('6', 'ikscher2', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856922659', null, null, '1554733760', null, '1554733760', '0', '192.168.1.102', '8', null, null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
 INSERT INTO `hov_user` VALUES ('7', 'ikscher3', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856933659', null, null, '1554734059', null, '1554734059', '0', '192.168.1.102', '8', null, null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
-INSERT INTO `hov_user` VALUES ('8', 'ikscher4', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856900659', null, null, '1554734339', '1554820839', '1554734339', null, '192.168.1.102', null, '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
+INSERT INTO `hov_user` VALUES ('8', 'ikscher4', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856900659', null, null, '1554734339', '1555405204', '1554734339', null, '192.168.1.100', null, '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
 INSERT INTO `hov_user` VALUES ('9', 'ikscher5', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856955659', null, null, '1554735892', null, '1554735892', '0', '192.168.1.102', '8', '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
-INSERT INTO `hov_user` VALUES ('10', 'ikscher6', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', '51', '1', '45397312@qq.com', '13856944659', '781600', '0', '1554736170', '1554860717', '1554817692', '0', '192.168.1.107', '8', '0', '1554739200', '0', '0', '1000', '1', '1', '0', null, '3', 'jxjx', '23232323', null, '', '1054915200', null, '1');
+INSERT INTO `hov_user` VALUES ('10', 'ikscher6', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', '51', '1', '45397312@qq.com', '13856944659', '781602', '10', '1554736170', '1554860717', '1554817692', '0', '192.168.1.107', '8', '0', '1554739200', '0', '0', '1000', '1', '1', '0', null, '3', 'jxjx', '23232323', null, '', '1054915200', null, '1');
 INSERT INTO `hov_user` VALUES ('11', 'fsdf', '2afffabc41c1724a8f3d1fd86da6fc48', '1', null, '1', '', '13956899823', null, null, '1554777503', null, '1554777503', '0', '192.168.1.107', '8', '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
 
 -- ----------------------------
@@ -3024,17 +3028,22 @@ CREATE TABLE `hov_user_log` (
   `create_time` int(11) DEFAULT NULL,
   `type` char(30) DEFAULT NULL COMMENT '日志类型',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
 -- ----------------------------
-INSERT INTO `hov_user_log` VALUES ('129', '10', '龙发点卡(10001)代充', '100000', '50', '100000', '0', '1555119094', 'recharge');
-INSERT INTO `hov_user_log` VALUES ('130', '10', '龙发点卡(10001)充值撤回', '-100000', '-50', '0', '0', '1555119140', 'revoke');
-INSERT INTO `hov_user_log` VALUES ('131', '10', '用户点卡自充值1000000', '1000000', '1000', '1000000', '0', '1555121539', '');
+INSERT INTO `hov_user_log` VALUES ('129', '10', '龙发点卡(10001)代充', '100000', '50', '100000', '0', '1555119094', 'charge_agent');
+INSERT INTO `hov_user_log` VALUES ('130', '10', '龙发点卡(10001)充值撤回', '-100000', '-50', '0', '0', '1555119140', 'charge_revoke');
+INSERT INTO `hov_user_log` VALUES ('131', '10', '用户点卡自充值1000000', '1000000', '1000', '1000000', '0', '1555121539', 'charge_user');
 INSERT INTO `hov_user_log` VALUES ('132', '10', '兑换奖品移动充值卡100元', '-218400', '0', '781600', '0', '1555121939', 'prize');
 INSERT INTO `hov_user_log` VALUES ('133', '10', '兑奖流水额外手续费', '-4368', '0', '777232', '0', '1555121939', 'prize');
 INSERT INTO `hov_user_log` VALUES ('134', '10', '兑奖次数额外手续费', '-4368', '0', '772864', '0', '1555121939', 'prize');
+INSERT INTO `hov_user_log` VALUES ('135', '10', '龙发点卡(10001)代充', '100000', '50', '881600', '0', '1555388271', 'charge_agent');
+INSERT INTO `hov_user_log` VALUES ('136', '10', '龙发点卡(10001)充值撤回', '-100000', '-50', '781600', '0', '1555388305', 'charge_revoke');
+INSERT INTO `hov_user_log` VALUES ('137', '10', '每日签到', '2', '0', '781602', '0', '1555389616', 'signin');
+INSERT INTO `hov_user_log` VALUES ('138', '8', '登录', '0', '0', null, '0', '1555400898', '');
+INSERT INTO `hov_user_log` VALUES ('139', '8', '登录', '0', '0', null, '0', '1555405204', 'login');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`
@@ -3165,12 +3174,13 @@ CREATE TABLE `hov_user_safepwd` (
   `safe` varchar(1000) DEFAULT NULL,
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_safepwd
 -- ----------------------------
 INSERT INTO `hov_user_safepwd` VALUES ('1', '5', '{\"A\":{\"1\":\"3f\",\"2\":\"4s\",\"3\":\"6b\",\"4\":\"5p\",\"5\":\"qy\",\"6\":\"9v\",\"7\":\"sk\",\"8\":\"yg\",\"9\":\"5g\"},\"B\":{\"1\":\"au\",\"2\":\"qk\",\"3\":\"nh\",\"4\":\"pu\",\"5\":\"sj\",\"6\":\"qp\",\"7\":\"ew\",\"8\":\"hw\",\"9\":\"yn\"},\"C\":{\"1\":\"u8\",\"2\":\"fy\",\"3\":\"vx\",\"4\":\"yr\",\"5\":\"dx\",\"6\":\"qh\",\"7\":\"xn\",\"8\":\"ra\",\"9\":\"6k\"},\"D\":{\"1\":\"5j\",\"2\":\"pb\",\"3\":\"46\",\"4\":\"d5\",\"5\":\"6s\",\"6\":\"4j\",\"7\":\"uj\",\"8\":\"37\",\"9\":\"uw\"},\"E\":{\"1\":\"wc\",\"2\":\"n6\",\"3\":\"ks\",\"4\":\"wd\",\"5\":\"k9\",\"6\":\"cv\",\"7\":\"5k\",\"8\":\"jn\",\"9\":\"uf\"},\"F\":{\"1\":\"mp\",\"2\":\"mc\",\"3\":\"pq\",\"4\":\"7q\",\"5\":\"e9\",\"6\":\"cf\",\"7\":\"b5\",\"8\":\"sw\",\"9\":\"8p\"},\"G\":{\"1\":\"a7\",\"2\":\"jq\",\"3\":\"sa\",\"4\":\"nt\",\"5\":\"px\",\"6\":\"hk\",\"7\":\"rp\",\"8\":\"r4\",\"9\":\"ae\"},\"H\":{\"1\":\"vj\",\"2\":\"eu\",\"3\":\"nu\",\"4\":\"eh\",\"5\":\"6s\",\"6\":\"hb\",\"7\":\"hv\",\"8\":\"3k\",\"9\":\"an\"},\"I\":{\"1\":\"f9\",\"2\":\"q8\",\"3\":\"fg\",\"4\":\"94\",\"5\":\"bg\",\"6\":\"6y\",\"7\":\"ws\",\"8\":\"u7\",\"9\":\"yq\"}}', '1554511387');
+INSERT INTO `hov_user_safepwd` VALUES ('2', '8', '{\"A\":{\"1\":\"wm\",\"2\":\"d3\",\"3\":\"ab\",\"4\":\"5e\",\"5\":\"gh\",\"6\":\"ej\",\"7\":\"4p\",\"8\":\"u8\",\"9\":\"wf\"},\"B\":{\"1\":\"k4\",\"2\":\"4k\",\"3\":\"xt\",\"4\":\"ef\",\"5\":\"bw\",\"6\":\"tk\",\"7\":\"ug\",\"8\":\"x9\",\"9\":\"jx\"},\"C\":{\"1\":\"5u\",\"2\":\"6w\",\"3\":\"sk\",\"4\":\"8w\",\"5\":\"sx\",\"6\":\"xf\",\"7\":\"sc\",\"8\":\"7r\",\"9\":\"wy\"},\"D\":{\"1\":\"y6\",\"2\":\"pj\",\"3\":\"3x\",\"4\":\"qp\",\"5\":\"dn\",\"6\":\"cq\",\"7\":\"t3\",\"8\":\"fj\",\"9\":\"ta\"},\"E\":{\"1\":\"93\",\"2\":\"68\",\"3\":\"gm\",\"4\":\"aq\",\"5\":\"hv\",\"6\":\"qc\",\"7\":\"37\",\"8\":\"f7\",\"9\":\"dm\"},\"F\":{\"1\":\"jc\",\"2\":\"wr\",\"3\":\"8v\",\"4\":\"hm\",\"5\":\"9y\",\"6\":\"ka\",\"7\":\"cx\",\"8\":\"ym\",\"9\":\"87\"},\"G\":{\"1\":\"7t\",\"2\":\"he\",\"3\":\"x8\",\"4\":\"nx\",\"5\":\"d5\",\"6\":\"sf\",\"7\":\"qv\",\"8\":\"3h\",\"9\":\"je\"},\"H\":{\"1\":\"ks\",\"2\":\"ny\",\"3\":\"st\",\"4\":\"8j\",\"5\":\"qc\",\"6\":\"uj\",\"7\":\"jc\",\"8\":\"yd\",\"9\":\"9x\"},\"I\":{\"1\":\"9w\",\"2\":\"9r\",\"3\":\"uk\",\"4\":\"9j\",\"5\":\"g9\",\"6\":\"9b\",\"7\":\"uk\",\"8\":\"t6\",\"9\":\"nx\"}}', '1555400915');
 
 -- ----------------------------
 -- Table structure for `hov_user_signin`
@@ -3187,7 +3197,7 @@ CREATE TABLE `hov_user_signin` (
 -- ----------------------------
 -- Records of hov_user_signin
 -- ----------------------------
-INSERT INTO `hov_user_signin` VALUES ('1', '10', '1555043189', '[8,9,11]');
+INSERT INTO `hov_user_signin` VALUES ('1', '10', '1555389616', '[8,9,11,15]');
 
 -- ----------------------------
 -- Table structure for `hov_webconfig`

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:60:"D:\mywork\lotgame\public/../app/front\view\common\login.html";i:1554280929;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:60:"D:\mywork\lotgame\public/../app/front\view\common\login.html";i:1555404243;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -232,10 +232,6 @@
                        <a href="/User/Reg" class="fr">5秒注册</a>
                    </div>
                    <button id="loginBtn" lay-submit lay-filter="login"   class="regbtn">登录</button>
-                   <!-- <div class="tool">
-                       <a href="/plugin/qc/login.php" class="fl">QQ登录</a>
-                       <a href="#" class="fr">微信登录</a>
-                   </div> -->
                </form>
 
             </div>

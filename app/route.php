@@ -73,6 +73,7 @@ Route::rule('shop/qualify','front/shop/qualify');
 Route::rule('shop/order','front/shop/order');
 Route::rule('common/logout','front/common/logout');
 Route::rule('common/login','front/common/login');
+Route::rule('common/logins','front/common/logins');
 Route::rule('common/upload','front/common/upload');
 Route::rule('common/gtvalidate','front/common/gtvalidate');
 Route::rule('common/sendmail','front/common/sendmail');

@@ -1,0 +1,57 @@
+{include file="public/header" /}
+<link href="__CSS__/login.css" type="text/css" rel="stylesheet" />
+<script src="__JS__/gt.js"></script>
+<!-- <script src="http://static.geetest.com/static/tools/gt.js"></script> -->
+<script src="__PUBLIC__/jquery/jquery.showLoading.min.js"></script>
+<script src="__PUBLIC__/jquery/jquery.qrcode.min.js"></script>
+<script  type="text/javascript" src="__JS__/login.js?v=1.1"></script>
+
+<div class="login">
+	<div class="box">
+        <div id="loginbox" class="login_box">
+        <div class="tit1"><strong>登录</strong> <em>手机快捷登录</em></div>
+
+        <div class="form-content" id="ifmFormContent">
+           <form action="?act=codetxt" method="post">
+                <ul class="regzone">
+                 您已经设置了使用口令卡登陆，请按坐标输入口令。
+                 <li>
+                    <label>D1</label>
+                    <input name="codetxt" type="text" maxlength="30" id="ContentPlaceHolder1_TextBox4" class="logintb"/>
+                </li>
+                </ul>
+            <div class="tool">
+                <a href="/User/Login?act=logout" class="fr">退出</a>
+            </div>
+            <input type="submit" name="sbmit" value="登陆" id="ContentPlaceHolder1_Button3" class="regbtn"/>
+            <!-- <div class="tool">
+                <a href="/plugin/qc/login.php" class="fl">QQ登录</a>
+                <a href="#" class="fr">微信登录</a>
+            </div> -->
+            </form>
+        </div>
+</div>       
+</div>
+</div>
+<script type="text/javascript">
+	var timeid;
+
+    //页面刚开始加载的时候
+    $(function () {
+        $("#tologin").hide();
+        $("#rebackcode").hide();
+    });
+    function _getRandomString(len) {
+        len = len || 32;
+        var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'; // 默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1
+        var maxPos = $chars.length;
+        var pwd = '';
+        for (i = 0; i < len; i++) {
+            pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        return pwd;
+    }
+
+   
+</script>
+{include file="public/footer" /}

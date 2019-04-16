@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>代理资金提现</title>
+  <title>充值管理</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -26,49 +26,48 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">代理提现</li>
+        <li class="layui-this">充值管理</li>
         <!-- <li><a href="{:url('admin/prize/editremark')}" class="a_menu">编辑评论</a></li> -->
       </ul>
     </div>
     <table class="layui-table" lay-size="sm">
       <colgroup>
-        <col width="350">
-        <col width="200">
-        <col width="200">
         <col width="100">
+        <col width="200">
+        <col width="200">
+        <col width="300">
+        <col width="150">
+        <col width="150">
         <col width="150">
       </colgroup>
       <thead>
         <tr>
-          <th>代理名</th>
-          <th>提现时间</th>
-          <th>提现金额</th>
-          <th>状态</th>
-          <th>处理</th>
+          <th>用户</th>
+          <th>充值金币</th>
+          <th>充值时间</th>
+          <th>备注</th>
+          <th>当前金币</th>
+          <th>银行</th>
+          <th>登录IP</th>
         </tr> 
       </thead>
       <tbody>
-        {volist name="deposits" id="vo"}
+        {volist name="charges" id="vo"}
         <tr>
-          <td>{$vo.agent.name}&nbsp;&nbsp;<a target="blank" href="tencent://message/?uin={$vo.agent.qq}&amp;Site=28&amp;Menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=1:{$vo.agent.qq}:1" alt="点击这里给我发消息"></a></td>
+          <td>{$vo.user.username}</td>
+          <td>{$vo.mp_coin|number_format}</td>
           <td>{$vo.create_time}</td>
-          <td>{$vo.money}</td>
-          <td>{if condition="$vo.status eq 1"}待处理{elseif condition="$vo.status eq 2" /}已处理{elseif condition="$vo.status eq 3" /}已取消提现{elseif condition="$vo.status eq 4" /}已拒绝{/if}</td>
-          <td class="operation-menu">
-            <div class="layui-btn-group">
-              {if condition="$vo.status eq 1"}
-              <a href="{:url('admin/agent/dealed',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;">打款完毕</a>
-              <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary reject" id="{$vo.id}" style="margin-right: 0;font-size:12px;">拒绝提现</a>
-              {else /}<a>---</a>{/if}
-            </div>
-          </td>
+          <td>{$vo.desc}</td>
+          <td>{$vo.coin|number_format}</td>
+          <td>{$vo.user.bank}</td>
+          <td>{$vo.user.login_ip}</td>
         </tr>
         {/volist}
       </tbody>
     </table>
-    <div>{$deposits->render();}</div>
+    <div>{$charges->render();}</div>
     {include file="public/foot"}
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
 
     $('.reject').click(function(){
       var id = $(this).attr('id');
@@ -88,7 +87,7 @@
       })
    
     })
-    </script>
+    </script> -->
   </div>
 </body>
 </html>

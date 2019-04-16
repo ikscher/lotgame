@@ -248,6 +248,17 @@ class User extends Site
                $this->userSafepwdModel->where($map)->delete();//解除密保卡
             }
         }   
+        //过期时间
+        $time=time();
+        $access=true;
+
+        $expiretime=$this->userSafepwdModel->where($map)->value('create_time');
+        $remain=($time-$expiretime>0)?($time-$expiretime):0;
+        if($remain>3600){ //您无法再查看口令卡，如口令卡遗失请联系客服。
+            $access=false;
+        }
+        $this->assign('remain',$remain);
+        $this->assign('access',$access);
 
         //显示密保卡
         $safepwd=$this->userSafepwdModel->where($map)->value('safe');
@@ -305,7 +316,7 @@ class User extends Site
                            //充值增加经验对等金额（元）
                            $this->userModel->where('uid',$this->uid)->setInc('experiments',$exp);
                            //写入日志
-                           adduserlog($this->uid,$operation,$coin,$exp,$usercoin);
+                           adduserlog($this->uid,$operation,$coin,$exp,$usercoin,'charge_user');
                            return $this->success($operation,'/user/charge');
                         }
                     }elseif (in_array($card['status'],array(2,3,4))){
@@ -401,7 +412,7 @@ class User extends Site
                     $usercoin=$this->userModel->where('uid',$this->uid)->value('coin');
                     //充值增加经验
                     $this->userModel->where('uid',$this->uid)->setInc('experiments',$sum_exp);
-                    adduserlog($this->uid,$operation,$sum_coin,$sum_exp,$usercoin);
+                    adduserlog($this->uid,$operation,$sum_coin,$sum_exp,$usercoin,'charge_user');
                     return $this->success($operation,'/user/charge');
                 }
             

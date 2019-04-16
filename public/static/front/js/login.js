@@ -50,10 +50,11 @@ $(document).ready(function(){
                 dataType:'json',
                 success:function(res) {
                   // console.log(res);
+
                     if(res.code == 1) {
-                          layer.msg(res.msg, function(index){
+                          //layer.msg(res.msg, function(index){
                             location.href = res.url;
-                          })
+                          //})
                     } else {
                           layer.msg(res.msg);
                     }

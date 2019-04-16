@@ -25,13 +25,15 @@ use app\front\model\User as userModel;
 use app\agent\model\AgentDeposit as agentDepositModel;
 use app\admin\model\AgentCate as agentcateModel;
 use app\admin\model\AgentLog as agentlogModel;
+use app\front\model\UserLog as userLogModel;
 class Agent extends Permissions
 {   
     private $agentcatemodel;
     private $agentDepositModel;
     private $agent_log_types;
-    private $usermodel;
+    private $userModel;
     private $agentModel;
+    private $userLogModel;
     private $agentlog;
 
     public function _initialize()
@@ -39,7 +41,8 @@ class Agent extends Permissions
         $this->agentModel=new agentModel();
         $this->agentcatemodel=new agentcateModel();
         $this->agentDepositModel=new agentDepositModel();
-        $this->usermodel=new userModel();
+        $this->userModel=new userModel();
+        $this->userLogModel=new userLogModel();
         $this->agentlogmodel=new agentlogModel();
         $this->agent_log_types=Config::get('agent_log_type');
     }
@@ -215,7 +218,7 @@ class Agent extends Permissions
     //代理提现
     public function withdraw()
     {
-        $deposits = $this->agentDepositModel->select();
+        $deposits = $this->agentDepositModel->paginate(10,false,['query'=>$this->request->param()]);
         // var_dump($remarks);exit;
         $this->assign('deposits',$deposits);
         return $this->fetch();
@@ -261,6 +264,15 @@ class Agent extends Permissions
         }else{
             return $this->error('出错，请联系管理员！'); 
         }
+    }
+
+    //充值管理
+    public function charge()
+    {   
+        $map['type']=array('in',array('charge_user','charge_agent','charge_revoke'));
+        $charges=$this->userLogModel->where($map)->order('create_time desc')->paginate(10,false,['query'=>$this->request->param()]);
+        $this->assign('charges',$charges);
+        return $this->fetch();
     }
 
 }
