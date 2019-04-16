@@ -55,6 +55,31 @@ function get_random_element($s)
 }
 
 /**
+*  任意存取二维数组中的一个元素(带有键值的)
+*  @param $s :一个二维数组
+*  @return 返回二维数组中任意一个元素
+**/
+function get_random_element_withkey($s,&$key,&$key_)
+{
+    $s_=shuffle_assoc($s,true);
+
+    $s__=array_kshift($s_);
+    $key=key($s__);
+
+    $value=$s__[$key];
+    $key_=array_rand($value);
+    return  $value[$key_];
+}
+
+function array_kshift(&$arr)
+{
+    list($k) = array_keys($arr);
+    $r  = array($k=>$arr[$k]);
+    unset($arr[$k]);
+    return $r;
+}
+
+/**
 ***来自www.cnblogs.com/xingmeng/p/3457190.html
 *以下代码是一段经典的概率算法，$proArr是一个预先设置的数组，假设数组为：array(100,200,300，400)，开始是从1,1000这个概率范围内筛选第一个数是否在他的出现概率范围之内， 如果不在，则将概率空减，也就是k的值减去刚刚的那个数字的概率空间，在本例当中就是减去100，也就是说第二个数是在1，900这个范围内筛选的。这样筛选到最终，总会有一个数满足要求。就相当于去一个箱子里摸东西，第一个不是，第二个不是，第三个还不是，那最后一个一定是。这个算法简单，而且效率非常高，关键是这个算法已在我们以前的项目中有应用，尤其是大数据量的项目中效率非常棒。
 *************测试代码***********

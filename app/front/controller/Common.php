@@ -100,8 +100,10 @@ class Common extends Site
                             
                             //如果设置了密码卡，跳转
                             $id_sf=$this->userSafepwdModel->where('user_id',$uid)->value('id');
-                            if(!empty($id_sf)) $this->success('','/common/logins');
-                           
+                            if(!empty($id_sf)) {
+                                Session::set('userlogin',$user);
+                                $this->success('','/common/logins');
+                            }
                             //记录登录cookie
                             Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
 
@@ -138,10 +140,43 @@ class Common extends Site
             $this->redirect('/common/login');
         }   
     }
-
+    
+    //密保卡登录
     public function logins()
-    {
-        return $this->fetch();
+    {   
+        if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+        $user=Session::get('userlogin');
+        $uid=$user['uid'];
+        
+
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $coordinate_p=$post['coordinate'];
+            // exit($coordinate.'and'.Session::get('coordinate'));
+            if(!empty($coordinate_p) && $coordinate_p==Session::get('coordinate') ){
+                 //记录登录cookie
+                
+                Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
+
+                //记录登录时间和ip
+                $this->userModel->where('uid',$uid)->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
+                //记录操作日志
+                $coin=$this->userModel->where('uid',$uid)->value('coin');
+                // $this->userModel->where('uid',$user['uid'])->setInc('experiments',5);
+                adduserlog($uid,'登录',0,0,$coin,'login');
+                return $this->success('登录成功,正在跳转...','/user/index');
+            }else{
+                return $this->error('密保卡错误！');
+            }
+        }else{
+            $safe=$this->userSafepwdModel->where('user_id',$uid)->value('safe');
+            $safe_arr=json_decode($safe,true);
+            $coordinate=get_random_element_withkey($safe_arr,$x,$y);
+            Session::set('coordinate',$coordinate);
+            $this->assign('x',$x);
+            $this->assign('y',$y);
+            return $this->fetch();
+        }
     }
     
     /**

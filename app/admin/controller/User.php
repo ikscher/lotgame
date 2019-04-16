@@ -195,5 +195,11 @@ class User extends Permissions
         return $this->success('正在跳转...','/user/index');
     }
 
+    //其他功能
+    public function other()
+    {
+        return $this->fetch();
+    }
+
     
 }

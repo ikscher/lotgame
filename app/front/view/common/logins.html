@@ -9,21 +9,21 @@
 <div class="login">
 	<div class="box">
         <div id="loginbox" class="login_box">
-        <div class="tit1"><strong>登录</strong> <em>手机快捷登录</em></div>
+        <div class="tit1"><strong>登录</strong> <!-- <em>手机快捷登录</em> --></div>
 
         <div class="form-content" id="ifmFormContent">
-           <form action="?act=codetxt" method="post">
+           <form id="loginsform" >
                 <ul class="regzone">
                  您已经设置了使用口令卡登陆，请按坐标输入口令。
                  <li>
-                    <label>D1</label>
-                    <input name="codetxt" type="text" maxlength="30" id="ContentPlaceHolder1_TextBox4" class="logintb"/>
+                    <label>{$x}{$y}</label>
+                    <input name="coordinate" id="coordinate" type="text" maxlength="30" id="ContentPlaceHolder1_TextBox4" class="logintb"/>
                 </li>
                 </ul>
             <div class="tool">
-                <a href="/User/Login?act=logout" class="fr">退出</a>
+                <a href="/common/logout" class="fr">退出</a>
             </div>
-            <input type="submit" name="sbmit" value="登陆" id="ContentPlaceHolder1_Button3" class="regbtn"/>
+            <button  lay-submit lay-filter="logins" class="regbtn">登录</button>
             <!-- <div class="tool">
                 <a href="/plugin/qc/login.php" class="fl">QQ登录</a>
                 <a href="#" class="fr">微信登录</a>
@@ -34,6 +34,37 @@
 </div>
 </div>
 <script type="text/javascript">
+
+    layui.use(['layer', 'form','jquery'], function(){
+        var layer = layui.layer, form = layui.form,$=layui.jquery;
+        
+        form.on('submit(logins)',function(data){
+            if($("#coordinate").val()==""){
+                layer.alert("请输入密保卡!");
+                return false;
+            }
+            $.ajax({
+                url:"/common/logins",
+                data:$('#loginsform').serialize(),
+                type:'post',
+                async: false,
+                dataType:'json',
+                success:function(res) {
+                  // console.log(res);
+
+                    if(res.code == 1) {
+                          //layer.msg(res.msg, function(index){
+                            location.href = res.url;
+                          //})
+                    } else {
+                          layer.msg(res.msg);
+                    }
+                }
+            })
+            return false;
+        })
+
+    })
 	var timeid;
 
     //页面刚开始加载的时候

@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50505
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-16 17:12:04
+Date: 2019-04-16 23:26:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1555391457', '192.168.1.100', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1555426735', '192.168.1.104', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -80,7 +80,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=656 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=660 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -737,6 +737,10 @@ INSERT INTO `hov_admin_log` VALUES ('652', '131', '1', '192.168.1.104', '拒绝�
 INSERT INTO `hov_admin_log` VALUES ('653', '131', '1', '192.168.1.104', '拒绝代理(10001)提现', '1555342504');
 INSERT INTO `hov_admin_log` VALUES ('654', '4', '1', '192.168.1.100', '118', '1555388522');
 INSERT INTO `hov_admin_log` VALUES ('655', '50', '1', '192.168.1.100', '', '1555391457');
+INSERT INTO `hov_admin_log` VALUES ('656', '50', '1', '192.168.1.104', '', '1555426735');
+INSERT INTO `hov_admin_log` VALUES ('657', '4', '1', '192.168.1.104', '132', '1555427053');
+INSERT INTO `hov_admin_log` VALUES ('658', '4', '1', '192.168.1.104', '132', '1555427104');
+INSERT INTO `hov_admin_log` VALUES ('659', '4', '1', '192.168.1.104', '132', '1555427133');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -765,7 +769,7 @@ CREATE TABLE `hov_admin_menu` (
   KEY `function` (`function`) USING BTREE,
   KEY `is_display` (`is_display`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of hov_admin_menu
@@ -898,6 +902,7 @@ INSERT INTO `hov_admin_menu` VALUES ('128', '创建游戏表', 'admin', 'game', 
 INSERT INTO `hov_admin_menu` VALUES ('129', '模拟会员登录', 'admin', 'user', 'login', '', '模拟会员登录', '2', '1', '88', '1554360642', '1554360642', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('130', '确认打款', 'admin', 'agent', 'dealed', '', '打款完毕（到代理）', '2', '1', '117', '1555342304', '1555342304', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('131', '拒绝提现', 'admin', 'agent', 'rejected', '', '拒绝代理提现', '2', '1', '117', '1555342355', '1555342355', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('132', '其他功能', 'admin', 'user', 'other', '', '', '1', '2', '86', '1555427053', '1555427133', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `hov_agent`
@@ -2914,7 +2919,7 @@ CREATE TABLE `hov_user` (
 INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '45397311@qq.com', '13856911659', '2600880', '3218', '1554362992', '1554733351', '1554775182', '0', '192.168.1.102', '8', null, '0', '0', '0', '1855', '1', '1', '0', null, '1', 'ok', '3', null, '4', '1970', null, '1');
 INSERT INTO `hov_user` VALUES ('6', 'ikscher2', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856922659', null, null, '1554733760', null, '1554733760', '0', '192.168.1.102', '8', null, null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
 INSERT INTO `hov_user` VALUES ('7', 'ikscher3', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856933659', null, null, '1554734059', null, '1554734059', '0', '192.168.1.102', '8', null, null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
-INSERT INTO `hov_user` VALUES ('8', 'ikscher4', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856900659', null, null, '1554734339', '1555405204', '1554734339', null, '192.168.1.100', null, '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
+INSERT INTO `hov_user` VALUES ('8', 'ikscher4', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856900659', null, null, '1554734339', '1555426656', '1554734339', null, '192.168.1.104', null, '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
 INSERT INTO `hov_user` VALUES ('9', 'ikscher5', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856955659', null, null, '1554735892', null, '1554735892', '0', '192.168.1.102', '8', '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
 INSERT INTO `hov_user` VALUES ('10', 'ikscher6', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', '51', '1', '45397312@qq.com', '13856944659', '781602', '10', '1554736170', '1554860717', '1554817692', '0', '192.168.1.107', '8', '0', '1554739200', '0', '0', '1000', '1', '1', '0', null, '3', 'jxjx', '23232323', null, '', '1054915200', null, '1');
 INSERT INTO `hov_user` VALUES ('11', 'fsdf', '2afffabc41c1724a8f3d1fd86da6fc48', '1', null, '1', '', '13956899823', null, null, '1554777503', null, '1554777503', '0', '192.168.1.107', '8', '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
@@ -3028,7 +3033,7 @@ CREATE TABLE `hov_user_log` (
   `create_time` int(11) DEFAULT NULL,
   `type` char(30) DEFAULT NULL COMMENT '日志类型',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -3044,6 +3049,10 @@ INSERT INTO `hov_user_log` VALUES ('136', '10', '龙发点卡(10001)充值撤回
 INSERT INTO `hov_user_log` VALUES ('137', '10', '每日签到', '2', '0', '781602', '0', '1555389616', 'signin');
 INSERT INTO `hov_user_log` VALUES ('138', '8', '登录', '0', '0', null, '0', '1555400898', '');
 INSERT INTO `hov_user_log` VALUES ('139', '8', '登录', '0', '0', null, '0', '1555405204', 'login');
+INSERT INTO `hov_user_log` VALUES ('140', '8', '登录', '0', '0', null, '0', '1555425194', 'login');
+INSERT INTO `hov_user_log` VALUES ('141', '8', '登录', '0', '0', null, '0', '1555426507', 'login');
+INSERT INTO `hov_user_log` VALUES ('142', '8', '登录', '0', '0', null, '0', '1555426656', 'login');
+INSERT INTO `hov_user_log` VALUES ('143', '9', '每日签到', '2', '0', null, '0', '1555427997', 'signin');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`
@@ -3192,12 +3201,13 @@ CREATE TABLE `hov_user_signin` (
   `cur_date` int(11) DEFAULT NULL COMMENT '当前日期（月份）',
   `signin_day` varchar(200) DEFAULT NULL COMMENT '当月签到的天数明细',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_signin
 -- ----------------------------
 INSERT INTO `hov_user_signin` VALUES ('1', '10', '1555389616', '[8,9,11,15]');
+INSERT INTO `hov_user_signin` VALUES ('2', '9', '1555427996', '[15]');
 
 -- ----------------------------
 -- Table structure for `hov_webconfig`
