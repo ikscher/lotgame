@@ -826,7 +826,141 @@ class User extends Site
     * 救济领取
     */
     public function relief()
-    {
+    {   
+       
+        $rate=$this->user['user_grade_id'];
+        $this->assign('rate',$rate); //等级
+        $balance=$this->user['coin']+$this->user['bank'];
+        $this->assign('balance',$balance); //余额
+        
+        $reclaim=0;
+        switch($rate){
+            case '0':
+               if($balance<50) $reclaim=50;
+               break;
+            case '1':
+               if($balance<50) $reclaim=60;
+               break;
+            case '2':
+               if($balance<70) $reclaim=70;
+               break;
+            case '3':
+               if($balance<100) $reclaim=100;
+               break;
+            case '4':
+               if($balance<120) $reclaim=120;
+               break;
+            case '5':
+               if($balance<150) $reclaim=150;
+               break;
+            case '6':
+               if($balance<200) $reclaim=200;
+               break;
+        }
+        $this->assign('reclaim',$reclaim);//可领取的救济
+        if($this->request->isPost()){
+            switch($rate){
+                case '0':
+                   $uid_relief=Session::get('uid_relief')?Session::get('uid_relief'):0;
+                   if($balance<50 && $uid_relief<=10){
+                       $this->userModel->where('uid',$this->uid)->setInc('coin',50);
+                       $uid_relief++;
+                       Session::set('uid_relief',$uid_relief);
+                       return $this->success('领取成功','/user/relief');
+                   }else{
+                       if($balance>=50)
+                            return $this->error('您的余额超过50，无法领取！');
+                        else
+                            return $this->error('您已超过领取次数！');
+                   }
+                   break;
+                case '1':
+                   $uid_relief=Session::get('uid_relief')?Session::get('uid_relief'):0;
+                   if($balance<50 && $uid_relief<=10){
+                       $this->userModel->where('uid',$this->uid)->setInc('coin',60);
+                       $uid_relief++;
+                       Session::set('uid_relief',$uid_relief);
+                       return $this->success('领取成功','/user/relief');
+                   }else{
+                       if($balance>=50)
+                            return $this->error('您的余额超过50，无法领取！');
+                        else
+                            return $this->error('您已超过领取次数！');
+                   }
+                   break;
+                case '2':
+                   $uid_relief=Session::get('uid_relief')?Session::get('uid_relief'):0;
+                   if($balance<70 && $uid_relief<=10){
+                       $this->userModel->where('uid',$this->uid)->setInc('coin',70);
+                       $uid_relief++;
+                       Session::set('uid_relief',$uid_relief);
+                       return $this->success('领取成功','/user/relief');
+                   }else{
+                       if($balance>=70)
+                            return $this->error('您的余额超过70，无法领取！');
+                        else
+                            return $this->error('您已超过领取次数！');
+                   }
+                   break;
+                case '3':
+                   $uid_relief=Session::get('uid_relief')?Session::get('uid_relief'):0;
+                   if($balance<100 && $uid_relief<=10){
+                       $this->userModel->where('uid',$this->uid)->setInc('coin',100);
+                       $uid_relief++;
+                       Session::set('uid_relief',$uid_relief);
+                       return $this->success('领取成功','/user/relief');
+                   }else{
+                       if($balance>=100)
+                            return $this->error('您的余额超过100，无法领取！');
+                        else
+                            return $this->error('您已超过领取次数！');
+                   }
+                   break;
+                case '4':
+                   $uid_relief=Session::get('uid_relief')?Session::get('uid_relief'):0;
+                   if($balance<120 && $uid_relief<=10){
+                       $this->userModel->where('uid',$this->uid)->setInc('coin',120);
+                       $uid_relief++;
+                       Session::set('uid_relief',$uid_relief);
+                       return $this->success('领取成功','/user/relief');
+                   }else{
+                       if($balance>=120)
+                            return $this->error('您的余额超过120，无法领取！');
+                        else
+                            return $this->error('您已超过领取次数！');
+                   }
+                   break;
+                case '5':
+                   $uid_relief=Session::get('uid_relief')?Session::get('uid_relief'):0;
+                   if($balance<150 && $uid_relief<=10){
+                       $this->userModel->where('uid',$this->uid)->setInc('coin',150);
+                       $uid_relief++;
+                       Session::set('uid_relief',$uid_relief);
+                       return $this->success('领取成功','/user/relief');
+                   }else{
+                       if($balance>=150)
+                            return $this->error('您的余额超过150，无法领取！');
+                        else
+                            return $this->error('您已超过领取次数！');
+                   }
+                   break;
+                case '6':
+                   $uid_relief=Session::get('uid_relief')?Session::get('uid_relief'):0;
+                   if($balance<200 && $uid_relief<=10){
+                       $this->userModel->where('uid',$this->uid)->setInc('coin',200);
+                       $uid_relief++;
+                       Session::set('uid_relief',$uid_relief);
+                       return $this->success('领取成功','/user/relief');
+                   }else{
+                       if($balance>=200)
+                            return $this->error('您的余额超过200，无法领取！');
+                        else
+                            return $this->error('您已超过领取次数！');
+                   }
+                   break;
+
+            }
+        }
         return $this->fetch();
     }
 
@@ -834,7 +968,15 @@ class User extends Site
     * 首充返利
     */
     public function bonus()
-    {
+    {   
+        $map['type']=array('in','charge_agent,charge_user');
+        $begin_time=strtotime(date("Y-m-d",strtotime("-1 day")));
+        $end_time=strtotime(date('Y-m-d'));
+        $map['create_time']= array(array('gt',$begin_time),array('lt',$end_time));
+        $map['user_id']=$this->uid;
+        $map['flag']=0;
+        $charge=$this->userLogModel->where($map)->order('create_time asc')->find();
+        $this->assign('charge',$charge);
         return $this->fetch();
     }
 

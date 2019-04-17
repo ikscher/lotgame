@@ -61,7 +61,7 @@
 .page li+li{margin-left:12px}
 .page a{font-size:14px;padding:5px 10px;background:#f2f2f2;color:#4c4c4c;border-radius:5px;border:1px solid #c8c8c8}
 .page span{color:#ff1d1d!important}
-.user-btn{width:130px;height:36px;line-height:36px;border-radius:5px;text-align:center;color:#fff;background:#ffc23b;font-size:14px;display:inline;outline:0;border:0;cursor:pointer}
+.user-btn{width:130px;height:36px;line-height:36px;border-radius:5px;text-align:center;color:#fff;background:#ffc23b;font-size:14px;display:block;outline:0;border:0;cursor:pointer}
 .user-btn:hover{background:#fbb61d;color:#fff}
 .tishi{margin:10px 0;font-size:13px;color:#565656;line-height:28px;background:url(../image/user/tishi-icon.png) no-repeat left center;padding-left:40px;box-sizing:border-box}
 .tishi1{line-height:18px}
@@ -178,6 +178,8 @@
 .user-dj4{background-position:0 -101px}
 .user-dj5{background-position:0 -126px}
 .user-dj6{background-position:0 -152px}
+.reward-ul li{margin-left: 40px; }
+.reward-ul li {display: inline-block; } 
 .bonus-text{width:100%;display:inline-block;color:#ff8e1d;font-size:14px;margin:45px 0 115px;text-align:center}
 .reward-ul li span.bonus-span{color:#ff4c0d;font-size:18px;display:inline-block;float:left}
 .alms-table{width:100%;display:inline-block;border:1px solid #dbdcdc}

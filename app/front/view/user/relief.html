@@ -70,25 +70,38 @@
 	            <ul class="reward-ul mt40" style="text-align: center;">
 	                <li>
 	                    <label>您当前的等级为：</label>
-	                    <i class="user-dj user-dj0 fl"></i>
+	                    <i class="user-dj user-dj{$rate} fl"></i>
 	                </li>
 	                <li>
 	                    <label>账户余额：</label>
-	                    <span class="bonus-span">42,399</span>
+	                    <span class="bonus-span">{$balance}</span>
 	                </li>
 	                <li>
 	                    <label>可救济领取：</label>
-	                    <span class="bonus-span">0</span>
+	                    <span class="bonus-span">{$reclaim}</span>
 	                </li>
 	            </ul>
 
-				<form class="btc_transfer" action="?act=almsgiving" method="post">
-				<button class="user-btn" type="submit" style="margin: 20px auto;display: block;">确认领取</button>
-				</form>
+				
+				<button class="user-btn" lay-submit lay-filter='relief' style="margin: 20px auto;display: block;">确认领取</button>
+				
 
 
 			</div>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	layui.use(['form','jquery'],function(){
+		var form=layui.form,$=layui.jquery;
+		form.on('submit(relief)',function(){
+			$.post('/user/relief','json',function(res){
+				layer.msg(res.msg);
+                if(res.code==1){
+                    location.href=res.url;
+                }
+			})
+		})
+	})
+</script>
 {include file="public/footer" /}
