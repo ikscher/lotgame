@@ -42,6 +42,48 @@ class Common extends Site
         // $this->assign('title',$this->site_name);
 
     }
+    
+    /**
+    *@ 找回密码
+    */
+    public function findpwd()
+    {
+        if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            Session::set('findpwd_mobile',$post['mobile']);
+            if(Session::get('findpwd_smscode_t')==$post['tbSafeCode'] && !empty($post['tbSafeCode'])){
+                return $this->success('','/common/findpwd2');
+            }else{
+                return $this->error('验证码不正确！');
+            }
+        }
+
+        return $this->fetch();
+    }
+
+    /**
+    *@ 找回密码
+    */
+    public function findpwd2()
+    {   
+        if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+        $mobile=Session::get('findpwd_mobile');
+        if(empty($mobile)) { $this->redirect('/common/findpwd');}
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $password=password($post['password']);
+            $result=$this->userModel->where('mobile',$mobile)->setField('password',$password);
+            if($result!=false){
+                return $this->success('修改密码成功','/common/login');
+            }else{
+                return $this->error('修改密码失败！');
+            }
+        }
+
+        return $this->fetch();
+    }
+
 
 
     /**
@@ -356,6 +398,7 @@ class Common extends Site
             $action=$post['action'];//login登录验证，changepwd修改密码验证，register注册
             
             switch($action){
+                case 'findpwd':
                 case 'login'://判断用户是否存在，不存在则不能登录
                     $mobile=$post['mobile'];
                     $map['mobile']=$mobile;
@@ -419,6 +462,9 @@ class Common extends Site
                 }elseif($action=='order') {
                     Session::set('order_smscode_t',$smscode_t);
                     Cookie::set('order_smscode_t',$smscode_t);
+                }elseif($action=='findpwd'){
+                    Session::set('findpwd_smscode_t',$smscode_t);
+                    Cookie::set('findpwd_smscode_t',$smscode_t);
                 }
                 $data['code']=1;
                 echo json_encode($data);exit;

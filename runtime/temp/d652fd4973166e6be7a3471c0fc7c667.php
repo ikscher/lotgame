@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:59:"D:\mywork\lotgame\public/../app/front\view\user\signin.html";i:1554889404;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554734797;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554889404;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:59:"D:\mywork\lotgame\public/../app/front\view\user\signin.html";i:1554863637;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1555474378;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554865678;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,19 +201,19 @@
 	<ul class="ubase-ul">
 		<li class="li1">
 			<p class="p1">账户余额</p>
-			<p class="p2"><?php echo $user['coin']; ?></p>
+			<p class="p2"><?php if(!(empty($user['coin']) || (($user['coin'] instanceof \think\Collection || $user['coin'] instanceof \think\Paginator ) && $user['coin']->isEmpty()))): ?><?php echo $user['coin']; else: ?>0<?php endif; ?></p>
 		</li>
 		<li class="li2">
 			<p class="p1">银行</p>
-			<p class="p2"><?php echo $user['bank']; ?></p>
+			<p class="p2"><?php if(!(empty($user['bank']) || (($user['bank'] instanceof \think\Collection || $user['bank'] instanceof \think\Paginator ) && $user['bank']->isEmpty()))): ?><?php echo $user['bank']; else: ?>0<?php endif; ?></p>
 		</li>
 		<li class="li3">
 			<p class="p1">积分</p>
-			<p class="p2"><?php echo $user['points']; ?></p>
+			<p class="p2"><?php if(!(empty($user['points']) || (($user['points'] instanceof \think\Collection || $user['points'] instanceof \think\Paginator ) && $user['points']->isEmpty()))): ?><?php echo $user['points']; else: ?>0<?php endif; ?></p>
 		</li>
 		<li class="li4">
 			<p class="p1">经验</p>
-			<p class="p2"><?php echo $user['experiments']; ?></p>
+			<p class="p2"><?php if(!(empty($user['experiments']) || (($user['experiments'] instanceof \think\Collection || $user['experiments'] instanceof \think\Paginator ) && $user['experiments']->isEmpty()))): ?><?php echo $user['experiments']; else: ?>0<?php endif; ?></p>
 		</li>
 	</ul>
 </div>

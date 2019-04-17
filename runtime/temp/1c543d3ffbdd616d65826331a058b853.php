@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\bank.html";i:1554382377;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554378080;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1554009565;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1554603822;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:57:"D:\mywork\lotgame\public/../app/front\view\user\bank.html";i:1554686874;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1555474378;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1555476702;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -37,7 +37,7 @@
 				</ul>
 			</div>
 			<span class="barr fr">
-				<?php if($uid != 0): ?>
+				<?php if($uid > 0): ?>
 					<b ><?php echo $user['username']; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php echo $user['coin']; ?></b></span> &nbsp;
 					<a href="/User/Index">我的账号</a> <a href="/User/Msg">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/common/logout">退出</a>
@@ -189,7 +189,8 @@
 <div id="wrapper" class="umain">
   <div class="w1200">
     <div class="utop">
-	<div class="utop-head"><img src="<?php if(geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
+	<div class="utop-head">
+		<img src="<?php if(!empty($user['avatar']) && geturl($user['avatar'])){ ?><?php echo geturl($user['avatar']);}else{ ?>/static/front/image/user/avatar.jpg<?php }?>" width="100%" height="100%"><a href="/User/Edit" class="utop-head-btn">修改头像</a></div>
 	<div class="utop-info">
 		<p class="utop-info-p">欢迎回来，<span>ikscher</span>。您有 <span>0</span> 条消息。</p>
 		<div class="utop-info-name">昵称：<?php echo $user['username']; ?></div>
@@ -198,19 +199,19 @@
 	<ul class="ubase-ul">
 		<li class="li1">
 			<p class="p1">账户余额</p>
-			<p class="p2"><?php echo $user['coin']; ?></p>
+			<p class="p2"><?php if(!(empty($user['coin']) || (($user['coin'] instanceof \think\Collection || $user['coin'] instanceof \think\Paginator ) && $user['coin']->isEmpty()))): ?><?php echo $user['coin']; else: ?>0<?php endif; ?></p>
 		</li>
 		<li class="li2">
 			<p class="p1">银行</p>
-			<p class="p2"><?php echo $user['bank']; ?></p>
+			<p class="p2"><?php if(!(empty($user['bank']) || (($user['bank'] instanceof \think\Collection || $user['bank'] instanceof \think\Paginator ) && $user['bank']->isEmpty()))): ?><?php echo $user['bank']; else: ?>0<?php endif; ?></p>
 		</li>
 		<li class="li3">
 			<p class="p1">积分</p>
-			<p class="p2"><?php echo $user['points']; ?></p>
+			<p class="p2"><?php if(!(empty($user['points']) || (($user['points'] instanceof \think\Collection || $user['points'] instanceof \think\Paginator ) && $user['points']->isEmpty()))): ?><?php echo $user['points']; else: ?>0<?php endif; ?></p>
 		</li>
 		<li class="li4">
 			<p class="p1">经验</p>
-			<p class="p2"><?php echo $user['experiments']; ?></p>
+			<p class="p2"><?php if(!(empty($user['experiments']) || (($user['experiments'] instanceof \think\Collection || $user['experiments'] instanceof \think\Paginator ) && $user['experiments']->isEmpty()))): ?><?php echo $user['experiments']; else: ?>0<?php endif; ?></p>
 		</li>
 	</ul>
 </div>
@@ -227,13 +228,15 @@
 		</ul>
 		<ul>
 			<li><a href='/Agent/Index'>在线充值</a></li>
-			<li><a href='/Cg/Getprize'>闯关奖励</a></li>
+			<?php if($agent_id > 0): ?><li><a href='/Agent/Other/Info'>代理后台</a></li><?php endif; ?>
+			<!-- <li><a href='/Cg/Getprize'>闯关奖励</a></li> -->
 		</ul>
 
 		<p>站内功能</p>
 		<ul>
 			<!-- <li><a href='/User/SelfLine'>专属域名</a></li> -->
 			<li><a href='/User/Charge'>点卡使用</a></li>
+			<li><a href='/User/Bonus'>首充返利</a></li>
 		</ul>
 		<ul>
 			<li><a href='/User/Msg'>站内信箱</a></li>
@@ -243,19 +246,17 @@
 			<li><a href='/User/Prize'>兑奖记录</a></li>
 			<li><a href='/User/ReWard'>亏损返利</a></li>
 		</ul>
-		<ul>
-			<li><a href='/User/Bonus'>首充返利</a></li>
-		</ul>
+	
 
 		<p>推广相关</p>
 		<ul>
 			<li><a href='/User/Recom'>推广下线</a></li>
-			<li><a href='/User/Recomprofit'>推广收益</a></li>
+			<li><a href='/User/Recomyield'>推广收益</a></li>
 		</ul>
 
 		<p>工资救济</p>
 		<ul>
-			<li><a href='/User/Sign'>签到中心</a></li>
+			<li><a href='/User/Signin'>签到中心</a></li>
 			<li><a href='/User/Alms'>领取救济</a></li>
 		</ul>
 		<ul>

@@ -75,9 +75,53 @@ class Other extends Site
     //资金互转
     public function transfer()
     {   
-        $map['id']=10000;
-        $agent=$this->agentModel->where($map)->find();
-        $this->assign('agetn',$agent);
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $action=$post['action'];
+            $agent_id=$post['agent_id'];
+            if($action=='query'){
+                $agent=$this->agentModel->where('id',$agent_id)->find();
+                if(!$agent['id']){
+                    return $this->error('此代理不存在！');
+                }
+                $agent['code']=1;
+                echo json_encode($agent);exit;
+            }elseif($action=='transfer'){
+                if($agent_id==$this->agent['id']){
+                    return $this->error('不能自己转给自己！');
+                }
+                $transfer_money=$post['transfer_money'];
+                $result_trans=true;
+                Db::startTrans();
+
+                try{
+                    //转出一方
+                    $this->agentModel->where('id',$this->agent['id'])->setDec('balance',$transfer_money);
+                    $balance=$this->agentModel->where('id',$this->agent['id'])->value('balance');
+                    addagentlog($this->agent['id'],'8',-$transfer_money,$balance,'代理'.$this->agent['id'].'转给'.$agent_id);
+                    //转入一方
+                    $this->agentModel->where('id',$agent_id)->setInc('balance',$transfer_money);
+                    $agentbalance=$this->agentModel->where('id',$agent_id)->value('balance');
+                    addagentlog($agent_id,'8',$transfer_money,$agentbalance,'代理'.$this->agent['id'].'转给'.$agent_id);
+                    //提交事务
+                    Db::commit(); 
+                    
+                }catch (\Exception $e) {
+                    $result_trans=false;
+                    // 回滚事务
+                    Db::rollback();
+                    
+                }  
+                
+                if($result_trans==true){
+                    return $this->success('成功转出','/agent/other/transfer'); 
+                }else{
+                    return $this->error('转账出错，请联系管理员！'); 
+                }
+            }
+        }
+        $agent=$this->agentModel->where('id',$this->agent['id'])->find();
+        $this->assign('agent',$agent);
         return $this->fetch();
     }
 

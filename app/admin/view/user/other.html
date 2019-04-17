@@ -24,7 +24,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">清空密保卡</label>
         <div class="layui-input-block" style="max-width:600px;">
-          <input name="safepwd"  autocomplete="off"  placeholder="要清空密码保卡的用户UID" class="layui-input" type="text" >
+          <input name="safepwduid" id="safepwduid" autocomplete="off" required  lay-verify="required|number" placeholder="要清空密码保卡的用户UID" class="layui-input" type="text" >
         </div>
       </div>
 
@@ -42,32 +42,31 @@
     <script src="__PUBLIC__/layui/layui.js"></script>
        
     <script>
-      layui.use(['layer', 'form','laydate','jquery','birthday'], function() {
-          var layer = layui.layer,
-          $ = layui.jquery,
-          form = layui.form,
-          laydate = layui.laydate,
-          birthday = layui.birthday;
-          $(window).on('load', function() {
-              form.on('submit(admin)', function(data) {
-                  $.ajax({
-                      url:"{:url('admin/user/publish')}",
-                      data:$('#admin').serialize(),
-                      type:'post',
-                      async: false,
-                      success:function(res) {
-                          console.log(res);
-                          if(res.code == 1) {
-                              layer.alert(res.msg, function(index){
-                                location.href = res.url;
-                              })
-                          } else {
-                              layer.msg(res.msg);
-                          }
+      layui.use(['layer', 'form','jquery'], function() {
+          var layer = layui.layer,$ = layui.jquery,form = layui.form;
+          form.on('submit(admin)', function(data) {
+              // var safepwd=$.trim($('#safepwd').val());
+              // if(!safepwd){
+              //    layer.msg("请输入UID");
+              //    return false;
+              // }
+              $.ajax({
+                  url:"{:url('admin/user/other')}",
+                  data:$('#admin').serialize(),
+                  type:'post',
+                  async: false,
+                  success:function(res) {
+                      console.log(res);
+                      if(res.code == 1) {
+                          layer.alert(res.msg, function(index){
+                            location.href = res.url;
+                          })
+                      } else {
+                          layer.msg(res.msg);
                       }
-                  })
-                  return false;
-              });
+                  }
+              })
+              return false;
           });
       });
     </script>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:62:"D:\mywork\lotgame\public/../app/agent\view\other\transfer.html";i:1553672845;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555303172;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:62:"D:\mywork\lotgame\public/../app/agent\view\other\transfer.html";i:1555486231;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555476736;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +29,7 @@
 		<li class="layui-nav-item layui-nav-itemed">
 			<a href="javascript:;">其他功能</a>
 			<dl class="layui-nav-child">
-				<dd><a href="/agent/index">代理信息</a></dd>
+				<dd><a href="/agent/other/info">代理信息</a></dd>
 				<dd><a href="/agent/other/bussiness">业务统计</a></dd>
 				<!-- <dd><a href="/agent/other/rank">排行榜</a></dd> -->
 				<dd><a href="/agent/other/transfer">资金互转</a></dd>
@@ -72,46 +72,116 @@ layui.use(['layer','jquery','form'], function(){
 		<h1>资金互转</h1>
 		<hr>
 
-		<form class="layui-form" action="">
+		<form class="layui-form" id="agentform">
 			
 			<div class="layui-form-item">
 			    <label class="layui-form-label">代理ID：</label>
 			    <div class="layui-input-inline">
-			      <input type="text" name="uid" required  lay-verify="required|number" placeholder="请输入UID" autocomplete="off" class="layui-input">
+			      <input type="text" name="uid" id="agent_id" required  lay-verify="required|number" placeholder="请输入UID" autocomplete="off" class="layui-input">
 			    </div>
-			    <div class="layui-form-mid layui-word-aux"><a href="">查询</a></div>
+			    <div class="layui-form-mid layui-word-aux"><a href="javascript:;" id="query">查询</a></div>
 			</div>
 
 			<div class="layui-form-item">
 			    <label class="layui-form-label">代理名称：</label>
 			    <div class="layui-input-inline">
-			      <input type="text" name="uid"  disabled   autocomplete="off" class="layui-input">
+			      <input type="text" name="agent_name" id="agent_name" disabled   autocomplete="off" class="layui-input">
 			    </div>
 			</div>
 
 			<div class="layui-form-item">
-			    <label class="layui-form-label" >最多可转金额：</label>
+			    <label class="layui-form-label" >最多可转金额(元)：</label>
 			    <div class="layui-input-inline">
-			      <input type="text" name="uid"    autocomplete="off" class="layui-input">
+			      <input type="text" name="maximum_money" id="maximum_money" <?php if(!(empty($agent['balance']) || (($agent['balance'] instanceof \think\Collection || $agent['balance'] instanceof \think\Paginator ) && $agent['balance']->isEmpty()))): ?> value="<?php echo $agent['balance']-$agent['advance']; ?>"<?php endif; ?> disabled autocomplete="off" class="layui-input">
 			    </div>
 			</div>
 
 			<div class="layui-form-item">
-			    <label class="layui-form-label">转账金额：</label>
+			    <label class="layui-form-label">转账金额(元)：</label>
 			    <div class="layui-input-inline">
-			      <input type="text" name="uid" required  lay-verify="required|number" placeholder="请输入" autocomplete="off" class="layui-input">
+			      <input type="text" name="transfer_money" id="transfer_money" required  lay-verify="required|number" placeholder="请输入" autocomplete="off" class="layui-input">
 			    </div>
 			</div>
 
 			<div class="layui-form-item">
 			    <div class="layui-input-block">
-			      <button class="layui-btn layui-btn-primary" lay-submit lay-filter="formDemo">确认转账</button>
+			      <button class="layui-btn layui-btn-primary" lay-submit lay-filter="transfer">确认转账</button>
 			    </div>
 			</div>
-			<input type="hidden" name="cxinfo" value="cx">
-			<input type="hidden" name="act" value="post">
+			<!-- <input type="hidden" name="cxinfo" value="cx">
+			<input type="hidden" name="act" value="post"> -->
         </form>
 
 	</div>
 </body>
+<script>
+    layui.use(['layer', 'form'], function() {
+        var layer = layui.layer,
+        $ = layui.jquery,
+        form = layui.form,
+        laydate = layui.laydate;
+
+        $('#query').click(function(){
+        	var id=$.trim($('#agent_id').val());
+
+	        $.ajax({
+	          // url:"<?php echo url('agent/other/transfer'); ?>",
+	          url:'/agent/other/transfer',
+	          data:{agent_id:id,action:'query'},
+	          type:'post',
+	          dataType:'json',
+	          success:function(res) {
+	          	console.log(res)
+	            
+	            if(res.code == 1) {
+                    $('#agent_name').val(res.name);
+                    // $('#maximum_money').val(res.balance-res.advance);
+	              // setTimeout(function(){
+	              //   location.href = res.url;
+	              // },1500)
+	            }else{
+	            	$('#agent_name').val('');
+                    // $('#maximum_money').val('');
+	            	layer.msg(res.msg);
+	            }
+	          }
+	        })
+        })
+
+
+        form.on('submit(transfer)',function(){
+            var id=$.trim($('#agent_id').val());
+            var transfer_money=parseFloat($('#transfer_money').val());
+            // var maximum_money=parseFloat($('#maximum_money').val());
+            // console.log(transfer_money);
+            // console.log(maximum_money);
+            if(transfer_money>maximum_money){
+            	layer.msg('转账金额超出最大限额！');
+            	return false;
+            }
+
+            
+            $.ajax({
+	          // url:"<?php echo url('agent/other/transfer'); ?>",
+	          url:'/agent/other/transfer',
+	          data:{action:'transfer',agent_id:id,transfer_money:transfer_money},
+	          type:'post',
+	          dataType:'json',
+	          success:function(res) {
+	          	console.log(res)
+	            layer.msg(res.msg);
+	            if(res.code == 1) {
+                   
+	              setTimeout(function(){
+	                location.href = res.url;
+	              },1500)
+	            }
+	          }
+	        })
+
+            return false;
+        })
+
+    });
+</script>
 </html>

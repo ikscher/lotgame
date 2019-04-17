@@ -1,0 +1,39 @@
+{include file="public/header" /}
+<div id="wrapper" class="umain">
+	<div class="w1200">
+		<!--顶侧top-->
+		{include file="user/header" /}
+		<!--顶侧top-->
+
+		<!--左侧left菜单-->
+		{include file="user/left" /}
+		<!--左侧left菜单-->
+
+
+		<div class="uright">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>亏损返利</h5>
+				</div>
+				<div class="tishi tishi1">
+					彩豆28最新亏损返利系统，您可在此领取您昨日亏损金额的2.0000%。<br/>
+                    只能领取昨日返利，请及时领取，逾期将无法领取。</div>
+                <div class="ibox-content" style="padding-left: 40px;">
+					
+					<form action="?act=lingqu" method="post">
+					<ul class="reward-ul">
+						<li>
+							<label>可领取返利：</label>
+							<span class="reward-span">0</span>
+						</li>
+						
+					</ul>
+					<button class="user-btn" type="submit">确定领取</button>
+					</form>
+					
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+{include file="public/footer" /}

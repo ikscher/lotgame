@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/agent\view\other\info.html";i:1554866881;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555303172;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:58:"D:\mywork\lotgame\public/../app/agent\view\other\info.html";i:1554866881;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555476736;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +28,7 @@
 		<li class="layui-nav-item layui-nav-itemed">
 			<a href="javascript:;">其他功能</a>
 			<dl class="layui-nav-child">
-				<dd><a href="/agent/index">代理信息</a></dd>
+				<dd><a href="/agent/other/info">代理信息</a></dd>
 				<dd><a href="/agent/other/bussiness">业务统计</a></dd>
 				<!-- <dd><a href="/agent/other/rank">排行榜</a></dd> -->
 				<dd><a href="/agent/other/transfer">资金互转</a></dd>

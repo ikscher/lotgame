@@ -9,19 +9,19 @@
 	<ul class="ubase-ul">
 		<li class="li1">
 			<p class="p1">账户余额</p>
-			<p class="p2">{$user['coin']}</p>
+			<p class="p2">{notempty name="$user['coin']"}{$user['coin']}{else /}0{/notempty}</p>
 		</li>
 		<li class="li2">
 			<p class="p1">银行</p>
-			<p class="p2">{$user['bank']}</p>
+			<p class="p2">{notempty name="$user['bank']"}{$user['bank']}{else /}0{/notempty}</p>
 		</li>
 		<li class="li3">
 			<p class="p1">积分</p>
-			<p class="p2">{$user['points']}</p>
+			<p class="p2">{notempty name="$user['points']"}{$user['points']}{else /}0{/notempty}</p>
 		</li>
 		<li class="li4">
 			<p class="p1">经验</p>
-			<p class="p2">{$user['experiments']}</p>
+			<p class="p2">{notempty name="$user['experiments']"}{$user['experiments']}{else /}0{/notempty}</p>
 		</li>
 	</ul>
 </div>

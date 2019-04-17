@@ -61,6 +61,10 @@ Route::rule('user/charge','front/user/charge');
 Route::rule('user/recom','front/user/recom');
 Route::rule('user/recomyield','front/user/recomyield');
 Route::rule('user/signin','front/user/signin');
+Route::rule('user/wage','front/user/wage');
+Route::rule('user/bonus','front/user/bonus');
+Route::rule('user/relief','front/user/relief');
+Route::rule('user/reward','front/user/reward');
 Route::rule('agent/index','front/agent/index');
 Route::rule('site/index','front/site/index');
 Route::rule('prize/ind','front/prize/init');
@@ -80,6 +84,8 @@ Route::rule('common/sendmail','front/common/sendmail');
 Route::rule('common/sendmsg','front/common/sendmsg');
 Route::rule('common/register','front/common/register');
 Route::rule('common/recom','front/common/recom');
+Route::rule('common/findpwd','front/common/findpwd');
+Route::rule('common/findpwd2','front/common/findpwd2');
 // Route::rule('agent/index','agent/other/info');
 
 

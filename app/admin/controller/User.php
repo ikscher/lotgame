@@ -20,13 +20,16 @@ use \think\Cookie;
 use \think\Session;
 use app\admin\controller\Permissions;
 use app\front\model\User as userModel;
+use app\front\model\UserSafepwd as userSafepwdModel;
 
 class User extends Permissions
 {   
     private $userModel;
+    private $userSafepwdModel;
     public function _initialize()
     {
        $this->userModel = new userModel();
+       $this->userSafepwdModel = new userSafepwdModel();
     }
 
     public function index()
@@ -197,7 +200,22 @@ class User extends Permissions
 
     //其他功能
     public function other()
-    {
+    {   
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $uid=$post['safepwduid'];
+            $id=$this->userSafepwdModel->where('user_id',$uid)->value('id');
+            if(empty($id)){
+                return $this->error('此会员不存在密保卡，请确认！');
+            }
+
+            $r=$this->userSafepwdModel->where('user_id',$uid)->delete();
+            if($r){
+                return $this->success('已清空用户密保卡！','/admin/user/other');
+            }else{
+                return $this->error('取消错误,请联系管理员！');
+            }
+        }
         return $this->fetch();
     }
 

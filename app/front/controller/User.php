@@ -752,33 +752,46 @@ class User extends Site
         $data=array();
         $act=$this->request->has('act')?$this->request->get('act'):'';
         if($act=='signin' && $cansignin==true){
+             
+            $result_trans=true;
+            Db::startTrans();
+            try{
+                   
+                array_push($signin_day,$cur_day);
+                $sign_day_=json_encode($signin_day);
+                $data['signin_day']=$sign_day_;
+                $data['cur_date']=time();
+                $data['user_id']=$this->uid;
+                if($signin['id']){//update
+                    $this->userSigninModel->where('user_id',$this->uid)->where('cur_date','between',[$begin,$end])->update($data);
+                }else{//insert
+                    $this->userSigninModel->where('user_id',$this->uid)->where('cur_date','between',[$begin,$end])->insert($data);
+                }
 
-            array_push($signin_day,$cur_day);
-            $sign_day_=json_encode($signin_day);
-            $data['signin_day']=$sign_day_;
-            $data['cur_date']=time();
-            $data['user_id']=$this->uid;
-            if($signin['id']){//update
-                $this->userSigninModel->where('user_id',$this->uid)->where('cur_date','between',[$begin,$end])->update($data);
-            }else{//insert
-                $this->userSigninModel->where('user_id',$this->uid)->where('cur_date','between',[$begin,$end])->insert($data);
+                //写入日志事件
+                
+                if($j==0) {
+                    $j=1;
+                }else if($j>7){
+                    $j=7;
+                }
+                
+
+                $coin=$usersignin['base_num']+$j*1;
+
+                $this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
+                $usercoin=$this->userModel->where('uid',$this->uid)->value('coin');
+
+                adduserlog($this->uid,'每日签到',$coin,0,$usercoin,'signin');
+
+                Db::commit();
+                
+            }catch (\Exception $e) {
+                // 回滚事务
+                $result_trans=false;
+                Db::rollback();
+                
             }
-
-            //写入日志事件
-            
-            if($j==0) {
-                $j=1;
-            }else if($j>6){
-                $j=6;
-            }
-            
-
-            $coin=$usersignin['base_num']+($j+1)*1;
-
-            $this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
-            $usercoin=$this->userModel->where('uid',$this->uid)->value('coin');
-
-            adduserlog($this->uid,'每日签到',$coin,0,$usercoin,'signin');
             $this->redirect('/user/signin');
         }
         
@@ -799,6 +812,38 @@ class User extends Site
             }
         }
         return $sum;
+    }
+
+    /**
+    * 工资领取
+    */
+    public function wage()
+    {
+        return $this->fetch();
+    }
+
+    /**
+    * 救济领取
+    */
+    public function relief()
+    {
+        return $this->fetch();
+    }
+
+    /**
+    * 首充返利
+    */
+    public function bonus()
+    {
+        return $this->fetch();
+    }
+
+    /**
+    * 亏损返利
+    */
+    public function reward()
+    {
+        return $this->fetch();
     }
 
 }

@@ -28,6 +28,9 @@ function addagentlog($agent_id=0,$type='',$mp_money=0,$balance=0,$desc='')
 		case '7':
 		  $data['deposit_money']=$mp_money;
 		  break;
+		case '8':
+		  $data['transfer_money']=$mp_money;
+		  break;
 	};
     
     $data['balance']=$balance;

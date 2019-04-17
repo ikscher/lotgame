@@ -169,7 +169,7 @@
 .form-group .control-span{background:url(../image/user/jb-icon.png) no-repeat center right;padding-right:30px;line-height:45px;font-size:18px;color:#232323;box-sizing:border-box}
 .reward-ul{width:100%;display:inline-block;margin:20px 0}
 .reward-ul li label{color:#000;font-size:18px;float:left;font-weight:400}
-.reward-ul li span.reward-span{color:#ff4c0d;font-size:18px;display:inline-block;float:left;background:url(..../image/user/jb-icon.png) no-repeat center right;padding-right:35px;box-sizing:border-box}
+.reward-ul li span.reward-span{color:#ff4c0d;font-size:18px;display:inline-block;float:left;background:url(../image/user/jb-icon.png) no-repeat center right;padding-right:35px;box-sizing:border-box}
 .user-dj{width:26px;height:26px;display:inline-block;background:url(../image/user/dj-img.png) no-repeat;vertical-align:middle}
 .user-dj0{background-position:0 0}
 .user-dj1{background-position:0 -26px}
