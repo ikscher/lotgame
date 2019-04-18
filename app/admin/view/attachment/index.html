@@ -27,7 +27,7 @@
     <div class="layui-tab">
       <ul class="layui-tab-title">
         <li class="layui-this">附件管理</li>
-        <li><a href="javascript:;" class="a_menu" id="test">上传压缩文件</a></li>
+        <!-- <li><a href="javascript:;" class="a_menu" id="test">上传压缩文件</a></li> -->
       </ul>
     </div> 
     <form class="layui-form serch" action="{:url('admin/attachment/index')}" method="post">
@@ -156,7 +156,7 @@
           var id = $(this).attr('data-id');
           layer.msg('文件审核',{
             time:20000
-            ,btn: ['仁慈通过', '残忍拒绝', '再想想']
+            ,btn: ['通过', '拒绝', '忽略']
             ,yes: function(index, layero){
               $.ajax({
                 url:"{:url('admin/attachment/audit')}"
