@@ -64,10 +64,15 @@ class Ad extends Permissions
                 }
 
                 
-                $thumb_arr=array_filter($post['thumb']);
+                if(!empty($post['thumb'])){
+                    $thumb_arr=array_filter($post['thumb']);
 
-                $post['content']=implode(',', $thumb_arr);
-               
+                    $post['content']=implode(',', $thumb_arr);
+                }else{
+                    $post['content']='';
+                }
+
+
                 if(false == $this->adModel->allowField(true)->save($post,['id'=>$id])) {
                     return $this->error('修改失败');
                 } else {
@@ -80,10 +85,10 @@ class Ad extends Permissions
                 $ad =$this->adModel->where('id',$id)->find();
     
                 if(!empty($ad)) {
-                    
-                    $image_ids_arr=explode(',',$ad['content']);
+                    $image_ids_arr=array();
+                    if(!empty($ad['content'])) $image_ids_arr=explode(',',$ad['content']);
                     $this->assign('image_ids_arr',$image_ids_arr);//[1,2,3]
-                    $this->assign('image_ids',$ad['content']);//1,2,3
+                    // $this->assign('image_ids',$ad['content']);//1,2,3
                    
                     $this->assign('ad',$ad);
                     if ( $ad['ad_type'] == 1 ){
@@ -143,17 +148,23 @@ class Ad extends Permissions
     	}
     }
 
-
-    public function is_top()
+    
+    public function deleteimg()
     {
         if($this->request->isPost()){
             $post = $this->request->post();
-            if(false == Db::name('board')->where('id',$post['id'])->update(['is_top'=>$post['is_top']])) {
-                return $this->error('设置失败');
+
+            $filepath=Db::name('attachment')->where('id',$post['imgid'])->value('filepath');
+           
+            $ret=Db::name('attachment')->where('id',$post['imgid'])->delete();
+            if(false ==$ret ) {
+                return $this->error('删除图片失败');
             } else {
-                $operation='公告置顶设置成功';
-                addlog($operation.'-'.$post['id']);//写入日志
-                return $this->success($operation,'admin/board/index');
+                // $operation='公告置顶设置成功';
+                // addlog($operation.'-'.$post['id']);//写入日志
+                unlink(SITE_PATH.$filepath);
+                
+                return $this->success('请点击立即提交确定彻底删除','');
             }
         }
     }

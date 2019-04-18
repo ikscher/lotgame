@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50505
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-18 17:16:30
+Date: 2019-04-18 23:30:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,18 +37,16 @@ CREATE TABLE `hov_ad` (
 INSERT INTO `hov_ad` VALUES ('1', '<span style=\"margin-left:10px;font-size:8px;\"><span style=\"font-family:simhei;\"><span style=\"font-family:simsun;\"><img alt=\"\" height=\"53\" src=\"/UF/Uploads/Article/20150312145204.png\" style=\"height:51px;width:254px;float:none;margin:0px;\" width=\"419\" /> </span></span></span>', '1357660800', '1391097600', '1357715233', null, '首页LOGO图片（推荐LOGO图片大小：220*65像素）', '0');
 INSERT INTO `hov_ad` VALUES ('2', '', '1357660800', '1391097600', '1357715437', null, '首页顶部中间广告条（尺寸大小：485*65像素）', '0');
 INSERT INTO `hov_ad` VALUES ('3', '', '1357660800', '1522339200', '1357715509', null, '首页顶部联系电话图片（推荐尺寸大小：225*65像素）', '0');
-INSERT INTO `hov_ad` VALUES ('4', '59,60,61', '1357660800', '1391097600', '1357715551', '1555578953', '首页幻灯片展示', '1');
+INSERT INTO `hov_ad` VALUES ('4', '', '1357660800', '1391097600', '1357715551', '1555599490', '首页幻灯片展示', '1');
 INSERT INTO `hov_ad` VALUES ('5', '<img style=\"float:none;margin:0px;\" alt=\"\" src=\"/UF/Uploads/Article/20170607151350.jpg\" />', '1357660800', '1393516800', '1357716501', null, '内页中上部大广告位', '0');
 INSERT INTO `hov_ad` VALUES ('6', '<img style=\"height: 97px; width: 300px; float: none; margin: 0px;\" alt=\"\" src=\"/UF/Uploads/Article/20130812220516.jpg\" />', '1365436800', '1397750400', '1367025431', null, '顶部滑动图片', '0');
-INSERT INTO `hov_ad` VALUES ('7', 'a:2:{i:0;a:3:{s:3:\"img\";s:35:\"UF/Uploads/Ad/20150123165655297.jpg\";s:4:\"info\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:3:{s:3:\"img\";s:35:\"UF/Uploads/Ad/20150716123459113.jpg\";s:4:\"info\";s:0:\"\";s:3:\"url\";s:0:\"\";}}', '1384185600', '1478880000', '1384250443', null, '积分商城', '1');
 INSERT INTO `hov_ad` VALUES ('8', '<img style=\"height: 100px; width: 100px; float: none; margin: 0px;\" alt=\"\" src=\"/UF/Uploads/Article/20140327173642.gif\" />', '0', '0', '0', null, '官方微博', '0');
 INSERT INTO `hov_ad` VALUES ('9', '<img style=\"margin: 0px; width: 38px; float: none; height: 35px\" alt=\"\" src=\"/UF/Uploads/Article/20150326104053.png\" width=\"42\" height=\"40\" />', '0', '0', '0', null, '官方微信', '0');
-INSERT INTO `hov_ad` VALUES ('11', '&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://www.ronmei.com&amp;quot;&amp;gt;www.ronmei.com&amp;lt;/a&amp;gt; &amp;amp;nbsp;北京融美科技有限公司&amp;amp;nbsp;&amp;amp;nbsp; 京ICP备3432311号ffff&amp;lt;/p&amp;gt;', '0', '0', '0', '1555563531', '网站底部版权', '0');
+INSERT INTO `hov_ad` VALUES ('11', '', '0', '0', '0', '1555599673', '网站底部版权', '0');
 INSERT INTO `hov_ad` VALUES ('12', '<img style=\"height: 6px; width: 50px; float: none; margin: 0px;\" alt=\"\" src=\"/UF/Uploads/Article/20150116155833.png\" />', '0', '0', '0', null, '客服热线', '0');
 INSERT INTO `hov_ad` VALUES ('20', '/Style/H/images/new/rongzi_bg.jpg', '0', '0', '0', null, '我要融资页背景', '0');
 INSERT INTO `hov_ad` VALUES ('21', '', '0', '0', '0', null, '首页公告', '0');
 INSERT INTO `hov_ad` VALUES ('22', '<dl class=\"dl_box\"><dd><span style=\"color:rgb(0, 0, 0);\"><span style=\"font-family:microsoft yahei;\">&nbsp; 5100个智慧的投资人加入红顶</span></span></dd>&nbsp; &nbsp; 累计成功投资金额1亿5136万元</dl><dl class=\"dl_box\"><br /></dl>', '0', '0', '0', null, '微官网首页－数据统计', '0');
-INSERT INTO `hov_ad` VALUES ('23', '<dl class=\"dl_box\"><dt><b class=\"ioc_2\">&nbsp;</b><span class=\"bule_008\">专注房产抵押贷</span></dt><dd>投资有风险，理财需谨慎</dd></dl><dl class=\"dl_box\"><dt><b class=\"ioc_2\">&nbsp;</b><span class=\"bule_008\">低门槛，投资便捷</span></dt><dd><span>投资门槛</span>50元起<b>，</b>即投即生息；</dd></dl><dl class=\"dl_box border_none\"><dt><b class=\"ioc_2\">&nbsp;</b><span class=\"bule_008\">多种期限，投资更灵活</span></dt><dd><span>多种借款期限</span><strong>（</strong>1个月 至 12个月<strong>）</strong><span>，</span><span>多种还款方式</span></dd></dl>', '0', '0', '0', null, '微官网首页－安全保障', '0');
 INSERT INTO `hov_ad` VALUES ('24', 'a:2:{i:0;a:3:{s:3:\"img\";s:35:\"UF/Uploads/Ad/20150422112451288.jpg\";s:4:\"info\";s:0:\"\";s:3:\"url\";s:0:\"\";}i:1;a:3:{s:3:\"img\";s:35:\"UF/Uploads/Ad/20181206105953230.jpg\";s:4:\"info\";s:0:\"\";s:3:\"url\";s:0:\"\";}}', '0', '0', '0', null, '微官网首页－幻灯片（推荐图片使用601*263像素）', '1');
 
 -- ----------------------------
@@ -76,7 +74,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1555571270', '192.168.1.100', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'Tplay', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1517622948', '1555591491', '192.168.1.104', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -99,7 +97,7 @@ CREATE TABLE `hov_admin_cate` (
 -- ----------------------------
 -- Records of hov_admin_cate
 -- ----------------------------
-INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,134,135,25,26,28,29,34,35,37,38,39,40,60,61,62,63,71,72,73,74,75,76,77,78,79,80,81,83,84,85,92,93,94,95,96,97,98,129,99,100,104,108,109,111,112,119,120,130,131,122,123,124,125,126,127,128', '0', '1555561178', '超级管理员，拥有最高权限！');
+INSERT INTO `hov_admin_cate` VALUES ('1', '超级管理员', '4,5,51,6,7,8,11,13,14,16,17,19,20,21,53,54,55,42,43,44,45,47,48,134,135,136,25,26,28,29,34,35,37,38,39,40,60,61,62,63,71,72,73,74,75,76,77,78,79,80,81,83,84,85,92,93,94,95,96,97,98,129,99,100,104,108,109,111,112,114,115,119,120,130,131,122,123,124,125,126,127,128', '0', '1555593597', '超级管理员，拥有最高权限！');
 
 -- ----------------------------
 -- Table structure for `hov_admin_log`
@@ -116,7 +114,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=685 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=726 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -802,6 +800,47 @@ INSERT INTO `hov_admin_log` VALUES ('681', '49', '1', '192.168.1.100', '60', '15
 INSERT INTO `hov_admin_log` VALUES ('682', '135', '1', '192.168.1.100', '广告修改成功-4', '1555578883');
 INSERT INTO `hov_admin_log` VALUES ('683', '49', '1', '192.168.1.100', '61', '1555578939');
 INSERT INTO `hov_admin_log` VALUES ('684', '135', '1', '192.168.1.100', '广告修改成功-4', '1555578953');
+INSERT INTO `hov_admin_log` VALUES ('685', '50', '1', '192.168.1.104', '', '1555591492');
+INSERT INTO `hov_admin_log` VALUES ('686', '49', '1', '192.168.1.104', '62', '1555591667');
+INSERT INTO `hov_admin_log` VALUES ('687', '135', '1', '192.168.1.104', '广告修改成功-4', '1555591670');
+INSERT INTO `hov_admin_log` VALUES ('688', '49', '1', '192.168.1.104', '63', '1555591693');
+INSERT INTO `hov_admin_log` VALUES ('689', '135', '1', '192.168.1.104', '广告修改成功-4', '1555591697');
+INSERT INTO `hov_admin_log` VALUES ('690', '49', '1', '192.168.1.104', '64', '1555593195');
+INSERT INTO `hov_admin_log` VALUES ('691', '49', '1', '192.168.1.104', '65', '1555593209');
+INSERT INTO `hov_admin_log` VALUES ('692', '49', '1', '192.168.1.104', '66', '1555593215');
+INSERT INTO `hov_admin_log` VALUES ('693', '135', '1', '192.168.1.104', '广告修改成功-4', '1555593238');
+INSERT INTO `hov_admin_log` VALUES ('694', '4', '1', '192.168.1.104', '136', '1555593564');
+INSERT INTO `hov_admin_log` VALUES ('695', '28', '1', '192.168.1.104', '修改角色信息成功', '1555593597');
+INSERT INTO `hov_admin_log` VALUES ('696', '135', '1', '192.168.1.104', '广告修改成功-4', '1555596478');
+INSERT INTO `hov_admin_log` VALUES ('697', '49', '1', '192.168.1.104', '67', '1555597205');
+INSERT INTO `hov_admin_log` VALUES ('698', '135', '1', '192.168.1.104', '广告修改成功-4', '1555597207');
+INSERT INTO `hov_admin_log` VALUES ('699', '49', '1', '192.168.1.104', '68', '1555597828');
+INSERT INTO `hov_admin_log` VALUES ('700', '135', '1', '192.168.1.104', '广告修改成功-4', '1555597830');
+INSERT INTO `hov_admin_log` VALUES ('701', '49', '1', '192.168.1.104', '69', '1555597969');
+INSERT INTO `hov_admin_log` VALUES ('702', '135', '1', '192.168.1.104', '广告修改成功-4', '1555597975');
+INSERT INTO `hov_admin_log` VALUES ('703', '49', '1', '192.168.1.104', '70', '1555598046');
+INSERT INTO `hov_admin_log` VALUES ('704', '49', '1', '192.168.1.104', '71', '1555598078');
+INSERT INTO `hov_admin_log` VALUES ('705', '135', '1', '192.168.1.104', '广告修改成功-4', '1555598079');
+INSERT INTO `hov_admin_log` VALUES ('706', '49', '1', '192.168.1.104', '72', '1555598205');
+INSERT INTO `hov_admin_log` VALUES ('707', '135', '1', '192.168.1.104', '广告修改成功-4', '1555598410');
+INSERT INTO `hov_admin_log` VALUES ('708', '135', '1', '192.168.1.104', '广告修改成功-4', '1555598558');
+INSERT INTO `hov_admin_log` VALUES ('709', '49', '1', '192.168.1.104', '73', '1555598574');
+INSERT INTO `hov_admin_log` VALUES ('710', '135', '1', '192.168.1.104', '广告修改成功-4', '1555598575');
+INSERT INTO `hov_admin_log` VALUES ('711', '135', '1', '192.168.1.104', '广告修改成功-4', '1555598582');
+INSERT INTO `hov_admin_log` VALUES ('712', '49', '1', '192.168.1.104', '74', '1555598809');
+INSERT INTO `hov_admin_log` VALUES ('713', '135', '1', '192.168.1.104', '广告修改成功-4', '1555598811');
+INSERT INTO `hov_admin_log` VALUES ('714', '135', '1', '192.168.1.104', '广告修改成功-4', '1555599319');
+INSERT INTO `hov_admin_log` VALUES ('715', '49', '1', '192.168.1.104', '75', '1555599423');
+INSERT INTO `hov_admin_log` VALUES ('716', '135', '1', '192.168.1.104', '广告修改成功-4', '1555599425');
+INSERT INTO `hov_admin_log` VALUES ('717', '135', '1', '192.168.1.104', '广告修改成功-4', '1555599435');
+INSERT INTO `hov_admin_log` VALUES ('718', '49', '1', '192.168.1.104', '76', '1555599454');
+INSERT INTO `hov_admin_log` VALUES ('719', '49', '1', '192.168.1.104', '77', '1555599457');
+INSERT INTO `hov_admin_log` VALUES ('720', '49', '1', '192.168.1.104', '78', '1555599459');
+INSERT INTO `hov_admin_log` VALUES ('721', '135', '1', '192.168.1.104', '广告修改成功-4', '1555599461');
+INSERT INTO `hov_admin_log` VALUES ('722', '135', '1', '192.168.1.104', '广告修改成功-4', '1555599490');
+INSERT INTO `hov_admin_log` VALUES ('723', '134', '1', '192.168.1.104', '广告删除成功-7', '1555599643');
+INSERT INTO `hov_admin_log` VALUES ('724', '135', '1', '192.168.1.104', '广告修改成功-11', '1555599673');
+INSERT INTO `hov_admin_log` VALUES ('725', '134', '1', '192.168.1.104', '广告删除成功-23', '1555599687');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -830,7 +869,7 @@ CREATE TABLE `hov_admin_menu` (
   KEY `function` (`function`) USING BTREE,
   KEY `is_display` (`is_display`) USING BTREE,
   KEY `type` (`type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of hov_admin_menu
@@ -967,6 +1006,7 @@ INSERT INTO `hov_admin_menu` VALUES ('132', '其他功能', 'admin', 'user', 'ot
 INSERT INTO `hov_admin_menu` VALUES ('133', '广告管理', 'admin', 'ad', 'index', '', '', '1', '2', '1', '1555556708', '1555558152', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('134', '广告删除', 'admin', 'ad', 'delete', '', '', '2', '1', '133', '1555560682', '1555560682', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('135', '广告发布', 'admin', 'ad', 'publish', '', '', '2', '1', '133', '1555560935', '1555560935', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('136', '图片删除', 'admin', 'ad', 'deleteimg', '', '', '2', '1', '133', '1555593564', '1555593564', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for `hov_agent`
@@ -1180,7 +1220,7 @@ CREATE TABLE `hov_attachment` (
   KEY `status` (`status`) USING BTREE,
   KEY `filename` (`filename`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='附件表';
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='附件表';
 
 -- ----------------------------
 -- Records of hov_attachment
@@ -1243,9 +1283,7 @@ INSERT INTO `hov_attachment` VALUES ('55', 'admin', 'faa2fbe28e4d06bfb211b96ae4d
 INSERT INTO `hov_attachment` VALUES ('56', 'admin', 'a28753ec1677d30dc60d16acdecbcc1c.jpg', '\\uploads\\admin\\ad_thumb\\20190418\\a28753ec1677d30dc60d16acdecbcc1c.jpg', '106228', 'jpg', '1', '192.168.1.100', '1', '1555578213', '1', '1555578213', 'ad_thumb', '0');
 INSERT INTO `hov_attachment` VALUES ('57', 'admin', '2c28cfdf045bbcaadf48a8ccadbe5a00.gif', '\\uploads\\admin\\ad_thumb\\20190418\\2c28cfdf045bbcaadf48a8ccadbe5a00.gif', '17946', 'gif', '1', '192.168.1.100', '1', '1555578317', '1', '1555578317', 'ad_thumb', '0');
 INSERT INTO `hov_attachment` VALUES ('58', 'admin', '80321ddfe10a224647faaee6fefb9c1a.jpg', '\\uploads\\admin\\ad_thumb\\20190418\\80321ddfe10a224647faaee6fefb9c1a.jpg', '16110', 'jpg', '1', '192.168.1.100', '1', '1555578328', '1', '1555578328', 'ad_thumb', '0');
-INSERT INTO `hov_attachment` VALUES ('59', 'admin', 'a6d75c048d04e8eb6da2f2b075a6c900.jpg', '\\uploads\\admin\\ad_thumb\\20190418\\a6d75c048d04e8eb6da2f2b075a6c900.jpg', '16110', 'jpg', '1', '192.168.1.100', '1', '1555578845', '1', '1555578845', 'ad_thumb', '0');
-INSERT INTO `hov_attachment` VALUES ('60', 'admin', '48752e2821f81916b08be716a0b0fe59.jpg', '\\uploads\\admin\\ad_thumb\\20190418\\48752e2821f81916b08be716a0b0fe59.jpg', '106228', 'jpg', '1', '192.168.1.100', '1', '1555578848', '1', '1555578848', 'ad_thumb', '0');
-INSERT INTO `hov_attachment` VALUES ('61', 'admin', '17a3f7994e55b32dfba24e551a113afd.jpg', '\\uploads\\admin\\ad_thumb\\20190418\\17a3f7994e55b32dfba24e551a113afd.jpg', '55963', 'jpg', '1', '192.168.1.100', '1', '1555578939', '1', '1555578939', 'ad_thumb', '0');
+INSERT INTO `hov_attachment` VALUES ('70', 'admin', '8273e6d056d09ac1989fad47d93b908f.jpg', '\\uploads\\admin\\ad_thumb\\20190418\\8273e6d056d09ac1989fad47d93b908f.jpg', '53509', 'jpg', '1', '192.168.1.104', '1', '1555598046', '1', '1555598046', 'ad_thumb', '0');
 
 -- ----------------------------
 -- Table structure for `hov_board`
@@ -1380,7 +1418,7 @@ INSERT INTO `hov_card_pwd` VALUES ('50', 'd1kAbIecH4', 'DfGTqx0P', '4', '0', '10
 INSERT INTO `hov_card_pwd` VALUES ('51', 'd10LVPT61SCDYA3GQJH', 'T54RMJL4LGHD4P70', '10', '0', '10', '3', '1555121928', '2019');
 INSERT INTO `hov_card_pwd` VALUES ('52', 'd10QTWHHM77SHQRPDNM', 'OFT5RA535WQ68RJN', '10', '0', '10', '2', '1555121928', '1555121939');
 INSERT INTO `hov_card_pwd` VALUES ('53', 'd10HTDQB2YGM5BSTS1S', 'DG6SEUVHSJPESLXO', '10', '0', '9', '4', '1555121928', '1555505492');
-INSERT INTO `hov_card_pwd` VALUES ('54', 'd101YWCVOTMO9NI9MR4', 'OKR58Z7366JWUJ6A', '10', '0', null, '1', '1555121928', null);
+INSERT INTO `hov_card_pwd` VALUES ('54', 'd101YWCVOTMO9NI9MR4', 'OKR58Z7366JWUJ6A', '10', '0', '10', '2', '1555121928', '1555600483');
 INSERT INTO `hov_card_pwd` VALUES ('55', 'd102KXZ660FTL1QVEWC', 'ZOYJ0GFIRAVQVQ9I', '10', '0', null, '1', '1555121928', null);
 
 -- ----------------------------
@@ -2998,9 +3036,9 @@ CREATE TABLE `hov_user` (
 INSERT INTO `hov_user` VALUES ('5', 'ikscher', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '45397311@qq.com', '13856911659', '2600880', '3218', '1554362992', '1554733351', '1554775182', '0', '192.168.1.102', '8', null, '0', '0', '0', '1855', '1', '1', '0', null, '1', 'ok', '3', null, '4', '1970', null, '1');
 INSERT INTO `hov_user` VALUES ('6', 'ikscher2', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856922659', '0', '0', '1554733760', null, '1554733760', '0', '192.168.1.102', '8', null, null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
 INSERT INTO `hov_user` VALUES ('7', 'ikscher3', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856933659', '0', '0', '1554734059', null, '1554734059', '0', '192.168.1.102', '8', null, null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
-INSERT INTO `hov_user` VALUES ('8', 'ikscher4', 'b6e6f93000c7ffb987cd56da6d44d538', '1', '52', '1', '', '13856900659', '1', '0', '1554734339', '1555556204', '1554734339', null, '192.168.1.100', null, '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
+INSERT INTO `hov_user` VALUES ('8', 'ikscher4', 'b6e6f93000c7ffb987cd56da6d44d538', '1', '52', '1', '', '13856900659', '1', '0', '1554734339', '1555600440', '1554734339', null, '192.168.1.104', null, '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
 INSERT INTO `hov_user` VALUES ('9', 'ikscher5', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856955659', '270', '0', '1554735892', null, '1554735892', '5', '192.168.1.102', '8', '0', null, '0', '0', '100', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
-INSERT INTO `hov_user` VALUES ('10', 'ikscher6', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', '51', '1', '45397312@qq.com', '13856944659', '781603', '10', '1554736170', '1555556144', '1554817692', '0', '192.168.1.100', '8', '0', '1554739200', '0', '0', '1000', '1', '1', '0', null, '3', 'jxjx', '23232323', null, '', '1054915200', null, '1');
+INSERT INTO `hov_user` VALUES ('10', 'ikscher6', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', '51', '1', '45397312@qq.com', '13856944659', '671403', '10', '1554736170', '1555600471', '1554817692', '0', '192.168.1.104', '8', '0', '1554739200', '0', '0', '1000', '1', '1', '0', null, '3', 'jxjx', '23232323', null, '', '1054915200', null, '1');
 INSERT INTO `hov_user` VALUES ('11', 'fsdf', '2afffabc41c1724a8f3d1fd86da6fc48', '1', null, '1', '', '13956899823', '0', '0', '1554777503', null, '1554777503', '0', '192.168.1.107', '8', '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1');
 
 -- ----------------------------
@@ -3057,7 +3095,7 @@ CREATE TABLE `hov_user_exchange` (
   `card` varchar(1000) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1' COMMENT '奖品是否通过审核1：待审核，2：通过（已发货），3：不通过',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_exchange
@@ -3070,6 +3108,7 @@ INSERT INTO `hov_user_exchange` VALUES ('77', '10', '4', '100.00', '1', '109200'
 INSERT INTO `hov_user_exchange` VALUES ('78', '10', '4', '100.00', '3', '327600', '1554955688', null, '[{\"card_no\":\"d10F2XO3BEZ97OESSB1\",\"card_pwd\":\"7A1WTJ8FI0NM8SGQ\"},{\"card_no\":\"d10TQU6I71MDLG5ZVFF\",\"card_pwd\":\"F1UV6E0ENR0BYA1Y\"},{\"card_no\":\"d10YIOSDEZ0A4ZXEKXD\",\"card_pwd\":\"DRA0IAWYLB0CQCHP\"}]', '2');
 INSERT INTO `hov_user_exchange` VALUES ('79', '10', '4', '100.00', '2', '218400', '1554956298', null, '[{\"card_no\":\"d105IT1ZNN6ASRMJ584\",\"card_pwd\":\"AXV854ZMS2FJ7VQK\"},{\"card_no\":\"d1002AJ8Z3TVY2PJUOJ\",\"card_pwd\":\"LNO8C0VQQCWAANG6\"}]', '2');
 INSERT INTO `hov_user_exchange` VALUES ('80', '10', '4', '100.00', '2', '218400', '1555121939', null, '[{\"card_no\":\"d10LVPT61SCDYA3GQJH\",\"card_pwd\":\"T54RMJL4LGHD4P70\"},{\"card_no\":\"d10QTWHHM77SHQRPDNM\",\"card_pwd\":\"OFT5RA535WQ68RJN\"}]', '2');
+INSERT INTO `hov_user_exchange` VALUES ('81', '10', '4', '100.00', '1', '109200', '1555600483', null, '[{\"card_no\":\"d101YWCVOTMO9NI9MR4\",\"card_pwd\":\"OKR58Z7366JWUJ6A\"}]', '2');
 
 -- ----------------------------
 -- Table structure for `hov_user_grade`
@@ -3113,7 +3152,7 @@ CREATE TABLE `hov_user_log` (
   `type` char(30) DEFAULT NULL COMMENT '日志类型',
   `flag` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -3142,6 +3181,11 @@ INSERT INTO `hov_user_log` VALUES ('151', '10', '登录', '0', '0', '781603', '0
 INSERT INTO `hov_user_log` VALUES ('152', '8', '登录', '0', '0', '1', '0', '1555556204', 'login', '0');
 INSERT INTO `hov_user_log` VALUES ('153', '52', '图片上传', '0', '0', '0', '0', '1555556225', '', '0');
 INSERT INTO `hov_user_log` VALUES ('154', '8', '头像上传成功', '0', '0', '0', '0', '1555556227', '', '0');
+INSERT INTO `hov_user_log` VALUES ('155', '8', '登录', '0', '0', '1', '0', '1555600440', 'login', '0');
+INSERT INTO `hov_user_log` VALUES ('156', '10', '登录', '0', '0', '781603', '0', '1555600471', 'login', '0');
+INSERT INTO `hov_user_log` VALUES ('157', '10', '兑换奖品移动充值卡100元', '-109200', '0', '672403', '0', '1555600483', 'prize', '0');
+INSERT INTO `hov_user_log` VALUES ('158', '10', '兑奖流水额外手续费', '-2184', '0', '670219', '0', '1555600483', 'prize', '0');
+INSERT INTO `hov_user_log` VALUES ('159', '10', '兑奖次数额外手续费', '-2184', '0', '668035', '0', '1555600483', 'prize', '0');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`
@@ -3157,7 +3201,7 @@ CREATE TABLE `hov_user_msg` (
   `is_read` tinyint(1) DEFAULT NULL COMMENT '1已读0未读',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COMMENT='站内信';
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COMMENT='站内信';
 
 -- ----------------------------
 -- Records of hov_user_msg
@@ -3177,6 +3221,7 @@ INSERT INTO `hov_user_msg` VALUES ('52', '1', '10', '3', '兑奖发货通知', '
 INSERT INTO `hov_user_msg` VALUES ('53', '1', '10', '3', '兑奖发货通知', '内容：您兑换的奖品移动充值卡100元已经发货，谢谢您对我们的支持。<br/>d10F2XO3BEZ97OESSB1 7A1WTJ8FI0NM8SGQ<br/>d10TQU6I71MDLG5ZVFF F1UV6E0ENR0BYA1Y<br/>d10YIOSDEZ0A4ZXEKXD DRA0IAWYLB0CQCHP<br/>', null, '1554955688');
 INSERT INTO `hov_user_msg` VALUES ('54', '1', '10', '3', '兑奖发货通知', '内容：您兑换的奖品移动充值卡100元已经发货，谢谢您对我们的支持。<br/>d105IT1ZNN6ASRMJ584 AXV854ZMS2FJ7VQK<br/>d1002AJ8Z3TVY2PJUOJ LNO8C0VQQCWAANG6<br/>', null, '1554956298');
 INSERT INTO `hov_user_msg` VALUES ('55', '1', '10', '3', '兑奖发货通知', '内容：您兑换的奖品移动充值卡100元已经发货，谢谢您对我们的支持。<br/>d10LVPT61SCDYA3GQJH T54RMJL4LGHD4P70<br/>d10QTWHHM77SHQRPDNM OFT5RA535WQ68RJN<br/>', null, '1555121939');
+INSERT INTO `hov_user_msg` VALUES ('56', '1', '10', '3', '兑奖发货通知', '内容：您兑换的奖品移动充值卡100元已经发货，谢谢您对我们的支持。<br/>d101YWCVOTMO9NI9MR4 OKR58Z7366JWUJ6A<br/>', null, '1555600483');
 
 -- ----------------------------
 -- Table structure for `hov_user_note`

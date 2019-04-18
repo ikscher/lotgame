@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
   <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
   <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+  <style type="text/css">
+     .slideimg{margin-top:20px;height: 100px;width:100px;}
+     .slidea{position: relative;bottom:-70px;left:-60px;}
+  </style>
 </head>
 <body style="padding:10px;">
   <div class="tplay-body-div">
@@ -38,12 +42,14 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label"></label>
         <div class="layui-input-block" id="upload-thumb" style="max-width:1000px;">
-          {volist name="image_ids_arr" id="vo"}
-          <img width="100px" height="100px" src="{$vo|geturl}" />
-
-          {/volist}
-          <input type="hidden" name="thumb[]" value="{$image_ids}" >
-          <div id="demo1"></div>
+           <div id="demo1" style="margin-bottom:50px;">
+             {notempty name="$image_ids_arr"}
+             {volist name="image_ids_arr" id="vo"}
+             <img class="slideimg" src="{$vo|geturl}" /><a href="javascript:;" class="slidea delete" >删除</a>
+             <input type="hidden" name="thumb[]" value="{$vo}" >
+             {/volist}
+             {/notempty}
+           </div>
         </div>
       </div>
   
@@ -75,7 +81,7 @@
 
           //上传完毕回调
           if(res.code == 2) {
-            $('#demo1').append('<img width="100px" height="100px" src="'+res.src+'"/>');
+            $('#demo1').append('<img class="slideimg" src="'+res.src+'"/><a href="javascript:;" class="slidea delete" >删除</a>');
             $('#upload-thumb').append('<input type="hidden" name="thumb[]" value="'+ res.id +'">');
           } else {
             layer.msg(res.msg);
@@ -97,8 +103,8 @@
     <script>
       layui.use(['layer', 'form'], function() {
           var layer = layui.layer,
-              $ = layui.jquery,
-              form = layui.form;
+          $ = layui.jquery,
+          form = layui.form;
           $(window).on('load', function() {
               form.on('submit(admin)', function(data) {
                   $.ajax({
@@ -120,6 +126,16 @@
                   })
                   return false;
               });
+
+              $('a.delete').click(function(){
+                 var imgid=$(this).next('input').val();
+                 var that=$(this).next('input');
+                 $.post('/admin/ad/deleteimg',{imgid:imgid},function(data){
+                    console.log(data);
+                    layer.msg(data.msg);
+                    if(data.code==1)  that.remove();
+                 },'json');
+              })
           });
       });
     </script>

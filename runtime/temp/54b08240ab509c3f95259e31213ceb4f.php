@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\index.html";i:1553782782;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\index.html";i:1555600258;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554734502;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,7 +186,7 @@
 	setTimeout(window.autoAnimation, 5000);
 </script>
 <script  type="text/javascript" src="/static/front/js/jeeslide.js"></script>
-
+<link href="/static/front/css/shop.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 	.hotgoods {margin-top:20px;width:258px;}
 	.hotgoods li{  text-align: center; margin: 15px 0;} 
