@@ -80,6 +80,7 @@ class Drawlottery extends Permissions
                 }
                 
                 $post['money']=!empty($post['money'])?$post['money']:0;
+                $post['sort']=!empty($post['sort'])?$post['sort']:0;
                 
 
                 if(false == $this->drawLotteryModel->allowField(true)->save($post,['id'=>$id])) {

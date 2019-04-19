@@ -31,6 +31,9 @@
         <col width="300">
         <col width="200">
         <col width="200">
+        <col width="200">
+        <col width="200">
+        <col width="200">
         <col width="100">
       </colgroup>
       <thead>
@@ -40,6 +43,9 @@
           <th>奖品名称</th>
           <th>金币</th>
           <th>概率</th>
+          <th>最大角度</th>
+          <th>最小角度</th>
+          <th>排序</th>
           <th>操作</th>
         </tr> 
       </thead>
@@ -51,6 +57,9 @@
            <td>{$vo.name}</td>
            <td>{$vo.money}</td>
            <td>{$vo.odd}</td>
+           <td>{$vo.max}</td>
+           <td>{$vo.min}</td>
+           <td>{$vo.sort}</td>
           <td class="operation-menu">
             <div class="layui-btn-group">
               <a href="{:url('admin/drawlottery/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1554686874;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:61:"D:\mywork\lotgame\public/../app/front\view\prize\shatter.html";i:1555675330;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1555680861;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +67,7 @@
 						</div>
 					</li>
 				</div>
-				<li><a href="/Game/top" class="nli">排行榜</a></li>
+				<li><a href="/Game/Rank" class="nli">排行榜</a></li>
 				<li><a href="/User/Index" class="nli">会员中心</a></li>
 				<li><a href="/site/index" class="nli">了解彩豆</a></li>
 				<li><a href="/agent/index" class="nli">合作商家</a></li>
@@ -218,12 +218,12 @@
 <div class="ad_demo"><!-- <script src="/js/ad_js/ad_demo.js" type="text/javascript"></script> --></div><br/>
 </div>
 <div style="text-align:center;line-height:50px;color:#DA2C35">
-	<strong>温馨提示：</strong>砸金蛋每次消耗20点积分。<hr />
+	<strong>温馨提示：</strong>砸金蛋每次消耗<?php echo $smashegg_integral; ?>点积分。<hr />
 </div>
 <script type="text/javascript">
 	function eggClick(obj,hei1,hei2) {
 		var _this = obj;
-		$.getJSON("/user/point",function(res){
+		$.getJSON("/prize/point",function(res){
 			console.log(res)
 			if(_this.hasClass("curr")){
 				layer.msg("蛋都碎了，别砸了！刷新再来.");

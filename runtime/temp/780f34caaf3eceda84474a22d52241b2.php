@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"D:\mywork\lotgame\public/../app/agent\view\operate\recharge.html";i:1555043438;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555476736;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"D:\mywork\lotgame\public/../app/agent\view\operate\recharge.html";i:1555070402;s:49:"D:\mywork\lotgame\app\agent\view\public\left.html";i:1555501924;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:60:"D:\mywork\lotgame\public/../app/front\view\board\detail.html";i:1553674484;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554345226;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:60:"D:\mywork\lotgame\public/../app/front\view\board\detail.html";i:1553687019;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1555680861;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,9 +36,9 @@
 				</ul>
 			</div>
 			<span class="barr fr">
-				<?php if($uid != 0): ?>
+				<?php if($uid > 0): ?>
 					<b ><?php echo $user['username']; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php echo $user['coin']; ?></b></span> &nbsp;
-					<a href="/User/Index">我的账号</a> <a href="/User/Sms">站内信</a>&nbsp;
+					<a href="/User/Index">我的账号</a> <a href="/User/Msg">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/common/logout">退出</a>
                 <?php else: ?>
                 	<a href="/Common/Login" class="dl line">HI, 请登录</a>  <a href="/Common/Register" class="line">注册</a> <a href="/User/FindPwd" class="line">找回密码</a>
@@ -67,7 +67,7 @@
 						</div>
 					</li>
 				</div>
-				<li><a href="/Game/top" class="nli">排行榜</a></li>
+				<li><a href="/Game/Rank" class="nli">排行榜</a></li>
 				<li><a href="/User/Index" class="nli">会员中心</a></li>
 				<li><a href="/site/index" class="nli">了解彩豆</a></li>
 				<li><a href="/agent/index" class="nli">合作商家</a></li>

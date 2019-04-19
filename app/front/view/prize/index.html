@@ -44,9 +44,9 @@
                      // easing: $.easing.easeOutSine, 
                      callback: function(){ 
                         if(coin==0){
-                          
                           layer.msg('不要泄气，'+txt,{time:3000});
                         }else{
+                          $.post('/prize/win',{coin:coin},function(){})
                           layer.msg('恭喜你，中得'+txt+'');
                         }
 

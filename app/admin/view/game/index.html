@@ -142,8 +142,9 @@
         type:"post",
         url:"{:url('admin/game/onff')}",
         data:{onff:onff,id:id},
+        dataType:'json',
         success:function(res){
-          
+          console.log(res)
           if(res.code == 1) {
             onff_();
           } else {

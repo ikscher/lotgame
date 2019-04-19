@@ -27,7 +27,8 @@ class Prize extends Site
         $this->map['uid']=$this->uid;
         $user=$this->userModel->where($this->map)->find();
         
-        $this->can=$this->user['is_can_draw'];
+        // $this->can=$this->user['is_can_draw'];
+        $this->can=1;
         $this->draw_lottery=Db::name('webconfig')->where('id',101)->value('draw_lottery');
         $this->smashegg_integral=Db::name('webconfig')->where('id',101)->value('smashegg_integral');
     }
@@ -116,7 +117,7 @@ class Prize extends Site
         
         //$sum=json_decode('[{"id":"1","points":"888000","prize":"888000金币","v":"0","max":40,"min":0},{"id":"2","points":"188000","prize":"188000金币","v":"0.00","max":85,"min":45},{"id":"3","points":"58800","prize":"58800金币","v":"0.00","max":130,"min":90},{"id":"4","points":"6888","prize":"6888金币","v":"1.00","max":175,"min":135},{"id":"5","points":"2888","prize":"2888金币","v":"2.00","max":220,"min":180},{"id":"6","points":"666","prize":"666金币","v":"7.00","max":265,"min":225},{"id":"7","points":"222","prize":"彩豆大礼包","v":"0.00","max":310,"min":270},{"id":"8","points":"0","prize":"再接再厉","v":"90.00","max":355,"min":315}]',true);
         // $prize[0]=array('id'=>1,'coin'=>'888000','prize'=>'888000金币','v'=>0,'max'=>40,'min'=>0);
-        // $prize[1]=array('id'=>2,'coin'=>'188000','prize'=>'188000金币','v'=>0,'max'=>85,'min'=>0);
+        // $prize[1]=array('id'=>2,'coin'=>'188000','prize'=>'188000金币','v'=>0,'max'=>85,'min'=>45);
         // $prize[2]=array('id'=>3,'coin'=>'58800','prize'=>'58800金币','v'=>0,'max'=>130,'min'=>90);
         // $prize[3]=array('id'=>4,'coin'=>'6888','prize'=>'6888金币','v'=>0,'max'=>175,'min'=>135);
         // $prize[4]=array('id'=>5,'coin'=>'2888','prize'=>'2888金币','v'=>1,'max'=>220,'min'=>180);
@@ -146,6 +147,17 @@ class Prize extends Site
             echo json_encode($prize);exit;
         }
 
+    }
+    
+    //抽奖大转盘3,中奖操作
+    public function win()
+    {
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $coin=$post['coin'];
+            //增加金币
+            $this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
+        }
     }
 
 

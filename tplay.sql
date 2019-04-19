@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50505
+Source Server         : localhost
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50505
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-19 17:08:33
+Date: 2019-04-19 22:29:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -114,7 +114,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=756 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=767 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -871,6 +871,17 @@ INSERT INTO `hov_admin_log` VALUES ('752', '4', '1', '192.168.1.100', '142', '15
 INSERT INTO `hov_admin_log` VALUES ('753', '28', '1', '192.168.1.100', '修改角色信息成功', '1555658649');
 INSERT INTO `hov_admin_log` VALUES ('754', '139', '1', '192.168.1.100', '砸蛋设置添加成功-10', '1555658980');
 INSERT INTO `hov_admin_log` VALUES ('755', '138', '1', '192.168.1.100', '砸蛋设置删除成功-10', '1555658985');
+INSERT INTO `hov_admin_log` VALUES ('756', '142', '1', '192.168.1.104', '抽奖设置修改成功-8', '1555676218');
+INSERT INTO `hov_admin_log` VALUES ('757', '142', '1', '192.168.1.104', '抽奖设置修改成功-8', '1555677233');
+INSERT INTO `hov_admin_log` VALUES ('758', '142', '1', '192.168.1.104', '抽奖设置修改成功-1', '1555677280');
+INSERT INTO `hov_admin_log` VALUES ('759', '142', '1', '192.168.1.104', '抽奖设置修改成功-2', '1555677309');
+INSERT INTO `hov_admin_log` VALUES ('760', '142', '1', '192.168.1.104', '抽奖设置修改成功-3', '1555677330');
+INSERT INTO `hov_admin_log` VALUES ('761', '142', '1', '192.168.1.104', '抽奖设置修改成功-4', '1555677343');
+INSERT INTO `hov_admin_log` VALUES ('762', '142', '1', '192.168.1.104', '抽奖设置修改成功-5', '1555677355');
+INSERT INTO `hov_admin_log` VALUES ('763', '142', '1', '192.168.1.104', '抽奖设置修改成功-6', '1555677403');
+INSERT INTO `hov_admin_log` VALUES ('764', '142', '1', '192.168.1.104', '抽奖设置修改成功-6', '1555677409');
+INSERT INTO `hov_admin_log` VALUES ('765', '142', '1', '192.168.1.104', '抽奖设置修改成功-7', '1555677491');
+INSERT INTO `hov_admin_log` VALUES ('766', '142', '1', '192.168.1.104', '抽奖设置修改成功-8', '1555677763');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -1454,7 +1465,7 @@ INSERT INTO `hov_card_pwd` VALUES ('51', 'd10LVPT61SCDYA3GQJH', 'T54RMJL4LGHD4P7
 INSERT INTO `hov_card_pwd` VALUES ('52', 'd10QTWHHM77SHQRPDNM', 'OFT5RA535WQ68RJN', '10', '0', '10', '2', '1555121928', '1555121939');
 INSERT INTO `hov_card_pwd` VALUES ('53', 'd10HTDQB2YGM5BSTS1S', 'DG6SEUVHSJPESLXO', '10', '0', '9', '4', '1555121928', '1555505492');
 INSERT INTO `hov_card_pwd` VALUES ('54', 'd101YWCVOTMO9NI9MR4', 'OKR58Z7366JWUJ6A', '10', '0', '10', '2', '1555121928', '1555600483');
-INSERT INTO `hov_card_pwd` VALUES ('55', 'd102KXZ660FTL1QVEWC', 'ZOYJ0GFIRAVQVQ9I', '10', '0', null, '1', '1555121928', null);
+INSERT INTO `hov_card_pwd` VALUES ('55', 'd102KXZ660FTL1QVEWC', 'ZOYJ0GFIRAVQVQ9I', '10', '0', '10', '2', '1555121928', '1555684074');
 
 -- ----------------------------
 -- Table structure for `hov_chargeconfig`
@@ -1491,6 +1502,7 @@ CREATE TABLE `hov_draw_lottery` (
   `odd` smallint(4) DEFAULT NULL,
   `min` int(11) DEFAULT NULL,
   `max` int(11) DEFAULT NULL,
+  `sort` tinyint(2) DEFAULT '0' COMMENT '排序',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1499,14 +1511,14 @@ CREATE TABLE `hov_draw_lottery` (
 -- ----------------------------
 -- Records of hov_draw_lottery
 -- ----------------------------
-INSERT INTO `hov_draw_lottery` VALUES ('1', '彩豆大礼包', '188', '100', null, null, '1555641672', '1555641672');
-INSERT INTO `hov_draw_lottery` VALUES ('2', '666金币', '666', '10', null, null, '1555641783', '1555641783');
-INSERT INTO `hov_draw_lottery` VALUES ('3', '2888金币', '2888', '8', null, null, '1555641800', '1555641800');
-INSERT INTO `hov_draw_lottery` VALUES ('4', '6888金币', '6888', '5', null, null, '1555641814', '1555641814');
-INSERT INTO `hov_draw_lottery` VALUES ('5', '58800金币', '58800', '3', null, null, '1555641826', '1555641826');
-INSERT INTO `hov_draw_lottery` VALUES ('6', '188000金币', '188000', '1', null, null, '1555641838', '1555641838');
-INSERT INTO `hov_draw_lottery` VALUES ('7', '888000金币', '888000', '0', null, null, null, null);
-INSERT INTO `hov_draw_lottery` VALUES ('8', '谢谢参与', '0', '500', null, null, '1555641860', '1555642200');
+INSERT INTO `hov_draw_lottery` VALUES ('1', '彩豆大礼包', '188', '100', '270', '310', '1', '1555641672', '1555677280');
+INSERT INTO `hov_draw_lottery` VALUES ('2', '666金币', '666', '10', '225', '265', '2', '1555641783', '1555677309');
+INSERT INTO `hov_draw_lottery` VALUES ('3', '2888金币', '2888', '8', '180', '220', '3', '1555641800', '1555677330');
+INSERT INTO `hov_draw_lottery` VALUES ('4', '6888金币', '6888', '5', '135', '175', '4', '1555641814', '1555677343');
+INSERT INTO `hov_draw_lottery` VALUES ('5', '58800金币', '58800', '3', '90', '130', '5', '1555641826', '1555677355');
+INSERT INTO `hov_draw_lottery` VALUES ('6', '188000金币', '188000', '1', '45', '85', '6', '1555641838', '1555677409');
+INSERT INTO `hov_draw_lottery` VALUES ('7', '888000金币', '888000', '0', '0', '40', '7', null, '1555677490');
+INSERT INTO `hov_draw_lottery` VALUES ('8', '谢谢参与', '0', '500', '315', '355', '0', '1555641860', '1555677763');
 
 -- ----------------------------
 -- Table structure for `hov_emailconfig`
@@ -1559,7 +1571,7 @@ CREATE TABLE `hov_game` (
 INSERT INTO `hov_game` VALUES ('1', '急速28', 'js28', null, '0', null, null, null, null, null, null, '1', '1553311975', '1553395222');
 INSERT INTO `hov_game` VALUES ('2', '急速16', 'js16', null, '0', null, null, null, null, null, null, '1', '1553312074', '1553395212');
 INSERT INTO `hov_game` VALUES ('3', '急速36', 'js36', '0.00', '0', '0', '0', '0', '0', '', '', '1', '1553312148', '1553395204');
-INSERT INTO `hov_game` VALUES ('4', '急速11', 'js11', null, '0', null, null, null, null, null, null, '1', null, '1553395229');
+INSERT INTO `hov_game` VALUES ('4', '急速11', 'js11', null, '0', null, null, null, null, null, null, '0', null, '1553395229');
 INSERT INTO `hov_game` VALUES ('6', '急速10', 'js10', null, '0', null, null, null, null, null, null, '1', '1553312250', '1553395183');
 INSERT INTO `hov_game` VALUES ('7', '急速冠亚', 'jsgy', '1.30', '23', '33', '344', '{\"1\":{\"min_exp_from\":\"1\",\"max_exp_to\":\"2\",\"seq_reward_exp\":\"3\"},\"2\":{\"min_exp_from\":\"4\",\"max_exp_to\":\"5\",\"seq_reward_exp\":\"6\"},\"3\":{\"min_exp_from\":\"3\",\"max_exp_to\":\"34\",\"seq_reward_exp\":\"3\"},\"4\":{\"min_exp_from\":\"12\",\"max_exp_to\":\"\",\"seq_reward_exp\":\"22\"}}', '[{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"23\",\"max_points_to\":\"324\",\"seq_reward_points\":\"2\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"32334\",\"max_points_to\":\"43434\",\"seq_reward_points\":\"345\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"}]', '<table class=\"table_list\" width=\"1100\" style=\"width: 968px;\"><tbody style=\"margin: 0px; padding: 0px;\"><tr style=\"margin: 0px; padding: 0px;\" class=\"firstRow\"><td colspan=\"4\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">如第654574期</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(按照由小到大的顺序依次排列)</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">区位</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第一区[第1/2/3/4/5/6位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第二区[第7/8/9/10/11/12位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第三区[第13/14/15/16/17/18位数字]</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">数字</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">25,30,35,36,43,49</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">50,53,59,66,69,71</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">求和</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">61</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">218</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">368</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">计算</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">结果</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">开奖</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;=&nbsp;&nbsp;</p></li><li><p>17</p></li></ul></td></tr></tbody></table><p><br/></p>', '游戏时间：北京时间 09:05 ～ 23:55,每 5分钟 一期，全天 179 期。', '1', '1553312368', '1553395171');
 INSERT INTO `hov_game` VALUES ('8', '急速22', 'js22', null, '0', null, null, null, null, null, null, '1', null, '1553395236');
@@ -1572,7 +1584,7 @@ INSERT INTO `hov_game` VALUES ('14', '韩国36', 'hg36', null, '0', null, null, 
 INSERT INTO `hov_game` VALUES ('15', '韩国11', 'hg11', null, '0', null, null, null, null, null, null, '1', null, '1553395309');
 INSERT INTO `hov_game` VALUES ('16', '韩国10', 'hg10', null, '0', null, null, null, null, null, null, '1', null, '1553395315');
 INSERT INTO `hov_game` VALUES ('17', '韩国外围', 'hgww', null, '0', null, null, null, null, null, null, '1', null, '1553395328');
-INSERT INTO `hov_game` VALUES ('18', '韩国定位', 'hgdw', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('18', '韩国定位', 'hgdw', null, '0', null, null, null, null, null, null, '1', null, null);
 INSERT INTO `hov_game` VALUES ('19', '北京28', 'bj28', null, '0', null, null, null, null, null, null, '0', null, null);
 INSERT INTO `hov_game` VALUES ('20', '北京16', 'bj16', null, '0', null, null, null, null, null, null, '0', null, null);
 INSERT INTO `hov_game` VALUES ('21', '北京36', 'bj36', null, '0', null, null, null, null, null, null, '0', null, null);
@@ -3127,7 +3139,7 @@ INSERT INTO `hov_user` VALUES ('6', 'ikscher2', '97e08cd92c60e3d3c0d9f085ba2797c
 INSERT INTO `hov_user` VALUES ('7', 'ikscher3', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856933659', '0', '0', '1554734059', null, '1554734059', '0', '192.168.1.102', '8', null, null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1', '0');
 INSERT INTO `hov_user` VALUES ('8', 'ikscher4', 'b6e6f93000c7ffb987cd56da6d44d538', '1', '52', '1', '', '13856900659', '1000377', '0', '1554734339', '1555600440', '1554734339', null, '192.168.1.104', null, '0', null, '0', '0', '1000', '0', '1', '0', null, null, null, null, null, null, null, null, '1', '0');
 INSERT INTO `hov_user` VALUES ('9', 'ikscher5', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', null, '1', '', '13856955659', '270', '0', '1554735892', null, '1554735892', '5', '192.168.1.102', '8', '0', null, '0', '0', '100', '0', '1', '0', null, null, null, null, null, null, null, null, '1', '0');
-INSERT INTO `hov_user` VALUES ('10', 'ikscher6', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', '51', '1', '45397312@qq.com', '13856944659', '671403', '10', '1554736170', '1555600471', '1554817692', '0', '192.168.1.104', '8', '0', '1554739200', '0', '0', '1000', '1', '1', '0', null, '3', 'jxjx', '23232323', null, '', '1054915200', null, '1', '0');
+INSERT INTO `hov_user` VALUES ('10', 'ikscher6', '97e08cd92c60e3d3c0d9f085ba2797ca', '1', '51', '1', '45397312@qq.com', '13856944659', '1464097', '10', '1554736170', '1555600471', '1554817692', '0', '192.168.1.104', '8', '0', '1554739200', '0', '0', '1000', '1', '1', '0', null, '3', 'jxjx', '23232323', null, '', '1054915200', null, '1', '0');
 INSERT INTO `hov_user` VALUES ('11', 'fsdf', '2afffabc41c1724a8f3d1fd86da6fc48', '1', null, '1', '', '13956899823', '0', '0', '1554777503', null, '1554777503', '0', '192.168.1.107', '8', '0', null, '0', '0', '0', '0', '1', '0', null, null, null, null, null, null, null, null, '1', '0');
 
 -- ----------------------------
@@ -3184,7 +3196,7 @@ CREATE TABLE `hov_user_exchange` (
   `card` varchar(1000) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '1' COMMENT '奖品是否通过审核1：待审核，2：通过（已发货），3：不通过',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_exchange
@@ -3198,6 +3210,7 @@ INSERT INTO `hov_user_exchange` VALUES ('78', '10', '4', '100.00', '3', '327600'
 INSERT INTO `hov_user_exchange` VALUES ('79', '10', '4', '100.00', '2', '218400', '1554956298', null, '[{\"card_no\":\"d105IT1ZNN6ASRMJ584\",\"card_pwd\":\"AXV854ZMS2FJ7VQK\"},{\"card_no\":\"d1002AJ8Z3TVY2PJUOJ\",\"card_pwd\":\"LNO8C0VQQCWAANG6\"}]', '2');
 INSERT INTO `hov_user_exchange` VALUES ('80', '10', '4', '100.00', '2', '218400', '1555121939', null, '[{\"card_no\":\"d10LVPT61SCDYA3GQJH\",\"card_pwd\":\"T54RMJL4LGHD4P70\"},{\"card_no\":\"d10QTWHHM77SHQRPDNM\",\"card_pwd\":\"OFT5RA535WQ68RJN\"}]', '2');
 INSERT INTO `hov_user_exchange` VALUES ('81', '10', '4', '100.00', '1', '109200', '1555600483', null, '[{\"card_no\":\"d101YWCVOTMO9NI9MR4\",\"card_pwd\":\"OKR58Z7366JWUJ6A\"}]', '2');
+INSERT INTO `hov_user_exchange` VALUES ('82', '10', '4', '100.00', '1', '109200', '1555684074', null, '[{\"card_no\":\"d102KXZ660FTL1QVEWC\",\"card_pwd\":\"ZOYJ0GFIRAVQVQ9I\"}]', '2');
 
 -- ----------------------------
 -- Table structure for `hov_user_grade`
@@ -3241,7 +3254,7 @@ CREATE TABLE `hov_user_log` (
   `type` char(30) DEFAULT NULL COMMENT '日志类型',
   `flag` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_user_log
@@ -3278,6 +3291,9 @@ INSERT INTO `hov_user_log` VALUES ('159', '10', '兑奖次数额外手续费', '
 INSERT INTO `hov_user_log` VALUES ('160', '8', '砸金蛋', '0', '0', '0', '0', '1555649379', '', '0');
 INSERT INTO `hov_user_log` VALUES ('161', '8', '砸金蛋', '0', '0', '189', '0', '1555649836', 'smasheggs', '0');
 INSERT INTO `hov_user_log` VALUES ('162', '8', '用户点卡自充值1000000', '1000000', '1000', '1000377', '0', '1555662551', 'charge_user', '0');
+INSERT INTO `hov_user_log` VALUES ('163', '10', '兑换奖品移动充值卡100元', '-109200', '0', '1464097', '0', '1555684074', 'prize', '0');
+INSERT INTO `hov_user_log` VALUES ('164', '10', '兑奖流水额外手续费', '-2184', '0', '1461913', '0', '1555684074', 'prize', '0');
+INSERT INTO `hov_user_log` VALUES ('165', '10', '兑奖次数额外手续费', '-2184', '0', '1459729', '0', '1555684074', 'prize', '0');
 
 -- ----------------------------
 -- Table structure for `hov_user_msg`
@@ -3293,7 +3309,7 @@ CREATE TABLE `hov_user_msg` (
   `is_read` tinyint(1) DEFAULT NULL COMMENT '1已读0未读',
   `create_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COMMENT='站内信';
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COMMENT='站内信';
 
 -- ----------------------------
 -- Records of hov_user_msg
@@ -3314,6 +3330,7 @@ INSERT INTO `hov_user_msg` VALUES ('53', '1', '10', '3', '兑奖发货通知', '
 INSERT INTO `hov_user_msg` VALUES ('54', '1', '10', '3', '兑奖发货通知', '内容：您兑换的奖品移动充值卡100元已经发货，谢谢您对我们的支持。<br/>d105IT1ZNN6ASRMJ584 AXV854ZMS2FJ7VQK<br/>d1002AJ8Z3TVY2PJUOJ LNO8C0VQQCWAANG6<br/>', null, '1554956298');
 INSERT INTO `hov_user_msg` VALUES ('55', '1', '10', '3', '兑奖发货通知', '内容：您兑换的奖品移动充值卡100元已经发货，谢谢您对我们的支持。<br/>d10LVPT61SCDYA3GQJH T54RMJL4LGHD4P70<br/>d10QTWHHM77SHQRPDNM OFT5RA535WQ68RJN<br/>', null, '1555121939');
 INSERT INTO `hov_user_msg` VALUES ('56', '1', '10', '3', '兑奖发货通知', '内容：您兑换的奖品移动充值卡100元已经发货，谢谢您对我们的支持。<br/>d101YWCVOTMO9NI9MR4 OKR58Z7366JWUJ6A<br/>', null, '1555600483');
+INSERT INTO `hov_user_msg` VALUES ('57', '1', '10', '3', '兑奖发货通知', '内容：您兑换的奖品移动充值卡100元已经发货，谢谢您对我们的支持。<br/>d102KXZ660FTL1QVEWC ZOYJ0GFIRAVQVQ9I<br/>', null, '1555684074');
 
 -- ----------------------------
 -- Table structure for `hov_user_note`
@@ -3473,4 +3490,4 @@ CREATE TABLE `hov_webconfig` (
 -- ----------------------------
 -- Records of hov_webconfig
 -- ----------------------------
-INSERT INTO `hov_webconfig` VALUES ('101', 'Tplay后台管理框架', 'Tplay,后台管理,thinkphp5,layui', 'Tplay是一款基于ThinkPHP5.0.12 + layui2.2.45 + ECharts + Mysql开发的后台管理框架，集成了一般应用所必须的基础性功能，为开发者节省大量的时间。', '1', 'jpg,png,gif,mp4,zip,jpeg', '500', '', '', null, '金币', '0', '0', '1000', '0.4', '0.5000', '0.05', '0.9920', '50', '50', '10', '2.0000', '3.00', '0', '200', '100000');
+INSERT INTO `hov_webconfig` VALUES ('101', 'Tplay后台管理框架', 'Tplay,后台管理,thinkphp5,layui', 'Tplay是一款基于ThinkPHP5.0.12 + layui2.2.45 + ECharts + Mysql开发的后台管理框架，集成了一般应用所必须的基础性功能，为开发者节省大量的时间。', '1', 'jpg,png,gif,mp4,zip,jpeg', '500', '', '', null, '金币', '0', '0', '1000', '0.4', '0.5000', '0.05', '0.9920', '50', '50', '10', '2.0000', '3.00', '0', '200', '200000');

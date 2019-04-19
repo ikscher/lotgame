@@ -178,11 +178,14 @@ class Game extends Permissions
     {
         if($this->request->isPost()){
             $post = $this->request->post();
-            if(false == $this->model->where('id',$post['id'])->update(['onff'=>$post['onff']])) {
+
+            $result=$this->model->where('id',$post['id'])->update(['onff'=>$post['onff']]);
+            
+            if(false ==$result ) {
                 return $this->error('设置失败');
             } else {
                 $operation='设置成功';
-                addlog($operation.'-'.$post['id']);//写入日志
+                // addlog($operation.'-'.$post['id']);//写入日志
                 return $this->success($operation,'admin/game/index');
             }
         }

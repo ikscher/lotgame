@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\index.html";i:1554690205;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1554774388;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1555474378;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1555487584;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554342636;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:58:"D:\mywork\lotgame\public/../app/front\view\user\index.html";i:1554725352;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1555683696;s:49:"D:\mywork\lotgame\app\front\view\user\header.html";i:1555501924;s:47:"D:\mywork\lotgame\app\front\view\user\left.html";i:1555501924;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +67,7 @@
 						</div>
 					</li>
 				</div>
-				<li><a href="/Game/top" class="nli">排行榜</a></li>
+				<li><a href="/Game/Rank" class="nli">排行榜</a></li>
 				<li><a href="/User/Index" class="nli">会员中心</a></li>
 				<li><a href="/site/index" class="nli">了解彩豆</a></li>
 				<li><a href="/agent/index" class="nli">合作商家</a></li>
@@ -93,7 +93,7 @@
 		var pNall = window.location.pathname;
 		$(".nav-ul").find('li').each(function(i) {
 			$(this).attr('class','');
-			if(pNall.toLowerCase().indexOf("game/top") > 0){
+			if(pNall.toLowerCase().indexOf("game/rank") > 0){
 				if(i==5){
 					$(this).attr('class','select');
 				}

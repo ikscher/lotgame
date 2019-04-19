@@ -39,7 +39,28 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">概率</label>
         <div class="layui-input-block" style="max-width:1000px;">
-          <input name="odd"  autocomplete="off" placeholder="请输入概率" required  lay-verify="required|number" class="layui-input" type="text" {notempty name="$drawlottery.odd"}value="{$drawlottery.odd}"{/notempty}>
+          <input name="odd"  autocomplete="off" placeholder="请输入概率" required  lay-verify="required|number" class="layui-input" type="text" {notempty name="$drawlottery.odd"}value="{$drawlottery.odd}"{else /}value="0"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">最大角度</label>
+        <div class="layui-input-block" style="max-width:1000px;">
+          <input name="max"  autocomplete="off" placeholder="请输入,不超过360" required  lay-verify="required|number" class="layui-input" type="text" {notempty name="$drawlottery.max"}value="{$drawlottery.max}"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">最小角度</label>
+        <div class="layui-input-block" style="max-width:1000px;">
+          <input name="min"  autocomplete="off" placeholder="请输入，不超过360" required  lay-verify="required|number" class="layui-input" type="text" {notempty name="$drawlottery.min"}value="{$drawlottery.min}"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-block" style="max-width:1000px;">
+          <input name="sort"  autocomplete="off" placeholder="请输入" required  lay-verify="required|number" class="layui-input" type="text" {notempty name="$drawlottery.sort"}value="{$drawlottery.sort}"{else /}value="0"{/notempty}>
         </div>
       </div>
   
