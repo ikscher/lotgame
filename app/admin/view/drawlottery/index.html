@@ -19,8 +19,8 @@
   <div class="tplay-body-div">
     <div class="layui-tab">
       <ul class="layui-tab-title">
-        <li class="layui-this">广告管理</li>
-        <li><a href="{:url('admin/ad/publish')}" class="a_menu">新增广告</a></li>
+        <li class="layui-this">抽奖设置</li>
+        <li><a href="{:url('admin/smashegg/publish')}" class="a_menu">编辑/新增</a></li>
       </ul>
     </div> 
      
@@ -30,28 +30,30 @@
         <col width="50">
         <col width="300">
         <col width="200">
+        <col width="200">
         <col width="100">
       </colgroup>
       <thead>
         <tr>
           <th><input type="checkbox" id="checkbox_handle"  value="0"></th>
           <th>ID</th>
-          <th>广告位置</th>
-          <th>创建时间</th>
+          <th>奖品名称</th>
+          <th>金币</th>
+          <th>概率</th>
           <th>操作</th>
         </tr> 
       </thead>
       <tbody>
         {volist name="list" id="vo"}
         <tr>
-          <td><input type="checkbox" name="checkbox"   value=""></td>
+          <td><input type="checkbox" name="checkbox"   value="{$vo.id}"></td>
            <td>{$vo.id}</td>
-           <td>{$vo.title}</td>
-      
-           <td>{$vo.create_time}</td>
+           <td>{$vo.name}</td>
+           <td>{$vo.money}</td>
+           <td>{$vo.odd}</td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="{:url('admin/ad/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="{:url('admin/drawlottery/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -60,14 +62,54 @@
       </tbody>
     </table>
     <div>{$list->render();}</div>
+    <hr style="margin:30px 0;">
+    <form class="layui-form" id="admin">
+      
+      <div class="layui-form-item">
+        <label class="layui-form-label">充值多少金币得一次抽奖机会</label>
+        <div class="layui-input-block" style="max-width:600px;">
+          <input name="draw_lottery"  autocomplete="off" required  lay-verify="required|number" placeholder="请输入" class="layui-input" type="text" {notempty name="$draw_lottery"}value="{$draw_lottery}"{else /}value="0"{/notempty}>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" lay-submit lay-filter="admin">保存</button>
+        </div>
+      </div>
+      
+    </form>
     {include file="public/foot"}
     <script type="text/javascript">
+    layui.use(['layer', 'form'], function() {
+        var layer = layui.layer,form = layui.form;
+        $(window).on('load', function() {
+            form.on('submit(admin)', function(data) {
+                $.ajax({
+                    url:"{:url('admin/drawlottery/index')}",
+                    data:$('#admin').serialize(),
+                    type:'post',
+                    async: false,
+                    success:function(res) {
+                        console.log(res);
+                        // if(res.code == 1) {
+                        //     layer.alert(res.msg, function(index){
+                        //       location.href = res.url;
+                        //     })
+                        // } else {
+                            layer.msg(res.msg);
+                        // }
+                    }
+                })
+                return false;
+            });
+        });
+    });
 
     $('.delete').click(function(){
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"{:url('admin/ad/delete')}",
+          url:"{:url('admin/drawlottery/delete')}",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);

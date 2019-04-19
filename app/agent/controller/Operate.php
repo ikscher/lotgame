@@ -159,6 +159,11 @@ class Operate extends Site
                 $this->userModel->where('uid',$uid)->setInc('coin',$coins*1000);
                 $this->userModel->where('uid',$uid)->setInc('experiments',$exp);
 
+                //充值大于等于200元后获取抽奖一次
+                if($coins>200){
+                    $this->userModel->where('uid',$this->uid)->setField('is_can_draw',1);
+                }
+
                 //记录用户日志
                 $desc=$this->agent['name'].'('.$this->agent['id'].')代充';
                 $usercoins=$this->userModel->where('uid',$uid)->value('coin');

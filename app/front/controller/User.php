@@ -293,6 +293,10 @@ class User extends Site
                         Db::startTrans();
                         try{
                             $this->userModel->where('uid',$this->uid)->setInc('coin',$coin);
+                            //充值大于等于200元后获取抽奖一次
+                            if($coin>200000){
+                                $this->userModel->where('uid',$this->uid)->setField('is_can_draw',1);
+                            }
                             $data['use_time']=time();
                             $data['status']=4;//已充值
                             $data['user_id']=$this->uid;
@@ -503,44 +507,7 @@ class User extends Site
     }
    
 
-    public function point()
-    {   
-        // $data=array();
-        // $map['uid']=$this->uid;
-        // $user=$this->userModel->where($map)->find();
-        
-        if($this->user['points']>20){
-            $this->userModel->where($map)->setDec('points',$this->user['points']); //一次砸蛋扣多少积分
-            // echo $this->userModel->getLastSql();exit;
-            adduserlog('1','砸金蛋');
-
-            $jp = array();
-            $jp[] = array( 'gl' => 1 , 'title' => '一等奖');
-            $jp[] = array( 'gl' => 2 , 'title' => '二等奖');
-            $jp[] = array( 'gl' => 3 , 'title' => '三等奖');
-            $jp[] = array( 'gl' => 94 , 'title' => '未中奖');
-
-            $zj = random_hits( $jp );
-            
-            if(in_array($zj['gl'],array('1','2','3'))) {
-                $data['msg']=1;
-                $data['prize']="我中奖了";
-                echo json_encode($data);exit;
-            }else{
-                $data['msg']=0;
-                $data['prize']="没有中奖";
-                echo json_encode($data);exit;
-            }
-
-
-
-        }else{
-            $data['msg']=-2;
-            $data['prize']="";
-            echo json_encode($data);exit;
-        }
-       
-    }
+    
 
     //获取用户的金币和投注信息
     public function ajaxpoint(){

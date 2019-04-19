@@ -66,7 +66,7 @@
           <th>操作</th>
           <th>路径</th>
           <th>节点备注</th>
-          <th>返回对象</th>
+          <th>操作内容</th>
           <th>操作者</th>
           <th>记录时间</th>
           <th>记录IP</th>
@@ -79,7 +79,7 @@
           <td>{empty name="$vo.name"}{$vo.menu.name}{else /}{$vo.name}{/empty}</td>
           <td>{$vo.menu.module}/{$vo.menu.controller}/{$vo.menu.function}{notempty name="$vo.menu.parameter"}/{$vo.menu.parameter}{/notempty}</td>
           <td>{notempty name="$vo.menu.description"}{$vo.menu.description}{/notempty}</td>
-          <td>{notempty name="$vo.operation_id"}{$vo.operation_id}{else /}无{/notempty}</td>
+          <td>{notempty name="$vo.operation"}{$vo.operation}{else /}无{/notempty}</td>
           <td>{$vo.admin.nickname} <{volist name="admin_cate" id="cate"}{eq name="$vo.admin.admin_cate_id" value="$cate.id"}{$cate.name}{/eq}{/volist}></td>
           <td>{$vo.create_time}</td>
           <td>{$vo.ip}</td>

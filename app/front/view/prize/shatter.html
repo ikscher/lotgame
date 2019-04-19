@@ -32,12 +32,12 @@
 <div class="ad_demo"><!-- <script src="/js/ad_js/ad_demo.js" type="text/javascript"></script> --></div><br/>
 </div>
 <div style="text-align:center;line-height:50px;color:#DA2C35">
-	<strong>温馨提示：</strong>砸金蛋每次消耗20点积分。<hr />
+	<strong>温馨提示：</strong>砸金蛋每次消耗{$smashegg_integral}点积分。<hr />
 </div>
 <script type="text/javascript">
 	function eggClick(obj,hei1,hei2) {
 		var _this = obj;
-		$.getJSON("/user/point",function(res){
+		$.getJSON("/prize/point",function(res){
 			console.log(res)
 			if(_this.hasClass("curr")){
 				layer.msg("蛋都碎了，别砸了！刷新再来.");

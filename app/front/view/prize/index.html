@@ -3,6 +3,9 @@
 <script type="text/javascript" src="__PUBLIC__/jquery/ajaxrequest.js"></script>
 
 <script type="text/javascript">
+  layui.use('layer',function(){
+    var layer=layui.layer;
+ });
   var turnplate = {
     restaraunts: [],
     outsideRadius: 260, //大转盘外圆的半径
@@ -22,7 +25,7 @@
             }, 
             success:function(result){ 
                 var angles = result.angle; //角度 
-                var txt = result.prize; //奖项 
+                var txt = result.name; //奖项 
                 var can = result.can;
                 var coin= result.coin;
 
@@ -51,7 +54,7 @@
                         turnplate.bRotate = !turnplate.bRotate;
                     } 
                   }); 
-                  document.getElementById('drawtime').innerHTML=can-1;//更新界面抽奖次数
+                  // document.getElementById('drawtime').innerHTML=can-1;//更新界面抽奖次数
                 }else{
                   layer.msg("您的抽奖次数已用完，请再次充值！");
                 }
@@ -115,10 +118,10 @@
             console.log(result)
             var prize=[];
             for(var i=0;i<result.length;i++){
-                    prize.push(result[i].prize);
-                 }
-        turnplate.drawRouletteWheel(prize);
-      }
+                prize.push(result[i].name);
+             }
+            turnplate.drawRouletteWheel(prize);
+          }
       });
   };
 
@@ -138,11 +141,12 @@
       <div class="cjstate" >
           <h5 class="cjstate_tit">活动说明：</h5>
           <div class="cjstate_con">
-            <div><font color="#ff0000" size="4"><b>活动期间大转盘福利！充值200元即可抽奖一次！快去抽！</b></font></div>
-<div><font color="#ff0000" size="4"><b>最高能获得888000金币，以及彩豆大礼包一份！</b>
+            <div><font color="#ff0000" size="4"><b>1：活动期间大转盘福利！充值200元即可获得抽奖一次！</b></font></div>
+            <div><font color="#ff0000" size="4"><b>2：最高能获得888000金币，以及彩豆大礼包一份！</b>
+            <div><font color="#ff0000" size="4"><b>3：抽取到的金币直接打入用户账户中！</b>
           </div>
-          <p>活动时间：2018-10-01-2019-05-07</p>
-            <p>您剩余的抽奖次数：<span id="drawtime">{$can}</span>次</p>
+          <p>活动时间：2019-05-01-2019-12-31</p>
+           
       </div>
   </div>
   <div class="cjbg-bottom"></div>
