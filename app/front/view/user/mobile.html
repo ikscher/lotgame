@@ -1,0 +1,28 @@
+{include file="public/header" /}
+<div id="wrapper" class="umain">
+	<div class="w1200">
+		<!--顶侧top-->
+		{include file="user/header" /}
+		<!--顶侧top-->
+
+		<!--左侧left菜单-->
+		{include file="user/left" /}
+		<!--左侧left菜单-->
+
+
+		<div class="uright">
+			<div class="ibox">
+				<div class="ibox-title">
+					<h5>手机认证</h5>
+				</div>
+				{empty name="$is_mobile"}
+				
+				
+			    {else /}
+			    <p style="text-align:center;margin-bottom:10px" class="mt40">您的手机已认证，如需修改请联系客服。</p>
+				{/empty}
+			</div>
+		</div>
+	</div>
+</div>
+{include file="public/footer" /}

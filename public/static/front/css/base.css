@@ -132,6 +132,7 @@ transition: all .3s linear 0s;
 .nbtn{ width:98px; height:32px; line-height:32px; text-align:center; color:#FFF; background:url(../image/btn_03.jpg); border:none;}
 .ad .blank1{ height:300px;}
 .ad .con3 .inp{ height:32px; line-height:32px; width:400px; border:1px solid #999;}
+/*
 .game{margin-top:20px;}
 .game .top1{padding-top: 10px;padding-bottom: 10px; width:1200px;float:right;margin-bottom:15px;position:relative;border: #F02400 solid 1px;}
 .game .top1 a {
@@ -152,6 +153,7 @@ transition: all .3s linear 0s;
 	    border-radius: 3px;
 }
 .game .top1 a:hover {background-color: #f8f8f8;}
+*/
 .top1 .menu_title{
     float: left;
     width: 144px;
@@ -207,7 +209,10 @@ color:#fff;
     margin-left: 20px;
 	display:none
 	}
+.agent{ width:910px;min-height:900px;margin-top: 20px;margin:0 auto;}
 
+
+/*
  .game .top1 a:hover, .game .top1 .c11:link, .game .top1 .c11:visited, .game .top1 .c22:link, .game .top1 .c22:visited, .game .top1 .c33:link, .game .top1 .c33:visited, .game .top1 .c44:link, .game .top1 .c44:visited, .game .top1 .c55:link, .game .top1 .c55:visited, .game .top1 .c66:link, .game .top1 .c66:visited, .game .top1 .c77:link, .game .top1 .c77:visited, .game .top1 .c88:link, .game .top1 .c88:visited, .game .top1 .c99:link, .game .top1 .c99:visited, .game .top1 .c1010:link, .game .top1 .c1010:visited, .game .top1 .c1111:link, .game .top1 .c1111:visited, .game .top1 .c1212:link, .game .top1 .c1212:visited, .game .top1 .c1313:link, .game .top1 .c1313:visited, .game .top1 .c1414:link, .game .top1 .c1414:visited, .game .top1 .c1515:link, .game .top1 .c1515:visited, .game .top1 .c1616:link, .game .top1 .c1616:visited, .game .top1 .c1717:link, .game .top1 .c1717:visited{ color:#f00; background:; }
 .game .top2{      line-height: 40px;
     background: #fff;
@@ -257,6 +262,7 @@ color:#fff;
 .game .top3 .s2{background:url(../image/sxk.png) no-repeat left center;}
 
 .game .top3 .jeeinfo{width:1200px;height:100px;background:#fff;   margin-bottom: 10px;border: solid 1px #eee;}
+*/
 .jeeinfo .li1{width: 90px;
     text-align: center;
     margin: 4px;
@@ -279,7 +285,21 @@ color:#fff;
 
 #topOpen, #topTime{color: #666;line-height: 40px;}
 #topOpen font, #topTime font{color:#E02465}
+.buybox{ width:910px;margin-top:10px;}
+.buybox input.bk{line-height:32px;border-radius: 4px; border: 1px solid #ddd;}
+.buybox .t1 .bk{text-align:center}
+.buybox tr td{line-height:20px;height:20px;}
+.buybox select{height:25px;line-height:25px;width:100px;}
 
+.xinjian {height: 25px;font:bold 16px/25px '微软雅黑';color: #f63;text-indent: 2px;border-bottom: #EEE solid 1px;margin-bottom: 10px;}
+#Label1 {border-bottom: #00A8FF solid 1px;line-height: 27px;}
+.jeezdtz {color: #5C5C5C;font-weight: bold;border-bottom: #eee solid 1px;}
+.xiaji{overflow:auto;zoom:1;      border: #eee solid 1px;  background: #FcFcFc;}
+.xiaji .xiajis{line-height:26px;background: #000;}
+.xiaji .xiajis a{color: #fff;}
+.hdq{float:left;text-align:Center;margin:12px 5px;width:290px;}
+.xiaji .jin img{display:block;margin:0 auto;}
+/*
 .game .top3 .jeeinfo .li4 {width:700px; float: left; padding-top: 12px; margin-left: 2px;font: 14px/25px Microsoft yahei;color: #666;text-align:center;height: 80px;}
 .game .top3 .jeeinfo .li4 font{color:#E02465;}
 .game .top3 .jeeinfo .li4 .topOpen{display: none;background: url(../image/loading2.gif) no-repeat left center; padding-left: 18px;margin-right: 10px}
@@ -296,7 +316,7 @@ color:#fff;
 
 .game .gtable { width:100%;border:none; background:#E6E6E6;}
 .game .gtable  .tr{background:#fff;}
-.game .gtable  .tr:hover{background:#f5f5f5;/*filter: alpha(opacity=70); opacity: 0.7;*/}
+.game .gtable  .tr:hover{background:#f5f5f5;}
 
 .game .gtable  tr th{font-weight:100;  line-height:40px; background: #F3F3F3; color: #4C4C4C;   font-size: 15px; }
 .game .gtable  tr td{ text-align:center;  line-height:45px; *background:#fff; font-family: tahoma;}
@@ -324,7 +344,7 @@ color:#fff;
 
 .game .gtable .a2{color:#ff0000;font-size:15px}
 .game .gtable .a3{color:#01AB3D;font-size:15px}
-
+*/
 span.slh1 {
     background: url(../image/stiger.png) no-repeat center center;
     width: 22px;
@@ -344,8 +364,20 @@ span.slh0 {
     vertical-align: middle;
 }
 
+.hd{ width:910px;min-height:900px;margin-top: 10px;}
+.hd .hdli{ border: #ddd solid 1px;
+    border-top: 0;
+    margin-bottom: 20px;
+    }
+.hd .i1
+{
+    border: 1px solid #eee;
+    height:180px;
+    width:860px;
+        margin: 20px 20px 0;
+}
 
-
+/*
 em.sbnumber {
     width: 25px;
     height: 25px;
@@ -675,11 +707,7 @@ em.ncnum20, .result .num20,.popup-body .table_list td label.num20 {
 .useractiondetailpager a{border:1px solid #CCC;}
 
 .mygamebnum{width:30px; height:23px; margin:0 auto;}
-.buybox{ width:910px;margin-top:10px;}
-.buybox input.bk{line-height:32px;border-radius: 4px; border: 1px solid #ddd;}
-.buybox .t1 .bk{text-align:center}
-.buybox tr td{line-height:20px;height:20px;}
-.buybox select{height:25px;line-height:25px;width:100px;}
+
 .cm_textarea{border: #ddd solid 1px;
     border-radius: 5px;
     padding: 10px;width:860px; height:50px;}
@@ -789,18 +817,7 @@ em.ncnum20, .result .num20,.popup-body .table_list td label.num20 {
 .freeget .get .cen .in table .b1{ font-size:18px; font-weight:bold;}
 .speciea:link, .speciea:visited{ color:#3ca1d9; font-weight:bold;}
 .speciea:hover{  font-weight:bold;}
-.hd{ width:910px;min-height:900px;margin-top: 10px;}
-.hd .hdli{ border: #ddd solid 1px;
-    border-top: 0;
-    margin-bottom: 20px;
-	}
-.hd .i1
-{
-    border: 1px solid #eee;
-    height:180px;
-	width:860px;
-	    margin: 20px 20px 0;
-}
+
 .mybet input{
     height: 30px;
     border-radius: 3px;
@@ -809,7 +826,6 @@ em.ncnum20, .result .num20,.popup-body .table_list td label.num20 {
 .mybet span{line-height: 35px;
     color: #F63;}
 
-.agent{ width:910px;min-height:900px;margin-top: 20px;margin:0 auto;}
 
 .usermain{width:1200px;margin:25px auto;margin-top:0px;position:relative;}
   .col-left{width: 225px;
@@ -936,14 +952,7 @@ em.ncnum20, .result .num20,.popup-body .table_list td label.num20 {
 
 .newsli .page, .hd .page{width: 360px; margin: 20px auto;height: 40px;}
 
-.xinjian {height: 25px;font:bold 16px/25px '微软雅黑';color: #f63;text-indent: 2px;border-bottom: #EEE solid 1px;margin-bottom: 10px;}
-#Label1 {border-bottom: #00A8FF solid 1px;line-height: 27px;}
-.jeezdtz {color: #5C5C5C;font-weight: bold;border-bottom: #eee solid 1px;}
-.xiaji{overflow:auto;zoom:1;      border: #eee solid 1px;  background: #FcFcFc;}
-.xiaji .xiajis{line-height:26px;background: #000;}
-.xiaji .xiajis a{color: #fff;}
-.hdq{float:left;text-align:Center;margin:12px 5px;width:290px;}
-.xiaji .jin img{display:block;margin:0 auto;}
+
 
 .msbox{height: 170px; margin-bottom: 10px; width: 1200px;    clear: both;
 }
@@ -1011,7 +1020,7 @@ em.ncnum20, .result .num20,.popup-body .table_list td label.num20 {
     border: 1px #ccc solid;
     border-radius: 3px;
     vertical-align: middle;
-    /* line-height: 35px; */
+
     margin-left: 2px;
     padding: 4px;
 }
@@ -1171,7 +1180,7 @@ em.ncnum20, .result .num20,.popup-body .table_list td label.num20 {
   }
 
 
-  /*自动投注*/
+
 .autoplay{width:1200px;}
 .intro_autoplay{
 	height:70px;
@@ -1445,9 +1454,9 @@ em.ncnum20, .result .num20,.popup-body .table_list td label.num20 {
 	margin:10px auto;
 	display:block;
 	text-align:center;
-	-moz-border-radius: 4px;      /* Gecko browsers */
-    -webkit-border-radius: 4px;   /* Webkit browsers */
-    border-radius:4px;            /* W3C syntax */
+	-moz-border-radius: 4px;      
+    -webkit-border-radius: 4px;   
+    border-radius:4px;            
 }
 .bet_btn:hover {
 	background:#d6353c;
@@ -1520,12 +1529,7 @@ em.ncnum20, .result .num20,.popup-body .table_list td label.num20 {
 	display:block;
 }
 
-/*我的投注*/
-/*我的投注*/
-/*我的投注*/
-/*我的投注*/
-/*我的投注*/
-/*我的投注*/
+
 .luck_bet{
 	width:983px;
 	height:135px;
@@ -2260,10 +2264,10 @@ height: 35px;
 	    margin: 0 5px;
 }
 
-.noselect{cursor: default;-moz-user-select:none;/*火狐*/
-  -webkit-user-select:none;/*webkit浏览器*/
-  -ms-user-select:none;/*IE10*/
-  -khtml-user-select:none;/*早期浏览器*/
+.noselect{cursor: default;-moz-user-select:none;
+  -webkit-user-select:none;
+  -ms-user-select:none;
+  -khtml-user-select:none;
   user-select:none;}
 
 .autotab{
@@ -2349,3 +2353,4 @@ height: 35px;
     float: left;
 }
 .sutostate span{color: #FE4830;font-weight: 700;float: left;}
+*/

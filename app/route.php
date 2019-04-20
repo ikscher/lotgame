@@ -65,6 +65,7 @@ Route::rule('user/wage','front/user/wage');
 Route::rule('user/bonus','front/user/bonus');
 Route::rule('user/relief','front/user/relief');
 Route::rule('user/reward','front/user/reward');
+Route::rule('user/mobile','front/user/mobile');
 Route::rule('agent/index','front/agent/index');
 Route::rule('site/index','front/site/index');
 Route::rule('prize/ind','front/prize/init');
@@ -88,6 +89,17 @@ Route::rule('common/recom','front/common/recom');
 Route::rule('common/findpwd','front/common/findpwd');
 Route::rule('common/findpwd2','front/common/findpwd2');
 Route::rule('game/rank','front/game/rank');
-// Route::rule('agent/index','agent/other/info');
+Route::rule('game/index','front/game/index');
+Route::rule('game/data','front/game/data');
+Route::rule('game/intro','front/game/intro');
+Route::rule('game/record','front/game/record');
+Route::rule('game/mode','front/game/mode');
+Route::rule('game/auto','front/game/auto');
+Route::rule('game/chart','front/game/chart');
+Route::rule('game/total','front/game/total');
+Route::rule('game/get_record','front/game/get_record');
+Route::rule('game/get_chart','front/game/get_chart');
+Route::rule('game/get_bet_info','front/game/get_bet_info');
+Route::rule('game/betting','front/game/betting');
 
 

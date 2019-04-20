@@ -171,10 +171,10 @@ a.qqq{background: #03CD6A;
 .foot{color:#999;padding:0;line-height:30px; border-top:0px solid #f56f4a;font-size:14px;background: #f4f4f4}
 
 .foot .dizhi{background-color: #000; color: #666;height:35px;line-height:35px;text-align:center}
-.footl{padding: 40px 30px 20px;width:660px;height:152px;background:url(../image/footbg.png) no-repeat;color:#f89e00}
+.footl{padding: 40px 30px 20px;width:660px;/*height:152px;background:url(../image/footbg.png) no-repeat;*/color:#f89e00}
 .foot a{color:#666}
 
-.footr{width:440px;height:92px;  padding-top: 60px;}
+.footr{width:440px;/*height:92px; */ padding-top: 60px;}
 
 .noselect{cursor: default;-moz-user-select:none;/*»ðºü*/
   -webkit-user-select:none;/*webkitä¯ÀÀÆ÷*/
@@ -188,7 +188,7 @@ a.qqq{background: #03CD6A;
   top:50%;
   margin-top: -333px;
   position:fixed;
-  background: url('/image/leftbar-bg.png') no-repeat;
+  background: url('../image/leftbar-bg.png') no-repeat;
   background-size: 100% 100%;
   box-sizing: border-box;
   z-index:999;
@@ -214,7 +214,7 @@ a.qqq{background: #03CD6A;
   color: #fff;
   display: inline-block;
   text-align: left;
-  background: url('/image/leftbar-left-jt.png') no-repeat left center;
+  background: url('../image/leftbar-left-jt.png') no-repeat left center;
   padding-left: 13px;
   font-size: 16px;
   line-height: 20px;
@@ -225,7 +225,7 @@ a.qqq{background: #03CD6A;
   text-overflow: ellipsis;
 }
 .leftbar-main li i{
-  background: url('/image/leftbar.png?v=1.3') no-repeat;
+  background: url('../image/leftbar.png?v=1.3') no-repeat;
   display:inline-block;
   width:20px;
   vertical-align: middle;
@@ -253,7 +253,7 @@ a.qqq{background: #03CD6A;
   display: block;
   width: 100%;
   height: 30px;
-  background: url('/image/leftbar-top-jt.png') no-repeat top center;
+  background: url('../image/leftbar-top-jt.png') no-repeat top center;
   padding-top: 10px;
   color: #fec62b;
   font-size: 14px;
@@ -275,9 +275,9 @@ a.qqq{background: #03CD6A;
 .ranking .list{ width: 380px; float: left; border: 1px solid #CCC; margin-right: 20px;}
 .ranking .list:last-child{ margin-right: 0;}
 .ranking .list h2{ font-size: 20px; text-align: center; height: 156px; line-height: 156px;}
-.ranking .list.today h2{ background: url("__IMAGE__/Rectangle209@1x20.png"); background-size: 100%;}
-.ranking .list.yesterday h2{ background: url("__IMAGE__/Rectangle209@1x21.png"); background-size: 100%;}
-.ranking .list.sevenday h2{ background: url("__IMAGE__/Rectangle209@1x22.png"); background-size: 100%;}
+.ranking .list.today h2{ background: url("../image/Rectangle209@1x20.png"); background-size: 100%;}
+.ranking .list.yesterday h2{ background: url("../image/Rectangle209@1x21.png"); background-size: 100%;}
+.ranking .list.sevenday h2{ background: url("../image/Rectangle209@1x22.png"); background-size: 100%;}
 .ranking .list.today h2 i{ color: #FF5152;}
 .ranking .list.yesterday h2 i{ color: #FFAB00;}
 .ranking .list.sevenday h2 i{ color: #5493FF;}

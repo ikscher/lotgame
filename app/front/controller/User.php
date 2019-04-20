@@ -955,4 +955,14 @@ class User extends Site
         return $this->fetch();
     }
 
+    /**
+    * 手机认证查看
+    */
+    public function mobile()
+    {   
+        $is_mobile=$this->user['is_mobile'];
+        $this->assign('is_mobile',$is_mobile);
+        return $this->fetch();
+    }
+
 }
