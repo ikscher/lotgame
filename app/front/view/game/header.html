@@ -1,0 +1,72 @@
+<div class="game-names">
+     {volist name="games" id="vo" key="k" }
+          <ul class="after">
+               <li><label>{$game_area_type[$k]}</label></li>
+               {volist name="vo" id="sub"}
+                    <li><a href="/game/index?gid={$sub.id}" {eq name="sub.id" value="$gid"}class="hover"{/eq}>{$sub.name}</a></li>
+               {/volist}
+          </ul>
+     {/volist}
+     <!-- <ul class="after">
+     <li><label>幸运游戏</label></li>
+     <li><a href="/game/index?gid=26" class="">幸运百家乐</a></li>
+     <li><a href="/game/index?gid=1" class="">幸运10</a></li>
+     <li><a href="/game/index?gid=2" class="">幸运11</a></li>
+     <li><a href="/game/index?gid=3" class="">幸运16</a></li>
+     <li><a href="/game/index?gid=4" class="">幸运22</a></li>
+     <li><a href="/game/index?gid=5" class="">幸运28</a></li>
+     <li><a href="/game/index?gid=6" class="">幸运36</a></li>
+     <li><a href="/game/index?gid=7" class="">幸运冠亚军</a></li>                
+     </ul>
+     <ul class="after">
+          <li><label>北京游戏</label></li>
+          <li><a href="/game/index?gid=34" class="">北京10</a></li>
+          <li><a href="/game/index?gid=10" class="">北京16</a></li>
+          <li><a href="/game/index?gid=11" class="">北京28</a></li>
+          <li><a href="/game/index?gid=12" class="">北京36</a></li>
+          <li><a href="/game/index?gid=8" class="">蛋蛋28</a></li>
+          <li><a href="/game/index?gid=9" class="">蛋蛋36</a></li>
+          <li><a href="/game/index?gid=33" class="">蛋蛋外围2.1</a></li>
+          <li><a href="/game/index?gid=47" class="">蛋蛋外围2.8</a></li>                
+     </ul>
+     <ul class="after">
+          <li><label>PK游戏</label></li>
+          <li><a href="/game/index?gid=17" class="">PK10</a></li>
+          <li><a href="/game/index?gid=18" class="">PK22</a></li>
+          <li><a href="/game/index?gid=19" class="">PK冠军</a></li>
+          <li><a href="/game/index?gid=21" class="">PK冠亚军</a></li>
+          <li><a href="/game/index?gid=20" class="">PK龙虎</a></li>
+          <li><a href="/game/index?gid=37" class="">PK赛车</a></li>
+          <li><a href="/game/index?gid=38" class="">重庆时时彩</a></li>                
+     </ul>
+     <ul class="after">
+          <li><label>加拿大游戏</label></li>
+          <li><a href="/game/index?gid=35" class="">加拿大10</a></li>
+          <li><a href="/game/index?gid=25" class="hover">加拿大11</a></li>
+          <li><a href="/game/index?gid=23" class="">加拿大16</a></li>
+          <li><a href="/game/index?gid=24" class="">加拿大28</a></li>
+          <li><a href="/game/index?gid=25" class="">加拿大36</a></li>
+          <li><a href="/game/index?gid=31" class="">加拿大外围2.1</a></li>
+          <li><a href="/game/index?gid=48" class="">加拿大外围2.8</a></li>                
+     </ul>
+     <ul class="after">
+          <li><label>印度游戏</label></li>
+          <li><a href="/game/index?gid=46" class="">印度10</a></li>
+          <li><a href="/game/index?gid=40" class="">印度11</a></li>
+          <li><a href="/game/index?gid=41" class="">印度16</a></li>
+          <li><a href="/game/index?gid=39" class="">印度28</a></li>
+          <li><a href="/game/index?gid=42" class="">印度36</a></li>
+          <li><a href="/game/index?gid=49" class="">印度外围2.1</a></li>
+          <li><a href="/game/index?gid=50" class="">印度外围2.8</a></li>                
+     </ul>
+     <ul class="after">
+          <li><label>韩国游戏</label></li>
+          <li><a href="/game'/?gid=36" class="">韩国10</a></li>
+          <li><a href="/game/index?gid=13" class="">韩国11</a></li>
+          <li><a href="/game/index?gid=14" class="">韩国16</a></li>
+          <li><a href="/game/index?gid=15" class="">韩国28</a></li>
+          <li><a href="/game/index?gid=16" class="">韩国36</a></li>
+          <li><a href="/game/index?gid=32" class="">韩国外围2.1</a></li>
+          <li><a href="/game/index?gid=51" class="">韩国外围2.8</a></li>                
+     </ul> -->        
+</div>

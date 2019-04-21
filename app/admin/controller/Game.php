@@ -26,10 +26,12 @@ class Game extends Permissions
 {   
     private $model;
     private $prefix;
+    private $game_area_type;
     public function _initialize()
     {
         $this->model  = new gameModel();
         $this->prefix = Config::get('database.prefix');
+        $this->game_area_type=Config::get('game_area_type');
         // $this->agentcatemodel=new agentcateModel();
         // $this->usermodel=new userModel();
         // $this->agentlogmodel=new agentlogModel();
@@ -46,7 +48,7 @@ class Game extends Permissions
             }
         }
         
-        $games = empty($where) ? $this->model->order('create_time desc')->paginate(15) : $this->model->where($where)->order('create_time desc')->paginate(15,false,['query'=>$this->request->param()]);
+        $games = empty($where) ? $this->model->order('area_type asc,sort asc')->paginate(15) : $this->model->where($where)->order('area_type asc,sort asc')->paginate(15,false,['query'=>$this->request->param()]);
         $this->assign('games',$games);
         
         return $this->fetch();
@@ -59,6 +61,7 @@ class Game extends Permissions
     {
         //获取菜单id
         $id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
+        $this->assign('game_area_type',$this->game_area_type);
         // $model = new cardcateModel();
         //是正常添加操作
         if($id > 0) {
@@ -90,7 +93,8 @@ class Game extends Permissions
                     return $this->error('id不正确');
                 }
 
-                $post['onff']= empty($post['onff'])?0:1;
+                $post['onoff']= empty($post['onoff'])?0:1;
+                // $post['sort']= empty($post['sort'])?0:$post['s'];
                 
                 $ret=$this->model->allowField(true)->save($post,['id'=>$id]);
                 // echo $this->model->getLastSql();exit;
@@ -174,12 +178,12 @@ class Game extends Permissions
     }
 
     //游戏开关
-    public function onff()
+    public function onoff()
     {
         if($this->request->isPost()){
             $post = $this->request->post();
 
-            $result=$this->model->where('id',$post['id'])->update(['onff'=>$post['onff']]);
+            $result=$this->model->where('id',$post['id'])->update(['onoff'=>$post['onoff']]);
             
             if(false ==$result ) {
                 return $this->error('设置失败');

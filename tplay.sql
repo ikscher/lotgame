@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-20 21:39:19
+Date: 2019-04-21 21:00:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -74,7 +74,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'lotgame', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1555722824', '1555722585', '192.168.1.104', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'lotgame', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1555722824', '1555814419', '192.168.1.104', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -114,7 +114,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=780 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=867 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -895,6 +895,93 @@ INSERT INTO `hov_admin_log` VALUES ('776', '4', '1', '192.168.1.104', '8', '1555
 INSERT INTO `hov_admin_log` VALUES ('777', '5', '1', '192.168.1.104', '6', '1555722912');
 INSERT INTO `hov_admin_log` VALUES ('778', '4', '1', '192.168.1.104', '3', '1555723013');
 INSERT INTO `hov_admin_log` VALUES ('779', '5', '1', '192.168.1.104', '2', '1555723019');
+INSERT INTO `hov_admin_log` VALUES ('780', '50', '1', '192.168.1.104', '', '1555814419');
+INSERT INTO `hov_admin_log` VALUES ('781', '122', '1', '192.168.1.104', '修改游戏成功-25', '1555814452');
+INSERT INTO `hov_admin_log` VALUES ('782', '122', '1', '192.168.1.104', '修改游戏成功-25', '1555814698');
+INSERT INTO `hov_admin_log` VALUES ('783', '122', '1', '192.168.1.104', '修改游戏成功-25', '1555814840');
+INSERT INTO `hov_admin_log` VALUES ('784', '122', '1', '192.168.1.104', '修改游戏成功-25', '1555814996');
+INSERT INTO `hov_admin_log` VALUES ('785', '122', '1', '192.168.1.104', '修改游戏成功-25', '1555821321');
+INSERT INTO `hov_admin_log` VALUES ('786', '122', '1', '192.168.1.104', '修改游戏成功-1', '1555831390');
+INSERT INTO `hov_admin_log` VALUES ('787', '122', '1', '192.168.1.104', '修改游戏成功-1', '1555831606');
+INSERT INTO `hov_admin_log` VALUES ('788', '122', '1', '192.168.1.104', '修改游戏成功-2', '1555831679');
+INSERT INTO `hov_admin_log` VALUES ('789', '122', '1', '192.168.1.104', '修改游戏成功-3', '1555831704');
+INSERT INTO `hov_admin_log` VALUES ('790', '122', '1', '192.168.1.104', '修改游戏成功-4', '1555831733');
+INSERT INTO `hov_admin_log` VALUES ('791', '122', '1', '192.168.1.104', '修改游戏成功-6', '1555831759');
+INSERT INTO `hov_admin_log` VALUES ('792', '122', '1', '192.168.1.104', '修改游戏成功-7', '1555831779');
+INSERT INTO `hov_admin_log` VALUES ('793', '122', '1', '192.168.1.104', '修改游戏成功-8', '1555831817');
+INSERT INTO `hov_admin_log` VALUES ('794', '122', '1', '192.168.1.104', '修改游戏成功-5', '1555831872');
+INSERT INTO `hov_admin_log` VALUES ('795', '122', '1', '192.168.1.104', '修改游戏成功-19', '1555831969');
+INSERT INTO `hov_admin_log` VALUES ('796', '122', '1', '192.168.1.104', '修改游戏成功-20', '1555831992');
+INSERT INTO `hov_admin_log` VALUES ('797', '122', '1', '192.168.1.104', '修改游戏成功-20', '1555832005');
+INSERT INTO `hov_admin_log` VALUES ('798', '122', '1', '192.168.1.104', '修改游戏成功-32', '1555832064');
+INSERT INTO `hov_admin_log` VALUES ('799', '122', '1', '192.168.1.104', '修改游戏成功-9', '1555832104');
+INSERT INTO `hov_admin_log` VALUES ('800', '122', '1', '192.168.1.104', '修改游戏成功-11', '1555832120');
+INSERT INTO `hov_admin_log` VALUES ('801', '122', '1', '192.168.1.104', '修改游戏成功-10', '1555844956');
+INSERT INTO `hov_admin_log` VALUES ('802', '122', '1', '192.168.1.104', '修改游戏成功-29', '1555844981');
+INSERT INTO `hov_admin_log` VALUES ('803', '123', '1', '192.168.1.104', '删除游戏成功-30', '1555845012');
+INSERT INTO `hov_admin_log` VALUES ('804', '123', '1', '192.168.1.104', '删除游戏成功-32', '1555845028');
+INSERT INTO `hov_admin_log` VALUES ('805', '122', '1', '192.168.1.104', '修改游戏成功-37', '1555845053');
+INSERT INTO `hov_admin_log` VALUES ('806', '122', '1', '192.168.1.104', '修改游戏成功-35', '1555845069');
+INSERT INTO `hov_admin_log` VALUES ('807', '122', '1', '192.168.1.104', '修改游戏成功-36', '1555845087');
+INSERT INTO `hov_admin_log` VALUES ('808', '122', '1', '192.168.1.104', '修改游戏成功-34', '1555845110');
+INSERT INTO `hov_admin_log` VALUES ('809', '122', '1', '192.168.1.104', '修改游戏成功-38', '1555845124');
+INSERT INTO `hov_admin_log` VALUES ('810', '122', '1', '192.168.1.104', '修改游戏成功-58', '1555845150');
+INSERT INTO `hov_admin_log` VALUES ('811', '122', '1', '192.168.1.104', '修改游戏成功-33', '1555845167');
+INSERT INTO `hov_admin_log` VALUES ('812', '122', '1', '192.168.1.104', '修改游戏成功-26', '1555845185');
+INSERT INTO `hov_admin_log` VALUES ('813', '122', '1', '192.168.1.104', '修改游戏成功-25', '1555845201');
+INSERT INTO `hov_admin_log` VALUES ('814', '122', '1', '192.168.1.104', '修改游戏成功-23', '1555845212');
+INSERT INTO `hov_admin_log` VALUES ('815', '122', '1', '192.168.1.104', '修改游戏成功-22', '1555845224');
+INSERT INTO `hov_admin_log` VALUES ('816', '122', '1', '192.168.1.104', '修改游戏成功-24', '1555845237');
+INSERT INTO `hov_admin_log` VALUES ('817', '122', '1', '192.168.1.104', '修改游戏成功-27', '1555845274');
+INSERT INTO `hov_admin_log` VALUES ('818', '123', '1', '192.168.1.104', '删除游戏成功-48', '1555845350');
+INSERT INTO `hov_admin_log` VALUES ('819', '123', '1', '192.168.1.104', '删除游戏成功-49', '1555845360');
+INSERT INTO `hov_admin_log` VALUES ('820', '123', '1', '192.168.1.104', '删除游戏成功-62', '1555845372');
+INSERT INTO `hov_admin_log` VALUES ('821', '123', '1', '192.168.1.104', '删除游戏成功-61', '1555845382');
+INSERT INTO `hov_admin_log` VALUES ('822', '123', '1', '192.168.1.104', '删除游戏成功-60', '1555845387');
+INSERT INTO `hov_admin_log` VALUES ('823', '123', '1', '192.168.1.104', '删除游戏成功-59', '1555845392');
+INSERT INTO `hov_admin_log` VALUES ('824', '123', '1', '192.168.1.104', '删除游戏成功-47', '1555845421');
+INSERT INTO `hov_admin_log` VALUES ('825', '122', '1', '192.168.1.104', '修改游戏成功-29', '1555845435');
+INSERT INTO `hov_admin_log` VALUES ('826', '122', '1', '192.168.1.104', '修改游戏成功-28', '1555845471');
+INSERT INTO `hov_admin_log` VALUES ('827', '123', '1', '192.168.1.104', '删除游戏成功-51', '1555845490');
+INSERT INTO `hov_admin_log` VALUES ('828', '123', '1', '192.168.1.104', '删除游戏成功-42', '1555845520');
+INSERT INTO `hov_admin_log` VALUES ('829', '123', '1', '192.168.1.104', '删除游戏成功-43', '1555845526');
+INSERT INTO `hov_admin_log` VALUES ('830', '123', '1', '192.168.1.104', '删除游戏成功-45', '1555845531');
+INSERT INTO `hov_admin_log` VALUES ('831', '123', '1', '192.168.1.104', '删除游戏成功-44', '1555845537');
+INSERT INTO `hov_admin_log` VALUES ('832', '123', '1', '192.168.1.104', '删除游戏成功-39', '1555845562');
+INSERT INTO `hov_admin_log` VALUES ('833', '123', '1', '192.168.1.104', '删除游戏成功-40', '1555845568');
+INSERT INTO `hov_admin_log` VALUES ('834', '123', '1', '192.168.1.104', '删除游戏成功-41', '1555845574');
+INSERT INTO `hov_admin_log` VALUES ('835', '123', '1', '192.168.1.104', '删除游戏成功-46', '1555845580');
+INSERT INTO `hov_admin_log` VALUES ('836', '122', '1', '192.168.1.104', '修改游戏成功-56', '1555845612');
+INSERT INTO `hov_admin_log` VALUES ('837', '122', '1', '192.168.1.104', '修改游戏成功-54', '1555845632');
+INSERT INTO `hov_admin_log` VALUES ('838', '122', '1', '192.168.1.104', '修改游戏成功-53', '1555845652');
+INSERT INTO `hov_admin_log` VALUES ('839', '122', '1', '192.168.1.104', '修改游戏成功-52', '1555845671');
+INSERT INTO `hov_admin_log` VALUES ('840', '122', '1', '192.168.1.104', '修改游戏成功-55', '1555845697');
+INSERT INTO `hov_admin_log` VALUES ('841', '122', '1', '192.168.1.104', '修改游戏成功-57', '1555845731');
+INSERT INTO `hov_admin_log` VALUES ('842', '122', '1', '192.168.1.104', '修改游戏成功-50', '1555845759');
+INSERT INTO `hov_admin_log` VALUES ('843', '122', '1', '192.168.1.104', '修改游戏成功-16', '1555845777');
+INSERT INTO `hov_admin_log` VALUES ('844', '122', '1', '192.168.1.104', '修改游戏成功-15', '1555845788');
+INSERT INTO `hov_admin_log` VALUES ('845', '122', '1', '192.168.1.104', '修改游戏成功-13', '1555845808');
+INSERT INTO `hov_admin_log` VALUES ('846', '122', '1', '192.168.1.104', '修改游戏成功-12', '1555845818');
+INSERT INTO `hov_admin_log` VALUES ('847', '122', '1', '192.168.1.104', '修改游戏成功-14', '1555845829');
+INSERT INTO `hov_admin_log` VALUES ('848', '122', '1', '192.168.1.104', '修改游戏成功-17', '1555845852');
+INSERT INTO `hov_admin_log` VALUES ('849', '122', '1', '192.168.1.104', '修改游戏成功-18', '1555845869');
+INSERT INTO `hov_admin_log` VALUES ('850', '122', '1', '192.168.1.104', '修改游戏成功-38', '1555845894');
+INSERT INTO `hov_admin_log` VALUES ('851', '122', '1', '192.168.1.104', '修改游戏成功-21', '1555845929');
+INSERT INTO `hov_admin_log` VALUES ('852', '122', '1', '192.168.1.104', '修改游戏成功-31', '1555845950');
+INSERT INTO `hov_admin_log` VALUES ('853', '4', '1', '192.168.1.104', '124', '1555846816');
+INSERT INTO `hov_admin_log` VALUES ('854', '122', '1', '192.168.1.104', '修改游戏成功-2', '1555849236');
+INSERT INTO `hov_admin_log` VALUES ('855', '122', '1', '192.168.1.104', '修改游戏成功-1', '1555849355');
+INSERT INTO `hov_admin_log` VALUES ('856', '122', '1', '192.168.1.104', '修改游戏成功-2', '1555849368');
+INSERT INTO `hov_admin_log` VALUES ('857', '122', '1', '192.168.1.104', '修改游戏成功-2', '1555849378');
+INSERT INTO `hov_admin_log` VALUES ('858', '122', '1', '192.168.1.104', '修改游戏成功-2', '1555849466');
+INSERT INTO `hov_admin_log` VALUES ('859', '122', '1', '192.168.1.104', '修改游戏成功-3', '1555849476');
+INSERT INTO `hov_admin_log` VALUES ('860', '122', '1', '192.168.1.104', '修改游戏成功-3', '1555849484');
+INSERT INTO `hov_admin_log` VALUES ('861', '122', '1', '192.168.1.104', '修改游戏成功-3', '1555849511');
+INSERT INTO `hov_admin_log` VALUES ('862', '122', '1', '192.168.1.104', '修改游戏成功-4', '1555849523');
+INSERT INTO `hov_admin_log` VALUES ('863', '122', '1', '192.168.1.104', '修改游戏成功-6', '1555849540');
+INSERT INTO `hov_admin_log` VALUES ('864', '122', '1', '192.168.1.104', '修改游戏成功-7', '1555849555');
+INSERT INTO `hov_admin_log` VALUES ('865', '122', '1', '192.168.1.104', '修改游戏成功-8', '1555849564');
+INSERT INTO `hov_admin_log` VALUES ('866', '122', '1', '192.168.1.104', '修改游戏成功-5', '1555849581');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -1044,7 +1131,7 @@ INSERT INTO `hov_admin_menu` VALUES ('120', '删除代理', 'admin', 'agent', 'd
 INSERT INTO `hov_admin_menu` VALUES ('121', '游戏开关', 'admin', 'game', 'index', '', '', '1', '2', '106', '1553309362', '1553309362', 'fa-gamepad', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('122', '新增/修改游戏', 'admin', 'game', 'publish', '', '', '2', '1', '106', '1553312314', '1553312314', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('123', '删除游戏', 'admin', 'game', 'delete', '', '', '2', '1', '106', '1553312355', '1553312355', '', '0', '0');
-INSERT INTO `hov_admin_menu` VALUES ('124', '游戏开关', 'admin', 'game', 'onff', '', '', '2', '1', '106', '1553315191', '1553315191', '', '0', '0');
+INSERT INTO `hov_admin_menu` VALUES ('124', '游戏开关', 'admin', 'game', 'onoff', '', '', '2', '1', '106', '1553315191', '1555846816', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('125', '游戏配置', 'admin', 'game', 'setup', '', '', '2', '1', '106', '1553329792', '1553329792', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('126', '游戏管理', 'admin', 'game', 'manage', '', '', '2', '1', '106', '1553329824', '1553329824', '', '0', '0');
 INSERT INTO `hov_admin_menu` VALUES ('127', '判断游戏表存在', 'admin', 'game', 'istable', '', '', '2', '1', '106', '1553408992', '1553408992', '', '0', '0');
@@ -1559,8 +1646,10 @@ INSERT INTO `hov_emailconfig` VALUES ('1', 'email', 'ikscher@163.com', 'ikscher'
 DROP TABLE IF EXISTS `hov_game`;
 CREATE TABLE `hov_game` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `area_type` tinyint(2) DEFAULT NULL,
   `name` varchar(60) DEFAULT NULL,
   `code` varchar(20) DEFAULT NULL,
+  `intro` text,
   `draw_ratio` decimal(6,2) DEFAULT NULL COMMENT '抽水比例',
   `forbid` int(11) DEFAULT '0' COMMENT '禁止投注时间(秒）',
   `min_bid` int(11) DEFAULT NULL COMMENT '限额',
@@ -1568,8 +1657,9 @@ CREATE TABLE `hov_game` (
   `reward_exp` varchar(500) DEFAULT NULL,
   `reward_points` varchar(500) DEFAULT NULL,
   `help` text,
+  `sort` tinyint(2) DEFAULT '0' COMMENT '越小越靠前',
   `tip` varchar(100) DEFAULT NULL,
-  `onff` tinyint(1) DEFAULT '0' COMMENT '1开，0关',
+  `onoff` tinyint(1) DEFAULT '0' COMMENT '1开，0关',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -1578,67 +1668,50 @@ CREATE TABLE `hov_game` (
 -- ----------------------------
 -- Records of hov_game
 -- ----------------------------
-INSERT INTO `hov_game` VALUES ('1', '急速28', 'js28', null, '0', null, null, null, null, null, null, '1', '1553311975', '1553395222');
-INSERT INTO `hov_game` VALUES ('2', '急速16', 'js16', null, '0', null, null, null, null, null, null, '1', '1553312074', '1553395212');
-INSERT INTO `hov_game` VALUES ('3', '急速36', 'js36', '0.00', '0', '0', '0', '0', '0', '', '', '1', '1553312148', '1553395204');
-INSERT INTO `hov_game` VALUES ('4', '急速11', 'js11', null, '0', null, null, null, null, null, null, '0', null, '1553395229');
-INSERT INTO `hov_game` VALUES ('6', '急速10', 'js10', null, '0', null, null, null, null, null, null, '1', '1553312250', '1553395183');
-INSERT INTO `hov_game` VALUES ('7', '急速冠亚', 'jsgy', '1.30', '23', '33', '344', '{\"1\":{\"min_exp_from\":\"1\",\"max_exp_to\":\"2\",\"seq_reward_exp\":\"3\"},\"2\":{\"min_exp_from\":\"4\",\"max_exp_to\":\"5\",\"seq_reward_exp\":\"6\"},\"3\":{\"min_exp_from\":\"3\",\"max_exp_to\":\"34\",\"seq_reward_exp\":\"3\"},\"4\":{\"min_exp_from\":\"12\",\"max_exp_to\":\"\",\"seq_reward_exp\":\"22\"}}', '[{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"23\",\"max_points_to\":\"324\",\"seq_reward_points\":\"2\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"32334\",\"max_points_to\":\"43434\",\"seq_reward_points\":\"345\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"}]', '<table class=\"table_list\" width=\"1100\" style=\"width: 968px;\"><tbody style=\"margin: 0px; padding: 0px;\"><tr style=\"margin: 0px; padding: 0px;\" class=\"firstRow\"><td colspan=\"4\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">如第654574期</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(按照由小到大的顺序依次排列)</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">区位</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第一区[第1/2/3/4/5/6位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第二区[第7/8/9/10/11/12位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第三区[第13/14/15/16/17/18位数字]</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">数字</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">25,30,35,36,43,49</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">50,53,59,66,69,71</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">求和</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">61</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">218</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">368</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">计算</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">结果</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">开奖</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;=&nbsp;&nbsp;</p></li><li><p>17</p></li></ul></td></tr></tbody></table><p><br/></p>', '游戏时间：北京时间 09:05 ～ 23:55,每 5分钟 一期，全天 179 期。', '1', '1553312368', '1553395171');
-INSERT INTO `hov_game` VALUES ('8', '急速22', 'js22', null, '0', null, null, null, null, null, null, '1', null, '1553395236');
-INSERT INTO `hov_game` VALUES ('9', '蛋蛋28', 'dd28', null, '0', null, null, null, null, null, null, '1', null, '1553395245');
-INSERT INTO `hov_game` VALUES ('10', '蛋蛋16', 'dd16', null, '0', null, null, null, null, null, null, '1', null, '1553395252');
-INSERT INTO `hov_game` VALUES ('11', '蛋蛋36', 'dd36', null, '0', null, null, null, null, null, null, '1', null, '1553395266');
-INSERT INTO `hov_game` VALUES ('12', '韩国28', 'hg28', null, '0', null, null, null, null, null, null, '1', null, '1553395284');
-INSERT INTO `hov_game` VALUES ('13', '韩国16', 'hg16', null, '0', null, null, null, null, null, null, '1', null, '1553395292');
-INSERT INTO `hov_game` VALUES ('14', '韩国36', 'hg36', null, '0', null, null, null, null, null, null, '1', null, '1553395300');
-INSERT INTO `hov_game` VALUES ('15', '韩国11', 'hg11', null, '0', null, null, null, null, null, null, '1', null, '1553395309');
-INSERT INTO `hov_game` VALUES ('16', '韩国10', 'hg10', null, '0', null, null, null, null, null, null, '1', null, '1553395315');
-INSERT INTO `hov_game` VALUES ('17', '韩国外围', 'hgww', null, '0', null, null, null, null, null, null, '1', null, '1553395328');
-INSERT INTO `hov_game` VALUES ('18', '韩国定位', 'hgdw', null, '0', null, null, null, null, null, null, '1', null, null);
-INSERT INTO `hov_game` VALUES ('19', '北京28', 'bj28', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('20', '北京16', 'bj16', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('21', '北京36', 'bj36', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('22', '加拿大28', 'jnd28', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('23', '加拿大16', 'jnd16', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('24', '加拿大36', 'jnd36', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('25', '加拿大11', 'jnd11', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('26', '加拿大10', 'jnd10', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('27', '加拿大外围', 'jndww', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('28', '加拿大定位', 'jnddw', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('29', '蛋蛋外围', 'ddww', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('30', '蛋蛋定位', 'dddw', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('31', '北京10', 'bj10', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('32', '趣吧16', 'qb16', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('33', '重庆时时彩', 'cqssc', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('34', 'PK冠亚', 'pkgy', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('35', 'PK22', 'pk22', null, '0', null, null, null, null, null, null, '1', null, '1553395526');
-INSERT INTO `hov_game` VALUES ('36', 'PK冠军', 'pkgj', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('37', 'PK10', 'pk10', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('38', 'PK龙虎', 'pklh', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('39', '北京11', 'bj11', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('40', '飞艇10', 'ft10', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('41', '飞艇冠军', 'ftgj', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('42', '瑞士28', 'rs28', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('43', '瑞士16', 'rs16', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('44', '瑞士11', 'rs11', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('45', '瑞士36', 'rs36', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('46', '飞艇22', 'ft22', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('47', '固定蛋蛋28', 'gddd28', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('48', '固定北京28', 'gdbj28', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('49', '固定加拿大28', 'gdjnd28', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('50', '固定韩国28', 'gdhg28', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('51', '虚拟28', 'xn28', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('52', '新德里28', 'xdl28', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('53', '新德里16', 'xdl16', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('54', '新德里11', 'xdl11', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('55', '新德里36', 'xdl36', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('56', '新德里10', 'xdl10', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('57', '新德里外围', 'xdlww', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('58', 'PK赛车', 'pksc', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('59', '腾讯28', 'tx28', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('60', '腾讯16', 'tx16', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('61', '腾讯11', 'tx11', null, '0', null, null, null, null, null, null, '0', null, null);
-INSERT INTO `hov_game` VALUES ('62', '腾讯36', 'tx36', null, '0', null, null, null, null, null, null, '0', null, null);
+INSERT INTO `hov_game` VALUES ('1', '1', '幸运百家乐', 'xybjl', '', null, '0', null, null, null, null, null, '1', null, '1', '1553311975', '1555849355');
+INSERT INTO `hov_game` VALUES ('2', '1', '幸运10', 'xy10', '', null, '0', null, null, null, null, null, '2', null, '1', '1553312074', '1555849466');
+INSERT INTO `hov_game` VALUES ('3', '1', '幸运11', 'xy11', '', '0.00', '0', '0', '0', '0', '0', '', '3', '', '1', '1553312148', '1555849511');
+INSERT INTO `hov_game` VALUES ('4', '1', '幸运16', 'xy16', '', null, '0', null, null, null, null, null, '4', null, '1', null, '1555849523');
+INSERT INTO `hov_game` VALUES ('5', '1', '幸运冠亚军', 'xygyj', '', null, '0', null, null, null, null, null, '8', null, '1', null, '1555849581');
+INSERT INTO `hov_game` VALUES ('6', '1', '幸运22', 'xy22', '', null, '0', null, null, null, null, null, '5', null, '1', '1553312250', '1555849539');
+INSERT INTO `hov_game` VALUES ('7', '1', '幸运28', 'xy28', '', '1.30', '23', '33', '344', '{\"1\":{\"min_exp_from\":\"1\",\"max_exp_to\":\"2\",\"seq_reward_exp\":\"3\"},\"2\":{\"min_exp_from\":\"4\",\"max_exp_to\":\"5\",\"seq_reward_exp\":\"6\"},\"3\":{\"min_exp_from\":\"3\",\"max_exp_to\":\"34\",\"seq_reward_exp\":\"3\"},\"4\":{\"min_exp_from\":\"12\",\"max_exp_to\":\"\",\"seq_reward_exp\":\"22\"}}', '[{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"23\",\"max_points_to\":\"324\",\"seq_reward_points\":\"2\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"32334\",\"max_points_to\":\"43434\",\"seq_reward_points\":\"345\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"}]', '<table class=\"table_list\" width=\"1100\" style=\"width: 968px;\"><tbody style=\"margin: 0px; padding: 0px;\"><tr style=\"margin: 0px; padding: 0px;\" class=\"firstRow\"><td colspan=\"4\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">如第654574期</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(按照由小到大的顺序依次排列)</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">区位</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第一区[第1/2/3/4/5/6位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第二区[第7/8/9/10/11/12位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第三区[第13/14/15/16/17/18位数字]</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">数字</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">25,30,35,36,43,49</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">50,53,59,66,69,71</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">求和</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">61</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">218</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">368</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">计算</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">结果</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">开奖</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;=&nbsp;&nbsp;</p></li><li><p>17</p></li></ul></td></tr></tbody></table><p><br/></p>', '6', '游戏时间：北京时间 09:05 ～ 23:55,每 5分钟 一期，全天 179 期。', '1', '1553312368', '1555849555');
+INSERT INTO `hov_game` VALUES ('8', '1', '幸运36', 'xy36', '', null, '0', null, null, null, null, null, '7', null, '1', null, '1555849564');
+INSERT INTO `hov_game` VALUES ('9', '2', '蛋蛋28', 'dd28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555832104');
+INSERT INTO `hov_game` VALUES ('10', '2', '蛋蛋外围21', 'ddww21', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555844956');
+INSERT INTO `hov_game` VALUES ('11', '2', '蛋蛋36', 'dd36', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555832120');
+INSERT INTO `hov_game` VALUES ('12', '6', '韩国28', 'hg28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845818');
+INSERT INTO `hov_game` VALUES ('13', '6', '韩国16', 'hg16', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845808');
+INSERT INTO `hov_game` VALUES ('14', '6', '韩国36', 'hg36', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845829');
+INSERT INTO `hov_game` VALUES ('15', '6', '韩国11', 'hg11', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845788');
+INSERT INTO `hov_game` VALUES ('16', '6', '韩国10', 'hg10', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845777');
+INSERT INTO `hov_game` VALUES ('17', '6', '韩国外围21', 'hgww21', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845852');
+INSERT INTO `hov_game` VALUES ('18', '6', '韩国外围28', 'hgdw28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845869');
+INSERT INTO `hov_game` VALUES ('19', '2', '北京28', 'bj28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555831969');
+INSERT INTO `hov_game` VALUES ('20', '2', '北京16', 'bj16', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555832005');
+INSERT INTO `hov_game` VALUES ('21', '2', '北京36', 'bj36', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845929');
+INSERT INTO `hov_game` VALUES ('22', '4', '加拿大28', 'jnd28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845224');
+INSERT INTO `hov_game` VALUES ('23', '4', '加拿大16', 'jnd16', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845212');
+INSERT INTO `hov_game` VALUES ('24', '4', '加拿大36', 'jnd36', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845237');
+INSERT INTO `hov_game` VALUES ('25', '4', '加拿大11', 'jnd11', '&amp;lt;table&amp;gt;&amp;lt;tbody&amp;gt;&amp;lt;tr class=&amp;quot;firstRow&amp;quot;&amp;gt;&amp;lt;td colspan=&amp;quot;4&amp;quot;&amp;gt;采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:30暂停开奖&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;如第1773065期&amp;lt;/td&amp;gt;&amp;lt;td colspan=&amp;quot;3&amp;quot;&amp;gt;01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;区位&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;第一区[第1/4/7/10/13/16位数字]&amp;lt;/td&amp;gt;&amp;lt;td style=&amp;quot;word-break: break-all;&amp;quot; rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;第二区[第2/5/8/11/14/17位数字]&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;数字&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;01,13,31,35,44,62&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;07,28,33,43,57,65&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;求和&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;186&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;233&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;计算&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;186除以6的余数 + 1&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;233除以6的余数 + 1&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;结果&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;p&amp;gt;1&amp;lt;/p&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;&amp;lt;p&amp;gt;6&amp;lt;/p&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;quot;rule16&amp;quot;&amp;gt;&amp;lt;strong&amp;gt;开奖&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td colspan=&amp;quot;3&amp;quot; style=&amp;quot;word-break: break-all;&amp;quot;&amp;gt;&amp;lt;p&amp;gt;1+6=7&amp;lt;/p&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/tbody&amp;gt;&amp;lt;/table&amp;gt;', null, '0', null, null, null, null, null, null, null, '1', null, '1555845201');
+INSERT INTO `hov_game` VALUES ('26', '4', '加拿大10', 'jnd10', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845185');
+INSERT INTO `hov_game` VALUES ('27', '4', '加拿大外围21', 'jndww21', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845274');
+INSERT INTO `hov_game` VALUES ('28', '4', '加拿大外围28', 'jnddww28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845471');
+INSERT INTO `hov_game` VALUES ('29', '2', '蛋蛋外围28', 'ddww28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845435');
+INSERT INTO `hov_game` VALUES ('31', '2', '北京10', 'bj10', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845950');
+INSERT INTO `hov_game` VALUES ('33', '3', '重庆时时彩', 'cqssc', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845167');
+INSERT INTO `hov_game` VALUES ('34', '3', 'PK冠亚', 'pkgy', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845110');
+INSERT INTO `hov_game` VALUES ('35', '3', 'PK22', 'pk22', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845069');
+INSERT INTO `hov_game` VALUES ('36', '3', 'PK冠军', 'pkgj', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845087');
+INSERT INTO `hov_game` VALUES ('37', '3', 'PK10', 'pk10', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845053');
+INSERT INTO `hov_game` VALUES ('38', '3', 'PK龙虎', 'pklh', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845894');
+INSERT INTO `hov_game` VALUES ('50', '5', '印度外围28', 'ydww28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845759');
+INSERT INTO `hov_game` VALUES ('52', '5', '印度28', 'yd28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845671');
+INSERT INTO `hov_game` VALUES ('53', '5', '印度16', 'yd16', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845652');
+INSERT INTO `hov_game` VALUES ('54', '5', '印度11', 'yd11', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845632');
+INSERT INTO `hov_game` VALUES ('55', '5', '印度36', 'yd36', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845697');
+INSERT INTO `hov_game` VALUES ('56', '5', '印度10', 'yd10', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845612');
+INSERT INTO `hov_game` VALUES ('57', '5', '印度外围21', 'ydww21', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845731');
+INSERT INTO `hov_game` VALUES ('58', '3', 'PK赛车', 'pksc', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845149');
 
 -- ----------------------------
 -- Table structure for `hov_game_bj10`

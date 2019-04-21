@@ -2,18 +2,37 @@
 namespace app\front\controller;
 use think\Controller;
 use think\Config;
-use app\admin\model\Article as articleModel;
+use app\admin\model\Game as gameModel;
 class Game extends Site
 {   
-	private $articleModel;
-	// private $site_name;
+	private $gameModel;
+    private $games;
+    private $game;
+	private $game_area_type;
 	public function _initialize()
     {   
         parent::_initialize();
-        $this->articleModel = new articleModel();
-        // $this->site_name=Config::get('site_name');
+        $this->gameModel = new gameModel();
+        $this->game_area_type=Config::get('game_area_type');
+ 
+        $this->assign('game_area_type',$this->game_area_type);
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
+      
+
+        $gid = $this->request->has('gid') ? $this->request->param('gid', 0, 'intval') : 0;
+        $this->assign('gid',$gid);
+        $this->games=$this->gameModel->where('onoff',1)->order('area_type')->select();
+        $list=collection($this->games)->toArray();
+        $listgame=array();
+        foreach($list as $v){
+            $listgame[$v['area_type']][]=$v;
+        }
+        // var_dump($listgame);
+        $this->assign('games',$listgame);
+        if(empty($gid)) $gid=1;
+        $this->game=$this->gameModel->where('id',$gid)->find();
+        $this->assign('game',$this->game);
     }
     
     //排行榜
@@ -22,7 +41,9 @@ class Game extends Site
         return $this->fetch();
     }
 
-    public function index(){
+    public function index()
+    {   
+        
         return $this->fetch();
     }
 

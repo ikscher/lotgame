@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\index.html";i:1555600258;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1555683696;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1554377533;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\index.html";i:1555814525;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1555749104;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1555738092;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,7 +126,7 @@
 				}
 				return;
 			}
-			if(pNall.toLowerCase().indexOf("hd/") > 0){
+			if(pNall.toLowerCase().indexOf("article/") > 0){
 				if(i==3){
 					$(this).attr('class','select');
 				}
@@ -188,20 +188,7 @@
 <script  type="text/javascript" src="/static/front/js/jeeslide.js"></script>
 <link href="/static/front/css/shop.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
-	.hotgoods {margin-top:20px;width:258px;}
-	.hotgoods li{  text-align: center; margin: 15px 0;} 
-	.hotgoods li img{height:230px; width: 230px;}
-	.hotgoods li p{ line-height: 35px; color: #666;}
-	.djdt {border-bottom: 1px solid #eee;}
-	.newsleft .djdt ul {height: 275px; overflow: hidden;padding:0}
-	.newsleft .djdt ul li{background:none;padding: 10px 5px;border-bottom:#ddd dotted 1px;overflow:auto;zoom:1;margin: 0;    width: 248px;}
-	.newsleft .djdt ul li:hover{background: #FBFBFB;}
-	.djdt ul li h3 , .mxyh ul li h3{font-size:14px;font-weight:100;color:#333;height:21px;line-height:21px; display:block; width:160px; word-break:keep-all; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; } 
-	.djdt ul li div , .mxyh ul li div{width:166px;float:right}
-	.djdt ul li span{font-size:13px;height:30px;line-height:30px;display:block;color:#888;overflow:hidden}
-	.djdt ul li em{color:#FF9100;font:12px/20px 'microsoft yahei';}
-	.djdt ul li .djnum{float: right;line-height: 16px;margin-right: 20px;font-size:13px;font-weight:100 }
-	.djdt ul li img{width:65px;height:65px; float:left; margin: 0 0 0 5px;}
+	
 </style>
 <div class="area oo">
 
@@ -350,138 +337,138 @@
 </script>-->
 
 <script>
-	$(document).ready(function(){
-		$('<audio id="chatAudio"><source src="/static/front/sound/notify.ogg" type="audio/ogg"> <source src="/static/front/sound/sound/tips.wav" type="audio/wav"></audio>').appendTo('body');
-	});
+	// $(document).ready(function(){
+	// 	$('<audio id="chatAudio"><source src="/static/front/sound/notify.ogg" type="audio/ogg"> <source src="/static/front/sound/sound/tips.wav" type="audio/wav"></audio>').appendTo('body');
+	// });
 
-	Notification.requestPermission( function(status) {
+	// Notification.requestPermission( function(status) {
 		
-	});
+	// });
 	
-    //数字加千分位符号fmoney(“12345.675910”, 3)，返回12,345.676
-    function fmoney(s, n) {
-    	n = n > 0 && n <= 20 ? n : 2;
-    	f = s < 0 ? "-" : "";
-    	s = parseFloat((Math.abs(s) + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
-    	var l = s.split(".")[0].split("").reverse(),
-    	r = s.split(".")[1];
-    	t = "";
-    	for (i = 0; i < l.length; i++) {
-    		t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
-    	}
-    	return f + t.split("").reverse().join("");
-    }
-	//数字去掉千分位符号
-	function rmoney(s){   
-		return parseFloat(s.replace(/[^\d\.-]/g, ""));   
-	}
+ //    //数字加千分位符号fmoney(“12345.675910”, 3)，返回12,345.676
+ //    function fmoney(s, n) {
+ //    	n = n > 0 && n <= 20 ? n : 2;
+ //    	f = s < 0 ? "-" : "";
+ //    	s = parseFloat((Math.abs(s) + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
+ //    	var l = s.split(".")[0].split("").reverse(),
+ //    	r = s.split(".")[1];
+ //    	t = "";
+ //    	for (i = 0; i < l.length; i++) {
+ //    		t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
+ //    	}
+ //    	return f + t.split("").reverse().join("");
+ //    }
+	// //数字去掉千分位符号
+	// function rmoney(s){   
+	// 	return parseFloat(s.replace(/[^\d\.-]/g, ""));   
+	// }
 
-	function getSimpleResult(game,text){
-		var result = new Array();
-		result = text.split("|");
-		if(game.indexOf("36") > 0 ){
-			switch (parseInt(result[result.length-1])){
-				case 1:
-				return	"豹";
-				case 2:
-				return 	"顺";
-				case 3:
-				return "对";
-				case 4:
-				return 	"半";
-				case 5:
-				return 	"杂";
-				default :
-				return  "";
-			}
-		}
-		return result[result.length-1];
+	// function getSimpleResult(game,text){
+	// 	var result = new Array();
+	// 	result = text.split("|");
+	// 	if(game.indexOf("36") > 0 ){
+	// 		switch (parseInt(result[result.length-1])){
+	// 			case 1:
+	// 			return	"豹";
+	// 			case 2:
+	// 			return 	"顺";
+	// 			case 3:
+	// 			return "对";
+	// 			case 4:
+	// 			return 	"半";
+	// 			case 5:
+	// 			return 	"杂";
+	// 			default :
+	// 			return  "";
+	// 		}
+	// 	}
+	// 	return result[result.length-1];
 
-	}
+	// }
 
-	function setCk(name,value)
-	{
-		var Days = 30;
-		var exp = new Date();
-		exp.setTime(exp.getTime() + Days*24*60*60*1000);
-		document.cookie = name + "="+ escape (value) + ";path=/;expires=" + exp.toGMTString();
-	}
-	function getCk(name)
-	{
-		var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-		if(arr=document.cookie.match(reg))
-			return unescape(arr[2]);
-		else
-			return null;
-	}
-	function reflushPoints(){
-		var html = "";
-		$.ajax({
-			url:"/User/Ajaxpoint",
-			dataType:"json",
-			type:"get",
-			success: function (rs) {
-				if ( $("#myxnb").length > 0 ) { 
-					$("#myxnb").html(fmoney(rs.xnb,0));
-				}
-				mymoney = rs.points;
-				$("#footpoints").html(fmoney(rs.points,0));
-				$("#topmoney").html(fmoney(rs.points,0));
+	// function setCk(name,value)
+	// {
+	// 	var Days = 30;
+	// 	var exp = new Date();
+	// 	exp.setTime(exp.getTime() + Days*24*60*60*1000);
+	// 	document.cookie = name + "="+ escape (value) + ";path=/;expires=" + exp.toGMTString();
+	// }
+	// function getCk(name)
+	// {
+	// 	var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+	// 	if(arr=document.cookie.match(reg))
+	// 		return unescape(arr[2]);
+	// 	else
+	// 		return null;
+	// }
+	// function reflushPoints(){
+	// 	var html = "";
+	// 	$.ajax({
+	// 		url:"/User/Ajaxpoint",
+	// 		dataType:"json",
+	// 		type:"get",
+	// 		success: function (rs) {
+	// 			if ( $("#myxnb").length > 0 ) { 
+	// 				$("#myxnb").html(fmoney(rs.xnb,0));
+	// 			}
+	// 			mymoney = rs.points;
+	// 			$("#footpoints").html(fmoney(rs.points,0));
+	// 			$("#topmoney").html(fmoney(rs.points,0));
 				
-				if(rs.gpgg && $("#gpgg").length == 0){
-					$("html").append('<marquee id="gpgg" scrollamount=10 onmouseover="this.stop()" onmouseout="this.start()" style="position: fixed;z-index: 1;top: 35px;background: rgba(50, 52, 54, 0.11);        padding: 4px 0px;pointer-events: none;    line-height: initial;">'+rs.gpgg+'</marquee>');
-					setTimeout(function(){
-						$("#gpgg").remove();
-					},rs.gpgg_stay*1000);
-					Notification.requestPermission( function(status) {
+	// 			if(rs.gpgg && $("#gpgg").length == 0){
+	// 				$("html").append('<marquee id="gpgg" scrollamount=10 onmouseover="this.stop()" onmouseout="this.start()" style="position: fixed;z-index: 1;top: 35px;background: rgba(50, 52, 54, 0.11);        padding: 4px 0px;pointer-events: none;    line-height: initial;">'+rs.gpgg+'</marquee>');
+	// 				setTimeout(function(){
+	// 					$("#gpgg").remove();
+	// 				},rs.gpgg_stay*1000);
+	// 				Notification.requestPermission( function(status) {
 						
-						if(getCk("noticTime") != rs.gpgg_start){
-							setCk("noticTime",rs.gpgg_start);
-							var notic = new Notification("彩豆28", {tag:"彩豆28",renotify:true,icon:"/favicon.ico",body: rs.gpgg_text});
-							setTimeout(function(){
-								notic.close();
-							},10000);
-						}
+	// 					if(getCk("noticTime") != rs.gpgg_start){
+	// 						setCk("noticTime",rs.gpgg_start);
+	// 						var notic = new Notification("彩豆28", {tag:"彩豆28",renotify:true,icon:"/favicon.ico",body: rs.gpgg_text});
+	// 						setTimeout(function(){
+	// 							notic.close();
+	// 						},10000);
+	// 					}
 						
-					});	
-				}
+	// 				});	
+	// 			}
 				
-				if(fmoney(rs.points,0) != $("#footpoints").html()){
-					$("#footpoints").css("background-color","green");
-				}
-				if(rs.nearBetList.length == 0){
-					//$("#nearBet").html('<span class="nobet">您暂无进行中投注,快去投注吧！</span>');
-				}else{
-					var nearhtml = "";
-					for(var i=0;i<rs.nearBetList.length;i++){
-						nearhtml += rs.nearBetList[i].gamechname+ "：" +rs.nearBetList[i].profit + "\r\n";
-					}
-					Notification.requestPermission( function(status) {
-						if(status == 'granted'){
-							var notic2 = new Notification("彩豆28开奖通知", {noscreen:true,tag:"彩豆28",renotify:true,icon:"/favicon.ico",body: nearhtml});
-							setTimeout(function(){
-								notic2.close();
-							},6000);
-							$('#chatAudio')[0].play();
-							notic2.onclick = function() {
-								window.open("/User/Edit");   
-								notic2.close();  
-							};  
-						}
-					});	
+	// 			if(fmoney(rs.points,0) != $("#footpoints").html()){
+	// 				$("#footpoints").css("background-color","green");
+	// 			}
+	// 			if(rs.nearBetList.length == 0){
+	// 				//$("#nearBet").html('<span class="nobet">您暂无进行中投注,快去投注吧！</span>');
+	// 			}else{
+	// 				var nearhtml = "";
+	// 				for(var i=0;i<rs.nearBetList.length;i++){
+	// 					nearhtml += rs.nearBetList[i].gamechname+ "：" +rs.nearBetList[i].profit + "\r\n";
+	// 				}
+	// 				Notification.requestPermission( function(status) {
+	// 					if(status == 'granted'){
+	// 						var notic2 = new Notification("彩豆28开奖通知", {noscreen:true,tag:"彩豆28",renotify:true,icon:"/favicon.ico",body: nearhtml});
+	// 						setTimeout(function(){
+	// 							notic2.close();
+	// 						},6000);
+	// 						$('#chatAudio')[0].play();
+	// 						notic2.onclick = function() {
+	// 							window.open("/User/Edit");   
+	// 							notic2.close();  
+	// 						};  
+	// 					}
+	// 				});	
 
-				}
-			}
+	// 			}
+	// 		}
 
-		});
-	}
-	setInterval("reflushPoints()",10000);
-	reflushPoints();
+	// 	});
+	// }
+	// setInterval("reflushPoints()",10000);
+	// reflushPoints();
 </script>
 
 
-<div id="sytc" style="display:none"></div>
-<script>
+<!-- <div id="sytc" style="display:none"></div> -->
+<!-- <script>
 	function ssetCookie(name,value) 
 	{ 
 		var Days = 30; 
@@ -503,18 +490,18 @@
 		timestamp = timestamp / 1000;
 		console.log(parseInt(timestamp) - parseInt(sgetCookie('sytcTime')));
 	});
-</script>
+</script> -->
 
 <body>
-	</html>
-	<!-- Start of LiveChat (www.livechatinc.com) code -->
-	<script type="text/javascript">
-		// window.__lc = window.__lc || {};
-		// window.__lc.license = 8642154;
-		// (function() {
-		// 	var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
-		// 	lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
-		// 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
-		// })();
-	</script>
+</html>
+<!-- Start of LiveChat (www.livechatinc.com) code -->
+<script type="text/javascript">
+	// window.__lc = window.__lc || {};
+	// window.__lc.license = 8642154;
+	// (function() {
+	// 	var lc = document.createElement('script'); lc.type = 'text/javascript'; lc.async = true;
+	// 	lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
+	// 	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
+	// })();
+</script>
 <!-- End of LiveChat code -->

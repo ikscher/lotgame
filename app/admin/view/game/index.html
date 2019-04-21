@@ -46,6 +46,7 @@
         <col width="200">
         <col width="150">
         <col width="50">
+        <col width="50">
         <col width="100">
         <col width="150">
       </colgroup>
@@ -54,6 +55,7 @@
           <th>ID</th>
           <th>名称</th>
           <th>设置 | 管理</th>
+          <th>排序</th>
           <th>状态</th>
           <th>开关</th>
           <th>操作</th>
@@ -70,12 +72,13 @@
               <a href="javascript:;" class="layui-btn layui-btn-xs a_menu layui-btn-primary manage" data-name="{$vo.name}" data-code="{$vo.code}" style="margin-right: 0;font-size:12px;"><i class="layui-icon">&#xe653;</i></a>
             </div>
           </td>
-          <td>{if condition="$vo.onff eq 1"}开启{else /}关闭{/if}</td>
-          <td><a href="javascript:;" style="font-size:18px;" class="onff" data-id="{$vo.id}" data-val="{$vo.onff}">{eq name="vo.onff" value="1"}<i class="fa fa-toggle-on"></i>{else /}<i class="fa fa-toggle-off"></i>{/eq}</a></td>
+          <td>{notempty name="$vo.sort"}{$vo.sort}{else /}0{/notempty}</td>
+          <td>{if condition="$vo.onoff eq 1"}开启{else /}关闭{/if}</td>
+          <td><a href="javascript:;" style="font-size:18px;" class="onoff" data-id="{$vo.id}" data-val="{$vo.onoff}">{eq name="vo.onoff" value="1"}<i class="fa fa-toggle-on"></i>{else /}<i class="fa fa-toggle-off"></i>{/eq}</a></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
               <a href="{:url('admin/game/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a href="{:url('admin/game/publish')}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <!-- <a href="{:url('admin/game/publish')}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a> -->
               <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
@@ -128,32 +131,32 @@
     </script>
     <script type="text/javascript">
 
-    $('.onff').click(function(){
+    $('.onoff').click(function(){
       var val = $(this).attr('data-val');
       var id = $(this).attr('data-id');
       var i = $(this).find('i');
       var the = $(this);
       if(val == 1){
-        var onff = 0;
+        var onoff = 0;
       } else {
-        var onff = 1;
+        var onoff = 1;
       }
       $.ajax({
         type:"post",
-        url:"{:url('admin/game/onff')}",
-        data:{onff:onff,id:id},
+        url:"{:url('admin/game/onoff')}",
+        data:{onoff:onoff,id:id},
         dataType:'json',
         success:function(res){
           console.log(res)
           if(res.code == 1) {
-            onff_();
+            onoff_();
           } else {
             layer.msg(res.msg);
           }
         }
       })
 
-      function onff_(){
+      function onoff_(){
         if(val == 1){
           i.attr("class","fa fa-toggle-off");
           the.attr('data-val',0);

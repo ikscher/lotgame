@@ -21,39 +21,52 @@
     <div style="margin-top: 20px;">
     </div>
     <form class="layui-form" id="admin">
-      
+      <div class="layui-form-item">
+        <label class="layui-form-label">分组</label>
+        <div class="layui-input-inline"  style="z-index: 10000;">
+          <select name="area_type">
+            <option>请选择类型</option>
+            {volist name="game_area_type" id="vo" key="k" }
+            <option value="{$k}" {notempty name="$game.area_type"}{eq name="$game.area_type" value="$k"} selected="selected"{/eq}{/notempty}>{$vo}</option>
+            {/volist}
+          </select>
+        </div>
+      </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">游戏名称</label>
         <div class="layui-input-inline" >
-          <input name="name" autocomplete="off" lay-verify="required" placeholder="" class="layui-input" type="text" {notempty name="$game.name"}value="{$game.name}"{/notempty}>
+          <input name="name" autocomplete="off" required lay-verify="required" placeholder="" class="layui-input" type="text" {notempty name="$game.name"}value="{$game.name}"{/notempty}>
         </div>
       </div>
 
       <div class="layui-form-item">
-        <label class="layui-form-label">拼音编码</label>(比如急速28，编码js28；加拿大36，编码jnd36)
+        <label class="layui-form-label">拼音编码</label>(比如急速28，编码js28；加拿大36，编码jnd36；重庆时时彩，编码cqssc)
         <div class="layui-input-inline" >
           <input name="code" autocomplete="off" lay-verify="required" placeholder="" class="layui-input" type="text" {notempty name="$game.code"}value="{$game.code}"{/notempty}>
         </div>
       </div>
-
       
-
-      <!-- <div class="layui-form-item">
-        <label class="layui-form-label">冻结</label>
-        <div class="layui-input-block" style="max-width:600px;">
-          <input type="checkbox" name="is_freeze" lay-filter="freeze" title="" {notempty name="$agent.is_freeze"}checked value="1"{else /} value="0"{/notempty} >
-        </div>
-      </div> -->
-
-      <div class="layui-form-item">
-        <label class="layui-form-label">开关</label>
-        <div class="layui-input-block">
-          <input name="onff" type="checkbox" lay-filter="onff"   {notempty name="$game.onff"}checked value="1"{else /} value="0"{/notempty}>
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">介绍</label>
+        <div class="layui-input-block" style="max-width:1000px;">
+          <textarea placeholder="请输入内容" class="layui-textarea" name="intro" id="container" style="border:0;padding:0">{notempty name="$game.intro"}{$game.intro|htmlspecialchars_decode|html_entity_decode}{/notempty}</textarea>
         </div>
       </div>
 
+      <div class="layui-form-item">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-inline" >
+          <input name="sort" autocomplete="off" required lay-verify="required|number" placeholder="" class="layui-input" type="text" {notempty name="$game.sort"}value="{$game.sort}"{else /}value="0"{/notempty}>
+        </div>
+      </div>
       
+      <div class="layui-form-item">
+        <label class="layui-form-label">开关</label>
+        <div class="layui-input-block">
+          <input name="onoff" type="checkbox" lay-filter="onoff"   {notempty name="$game.onoff"}checked value="1"{else /} value="0"{/notempty}>
+        </div>
+      </div>
       
       {notempty name="$game"}
       <input type="hidden" name="id" value="{$game.id}">
@@ -101,9 +114,9 @@
 
 
           //取反
-          form.on('checkbox(onff)',function(data){
+          form.on('checkbox(onoff)',function(data){
              // console.log(data)
-             var x=$("input[name='onff']");
+             var x=$("input[name='onoff']");
              if(x.prop('checked')){
                 x.val(1);
              }else{
@@ -112,6 +125,19 @@
           })
           
       });
+    </script>
+
+    <!-- 加载编辑器的容器 -->
+    <script id="container" name="intro" type="text/plain">
+        这里写你的初始化内容
+    </script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container');
     </script>
 
   </div>
