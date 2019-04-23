@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-04-21 21:00:56
+Date: 2019-04-23 21:25:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1663,7 +1663,7 @@ CREATE TABLE `hov_game` (
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_game

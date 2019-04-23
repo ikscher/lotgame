@@ -1,0 +1,333 @@
+function CheckResult(gamename,gamechname,gametype,gamearea,no,opentime,data){
+	switch(gametype){
+		case "28":
+		case "dw":
+		case "ww":
+			var sftype = "p28";
+			break;
+		case "16":
+			var sftype = "p16";
+			break;
+		case "11":
+			var sftype = "p11";
+			break;
+		case "36":
+			var sftype = "p36";
+			break;
+		case "xs":
+			var sftype = "pxs";
+			break;
+		case "ssc":
+		case "xync":
+		case "gy":
+		case "22":
+		case "10":
+			var sftype = "pssc";
+			break;
+		default:
+			var sftype = "default";
+			break;
+	}
+	if(gamename == 'pc28' || gamename == 'gdpc28' || gamename == 'pcdw' || gamename == 'bjww'){
+		var sftype = "dd28";
+	}
+	if(gamename == 'pc16'){
+		var sftype = "pc16";
+	}
+	if(gamename == 'qb16'){
+		var sftype = "qb16";
+	}
+	if(gamename == 'pc36'){
+		var sftype = "pc36";
+	}
+	if(gamearea == "pk" || gamename == 'bj10' || gamename == 'tb16' || gamename == 'ftgj2'){
+		var sftype = "default";
+	}
+	if(gamename == "xdl28"||gamename == "xdl16"||gamename == "xdl36"||gamename == "xdl11"||gamename == "zs28"||gamename == "zs16"||gamename == "zs36"||gamename == "zs11"){
+		var sftype = "pssc";
+	}
+	return eval("tmpl_"+sftype+"(gamechname,gamearea,no,opentime,data);");
+}
+
+function ggeturl(gamearea){
+	switch(gamearea){
+		case "jnd":
+		return "http://lotto.bclc.com/winning-numbers/keno-and-keno-bonus.html";
+		break;
+		case "bj":
+		return "http://www.bwlc.net/bulletin/keno.html";
+		break;
+		case "pk":
+		return "http://www.bwlc.net/bulletin/trax.html";
+		break;
+		case "hg":
+		return "http://www.vlotto.kr/keno.aspx?method=kenoWinNoList";
+		break;
+		case "cq":
+		return "http://www.cqcp.net/";
+		break;
+		case "js":
+		return "http://caipiao.163.com/award/jskuai3/";
+		break;
+		case "nc":
+		return "http://cqkl10.icaile.com/";
+		break;
+		case "ft":
+		return "http://www.luckyairship.com/history.html";
+		break;
+		default:
+		return "#";
+		break;
+	}
+}
+
+function tmpl_default(gamechname,gamearea,no,opentime,data){
+	var tmpl = '<h3>'+data+'</h3>';
+	return tmpl;
+}
+
+
+
+
+function tmpl_pssc(gamechname,gamearea,no,opentime,data){
+	var url = ggeturl(gamearea);
+	
+	var tmpl = '<table style="background:#fff;margin-left:auto;margin-right:auto" border="1" width="1000" height="221" align="center" cellspacing="0" cellpadding="0" bordercolorlight="#DDDDDD" bordercolordark="#FFFFFF" style="margin:20px auto;"><tbody><tr><td height="27" width="371" colspan="2" align="center">开奖源官网</td><td height="27" colspan="2" align="center"><a target="_blank" href="'+url+'">点此查看</a></td></tr><tr><td height="27" width="371" colspan="2" align="center">截止时间</td><td height="27" colspan="2" align="center">'+opentime+'</td></tr><tr><td height="27" width="371" colspan="2" align="center">三方源数据</td><td height="27" colspan="2" align="center">'+data+'</td></tr></tbody></table>';
+	return tmpl;
+}
+
+function tmpl_pxs(gamechname,gamearea,no,opentime,data){
+	var url = ggeturl(gamearea);
+	 data =  data.replace("[","");
+	 data = data.replace("]","");
+	 var dataarr = data.split(",");
+	 var qj1 = dataarr[0]+","+dataarr[1]+","+dataarr[2]+","+dataarr[3]+","+dataarr[4]+","+dataarr[5]+","+dataarr[6];
+	 var q1a = qj1.split(",");
+	 var q1s=0;
+	 for(var i=0;i<q1a.length;i++){
+		 q1s = q1s+parseInt(q1a[i]);
+	 }
+	 var q1w = q1s%10+1;
+	var tmpl = '<table style="background:#fff;margin-left:auto;margin-right:auto" border="1" width="1000" height="221" align="center" cellspacing="0" cellpadding="0" bordercolorlight="#DDDDDD" bordercolordark="#FFFFFF" style="margin:20px auto;"><tbody><tr><td height="27" width="371" colspan="2" align="center">开奖源官网</td><td height="27" colspan="2" align="center"><a target="_blank" href="'+url+'">点此查看</a></td></tr><tr><td height="27" width="371" colspan="2" align="center">截止时间</td><td height="27" colspan="2" align="center">'+opentime+'</td></tr><tr><td height="27" width="371" colspan="2" align="center">三方源数据</td><td height="27" colspan="2" align="center">'+data+'</td></tr><tr><td height="27" width="84" align="center" colspan=3 >区位</td><td height="27" width="284" align="center">取第01、02、03、04、05、06、07位</td></tr><tr><td height="27" width="84" align="center"  colspan=3  >数字</td><td height="27" width="284" align="center">'+qj1+'</td></tr><tr><td height="27" width="84" align="center"  colspan=3  >求和</td><td height="27" width="284" align="center">'+q1s+'</td></tr><tr><td height="28" width="84" align="center" colspan=3 >计算</td><td height="27" width="284" align="center">取尾数 + 1</td></tr><tr><td height="28" width="84" align="center" colspan=3 >结果</td><td height="27" width="284" align="center">'+q1w+'</td></tr><tr height="58"><td height="58" width="84" align="center" colspan=3 >开奖</td><td height="58" width="907" align="center" colspan="3" style="font-size:18px;">'+q1w+'</a></td></tr></tbody></table>';
+	return tmpl;
+}
+
+function tmpl_pc36(gamechname,gamearea,no,opentime,data){
+	var url = ggeturl(gamearea);
+	 data =  data.replace("[","");
+	 data = data.replace("]","");
+	 var dataarr = data.split(",");
+	 var qj1 = dataarr[0]+","+dataarr[1]+","+dataarr[2]+","+dataarr[3]+","+dataarr[4]+","+dataarr[5];
+	 var qj2 = dataarr[6]+","+dataarr[7]+","+dataarr[8]+","+dataarr[9]+","+dataarr[10]+","+dataarr[11];
+	 var qj3 = dataarr[12]+","+dataarr[13]+","+dataarr[14]+","+dataarr[15]+","+dataarr[16]+","+dataarr[17];
+	 var q1a = qj1.split(",");
+	 var q2a = qj2.split(",");
+	 var q3a = qj3.split(",");
+	 var q1s=0,q2s=0,q3s=0;
+	 for(var i=0;i<q1a.length;i++){
+		 q1s = q1s+parseInt(q1a[i]);
+	 }
+	 for(var i=0;i<q2a.length;i++){
+		 q2s = q2s+parseInt(q2a[i]);
+	 }
+	 for(var i=0;i<q3a.length;i++){
+		 q3s = q3s+parseInt(q3a[i]);
+	 }
+	 var q1w = q1s%10;
+	 var q2w = q2s%10;
+	 var q3w = q3s%10;
+	var tmpl = '<table style="background:#fff;margin-left:auto;margin-right:auto" border="1" width="1000" height="221" align="center" cellspacing="0" cellpadding="0" bordercolorlight="#DDDDDD" bordercolordark="#FFFFFF" style="margin:20px auto;"><tbody><tr><td height="27" width="371" colspan="2" align="center">开奖源官网</td><td height="27" colspan="2" align="center"><a target="_blank" href="'+url+'">点此查看</a></td></tr><tr><td height="27" width="371" colspan="2" align="center">截止时间</td><td height="27" colspan="2" align="center">'+opentime+'</td></tr><tr><td height="27" width="371" colspan="2" align="center">对应位数</td><td height="27" colspan="2" align="center">01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20</td></tr><tr><td height="27" width="371" colspan="2" align="center">三方源数据</td><td height="27" colspan="2" align="center">'+data+'</td></tr><tr><td height="27" width="84" align="center">区位</td><td height="27" width="284" align="center">取第01、02、03、04、05、06位</td><td height="27" width="333" align="center">取第07、08、09、10、11、12位</td><td height="27" width="290" align="center">取第13、14、15、16、17、18位</td></tr><tr><td height="27" width="84" align="center">数字</td><td height="27" width="284" align="center">'+qj1+'</td><td height="27" width="333" align="center">'+qj2+'</td><td height="27" width="290" align="center">'+qj3+'</td></tr><tr><td height="27" width="84" align="center">求和</td><td height="27" width="284" align="center">'+q1s+'</td><td height="27" width="333" align="center">'+q2s+'</td><td height="27" width="290" align="center">'+q3s+'</td></tr><tr><td height="28" width="84" align="center">计算</td><td height="27" width="284" align="center">取尾数</td><td height="28" width="333" align="center">取尾数</td><td height="28" width="290" align="center">取尾数</td></tr><tr><td height="28" width="84" align="center">结果</td><td height="27" width="284" align="center">'+q1w+'</td><td height="28" width="333" align="center">'+q2w+'</td><td height="28" width="290" align="center">'+q3w+'</td></tr><tr height="58"><td height="58" width="84" align="center">开奖</td><td height="58" width="907" align="center" colspan="3" style="font-size:18px;">'+q1w+'+'+q2w+'+'+q3w+'</a></td></tr></tbody></table>';
+	return tmpl;
+}
+
+function tmpl_dd28(gamechname,gamearea,no,opentime,data){
+	var url = ggeturl(gamearea);
+	 data =  data.replace("[","");
+	 data = data.replace("]","");
+	 var dataarr = data.split(",");
+	 var qj1 = dataarr[0]+","+dataarr[1]+","+dataarr[2]+","+dataarr[3]+","+dataarr[4]+","+dataarr[5];
+	 var qj2 = dataarr[6]+","+dataarr[7]+","+dataarr[8]+","+dataarr[9]+","+dataarr[10]+","+dataarr[11];
+	 var qj3 = dataarr[12]+","+dataarr[13]+","+dataarr[14]+","+dataarr[15]+","+dataarr[16]+","+dataarr[17];
+	 var q1a = qj1.split(",");
+	 var q2a = qj2.split(",");
+	 var q3a = qj3.split(",");
+	 var q1s=0,q2s=0,q3s=0;
+	 for(var i=0;i<q1a.length;i++){
+		 q1s = q1s+parseInt(q1a[i]);
+	 }
+	 for(var i=0;i<q2a.length;i++){
+		 q2s = q2s+parseInt(q2a[i]);
+	 }
+	 for(var i=0;i<q3a.length;i++){
+		 q3s = q3s+parseInt(q3a[i]);
+	 }
+	 var q1w = q1s%10;
+	 var q2w = q2s%10;
+	 var q3w = q3s%10;
+	var tmpl = '<table style="background:#fff;margin-left:auto;margin-right:auto" border="1" width="1000" height="221" align="center" cellspacing="0" cellpadding="0" bordercolorlight="#DDDDDD" bordercolordark="#FFFFFF" style="margin:20px auto;"><tbody><tr><td height="27" width="371" colspan="2" align="center">开奖源官网</td><td height="27" colspan="2" align="center"><a target="_blank" href="'+url+'">点此查看</a></td></tr><tr><td height="27" width="371" colspan="2" align="center">截止时间</td><td height="27" colspan="2" align="center">'+opentime+'</td></tr><tr><td height="27" width="371" colspan="2" align="center">对应位数</td><td height="27" colspan="2" align="center">01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20</td></tr><tr><td height="27" width="371" colspan="2" align="center">三方源数据</td><td height="27" colspan="2" align="center">'+data+'</td></tr><tr><td height="27" width="84" align="center">区位</td><td height="27" width="284" align="center">取第01、02、03、04、05、06位</td><td height="27" width="333" align="center">取第07、08、09、10、11、12位</td><td height="27" width="290" align="center">取第13、14、15、16、17、18位</td></tr><tr><td height="27" width="84" align="center">数字</td><td height="27" width="284" align="center">'+qj1+'</td><td height="27" width="333" align="center">'+qj2+'</td><td height="27" width="290" align="center">'+qj3+'</td></tr><tr><td height="27" width="84" align="center">求和</td><td height="27" width="284" align="center">'+q1s+'</td><td height="27" width="333" align="center">'+q2s+'</td><td height="27" width="290" align="center">'+q3s+'</td></tr><tr><td height="28" width="84" align="center">计算</td><td height="27" width="284" align="center">取尾数</td><td height="28" width="333" align="center">取尾数</td><td height="28" width="290" align="center">取尾数</td></tr><tr><td height="28" width="84" align="center">结果</td><td height="27" width="284" align="center">'+q1w+'</td><td height="28" width="333" align="center">'+q2w+'</td><td height="28" width="290" align="center">'+q3w+'</td></tr><tr height="58"><td height="58" width="84" align="center">开奖</td><td height="58" width="907" align="center" colspan="3" style="font-size:18px;">'+q1w+'+'+q2w+'+'+q3w+'  = <a style="color:red;font-weight:bold">'+parseInt(q1w+q2w+q3w)+'</a></td></tr></tbody></table>';
+	return tmpl;
+}
+
+function tmpl_qb16(gamechname,gamearea,no,opentime,data){
+	var url = ggeturl(gamearea);
+	 data =  data.replace("[","");
+	 data = data.replace("]","");
+	 var dataarr = data.split(",");
+	 var qj1 = dataarr[2]+","+dataarr[5]+","+dataarr[8]+","+dataarr[11]+","+dataarr[14]+","+dataarr[17];
+	 var qj2 = dataarr[3]+","+dataarr[6]+","+dataarr[9]+","+dataarr[12]+","+dataarr[15]+","+dataarr[18];
+	 var qj3 = dataarr[4]+","+dataarr[7]+","+dataarr[10]+","+dataarr[13]+","+dataarr[16]+","+dataarr[19];
+	 var q1a = qj1.split(",");
+	 var q2a = qj2.split(",");
+	 var q3a = qj3.split(",");
+	 var q1s=0,q2s=0,q3s=0;
+	 for(var i=0;i<q1a.length;i++){
+		 q1s = q1s+parseInt(q1a[i]);
+	 }
+	 for(var i=0;i<q2a.length;i++){
+		 q2s = q2s+parseInt(q2a[i]);
+	 }
+	 for(var i=0;i<q3a.length;i++){
+		 q3s = q3s+parseInt(q3a[i]);
+	 }
+	 var q1w = q1s%6+1;
+	 var q2w = q2s%6+1;
+	 var q3w = q3s%6+1;
+	var tmpl = '<table style="background:#fff;margin-left:auto;margin-right:auto" border="1" width="1000" height="221" align="center" cellspacing="0" cellpadding="0" bordercolorlight="#DDDDDD" bordercolordark="#FFFFFF" style="margin:20px auto;"><tbody><tr><td height="27" width="371" colspan="2" align="center">开奖源官网</td><td height="27" colspan="2" align="center"><a target="_blank" href="'+url+'">点此查看</a></td></tr><tr><td height="27" width="371" colspan="2" align="center">截止时间</td><td height="27" colspan="2" align="center">'+opentime+'</td></tr><tr><td height="27" width="371" colspan="2" align="center">对应位数</td><td height="27" colspan="2" align="center">01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20</td></tr><tr><td height="27" width="371" colspan="2" align="center">三方源数据</td><td height="27" colspan="2" align="center">'+data+'</td></tr><tr><td height="27" width="84" align="center">区位</td><td height="27" width="284" align="center">取第03、06、09、12、15、18位</td><td height="27" width="333" align="center">取第04、07、10、13、16、19位</td><td height="27" width="290" align="center">取第05、08、11、14、17、20位</td></tr><tr><td height="27" width="84" align="center">数字</td><td height="27" width="284" align="center">'+qj1+'</td><td height="27" width="333" align="center">'+qj2+'</td><td height="27" width="290" align="center">'+qj3+'</td></tr><tr><td height="27" width="84" align="center">求和</td><td height="27" width="284" align="center">'+q1s+'</td><td height="27" width="333" align="center">'+q2s+'</td><td height="27" width="290" align="center">'+q3s+'</td></tr><tr><td height="28" width="84" align="center">计算</td><td height="27" width="284" align="center">求和除以6的余数 + 1</td><td height="28" width="333" align="center">求和除以6的余数 + 1</td><td height="28" width="290" align="center">求和除以6的余数 + 1</td></tr><tr><td height="28" width="84" align="center">结果</td><td height="27" width="284" align="center">'+q1w+'</td><td height="28" width="333" align="center">'+q2w+'</td><td height="28" width="290" align="center">'+q3w+'</td></tr><tr height="58"><td height="58" width="84" align="center">开奖</td><td height="58" width="907" align="center" colspan="3" style="font-size:18px;">'+q1w+'+'+q2w+'+'+q3w+'  = <a style="color:red;font-weight:bold">'+parseInt(q1w+q2w+q3w)+'</a></td></tr></tbody></table>';
+	return tmpl;
+}
+
+function tmpl_pc16(gamechname,gamearea,no,opentime,data){
+	var url = ggeturl(gamearea);
+	 data =  data.replace("[","");
+	 data = data.replace("]","");
+	 var dataarr = data.split(",");
+		 var qj1 = dataarr[0]+","+dataarr[1]+","+dataarr[2]+","+dataarr[3]+","+dataarr[4]+","+dataarr[5];
+	 var qj2 = dataarr[6]+","+dataarr[7]+","+dataarr[8]+","+dataarr[9]+","+dataarr[10]+","+dataarr[11];
+	 var qj3 = dataarr[12]+","+dataarr[13]+","+dataarr[14]+","+dataarr[15]+","+dataarr[16]+","+dataarr[17];
+	 var q1a = qj1.split(",");
+	 var q2a = qj2.split(",");
+	 var q3a = qj3.split(",");
+	 var q1s=0,q2s=0,q3s=0;
+	 for(var i=0;i<q1a.length;i++){
+		 q1s = q1s+parseInt(q1a[i]);
+	 }
+	 for(var i=0;i<q2a.length;i++){
+		 q2s = q2s+parseInt(q2a[i]);
+	 }
+	 for(var i=0;i<q3a.length;i++){
+		 q3s = q3s+parseInt(q3a[i]);
+	 }
+	 var q1w = q1s%6+1;
+	 var q2w = q2s%6+1;
+	 var q3w = q3s%6+1;
+	var tmpl = '<table style="background:#fff;margin-left:auto;margin-right:auto" border="1" width="1000" height="221" align="center" cellspacing="0" cellpadding="0" bordercolorlight="#DDDDDD" bordercolordark="#FFFFFF" style="margin:20px auto;"><tbody><tr><td height="27" width="371" colspan="2" align="center">开奖源官网</td><td height="27" colspan="2" align="center"><a target="_blank" href="'+url+'">点此查看</a></td></tr><tr><td height="27" width="371" colspan="2" align="center">截止时间</td><td height="27" colspan="2" align="center">'+opentime+'</td></tr><tr><td height="27" width="371" colspan="2" align="center">对应位数</td><td height="27" colspan="2" align="center">01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20</td></tr><tr><td height="27" width="371" colspan="2" align="center">三方源数据</td><td height="27" colspan="2" align="center">'+data+'</td></tr><tr><td height="27" width="84" align="center">区位</td><td height="27" width="284" align="center">取第01、02、03、04、05、06位</td><td height="27" width="333" align="center">取第07、08、09、10、11、12位</td><td height="27" width="290" align="center">取第13、14、15、16、17、18位</td></tr><tr><td height="27" width="84" align="center">数字</td><td height="27" width="284" align="center">'+qj1+'</td><td height="27" width="333" align="center">'+qj2+'</td><td height="27" width="290" align="center">'+qj3+'</td></tr><tr><td height="27" width="84" align="center">求和</td><td height="27" width="284" align="center">'+q1s+'</td><td height="27" width="333" align="center">'+q2s+'</td><td height="27" width="290" align="center">'+q3s+'</td></tr><tr><td height="28" width="84" align="center">计算</td><td height="27" width="284" align="center">求和除以6的余数 + 1</td><td height="28" width="333" align="center">求和除以6的余数 + 1</td><td height="28" width="290" align="center">求和除以6的余数 + 1</td></tr><tr><td height="28" width="84" align="center">结果</td><td height="27" width="284" align="center">'+q1w+'</td><td height="28" width="333" align="center">'+q2w+'</td><td height="28" width="290" align="center">'+q3w+'</td></tr><tr height="58"><td height="58" width="84" align="center">开奖</td><td height="58" width="907" align="center" colspan="3" style="font-size:18px;">'+q1w+'+'+q2w+'+'+q3w+'  = <a style="color:red;font-weight:bold">'+parseInt(q1w+q2w+q3w)+'</a></td></tr></tbody></table>';
+	return tmpl;
+}
+
+function tmpl_p11(gamechname,gamearea,no,opentime,data){
+	var url = ggeturl(gamearea);
+	 data =  data.replace("[","");
+	 data = data.replace("]","");
+	 var dataarr = data.split(",");
+	 var qj1 = dataarr[0]+","+dataarr[3]+","+dataarr[6]+","+dataarr[9]+","+dataarr[12]+","+dataarr[15];
+	 var qj2 = dataarr[2]+","+dataarr[5]+","+dataarr[8]+","+dataarr[11]+","+dataarr[14]+","+dataarr[17];
+	 var q1a = qj1.split(",");
+	 var q2a = qj2.split(",");
+	 var q1s=0,q2s=0;
+	 for(var i=0;i<q1a.length;i++){
+		 q1s = q1s+parseInt(q1a[i]);
+	 }
+	 for(var i=0;i<q2a.length;i++){
+		 q2s = q2s+parseInt(q2a[i]);
+	 }
+	 var q1w = q1s%6+1;
+	 var q2w = q2s%6+1;
+	var tmpl = '<table style="background:#fff;margin-left:auto;margin-right:auto" border="1" width="1000" height="221" align="center" cellspacing="0" cellpadding="0" bordercolorlight="#DDDDDD" bordercolordark="#FFFFFF" style="margin:20px auto;"><tbody><tr><td height="27" width="371" colspan="2" align="center">开奖源官网</td><td height="27" colspan="2" align="center"><a target="_blank" href="'+url+'">点此查看</a></td></tr><tr><td height="27" width="371" colspan="2" align="center">截止时间</td><td height="27" colspan="2" align="center">'+opentime+'</td></tr><tr><td height="27" width="371" colspan="2" align="center">对应位数</td><td height="27" colspan="2" align="center">01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20</td></tr><tr><td height="27" width="371" colspan="2" align="center">三方源数据</td><td height="27" colspan="2" align="center">'+data+'</td></tr><tr><td height="27" colspan=2 align="center">区位</td><td height="27"  align="center">取第01、04、07、10、13、16位</td><td height="27"  align="center">取第03、06、09、12、15、18位</td></tr><tr><td height="27"  align="center" colspan=2>数字</td><td height="27"  align="center">'+qj1+'</td><td height="27" width="333" align="center">'+qj2+'</td></tr><tr><td height="27" colspan=2 align="center">求和</td><td height="27"  align="center">'+q1s+'</td><td height="27" width="333" align="center">'+q2s+'</td></tr><tr><td height="28" colspan=2 align="center">计算</td><td height="27"  align="center">求和除以6的余数 + 1</td><td height="28" width="333" align="center">求和除以6的余数 + 1</td></tr><tr><td height="28" colspan=2 align="center">结果</td><td height="27"  align="center">'+q1w+'</td><td height="28" width="333" align="center">'+q2w+'</td></tr><tr height="58"><td height="58" colspan=2 align="center">开奖</td><td height="58" width="907" align="center" colspan="3" style="font-size:18px;">'+q1w+'+'+q2w+'  = <a style="color:red;font-weight:bold">'+parseInt(q1w+q2w)+'</a></td></tr></tbody></table>';
+	return tmpl;
+}
+
+
+function tmpl_p16(gamechname,gamearea,no,opentime,data){
+	var url = ggeturl(gamearea);
+	 data =  data.replace("[","");
+	 data = data.replace("]","");
+	 var dataarr = data.split(",");
+	 var qj1 = dataarr[0]+","+dataarr[3]+","+dataarr[6]+","+dataarr[9]+","+dataarr[12]+","+dataarr[15];
+	 var qj2 = dataarr[1]+","+dataarr[4]+","+dataarr[7]+","+dataarr[10]+","+dataarr[13]+","+dataarr[16];
+	 var qj3 = dataarr[2]+","+dataarr[5]+","+dataarr[8]+","+dataarr[11]+","+dataarr[14]+","+dataarr[17];
+	 var q1a = qj1.split(",");
+	 var q2a = qj2.split(",");
+	 var q3a = qj3.split(",");
+	 var q1s=0,q2s=0,q3s=0;
+	 for(var i=0;i<q1a.length;i++){
+		 q1s = q1s+parseInt(q1a[i]);
+	 }
+	 for(var i=0;i<q2a.length;i++){
+		 q2s = q2s+parseInt(q2a[i]);
+	 }
+	 for(var i=0;i<q3a.length;i++){
+		 q3s = q3s+parseInt(q3a[i]);
+	 }
+	 var q1w = q1s%6+1;
+	 var q2w = q2s%6+1;
+	 var q3w = q3s%6+1;
+	var tmpl = '<table style="background:#fff;margin-left:auto;margin-right:auto" border="1" width="1000" height="221" align="center" cellspacing="0" cellpadding="0" bordercolorlight="#DDDDDD" bordercolordark="#FFFFFF" style="margin:20px auto;"><tbody><tr><td height="27" width="371" colspan="2" align="center">开奖源官网</td><td height="27" colspan="2" align="center"><a target="_blank" href="'+url+'">点此查看</a></td></tr><tr><td height="27" width="371" colspan="2" align="center">截止时间</td><td height="27" colspan="2" align="center">'+opentime+'</td></tr><tr><td height="27" width="371" colspan="2" align="center">对应位数</td><td height="27" colspan="2" align="center">01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20</td></tr><tr><td height="27" width="371" colspan="2" align="center">三方源数据</td><td height="27" colspan="2" align="center">'+data+'</td></tr><tr><td height="27" width="84" align="center">区位</td><td height="27" width="284" align="center">取第01、04、07、10、13、16位</td><td height="27" width="333" align="center">取第02、05、08、11、14、17位</td><td height="27" width="290" align="center">取第03、06、09、12、15、18位</td></tr><tr><td height="27" width="84" align="center">数字</td><td height="27" width="284" align="center">'+qj1+'</td><td height="27" width="333" align="center">'+qj2+'</td><td height="27" width="290" align="center">'+qj3+'</td></tr><tr><td height="27" width="84" align="center">求和</td><td height="27" width="284" align="center">'+q1s+'</td><td height="27" width="333" align="center">'+q2s+'</td><td height="27" width="290" align="center">'+q3s+'</td></tr><tr><td height="28" width="84" align="center">计算</td><td height="27" width="284" align="center">求和除以6的余数 + 1</td><td height="28" width="333" align="center">求和除以6的余数 + 1</td><td height="28" width="290" align="center">求和除以6的余数 + 1</td></tr><tr><td height="28" width="84" align="center">结果</td><td height="27" width="284" align="center">'+q1w+'</td><td height="28" width="333" align="center">'+q2w+'</td><td height="28" width="290" align="center">'+q3w+'</td></tr><tr height="58"><td height="58" width="84" align="center">开奖</td><td height="58" width="907" align="center" colspan="3" style="font-size:18px;">'+q1w+'+'+q2w+'+'+q3w+'  = <a style="color:red;font-weight:bold">'+parseInt(q1w+q2w+q3w)+'</a></td></tr></tbody></table>';
+	return tmpl;
+}
+
+
+function tmpl_p36(gamechname,gamearea,no,opentime,data){
+	var url = ggeturl(gamearea);
+	 data =  data.replace("[","");
+	 data = data.replace("]","");
+	 var dataarr = data.split(",");
+	 var qj1 = dataarr[1]+","+dataarr[4]+","+dataarr[7]+","+dataarr[10]+","+dataarr[13]+","+dataarr[16];
+	 var qj2 = dataarr[2]+","+dataarr[5]+","+dataarr[8]+","+dataarr[11]+","+dataarr[14]+","+dataarr[17];
+	 var qj3 = dataarr[3]+","+dataarr[6]+","+dataarr[9]+","+dataarr[12]+","+dataarr[15]+","+dataarr[18];
+	 var q1a = qj1.split(",");
+	 var q2a = qj2.split(",");
+	 var q3a = qj3.split(",");
+	 var q1s=0,q2s=0,q3s=0;
+	 for(var i=0;i<q1a.length;i++){
+		 q1s = q1s+parseInt(q1a[i]);
+	 }
+	 for(var i=0;i<q2a.length;i++){
+		 q2s = q2s+parseInt(q2a[i]);
+	 }
+	 for(var i=0;i<q3a.length;i++){
+		 q3s = q3s+parseInt(q3a[i]);
+	 }
+	 var q1w = q1s%10;
+	 var q2w = q2s%10;
+	 var q3w = q3s%10;
+	var tmpl = '<table style="background:#fff;margin-left:auto;margin-right:auto" border="1" width="1000" height="221" align="center" cellspacing="0" cellpadding="0" bordercolorlight="#DDDDDD" bordercolordark="#FFFFFF" style="margin:20px auto;"><tbody><tr><td height="27" width="371" colspan="2" align="center">开奖源官网</td><td height="27" colspan="2" align="center"><a target="_blank" href="'+url+'">点此查看</a></td></tr><tr><td height="27" width="371" colspan="2" align="center">截止时间</td><td height="27" colspan="2" align="center">'+opentime+'</td></tr><tr><td height="27" width="371" colspan="2" align="center">对应位数</td><td height="27" colspan="2" align="center">01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20</td></tr><tr><td height="27" width="371" colspan="2" align="center">三方源数据</td><td height="27" colspan="2" align="center">'+data+'</td></tr><tr><td height="27" width="84" align="center">区位</td><td height="27" width="284" align="center">取第02、05、08、11、14、17位</td><td height="27" width="333" align="center">取第03、06、09、12、15、18位</td><td height="27" width="290" align="center">取第04、07、10、13、16、19位</td></tr><tr><td height="27" width="84" align="center">数字</td><td height="27" width="284" align="center">'+qj1+'</td><td height="27" width="333" align="center">'+qj2+'</td><td height="27" width="290" align="center">'+qj3+'</td></tr><tr><td height="27" width="84" align="center">求和</td><td height="27" width="284" align="center">'+q1s+'</td><td height="27" width="333" align="center">'+q2s+'</td><td height="27" width="290" align="center">'+q3s+'</td></tr><tr><td height="28" width="84" align="center">计算</td><td height="27" width="284" align="center">取尾数</td><td height="28" width="333" align="center">取尾数</td><td height="28" width="290" align="center">取尾数</td></tr><tr><td height="28" width="84" align="center">结果</td><td height="27" width="284" align="center">'+q1w+'</td><td height="28" width="333" align="center">'+q2w+'</td><td height="28" width="290" align="center">'+q3w+'</td></tr><tr height="58"><td height="58" width="84" align="center">开奖</td><td height="58" width="907" align="center" colspan="3" style="font-size:18px;">'+q1w+'+'+q2w+'+'+q3w+'</a></td></tr></tbody></table>';
+	return tmpl;
+}
+
+function tmpl_p28(gamechname,gamearea,no,opentime,data){
+	var url = ggeturl(gamearea);
+	 data =  data.replace("[","");
+	 data = data.replace("]","");
+	 var dataarr = data.split(",");
+	 var qj1 = dataarr[1]+","+dataarr[4]+","+dataarr[7]+","+dataarr[10]+","+dataarr[13]+","+dataarr[16];
+	 var qj2 = dataarr[2]+","+dataarr[5]+","+dataarr[8]+","+dataarr[11]+","+dataarr[14]+","+dataarr[17];
+	 var qj3 = dataarr[3]+","+dataarr[6]+","+dataarr[9]+","+dataarr[12]+","+dataarr[15]+","+dataarr[18];
+	 var q1a = qj1.split(",");
+	 var q2a = qj2.split(",");
+	 var q3a = qj3.split(",");
+	 var q1s=0,q2s=0,q3s=0;
+	 for(var i=0;i<q1a.length;i++){
+		 q1s = q1s+parseInt(q1a[i]);
+	 }
+	 for(var i=0;i<q2a.length;i++){
+		 q2s = q2s+parseInt(q2a[i]);
+	 }
+	 for(var i=0;i<q3a.length;i++){
+		 q3s = q3s+parseInt(q3a[i]);
+	 }
+	 var q1w = q1s%10;
+	 var q2w = q2s%10;
+	 var q3w = q3s%10;
+	var tmpl = '<table style="background:#fff;margin-left:auto;margin-right:auto" border="1" width="1000" height="221" align="center" cellspacing="0" cellpadding="0" bordercolorlight="#DDDDDD" bordercolordark="#FFFFFF" style="margin:20px auto;"><tbody><tr><td height="27" width="371" colspan="2" align="center">开奖源官网</td><td height="27" colspan="2" align="center"><a target="_blank" href="'+url+'">点此查看</a></td></tr><tr><td height="27" width="371" colspan="2" align="center">截止时间</td><td height="27" colspan="2" align="center">'+opentime+'</td></tr><tr><td height="27" width="371" colspan="2" align="center">对应位数</td><td height="27" colspan="2" align="center">01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20</td></tr><tr><td height="27" width="371" colspan="2" align="center">三方源数据</td><td height="27" colspan="2" align="center">'+data+'</td></tr><tr><td height="27" width="84" align="center">区位</td><td height="27" width="284" align="center">取第02、05、08、11、14、17位</td><td height="27" width="333" align="center">取第03、06、09、12、15、18位</td><td height="27" width="290" align="center">取第04、07、10、13、16、19位</td></tr><tr><td height="27" width="84" align="center">数字</td><td height="27" width="284" align="center">'+qj1+'</td><td height="27" width="333" align="center">'+qj2+'</td><td height="27" width="290" align="center">'+qj3+'</td></tr><tr><td height="27" width="84" align="center">求和</td><td height="27" width="284" align="center">'+q1s+'</td><td height="27" width="333" align="center">'+q2s+'</td><td height="27" width="290" align="center">'+q3s+'</td></tr><tr><td height="28" width="84" align="center">计算</td><td height="27" width="284" align="center">取尾数</td><td height="28" width="333" align="center">取尾数</td><td height="28" width="290" align="center">取尾数</td></tr><tr><td height="28" width="84" align="center">结果</td><td height="27" width="284" align="center">'+q1w+'</td><td height="28" width="333" align="center">'+q2w+'</td><td height="28" width="290" align="center">'+q3w+'</td></tr><tr height="58"><td height="58" width="84" align="center">开奖</td><td height="58" width="907" align="center" colspan="3" style="font-size:18px;">'+q1w+'+'+q2w+'+'+q3w+'  = <a style="color:red;font-weight:bold">'+parseInt(q1w+q2w+q3w)+'</a></td></tr></tbody></table>';
+	return tmpl;
+}
