@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50624
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : tplay
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-04-23 21:25:37
+Date: 2019-04-24 23:08:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -74,7 +74,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'lotgame', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1555722824', '1555814419', '192.168.1.104', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'lotgame', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1555722824', '1556031359', '192.168.1.104', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -114,7 +114,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=867 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=877 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -982,6 +982,16 @@ INSERT INTO `hov_admin_log` VALUES ('863', '122', '1', '192.168.1.104', '修改�
 INSERT INTO `hov_admin_log` VALUES ('864', '122', '1', '192.168.1.104', '修改游戏成功-7', '1555849555');
 INSERT INTO `hov_admin_log` VALUES ('865', '122', '1', '192.168.1.104', '修改游戏成功-8', '1555849564');
 INSERT INTO `hov_admin_log` VALUES ('866', '122', '1', '192.168.1.104', '修改游戏成功-5', '1555849581');
+INSERT INTO `hov_admin_log` VALUES ('867', '50', '1', '192.168.1.104', '', '1556031360');
+INSERT INTO `hov_admin_log` VALUES ('868', '122', '1', '192.168.1.104', '修改游戏成功-1', '1556111053');
+INSERT INTO `hov_admin_log` VALUES ('869', '122', '1', '192.168.1.104', '修改游戏成功-2', '1556111068');
+INSERT INTO `hov_admin_log` VALUES ('870', '122', '1', '192.168.1.104', '修改游戏成功-1', '1556111129');
+INSERT INTO `hov_admin_log` VALUES ('871', '122', '1', '192.168.1.104', '修改游戏成功-3', '1556111184');
+INSERT INTO `hov_admin_log` VALUES ('872', '122', '1', '192.168.1.104', '修改游戏成功-6', '1556111190');
+INSERT INTO `hov_admin_log` VALUES ('873', '122', '1', '192.168.1.104', '修改游戏成功-7', '1556111201');
+INSERT INTO `hov_admin_log` VALUES ('874', '122', '1', '192.168.1.104', '修改游戏成功-8', '1556111294');
+INSERT INTO `hov_admin_log` VALUES ('875', '122', '1', '192.168.1.104', '修改游戏成功-5', '1556111300');
+INSERT INTO `hov_admin_log` VALUES ('876', '122', '1', '192.168.1.104', '修改游戏成功-4', '1556111309');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -1649,6 +1659,8 @@ CREATE TABLE `hov_game` (
   `area_type` tinyint(2) DEFAULT NULL,
   `name` varchar(60) DEFAULT NULL,
   `code` varchar(20) DEFAULT NULL,
+  `gtag` varchar(20) DEFAULT NULL COMMENT 'ww(外围）,basic,sc',
+  `ntype` varchar(20) DEFAULT NULL COMMENT '系统开奖js，第三方开奖',
   `intro` text,
   `draw_ratio` decimal(6,2) DEFAULT NULL COMMENT '抽水比例',
   `forbid` int(11) DEFAULT '0' COMMENT '禁止投注时间(秒）',
@@ -1668,50 +1680,50 @@ CREATE TABLE `hov_game` (
 -- ----------------------------
 -- Records of hov_game
 -- ----------------------------
-INSERT INTO `hov_game` VALUES ('1', '1', '幸运百家乐', 'xybjl', '', null, '0', null, null, null, null, null, '1', null, '1', '1553311975', '1555849355');
-INSERT INTO `hov_game` VALUES ('2', '1', '幸运10', 'xy10', '', null, '0', null, null, null, null, null, '2', null, '1', '1553312074', '1555849466');
-INSERT INTO `hov_game` VALUES ('3', '1', '幸运11', 'xy11', '', '0.00', '0', '0', '0', '0', '0', '', '3', '', '1', '1553312148', '1555849511');
-INSERT INTO `hov_game` VALUES ('4', '1', '幸运16', 'xy16', '', null, '0', null, null, null, null, null, '4', null, '1', null, '1555849523');
-INSERT INTO `hov_game` VALUES ('5', '1', '幸运冠亚军', 'xygyj', '', null, '0', null, null, null, null, null, '8', null, '1', null, '1555849581');
-INSERT INTO `hov_game` VALUES ('6', '1', '幸运22', 'xy22', '', null, '0', null, null, null, null, null, '5', null, '1', '1553312250', '1555849539');
-INSERT INTO `hov_game` VALUES ('7', '1', '幸运28', 'xy28', '', '1.30', '23', '33', '344', '{\"1\":{\"min_exp_from\":\"1\",\"max_exp_to\":\"2\",\"seq_reward_exp\":\"3\"},\"2\":{\"min_exp_from\":\"4\",\"max_exp_to\":\"5\",\"seq_reward_exp\":\"6\"},\"3\":{\"min_exp_from\":\"3\",\"max_exp_to\":\"34\",\"seq_reward_exp\":\"3\"},\"4\":{\"min_exp_from\":\"12\",\"max_exp_to\":\"\",\"seq_reward_exp\":\"22\"}}', '[{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"23\",\"max_points_to\":\"324\",\"seq_reward_points\":\"2\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"32334\",\"max_points_to\":\"43434\",\"seq_reward_points\":\"345\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"}]', '<table class=\"table_list\" width=\"1100\" style=\"width: 968px;\"><tbody style=\"margin: 0px; padding: 0px;\"><tr style=\"margin: 0px; padding: 0px;\" class=\"firstRow\"><td colspan=\"4\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">如第654574期</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(按照由小到大的顺序依次排列)</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">区位</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第一区[第1/2/3/4/5/6位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第二区[第7/8/9/10/11/12位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第三区[第13/14/15/16/17/18位数字]</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">数字</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">25,30,35,36,43,49</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">50,53,59,66,69,71</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">求和</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">61</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">218</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">368</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">计算</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">结果</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">开奖</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;=&nbsp;&nbsp;</p></li><li><p>17</p></li></ul></td></tr></tbody></table><p><br/></p>', '6', '游戏时间：北京时间 09:05 ～ 23:55,每 5分钟 一期，全天 179 期。', '1', '1553312368', '1555849555');
-INSERT INTO `hov_game` VALUES ('8', '1', '幸运36', 'xy36', '', null, '0', null, null, null, null, null, '7', null, '1', null, '1555849564');
-INSERT INTO `hov_game` VALUES ('9', '2', '蛋蛋28', 'dd28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555832104');
-INSERT INTO `hov_game` VALUES ('10', '2', '蛋蛋外围21', 'ddww21', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555844956');
-INSERT INTO `hov_game` VALUES ('11', '2', '蛋蛋36', 'dd36', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555832120');
-INSERT INTO `hov_game` VALUES ('12', '6', '韩国28', 'hg28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845818');
-INSERT INTO `hov_game` VALUES ('13', '6', '韩国16', 'hg16', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845808');
-INSERT INTO `hov_game` VALUES ('14', '6', '韩国36', 'hg36', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845829');
-INSERT INTO `hov_game` VALUES ('15', '6', '韩国11', 'hg11', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845788');
-INSERT INTO `hov_game` VALUES ('16', '6', '韩国10', 'hg10', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845777');
-INSERT INTO `hov_game` VALUES ('17', '6', '韩国外围21', 'hgww21', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845852');
-INSERT INTO `hov_game` VALUES ('18', '6', '韩国外围28', 'hgdw28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845869');
-INSERT INTO `hov_game` VALUES ('19', '2', '北京28', 'bj28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555831969');
-INSERT INTO `hov_game` VALUES ('20', '2', '北京16', 'bj16', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555832005');
-INSERT INTO `hov_game` VALUES ('21', '2', '北京36', 'bj36', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845929');
-INSERT INTO `hov_game` VALUES ('22', '4', '加拿大28', 'jnd28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845224');
-INSERT INTO `hov_game` VALUES ('23', '4', '加拿大16', 'jnd16', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845212');
-INSERT INTO `hov_game` VALUES ('24', '4', '加拿大36', 'jnd36', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845237');
-INSERT INTO `hov_game` VALUES ('25', '4', '加拿大11', 'jnd11', '&amp;lt;table&amp;gt;&amp;lt;tbody&amp;gt;&amp;lt;tr class=&amp;quot;firstRow&amp;quot;&amp;gt;&amp;lt;td colspan=&amp;quot;4&amp;quot;&amp;gt;采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:30暂停开奖&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;如第1773065期&amp;lt;/td&amp;gt;&amp;lt;td colspan=&amp;quot;3&amp;quot;&amp;gt;01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;区位&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;第一区[第1/4/7/10/13/16位数字]&amp;lt;/td&amp;gt;&amp;lt;td style=&amp;quot;word-break: break-all;&amp;quot; rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;第二区[第2/5/8/11/14/17位数字]&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;数字&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;01,13,31,35,44,62&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;07,28,33,43,57,65&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;求和&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;186&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;233&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;计算&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;186除以6的余数 + 1&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;233除以6的余数 + 1&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;结果&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;p&amp;gt;1&amp;lt;/p&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;&amp;lt;p&amp;gt;6&amp;lt;/p&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;quot;rule16&amp;quot;&amp;gt;&amp;lt;strong&amp;gt;开奖&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td colspan=&amp;quot;3&amp;quot; style=&amp;quot;word-break: break-all;&amp;quot;&amp;gt;&amp;lt;p&amp;gt;1+6=7&amp;lt;/p&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/tbody&amp;gt;&amp;lt;/table&amp;gt;', null, '0', null, null, null, null, null, null, null, '1', null, '1555845201');
-INSERT INTO `hov_game` VALUES ('26', '4', '加拿大10', 'jnd10', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845185');
-INSERT INTO `hov_game` VALUES ('27', '4', '加拿大外围21', 'jndww21', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845274');
-INSERT INTO `hov_game` VALUES ('28', '4', '加拿大外围28', 'jnddww28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845471');
-INSERT INTO `hov_game` VALUES ('29', '2', '蛋蛋外围28', 'ddww28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845435');
-INSERT INTO `hov_game` VALUES ('31', '2', '北京10', 'bj10', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845950');
-INSERT INTO `hov_game` VALUES ('33', '3', '重庆时时彩', 'cqssc', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845167');
-INSERT INTO `hov_game` VALUES ('34', '3', 'PK冠亚', 'pkgy', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845110');
-INSERT INTO `hov_game` VALUES ('35', '3', 'PK22', 'pk22', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845069');
-INSERT INTO `hov_game` VALUES ('36', '3', 'PK冠军', 'pkgj', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845087');
-INSERT INTO `hov_game` VALUES ('37', '3', 'PK10', 'pk10', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845053');
-INSERT INTO `hov_game` VALUES ('38', '3', 'PK龙虎', 'pklh', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845894');
-INSERT INTO `hov_game` VALUES ('50', '5', '印度外围28', 'ydww28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845759');
-INSERT INTO `hov_game` VALUES ('52', '5', '印度28', 'yd28', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845671');
-INSERT INTO `hov_game` VALUES ('53', '5', '印度16', 'yd16', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845652');
-INSERT INTO `hov_game` VALUES ('54', '5', '印度11', 'yd11', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845632');
-INSERT INTO `hov_game` VALUES ('55', '5', '印度36', 'yd36', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845697');
-INSERT INTO `hov_game` VALUES ('56', '5', '印度10', 'yd10', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845612');
-INSERT INTO `hov_game` VALUES ('57', '5', '印度外围21', 'ydww21', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845731');
-INSERT INTO `hov_game` VALUES ('58', '3', 'PK赛车', 'pksc', '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845149');
+INSERT INTO `hov_game` VALUES ('1', '1', '幸运百家乐', 'xybjl', 'basic', 'js', '', null, '0', null, null, null, null, null, '1', null, '1', '1553311975', '1556111129');
+INSERT INTO `hov_game` VALUES ('2', '1', '幸运10', 'xy10', 'basic', 'js', '', null, '0', null, null, null, null, null, '2', null, '1', '1553312074', '1556111068');
+INSERT INTO `hov_game` VALUES ('3', '1', '幸运11', 'xy11', 'basic', 'js', '', '0.00', '0', '0', '0', '0', '0', '', '3', '', '1', '1553312148', '1556111184');
+INSERT INTO `hov_game` VALUES ('4', '1', '幸运16', 'xy16', 'basic', 'js', '', null, '0', null, null, null, null, null, '4', null, '1', null, '1556111309');
+INSERT INTO `hov_game` VALUES ('5', '1', '幸运冠亚军', 'xygyj', 'basic', 'js', '', null, '0', null, null, null, null, null, '8', null, '1', null, '1556111300');
+INSERT INTO `hov_game` VALUES ('6', '1', '幸运22', 'xy22', 'basic', 'js', '', null, '0', null, null, null, null, null, '5', null, '1', '1553312250', '1556111190');
+INSERT INTO `hov_game` VALUES ('7', '1', '幸运28', 'xy28', 'basic', 'js', '', '1.30', '23', '33', '344', '{\"1\":{\"min_exp_from\":\"1\",\"max_exp_to\":\"2\",\"seq_reward_exp\":\"3\"},\"2\":{\"min_exp_from\":\"4\",\"max_exp_to\":\"5\",\"seq_reward_exp\":\"6\"},\"3\":{\"min_exp_from\":\"3\",\"max_exp_to\":\"34\",\"seq_reward_exp\":\"3\"},\"4\":{\"min_exp_from\":\"12\",\"max_exp_to\":\"\",\"seq_reward_exp\":\"22\"}}', '[{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"23\",\"max_points_to\":\"324\",\"seq_reward_points\":\"2\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"},{\"min_points_from\":\"32334\",\"max_points_to\":\"43434\",\"seq_reward_points\":\"345\"},{\"min_points_from\":\"\",\"max_points_to\":\"\",\"seq_reward_points\":\"\"}]', '<table class=\"table_list\" width=\"1100\" style=\"width: 968px;\"><tbody style=\"margin: 0px; padding: 0px;\"><tr style=\"margin: 0px; padding: 0px;\" class=\"firstRow\"><td colspan=\"4\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">如第654574期</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(按照由小到大的顺序依次排列)</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td width=\"120\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">区位</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第一区[第1/2/3/4/5/6位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第二区[第7/8/9/10/11/12位数字]</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">第三区[第13/14/15/16/17/18位数字]</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">数字</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">02,04,07,08,18,22</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">25,30,35,36,43,49</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">50,53,59,66,69,71</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">求和</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">61</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">218</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">368</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">计算</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">取尾数</td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">结果</td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>8</p></li></ul></td></tr><tr style=\"margin: 0px; padding: 0px;\"><td style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\">开奖</td><td colspan=\"3\" style=\"margin: 0px; padding: 0px; border-color: rgb(204, 204, 204); text-align: center; color: rgb(85, 85, 85); line-height: 45px; font-size: 15px;\"><ul class=\" list-paddingleft-2\"><li><p>1</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;+&nbsp;&nbsp;</p></li><li><p>8</p></li><li><p>&nbsp;=&nbsp;&nbsp;</p></li><li><p>17</p></li></ul></td></tr></tbody></table><p><br/></p>', '6', '游戏时间：北京时间 09:05 ～ 23:55,每 5分钟 一期，全天 179 期。', '1', '1553312368', '1556111201');
+INSERT INTO `hov_game` VALUES ('8', '1', '幸运36', 'xy36', 'basic', 'js', '', null, '0', null, null, null, null, null, '7', null, '1', null, '1556111293');
+INSERT INTO `hov_game` VALUES ('9', '2', '蛋蛋28', 'dd28', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555832104');
+INSERT INTO `hov_game` VALUES ('10', '2', '蛋蛋外围21', 'ddww21', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555844956');
+INSERT INTO `hov_game` VALUES ('11', '2', '蛋蛋36', 'dd36', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555832120');
+INSERT INTO `hov_game` VALUES ('12', '6', '韩国28', 'hg28', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845818');
+INSERT INTO `hov_game` VALUES ('13', '6', '韩国16', 'hg16', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845808');
+INSERT INTO `hov_game` VALUES ('14', '6', '韩国36', 'hg36', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845829');
+INSERT INTO `hov_game` VALUES ('15', '6', '韩国11', 'hg11', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845788');
+INSERT INTO `hov_game` VALUES ('16', '6', '韩国10', 'hg10', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845777');
+INSERT INTO `hov_game` VALUES ('17', '6', '韩国外围21', 'hgww21', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845852');
+INSERT INTO `hov_game` VALUES ('18', '6', '韩国外围28', 'hgdw28', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845869');
+INSERT INTO `hov_game` VALUES ('19', '2', '北京28', 'bj28', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555831969');
+INSERT INTO `hov_game` VALUES ('20', '2', '北京16', 'bj16', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555832005');
+INSERT INTO `hov_game` VALUES ('21', '2', '北京36', 'bj36', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845929');
+INSERT INTO `hov_game` VALUES ('22', '4', '加拿大28', 'jnd28', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845224');
+INSERT INTO `hov_game` VALUES ('23', '4', '加拿大16', 'jnd16', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845212');
+INSERT INTO `hov_game` VALUES ('24', '4', '加拿大36', 'jnd36', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845237');
+INSERT INTO `hov_game` VALUES ('25', '4', '加拿大11', 'jnd11', 'basic', null, '&amp;lt;table&amp;gt;&amp;lt;tbody&amp;gt;&amp;lt;tr class=&amp;quot;firstRow&amp;quot;&amp;gt;&amp;lt;td colspan=&amp;quot;4&amp;quot;&amp;gt;采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:30暂停开奖&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;如第1773065期&amp;lt;/td&amp;gt;&amp;lt;td colspan=&amp;quot;3&amp;quot;&amp;gt;01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;区位&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;第一区[第1/4/7/10/13/16位数字]&amp;lt;/td&amp;gt;&amp;lt;td style=&amp;quot;word-break: break-all;&amp;quot; rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;第二区[第2/5/8/11/14/17位数字]&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;数字&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;01,13,31,35,44,62&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;07,28,33,43,57,65&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;求和&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;186&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;233&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;计算&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;186除以6的余数 + 1&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;233除以6的余数 + 1&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;结果&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;p&amp;gt;1&amp;lt;/p&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td rowspan=&amp;quot;1&amp;quot; colspan=&amp;quot;2&amp;quot;&amp;gt;&amp;lt;p&amp;gt;6&amp;lt;/p&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td class=&amp;quot;rule16&amp;quot;&amp;gt;&amp;lt;strong&amp;gt;开奖&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td colspan=&amp;quot;3&amp;quot; style=&amp;quot;word-break: break-all;&amp;quot;&amp;gt;&amp;lt;p&amp;gt;1+6=7&amp;lt;/p&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;/tbody&amp;gt;&amp;lt;/table&amp;gt;', null, '0', null, null, null, null, null, null, null, '1', null, '1555845201');
+INSERT INTO `hov_game` VALUES ('26', '4', '加拿大10', 'jnd10', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845185');
+INSERT INTO `hov_game` VALUES ('27', '4', '加拿大外围21', 'jndww21', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845274');
+INSERT INTO `hov_game` VALUES ('28', '4', '加拿大外围28', 'jnddww28', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845471');
+INSERT INTO `hov_game` VALUES ('29', '2', '蛋蛋外围28', 'ddww28', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845435');
+INSERT INTO `hov_game` VALUES ('31', '2', '北京10', 'bj10', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845950');
+INSERT INTO `hov_game` VALUES ('33', '3', '重庆时时彩', 'cqssc', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845167');
+INSERT INTO `hov_game` VALUES ('34', '3', 'PK冠亚', 'pkgy', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845110');
+INSERT INTO `hov_game` VALUES ('35', '3', 'PK22', 'pk22', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845069');
+INSERT INTO `hov_game` VALUES ('36', '3', 'PK冠军', 'pkgj', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845087');
+INSERT INTO `hov_game` VALUES ('37', '3', 'PK10', 'pk10', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845053');
+INSERT INTO `hov_game` VALUES ('38', '3', 'PK龙虎', 'pklh', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845894');
+INSERT INTO `hov_game` VALUES ('50', '5', '印度外围28', 'ydww28', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845759');
+INSERT INTO `hov_game` VALUES ('52', '5', '印度28', 'yd28', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845671');
+INSERT INTO `hov_game` VALUES ('53', '5', '印度16', 'yd16', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845652');
+INSERT INTO `hov_game` VALUES ('54', '5', '印度11', 'yd11', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845632');
+INSERT INTO `hov_game` VALUES ('55', '5', '印度36', 'yd36', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845697');
+INSERT INTO `hov_game` VALUES ('56', '5', '印度10', 'yd10', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845612');
+INSERT INTO `hov_game` VALUES ('57', '5', '印度外围21', 'ydww21', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845731');
+INSERT INTO `hov_game` VALUES ('58', '3', 'PK赛车', 'pksc', 'basic', null, '', null, '0', null, null, null, null, null, null, null, '1', null, '1555845149');
 
 -- ----------------------------
 -- Table structure for `hov_game_bj10`
@@ -1719,14 +1731,12 @@ INSERT INTO `hov_game` VALUES ('58', '3', 'PK赛车', 'pksc', '', null, '0', nul
 DROP TABLE IF EXISTS `hov_game_bj10`;
 CREATE TABLE `hov_game_bj10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1735,40 +1745,17 @@ CREATE TABLE `hov_game_bj10` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_bj11`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_bj11`;
-CREATE TABLE `hov_game_bj11` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_bj11
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `hov_game_bj16`
 -- ----------------------------
 DROP TABLE IF EXISTS `hov_game_bj16`;
 CREATE TABLE `hov_game_bj16` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1782,14 +1769,12 @@ CREATE TABLE `hov_game_bj16` (
 DROP TABLE IF EXISTS `hov_game_bj28`;
 CREATE TABLE `hov_game_bj28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1803,14 +1788,12 @@ CREATE TABLE `hov_game_bj28` (
 DROP TABLE IF EXISTS `hov_game_bj36`;
 CREATE TABLE `hov_game_bj36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1824,14 +1807,12 @@ CREATE TABLE `hov_game_bj36` (
 DROP TABLE IF EXISTS `hov_game_cqssc`;
 CREATE TABLE `hov_game_cqssc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1840,40 +1821,17 @@ CREATE TABLE `hov_game_cqssc` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_dd16`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_dd16`;
-CREATE TABLE `hov_game_dd16` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_dd16
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `hov_game_dd28`
 -- ----------------------------
 DROP TABLE IF EXISTS `hov_game_dd28`;
 CREATE TABLE `hov_game_dd28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1887,14 +1845,12 @@ CREATE TABLE `hov_game_dd28` (
 DROP TABLE IF EXISTS `hov_game_dd36`;
 CREATE TABLE `hov_game_dd36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1903,192 +1859,41 @@ CREATE TABLE `hov_game_dd36` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_dddw`
+-- Table structure for `hov_game_ddww21`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_dddw`;
-CREATE TABLE `hov_game_dddw` (
+DROP TABLE IF EXISTS `hov_game_ddww21`;
+CREATE TABLE `hov_game_ddww21` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_dddw
+-- Records of hov_game_ddww21
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_ddww`
+-- Table structure for `hov_game_ddww28`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_ddww`;
-CREATE TABLE `hov_game_ddww` (
+DROP TABLE IF EXISTS `hov_game_ddww28`;
+CREATE TABLE `hov_game_ddww28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_ddww
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_ft10`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_ft10`;
-CREATE TABLE `hov_game_ft10` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_ft10
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_ft22`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_ft22`;
-CREATE TABLE `hov_game_ft22` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_ft22
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_ftgj`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_ftgj`;
-CREATE TABLE `hov_game_ftgj` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_ftgj
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_gdbj28`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_gdbj28`;
-CREATE TABLE `hov_game_gdbj28` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_gdbj28
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_gddd28`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_gddd28`;
-CREATE TABLE `hov_game_gddd28` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_gddd28
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_gdhg28`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_gdhg28`;
-CREATE TABLE `hov_game_gdhg28` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_gdhg28
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_gdjnd28`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_gdjnd28`;
-CREATE TABLE `hov_game_gdjnd28` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_gdjnd28
+-- Records of hov_game_ddww28
 -- ----------------------------
 
 -- ----------------------------
@@ -2097,14 +1902,12 @@ CREATE TABLE `hov_game_gdjnd28` (
 DROP TABLE IF EXISTS `hov_game_hg10`;
 CREATE TABLE `hov_game_hg10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2118,14 +1921,12 @@ CREATE TABLE `hov_game_hg10` (
 DROP TABLE IF EXISTS `hov_game_hg11`;
 CREATE TABLE `hov_game_hg11` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2139,14 +1940,12 @@ CREATE TABLE `hov_game_hg11` (
 DROP TABLE IF EXISTS `hov_game_hg16`;
 CREATE TABLE `hov_game_hg16` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2160,14 +1959,12 @@ CREATE TABLE `hov_game_hg16` (
 DROP TABLE IF EXISTS `hov_game_hg28`;
 CREATE TABLE `hov_game_hg28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2181,14 +1978,12 @@ CREATE TABLE `hov_game_hg28` (
 DROP TABLE IF EXISTS `hov_game_hg36`;
 CREATE TABLE `hov_game_hg36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2197,45 +1992,41 @@ CREATE TABLE `hov_game_hg36` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_hgdw`
+-- Table structure for `hov_game_hgdw28`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_hgdw`;
-CREATE TABLE `hov_game_hgdw` (
+DROP TABLE IF EXISTS `hov_game_hgdw28`;
+CREATE TABLE `hov_game_hgdw28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_hgdw
+-- Records of hov_game_hgdw28
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_hgww`
+-- Table structure for `hov_game_hgww21`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_hgww`;
-CREATE TABLE `hov_game_hgww` (
+DROP TABLE IF EXISTS `hov_game_hgww21`;
+CREATE TABLE `hov_game_hgww21` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_hgww
+-- Records of hov_game_hgww21
 -- ----------------------------
 
 -- ----------------------------
@@ -2244,14 +2035,12 @@ CREATE TABLE `hov_game_hgww` (
 DROP TABLE IF EXISTS `hov_game_jnd10`;
 CREATE TABLE `hov_game_jnd10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2265,14 +2054,12 @@ CREATE TABLE `hov_game_jnd10` (
 DROP TABLE IF EXISTS `hov_game_jnd11`;
 CREATE TABLE `hov_game_jnd11` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2286,14 +2073,12 @@ CREATE TABLE `hov_game_jnd11` (
 DROP TABLE IF EXISTS `hov_game_jnd16`;
 CREATE TABLE `hov_game_jnd16` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2307,14 +2092,12 @@ CREATE TABLE `hov_game_jnd16` (
 DROP TABLE IF EXISTS `hov_game_jnd28`;
 CREATE TABLE `hov_game_jnd28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2328,14 +2111,12 @@ CREATE TABLE `hov_game_jnd28` (
 DROP TABLE IF EXISTS `hov_game_jnd36`;
 CREATE TABLE `hov_game_jnd36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2344,193 +2125,41 @@ CREATE TABLE `hov_game_jnd36` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_jnddw`
+-- Table structure for `hov_game_jnddww28`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_jnddw`;
-CREATE TABLE `hov_game_jnddw` (
+DROP TABLE IF EXISTS `hov_game_jnddww28`;
+CREATE TABLE `hov_game_jnddww28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_jnddw
+-- Records of hov_game_jnddww28
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_jndww`
+-- Table structure for `hov_game_jndww21`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_jndww`;
-CREATE TABLE `hov_game_jndww` (
+DROP TABLE IF EXISTS `hov_game_jndww21`;
+CREATE TABLE `hov_game_jndww21` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_jndww
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_js10`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_js10`;
-CREATE TABLE `hov_game_js10` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_js10
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_js11`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_js11`;
-CREATE TABLE `hov_game_js11` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_js11
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_js16`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_js16`;
-CREATE TABLE `hov_game_js16` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_js16
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_js22`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_js22`;
-CREATE TABLE `hov_game_js22` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` varchar(50) DEFAULT NULL,
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_js22
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_js28`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_js28`;
-CREATE TABLE `hov_game_js28` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_js28
--- ----------------------------
-INSERT INTO `hov_game_js28` VALUES ('1', '1223423', null, null, '3', '3', '23423424', null, null);
-
--- ----------------------------
--- Table structure for `hov_game_js36`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_js36`;
-CREATE TABLE `hov_game_js36` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_js36
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_jsgy`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_jsgy`;
-CREATE TABLE `hov_game_jsgy` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_jsgy
+-- Records of hov_game_jndww21
 -- ----------------------------
 
 -- ----------------------------
@@ -2539,14 +2168,12 @@ CREATE TABLE `hov_game_jsgy` (
 DROP TABLE IF EXISTS `hov_game_pk10`;
 CREATE TABLE `hov_game_pk10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2560,14 +2187,12 @@ CREATE TABLE `hov_game_pk10` (
 DROP TABLE IF EXISTS `hov_game_pk22`;
 CREATE TABLE `hov_game_pk22` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2581,14 +2206,12 @@ CREATE TABLE `hov_game_pk22` (
 DROP TABLE IF EXISTS `hov_game_pkgj`;
 CREATE TABLE `hov_game_pkgj` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2602,14 +2225,12 @@ CREATE TABLE `hov_game_pkgj` (
 DROP TABLE IF EXISTS `hov_game_pkgy`;
 CREATE TABLE `hov_game_pkgy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2623,14 +2244,12 @@ CREATE TABLE `hov_game_pkgy` (
 DROP TABLE IF EXISTS `hov_game_pklh`;
 CREATE TABLE `hov_game_pklh` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2644,14 +2263,12 @@ CREATE TABLE `hov_game_pklh` (
 DROP TABLE IF EXISTS `hov_game_pksc`;
 CREATE TABLE `hov_game_pksc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -2660,339 +2277,315 @@ CREATE TABLE `hov_game_pksc` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_qb16`
+-- Table structure for `hov_game_xy10`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_qb16`;
-CREATE TABLE `hov_game_qb16` (
+DROP TABLE IF EXISTS `hov_game_xy10`;
+CREATE TABLE `hov_game_xy10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_qb16
+-- Records of hov_game_xy10
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_rs11`
+-- Table structure for `hov_game_xy11`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_rs11`;
-CREATE TABLE `hov_game_rs11` (
+DROP TABLE IF EXISTS `hov_game_xy11`;
+CREATE TABLE `hov_game_xy11` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_rs11
+-- Records of hov_game_xy11
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_rs16`
+-- Table structure for `hov_game_xy16`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_rs16`;
-CREATE TABLE `hov_game_rs16` (
+DROP TABLE IF EXISTS `hov_game_xy16`;
+CREATE TABLE `hov_game_xy16` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_rs16
+-- Records of hov_game_xy16
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_rs28`
+-- Table structure for `hov_game_xy22`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_rs28`;
-CREATE TABLE `hov_game_rs28` (
+DROP TABLE IF EXISTS `hov_game_xy22`;
+CREATE TABLE `hov_game_xy22` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_rs28
+-- Records of hov_game_xy22
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_rs36`
+-- Table structure for `hov_game_xy28`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_rs36`;
-CREATE TABLE `hov_game_rs36` (
+DROP TABLE IF EXISTS `hov_game_xy28`;
+CREATE TABLE `hov_game_xy28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_rs36
+-- Records of hov_game_xy28
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_tx11`
+-- Table structure for `hov_game_xy36`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_tx11`;
-CREATE TABLE `hov_game_tx11` (
+DROP TABLE IF EXISTS `hov_game_xy36`;
+CREATE TABLE `hov_game_xy36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_tx11
+-- Records of hov_game_xy36
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_tx16`
+-- Table structure for `hov_game_xybjl`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_tx16`;
-CREATE TABLE `hov_game_tx16` (
+DROP TABLE IF EXISTS `hov_game_xybjl`;
+CREATE TABLE `hov_game_xybjl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10027 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hov_game_xybjl
+-- ----------------------------
+INSERT INTO `hov_game_xybjl` VALUES ('10000', '1556117580', '{\"bankCards\":\"7,A\",\"playerCards\":\"3,9,2\"}', '', '1556117580', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10001', '1556117640', '{\"bankCards\":\"3,J,5\",\"playerCards\":\"K,6\"}', '', '1556117640', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10002', '1556117702', '{\"bankCards\":\"A,8\",\"playerCards\":\"A,3,4\"}', '', '1556117702', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10003', '1556117707', '{\"bankCards\":\"8,6,7\",\"playerCards\":\"J,8\"}', '', '1556117707', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10004', '1556117708', '{\"bankCards\":\"Q,10,3\",\"playerCards\":\"3,2,2\"}', '', '1556117708', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10005', '1556117713', '{\"bankCards\":\"7,10\",\"playerCards\":\"6,6,10\"}', '', '1556117713', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10006', '1556117714', '{\"bankCards\":\"J,J,A\",\"playerCards\":\"2,10,9\"}', '', '1556117714', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10007', '1556117747', '{\"bankCards\":\"6,10\",\"playerCards\":\"10,A,3\"}', '', '1556117747', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10008', '1556117788', '{\"bankCards\":\"9,Q\",\"playerCards\":\"4,Q,K\"}', '', '1556117788', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10009', '1556117788', '{\"bankCards\":\"A,4\",\"playerCards\":\"9,4,10\"}', '', '1556117788', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10010', '1556117811', '{\"bankCards\":\"3,6\",\"playerCards\":\"10,K,7\"}', '', '1556117811', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10011', '1556117812', '{\"bankCards\":\"5,J\",\"playerCards\":\"K,A,K\"}', '', '1556117812', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10012', '1556117930', '{\"bankCards\":\"A,J,5\",\"playerCards\":\"J,10,K\"}', 'BANKER', '1556117930', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10013', '1556117941', '{\"bankCards\":\"10,Q,A\",\"playerCards\":\"Q,6\"}', 'PLAYER', '1556117941', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10014', '1556118000', '{\"bankCards\":\"Q,2,6\",\"playerCards\":\"3,7,8\"}', 'TIE', '1556118000', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10015', '1556118060', '{\"bankCards\":\"Q,4\",\"playerCards\":\"9,A,J\"}', 'BANKER', '1556118060', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10016', '1556118120', '{\"bankCards\":\"4,10,8\",\"playerCards\":\"J,6\"}', 'PLAYER', '1556118120', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10017', '1556118180', '{\"bankCards\":\"4,A,9\",\"playerCards\":\"J,9\"}', 'PLAYER', '1556118180', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10018', '1556118240', '{\"bankCards\":\"5,J\",\"playerCards\":\"Q,10,3\"}', 'BANKER', '1556118240', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10019', '1556118300', '{\"bankCards\":\"10,7\",\"playerCards\":\"2,A,7\"}', 'BANKER', '1556118300', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10020', '1556118360', '{\"bankCards\":\"10,10,2\",\"playerCards\":\"K,J,3\"}', 'PLAYER', '1556118360', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10021', '1556118420', '{\"bankCards\":\"7,4,5\",\"playerCards\":\"3,10,A\"}', 'BANKER', '1556118420', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10022', '1556118480', '{\"bankCards\":\"\",\"playerCards\":\"\"}', 'BANKER', '1556118480', null, '2');
+INSERT INTO `hov_game_xybjl` VALUES ('10023', '1556118540', null, null, null, null, '1');
+INSERT INTO `hov_game_xybjl` VALUES ('10024', '1556118600', null, null, null, null, '1');
+INSERT INTO `hov_game_xybjl` VALUES ('10025', '1556118660', null, null, null, null, '1');
+INSERT INTO `hov_game_xybjl` VALUES ('10026', '1556118720', null, null, null, null, '1');
+
+-- ----------------------------
+-- Table structure for `hov_game_xygyj`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_game_xygyj`;
+CREATE TABLE `hov_game_xygyj` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
+  `create_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hov_game_xygyj
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `hov_game_yd10`
+-- ----------------------------
+DROP TABLE IF EXISTS `hov_game_yd10`;
+CREATE TABLE `hov_game_yd10` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
+  `create_time` int(11) DEFAULT NULL,
+  `update_time` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_tx16
+-- Records of hov_game_yd10
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_tx28`
+-- Table structure for `hov_game_yd11`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_tx28`;
-CREATE TABLE `hov_game_tx28` (
+DROP TABLE IF EXISTS `hov_game_yd11`;
+CREATE TABLE `hov_game_yd11` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_tx28
+-- Records of hov_game_yd11
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_tx36`
+-- Table structure for `hov_game_yd16`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_tx36`;
-CREATE TABLE `hov_game_tx36` (
+DROP TABLE IF EXISTS `hov_game_yd16`;
+CREATE TABLE `hov_game_yd16` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_tx36
+-- Records of hov_game_yd16
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_xdl10`
+-- Table structure for `hov_game_yd28`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_xdl10`;
-CREATE TABLE `hov_game_xdl10` (
+DROP TABLE IF EXISTS `hov_game_yd28`;
+CREATE TABLE `hov_game_yd28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_xdl10
+-- Records of hov_game_yd28
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_xdl11`
+-- Table structure for `hov_game_yd36`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_xdl11`;
-CREATE TABLE `hov_game_xdl11` (
+DROP TABLE IF EXISTS `hov_game_yd36`;
+CREATE TABLE `hov_game_yd36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_xdl11
+-- Records of hov_game_yd36
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_xdl16`
+-- Table structure for `hov_game_ydww21`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_xdl16`;
-CREATE TABLE `hov_game_xdl16` (
+DROP TABLE IF EXISTS `hov_game_ydww21`;
+CREATE TABLE `hov_game_ydww21` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_xdl16
+-- Records of hov_game_ydww21
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `hov_game_xdl28`
+-- Table structure for `hov_game_ydww28`
 -- ----------------------------
-DROP TABLE IF EXISTS `hov_game_xdl28`;
-CREATE TABLE `hov_game_xdl28` (
+DROP TABLE IF EXISTS `hov_game_ydww28`;
+CREATE TABLE `hov_game_ydww28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
+  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
+  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of hov_game_xdl28
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_xdl36`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_xdl36`;
-CREATE TABLE `hov_game_xdl36` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_xdl36
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_xdlww`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_xdlww`;
-CREATE TABLE `hov_game_xdlww` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_xdlww
--- ----------------------------
-
--- ----------------------------
--- Table structure for `hov_game_xn28`
--- ----------------------------
-DROP TABLE IF EXISTS `hov_game_xn28`;
-CREATE TABLE `hov_game_xn28` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
-  `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
-  `create_time` int(11) DEFAULT NULL,
-  `update_time` int(11) DEFAULT NULL,
-  `odd` varchar(300) DEFAULT NULL COMMENT '开奖赔率',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of hov_game_xn28
+-- Records of hov_game_ydww28
 -- ----------------------------
 
 -- ----------------------------

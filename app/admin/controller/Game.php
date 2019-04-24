@@ -359,11 +359,10 @@ class Game extends Permissions
             if (false==$exist) {
                 $sql="CREATE TABLE `{$table}` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
-                  `lot_num` int(11) DEFAULT NULL COMMENT '期号',
+                  -- `lot_num` int(11) DEFAULT NULL COMMENT '期号',
                   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-                  `result` char(50) DEFAULT NULL COMMENT '开奖结果',
-                  `hits` int(11) DEFAULT NULL COMMENT '中奖次数',
-                  `bids` int(11) DEFAULT NULL COMMENT '投注次数',
+                  `desc`  varchar(200) DEFAULT NULL COMMENT '开奖描述',
+                  `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
                   `create_time` int(11) DEFAULT NULL,
                   `update_time` int(11) DEFAULT NULL,
                   PRIMARY KEY (`id`)
@@ -373,7 +372,8 @@ class Game extends Permissions
 
                 echo $code;
             }else{
-                $sql="alter table {$table} add column `odd` varchar(300)   COMMENT  '开奖赔率'"; //json保存
+                $sql="alter table {$table} add column `status` tinyint(1)   COMMENT  '1：未开奖的，2：已开奖的'"; //json保存
+                // $sql="alter table {$table} add column `odd` varchar(300)   COMMENT  '开奖赔率'"; //json保存
                 $this->model->query($sql);
             }
         }

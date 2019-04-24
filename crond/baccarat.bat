@@ -1,0 +1,1 @@
+php -f D:\mywork\lotgame\crond\baccarat.php

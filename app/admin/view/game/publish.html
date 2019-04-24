@@ -46,6 +46,22 @@
           <input name="code" autocomplete="off" lay-verify="required" placeholder="" class="layui-input" type="text" {notempty name="$game.code"}value="{$game.code}"{/notempty}>
         </div>
       </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">开奖方</label>(系统自身开奖填写js，若是第三方开奖根据来源，比如来自北京福彩中心PK10，这里就填写bjpk10)
+        <div class="layui-input-inline" >
+          <input name="ntype" autocomplete="off" lay-verify="required" placeholder="" class="layui-input" type="text" {notempty name="$game.ntype"}value="{$game.ntype}"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">标识符</label>(默认basic,外围ww,重庆时时彩和PK赛车sc)
+        <div class="layui-input-inline" >
+          <input name="gtag" autocomplete="off" lay-verify="required" placeholder="" class="layui-input" type="text" {notempty name="$game.gtag"}value="{$game.gtag}"{/notempty}>
+        </div>
+      </div>
+
+
       
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">介绍</label>

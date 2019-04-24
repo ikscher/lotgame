@@ -11,7 +11,7 @@ function getContent(){
         ajax_status.abort();
     }
     ajax_status = $.ajax({
-        url: '/game/data',
+        url: '/data/index',//game/data
         type: 'post',
         dataType: 'json',
         data: {
