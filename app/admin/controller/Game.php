@@ -373,7 +373,7 @@ class Game extends Permissions
 
                 echo $code;
             }else{
-                $sql="alter table {$table} add column `period` varchar(20)   COMMENT  '1：thisTimes当期开奖的，2：prevTimes上期开奖的'"; //json保存
+                $sql="alter table {$table} add column `number` varchar(30) default '' after `id`"; //json保存
                 // $sql="alter table {$table} add column `status` tinyint(1)   COMMENT  '1：未开奖的，2：已开奖的'"; //json保存
                 // $sql="alter table {$table} add column `odd` varchar(300)   COMMENT  '开奖赔率'"; //json保存
                 $this->model->query($sql);

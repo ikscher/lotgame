@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
+Source Server         : localhost
 Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : tplay
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-04-25 17:07:49
+Date: 2019-04-25 22:51:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -74,7 +74,7 @@ CREATE TABLE `hov_admin` (
 -- ----------------------------
 -- Records of hov_admin
 -- ----------------------------
-INSERT INTO `hov_admin` VALUES ('1', 'lotgame', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1555722824', '1556163197', '192.168.1.100', '1');
+INSERT INTO `hov_admin` VALUES ('1', 'lotgame', 'admin', 'af314b7fd5ecf184709747eba294d8d5', '1', '1510885948', '1555722824', '1556200765', '192.168.1.104', '1');
 INSERT INTO `hov_admin` VALUES ('16', 'admin', '', '', '1', '0', '0', null, '192.168.1.109', '1');
 
 -- ----------------------------
@@ -114,7 +114,7 @@ CREATE TABLE `hov_admin_log` (
   KEY `id` (`id`) USING BTREE,
   KEY `admin_id` (`admin_id`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=879 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=880 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of hov_admin_log
@@ -994,6 +994,7 @@ INSERT INTO `hov_admin_log` VALUES ('875', '122', '1', '192.168.1.104', '修改�
 INSERT INTO `hov_admin_log` VALUES ('876', '122', '1', '192.168.1.104', '修改游戏成功-4', '1556111309');
 INSERT INTO `hov_admin_log` VALUES ('877', '50', '1', '192.168.1.100', '', '1556163197');
 INSERT INTO `hov_admin_log` VALUES ('878', '114', '1', '192.168.1.100', '成功生成卡密', '1556163356');
+INSERT INTO `hov_admin_log` VALUES ('879', '50', '1', '192.168.1.104', '', '1556200765');
 
 -- ----------------------------
 -- Table structure for `hov_admin_menu`
@@ -1737,6 +1738,7 @@ INSERT INTO `hov_game` VALUES ('58', '3', 'PK赛车', 'pksc', 'basic', null, nul
 DROP TABLE IF EXISTS `hov_game_bj10`;
 CREATE TABLE `hov_game_bj10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -1778,6 +1780,7 @@ CREATE TABLE `hov_game_bj11` (
 DROP TABLE IF EXISTS `hov_game_bj16`;
 CREATE TABLE `hov_game_bj16` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -1798,6 +1801,7 @@ CREATE TABLE `hov_game_bj16` (
 DROP TABLE IF EXISTS `hov_game_bj28`;
 CREATE TABLE `hov_game_bj28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -1818,6 +1822,7 @@ CREATE TABLE `hov_game_bj28` (
 DROP TABLE IF EXISTS `hov_game_bj36`;
 CREATE TABLE `hov_game_bj36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -1838,6 +1843,7 @@ CREATE TABLE `hov_game_bj36` (
 DROP TABLE IF EXISTS `hov_game_cqssc`;
 CREATE TABLE `hov_game_cqssc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -1879,6 +1885,7 @@ CREATE TABLE `hov_game_dd16` (
 DROP TABLE IF EXISTS `hov_game_dd28`;
 CREATE TABLE `hov_game_dd28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -1899,6 +1906,7 @@ CREATE TABLE `hov_game_dd28` (
 DROP TABLE IF EXISTS `hov_game_dd36`;
 CREATE TABLE `hov_game_dd36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -1961,6 +1969,7 @@ CREATE TABLE `hov_game_ddww` (
 DROP TABLE IF EXISTS `hov_game_ddww21`;
 CREATE TABLE `hov_game_ddww21` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -1981,6 +1990,7 @@ CREATE TABLE `hov_game_ddww21` (
 DROP TABLE IF EXISTS `hov_game_ddww28`;
 CREATE TABLE `hov_game_ddww28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2148,6 +2158,7 @@ CREATE TABLE `hov_game_gdjnd28` (
 DROP TABLE IF EXISTS `hov_game_hg10`;
 CREATE TABLE `hov_game_hg10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2168,6 +2179,7 @@ CREATE TABLE `hov_game_hg10` (
 DROP TABLE IF EXISTS `hov_game_hg11`;
 CREATE TABLE `hov_game_hg11` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2188,6 +2200,7 @@ CREATE TABLE `hov_game_hg11` (
 DROP TABLE IF EXISTS `hov_game_hg16`;
 CREATE TABLE `hov_game_hg16` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2208,6 +2221,7 @@ CREATE TABLE `hov_game_hg16` (
 DROP TABLE IF EXISTS `hov_game_hg28`;
 CREATE TABLE `hov_game_hg28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2228,6 +2242,7 @@ CREATE TABLE `hov_game_hg28` (
 DROP TABLE IF EXISTS `hov_game_hg36`;
 CREATE TABLE `hov_game_hg36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2269,6 +2284,7 @@ CREATE TABLE `hov_game_hgdw` (
 DROP TABLE IF EXISTS `hov_game_hgdw28`;
 CREATE TABLE `hov_game_hgdw28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2310,6 +2326,7 @@ CREATE TABLE `hov_game_hgww` (
 DROP TABLE IF EXISTS `hov_game_hgww21`;
 CREATE TABLE `hov_game_hgww21` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2330,6 +2347,7 @@ CREATE TABLE `hov_game_hgww21` (
 DROP TABLE IF EXISTS `hov_game_jnd10`;
 CREATE TABLE `hov_game_jnd10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2350,6 +2368,7 @@ CREATE TABLE `hov_game_jnd10` (
 DROP TABLE IF EXISTS `hov_game_jnd11`;
 CREATE TABLE `hov_game_jnd11` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2370,6 +2389,7 @@ CREATE TABLE `hov_game_jnd11` (
 DROP TABLE IF EXISTS `hov_game_jnd16`;
 CREATE TABLE `hov_game_jnd16` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2390,6 +2410,7 @@ CREATE TABLE `hov_game_jnd16` (
 DROP TABLE IF EXISTS `hov_game_jnd28`;
 CREATE TABLE `hov_game_jnd28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2410,6 +2431,7 @@ CREATE TABLE `hov_game_jnd28` (
 DROP TABLE IF EXISTS `hov_game_jnd36`;
 CREATE TABLE `hov_game_jnd36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2451,6 +2473,7 @@ CREATE TABLE `hov_game_jnddw` (
 DROP TABLE IF EXISTS `hov_game_jnddww28`;
 CREATE TABLE `hov_game_jnddww28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2492,6 +2515,7 @@ CREATE TABLE `hov_game_jndww` (
 DROP TABLE IF EXISTS `hov_game_jndww21`;
 CREATE TABLE `hov_game_jndww21` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2660,6 +2684,7 @@ CREATE TABLE `hov_game_jsgy` (
 DROP TABLE IF EXISTS `hov_game_pk10`;
 CREATE TABLE `hov_game_pk10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2680,6 +2705,7 @@ CREATE TABLE `hov_game_pk10` (
 DROP TABLE IF EXISTS `hov_game_pk22`;
 CREATE TABLE `hov_game_pk22` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2700,6 +2726,7 @@ CREATE TABLE `hov_game_pk22` (
 DROP TABLE IF EXISTS `hov_game_pkgj`;
 CREATE TABLE `hov_game_pkgj` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2720,6 +2747,7 @@ CREATE TABLE `hov_game_pkgj` (
 DROP TABLE IF EXISTS `hov_game_pkgy`;
 CREATE TABLE `hov_game_pkgy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2740,6 +2768,7 @@ CREATE TABLE `hov_game_pkgy` (
 DROP TABLE IF EXISTS `hov_game_pklh`;
 CREATE TABLE `hov_game_pklh` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -2760,6 +2789,7 @@ CREATE TABLE `hov_game_pklh` (
 DROP TABLE IF EXISTS `hov_game_pksc`;
 CREATE TABLE `hov_game_pksc` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3116,6 +3146,7 @@ CREATE TABLE `hov_game_xn28` (
 DROP TABLE IF EXISTS `hov_game_xy10`;
 CREATE TABLE `hov_game_xy10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3136,6 +3167,7 @@ CREATE TABLE `hov_game_xy10` (
 DROP TABLE IF EXISTS `hov_game_xy11`;
 CREATE TABLE `hov_game_xy11` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3156,6 +3188,7 @@ CREATE TABLE `hov_game_xy11` (
 DROP TABLE IF EXISTS `hov_game_xy16`;
 CREATE TABLE `hov_game_xy16` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3176,6 +3209,7 @@ CREATE TABLE `hov_game_xy16` (
 DROP TABLE IF EXISTS `hov_game_xy22`;
 CREATE TABLE `hov_game_xy22` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3196,6 +3230,7 @@ CREATE TABLE `hov_game_xy22` (
 DROP TABLE IF EXISTS `hov_game_xy28`;
 CREATE TABLE `hov_game_xy28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3216,6 +3251,7 @@ CREATE TABLE `hov_game_xy28` (
 DROP TABLE IF EXISTS `hov_game_xy36`;
 CREATE TABLE `hov_game_xy36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3236,6 +3272,7 @@ CREATE TABLE `hov_game_xy36` (
 DROP TABLE IF EXISTS `hov_game_xybjl`;
 CREATE TABLE `hov_game_xybjl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3244,62 +3281,203 @@ CREATE TABLE `hov_game_xybjl` (
   `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
   `period` varchar(20) DEFAULT NULL COMMENT '1：thisTimes当期开奖的，2：prevTimes上期开奖的',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10312 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10453 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_game_xybjl
 -- ----------------------------
-INSERT INTO `hov_game_xybjl` VALUES ('10261', '1556182813', '{\"banker\":[\"3b\",\"2a\",\"7a\"],\"player\":[\"7a\",\"2c\"]}', 'PLAYER', '1556182813', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10262', '1556182815', '{\"banker\":[\"6c\",\"2a\"],\"player\":[\"11c\",\"3c\",\"10b\"]}', 'BANKER', '1556182815', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10263', '1556182815', '{\"banker\":[\"7c\",\"4d\",\"5d\"],\"player\":[\"10d\",\"5b\",\"1d\"]}', 'TIE', '1556182815', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10264', '1556182816', '{\"banker\":[\"3b\",\"6c\"],\"player\":[\"6b\",\"5a\",\"8b\"]}', 'TIE', '1556182816', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10265', '1556182816', '{\"banker\":[\"12c\",\"4c\",\"5c\"],\"player\":[\"2d\",\"11b\",\"7a\"]}', 'TIE', '1556182816', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10266', '1556182816', '{\"banker\":[\"10c\",\"5c\"],\"player\":[\"9b\",\"1d\",\"3c\"]}', 'BANKER', '1556182816', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10267', '1556182817', '{\"banker\":[\"4d\",\"5b\"],\"player\":[\"8d\",\"8c\"]}', 'BANKER', '1556182817', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10268', '1556182818', '{\"banker\":[\"13d\",\"6d\",\"7a\"],\"player\":[\"12b\",\"3d\",\"6a\"]}', 'PLAYER', '1556182818', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10269', '1556182818', '{\"banker\":[\"10c\",\"2c\",\"4a\"],\"player\":[\"7c\",\"11c\"]}', 'PLAYER', '1556182818', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10270', '1556182819', '{\"banker\":[\"10b\",\"11a\",\"2a\"],\"player\":[\"5d\",\"11a\",\"7c\"]}', 'TIE', '1556182819', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10271', '1556182819', '{\"banker\":[\"4d\",\"12c\",\"11c\"],\"player\":[\"8b\",\"8c\"]}', 'PLAYER', '1556182819', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10272', '1556182824', '{\"banker\":[\"10b\",\"12d\",\"5a\"],\"player\":[\"2b\",\"3c\",\"2c\"]}', 'PLAYER', '1556182824', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10273', '1556182825', '{\"banker\":[\"4d\",\"3b\"],\"player\":[\"10d\",\"9a\"]}', 'PLAYER', '1556182825', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10274', '1556182825', '{\"banker\":[\"1b\",\"12b\",\"9a\"],\"player\":[\"10a\",\"6d\"]}', 'PLAYER', '1556182825', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10275', '1556182826', '{\"banker\":[\"13a\",\"9d\"],\"player\":[\"6b\",\"6a\",\"1d\"]}', 'BANKER', '1556182826', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10276', '1556182827', '{\"banker\":[\"11a\",\"5a\",\"3b\"],\"player\":[\"8b\",\"8b\"]}', 'BANKER', '1556182827', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10277', '1556182828', '{\"banker\":[\"11c\",\"5b\",\"12a\"],\"player\":[\"7c\",\"9c\"]}', 'PLAYER', '1556182828', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10278', '1556182828', '{\"banker\":[\"7d\",\"8d\",\"5c\"],\"player\":[\"5d\",\"3b\"]}', 'PLAYER', '1556182828', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10279', '1556182829', '{\"banker\":[\"9b\",\"12b\"],\"player\":[\"13d\",\"4d\",\"13c\"]}', 'BANKER', '1556182829', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10280', '1556182830', '{\"banker\":[\"12c\",\"12d\",\"7b\"],\"player\":[\"5b\",\"12b\",\"11b\"]}', 'BANKER', '1556182830', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10281', '1556182830', '{\"banker\":[\"2c\",\"11d\",\"10b\"],\"player\":[\"3b\",\"11d\",\"9d\"]}', 'TIE', '1556182830', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10282', '1556182831', '{\"banker\":[\"11b\",\"6c\"],\"player\":[\"6a\",\"5a\",\"4c\"]}', 'BANKER', '1556182831', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10283', '1556182831', '{\"banker\":[\"4d\",\"11a\",\"9a\"],\"player\":[\"2a\",\"2d\",\"6b\"]}', 'BANKER', '1556182831', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10284', '1556182832', '{\"banker\":[\"8b\",\"11d\"],\"player\":[\"3d\",\"4a\"]}', 'BANKER', '1556182832', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10285', '1556182833', '{\"banker\":[\"3a\",\"3b\"],\"player\":[\"3b\",\"5a\"]}', 'PLAYER', '1556182833', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10286', '1556182833', '{\"banker\":[\"1a\",\"11d\",\"9c\"],\"player\":[\"3d\",\"6a\"]}', 'PLAYER', '1556182833', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10287', '1556182834', '{\"banker\":[\"2a\",\"12b\",\"7b\"],\"player\":[\"10d\",\"11c\",\"11d\"]}', 'BANKER', '1556182834', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10288', '1556182834', '{\"banker\":[\"3c\",\"1d\"],\"player\":[\"2b\",\"3c\",\"10a\"]}', 'PLAYER', '1556182834', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10289', '1556182835', '{\"banker\":[\"12d\",\"13d\",\"1c\"],\"player\":[\"12a\",\"10b\",\"13a\"]}', 'BANKER', '1556182835', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10290', '1556182835', '{\"banker\":[\"4c\",\"8b\",\"11a\"],\"player\":[\"8b\",\"2c\",\"2a\"]}', 'TIE', '1556182835', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10291', '1556182836', '{\"banker\":[\"8d\",\"6c\"],\"player\":[\"9c\",\"5c\",\"9a\"]}', 'BANKER', '1556182836', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10292', '1556182837', '{\"banker\":[\"7a\",\"8c\",\"8c\"],\"player\":[\"13a\",\"9a\"]}', 'PLAYER', '1556182837', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10293', '1556182837', '{\"banker\":[\"1a\",\"11c\",\"1b\"],\"player\":[\"11b\",\"8d\"]}', 'PLAYER', '1556182837', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10294', '1556182838', '{\"banker\":[\"4b\",\"8c\",\"7d\"],\"player\":[\"11d\",\"12a\",\"13a\"]}', 'BANKER', '1556182838', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10295', '1556182838', '{\"banker\":[\"6a\",\"8a\",\"7a\"],\"player\":[\"7a\",\"9b\"]}', 'PLAYER', '1556182838', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10296', '1556182839', '{\"banker\":[\"7c\",\"11a\"],\"player\":[\"9b\",\"8b\"]}', 'TIE', '1556182839', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10297', '1556182839', '{\"banker\":[\"6b\",\"2c\"],\"player\":[\"12a\",\"9a\"]}', 'PLAYER', '1556182839', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10298', '1556182840', '{\"banker\":[\"4c\",\"6b\",\"4d\"],\"player\":[\"4d\",\"11c\",\"5a\"]}', 'PLAYER', '1556182840', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10299', '1556182840', '{\"banker\":[\"10a\",\"11c\",\"10b\"],\"player\":[\"5a\",\"7a\",\"9a\"]}', 'PLAYER', '1556182840', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10300', '1556182841', '{\"banker\":[\"7b\",\"9c\"],\"player\":[\"2a\",\"3c\",\"9b\"]}', 'BANKER', '1556182841', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10301', '1556182841', '{\"banker\":[\"6a\",\"3c\"],\"player\":[\"1b\",\"7d\"]}', 'BANKER', '1556182841', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10302', '1556182842', '{\"banker\":[\"3d\",\"2c\"],\"player\":[\"3a\",\"9b\",\"13b\"]}', 'BANKER', '1556182842', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10303', '1556182842', '{\"banker\":[\"9c\",\"1b\",\"13a\"],\"player\":[\"9c\",\"11d\"]}', 'PLAYER', '1556182842', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10304', '1556182842', '{\"banker\":[\"4b\",\"9c\",\"11b\"],\"player\":[\"6c\",\"6c\",\"6c\"]}', 'PLAYER', '1556182842', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10305', '1556182843', '{\"banker\":[\"10d\",\"9d\"],\"player\":[\"12d\",\"5c\",\"11d\"]}', 'BANKER', '1556182843', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10306', '1556182843', '{\"banker\":[\"8b\",\"12c\"],\"player\":[\"11d\",\"12b\",\"5c\"]}', 'BANKER', '1556182843', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10307', '1556182843', '{\"banker\":[\"5d\",\"4d\"],\"player\":[\"3b\",\"12b\",\"11c\"]}', 'BANKER', '1556182843', null, '2', '');
-INSERT INTO `hov_game_xybjl` VALUES ('10308', '1556183083', null, null, null, null, '1', 'thisTimes');
-INSERT INTO `hov_game_xybjl` VALUES ('10309', '1556183083', null, null, null, null, '1', null);
-INSERT INTO `hov_game_xybjl` VALUES ('10310', '1556183083', null, null, null, null, '1', null);
-INSERT INTO `hov_game_xybjl` VALUES ('10311', '1556183084', null, null, null, null, '1', null);
+INSERT INTO `hov_game_xybjl` VALUES ('10261', '', '1556182813', '{\"banker\":[\"3b\",\"2a\",\"7a\"],\"player\":[\"7a\",\"2c\"]}', 'PLAYER', '1556182813', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10262', '', '1556182815', '{\"banker\":[\"6c\",\"2a\"],\"player\":[\"11c\",\"3c\",\"10b\"]}', 'BANKER', '1556182815', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10263', '', '1556182815', '{\"banker\":[\"7c\",\"4d\",\"5d\"],\"player\":[\"10d\",\"5b\",\"1d\"]}', 'TIE', '1556182815', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10264', '', '1556182816', '{\"banker\":[\"3b\",\"6c\"],\"player\":[\"6b\",\"5a\",\"8b\"]}', 'TIE', '1556182816', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10265', '', '1556182816', '{\"banker\":[\"12c\",\"4c\",\"5c\"],\"player\":[\"2d\",\"11b\",\"7a\"]}', 'TIE', '1556182816', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10266', '', '1556182816', '{\"banker\":[\"10c\",\"5c\"],\"player\":[\"9b\",\"1d\",\"3c\"]}', 'BANKER', '1556182816', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10267', '', '1556182817', '{\"banker\":[\"4d\",\"5b\"],\"player\":[\"8d\",\"8c\"]}', 'BANKER', '1556182817', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10268', '', '1556182818', '{\"banker\":[\"13d\",\"6d\",\"7a\"],\"player\":[\"12b\",\"3d\",\"6a\"]}', 'PLAYER', '1556182818', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10269', '', '1556182818', '{\"banker\":[\"10c\",\"2c\",\"4a\"],\"player\":[\"7c\",\"11c\"]}', 'PLAYER', '1556182818', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10270', '', '1556182819', '{\"banker\":[\"10b\",\"11a\",\"2a\"],\"player\":[\"5d\",\"11a\",\"7c\"]}', 'TIE', '1556182819', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10271', '', '1556182819', '{\"banker\":[\"4d\",\"12c\",\"11c\"],\"player\":[\"8b\",\"8c\"]}', 'PLAYER', '1556182819', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10272', '', '1556182824', '{\"banker\":[\"10b\",\"12d\",\"5a\"],\"player\":[\"2b\",\"3c\",\"2c\"]}', 'PLAYER', '1556182824', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10273', '', '1556182825', '{\"banker\":[\"4d\",\"3b\"],\"player\":[\"10d\",\"9a\"]}', 'PLAYER', '1556182825', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10274', '', '1556182825', '{\"banker\":[\"1b\",\"12b\",\"9a\"],\"player\":[\"10a\",\"6d\"]}', 'PLAYER', '1556182825', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10275', '', '1556182826', '{\"banker\":[\"13a\",\"9d\"],\"player\":[\"6b\",\"6a\",\"1d\"]}', 'BANKER', '1556182826', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10276', '', '1556182827', '{\"banker\":[\"11a\",\"5a\",\"3b\"],\"player\":[\"8b\",\"8b\"]}', 'BANKER', '1556182827', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10277', '', '1556182828', '{\"banker\":[\"11c\",\"5b\",\"12a\"],\"player\":[\"7c\",\"9c\"]}', 'PLAYER', '1556182828', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10278', '', '1556182828', '{\"banker\":[\"7d\",\"8d\",\"5c\"],\"player\":[\"5d\",\"3b\"]}', 'PLAYER', '1556182828', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10279', '', '1556182829', '{\"banker\":[\"9b\",\"12b\"],\"player\":[\"13d\",\"4d\",\"13c\"]}', 'BANKER', '1556182829', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10280', '', '1556182830', '{\"banker\":[\"12c\",\"12d\",\"7b\"],\"player\":[\"5b\",\"12b\",\"11b\"]}', 'BANKER', '1556182830', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10281', '', '1556182830', '{\"banker\":[\"2c\",\"11d\",\"10b\"],\"player\":[\"3b\",\"11d\",\"9d\"]}', 'TIE', '1556182830', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10282', '', '1556182831', '{\"banker\":[\"11b\",\"6c\"],\"player\":[\"6a\",\"5a\",\"4c\"]}', 'BANKER', '1556182831', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10283', '', '1556182831', '{\"banker\":[\"4d\",\"11a\",\"9a\"],\"player\":[\"2a\",\"2d\",\"6b\"]}', 'BANKER', '1556182831', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10284', '', '1556182832', '{\"banker\":[\"8b\",\"11d\"],\"player\":[\"3d\",\"4a\"]}', 'BANKER', '1556182832', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10285', '', '1556182833', '{\"banker\":[\"3a\",\"3b\"],\"player\":[\"3b\",\"5a\"]}', 'PLAYER', '1556182833', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10286', '', '1556182833', '{\"banker\":[\"1a\",\"11d\",\"9c\"],\"player\":[\"3d\",\"6a\"]}', 'PLAYER', '1556182833', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10287', '', '1556182834', '{\"banker\":[\"2a\",\"12b\",\"7b\"],\"player\":[\"10d\",\"11c\",\"11d\"]}', 'BANKER', '1556182834', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10288', '', '1556182834', '{\"banker\":[\"3c\",\"1d\"],\"player\":[\"2b\",\"3c\",\"10a\"]}', 'PLAYER', '1556182834', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10289', '', '1556182835', '{\"banker\":[\"12d\",\"13d\",\"1c\"],\"player\":[\"12a\",\"10b\",\"13a\"]}', 'BANKER', '1556182835', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10290', '', '1556182835', '{\"banker\":[\"4c\",\"8b\",\"11a\"],\"player\":[\"8b\",\"2c\",\"2a\"]}', 'TIE', '1556182835', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10291', '', '1556182836', '{\"banker\":[\"8d\",\"6c\"],\"player\":[\"9c\",\"5c\",\"9a\"]}', 'BANKER', '1556182836', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10292', '', '1556182837', '{\"banker\":[\"7a\",\"8c\",\"8c\"],\"player\":[\"13a\",\"9a\"]}', 'PLAYER', '1556182837', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10293', '', '1556182837', '{\"banker\":[\"1a\",\"11c\",\"1b\"],\"player\":[\"11b\",\"8d\"]}', 'PLAYER', '1556182837', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10294', '', '1556182838', '{\"banker\":[\"4b\",\"8c\",\"7d\"],\"player\":[\"11d\",\"12a\",\"13a\"]}', 'BANKER', '1556182838', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10295', '', '1556182838', '{\"banker\":[\"6a\",\"8a\",\"7a\"],\"player\":[\"7a\",\"9b\"]}', 'PLAYER', '1556182838', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10296', '', '1556182839', '{\"banker\":[\"7c\",\"11a\"],\"player\":[\"9b\",\"8b\"]}', 'TIE', '1556182839', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10297', '', '1556182839', '{\"banker\":[\"6b\",\"2c\"],\"player\":[\"12a\",\"9a\"]}', 'PLAYER', '1556182839', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10298', '', '1556182840', '{\"banker\":[\"4c\",\"6b\",\"4d\"],\"player\":[\"4d\",\"11c\",\"5a\"]}', 'PLAYER', '1556182840', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10299', '', '1556182840', '{\"banker\":[\"10a\",\"11c\",\"10b\"],\"player\":[\"5a\",\"7a\",\"9a\"]}', 'PLAYER', '1556182840', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10300', '', '1556182841', '{\"banker\":[\"7b\",\"9c\"],\"player\":[\"2a\",\"3c\",\"9b\"]}', 'BANKER', '1556182841', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10301', '', '1556182841', '{\"banker\":[\"6a\",\"3c\"],\"player\":[\"1b\",\"7d\"]}', 'BANKER', '1556182841', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10302', '', '1556182842', '{\"banker\":[\"3d\",\"2c\"],\"player\":[\"3a\",\"9b\",\"13b\"]}', 'BANKER', '1556182842', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10303', '', '1556182842', '{\"banker\":[\"9c\",\"1b\",\"13a\"],\"player\":[\"9c\",\"11d\"]}', 'PLAYER', '1556182842', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10304', '', '1556182842', '{\"banker\":[\"4b\",\"9c\",\"11b\"],\"player\":[\"6c\",\"6c\",\"6c\"]}', 'PLAYER', '1556182842', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10305', '', '1556182843', '{\"banker\":[\"10d\",\"9d\"],\"player\":[\"12d\",\"5c\",\"11d\"]}', 'BANKER', '1556182843', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10306', '', '1556182843', '{\"banker\":[\"8b\",\"12c\"],\"player\":[\"11d\",\"12b\",\"5c\"]}', 'BANKER', '1556182843', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10307', '', '1556182843', '{\"banker\":[\"5d\",\"4d\"],\"player\":[\"3b\",\"12b\",\"11c\"]}', 'BANKER', '1556182843', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10308', '', '1556195463', '{\"banker\":[\"12c\",\"4b\",\"5b\"],\"player\":[\"3d\",\"13b\",\"7b\"]}', 'BANKER', '1556195463', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10309', '', '1556195520', '{\"banker\":[\"4b\",\"13a\"],\"player\":[\"2d\",\"8a\",\"1b\"]}', 'BANKER', '1556195520', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10310', '', '1556195580', '{\"banker\":[\"6d\",\"4d\",\"2d\"],\"player\":[\"4d\",\"11c\",\"8a\"]}', 'TIE', '1556195580', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10311', '', '1556195640', '{\"banker\":[\"10c\",\"13c\",\"9c\"],\"player\":[\"2c\",\"8d\",\"3a\"]}', 'BANKER', '1556195640', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10312', '', '1556195700', '{\"banker\":[\"3b\",\"1a\",\"4c\"],\"player\":[\"9c\",\"9a\"]}', 'TIE', '1556195700', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10313', '', '1556195760', '{\"banker\":[\"13b\",\"9d\"],\"player\":[\"8a\",\"7b\",\"5b\"]}', 'BANKER', '1556195760', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10314', '', '1556195820', '{\"banker\":[\"9b\",\"3c\",\"10d\"],\"player\":[\"1b\",\"4c\",\"11a\"]}', 'PLAYER', '1556195820', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10315', '', '1556195880', '{\"banker\":[\"4a\",\"11d\",\"5a\"],\"player\":[\"9a\",\"2d\",\"6a\"]}', 'BANKER', '1556195880', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10316', '', '1556195940', '{\"banker\":[\"9d\",\"10b\"],\"player\":[\"3b\",\"2b\",\"9a\"]}', 'BANKER', '1556195940', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10317', '', '1556196000', '{\"banker\":[\"9b\",\"6b\",\"11d\"],\"player\":[\"6d\",\"11b\"]}', 'PLAYER', '1556196000', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10318', '', '1556196060', '{\"banker\":[\"2a\",\"6a\"],\"player\":[\"4d\",\"8b\",\"6a\"]}', 'TIE', '1556196060', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10319', '', '1556196120', '{\"banker\":[\"2c\",\"6a\"],\"player\":[\"6a\",\"9c\",\"4d\"]}', 'PLAYER', '1556196120', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10320', '', '1556196180', '{\"banker\":[\"9c\",\"13a\"],\"player\":[\"2a\",\"9d\",\"9a\"]}', 'BANKER', '1556196180', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10321', '', '1556196240', '{\"banker\":[\"12a\",\"3c\",\"9c\"],\"player\":[\"1b\",\"3d\",\"13d\"]}', 'PLAYER', '1556196240', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10322', '', '1556196300', '{\"banker\":[\"6d\",\"2c\"],\"player\":[\"6b\",\"13d\"]}', 'BANKER', '1556196300', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10323', '', '1556196360', '{\"banker\":[\"8c\",\"10d\"],\"player\":[\"7c\",\"8b\",\"7a\"]}', 'BANKER', '1556196360', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10324', '', '1556196420', '{\"banker\":[\"11a\",\"11d\",\"11d\"],\"player\":[\"13d\",\"11c\",\"8a\"]}', 'PLAYER', '1556196420', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10325', '', '1556196480', '{\"banker\":[\"5c\",\"10c\",\"11d\"],\"player\":[\"5d\",\"7c\",\"4c\"]}', 'PLAYER', '1556196480', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10326', '', '1556196540', '{\"banker\":[\"7b\",\"1d\"],\"player\":[\"10c\",\"2a\",\"13d\"]}', 'BANKER', '1556196540', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10327', '', '1556196600', '{\"banker\":[\"6b\",\"7b\",\"10d\"],\"player\":[\"9c\",\"9b\"]}', 'PLAYER', '1556196600', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10328', '', '1556196660', '{\"banker\":[\"2b\",\"3b\"],\"player\":[\"9a\",\"6b\",\"8a\"]}', 'BANKER', '1556196660', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10329', '', '1556196720', '{\"banker\":[\"13a\",\"6c\"],\"player\":[\"8d\",\"8c\"]}', 'TIE', '1556196720', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10330', '', '1556196780', '{\"banker\":[\"6a\",\"7b\",\"8a\"],\"player\":[\"3c\",\"7a\",\"4b\"]}', 'PLAYER', '1556196780', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10331', '', '1556196840', '{\"banker\":[\"2a\",\"2b\",\"3b\"],\"player\":[\"1c\",\"5a\"]}', 'BANKER', '1556196840', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10332', '', '1556196900', '{\"banker\":[\"10d\",\"9c\"],\"player\":[\"13a\",\"13d\",\"9d\"]}', 'TIE', '1556196900', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10333', '', '1556196960', '{\"banker\":[\"2b\",\"6c\"],\"player\":[\"12d\",\"10b\",\"3a\"]}', 'BANKER', '1556196960', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10334', '', '1556197020', '{\"banker\":[\"1c\",\"9c\",\"1c\"],\"player\":[\"6a\",\"12d\"]}', 'PLAYER', '1556197020', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10335', '', '1556197080', '{\"banker\":[\"2d\",\"8a\",\"5c\"],\"player\":[\"2c\",\"10c\",\"5c\"]}', 'PLAYER', '1556197080', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10336', '', '1556197140', '{\"banker\":[\"9b\",\"4c\",\"9a\"],\"player\":[\"9b\",\"3b\",\"7d\"]}', 'PLAYER', '1556197140', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10337', '', '1556197200', '{\"banker\":[\"12a\",\"13c\",\"9d\"],\"player\":[\"12d\",\"10a\",\"11a\"]}', 'BANKER', '1556197200', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10338', '', '1556197260', '{\"banker\":[\"8c\",\"9a\"],\"player\":[\"7b\",\"4c\",\"7c\"]}', 'PLAYER', '1556197260', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10339', '', '1556197320', '{\"banker\":[\"6d\",\"4c\",\"10c\"],\"player\":[\"3b\",\"3c\"]}', 'PLAYER', '1556197320', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10340', '', '1556197380', '{\"banker\":[\"13b\",\"11d\",\"7d\"],\"player\":[\"3c\",\"6b\"]}', 'PLAYER', '1556197380', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10341', '', '1556197440', '{\"banker\":[\"4d\",\"5d\"],\"player\":[\"8a\",\"12b\"]}', 'BANKER', '1556197440', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10342', '', '1556197500', '{\"banker\":[\"6a\",\"5b\",\"2c\"],\"player\":[\"4b\",\"7d\",\"13a\"]}', 'BANKER', '1556197500', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10343', '', '1556197560', '{\"banker\":[\"9a\",\"2b\",\"11c\"],\"player\":[\"8a\",\"5d\",\"3c\"]}', 'PLAYER', '1556197560', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10344', '', '1556197620', '{\"banker\":[\"7b\",\"1d\"],\"player\":[\"5c\",\"4b\"]}', 'PLAYER', '1556197620', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10345', '', '1556197680', '{\"banker\":[\"3d\",\"3c\",\"2d\"],\"player\":[\"2b\",\"8d\",\"7d\"]}', 'BANKER', '1556197680', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10346', '', '1556197740', '{\"banker\":[\"7a\",\"4d\",\"10b\"],\"player\":[\"3a\",\"13d\",\"6a\"]}', 'PLAYER', '1556197740', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10347', '', '1556197800', '{\"banker\":[\"7a\",\"8c\",\"13b\"],\"player\":[\"9b\",\"2d\",\"7a\"]}', 'PLAYER', '1556197800', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10348', '', '1556197860', '{\"banker\":[\"7a\",\"7c\"],\"player\":[\"2c\",\"12d\",\"13d\"]}', 'BANKER', '1556197860', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10349', '', '1556197920', '{\"banker\":[\"11c\",\"6b\"],\"player\":[\"2a\",\"11b\",\"9c\"]}', 'BANKER', '1556197920', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10350', '', '1556197980', '{\"banker\":[\"4b\",\"1b\"],\"player\":[\"5c\",\"10d\",\"2a\"]}', 'PLAYER', '1556197980', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10351', '', '1556198040', '{\"banker\":[\"11a\",\"12d\",\"5d\"],\"player\":[\"7d\",\"6d\",\"6c\"]}', 'PLAYER', '1556198040', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10352', '', '1556198100', '{\"banker\":[\"10c\",\"11d\",\"7b\"],\"player\":[\"8a\",\"5c\",\"11c\"]}', 'BANKER', '1556198100', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10353', '', '1556198160', '{\"banker\":[\"8a\",\"7c\"],\"player\":[\"8d\",\"5c\",\"9c\"]}', 'BANKER', '1556198160', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10354', '', '1556198220', '{\"banker\":[\"7d\",\"12b\"],\"player\":[\"12a\",\"5c\",\"10d\"]}', 'BANKER', '1556198220', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10355', '', '1556198280', '{\"banker\":[\"7d\",\"5c\",\"6b\"],\"player\":[\"3b\",\"3b\"]}', 'BANKER', '1556198280', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10356', '', '1556198340', '{\"banker\":[\"6d\",\"5c\",\"6a\"],\"player\":[\"11c\",\"12c\",\"8c\"]}', 'PLAYER', '1556198340', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10357', '', '1556198400', '{\"banker\":[\"12d\",\"11a\",\"6c\"],\"player\":[\"3d\",\"9c\",\"6d\"]}', 'PLAYER', '1556198400', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10358', '', '1556198460', '{\"banker\":[\"4d\",\"7d\",\"5d\"],\"player\":[\"12d\",\"12b\",\"1d\"]}', 'BANKER', '1556198460', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10359', '', '1556198520', '{\"banker\":[\"1a\",\"3c\",\"2d\"],\"player\":[\"4b\",\"2d\"]}', 'TIE', '1556198520', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10360', '', '1556198580', '{\"banker\":[\"10d\",\"11c\",\"6b\"],\"player\":[\"3a\",\"3a\"]}', 'TIE', '1556198580', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10361', '', '1556198640', '{\"banker\":[\"10a\",\"6a\"],\"player\":[\"8c\",\"5b\",\"12d\"]}', 'BANKER', '1556198640', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10362', '', '1556198700', '{\"banker\":[\"7c\",\"4a\",\"2c\"],\"player\":[\"12b\",\"11d\",\"8c\"]}', 'PLAYER', '1556198700', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10363', '', '1556198760', '{\"banker\":[\"12a\",\"10d\",\"6b\"],\"player\":[\"11a\",\"5b\",\"12c\"]}', 'BANKER', '1556198760', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10364', '', '1556198820', '{\"banker\":[\"7a\",\"5d\",\"4a\"],\"player\":[\"11d\",\"5d\",\"2d\"]}', 'PLAYER', '1556198820', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10365', '', '1556198880', '{\"banker\":[\"12d\",\"5d\"],\"player\":[\"3b\",\"2d\",\"8b\"]}', 'BANKER', '1556198880', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10366', '', '1556198940', '{\"banker\":[\"4d\",\"2b\"],\"player\":[\"12b\",\"4c\",\"1b\"]}', 'BANKER', '1556198940', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10367', '', '1556199000', '{\"banker\":[\"9b\",\"4b\"],\"player\":[\"2a\",\"10c\",\"8a\"]}', 'BANKER', '1556199000', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10368', '', '1556199060', '{\"banker\":[\"12a\",\"6d\"],\"player\":[\"11a\",\"2a\",\"3d\"]}', 'BANKER', '1556199060', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10369', '', '1556199120', '{\"banker\":[\"13b\",\"5b\",\"7c\"],\"player\":[\"12d\",\"10a\",\"4d\"]}', 'PLAYER', '1556199120', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10370', '', '1556199180', '{\"banker\":[\"1a\",\"5a\"],\"player\":[\"7b\",\"7c\",\"2a\"]}', 'TIE', '1556199180', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10371', '', '1556199240', '{\"banker\":[\"9b\",\"10b\"],\"player\":[\"2b\",\"12d\",\"6a\"]}', 'BANKER', '1556199240', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10372', '', '1556199300', '{\"banker\":[\"7d\",\"6d\",\"6a\"],\"player\":[\"9a\",\"13a\"]}', 'TIE', '1556199300', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10373', '', '1556199360', '{\"banker\":[\"12c\",\"5b\"],\"player\":[\"11b\",\"12c\",\"8a\"]}', 'PLAYER', '1556199360', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10374', '', '1556199420', '{\"banker\":[\"5b\",\"4a\"],\"player\":[\"6a\",\"13a\"]}', 'BANKER', '1556199420', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10375', '', '1556199480', '{\"banker\":[\"10a\",\"4d\"],\"player\":[\"12d\",\"1a\",\"9c\"]}', 'BANKER', '1556199480', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10376', '', '1556199540', '{\"banker\":[\"6b\",\"12d\"],\"player\":[\"13a\",\"6d\"]}', 'TIE', '1556199540', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10377', '', '1556199600', '{\"banker\":[\"13b\",\"7a\"],\"player\":[\"3a\",\"2a\",\"4b\"]}', 'PLAYER', '1556199600', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10378', '', '1556199660', '{\"banker\":[\"10d\",\"13d\",\"10c\"],\"player\":[\"8d\",\"5b\",\"11d\"]}', 'PLAYER', '1556199660', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10379', '', '1556199720', '{\"banker\":[\"10b\",\"1a\",\"10b\"],\"player\":[\"13a\",\"1b\",\"8d\"]}', 'PLAYER', '1556199720', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10380', '', '1556199780', '{\"banker\":[\"3b\",\"12c\",\"3b\"],\"player\":[\"5a\",\"3a\"]}', 'PLAYER', '1556199780', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10381', '', '1556199840', '{\"banker\":[\"1a\",\"6d\"],\"player\":[\"9c\",\"7d\"]}', 'BANKER', '1556199840', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10382', '', '1556199900', '{\"banker\":[\"1a\",\"5a\"],\"player\":[\"9a\",\"4b\",\"1c\"]}', 'BANKER', '1556199900', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10383', '', '1556199960', '{\"banker\":[\"1d\",\"11c\",\"10a\"],\"player\":[\"4b\",\"2a\"]}', 'PLAYER', '1556199960', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10384', '', '1556200020', '{\"banker\":[\"5a\",\"6a\",\"4a\"],\"player\":[\"4b\",\"6d\",\"13c\"]}', 'BANKER', '1556200020', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10385', '', '1556200080', '{\"banker\":[\"8a\",\"9d\"],\"player\":[\"8a\",\"10b\"]}', 'PLAYER', '1556200080', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10386', '', '1556200140', '{\"banker\":[\"13d\",\"2c\",\"5d\"],\"player\":[\"7a\",\"8a\",\"11b\"]}', 'BANKER', '1556200140', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10387', '', '1556200200', '{\"banker\":[\"11b\",\"9a\"],\"player\":[\"8c\",\"4c\",\"11b\"]}', 'BANKER', '1556200200', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10388', '', '1556200260', '{\"banker\":[\"4d\",\"4a\"],\"player\":[\"12a\",\"6d\"]}', 'BANKER', '1556200260', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10389', '', '1556200322', '{\"banker\":[\"6d\",\"8a\"],\"player\":[\"12d\",\"2a\",\"9a\"]}', 'BANKER', '1556200322', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10390', '', '1556200380', '{\"banker\":[\"11d\",\"7a\"],\"player\":[\"3b\",\"6b\"]}', 'PLAYER', '1556200380', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10391', '', '1556200440', '{\"banker\":[\"3c\",\"7b\",\"5b\"],\"player\":[\"3b\",\"1a\",\"13a\"]}', 'BANKER', '1556200440', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10392', '', '1556200500', '{\"banker\":[\"6d\",\"10a\"],\"player\":[\"7d\",\"7a\",\"4d\"]}', 'PLAYER', '1556200500', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10393', '', '1556200560', '{\"banker\":[\"9b\",\"4d\",\"10c\"],\"player\":[\"5d\",\"2d\"]}', 'PLAYER', '1556200560', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10394', '', '1556200620', '{\"banker\":[\"7b\",\"4c\",\"2a\"],\"player\":[\"11c\",\"11c\",\"4d\"]}', 'PLAYER', '1556200620', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10395', '', '1556200680', '{\"banker\":[\"7c\",\"2c\"],\"player\":[\"6d\",\"2c\"]}', 'BANKER', '1556200680', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10396', '', '1556200740', '{\"banker\":[\"8b\",\"11a\"],\"player\":[\"3a\",\"1b\",\"13c\"]}', 'BANKER', '1556200740', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10397', '', '1556200800', '{\"banker\":[\"4d\",\"10c\"],\"player\":[\"5a\",\"11c\",\"10b\"]}', 'PLAYER', '1556200800', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10398', '', '1556200860', '{\"banker\":[\"2a\",\"5d\"],\"player\":[\"6b\",\"1a\"]}', 'TIE', '1556200860', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10399', '', '1556200920', '{\"banker\":[\"13c\",\"4b\"],\"player\":[\"6b\",\"6d\",\"11d\"]}', 'BANKER', '1556200920', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10400', '', '1556200980', '{\"banker\":[\"9d\",\"3b\",\"12b\"],\"player\":[\"8b\",\"8a\"]}', 'PLAYER', '1556200980', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10401', '', '1556201040', '{\"banker\":[\"11d\",\"12d\",\"11b\"],\"player\":[\"10d\",\"9d\"]}', 'PLAYER', '1556201040', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10402', '', '1556201100', '{\"banker\":[\"1b\",\"12d\",\"2b\"],\"player\":[\"12d\",\"5d\",\"1d\"]}', 'PLAYER', '1556201100', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10403', '', '1556201160', '{\"banker\":[\"12c\",\"2a\",\"12d\"],\"player\":[\"4b\",\"1a\",\"7a\"]}', 'TIE', '1556201160', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10404', '', '1556201220', '{\"banker\":[\"13d\",\"4b\",\"8c\"],\"player\":[\"2a\",\"5c\"]}', 'PLAYER', '1556201220', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10405', '', '1556201280', '{\"banker\":[\"4a\",\"7c\",\"9a\"],\"player\":[\"5a\",\"12a\",\"13b\"]}', 'PLAYER', '1556201280', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10406', '', '1556201340', '{\"banker\":[\"5b\",\"5c\",\"10b\"],\"player\":[\"7c\",\"11b\"]}', 'PLAYER', '1556201340', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10407', '', '1556201400', '{\"banker\":[\"13c\",\"5d\"],\"player\":[\"8b\",\"5b\",\"1b\"]}', 'BANKER', '1556201400', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10408', '', '1556201460', '{\"banker\":[\"5c\",\"1a\"],\"player\":[\"10a\",\"10c\",\"1a\"]}', 'BANKER', '1556201460', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10409', '', '1556201521', '{\"banker\":[\"1c\",\"13c\",\"7c\"],\"player\":[\"6a\",\"13d\"]}', 'BANKER', '1556201521', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10410', '', '1556201580', '{\"banker\":[\"7d\",\"11b\"],\"player\":[\"9c\",\"1c\",\"11a\"]}', 'BANKER', '1556201580', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10411', '', '1556201640', '{\"banker\":[\"6b\",\"12b\",\"2a\"],\"player\":[\"6d\",\"6a\",\"7c\"]}', 'PLAYER', '1556201640', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10412', '', '1556201700', '{\"banker\":[\"9b\",\"11a\"],\"player\":[\"12b\",\"3d\",\"8a\"]}', 'BANKER', '1556201700', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10413', '', '1556201760', '{\"banker\":[\"7d\",\"7c\",\"8c\"],\"player\":[\"9b\",\"12c\"]}', 'PLAYER', '1556201760', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10414', '', '1556201820', '{\"banker\":[\"3d\",\"2a\"],\"player\":[\"12d\",\"11a\",\"9a\"]}', 'PLAYER', '1556201820', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10415', '', '1556201880', '{\"banker\":[\"1a\",\"11c\",\"12a\"],\"player\":[\"13c\",\"7d\"]}', 'PLAYER', '1556201880', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10416', '', '1556201940', '{\"banker\":[\"4a\",\"12c\"],\"player\":[\"5d\",\"11d\",\"1b\"]}', 'PLAYER', '1556201940', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10417', '', '1556202000', '{\"banker\":[\"11d\",\"2d\",\"2c\"],\"player\":[\"10b\",\"4c\",\"8c\"]}', 'BANKER', '1556202000', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10418', '', '1556202060', '{\"banker\":[\"12a\",\"2d\",\"5c\"],\"player\":[\"8d\",\"1c\"]}', 'PLAYER', '1556202060', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10419', '', '1556202120', '{\"banker\":[\"9c\",\"7b\"],\"player\":[\"10c\",\"13b\",\"2a\"]}', 'BANKER', '1556202120', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10420', '', '1556202180', '{\"banker\":[\"3c\",\"5d\"],\"player\":[\"7d\",\"6b\",\"5b\"]}', 'TIE', '1556202180', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10421', '', '1556202240', '{\"banker\":[\"12c\",\"5b\",\"4d\"],\"player\":[\"5a\",\"4c\"]}', 'TIE', '1556202240', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10422', '', '1556202300', '{\"banker\":[\"2d\",\"5b\"],\"player\":[\"12a\",\"2c\",\"7a\"]}', 'PLAYER', '1556202300', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10423', '', '1556202360', '{\"banker\":[\"4a\",\"4a\"],\"player\":[\"3d\",\"12c\",\"6c\"]}', 'PLAYER', '1556202360', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10424', '', '1556202420', '{\"banker\":[\"7a\",\"5a\",\"1a\"],\"player\":[\"4d\",\"5b\"]}', 'PLAYER', '1556202420', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10425', '', '1556202480', '{\"banker\":[\"1c\",\"10b\",\"6c\"],\"player\":[\"11a\",\"8a\"]}', 'PLAYER', '1556202480', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10426', '', '1556202540', '{\"banker\":[\"13c\",\"2b\",\"4c\"],\"player\":[\"8d\",\"7b\",\"10d\"]}', 'BANKER', '1556202540', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10427', '', '1556202600', '{\"banker\":[\"12b\",\"12b\",\"8c\"],\"player\":[\"1a\",\"13d\",\"7a\"]}', 'TIE', '1556202600', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10428', '', '1556202660', '{\"banker\":[\"7b\",\"3c\",\"9d\"],\"player\":[\"1c\",\"6b\"]}', 'BANKER', '1556202660', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10429', '', '1556202720', '{\"banker\":[\"1c\",\"6c\"],\"player\":[\"1c\",\"10b\",\"5c\"]}', 'BANKER', '1556202720', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10430', '', '1556202780', '{\"banker\":[\"3b\",\"2b\",\"4b\"],\"player\":[\"13c\",\"7a\"]}', 'BANKER', '1556202780', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10431', '', '1556202840', '{\"banker\":[\"6b\",\"7a\",\"8b\"],\"player\":[\"12a\",\"1c\",\"2b\"]}', 'PLAYER', '1556202840', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10432', '', '1556202900', '{\"banker\":[\"1a\",\"5d\"],\"player\":[\"7d\",\"5b\",\"3d\"]}', 'BANKER', '1556202900', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10433', '', '1556202960', '{\"banker\":[\"2a\",\"4a\"],\"player\":[\"3b\",\"1c\",\"1b\"]}', 'BANKER', '1556202960', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10434', '', '1556203020', '{\"banker\":[\"10a\",\"5b\",\"11a\"],\"player\":[\"10d\",\"12a\",\"6a\"]}', 'PLAYER', '1556203020', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10435', '', '1556203080', '{\"banker\":[\"3c\",\"12d\"],\"player\":[\"11a\",\"10d\",\"8d\"]}', 'PLAYER', '1556203080', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10436', '', '1556203140', '{\"banker\":[\"4c\",\"8c\",\"12c\"],\"player\":[\"11d\",\"4a\",\"7b\"]}', 'BANKER', '1556203140', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10437', '', '1556203200', '{\"banker\":[\"8a\",\"3a\",\"10a\"],\"player\":[\"2c\",\"10d\",\"6c\"]}', 'PLAYER', '1556203200', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10438', '', '1556203260', '{\"banker\":[\"12b\",\"12a\",\"9c\"],\"player\":[\"12b\",\"3c\",\"7b\"]}', 'BANKER', '1556203260', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10439', '', '1556203320', '{\"banker\":[\"11a\",\"4c\",\"7c\"],\"player\":[\"8c\",\"12d\"]}', 'PLAYER', '1556203320', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10440', '', '1556203380', '{\"banker\":[\"2d\",\"9c\",\"11b\"],\"player\":[\"1c\",\"7c\"]}', 'PLAYER', '1556203380', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10441', '', '1556203440', '{\"banker\":[\"12d\",\"13c\",\"6b\"],\"player\":[\"5d\",\"12a\",\"13b\"]}', 'BANKER', '1556203440', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10442', '', '1556203500', '{\"banker\":[\"5b\",\"5a\",\"4d\"],\"player\":[\"12c\",\"2d\",\"11d\"]}', 'BANKER', '1556203500', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10443', '', '1556203560', '{\"banker\":[\"9d\",\"5c\",\"11d\"],\"player\":[\"10b\",\"5b\",\"6d\"]}', 'BANKER', '1556203560', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10444', '', '1556203620', '{\"banker\":[\"3c\",\"6b\"],\"player\":[\"5d\",\"3b\"]}', 'BANKER', '1556203620', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10445', '', '1556203680', '{\"banker\":[\"4a\",\"9a\",\"6b\"],\"player\":[\"4b\",\"4c\"]}', 'BANKER', '1556203680', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10446', '', '1556203740', '{\"banker\":[\"8b\",\"7d\",\"12c\"],\"player\":[\"1b\",\"8b\"]}', 'PLAYER', '1556203740', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10447', '', '1556203800', '{\"banker\":[\"10b\",\"8b\"],\"player\":[\"13c\",\"3a\",\"3b\"]}', 'BANKER', '1556203800', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10448', '', '1556203860', '{\"banker\":[\"11a\",\"12c\",\"11a\"],\"player\":[\"5b\",\"9d\",\"7c\"]}', 'PLAYER', '1556203860', null, '2', '');
+INSERT INTO `hov_game_xybjl` VALUES ('10449', '', '1556203920', null, null, null, null, '1', 'thisTimes');
+INSERT INTO `hov_game_xybjl` VALUES ('10450', '', '1556203980', null, null, null, null, '1', null);
+INSERT INTO `hov_game_xybjl` VALUES ('10451', '', '1556204040', null, null, null, null, '1', null);
+INSERT INTO `hov_game_xybjl` VALUES ('10452', '', '1556204100', null, null, null, null, '1', null);
 
 -- ----------------------------
 -- Table structure for `hov_game_xygyj`
@@ -3307,6 +3485,7 @@ INSERT INTO `hov_game_xybjl` VALUES ('10311', '1556183084', null, null, null, nu
 DROP TABLE IF EXISTS `hov_game_xygyj`;
 CREATE TABLE `hov_game_xygyj` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3327,6 +3506,7 @@ CREATE TABLE `hov_game_xygyj` (
 DROP TABLE IF EXISTS `hov_game_yd10`;
 CREATE TABLE `hov_game_yd10` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3347,6 +3527,7 @@ CREATE TABLE `hov_game_yd10` (
 DROP TABLE IF EXISTS `hov_game_yd11`;
 CREATE TABLE `hov_game_yd11` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3367,6 +3548,7 @@ CREATE TABLE `hov_game_yd11` (
 DROP TABLE IF EXISTS `hov_game_yd16`;
 CREATE TABLE `hov_game_yd16` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3387,6 +3569,7 @@ CREATE TABLE `hov_game_yd16` (
 DROP TABLE IF EXISTS `hov_game_yd28`;
 CREATE TABLE `hov_game_yd28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3407,6 +3590,7 @@ CREATE TABLE `hov_game_yd28` (
 DROP TABLE IF EXISTS `hov_game_yd36`;
 CREATE TABLE `hov_game_yd36` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3427,6 +3611,7 @@ CREATE TABLE `hov_game_yd36` (
 DROP TABLE IF EXISTS `hov_game_ydww21`;
 CREATE TABLE `hov_game_ydww21` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
@@ -3447,6 +3632,7 @@ CREATE TABLE `hov_game_ydww21` (
 DROP TABLE IF EXISTS `hov_game_ydww28`;
 CREATE TABLE `hov_game_ydww28` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(30) DEFAULT '',
   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',

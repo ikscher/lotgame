@@ -1,18 +1,21 @@
+layui.use(['layer','form'],function(){
+    var layer=layui.layer,form=layui.form;
+})
 $('#bet-submit').on('click', function(){
 
     var totalScore = parseInt($("#bet-total").html());
     var data = PRESSNUM.split(",");
 
     if(totalScore > MAX_SCORE){
-        alert("投注额已大于最大限制" + MAX_SCORE);
+        layer.alert("投注额已大于最大限制" + MAX_SCORE);
         return;
     }
     if(totalScore < MIN_SCORE){
-        alert("投注额小于最小限制" + MIN_SCORE);
+        layer.alert("投注额小于最小限制" + MIN_SCORE);
         return;
     }
-    if(!confirm("您确定投注 " + totalScore + " 吗?")){
-        return;
+    if(!layer.confirm("您确定投注 " + totalScore + " 吗?")){
+        return false;
     }
     var betting = {};
     for(var i = 0; i < data.length; i++){

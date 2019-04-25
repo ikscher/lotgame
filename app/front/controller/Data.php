@@ -10,13 +10,15 @@ class Data extends Site
 	private $bankCards;
 	private $playerCards;
 	private $result;
-	//幸运百家乐
+	
 	public function _initialize()
 	{
         $this->bankCards='';
         $this->playerCards='';
         $this->result='';
 	}
+
+	//幸运百家乐
 	public function baccarat()
 	{
         $game = new Game();

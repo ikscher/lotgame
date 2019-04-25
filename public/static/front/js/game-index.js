@@ -287,6 +287,7 @@ function fetchPrevRes(data){
                 span_player = '',
                 span_banker = '';
             $.each(banker, function(i,o){
+
                 span_banker += '<span class="bjl_res p' + o + '"></span>';
             })
             $.each(player, function(i,o){
@@ -302,7 +303,6 @@ function fetchPrevRes(data){
 
 var NOList;
 function renderNoList(data){
-    console.log(data)
     NOList = data;
     var html = '';
     $.each(data, function(i, o){

@@ -59,10 +59,11 @@ class Game extends Site
         if($this->request->isPost()){
             $post=$this->request->post();
             $gid=$post['gid'];
-            $page=$post['page'];
+            $page=isset($post['page'])?$post['page']:1;
+            $offset=20*($page-1);
             $game=$this->getGameInfo($gid);
             $code=$game['code'];
-            // DB::('game_'.$code)->select
+            
             $data['code']=200;
             $data['msg']='SUCCESS';
    
@@ -93,7 +94,7 @@ class Game extends Site
 
             $_data['thisTimes']=$data__;
 
-            $lists=collection(Db::name('game_xybjl')->order('id desc')->limit(20)->select())->toArray();
+            $lists=collection(Db::name('game_xybjl')->order('id desc')->limit($offset,20)->select())->toArray();
             $list1=array();
             $lists_=array();
             foreach($lists as $l){
@@ -292,8 +293,22 @@ EOT;
 
     //投注
     public function betting()
-    {
-        return $this->fetch();
+    {   
+        $oid = $this->request->has('oid') ? $this->request->param('oid', 0, 'intval') : 0; //彩票期号
+        $this->assign('oid',$oid);
+        $gid=$this->gid;
+        switch($gid){
+            case 1: //幸运百家乐（对于百家乐，期号和ID都是一个值ID,所以...
+                //开奖剩余时间
+                $open_time=Db::name('game_xybjl')->where('id',$oid)->value('open_time');
+                $stop_time=$open_time-time();
+                $this->assign('stop_time',$stop_time);
+                return $this->fetch('game/betting_xybjl');
+            case 2:
+        }
+
+        
+        
     }
 
 }
