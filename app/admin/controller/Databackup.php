@@ -7,7 +7,11 @@ use think\Session;
 use \app\admin\controller\Permissions;
 use \databackup\src\Backup;
 class Databackup extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
       $db= new Backup();

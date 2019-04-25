@@ -16,7 +16,11 @@ use \think\Db;
 use \think\Cookie;
 use app\admin\controller\Permissions;
 class Main extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         //tplay版本号

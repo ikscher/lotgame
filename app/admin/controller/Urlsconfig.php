@@ -17,7 +17,11 @@ use think\Db;
 use app\admin\controller\Permissions;
 use app\admin\model\Urlconfig;
 class Urlsconfig extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $model = new Urlconfig();

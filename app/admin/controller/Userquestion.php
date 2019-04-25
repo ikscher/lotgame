@@ -26,7 +26,8 @@ use app\front\model\User as userModel;
 class Userquestion extends Permissions
 {   
     public function _initialize()
-    {
+    {   
+        parent::_initialize();
         $status_arr=array('1'=>'待处理','2'=>'正在处理','3'=>'待用户反馈','4'=>'已解决','5'=>'已取消');
         $this->assign('status_arr',$status_arr);
     }

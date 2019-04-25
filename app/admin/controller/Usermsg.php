@@ -22,6 +22,10 @@ use app\admin\controller\Permissions;
 
 class Usermsg extends Permissions
 {   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $post = $this->request->param();

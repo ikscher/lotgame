@@ -21,7 +21,11 @@ use think\Db;
 use app\admin\controller\Permissions;
 use app\front\model\UserExchange as exchangeModel;
 class Prizehistory extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         // $model = new exchangeModel();

@@ -21,7 +21,11 @@ use \think\Session;
 use app\admin\controller\Permissions;
 use app\front\model\UserGrade as usergradeModel;
 class Usergrade extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $model = new usergradeModel();

@@ -21,7 +21,11 @@ use \think\Session;
 use app\admin\controller\Permissions;
 use app\admin\model\PrizeCate as prizeModel;
 class Prizecate extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $model = new prizeModel();

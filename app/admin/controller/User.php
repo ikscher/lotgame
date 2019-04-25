@@ -27,9 +27,10 @@ class User extends Permissions
     private $userModel;
     private $userSafepwdModel;
     public function _initialize()
-    {
-       $this->userModel = new userModel();
-       $this->userSafepwdModel = new userSafepwdModel();
+    {  
+        parent::_initialize();
+        $this->userModel = new userModel();
+        $this->userSafepwdModel = new userSafepwdModel();
     }
 
     public function index()

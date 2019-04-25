@@ -16,7 +16,11 @@ use \think\Db;
 use \app\admin\controller\Permissions;
 
 class Smsconfig extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $data = Db::name('smsconfig')->where('sms','sms')->find();

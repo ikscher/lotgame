@@ -22,9 +22,13 @@ use app\admin\controller\Permissions;
 use app\admin\model\Board as boardModel;
 
 class Board extends Permissions
-{
-    public function index()
+{   
+    public function _initialize()
     {
+        parent::_initialize();
+    }
+    public function index()
+    {   
         $model = new boardModel();
         $post = $this->request->param();
         if (isset($post['keywords']) and !empty($post['keywords'])) {

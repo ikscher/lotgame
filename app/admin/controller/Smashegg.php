@@ -25,7 +25,8 @@ class Smashegg extends Permissions
 {   
     private $smashEggModel;
     public function _initialize()
-    {
+    {   
+        parent::_initialize();
         $this->smashEggModel=new smashEggModel();
     }
     public function index()

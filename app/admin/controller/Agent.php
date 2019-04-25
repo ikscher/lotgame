@@ -37,7 +37,8 @@ class Agent extends Permissions
     private $agentlog;
 
     public function _initialize()
-    {
+    {   
+        parent::_initialize();
         $this->agentModel=new agentModel();
         $this->agentcatemodel=new agentcateModel();
         $this->agentDepositModel=new agentDepositModel();

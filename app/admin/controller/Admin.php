@@ -19,7 +19,11 @@ use app\admin\model\Admin as adminModel;//管理员模型
 use app\admin\model\AdminMenu;
 use app\admin\controller\Permissions;
 class Admin extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     /**
      * 管理员列表
      * @return [type] [description]

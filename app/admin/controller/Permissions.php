@@ -27,7 +27,7 @@ class Permissions extends Controller
      * @return [type] [description]
      */
     protected function _initialize()
-    {
+    {   
         //检查当前ip是不是在黑名单
         $black_ip = Db::name('webconfig')->where('id','101')->value('black_ip');
         

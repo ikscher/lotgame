@@ -21,7 +21,12 @@ use \think\Session;
 use app\admin\controller\Permissions;
 use app\admin\model\ArticleCate as cateModel;
 class Articlecate extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
+    
     public function index()
     {
         $model = new cateModel();

@@ -11,7 +11,7 @@ function getContent(){
         ajax_status.abort();
     }
     ajax_status = $.ajax({
-        url: '/data/index',//game/data
+        url: '/game/data',//game/data
         type: 'post',
         dataType: 'json',
         data: {
@@ -19,6 +19,7 @@ function getContent(){
             page: page
         },
         success: function(map){
+            // console.log(map);
             ajax_status = null;
             if(map.code == 200){
                 renderPage(map.data);
@@ -70,7 +71,7 @@ function renderBox(){
     html += '           <tr>';
     html += '               <th>期号</th>';
     html += '               <th>开奖时间</th>';
-    if(GID == 26 || GID == 44){
+    if(GID == 1 || GID == 44){
         html += '           <th>（庄）开奖结果（闲）</th>';
     }else{
         html += '           <th>开奖结果</th>';
@@ -156,7 +157,7 @@ function renderPrevNo(data){
     data.number = data.number ? data.number : ' ';
     data.result = data.result ? data.result : ' ';
     var html = '';
-    var result = GID == 26 || GID == 44 ? '' : data.result;
+    var result = GID == 1 || GID == 44 ? '' : data.result;
     var draw_source = NTYPE == 'js' ? '系统开奖：' : '第三方开奖：';
     var prevRes = fetchPrevRes(data);
     html += '<div class="game-prev after">';
@@ -180,7 +181,7 @@ function fetchPrevRes(data){
     var html = '';
 
     switch (GID){
-        case 1 :
+        case 26 :
         case 19 :
             var res = data.result.split(',');
             html += '<div class="lis"><label>一区号码：</label><span>' + parseInt(res[0]) + '</span></div>';
@@ -277,7 +278,7 @@ function fetchPrevRes(data){
             html += '<div class="lis"><label>三区号码：</label><span>' + res.third_value + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + data.win_no + '</span></div>';
             break;
-        case 26 :
+        case 1 :
         case 44 :
             var result = JSON.parse(data.result),
                 banker = result.banker,
@@ -301,6 +302,7 @@ function fetchPrevRes(data){
 
 var NOList;
 function renderNoList(data){
+    console.log(data)
     NOList = data;
     var html = '';
     $.each(data, function(i, o){

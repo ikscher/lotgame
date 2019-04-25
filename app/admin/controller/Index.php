@@ -18,7 +18,11 @@ use \think\Cookie;
 use \think\Session;
 use \think\Cache;
 class Index extends Permissions
-{
+{   
+	public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $menu = Db::name('admin_menu')->where(['is_display'=>1])->order('orders asc')->select();

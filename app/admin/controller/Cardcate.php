@@ -26,7 +26,9 @@ class Cardcate extends Permissions
     private $card_random_bits=array();
     private $card_random_type=array();
     private $model;
-    public function _initialize(){
+    public function _initialize()
+    {
+        parent::_initialize();
         $this->card_random_bits=Config::get('card_random_bits');
         $this->card_random_type=Config::get('card_random_type');
         // var_dump($this->card_random_bits);

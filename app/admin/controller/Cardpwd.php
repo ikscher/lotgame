@@ -27,6 +27,7 @@ class Cardpwd extends Permissions
     private $card_status;
     public function _initialize()
     {
+        parent::_initialize();
         $this->model=new cardpwdModel();
         $this->catemodel=new cardcateModel();
         $this->card_status=Config::get('card_status');

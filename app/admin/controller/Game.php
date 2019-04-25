@@ -29,6 +29,7 @@ class Game extends Permissions
     private $game_area_type;
     public function _initialize()
     {
+        parent::_initialize();
         $this->model  = new gameModel();
         $this->prefix = Config::get('database.prefix');
         $this->game_area_type=Config::get('game_area_type');
@@ -372,7 +373,8 @@ class Game extends Permissions
 
                 echo $code;
             }else{
-                $sql="alter table {$table} add column `status` tinyint(1)   COMMENT  '1：未开奖的，2：已开奖的'"; //json保存
+                $sql="alter table {$table} add column `period` varchar(20)   COMMENT  '1：thisTimes当期开奖的，2：prevTimes上期开奖的'"; //json保存
+                // $sql="alter table {$table} add column `status` tinyint(1)   COMMENT  '1：未开奖的，2：已开奖的'"; //json保存
                 // $sql="alter table {$table} add column `odd` varchar(300)   COMMENT  '开奖赔率'"; //json保存
                 $this->model->query($sql);
             }

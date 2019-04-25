@@ -16,7 +16,11 @@ use \think\Db;
 use \app\admin\controller\Permissions;
 
 class Emailconfig extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $data = Db::name('emailconfig')->where('email','email')->find();

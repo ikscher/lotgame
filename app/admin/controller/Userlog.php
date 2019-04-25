@@ -24,6 +24,10 @@ use app\front\model\User as userModel;
 
 class Userlog extends Permissions
 {   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $model = new userlogModel();

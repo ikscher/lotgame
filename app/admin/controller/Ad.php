@@ -26,6 +26,7 @@ class Ad extends Permissions
     private $adModel;
     public function _initialize()
     {
+        parent::_initialize();
         $this->adModel=new adModel();
     }
     public function index()

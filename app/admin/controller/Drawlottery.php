@@ -25,7 +25,8 @@ class Drawlottery extends Permissions
 {   
     private $drawLotteryModel;
     public function _initialize()
-    {
+    {   
+        parent::_initialize();
         $this->drawLotteryModel=new drawLotteryModel();
     }
     public function index()

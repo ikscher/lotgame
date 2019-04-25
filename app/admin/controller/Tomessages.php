@@ -17,7 +17,11 @@ use think\Db;
 use app\admin\controller\Permissions;
 use app\admin\model\Messages;
 class Tomessages extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $model = new Messages();

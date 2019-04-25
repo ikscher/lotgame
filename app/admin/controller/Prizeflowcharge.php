@@ -18,7 +18,11 @@ use app\admin\controller\Permissions;
 use app\front\model\UserCharge as chargeModel;
 
 class Prizeflowcharge extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $web_config = Db::name('webconfig')->where('id','101')->find();

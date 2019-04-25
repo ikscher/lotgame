@@ -22,7 +22,11 @@ use app\admin\controller\Permissions;
 use app\admin\model\Article as articleModel;
 use app\admin\model\ArticleCate as cateModel;
 class Article extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $model = new articleModel();

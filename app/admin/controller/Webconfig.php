@@ -15,7 +15,11 @@ namespace app\admin\controller;
 use app\admin\controller\Permissions;
 use \think\Db;
 class Webconfig extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $web_config = Db::name('webconfig')->where('id','101')->find();

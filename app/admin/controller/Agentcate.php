@@ -24,7 +24,8 @@ class Agentcate extends Permissions
 {   
     private $model;
     public function _initialize()
-    {
+    {   
+        parent::_initialize();
         $this->model=new agentCateModel();
     }
     public function index()

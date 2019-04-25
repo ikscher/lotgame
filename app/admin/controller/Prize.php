@@ -27,7 +27,11 @@ use app\front\model\User as userModel;
 use app\front\model\UserLog as logModel;
 use app\front\model\UserRemark as remarkModel;
 class Prize extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $model = new prizeModel();

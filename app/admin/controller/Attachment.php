@@ -17,7 +17,11 @@ use \app\admin\controller\Permissions;
 use \app\admin\model\Attachment as model;
 use \think\Cookie;
 class Attachment extends Permissions
-{
+{   
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
     public function index()
     {
         $model = new model();
