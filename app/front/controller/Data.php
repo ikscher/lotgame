@@ -1,4 +1,7 @@
 <?php
+/*
+开奖
+*/
 namespace app\front\controller;
 use think\Controller;
 use think\Config;

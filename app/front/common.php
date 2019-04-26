@@ -1,5 +1,13 @@
 <?php
-
+/**
+* 通过GID获取游戏信息
+*/
+function get_game($gid)
+{  
+   $data=array();
+   $data = \think\Db::name('game')->where('id',$gid)->find();
+   return $data;
+}
 
 /****
 * 生成密保卡(用户)

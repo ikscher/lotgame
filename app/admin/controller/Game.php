@@ -364,13 +364,14 @@ class Game extends Permissions
                   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
                   `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
                   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
-                  `total_money` int(11) DEFAULT '0',
+                  `total_money` int(11) DEFAULT '0' COMMENT '投注总额',
                   `create_time` int(11) DEFAULT NULL,
                   `update_time` int(11) DEFAULT NULL,
                   `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
                   `period` varchar(20) DEFAULT NULL COMMENT '1：thisTimes当期开奖的，2：prevTimes上期开奖的',
-                  `bet_num` int(11) DEFAULT '0',
-                  `win_num` int(11) DEFAULT '0',
+                  `bet_num` int(11) DEFAULT '0' COMMENT '下注数',
+                  `win_num` int(11) DEFAULT '0' COMMENT '赢数',
+                  `bidrate` varchar(200) DEFAULT '' COMMENT '开奖赔率',
                   PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
@@ -378,13 +379,13 @@ class Game extends Permissions
 
                 echo $code;
             }else{
-                $sql="alter table {$table} add column `total_money` int(11) default 0 after `result`"; //json保存
+                $sql="alter table {$table} add column `bidrate` varchar(200) default '' "; //json保存
                 $this->model->query($sql);
-                $sql="alter table {$table} add column `win_num` int(11) default 0"; //json保存
+                // $sql="alter table {$table} add column `win_num` int(11) default 0"; //json保存
                 // $sql="alter table {$table} add column `bet_num` int(11) default 0"; //json保存
                 // $sql="alter table {$table} add column `status` tinyint(1)   COMMENT  '1：未开奖的，2：已开奖的'"; //json保存
                 // $sql="alter table {$table} add column `odd` varchar(300)   COMMENT  '开奖赔率'"; //json保存
-                $this->model->query($sql);
+                // $this->model->query($sql);
             }
         }
 
