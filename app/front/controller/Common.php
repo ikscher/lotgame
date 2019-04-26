@@ -40,7 +40,7 @@ class Common extends Site
         $this->assign('controller',$controller);
         // $this->site_name=Config::get('site_name');
         // $this->assign('title',$this->site_name);
-
+        
     }
     
     /**

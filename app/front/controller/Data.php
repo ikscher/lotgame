@@ -2,6 +2,7 @@
 namespace app\front\controller;
 use think\Controller;
 use think\Config;
+use think\Session;
 use think\Db;
 use app\admin\model\Game as gameModel;
 use baccarat\Game;
@@ -16,6 +17,7 @@ class Data extends Site
         $this->bankCards='';
         $this->playerCards='';
         $this->result='';
+        // if(empty(Session::get('uid'))) { $this->redirect('/common/login');} //如果加上，命令行下计划任务是执行不了的
 	}
 
 	//幸运百家乐

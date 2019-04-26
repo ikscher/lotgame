@@ -2,6 +2,7 @@
 namespace app\front\controller;
 use think\Controller;
 use think\Config;
+use think\Session;
 use think\Db;
 use app\admin\model\Game as gameModel;
 class Game extends Site
@@ -14,6 +15,7 @@ class Game extends Site
 	public function _initialize()
     {   
         parent::_initialize();
+        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
         $this->gameModel = new gameModel();
         $this->game_area_type=Config::get('game_area_type');
  
@@ -22,7 +24,7 @@ class Game extends Site
         $this->assign('controller',$controller);
       
         
-        $this->gid = $this->request->has('gid') ? $this->request->param('gid', 0, 'intval') : 0;
+        $this->gid = $this->request->has('gid') ? $this->request->param('gid', 0, 'intval') : 1;
         $this->assign('gid',$this->gid);
 
         //游戏列表
@@ -47,6 +49,7 @@ class Game extends Site
 
     public function index()
     {   
+
         $game=$this->gameModel->where('id',$this->gid)->find();
         $this->assign("gtag",$game['gtag']);
         $this->assign("ntype",$game['ntype']);
@@ -59,6 +62,8 @@ class Game extends Site
         if($this->request->isPost()){
             $post=$this->request->post();
             $gid=$post['gid'];
+            
+            
             $page=isset($post['page'])?$post['page']:1;
             $offset=20*($page-1);
             $game=$this->getGameInfo($gid);
@@ -291,11 +296,13 @@ EOT;
         echo $str;exit;
     }
 
-    //投注
+    //投注界面
     public function betting()
     {   
         $oid = $this->request->has('oid') ? $this->request->param('oid', 0, 'intval') : 0; //彩票期号
         $this->assign('oid',$oid);
+
+
         $gid=$this->gid;
         switch($gid){
             case 1: //幸运百家乐（对于百家乐，期号和ID都是一个值ID,所以...
@@ -309,6 +316,83 @@ EOT;
 
         
         
+    }
+
+    //投注
+    public function betting_submit()
+    {   
+        if($this->request->isPost()){
+            
+            $post=$this->request->post();
+            $gid=$post['gid'];
+            $oid=$post['oid'];
+            $betting=$post['betting'];
+            
+            $betting_money=array_sum($betting); //betting 是array ,下注的总数
+            
+            $code=$this->gameModel->where('id',$gid)->value('code');
+
+            $open_time=Db::name('game_'.$code)->where('id',$oid)->value('open_time');
+            $stop_time=$open_time-time();
+            if(empty(Session::get('uid'))){
+                $data['code']=302;
+                $data['msg']='未登录，或登录超时，请重新登录！';
+                echo json_encode($data);exit;
+            }else if($stop_time<=0){
+                $data['msg']='当期已停止下注,请选择其它期!';
+                $data['code']=501;
+                echo json_encode($data);exit;
+            }else if($betting_money>$this->user['coin']){
+                $data['msg']='您的余额不足，请充值!';
+                $data['code']=901;
+                echo json_encode($data);exit;
+            }else{
+                $result_trans=true;
+                Db::startTrans();
+                try{
+                    //用户投注信息
+                    $uid=$this->uid;
+                    $data_bid=array();
+                    $data_bid['game_id']=$gid;
+                    $data_bid['game_number']=$oid;
+                    $data_bid['bidinfo']=json_encode($betting);
+                    $data_bid['bidmoney']=$betting_money;
+                    $data_bid['create_time']=time();
+                    $data_bid['user_id']=$uid;
+                    Db::name('user_bid')->where('user_id',$uid)->insert($data_bid);
+
+                    //用户余额减少
+                    $this->userModel->where('uid',$uid)->setDec('coin',$betting_money);
+
+                    //用户日志
+                    $coin=$this->userModel->where('uid',$uid)->value('coin');
+                    $ret6=adduserlog($this->uid,'游戏投注'.$gid,-$betting_money,0,$coin,'bet');
+
+                    //更改对应游戏表的投注总额，投注人数
+                    Db::name('game_'.$code)->where('id',$oid)->setInc('bet_num',1);
+                    Db::name('game_'.$code)->where('id',$oid)->setInc('total_money',$betting_money);
+                    // 提交事务
+                    Db::commit(); 
+                    
+                }catch (\Exception $e) {
+                    $result_trans=false;
+                    // 回滚事务
+                    Db::rollback();
+                    
+                    
+                }
+
+                if($result_trans){
+                    $data['code']=200;
+                    $data['msg']='投注成功！';
+                    echo json_encode($data);exit;
+                }else{
+                     $data['code']=800;
+                    $data['msg']='投注失败！';
+                    echo json_encode($data);exit;
+                }
+            }
+       }
     }
 
 }

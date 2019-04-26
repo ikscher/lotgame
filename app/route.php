@@ -101,6 +101,7 @@ Route::rule('game/get_record','front/game/get_record');
 Route::rule('game/get_chart','front/game/get_chart');
 Route::rule('game/get_bet_info','front/game/get_bet_info');
 Route::rule('game/betting','front/game/betting');
+Route::rule('game/betting_submit','front/game/betting_submit');
 Route::rule('data/baccarat','front/data/baccarat');
 
 

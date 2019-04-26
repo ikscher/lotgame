@@ -43,7 +43,8 @@ class Site extends Controller
 	    }
 	    $this->assign('user',$this->user);
 	    $this->assign('uid',$this->uid);
-
+        
+   
 	    //加载头部滚动（公告）
 	    $boardlist=array();
 	    $this->boardModel = new boardModel();

@@ -360,12 +360,17 @@ class Game extends Permissions
             if (false==$exist) {
                 $sql="CREATE TABLE `{$table}` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
-                  -- `lot_num` int(11) DEFAULT NULL COMMENT '期号',
+                  `number` varchar(30) DEFAULT '',
                   `open_time` int(11) DEFAULT NULL COMMENT '开奖时间',
-                  `desc`  varchar(200) DEFAULT NULL COMMENT '开奖描述',
+                  `desc` varchar(200) DEFAULT NULL COMMENT '开奖描述',
                   `result` varchar(50) DEFAULT NULL COMMENT '开奖结果',
+                  `total_money` int(11) DEFAULT '0',
                   `create_time` int(11) DEFAULT NULL,
                   `update_time` int(11) DEFAULT NULL,
+                  `status` tinyint(1) DEFAULT NULL COMMENT '1：未开奖的，2：已开奖的',
+                  `period` varchar(20) DEFAULT NULL COMMENT '1：thisTimes当期开奖的，2：prevTimes上期开奖的',
+                  `bet_num` int(11) DEFAULT '0',
+                  `win_num` int(11) DEFAULT '0',
                   PRIMARY KEY (`id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
 
@@ -373,7 +378,10 @@ class Game extends Permissions
 
                 echo $code;
             }else{
-                $sql="alter table {$table} add column `number` varchar(30) default '' after `id`"; //json保存
+                $sql="alter table {$table} add column `total_money` int(11) default 0 after `result`"; //json保存
+                $this->model->query($sql);
+                $sql="alter table {$table} add column `win_num` int(11) default 0"; //json保存
+                // $sql="alter table {$table} add column `bet_num` int(11) default 0"; //json保存
                 // $sql="alter table {$table} add column `status` tinyint(1)   COMMENT  '1：未开奖的，2：已开奖的'"; //json保存
                 // $sql="alter table {$table} add column `odd` varchar(300)   COMMENT  '开奖赔率'"; //json保存
                 $this->model->query($sql);

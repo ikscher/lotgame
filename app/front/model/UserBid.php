@@ -20,7 +20,5 @@ class UserBid extends Model
         //关联会员表
         return $this->belongsTo('User');
     }
-
-    
   
 }

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\index.html";i:1555814525;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1555749104;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1555738092;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:58:"D:\mywork\lotgame\public/../app/front\view\shop\index.html";i:1555896533;s:51:"D:\mywork\lotgame\app\front\view\public\header.html";i:1556243564;s:51:"D:\mywork\lotgame\app\front\view\public\footer.html";i:1555896533;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,11 +37,11 @@
 			</div>
 			<span class="barr fr">
 				<?php if($uid > 0): ?>
-					<b ><?php echo $user['username']; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php echo $user['coin']; ?></b></span> &nbsp;
+					<b ><?php if(!(empty($user['username']) || (($user['username'] instanceof \think\Collection || $user['username'] instanceof \think\Paginator ) && $user['username']->isEmpty()))): ?><?php echo $user['username']; endif; ?>(<?php echo $uid; ?>)</b> <b style="background:url(/static/front/image/v0.png) no-repeat right center;padding-right:18px;"></b> &nbsp; <span>余额：<b id="topmoney"><?php if(!(empty($user['coin']) || (($user['coin'] instanceof \think\Collection || $user['coin'] instanceof \think\Paginator ) && $user['coin']->isEmpty()))): ?><?php echo $user['coin']; endif; ?></b></span> &nbsp;
 					<a href="/User/Index">我的账号</a> <a href="/User/Msg">站内信</a>&nbsp;
 					<a id="LinkButton1" href="/common/logout">退出</a>
                 <?php else: ?>
-                	<a href="/Common/Login" class="dl line">HI, 请登录</a>  <a href="/Common/Register" class="line">注册</a> <a href="/User/FindPwd" class="line">找回密码</a>
+                	<a href="/Common/Login" class="dl line">HI, 请登录</a>  <a href="/Common/Register" class="line">注册</a> <a href="/Common/FindPwd" class="line">找回密码</a>
                 <?php endif; ?>
 				<!-- <a style="margin-left: -4px;" href="https://ssl.pop800.com/chat/368923" target="_blank" class="fav">在线客服</a>-->
 			</span> 
@@ -79,7 +79,6 @@
 </div>
 
 <SCRIPT type=text/javascript>
-
 	$('.ucen').click(function(){
 		$('.nav ul .nli').fadeToggle(100);
 	});

@@ -38,6 +38,7 @@ class Shop extends Site
     {
         // $this->userModel = new userModel();
         parent::_initialize();
+        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
         $this->userGradeModel = new userGradeModel();
         $this->userRemarkModel = new userRemarkModel();
         $this->prizeModel = new prizeModel();

@@ -25,9 +25,9 @@
 		{notempty name="$uid"}
 			<div class="logtit"><strong>登录成功</strong></div>
 			<div style="height:20px;"></div>
-			<div class="logtit" style="font-size:14px;">登录账号：{$user['username']}({$uid})</div>
+			<div class="logtit" style="font-size:14px;">登录账号：{notempty name="$user['username']"}{$user['username']}{/notempty}({$uid})</div>
 			<div class="captcha mt10 mb10">
-				<label>账户余额：{$user['coin']} </label>
+				<label>账户余额：{notempty name="$user['coin']"}{$user['coin']}{/notempty} </label>
 			</div>
 			<a href="/User/Index" class="sub mt20">会员中心</a>
 			<a href="/Game/Index" class="sub mt20">游戏中心</a>
@@ -61,7 +61,7 @@
 			<div id="popup-captcha"></div>
 
             
-			<div class="reg oo mt10"><a href="/User/FindPwd" class="fl">找回密码</a> <a href="/User/Reg" class="fr"> 5 秒注册</a></div>
+			<div class="reg oo mt10"><a href="/Common/FindPwd" class="fl">找回密码</a> <a href="/User/Reg" class="fr"> 5 秒注册</a></div>
 			<!-- <input id="loginBtn" type="button" value="登 录" class="sub mt10" > -->
 			<button id="loginBtn" lay-submit lay-filter="login"   class="sub mt10">登录</button>
 			

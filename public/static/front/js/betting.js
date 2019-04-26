@@ -14,43 +14,48 @@ $('#bet-submit').on('click', function(){
         layer.alert("投注额小于最小限制" + MIN_SCORE);
         return;
     }
-    if(!layer.confirm("您确定投注 " + totalScore + " 吗?")){
-        return false;
-    }
-    var betting = {};
-    for(var i = 0; i < data.length; i++){
-        if($("input[name=chk]").eq(i).prop("checked")){
-            betting[$("input[name=chk]").eq(i).attr('role')] = parseInt($("input[name='tbNum[]']").eq(i).val()==""?"0":$("input[name='tbNum[]']").eq(i).val());
-        }
-    }
-
-    $.ajax({
-        url: '/games/betting_submit',
-        type: 'post',
-        dataType: 'json',
-        data: {
-            gid: GID,
-            oid: OID,
-            betting: betting
-        },
-        success: function(map){
-            if(map.code == 200){
-                alert('投注成功！');
-                window.location.href = '/games?gid=' + GID;
-            }else if(map.code == 302){
-                alert('未登录，或登录超时，请重新登录！');
-                window.location.href = '/user/login';
-            }else if(map.code == 501){
-                alert(map.msg);
-                window.location.href = '/games?gid=' + GID;
-            }else{
-                alert(map.msg);
+    layer.confirm("您确定投注 " + totalScore + " 吗?",function(index){
+        var betting = {};
+        for(var i = 0; i < data.length; i++){
+            if($("input[name=chk]").eq(i).prop("checked")){
+                betting[$("input[name=chk]").eq(i).attr('role')] = parseInt($("input[name='tbNum[]']").eq(i).val()==""?"0":$("input[name='tbNum[]']").eq(i).val());
             }
-        },
-        error: function(){
-            alert('投注失败,请重试!');
         }
+        
+        $.ajax({
+            url: '/game/betting_submit',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                gid: GID,
+                oid: OID,
+                betting: betting
+            },
+            success: function(map){
+                // console.log(map);
+                if(map.code == 200){
+                    layer.alert(map.msg,function(){
+                        window.location.href = '/game/index?gid=' + GID;
+                    });
+                }else if(map.code == 302){
+                    layer.alert(map.msg,function(){
+                        window.location.href = '/common/login';
+                    });
+                }else if(map.code == 501){
+                    layer.alert(map.msg,function(){
+                        window.location.href = '/game/index?gid=' + GID;
+                    });
+                }else{
+                    layer.alert(map.msg);
+                }
+            },
+            error: function(){
+                layer.alert('投注失败,请重试!');
+            }
+        })
+       
     })
+    
 })
 
 c = 0;
