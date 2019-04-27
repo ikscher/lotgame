@@ -16,8 +16,8 @@ class Info extends Site
     public function check()
     {   
     	//幸运百家乐
-    	$code= $this->request->has('code') ? $this->request->param('code'):'';
-    	if($code=='xybjl'){
+    	// $code= $this->request->has('code') ? $this->request->param('code'):'';
+    	// if($code=='xybjl'){
     	    $id=Db::name('game_xybjl')->where('period','thisTimes')->value('id');
     	    $prior_id=$id-1;
     	    //设置赔率
@@ -45,13 +45,17 @@ class Info extends Site
                 $uid=$v['user_id'];
                 foreach($bidinfo as $k=>$w){
                     if('f'.$num==$k){
-                    	$win_coin=floor($w*$x[$num]);
+                    	$z=array_values($w);
+                    	$win_coin=floor($z[0]*$x[$num]);
+
                     	$this->userModel->where('uid',$uid)->setInc('coin',$win_coin);
                     	$game=get_game($gid);
                     	$coin=$this->userModel->where('uid',$uid)->value('coin');
                     	adduserlog($uid,$game['name'].'第'.$oid.'期,中奖'.$win_coin.'金币',$win_coin,0,$coin,'hit');//hit类型:游戏中奖
+                    	// $k=$k==1?'庄':($k==2?'闲':'和');
                     	$prizeinfo[$k]=$win_coin;
                     }else{
+                    	// $k=$k==1?'庄':($k==2?'闲':'和');
                     	$prizeinfo[$k]=0;
                     }
 
@@ -60,7 +64,7 @@ class Info extends Site
                 $userBidModel->where('id',$bid)->setField('prizeinfo',json_encode($prizeinfo));
             }
 
-    	}
+    	// }
     }
 
 }

@@ -1,12 +1,26 @@
 <?php
 /**
-* 通过GID获取游戏信息
+* 通过GID获取游戏game表信息
 */
 function get_game($gid)
 {  
    $data=array();
    $data = \think\Db::name('game')->where('id',$gid)->find();
    return $data;
+}
+
+/**
+* 获取用户下注游戏game_xxx表的相关信息
+* @param $gid 游戏种类的ID
+* @param $game_number 具体某种游戏的ID(期号)
+**/
+function get_game_detail($gid,$game_number)
+{   
+    $row=array();
+    $code=\think\Db::name('game')->where('id',$gid)->value('code');
+    $row =\think\Db::name('game_'.$code)->where('id',$game_number)->find();
+    return $row;
+    
 }
 
 /****

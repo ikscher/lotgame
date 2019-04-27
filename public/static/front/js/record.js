@@ -57,7 +57,7 @@ function renderModal(data){
     $('#m-title').html('第' + data.order_num + '期投注详细结果');
     $('#m-info').html('开奖时间:' + data.time + ' 投注:' + data.betting_num + ' 获得:' + data.win_num);
     var lists = '';
-
+    console.log(data)
     $.each(data.nolists, function(i, o){
         var win_color = '';
         lists += '<tr>';

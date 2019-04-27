@@ -14,7 +14,12 @@ class Game extends Site
     private $game;
     private $gid;
 	private $game_area_type;
-
+    private $scale_init;
+    //用于测试
+    public function test()
+    {
+       
+    }
 	public function _initialize()
     {   
         parent::_initialize();
@@ -175,6 +180,9 @@ class Game extends Site
     //投注记录
     public function record()
     {   
+        $game=$this->gameModel->where('id',$this->gid)->find();
+        $this->assign("gtag",$game['gtag']);
+        $this->assign("ntype",$game['ntype']);
         $map['game_id']=$this->gid;
         $map['user_id']=$this->uid;
         $bids=$this->userBidModel->where($map)->paginate(10,false,['query'=>$this->request->param()]);
@@ -189,10 +197,41 @@ class Game extends Site
     }
 
     //获取投标记录
+    //$json='{"code":200,"msg":"SUCCESS","data":{"list":[{"times_id":"1279163","draw_time":"04-26 22:52:30","result":"{\"banker\":[\"12c\",\"4c\",\"3d\"],\"player\":[\"13b\",\"11d\",\"7c\"]}","number":"1379163","win_no":"3","total_money":"150","win_money":"523","win_count":"373"},{"times_id":"1278861","draw_time":"04-26 20:21:30","result":"{\"banker\":[\"6b\",\"12c\"],\"player\":[\"13c\",\"9d\"]}","number":"1378861","win_no":"2","total_money":"110","win_money":"108","win_count":"-2"}],"total_page":1}}';
     public function get_record()
-    {
-        $json='{"code":200,"msg":"SUCCESS","data":{"list":[{"times_id":"171539","draw_time":"04-20 17:04:30","result":"02,03,04,14,16,22,33,37,44,50,52,56,61,62,64,70,71,72,73,75","number":"2416588","win_no":"3","total_money":"100","win_money":"0","win_count":"-100"}],"total_page":1}}';
-        echo $json;exit;
+    {   
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $uid=$this->uid;
+            $map['user_id']=$uid;
+            $map['game_id']=$post['gid'];
+            $page=isset($post['page'])?$post['page']:1;
+            $offset=($page-1)*10;
+            $rows=collection($this->userBidModel->where($map)->order('id desc')->limit($offset,10)->select())->toArray();
+            $total_page=ceil(sizeof($rows)/10);
+            $data=array();
+            $data['code']=200;
+            $data['msg']='SUCCESS';
+            $rows_a=array();
+            $rows_b=array();
+            foreach($rows as $v){
+                $rows_b=array();
+                $rows_b['times_id']=$v['id'];
+                $zz=get_game_detail($v['game_id'],$v['game_number']);
+                $rows_b['draw_time']=date('Y-m-d H:i:s',$zz['open_time']);
+                if(empty($zz['desc'])) continue; //还未开奖的一期，已下注，不记入下注记录
+                $rows_b['result']=$zz['desc'];
+                $rows_b['number']=$v['game_number'];
+                $rows_b['win_no']=$zz['result']=='PLAYER'?2:($zz['result']=='BANKER'?1:3);
+                $rows_b['total_money']=$v['bidmoney'];
+                $rows_b['win_money']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0;
+                $rows_b['win_count']=$rows_b['win_money']-$rows_b['total_money'];
+                $rows_a[]=$rows_b;
+            }
+            $data['data']['list']=$rows_a;
+            $data['data']['total_page']=$total_page;
+            echo json_encode($data);exit;
+        }
     }
 
     //获取走势图
@@ -301,10 +340,45 @@ EOT;
     }
 
     //获取投注信息
+    //{"code":200,"msg":"SUCCESS","data":{"betting_num":"110","win_num":"108","order_num":"1378861","time":"2019-04-26 20:21:30","nolists":{"f1":{"no":"\u5e84\u8d62","scale_init":"2.2400","scale_draw":"2.2355","scale_prev":"2.2355","win_num":0,"bet_num":"50"},"f2":{"no":"\u95f2\u8d62","scale_init":"2.1800","scale_draw":"2.1756","scale_prev":"2.1756","win_num":"108","bet_num":"50","is_win":1},"f3":{"no":"\u548c","scale_init":"10.5000","scale_draw":"10.4790","scale_prev":"10.4791","win_num":0,"bet_num":"10"}}}}
     public function get_bet_info()
-    {
-        $str='{"code":200,"msg":"SUCCESS","data":{"betting_num":"100","win_num":"0","order_num":"2416588","time":"2019-04-20 17:04:30","nolists":{"f1":{"no":"\u8c79","scale_init":"100.0000","scale_draw":"99.4908","scale_prev":"99.4877","win_num":0,"bet_num":"0"},"f2":{"no":"\u987a","scale_init":"16.6700","scale_draw":"16.5866","scale_prev":"16.5865","win_num":0,"bet_num":"50"},"f3":{"no":"\u5bf9","scale_init":"3.7000","scale_draw":"3.6815","scale_prev":"3.6815","win_num":"0","bet_num":"0","is_win":1},"f4":{"no":"\u534a","scale_init":"2.7800","scale_draw":"2.7661","scale_prev":"2.7661","win_num":0,"bet_num":"50"},"f5":{"no":"\u6742","scale_init":"3.3300","scale_draw":"3.3134","scale_prev":"3.3134","win_num":0,"bet_num":"0"}}}}';
-        echo $str;exit;
+    {   
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $gid=$post['gid'];
+            $oid=$post['oid'];
+            $map['game_id']=$gid;
+            $map['game_number']=$oid;
+            $row=$this->userBidModel->where($map)->find();
+
+            $list['code']=200;
+            $list['msg']='SUCCESS';
+           
+            $data['betting_num']=isset($row['bidmoney'])?$row['bidmoney']:0;
+            $data['win_num']=!empty($row['prizeinfo'])?array_sum(json_decode($row['prizeinfo'],true)):0;
+            $data['order_num']=$oid;
+            $zz=get_game_detail($gid,$oid);
+            $zz_prior=get_game_detail($gid,$oid-1);
+            $data['time']=date('Y-m-d H:i:s',$zz['open_time']);
+            $game=get_game($gid);
+            $scale_init=Config::get('scale_init');
+            $scale_init_=$scale_init[$game['code']];
+            $f=array();
+            $arr=array();
+            $arr=json_decode($row['bidinfo'],true);
+            foreach($arr as $k=>$v){
+                $f["$k"]['no']=key($v);
+                $f["$k"]['scale_init;']=isset($scale_init_["$k"])?$scale_init_["$k"]:'';
+                $f["$k"]['scale_draw']=isset($zz["$k"])?$zz["$k"]:'';
+                $f["$k"]['scale_prev']=isset($zz_prior["$k"])?$zz_prior["$k"]:'';
+                $f["$k"]['win_num']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0;
+                $f["$k"]['bet_num']=!empty($v['bidmoney'])?$v['bidmoney']:0;
+            }
+            $data['nolists']=$f;
+            $list['data']=$data;
+            echo json_encode($list);exit;
+        }
+        
     }
 
     //投注界面
@@ -339,7 +413,12 @@ EOT;
             $oid=$post['oid'];
             $betting=$post['betting'];
             
-            $betting_money=array_sum($betting); //betting 是array ,下注的总数
+            //$betting_money=array_sum($betting); //betting 是array ,下注的总数
+            $betting_money=0;
+            foreach($betting as $v){
+                $temp=array_values($v);
+                $betting_money+=$temp[0];
+            }
             
             $code=$this->gameModel->where('id',$gid)->value('code');
 
