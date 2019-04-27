@@ -379,7 +379,9 @@ class Game extends Permissions
 
                 echo $code;
             }else{
-                $sql="alter table {$table} add column `bidrate` varchar(200) default '' "; //json保存
+                $sql="alter table {$table} drop column `max_bets` "; //json保存
+                $this->model->query($sql);
+                $sql="alter table {$table} drop column `min_bets` "; //json保存
                 $this->model->query($sql);
                 // $sql="alter table {$table} add column `win_num` int(11) default 0"; //json保存
                 // $sql="alter table {$table} add column `bet_num` int(11) default 0"; //json保存

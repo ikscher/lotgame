@@ -71,6 +71,27 @@
           <textarea placeholder="请输入内容" class="layui-textarea" name="intro" id="container" style="border:0;padding:0">{notempty name="$game.intro"}{$game.intro|htmlspecialchars_decode|html_entity_decode}{/notempty}</textarea>
         </div>
       </div>
+      
+      <div class="layui-form-item">
+        <label class="layui-form-label">最大下注</label>
+        <div class="layui-input-inline" >
+          <input name="max_bid" autocomplete="off" required lay-verify="required|number" placeholder="" class="layui-input" type="text" {notempty name="$game.max_bid"}value="{$game.max_bid}"{else /}value="0"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">最小下注</label>
+        <div class="layui-input-inline" >
+          <input name="min_bid" autocomplete="off" required lay-verify="required|number" placeholder="" class="layui-input" type="text" {notempty name="$game.min_bid"}value="{$game.min_bid}"{else /}value="0"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">格式</label>
+        <div class="layui-input-inline" style="width:600px;">
+          <input name="pressnum" autocomplete="off" required lay-verify="required" placeholder="" class="layui-input" type="text" {notempty name="$game.pressnum"}value="{$game.pressnum}"{else /}value="0"{/notempty}>
+        </div>
+      </div>
 
       <div class="layui-form-item">
         <label class="layui-form-label">排序</label>

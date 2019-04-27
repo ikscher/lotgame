@@ -238,12 +238,12 @@
 
 <script type="text/javascript">
     (function(root){
-        root.GID = 22;
-        root.MAX_SCORE = 30000000;
-        root.MIN_SCORE = 100;
-        root.MY_SCORE = 99628;
-        root.GTYPE = 11;
-        root.PRESSNUM = '10,20,30,40,50,60,50,40,30,20,10';
+        root.GID = {$gid};
+        root.MAX_SCORE = {$game['max_bid']};
+        root.MIN_SCORE = {$game['min_bid']};
+        root.MY_SCORE = {$user['coin']};
+        root.GTYPE = '{$gtype}';
+        root.PRESSNUM = '{$game[\'pressnum\']}';
     })(this)
 </script>
 <script type="text/javascript" src="__JS__/jquery.pager.js"></script>

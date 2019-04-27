@@ -16,15 +16,15 @@ class Info extends Site
     public function check()
     {   
     	//幸运百家乐
-    	// $code= $this->request->has('code') ? $this->request->param('code'):'';
-    	// if($code=='xybjl'){
+    	$code= $this->request->has('code') ? $this->request->param('code'):'';
+    	if($code=='xybjl'){
     	    $id=Db::name('game_xybjl')->where('period','thisTimes')->value('id');
     	    $prior_id=$id-1;
     	    //设置赔率
     	    $x=array();
-    	    $x[1]=number_format(2.23+rand(50,99)/10000,4,'.','');  //<2.24;
-    	    $x[2]=number_format(2.17+rand(50,99)/10000,4,'.',''); //<2.18;
-    	    $x[3]=number_format(10.45+rand(200,450)/10000,4,'.','');; //<10.50;
+    	    $x['f1']=number_format(2.23+rand(50,99)/10000,4,'.','');  //<2.24;
+    	    $x['f2']=number_format(2.17+rand(50,99)/10000,4,'.',''); //<2.18;
+    	    $x['f3']=number_format(10.45+rand(200,450)/10000,4,'.','');; //<10.50;
     	    Db::name('game_xybjl')->where('id',$prior_id)->setField('bidrate',json_encode($x));
     	    $row=Db::name('game_xybjl')->where('id',$prior_id)->find();
             $result=$row['result'];
@@ -46,7 +46,7 @@ class Info extends Site
                 foreach($bidinfo as $k=>$w){
                     if('f'.$num==$k){
                     	$z=array_values($w);
-                    	$win_coin=floor($z[0]*$x[$num]);
+                    	$win_coin=floor($z[0]*$x['f'.$num]);
 
                     	$this->userModel->where('uid',$uid)->setInc('coin',$win_coin);
                     	$game=get_game($gid);
@@ -64,7 +64,7 @@ class Info extends Site
                 $userBidModel->where('id',$bid)->setField('prizeinfo',json_encode($prizeinfo));
             }
 
-    	// }
+    	}
     }
 
 }

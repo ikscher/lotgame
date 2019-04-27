@@ -1,14 +1,17 @@
+layui.use(['layer','form'],function(){
+    var layer=layui.layer,form=layui.form;
+})
 $('#mode-submit').on('click', function(){
 
     var totalScore = parseInt($("#bet-total").html());
     var data = PRESSNUM.split(",");
 
     if(totalScore > MAX_SCORE){
-        alert("您的投注额已大于最大限制" + MAX_SCORE);
+        layer.alert("您的投注额已大于最大限制" + MAX_SCORE);
         return;
     }
     if(totalScore < MIN_SCORE){
-        alert("您的投注额小于最小限制" + MIN_SCORE);
+        layer.alert("您的投注额小于最小限制" + MIN_SCORE);
         return;
     }
     var betting = {};
@@ -21,7 +24,7 @@ $('#mode-submit').on('click', function(){
     var modelname = $('#txtModelName').val();
 
     if(modelname == ''){
-        alert("请填写模式名称");
+        layer.alert("请填写模式名称");
         return;
     }
 
@@ -43,9 +46,9 @@ $('#mode-submit').on('click', function(){
                 });
                 $('#sltMode').html(option);
                 $('#txtModelName').val('模式1');
-                alert('保存成功！');
+                layer.alert('保存成功！');
             }else{
-                alert(map.msg);
+                layer.alert(map.msg);
             }
         }
     })

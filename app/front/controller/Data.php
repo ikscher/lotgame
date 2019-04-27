@@ -106,7 +106,26 @@ class Data extends Site
 
 	}
 
+    //幸运10
+    /**
+    *计算机系统随机产生10个数字,数字范围1-10各不相同,每1分钟一期，24小时开奖 如第449159期	4,1,2,9,8,10,3,7,5,6
+    */
+    public function luckyten()
+    {
+        $a=array(1,2,3,4,5,6,7,8,9,10);
+		$len=sizeof($a);
+		$temp='';
+		for ($i = $len - 1; $i > 0; $i--) {
+		    //生成一个0~i的随机数j(0 <= j < i)
+			$j=rand(0,$i);
+		    //交换a[i]和a[j]
+			$temp=$a[$i];
+			$a[$i]=$a[$j];
+			$a[$j]=$temp;
+		}
 
+		shuffle($a);
+    }
 	private function ShowCards($cards){
 	    return implode(",", array_map(function($card){
 	        $card = $card[1];

@@ -1,3 +1,6 @@
+layui.use(['layer','form'],function(){
+    var layer=layui.layer,form=layui.form;
+})
 $('#page-wrap').on('click', '[role=show]', function(){
     var orderid = $(this).attr('data-id');
     if(GTAG == 'sc'){
@@ -26,13 +29,14 @@ $('#page-wrap').on('click', '[role=show]', function(){
                 oid: orderid
             },
             success: function(map){
+                console.log(map);
                 if(map.code == 200){
                     renderModal(map.data);
                     $('body').addClass('modal-open');
                     $('#myModal').addClass('in');
                     $('#myModal').find('.modal-backdrop').addClass('in');
                 }else{
-                    alert(map.msg);
+                    layer.alert(map.msg);
                 }
             }
         })
