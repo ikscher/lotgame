@@ -35,7 +35,7 @@ class Game extends Site
         
         $this->gid = $this->request->has('gid') ? $this->request->param('gid', 0, 'intval') : 1;
         $this->assign('gid',$this->gid);
-
+       
         //游戏列表
         $this->games=$this->gameModel->where('onoff',1)->order('area_type')->select();
         $list=collection($this->games)->toArray();
@@ -45,8 +45,8 @@ class Game extends Site
         }
         // var_dump($listgame);
         $this->assign('games',$listgame);
-        if(empty($gid)) $gid=1;
-        $this->game=$this->gameModel->where('id',$gid)->find();
+        if(empty($this->gid)) $this->gid=1;
+        $this->game=$this->gameModel->where('id',$this->gid)->find();
         $this->assign('game',$this->game);
     }
     
@@ -62,6 +62,7 @@ class Game extends Site
         // $game=$this->gameModel->where('id',$this->gid)->find();
         $this->assign("gtag",$this->game['gtag']);
         $this->assign("ntype",$this->game['ntype']);
+        $this->assign("gtype",$this->game['gtype']);
         return $this->fetch();
     }
     
@@ -120,14 +121,14 @@ class Game extends Site
                         $list1['draw_time']=date('m-d H:i:s',$l['open_time']);
                         $list1['result']=$l['desc'];
                         $list1['win_no']=$l['result']=='PLAYER'?2:(($l['result']=='BANKER')?1:3);
-                        $list1['total_money']=0;
-                        $list1['win_num']=12;
-                        $list1['bet_num']=171;
+                        $list1['total_money']=0;//所有用户投注的金币总和
+                        $list1['win_num']=12; //本期投注中奖人数
+                        $list1['bet_num']=171;//本期投注人数
                         $list1['status']=$l['status'];
                         $list1['times_id']=$l['id'];
                         $list1['draw_time_full']=date('Y-m-d H:i:s',$l['open_time']);
-                        $list1['my_total_money']=0;
-                        $list1['my_win_money']= 0;
+                        $list1['my_total_money']=0;//本人投注的本期总金额
+                        $list1['my_win_money']= 0;//本人投注的本期赢得金额
                         $lists_[]=$list1;
                     }
                     $_data['timesLists']['lists']=$lists_;
@@ -136,9 +137,9 @@ class Game extends Site
                     $total_page=ceil($count/20);
                     $_data['timesLists']['total_page']=$total_page;
 
-                    $_data['dayCount']['win_num']=0;
-                    $_data['dayCount']['betting']=0;
-                    $_data['dayCount']['scale']=0;
+                    $_data['dayCount']['win_num']=0;//本人今日所有投注游戏赢取金币数（包括亏损如-99）
+                    $_data['dayCount']['betting']=0;//本人今日参与本游戏的期数
+                    $_data['dayCount']['scale']=0; //本人今日参与此游戏的或胜率
 
                     $_data['is_auto']=0;
 

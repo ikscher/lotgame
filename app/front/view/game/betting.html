@@ -5,11 +5,11 @@
 
 	{include file="game/header" /}
     <div class="game-header after">
-        <a href="/game/index?gid={$game.id}" class="hover">{$game.name}首页</a><a href="/game/intro?gid={$game.id}" class="">游戏规则</a><a href="/game/record?gid={$game.id}" class="">投注记录</a><a href="/game/mode?gid={$game.id}" class="">编辑模式</a><a href="/game/auto?gid={$game.id}" class="">自动投注</a><a href="/game/chart?gid={$game.id}" class="">走势图</a><a href="/game/total?gid={$game.id}" class="">盈利统计</a>        </div>
+        <a href="/game/index?gid={$gid}" class="hover">{$game.name}首页</a><a href="/game/intro?gid={$gid}" class="">游戏规则</a><a href="/game/record?gid={$gid}" class="">投注记录</a><a href="/game/mode?gid={$gid}" class="">编辑模式</a><a href="/game/auto?gid={$gid}" class="">自动投注</a><a href="/game/chart?gid={$gid}" class="">走势图</a><a href="/game/total?gid={$gid}" class="">盈利统计</a>        </div>
     <div class="game-this after">
         <div class="count-down" id="liTimer">&nbsp;</div>
     </div>
-    <div class="bet-mode">
+    <div class="$gid">
         <div class="my-mode">
                 <label>我的投注模式：</label>
                                     <a href="/games/mode?gid=22">[编辑模式]</a>

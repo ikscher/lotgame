@@ -113,6 +113,7 @@ class Data extends Site
     public function luckyten()
     {
         $a=array(1,2,3,4,5,6,7,8,9,10);
+        shuffle($a);
 		$len=sizeof($a);
 		$temp='';
 		for ($i = $len - 1; $i > 0; $i--) {
@@ -125,6 +126,39 @@ class Data extends Site
 		}
 
 		shuffle($a);
+        
+        $now=strtotime('now');
+        $data['open_time']=$now;
+		$data['desc']=json_encode($a);
+		$data['result']=$a[0]; //取首位
+		$data['create_time']=time();
+		$data['status']=2;//已开奖
+		$data['period']='';
+    
+        $row=Db::name('game_xy10')->where('status',1)->order('id asc')->find();
+ 
+        $data_=array();
+        if(empty($row['id'])){
+        	Db::name('game_xy10')->insert($data);
+        	// $lastid=Db::name('game_xybjl')->getLastInsID();
+        	$data_ = [
+			    [ 'open_time' => strtotime("+1minute"),'status'=>1,'period'=>'thisTimes'],
+			    [ 'open_time' => strtotime("+2minute"),'status'=>1,'period'=>''],
+			    [ 'open_time' => strtotime("+3minute"),'status'=>1,'period'=>''],
+			    [ 'open_time' => strtotime("+4minute"),'status'=>1,'period'=>''],
+			    
+			];
+			Db::name('game_xy10')->insertAll($data_);
+        }else{
+            $id=$row['id'];
+            Db::name('game_xy10')->where('id',$id)->update($data);
+            //更新下一期为当期开奖期
+            $next_id=$id+1;
+            Db::name('game_xy10')->where('id',$next_id)->update(['period'=>'thisTimes']);
+            //同时插入一条记录
+            $data_ = [ 'open_time' => strtotime("+4minute"),'status'=>1];
+            Db::name('game_xy10')->insert($data_);
+        }
     }
 	private function ShowCards($cards){
 	    return implode(",", array_map(function($card){
