@@ -129,7 +129,7 @@ class Data extends Site
         
         $now=strtotime('now');
         $data['open_time']=$now;
-		$data['desc']=json_encode($a);
+		$data['desc']=implode(',',$a);
 		$data['result']=$a[0]; //取首位
 		$data['create_time']=time();
 		$data['status']=2;//已开奖

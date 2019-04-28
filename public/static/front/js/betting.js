@@ -883,6 +883,7 @@ $('#init').on('click', function(){
 
 $('#subSelect').on('click', function(){
     var data = PRESSNUM.split(",");
+    
     for(var i = 0;i < data.length;i++){
         var $chk = $("input[name=chk]").eq(i),
             $input = $("input[name='tbNum[]']").eq(i);

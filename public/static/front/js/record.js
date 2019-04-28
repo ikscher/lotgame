@@ -145,6 +145,7 @@ function renderBox() {
 }
 
 function renderList(data){
+
     var html = '';
 
     $.each(data, function(i, o){
@@ -154,6 +155,7 @@ function renderList(data){
             var win_count = '<span class="lose_color">' + o.win_count + '</span>';
         }
         var rest = fetchRest(o);
+
         html += '<tr>';
         html += '   <td>' + o.number + '</td>';
         html += '   <td>' + o.draw_time + '</td>';
@@ -175,6 +177,7 @@ function renderList(data){
             html += '   <td></td>';
         }
         html += '</tr>';
+
     })
     $('#log-list').html(html);
 }

@@ -17,8 +17,16 @@ class Game extends Site
     private $scale_init;
     //用于测试
     public function test()
-    {
-       
+    {   //Db::table('think_user')->alias('a')->join('word w','a.id = w.artist_id','RIGHT')->select();
+        //$x=collection(Db::name('game_xybjl')->alias('a')->join('user_bid b','a.id=b.game_number','LEFT')->field('a.id,a.open_time,a.desc,a.result,a.bet_num,a.win_num,a.total_money,a.status,b.bidmoney,b.prizeinfo')->where('b.user_id',$this->uid)->order('a.id desc')->select())->toArray();
+        //var_dump($x);
+        $map['user_id']=$this->uid;
+        $map['game_id']=1;
+        $begin_time=strtotime(date('Y-m-d'));
+        $end_time=strtotime("+1 day",$begin_time);
+        //$map['create_time']= array(array('EGT',$begin_time),array('LT',$end_time));
+        $s=collection(Db::name('user_bid')->field('prizeinfo')->where($map)->select())->toArray();
+        var_dump($s);
     }
 	public function _initialize()
     {   
@@ -48,6 +56,10 @@ class Game extends Site
         if(empty($this->gid)) $this->gid=1;
         $this->game=$this->gameModel->where('id',$this->gid)->find();
         $this->assign('game',$this->game);
+
+        $this->assign("gtag",$this->game['gtag']);
+        $this->assign("ntype",$this->game['ntype']);
+        $this->assign("gtype",$this->game['gtype']);
     }
     
     //排行榜
@@ -60,9 +72,7 @@ class Game extends Site
     {   
 
         // $game=$this->gameModel->where('id',$this->gid)->find();
-        $this->assign("gtag",$this->game['gtag']);
-        $this->assign("ntype",$this->game['ntype']);
-        $this->assign("gtype",$this->game['gtype']);
+        
         return $this->fetch();
     }
     
@@ -78,6 +88,7 @@ class Game extends Site
             
             switch($gid){
                 case 1:
+                case 2:
                     $page=isset($post['page'])?$post['page']:1;
                     $offset=20*($page-1);
                     $game=get_game($gid);
@@ -85,21 +96,29 @@ class Game extends Site
                     
                     $data['code']=200;
                     $data['msg']='SUCCESS';
-           
-                    $current=Db::name('game_xybjl')->where('period','thisTimes')->find();
+                    
+                    $code=$game['code'];//游戏编码
+                    $current=Db::name('game_'.$code)->where('period','thisTimes')->find();
 
                     //上期开奖的
                     $prior_id=$current['id']-1;
-                    $prior=Db::name('game_xybjl')->where('id',$prior_id)->find();
+                    $prior=Db::name('game_'.$code)->where('id',$prior_id)->find();
                     $data_=array();
-                    $data_['result']=$prior['desc'];
-                    if($prior['result']=='PLAYER'){
-                        $data_['win_no']=2;
-                    }elseif($prior['result']=='BANKER'){
-                        $data_['win_no']=1;
-                    }elseif($prior['result']=='TIE'){
-                        $data_['win_no']=3;
+                    $data_['result']=$prior['desc'];//开奖结果
+                    
+                    //开奖中奖号码
+                    if($gid==1){
+                        if($prior['result']=='PLAYER'){
+                            $data_['win_no']=2;
+                        }elseif($prior['result']=='BANKER'){
+                            $data_['win_no']=1;
+                        }elseif($prior['result']=='TIE'){
+                            $data_['win_no']=3;
+                        }
+                    }elseif($gid==2){
+                        $data_['win_no']=$prior['result'];
                     }
+
                     $data_['number']=$prior['id'];
                     $_data['prevTimes']=$data_;
                     
@@ -107,46 +126,65 @@ class Game extends Site
                     $data__['number']=$current['id'];
                     $data__['draw_time']=$current['open_time'];
                     $data__['id']=$current['id'];
-                    $data__['stop_time']=50;
-                    $data__['kj_time']=54;
+                    $data__['stop_time']=50; //距离停止下注时间
+                    $data__['kj_time']=54; //距离开奖时间
                     $data__['is_change']=true;
 
                     $_data['thisTimes']=$data__;
-
-                    $lists=collection(Db::name('game_xybjl')->order('id desc')->limit($offset,20)->select())->toArray();
+                    
+                    $lists=collection(Db::name('game_'.$code)->alias('a')->join('user_bid b','a.id=b.game_number','LEFT')->field('a.id,a.open_time,a.desc,a.result,a.bet_num,a.win_num,a.total_money,a.status,b.bidmoney,b.prizeinfo')->order('a.id desc')->limit($offset,20)->select())->toArray();
+                    // $lists=collection(Db::name('game_xybjl')->order('id desc')->limit($offset,20)->select())->toArray();
                     $list1=array();
                     $lists_=array();
                     foreach($lists as $l){
                         $list1['number']=$l['id'];
                         $list1['draw_time']=date('m-d H:i:s',$l['open_time']);
                         $list1['result']=$l['desc'];
-                        $list1['win_no']=$l['result']=='PLAYER'?2:(($l['result']=='BANKER')?1:3);
-                        $list1['total_money']=0;//所有用户投注的金币总和
-                        $list1['win_num']=12; //本期投注中奖人数
-                        $list1['bet_num']=171;//本期投注人数
+                        if($gid==1) {
+                            $list1['win_no']=$l['result']=='PLAYER'?2:(($l['result']=='BANKER')?1:3);
+                        }elseif($gid==2){
+                            $list1['win_no']=strval($l['result']);
+                        }
+                        $list1['total_money']=$l['total_money'];//所有用户投注的金币总和
+                        $list1['win_num']=$l['win_num']; //本期投注中奖人数
+                        $list1['bet_num']=$l['bet_num'];//本期投注人数
                         $list1['status']=$l['status'];
                         $list1['times_id']=$l['id'];
                         $list1['draw_time_full']=date('Y-m-d H:i:s',$l['open_time']);
-                        $list1['my_total_money']=0;//本人投注的本期总金额
-                        $list1['my_win_money']= 0;//本人投注的本期赢得金额
+
+                        $list1['my_total_money']=strval(!empty($l['bidmoney'])?$l['bidmoney']:0);//本人投注的本期总金额
+                        $list1['my_win_money']= strval(!empty($l['prizeinfo'])?array_sum(json_decode($l['prizeinfo'],true)):0);//本人投注的本期赢得金额
                         $lists_[]=$list1;
                     }
                     $_data['timesLists']['lists']=$lists_;
 
-                    $count=Db::name('game_xybjl')->count('id');
+                    $count=Db::name('game_'.$code)->count('id');
                     $total_page=ceil($count/20);
                     $_data['timesLists']['total_page']=$total_page;
-
-                    $_data['dayCount']['win_num']=0;//本人今日所有投注游戏赢取金币数（包括亏损如-99）
-                    $_data['dayCount']['betting']=0;//本人今日参与本游戏的期数
-                    $_data['dayCount']['scale']=0; //本人今日参与此游戏的或胜率
+                    
+                    $map['user_id']=$this->uid;
+                    $map['game_id']=$gid;
+                    $begin_time=strtotime(date('Y-m-d'));
+                    $end_time=strtotime("+1 day",$begin_time);
+                    $map['create_time']= array(array('EGT',$begin_time),array('LT',$end_time));
+                    $day_sum_num=Db::name('user_bid')->where($map)->sum('bidmoney');
+                    $day_betting=Db::name('user_bid')->where($map)->count('id');
+                    $day_win_arr=collection(Db::name('user_bid')->field('prizeinfo')->where($map)->select())->toArray();
+                    $day_win_num=0;
+                    foreach($day_win_arr as $d){
+                       $day_win_num+=!empty($d['prizeinfo'])?array_sum(json_decode($d['prizeinfo'],true)):0;
+                    }
+                    $day_win_num-=$day_sum_num;
+                    $_data['dayCount']['win_num']=$day_win_num;//本人今日所有投注游戏赢取金币数（包括亏损如-99）=赢取-总投
+                    $_data['dayCount']['betting']=$day_betting;//本人今日参与本游戏的期数
+                    $_data['dayCount']['scale']=(!empty($day_sum_num) && ($day_win_num>=0))?sprintf("%.2f",($day_win_num/$day_sum_num)*100).'%':'0%'; //本人今日参与此游戏的获胜率
 
                     $_data['is_auto']=0;
 
                     $data['data']=$_data;
 
                     echo json_encode($data);exit;
-                case 2:
+            
                     
             }
        }
@@ -233,7 +271,11 @@ class Game extends Site
                 if(empty($zz['desc'])) continue; //还未开奖的一期，已下注，不记入下注记录
                 $rows_b['result']=$zz['desc'];
                 $rows_b['number']=$v['game_number'];
-                $rows_b['win_no']=$zz['result']=='PLAYER'?2:($zz['result']=='BANKER'?1:3);
+                if($post['gid']==1){
+                    $rows_b['win_no']=$zz['result']=='PLAYER'?2:($zz['result']=='BANKER'?1:3);
+                }elseif($post['gid']==2){
+                    $rows_b['win_no']=$zz['result'];
+                }
                 $rows_b['total_money']=$v['bidmoney'];
                 $rows_b['win_money']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0;
                 $rows_b['win_count']=$rows_b['win_money']-$rows_b['total_money'];
@@ -382,16 +424,16 @@ EOT;
             
             $prizeinfo=json_decode($row['prizeinfo'],true);
             $arr=json_decode($row['bidinfo'],true);
-            foreach($arr as $k=>$v){
+            foreach($scale_init[$game['code']] as $k=>$v){
                 
-                $f["$k"]['no']=key($v);
-                $f["$k"]['scale_init;']=isset($scale_init_["$k"])?$scale_init_["$k"]:'';
+                $f["$k"]['no']=$v[1];
+                $f["$k"]['scale_init']=isset($v[0])?$v[0]:'';
                 $f["$k"]['scale_draw']=isset($scale_draw["$k"])?$scale_draw["$k"]:'';
                 $f["$k"]['scale_prev']=isset($scale_prev["$k"])?$scale_prev["$k"]:'';
-                $win_num=$prizeinfo[$k];
+                $win_num=isset($prizeinfo[$k])?$prizeinfo[$k]:0;
                 $f["$k"]['win_num']=$win_num;
                 if($win_num>0) $f["$k"]['is_win']=1;
-                $f["$k"]['bet_num']=array_values($v)[0];
+                $f["$k"]['bet_num']= !empty($arr[$k])?array_values($arr[$k])[0]:0;
             }
             $data['nolists']=$f;
             $list['data']=$data;
@@ -408,12 +450,15 @@ EOT;
 
 
         $gid=$this->gid;
+        $game=get_game($gid);
+
+        $open_time=Db::name('game_'.$game['code'])->where('id',$oid)->value('open_time');
+        $stop_time=$open_time-time();
+        $this->assign('stop_time',$stop_time);
         switch($gid){
             case 1: //幸运百家乐（对于百家乐，期号和ID都是一个值ID,所以...
                 //开奖剩余时间
-                $open_time=Db::name('game_xybjl')->where('id',$oid)->value('open_time');
-                $stop_time=$open_time-time();
-                $this->assign('stop_time',$stop_time);
+                
                 return $this->fetch('game/betting_xybjl');
                 break;
             case 2:

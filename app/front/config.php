@@ -14,11 +14,23 @@ return [
       'captcha_id'=>'48a6ebac4ebc6642d68c217fca33eb4d',
       'private_key'=>'4f1c085290bec5afdc54df73535fc361'
    ],
-   'scale_init'=>[
+   'scale_init'=>[  //各种游戏开奖初始赔率
       'xybjl'=>[
-         'f1'=>2.2400, //BANKER
-         'f2'=>2.1800, //PLAYER
-         'f3'=>10.5000 //TIE
+         'f1'=>array('2.2400','庄'), //BANKER
+         'f2'=>array('2.1800','闲'), //PLAYER
+         'f3'=>array('10.5000','和') //TIE
+      ],
+      'xy10'=>[
+          'f1'=>array(9.9800,1),
+          'f2'=>array(9.9800,2),
+          'f3'=>array(9.9800,3),
+          'f4'=>array(9.9800,4),
+          'f5'=>array(9.9800,5),
+          'f6'=>array(9.9800,6),
+          'f7'=>array(9.9800,7),
+          'f8'=>array(9.9800,8),
+          'f9'=>array(9.9800,9),
+          'f10'=>array(9.9800,10)
       ]
    ]
 ];

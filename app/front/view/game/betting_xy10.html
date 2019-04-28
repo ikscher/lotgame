@@ -71,11 +71,11 @@
         </div>
         <div class="bet-btn after">
             <div class="power">
-                <img src="/Public/home/images/chips_10000.png" onclick="chips(10000, 1)">
-                <img src="/Public/home/images/chips_100000.png" onclick="chips(100000, 2)">
-                <img src="/Public/home/images/chips_500000.png" onclick="chips(500000, 3)">
-                <img src="/Public/home/images/chips_1000000.png" onclick="chips(1000000, 4)">
-                <img src="/Public/home/images/chips_5000000.png" onclick="chips(5000000, 5)">
+                <img src="__IMAGE__/chips_10000.png" onclick="chips(10000, 1)">
+                <img src="__IMAGE__/chips_100000.png" onclick="chips(100000, 2)">
+                <img src="__IMAGE__/chips_500000.png" onclick="chips(500000, 3)">
+                <img src="__IMAGE__/chips_1000000.png" onclick="chips(1000000, 4)">
+                <img src="__IMAGE__/chips_5000000.png" onclick="chips(5000000, 5)">
             </div>
             <div class="desh">
                 <input id="betsLeft" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')">
@@ -237,16 +237,16 @@
             </div>
 
    
-
-    <script type="text/javascript">
-        (function(root){
-            root.GID = {$gid};
+<input name="hidTimes" id="hidTimes" type="hidden" value="1">
+<script type="text/javascript">
+    (function(root){
+        root.GID = {$gid};
         root.OID = {$oid}; //id
         root.MAX_SCORE = 30000000;
         root.MIN_SCORE = 100;
         root.MY_SCORE = {$user['coin']};
         root.GTYPE = {$game['gtype']};
-        root.PRESSNUM = '10,10,10'; //投注框的数字
+        root.PRESSNUM = '{$game[\'pressnum\']}'; //投注框的数字
         root.STOP_TIME = {$stop_time};
         root.NUMBER = {$oid}; //期号
     })(this)

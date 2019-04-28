@@ -130,7 +130,7 @@
         root.MIN_SCORE = 100;
         root.MY_SCORE = {$user['coin']};
         root.GTYPE = {$game['gtype']};
-        root.PRESSNUM = '10,10,10'; //投注框的数字
+        root.PRESSNUM = '{$game[\'pressnum\']}'; //投注框的数字
         root.STOP_TIME = {$stop_time};
         root.NUMBER = {$oid}; //期号
     })(this)

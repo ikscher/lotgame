@@ -181,7 +181,7 @@ function fetchPrevRes(data){
     var html = '';
 
     switch (GID){
-        case 26 :
+        case 2 :
         case 19 :
             var res = data.result.split(',');
             html += '<div class="lis"><label>一区号码：</label><span>' + parseInt(res[0]) + '</span></div>';
@@ -200,7 +200,7 @@ function fetchPrevRes(data){
             html += '<div class="lis"><label>一区号码：</label><span>' + res.first_value + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + data.win_no + '</span></div>';
             break;
-        case 2 :
+        case 3 :
         case 7 :
         case 21 :
             var res = data.result.split(',');
@@ -317,6 +317,7 @@ function renderNoList(data){
             bet = '<a class="ed">已开奖</a>';
         }
         if(o.my_win_money !== 0){
+            console.log(o.my_win_money);
             var my_win_money = o.my_win_money.replace(/,/g, "");
             var my_total_money = o.my_total_money.replace(/,/g, "");
             if(parseInt(my_win_money) > parseInt(my_total_money)){
