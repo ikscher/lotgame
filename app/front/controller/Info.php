@@ -1,6 +1,6 @@
 <?php
 /*
-开奖结果比兑用户投注,根据开奖赔率赔付用户
+开奖结果比兑用户投注,根据开奖赔率赔付用户及设置相关中奖信息
 */
 namespace app\front\controller;
 use think\Controller;
@@ -63,6 +63,8 @@ class Info extends Controller
 	                    	adduserlog($uid,$game['name'].'第'.$oid.'期,中奖'.$win_coin.'金币',$win_coin,0,$coin,'hit');//hit类型:游戏中奖
 	                    	// $k=$k==1?'庄':($k==2?'闲':'和');
 	                    	$prizeinfo[$k]=$win_coin;
+                            //添加中奖人数
+	                    	Db::name('game_xybjl')->where('id',$prior_id)->setInc('win_num',1);
 	                    }else{
 	                    	// $k=$k==1?'庄':($k==2?'闲':'和');
 	                    	$prizeinfo[$k]=0;
@@ -78,7 +80,17 @@ class Info extends Controller
 	    	    $prior_id=$id-1;
 	    	    //设置赔率
 	    	    $x=array();
-	    	    $x['f1']=$x['f2']=$x['f3']=$x['f4']=$x['f5']=$x['f6']=$x['f7']=$x['f8']=$x['f9']=$x['f10']=9.98;
+	    	    $y=array(9.9791,9.9804,9.9800,9.9812,9.9789);
+	    	    $x['f1']=$y[array_rand($y,1)];
+	    	    $x['f2']=$y[array_rand($y,1)];
+	    	    $x['f3']=$y[array_rand($y,1)];
+	    	    $x['f4']=$y[array_rand($y,1)];
+	    	    $x['f5']=$y[array_rand($y,1)];
+	    	    $x['f6']=$y[array_rand($y,1)];
+	    	    $x['f7']=$y[array_rand($y,1)];
+	    	    $x['f8']=$y[array_rand($y,1)];
+	    	    $x['f9']=$y[array_rand($y,1)];
+	    	    $x['f10']=$y[array_rand($y,1)];
 	    	    Db::name('game_xy10')->where('id',$prior_id)->setField('bidrate',json_encode($x));
 	    	    $row=Db::name('game_xy10')->where('id',$prior_id)->find();
 	            $result=$row['result'];
@@ -105,6 +117,8 @@ class Info extends Controller
 	                    	$coin=$this->userModel->where('uid',$uid)->value('coin');
 	                    	adduserlog($uid,$game['name'].'第'.$oid.'期,中奖'.$win_coin.'金币',$win_coin,0,$coin,'hit');//hit类型:游戏中奖
 	                    	$prizeinfo[$k]=$win_coin;
+	                    	//添加中奖人数
+	                    	Db::name('game_xy10')->where('id',$prior_id)->setInc('win_num',1);
 	                    }else{
 	                    	$prizeinfo[$k]=0;
 	                    }

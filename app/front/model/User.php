@@ -83,6 +83,12 @@ class User extends Model
         return $this->hasMany('UserBid','user_id');
     }
 
+    public function bidmode()
+    {
+        //关联模式表
+        return $this->hasMany('UserBidmode','user_id');
+    }
+
     public function recomyield()
     {
         //关联推广奖励表

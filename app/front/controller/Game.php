@@ -132,8 +132,8 @@ class Game extends Site
 
                     $_data['thisTimes']=$data__;
                     
-                    $lists=collection(Db::name('game_'.$code)->alias('a')->join('user_bid b','a.id=b.game_number','LEFT')->field('a.id,a.open_time,a.desc,a.result,a.bet_num,a.win_num,a.total_money,a.status,b.bidmoney,b.prizeinfo')->order('a.id desc')->limit($offset,20)->select())->toArray();
-                    // $lists=collection(Db::name('game_xybjl')->order('id desc')->limit($offset,20)->select())->toArray();
+                    // $lists=collection(Db::name('game_'.$code)->alias('a')->join('user_bid b','a.id=b.game_number','LEFT')->field('a.id,a.open_time,a.desc,a.result,a.bet_num,a.win_num,a.total_money,a.status,b.bidmoney,b.prizeinfo')->order('a.id desc')->limit($offset,20)->select())->toArray();
+                    $lists=collection(Db::name('game_'.$code)->field('id,open_time,desc,result,bet_num,win_num,total_money,status')->order('id desc')->limit($offset,20)->select())->toArray();
                     $list1=array();
                     $lists_=array();
                     foreach($lists as $l){
@@ -151,9 +151,21 @@ class Game extends Site
                         $list1['status']=$l['status'];
                         $list1['times_id']=$l['id'];
                         $list1['draw_time_full']=date('Y-m-d H:i:s',$l['open_time']);
-
-                        $list1['my_total_money']=strval(!empty($l['bidmoney'])?$l['bidmoney']:0);//本人投注的本期总金额
-                        $list1['my_win_money']= strval(!empty($l['prizeinfo'])?array_sum(json_decode($l['prizeinfo'],true)):0);//本人投注的本期赢得金额
+                        
+                        $map['game_id']=$gid;
+                        $map['game_number']=$l['id'];
+                        $map['user_id']=$this->uid;
+                        $row=collection(Db::name('user_bid')->field('bidmoney,prizeinfo')->where($map)->select())->toArray();
+                        $my_total_money=0;
+                        $my_win_money=0;
+                        foreach($row as $v){
+                            $my_total_money+=$v['bidmoney'];
+                            $my_win_money+=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0;
+                        }
+                        unset($row);
+                        unset($map);
+                        $list1['my_total_money']=strval($my_total_money);//本人投注的本期总金额
+                        $list1['my_win_money']= strval($my_win_money);//本人投注的本期赢得金额
                         $lists_[]=$list1;
                     }
                     $_data['timesLists']['lists']=$lists_;
@@ -220,10 +232,52 @@ class Game extends Site
     //编辑模式
     public function mode()
     {   
-        $this->assign("gtag",$this->game['gtag']);
-        $this->assign("ntype",$this->game['ntype']);
-        $this->assign("gtype",$this->game['gtype']);
+        $oid = $this->request->has('oid') ? $this->request->param('oid', 0, 'intval') : 0; //彩票期号
+        $this->assign('oid',$oid);
+
+        $map['user_id']=$this->uid;
+        $map['game_id']=$this->gid;
+        $map['game_number']=$oid;
+        $bidmoney=0;
+        $bidinfo=$this->userBidModel->where($map)->value('bidinfo');
+        $bidmoney=$this->userBidModel->where($map)->value('bidmoney');
+        $bids=array();
+        if(!empty($bidinfo)){
+            $bids=json_decode($bidinfo,true);
+        }
+        $this->assign('action','mode');
+        $this->assign('bids',$bids);
+        $this->assign('bidmoney',$bidmoney);
         return $this->fetch();
+    }
+
+    /**
+    *****获取模式
+    *$y[array_rand($y,1)];
+    *格式：{"code":200,"msg":"SUCCESS","data":{"mode_name":"\u6a21\u5f0f2","f1":10,"f2":10,"f3":10,"f4":10,"f5":10,"f6":10,"f7":10,"f8":10,"f9":10,"f10":10}}
+    */
+    public function get_mode()
+    {
+
+    }
+
+    //保存模式
+    public function save_mode()
+    {   
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            echo json_encode($post);exit;
+            $gid=$post['gid'];
+            $betting=$post['betting'];
+            $mode_id=$post['mid'];
+            $mode_name=$post['mname'];
+            if($mode_id>0){//修改
+
+            }else{//新增
+
+            }
+        }
+
     }
 
     //投注记录
@@ -449,21 +503,23 @@ EOT;
         $this->assign('oid',$oid);
 
 
-        $gid=$this->gid;
-        $game=get_game($gid);
+        // $gid=$this->gid;
+        // $game=get_game($gid);
 
-        $open_time=Db::name('game_'.$game['code'])->where('id',$oid)->value('open_time');
+        $open_time=Db::name('game_'.$this->game['code'])->where('id',$oid)->value('open_time');
         $stop_time=$open_time-time();
         $this->assign('stop_time',$stop_time);
-        switch($gid){
-            case 1: //幸运百家乐（对于百家乐，期号和ID都是一个值ID,所以...
-                //开奖剩余时间
+        $this->assign('action','bet');
+        return $this->fetch('game/betting');
+        // switch($gid){
+        //     case 1: //幸运百家乐（对于百家乐，期号和ID都是一个值ID,所以...
+        //         //开奖剩余时间
                 
-                return $this->fetch('game/betting_xybjl');
-                break;
-            case 2:
-                return $this->fetch('game/betting_xy10');
-        } 
+        //         return $this->fetch('game/betting_xybjl');
+        //         break;
+        //     case 2:
+        //         return $this->fetch('game/betting_xy10');
+        // } 
 
         
         

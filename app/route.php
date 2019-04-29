@@ -102,6 +102,8 @@ Route::rule('game/get_chart','front/game/get_chart');
 Route::rule('game/get_bet_info','front/game/get_bet_info');
 Route::rule('game/betting','front/game/betting');
 Route::rule('game/betting_submit','front/game/betting_submit');
+Route::rule('game/save_mode','front/game/save_mode');
+Route::rule('game/get_mode','front/game/get_mode');
 Route::rule('game/test','front/game/test');
 //Crond
 Route::rule('data/baccarat','front/data/baccarat');

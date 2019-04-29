@@ -29,7 +29,7 @@ $('#mode-submit').on('click', function(){
     }
 
     $.ajax({
-        url: '/games/mode_save',
+        url: '/game/save_mode',
         type: 'post',
         dataType: 'json',
         data: {
@@ -39,6 +39,7 @@ $('#mode-submit').on('click', function(){
             mname: modelname
         },
         success: function(map){
+            console.log(map)
             if(map.code == 200){
                 var option = '<option value="0">--新建模式--</option>';
                 $.each(map.data, function(i,o){
