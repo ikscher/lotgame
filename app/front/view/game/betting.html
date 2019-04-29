@@ -12,9 +12,9 @@
     <div class="bet-mode">
          <div class="my-mode">
             <label>我的投注模式：</label>
-            <a role="useMyMode" data-id="51372">模式1</a>
-            <a role="useMyMode" data-id="51373">模式2</a>
-            <a role="useMyMode" data-id="51374">模式3</a>                    
+            {volist name="modes" id="vo"}
+            <a role="useMyMode" data-id="{$vo.id}">{$vo.name}</a>
+            {/volist}             
             <a href="/game/mode?gid={$gid}">[编辑模式]</a>
         </div>   
         {switch name="$gid"}

@@ -22,11 +22,23 @@ $('#mode-submit').on('click', function(){
     }
     var modelid = $('#sltMode').val();
     var modelname = $('#txtModelName').val();
-
     if(modelname == ''){
         layer.alert("请填写模式名称");
         return;
     }
+
+    var isvalid = false;
+    $('#sltMode option').each(function(index,ele){
+        if($(ele).text()==modelname){
+            isvalid=true;
+            return false; 
+        }
+    });
+    if(isvalid){
+        layer.alert("模式名称重复,请先修改模式名称！");
+        return;
+    }
+    
 
     $.ajax({
         url: '/game/save_mode',
@@ -905,7 +917,7 @@ $('#sltMode').on('change', function(){
         $('#txtModelName').val('模式1');
     }else{
         $.ajax({
-            url: '/games/get_mode',
+            url: '/game/get_mode',
             type: 'post',
             dataType: 'json',
             data: {
@@ -939,7 +951,7 @@ $('#btnremove').on('click', function(){
     var modelid = $('#sltMode').val();
     if(modelid != 0){
         $.ajax({
-            url: '/games/mode_del',
+            url: '/game/del_mode',
             type: 'post',
             dataType: 'json',
             data: {
@@ -955,10 +967,10 @@ $('#btnremove').on('click', function(){
                     $('#sltMode').html(option);
                     $('#txtModelName').val('模式1');
                     init();
-                    alert('删除成功！')
+                    layer.alert('删除成功！')
 
                 }else{
-                    alert(map.msg);
+                    layer.alert(map.msg);
                 }
             }
         })
@@ -970,7 +982,7 @@ $('#btnremove').on('click', function(){
 /*上次投注*/
 $('#prevBetting').on('click', function(){
     $.ajax({
-        url: '/games/betting_prev',
+        url: '/game/betting_prev',
         type: 'post',
         dataType: 'json',
         data: {

@@ -6,10 +6,12 @@ use think\Session;
 use think\Db;
 use app\admin\model\Game as gameModel;
 use app\front\model\UserBid as userBidModel;
+use app\front\model\UserBidmode as userBidmodeModel;
 class Game extends Site
 {   
 	private $gameModel;
     private $userBidModel;
+    private $userBidmodeModel;
     private $games;
     private $game;
     private $gid;
@@ -20,13 +22,15 @@ class Game extends Site
     {   //Db::table('think_user')->alias('a')->join('word w','a.id = w.artist_id','RIGHT')->select();
         //$x=collection(Db::name('game_xybjl')->alias('a')->join('user_bid b','a.id=b.game_number','LEFT')->field('a.id,a.open_time,a.desc,a.result,a.bet_num,a.win_num,a.total_money,a.status,b.bidmoney,b.prizeinfo')->where('b.user_id',$this->uid)->order('a.id desc')->select())->toArray();
         //var_dump($x);
-        $map['user_id']=$this->uid;
-        $map['game_id']=1;
-        $begin_time=strtotime(date('Y-m-d'));
-        $end_time=strtotime("+1 day",$begin_time);
-        //$map['create_time']= array(array('EGT',$begin_time),array('LT',$end_time));
-        $s=collection(Db::name('user_bid')->field('prizeinfo')->where($map)->select())->toArray();
-        var_dump($s);
+        // $map['user_id']=$this->uid;
+        // $map['game_id']=1;
+        // $begin_time=strtotime(date('Y-m-d'));
+        // $end_time=strtotime("+1 day",$begin_time);
+        // //$map['create_time']= array(array('EGT',$begin_time),array('LT',$end_time));
+        // $s=collection(Db::name('user_bid')->field('prizeinfo')->where($map)->select())->toArray();
+        // var_dump($s);
+        $modes=collection($this->userBidmodeModel->order('id asc')->select())->toArray();
+        var_dump($modes);
     }
 	public function _initialize()
     {   
@@ -34,6 +38,7 @@ class Game extends Site
         if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
         $this->gameModel = new gameModel();
         $this->userBidModel=new userBidModel();
+        $this->userBidmodeModel=new userBidmodeModel();
         $this->game_area_type=Config::get('game_area_type');
  
         $this->assign('game_area_type',$this->game_area_type);
@@ -248,6 +253,10 @@ class Game extends Site
         $this->assign('action','mode');
         $this->assign('bids',$bids);
         $this->assign('bidmoney',$bidmoney);
+
+        $modes=$this->userBidmodeModel->order('id asc')->select();
+        $this->assign('modes',$modes);
+
         return $this->fetch();
     }
 
@@ -258,7 +267,19 @@ class Game extends Site
     */
     public function get_mode()
     {
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $mode_id=$post['mid'];
+            $gid=$post['gid'];
+            $mode=$this->userBidmodeModel->where('id',$mode_id)->find();
+            $bidinfo=json_decode($mode['bidinfo'],true);
+            $bidinfo['mode_name']=$mode['name'];
 
+            $data['code']=200;
+            $data['msg']='SUCCESS';
+            $data['data']=$bidinfo;
+            echo json_encode($data);exit;
+        }
     }
 
     //保存模式
@@ -266,18 +287,62 @@ class Game extends Site
     {   
         if($this->request->isPost()){
             $post=$this->request->post();
-            echo json_encode($post);exit;
+            // echo json_encode($post);exit;
             $gid=$post['gid'];
             $betting=$post['betting'];
             $mode_id=$post['mid'];
             $mode_name=$post['mname'];
             if($mode_id>0){//修改
-
+                $data['name']=$mode_name;
+                $data['bidinfo']=json_encode($betting);
+                $ret=$this->userBidmodeModel->where('id',$mode_id)->save($data);
+                if($ret==false) { echo json_encode(array('code'=>999,'msg'=>'提交错误'));exit;}
             }else{//新增
-
+                $data['gid']=$gid;
+                $data['bidinfo']=json_encode($betting);
+                $data['name']=$mode_name;
+                $data['user_id']=$this->uid;
+                // $data['create_time']=time();
+                $ret=$this->userBidmodeModel->save($data);
+                if($ret==false) { echo json_encode(array('code'=>999,'msg'=>'提交错误'));exit;}
             }
+            $modes=collection($this->userBidmodeModel->field('id,name')->order('id asc')->select())->toArray();
+            $options=array();
+            foreach($modes as $k=>$v){
+                $options[$k]['id']=$v['id'];
+                $options[$k]['mode_name']=$v['name'];
+            }
+            $selects['code']=200;
+            $selects['data']=$options;
+            echo json_encode($selects);exit;
         }
 
+    }
+    //删除模式
+    public function del_mode()
+    {
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $mode_id=$post['mid'];
+            $gid=$post['gid'];
+
+            $ret=$this->userBidmodeModel->where('id',$mode_id)->delete();
+
+            if($ret==false){
+                echo json_encode(array('code'=>999,'msg'=>'删除模式失败！'));exit;
+            }else{
+                $modes=collection($this->userBidmodeModel->field('id,name')->order('id asc')->select())->toArray();
+                $options=array();
+                foreach($modes as $k=>$v){
+                    $options[$k]['id']=$v['id'];
+                    $options[$k]['mode_name']=$v['name'];
+                }
+                $selects['code']=200;
+                $selects['data']=$options;
+                echo json_encode($selects);exit;
+            }
+
+        }
     }
 
     //投注记录
@@ -501,28 +566,34 @@ EOT;
     {   
         $oid = $this->request->has('oid') ? $this->request->param('oid', 0, 'intval') : 0; //彩票期号
         $this->assign('oid',$oid);
-
-
-        // $gid=$this->gid;
-        // $game=get_game($gid);
-
+        
+        //投注模式
+        $map['gid']=$this->gid;
+        $map['user_id']=$this->uid;
+        $modes=$this->userBidmodeModel->where($map)->select();
+        $this->assign('modes',$modes);
+        
+        //剩余开奖时间
         $open_time=Db::name('game_'.$this->game['code'])->where('id',$oid)->value('open_time');
         $stop_time=$open_time-time();
         $this->assign('stop_time',$stop_time);
+        //动作是？投注OR模式
         $this->assign('action','bet');
         return $this->fetch('game/betting');
-        // switch($gid){
-        //     case 1: //幸运百家乐（对于百家乐，期号和ID都是一个值ID,所以...
-        //         //开奖剩余时间
-                
-        //         return $this->fetch('game/betting_xybjl');
-        //         break;
-        //     case 2:
-        //         return $this->fetch('game/betting_xy10');
-        // } 
+    }
 
-        
-        
+    //上期投注,用户对此游戏的最后一次投注
+    //{"code":200,"msg":"SUCCESS","data":{"id":"1078743","times_id":"1284750","user_id":"131726","f1":"0","f2":"20","f3":"0","f4":"20","f5":"0","f6":"20","f7":"0","f8":"20","f9":"0","f10":"20","bet_time":"1556457938","total_money":"100","win_money":"199","is_win":"1"}}
+    public function betting_prev()
+    {
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $gid=$post['gid'];
+            
+            $map['game_id']=$gid;
+            $map['user_id']=$this->uid;
+            $this->userBidModel->where($map)->order('id desc')->find();//最后一期
+        }
     }
 
     //投注

@@ -1013,7 +1013,7 @@ $('#usefenpei').on('click', function(){
 $('[role=useMyMode]').on('click', function(){
     var modelid = $(this).attr('data-id');
     $.ajax({
-        url: '/games/get_mode',
+        url: '/game/get_mode',
         type: 'post',
         dataType: 'json',
         data: {
@@ -1044,7 +1044,7 @@ $('[role=useMyMode]').on('click', function(){
 /*上次投注*/
 $('#prevBetting').on('click', function(){
     $.ajax({
-        url: '/games/betting_prev',
+        url: '/game/betting_prev',
         type: 'post',
         dataType: 'json',
         data: {

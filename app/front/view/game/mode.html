@@ -14,9 +14,9 @@
             <label>选择投注模式：</label>
             <select id="sltMode">
                 <option value="0">--新建模式--</option>
-                <option value="51372">模式1</option>
-                <option value="51373">模式2</option>
-                <option value="51374">模式3</option>                
+                {volist name="modes" id="vo"}
+                <option value="{$vo.id}">{$vo.name}</option>
+                {/volist}          
             </select>
             <label>模式名称：</label>
             <input id="txtModelName" type="text" value="模式1">
