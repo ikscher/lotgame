@@ -94,6 +94,13 @@
       </div>
 
       <div class="layui-form-item">
+        <label class="layui-form-label">类型</label>
+        <div class="layui-input-inline">
+          <input name="gtype" autocomplete="off" required lay-verify="required|nubmer" placeholder="" class="layui-input" type="text" {notempty name="$game.gtype"}value="{$game.gtype}"{else /}value="0"{/notempty}>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">排序</label>
         <div class="layui-input-inline" >
           <input name="sort" autocomplete="off" required lay-verify="required|number" placeholder="" class="layui-input" type="text" {notempty name="$game.sort"}value="{$game.sort}"{else /}value="0"{/notempty}>

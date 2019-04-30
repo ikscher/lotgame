@@ -1,0 +1,127 @@
+<div class="bet-mode">
+    <div class="my-mode">
+        <label>我的投注模式：</label>
+        <a href="/games/mode?gid=6">[编辑模式]</a>
+    </div>                        <div class="group d">
+        <a role="chgAllTimes" data-m="0.1">0.1倍</a>
+        <a role="chgAllTimes" data-m="0.5">0.5倍</a>
+        <a role="chgAllTimes" data-m="0.8">0.8倍</a>
+        <a role="chgAllTimes" data-m="1.2">1.2倍</a>
+        <a role="chgAllTimes" data-m="1.5">1.5倍</a>
+        <a role="chgAllTimes" data-m="2">2倍</a>
+        <a role="chgAllTimes" data-m="5">5倍</a>
+        <a role="chgAllTimes" data-m="10">10倍</a>
+        <a role="chgAllTimes" data-m="50">50倍</a>
+        <a role="chgAllTimes" data-m="100">100倍</a>
+    </div>
+</div>
+<div class="bet-btn after">
+    <div class="power">
+        <img src="/Public/home/images/chips_10000.png" onclick="chips(10000, 1)">
+        <img src="/Public/home/images/chips_100000.png" onclick="chips(100000, 2)">
+        <img src="/Public/home/images/chips_500000.png" onclick="chips(500000, 3)">
+        <img src="/Public/home/images/chips_1000000.png" onclick="chips(1000000, 4)">
+        <img src="/Public/home/images/chips_5000000.png" onclick="chips(5000000, 5)">
+    </div>
+    <div class="desh">
+        <input id="betsLeft" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')">
+        <button class="btn" type="button" id="usefenpei">定额梭哈</button>
+    </div>
+    <div class="btns">
+        <button class="btn" type="button" id="init">清除</button>
+        <button class="btn" type="button" role="userModel" data-m="0">全包</button>
+        <button class="btn" type="button" id="subSelect">反选</button>
+        <button class="btn" type="button" id="useSuoha">梭哈</button>
+        <button class="btn" type="button" id="prevBetting">上次投注</button>
+    </div>
+    <div class="total">
+        <label>总投注：</label>
+        <i id="bet-total">0</i>
+        <button class="btn" type="button" id="bet-submit">确认投注</button>
+    </div>
+</div>
+<div class="bet-nos after">
+    <table class="l">
+        <thead>
+            <tr>
+                <th width="10%">号码</th>
+                <th width="16%">赔率</th>
+                <th width="19%">已投注</th>
+                <th width="10%">选择</th>
+                <th width="21%">投注</th>
+                <th width="24%">倍数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><i>豹</i></td>
+                <td>100.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f1"></td>
+                <td><input name="tbNum[]" role="f1" data-index="0" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f1" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f1" data-num="2">2</button>
+                    <button class="btn beilv" role="f1" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>顺</i></td>
+                <td>16.6700</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f2"></td>
+                <td><input name="tbNum[]" role="f2" data-index="1" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f2" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f2" data-num="2">2</button>
+                    <button class="btn beilv" role="f2" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>对</i></td>
+                <td>3.7000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f3"></td>
+                <td><input name="tbNum[]" role="f3" data-index="2" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f3" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f3" data-num="2">2</button>
+                    <button class="btn beilv" role="f3" data-num="10">10</button>
+                </td>
+            </tr>                </tbody>
+        </table>
+        <table class="r">
+            <thead>
+                <tr>
+                    <th width="10%">号码</th>
+                    <th width="16%">赔率</th>
+                    <th width="19%">已投注</th>
+                    <th width="10%">选择</th>
+                    <th width="21%">投注</th>
+                    <th width="24%">倍数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><i>半</i></td>
+                    <td>2.7800</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f4"></td>
+                    <td><input name="tbNum[]" role="f4" data-index="3" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f4" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f4" data-num="2">2</button>
+                        <button class="btn beilv" role="f4" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>杂</i></td>
+                    <td>3.3300</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f5"></td>
+                    <td><input name="tbNum[]" role="f5" data-index="4" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f5" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f5" data-num="2">2</button>
+                        <button class="btn beilv" role="f5" data-num="10">10</button>
+                    </td>
+                </tr>                </tbody>
+            </table>
+        </div>

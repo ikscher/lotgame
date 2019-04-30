@@ -1,0 +1,419 @@
+<div class="bet-mode">
+    <div class="my-mode">
+        <label>我的投注模式：</label>
+        <a href="/games/mode?gid=5">[编辑模式]</a>
+    </div>            <div class="group">
+        <a role="userModel" data-m="2">单</a>
+        <a role="userModel" data-m="1">双</a>
+        <a role="userModel" data-m="4">大</a>
+        <a role="userModel" data-m="3">小</a>
+        <a role="userModel" data-m="5">中</a>
+        <a role="userModel" data-m="6">边</a>
+        <a role="userModel" data-m="7">大单</a>
+        <a role="userModel" data-m="8">小单</a>
+        <a role="userModel" data-m="9">大双</a>
+        <a role="userModel" data-m="10">小双</a>
+        <a role="userModel" data-m="11">大边</a>
+        <a role="userModel" data-m="12">小边</a>
+        <a role="userModel" data-m="37">单边</a>
+        <a role="userModel" data-m="38">双边</a>
+        <a role="userModel" data-m="13">0尾</a>
+        <a role="userModel" data-m="14">1尾</a>
+        <a role="userModel" data-m="15">2尾</a>
+        <a role="userModel" data-m="16">3尾</a>
+        <a role="userModel" data-m="17">4尾</a>
+        <a role="userModel" data-m="18">小尾</a>
+        <a role="userModel" data-m="19">5尾</a>
+        <a role="userModel" data-m="20">6尾</a>
+        <a role="userModel" data-m="21">7尾</a>
+        <a role="userModel" data-m="22">8尾</a>
+        <a role="userModel" data-m="23">9尾</a>
+        <a role="userModel" data-m="24">大尾</a>
+        <a role="userModel" data-m="25">3余0</a>
+        <a role="userModel" data-m="26">3余1</a>
+        <a role="userModel" data-m="27">3余2</a>
+        <a role="userModel" data-m="28">4余0</a>
+        <a role="userModel" data-m="29">4余1</a>
+        <a role="userModel" data-m="30">4余2</a>
+        <a role="userModel" data-m="31">4余3</a>
+        <a role="userModel" data-m="32">5余0</a>
+        <a role="userModel" data-m="33">5余1</a>
+        <a role="userModel" data-m="34">5余2</a>
+        <a role="userModel" data-m="35">5余3</a>
+        <a role="userModel" data-m="36">5余4</a>
+    </div>            <div class="group d">
+        <a role="chgAllTimes" data-m="0.1">0.1倍</a>
+        <a role="chgAllTimes" data-m="0.5">0.5倍</a>
+        <a role="chgAllTimes" data-m="0.8">0.8倍</a>
+        <a role="chgAllTimes" data-m="1.2">1.2倍</a>
+        <a role="chgAllTimes" data-m="1.5">1.5倍</a>
+        <a role="chgAllTimes" data-m="2">2倍</a>
+        <a role="chgAllTimes" data-m="5">5倍</a>
+        <a role="chgAllTimes" data-m="10">10倍</a>
+        <a role="chgAllTimes" data-m="50">50倍</a>
+        <a role="chgAllTimes" data-m="100">100倍</a>
+    </div>
+</div>
+<div class="bet-btn after">
+    <div class="power">
+        <img src="/Public/home/images/chips_10000.png" onclick="chips(10000, 1)">
+        <img src="/Public/home/images/chips_100000.png" onclick="chips(100000, 2)">
+        <img src="/Public/home/images/chips_500000.png" onclick="chips(500000, 3)">
+        <img src="/Public/home/images/chips_1000000.png" onclick="chips(1000000, 4)">
+        <img src="/Public/home/images/chips_5000000.png" onclick="chips(5000000, 5)">
+    </div>
+    <div class="desh">
+        <input id="betsLeft" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')">
+        <button class="btn" type="button" id="usefenpei">定额梭哈</button>
+    </div>
+    <div class="btns">
+        <button class="btn" type="button" id="init">清除</button>
+        <button class="btn" type="button" role="userModel" data-m="0">全包</button>
+        <button class="btn" type="button" id="subSelect">反选</button>
+        <button class="btn" type="button" id="useSuoha">梭哈</button>
+        <button class="btn" type="button" id="prevBetting">上次投注</button>
+    </div>
+    <div class="total">
+        <label>总投注：</label>
+        <i id="bet-total">0</i>
+        <button class="btn" type="button" id="bet-submit">确认投注</button>
+    </div>
+</div>
+<div class="bet-nos after">
+    <table class="l">
+        <thead>
+            <tr>
+                <th width="10%">号码</th>
+                <th width="16%">赔率</th>
+                <th width="19%">已投注</th>
+                <th width="10%">选择</th>
+                <th width="21%">投注</th>
+                <th width="24%">倍数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><i>0</i></td>
+                <td>1000.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f0"></td>
+                <td><input name="tbNum[]" role="f0" data-index="0" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f0" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f0" data-num="2">2</button>
+                    <button class="btn beilv" role="f0" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>1</i></td>
+                <td>333.3300</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f1"></td>
+                <td><input name="tbNum[]" role="f1" data-index="1" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f1" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f1" data-num="2">2</button>
+                    <button class="btn beilv" role="f1" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>2</i></td>
+                <td>166.6700</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f2"></td>
+                <td><input name="tbNum[]" role="f2" data-index="2" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f2" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f2" data-num="2">2</button>
+                    <button class="btn beilv" role="f2" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>3</i></td>
+                <td>100.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f3"></td>
+                <td><input name="tbNum[]" role="f3" data-index="3" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f3" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f3" data-num="2">2</button>
+                    <button class="btn beilv" role="f3" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>4</i></td>
+                <td>66.6600</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f4"></td>
+                <td><input name="tbNum[]" role="f4" data-index="4" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f4" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f4" data-num="2">2</button>
+                    <button class="btn beilv" role="f4" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>5</i></td>
+                <td>47.6100</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f5"></td>
+                <td><input name="tbNum[]" role="f5" data-index="5" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f5" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f5" data-num="2">2</button>
+                    <button class="btn beilv" role="f5" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>6</i></td>
+                <td>35.7100</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f6"></td>
+                <td><input name="tbNum[]" role="f6" data-index="6" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f6" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f6" data-num="2">2</button>
+                    <button class="btn beilv" role="f6" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>7</i></td>
+                <td>27.7700</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f7"></td>
+                <td><input name="tbNum[]" role="f7" data-index="7" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f7" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f7" data-num="2">2</button>
+                    <button class="btn beilv" role="f7" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>8</i></td>
+                <td>22.2200</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f8"></td>
+                <td><input name="tbNum[]" role="f8" data-index="8" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f8" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f8" data-num="2">2</button>
+                    <button class="btn beilv" role="f8" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>9</i></td>
+                <td>18.1800</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f9"></td>
+                <td><input name="tbNum[]" role="f9" data-index="9" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f9" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f9" data-num="2">2</button>
+                    <button class="btn beilv" role="f9" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>10</i></td>
+                <td>15.8700</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f10"></td>
+                <td><input name="tbNum[]" role="f10" data-index="10" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f10" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f10" data-num="2">2</button>
+                    <button class="btn beilv" role="f10" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>11</i></td>
+                <td>14.4900</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f11"></td>
+                <td><input name="tbNum[]" role="f11" data-index="11" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f11" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f11" data-num="2">2</button>
+                    <button class="btn beilv" role="f11" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>12</i></td>
+                <td>13.6900</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f12"></td>
+                <td><input name="tbNum[]" role="f12" data-index="12" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f12" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f12" data-num="2">2</button>
+                    <button class="btn beilv" role="f12" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>13</i></td>
+                <td>13.3300</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f13"></td>
+                <td><input name="tbNum[]" role="f13" data-index="13" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td>
+                    <button class="btn beilv" role="f13" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f13" data-num="2">2</button>
+                    <button class="btn beilv" role="f13" data-num="10">10</button>
+                </td>
+            </tr>                </tbody>
+        </table>
+        <table class="r">
+            <thead>
+                <tr>
+                    <th width="10%">号码</th>
+                    <th width="16%">赔率</th>
+                    <th width="19%">已投注</th>
+                    <th width="10%">选择</th>
+                    <th width="21%">投注</th>
+                    <th width="24%">倍数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><i>14</i></td>
+                    <td>13.3300</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f14"></td>
+                    <td><input name="tbNum[]" role="f14" data-index="14" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f14" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f14" data-num="2">2</button>
+                        <button class="btn beilv" role="f14" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>15</i></td>
+                    <td>13.6900</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f15"></td>
+                    <td><input name="tbNum[]" role="f15" data-index="15" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f15" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f15" data-num="2">2</button>
+                        <button class="btn beilv" role="f15" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>16</i></td>
+                    <td>14.4900</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f16"></td>
+                    <td><input name="tbNum[]" role="f16" data-index="16" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f16" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f16" data-num="2">2</button>
+                        <button class="btn beilv" role="f16" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>17</i></td>
+                    <td>15.8700</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f17"></td>
+                    <td><input name="tbNum[]" role="f17" data-index="17" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f17" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f17" data-num="2">2</button>
+                        <button class="btn beilv" role="f17" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>18</i></td>
+                    <td>18.1800</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f18"></td>
+                    <td><input name="tbNum[]" role="f18" data-index="18" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f18" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f18" data-num="2">2</button>
+                        <button class="btn beilv" role="f18" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>19</i></td>
+                    <td>22.2200</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f19"></td>
+                    <td><input name="tbNum[]" role="f19" data-index="19" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f19" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f19" data-num="2">2</button>
+                        <button class="btn beilv" role="f19" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>20</i></td>
+                    <td>27.7700</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f20"></td>
+                    <td><input name="tbNum[]" role="f20" data-index="20" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f20" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f20" data-num="2">2</button>
+                        <button class="btn beilv" role="f20" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>21</i></td>
+                    <td>35.7100</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f21"></td>
+                    <td><input name="tbNum[]" role="f21" data-index="21" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f21" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f21" data-num="2">2</button>
+                        <button class="btn beilv" role="f21" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>22</i></td>
+                    <td>47.6100</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f22"></td>
+                    <td><input name="tbNum[]" role="f22" data-index="22" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f22" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f22" data-num="2">2</button>
+                        <button class="btn beilv" role="f22" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>23</i></td>
+                    <td>66.6600</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f23"></td>
+                    <td><input name="tbNum[]" role="f23" data-index="23" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f23" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f23" data-num="2">2</button>
+                        <button class="btn beilv" role="f23" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>24</i></td>
+                    <td>100.0000</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f24"></td>
+                    <td><input name="tbNum[]" role="f24" data-index="24" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f24" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f24" data-num="2">2</button>
+                        <button class="btn beilv" role="f24" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>25</i></td>
+                    <td>166.6600</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f25"></td>
+                    <td><input name="tbNum[]" role="f25" data-index="25" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f25" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f25" data-num="2">2</button>
+                        <button class="btn beilv" role="f25" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>26</i></td>
+                    <td>333.3300</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f26"></td>
+                    <td><input name="tbNum[]" role="f26" data-index="26" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f26" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f26" data-num="2">2</button>
+                        <button class="btn beilv" role="f26" data-num="10">10</button>
+                    </td>
+                </tr><tr>
+                    <td><i>27</i></td>
+                    <td>1000.0000</td>
+                    <td>0</td>
+                    <td><input type="checkbox" name="chk" role="f27"></td>
+                    <td><input name="tbNum[]" role="f27" data-index="27" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                    <td>
+                        <button class="btn beilv" role="f27" data-num="0.5">.5</button>
+                        <button class="btn beilv" role="f27" data-num="2">2</button>
+                        <button class="btn beilv" role="f27" data-num="10">10</button>
+                    </td>
+                </tr>                </tbody>
+            </table>
+        </div>

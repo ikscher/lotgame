@@ -1,0 +1,1352 @@
+<div class="bet-mode">
+            <div class="group d">
+                <a role="chgAllTimes" data-m="0.1">0.1倍</a>
+                <a role="chgAllTimes" data-m="0.5">0.5倍</a>
+                <a role="chgAllTimes" data-m="0.8">0.8倍</a>
+                <a role="chgAllTimes" data-m="1.2">1.2倍</a>
+                <a role="chgAllTimes" data-m="1.5">1.5倍</a>
+                <a role="chgAllTimes" data-m="2">2倍</a>
+                <a role="chgAllTimes" data-m="5">5倍</a>
+                <a role="chgAllTimes" data-m="10">10倍</a>
+                <a role="chgAllTimes" data-m="50">50倍</a>
+                <a role="chgAllTimes" data-m="100">100倍</a>
+            </div>
+        </div>
+        <div class="bet-btn after">
+            <div class="power">
+                <img src="/Public/home/images/chips_10000.png" onclick="chips(10000, 1)">
+                <img src="/Public/home/images/chips_100000.png" onclick="chips(100000, 2)">
+                <img src="/Public/home/images/chips_500000.png" onclick="chips(500000, 3)">
+                <img src="/Public/home/images/chips_1000000.png" onclick="chips(1000000, 4)">
+                <img src="/Public/home/images/chips_5000000.png" onclick="chips(5000000, 5)">
+            </div>
+            <div class="desh">
+                <input id="betsLeft" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                <button class="btn" type="button" id="usefenpei">定额梭哈</button>
+            </div>
+            <div class="btns">
+                <button class="btn" type="button" id="init">清除</button>
+                <button class="btn" type="button" role="userModel" data-m="0">全包</button>
+                <button class="btn" type="button" id="subSelect">反选</button>
+                <button class="btn" type="button" id="useSuoha">梭哈</button>
+                <button class="btn" type="button" id="prevBetting">上次投注</button>
+            </div>
+            <div class="total">
+                <label>总投注：</label>
+                <i id="bet-total">0</i>
+                <button class="btn" type="button" id="bet-submit">确认投注</button>
+            </div>
+        </div>
+        <div class="bet-nos-sc">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td colspan="4">冠亚军和</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">40.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">40.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">20.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">20.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td>                </tr>
+                <tr>
+                    <td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">13.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">13.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">10.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">10.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td>                </tr>
+                <tr>
+                    <td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">11</td>
+                                    <td width="20%" class="btb">9.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">12</td>
+                                    <td width="20%" class="btb">10.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">13</td>
+                                    <td width="20%" class="btb">10.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">14</td>
+                                    <td width="20%" class="btb">13.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td>                </tr>
+                <tr>
+                    <td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">15</td>
+                                    <td width="20%" class="btb">13.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f15" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">16</td>
+                                    <td width="20%" class="btb">20.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f16" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">17</td>
+                                    <td width="20%" class="btb">20.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f17" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">18</td>
+                                    <td width="20%" class="btb">40.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f18" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td>                </tr>
+                <tr>
+                    <td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">19</td>
+                                    <td width="20%" class="btb">40.0000</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f19" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td>                </tr>
+                <tr>
+                    <td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">2.1900</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f20" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.7800</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f21" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.7800</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f22" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td><td width="25%">
+                            <table class="table_s">
+                                <tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">2.1900</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="gyj" role="f23" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>
+                            </table>
+                        </td>                </tr>
+                </tbody>
+            </table>
+
+            <table class="table">
+                <tr>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">赛车一</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">1</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">2</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc1" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">赛车二</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">1</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">2</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc2" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">赛车三</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">1</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">2</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc3" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">赛车四</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">1</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">2</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc4" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">赛车五</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">1</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">2</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc5" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="table">
+                <tr>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">赛车六</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">1</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">2</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc6" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">赛车七</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">1</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">2</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc7" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">赛车八</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">1</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">2</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc8" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">赛车九</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">1</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">2</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc9" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">赛车十</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">1</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">2</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">3</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">4</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">5</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">6</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">7</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">8</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">9</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">10</td>
+                                    <td width="20%" class="btb">9.8500</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">大</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f11" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">小</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f12" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">单</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f13" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">双</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="sc10" role="f14" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="table">
+                <tr>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">1V10龙虎</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">龙</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="lh" role="f1" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">虎</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="lh" role="f2" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">2V9龙虎</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">龙</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="lh" role="f3" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">虎</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="lh" role="f4" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">3V8龙虎</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">龙</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="lh" role="f5" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">虎</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="lh" role="f6" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">4V7龙虎</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">龙</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="lh" role="f7" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">虎</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="lh" role="f8" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                    <td width="20%">
+                        <table class="table_s">
+                            <thead>
+                            <tr>
+                                <td colspan="5">5V6龙虎</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                    <td width="10%" class="btb bold">龙</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="lh" role="f9" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr><tr>
+                                    <td width="10%" class="btb bold">虎</td>
+                                    <td width="20%" class="btb">1.9700</td>
+                                    <td width="15%" class="btb">0</td>
+                                    <td width="5%" class="btb"><input type="checkbox" name="chk" role="gyjNum"></td>
+                                    <td width="30%"><input name="gyjNum" data-name="lh" role="f10" class="bet_input" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                                </tr>                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>

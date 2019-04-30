@@ -80,8 +80,20 @@ class Data extends Site
         $row=Db::name('game_xybjl')->where('status',1)->order('id asc')->find();
  
         $data_=array();
-        if(empty($row['id'])){
+        if(empty($row['id'])){//游戏表里面没有任何数据
         	Db::name('game_xybjl')->insert($data);
+        	// $lastid=Db::name('game_xybjl')->getLastInsID();
+        	$data_ = [
+			    [ 'open_time' => strtotime("+1minute"),'status'=>1,'period'=>'thisTimes'],
+			    [ 'open_time' => strtotime("+2minute"),'status'=>1,'period'=>''],
+			    [ 'open_time' => strtotime("+3minute"),'status'=>1,'period'=>''],
+			    [ 'open_time' => strtotime("+4minute"),'status'=>1,'period'=>''],
+			    
+			];
+			Db::name('game_xybjl')->insertAll($data_);
+        }elseif($row['open_time']<time()){
+            Db::name('game_xybjl')->where('status',1)->delete();
+            Db::name('game_xybjl')->insert($data);
         	// $lastid=Db::name('game_xybjl')->getLastInsID();
         	$data_ = [
 			    [ 'open_time' => strtotime("+1minute"),'status'=>1,'period'=>'thisTimes'],
@@ -140,6 +152,18 @@ class Data extends Site
         $data_=array();
         if(empty($row['id'])){
         	Db::name('game_xy10')->insert($data);
+        	// $lastid=Db::name('game_xybjl')->getLastInsID();
+        	$data_ = [
+			    [ 'open_time' => strtotime("+1minute"),'status'=>1,'period'=>'thisTimes'],
+			    [ 'open_time' => strtotime("+2minute"),'status'=>1,'period'=>''],
+			    [ 'open_time' => strtotime("+3minute"),'status'=>1,'period'=>''],
+			    [ 'open_time' => strtotime("+4minute"),'status'=>1,'period'=>''],
+			    
+			];
+			Db::name('game_xy10')->insertAll($data_);
+        }elseif($row['open_time']<time()){
+            Db::name('game_xy10')->where('status',1)->delete();
+            Db::name('game_xy10')->insert($data);
         	// $lastid=Db::name('game_xybjl')->getLastInsID();
         	$data_ = [
 			    [ 'open_time' => strtotime("+1minute"),'status'=>1,'period'=>'thisTimes'],

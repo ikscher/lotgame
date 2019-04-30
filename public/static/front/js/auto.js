@@ -1,15 +1,15 @@
-$('#sltAutoType').on('change', function(){
-    var val = $(this).val();
-    if(val == 0){
-        $('#toSY').show();
-        $('#toNO').hide();
-        $('#spanStartMode').show();
-    }else{
-        $('#toSY').hide();
-        $('#toNO').show();
-        $('#spanStartMode').hide();
-    }
-})
+// $('#sltAutoType').on('change', function(){
+//     var val = $(this).val();
+//     if(val == 0){
+//         $('#toSY').show();
+//         $('#toNO').hide();
+//         $('#spanStartMode').show();
+//     }else{
+//         $('#toSY').hide();
+//         $('#toNO').show();
+//         $('#spanStartMode').hide();
+//     }
+// })
 
 $('[role=changemodel]').on('change', function(){
     var type = $(this).attr('data-type'),
@@ -35,27 +35,27 @@ $('[role=changemodel]').on('change', function(){
 
 
 
-$('[role=changeduihaomodel]').on('change', function(){
-    var offset = $(this).attr('data-offset'),
-        conve_id = $('#conveID').val(),
-        mode_id = $(this).val();
-    $.ajax({
-        url: '/games/auto_save_dh',
-        type: 'post',
-        dataType: 'json',
-        data: {
-            gid: GID,
-            offset: offset,
-            conve_id: conve_id,
-            mode_id: mode_id
-        },
-        success: function(map){
-            if(map.code == 200){
-                alert('设置成功！');
-            }
-        }
-    })
-})
+// $('[role=changeduihaomodel]').on('change', function(){
+//     var offset = $(this).attr('data-offset'),
+//         conve_id = $('#conveID').val(),
+//         mode_id = $(this).val();
+//     $.ajax({
+//         url: '/games/auto_save_dh',
+//         type: 'post',
+//         dataType: 'json',
+//         data: {
+//             gid: GID,
+//             offset: offset,
+//             conve_id: conve_id,
+//             mode_id: mode_id
+//         },
+//         success: function(map){
+//             if(map.code == 200){
+//                 alert('设置成功！');
+//             }
+//         }
+//     })
+// })
 
 $('#auto-submit').on('click', function(){
     var mode_type = 0,//自动投注方式

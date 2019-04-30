@@ -89,6 +89,12 @@ class User extends Model
         return $this->hasMany('UserBidmode','user_id');
     }
 
+    public function user_auto()
+    {  
+        //关联自动投注表
+        return $this->hasMany('UserAuto','user_id');
+    }
+
     public function recomyield()
     {
         //关联推广奖励表

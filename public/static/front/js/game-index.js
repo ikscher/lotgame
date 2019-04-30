@@ -519,6 +519,7 @@ function fetchRest(o, i){
             }
             break;
         case 3:
+            console.log(o)
             if(o.win_no != ''){
                 var result = JSON.parse(o.result),
                     banker = result.banker,

@@ -18,10 +18,10 @@ $('#bet-submit').on('click', function(){
         var betting = {};
         for(var i = 0; i < data.length; i++){
             if($("input[name=chk]").eq(i).prop("checked")){
-                var k=$("input[name=chk]").eq(i).parents('tr').children('td').eq(0).children('i').text();
-                var m={};
-                m[k]=parseInt($("input[name='tbNum[]']").eq(i).val()==""?"0":$("input[name='tbNum[]']").eq(i).val());
-                betting[$("input[name=chk]").eq(i).attr('role')] = m;
+                // var k=$("input[name=chk]").eq(i).parents('tr').children('td').eq(0).children('i').text();
+                // var m={};
+                // m[k]=parseInt($("input[name='tbNum[]']").eq(i).val()==""?"0":$("input[name='tbNum[]']").eq(i).val());
+                betting[$("input[name=chk]").eq(i).attr('role')] =parseInt($("input[name='tbNum[]']").eq(i).val()==""?"0":$("input[name='tbNum[]']").eq(i).val());
             }
         }
         

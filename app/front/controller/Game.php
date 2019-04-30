@@ -224,7 +224,11 @@ class Game extends Site
 
     //自动投注
     public function auto()
-    {
+    {   
+        $map['user_id']=$this->uid;
+        $map['gid']=$this->gid;
+        $modes=$this->userBidmodeModel->where($map)->order('id asc')->select();
+        $this->assign('modes',$modes);
         return $this->fetch();
     }
 
@@ -239,10 +243,12 @@ class Game extends Site
     {   
         $oid = $this->request->has('oid') ? $this->request->param('oid', 0, 'intval') : 0; //彩票期号
         $this->assign('oid',$oid);
-
-        $map['user_id']=$this->uid;
-        $map['game_id']=$this->gid;
-        $map['game_number']=$oid;
+        
+        $id=  $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0; //投注序号
+        // $map['user_id']=$this->uid;
+        // $map['game_id']=$this->gid;
+        // $map['game_number']=$oid;
+        $map['id']=$id;
         $bidmoney=0;
         $bidinfo=$this->userBidModel->where($map)->value('bidinfo');
         $bidmoney=$this->userBidModel->where($map)->value('bidmoney');
@@ -253,8 +259,10 @@ class Game extends Site
         $this->assign('action','mode');
         $this->assign('bids',$bids);
         $this->assign('bidmoney',$bidmoney);
-
-        $modes=$this->userBidmodeModel->order('id asc')->select();
+        unset($map);
+        $map['user_id']=$this->uid;
+        $map['gid']=$this->gid;
+        $modes=$this->userBidmodeModel->where($map)->order('id asc')->select();
         $this->assign('modes',$modes);
 
         return $this->fetch();
@@ -295,18 +303,21 @@ class Game extends Site
             if($mode_id>0){//修改
                 $data['name']=$mode_name;
                 $data['bidinfo']=json_encode($betting);
-                $ret=$this->userBidmodeModel->where('id',$mode_id)->save($data);
+                $data['update_time']=time();
+                $ret=$this->userBidmodeModel->where('id',$mode_id)->update($data);
                 if($ret==false) { echo json_encode(array('code'=>999,'msg'=>'提交错误'));exit;}
             }else{//新增
                 $data['gid']=$gid;
                 $data['bidinfo']=json_encode($betting);
                 $data['name']=$mode_name;
                 $data['user_id']=$this->uid;
-                // $data['create_time']=time();
-                $ret=$this->userBidmodeModel->save($data);
+                $data['create_time']=time();
+                $ret=$this->userBidmodeModel->insert($data);
                 if($ret==false) { echo json_encode(array('code'=>999,'msg'=>'提交错误'));exit;}
             }
-            $modes=collection($this->userBidmodeModel->field('id,name')->order('id asc')->select())->toArray();
+            $map['user_id']=$this->uid;
+            $map['gid']=$this->gid;
+            $modes=collection($this->userBidmodeModel->field('id,name')->where($map)->order('id asc')->select())->toArray();
             $options=array();
             foreach($modes as $k=>$v){
                 $options[$k]['id']=$v['id'];
@@ -331,7 +342,9 @@ class Game extends Site
             if($ret==false){
                 echo json_encode(array('code'=>999,'msg'=>'删除模式失败！'));exit;
             }else{
-                $modes=collection($this->userBidmodeModel->field('id,name')->order('id asc')->select())->toArray();
+                $map['user_id']=$this->uid;
+                $map['gid']=$this->gid;
+                $modes=collection($this->userBidmodeModel->field('id,name')->where($map)->order('id asc')->select())->toArray();
                 $options=array();
                 foreach($modes as $k=>$v){
                     $options[$k]['id']=$v['id'];
@@ -384,6 +397,7 @@ class Game extends Site
             $rows_b=array();
             foreach($rows as $v){
                 $rows_b=array();
+                $rows_b['id']=$v['id'];
                 $rows_b['times_id']=$v['game_number'];
                 $zz=get_game_detail($v['game_id'],$v['game_number']);
                 $rows_b['draw_time']=date('Y-m-d H:i:s',$zz['open_time']);
@@ -519,8 +533,10 @@ EOT;
             $post=$this->request->post();
             $gid=$post['gid'];
             $oid=$post['oid'];
-            $map['game_id']=$gid;
-            $map['game_number']=$oid;
+            $id=$post['id'];
+            // $map['game_id']=$gid;
+            // $map['game_number']=$oid;
+            $map['id']=$id;
             $row=$this->userBidModel->where($map)->find();
 
             $list['code']=200;
@@ -552,7 +568,8 @@ EOT;
                 $win_num=isset($prizeinfo[$k])?$prizeinfo[$k]:0;
                 $f["$k"]['win_num']=$win_num;
                 if($win_num>0) $f["$k"]['is_win']=1;
-                $f["$k"]['bet_num']= !empty($arr[$k])?array_values($arr[$k])[0]:0;
+                $f["$k"]['bet_num']= !empty($arr[$k])?$arr[$k]:0;
+                // $f["$k"]['bet_num']= !empty($arr[$k])?array_values($arr[$k])[0]:0;
             }
             $data['nolists']=$f;
             $list['data']=$data;
@@ -582,7 +599,7 @@ EOT;
         return $this->fetch('game/betting');
     }
 
-    //上期投注,用户对此游戏的最后一次投注
+    //上期投注即用户对此游戏的最后一次投注
     //{"code":200,"msg":"SUCCESS","data":{"id":"1078743","times_id":"1284750","user_id":"131726","f1":"0","f2":"20","f3":"0","f4":"20","f5":"0","f6":"20","f7":"0","f8":"20","f9":"0","f10":"20","bet_time":"1556457938","total_money":"100","win_money":"199","is_win":"1"}}
     public function betting_prev()
     {
@@ -592,7 +609,25 @@ EOT;
             
             $map['game_id']=$gid;
             $map['user_id']=$this->uid;
-            $this->userBidModel->where($map)->order('id desc')->find();//最后一期
+            $row=array();
+            $row=$this->userBidModel->where($map)->order('id desc')->find();//最后一期
+            $bid['id']=$row['id'];
+            $bid['times_id']=$row['game_number'];  //开奖游戏的字段ID编号，不是开奖期号字段NUMBER，因为设计的时候系统开奖的ID就是期号(times_id也是序号，不是期号)
+            $bid['user_id']=$this->uid;
+            $bid['bet_time']=$row['create_time'];
+            $bid['total_money']=$row['bidmoney'];
+            $bid['win_money']=array_sum(json_decode($row['prizeinfo'],true));
+            $bid['is_win']=$bid['win_money']>0?1:0;
+            $bidinfo=json_decode($row['bidinfo'],true);
+            foreach($bidinfo as $k=>$v){
+                $bid[$k]=$v;
+            }
+
+            $data['code']=200;
+            $data['msg']='SUCCESS';
+            $data['data']=$bid;
+
+            echo json_encode($data);exit;
         }
     }
 
@@ -606,12 +641,13 @@ EOT;
             $oid=$post['oid'];
             $betting=$post['betting'];
             
-            //$betting_money=array_sum($betting); //betting 是array ,下注的总数
             $betting_money=0;
-            foreach($betting as $v){
-                $temp=array_values($v);
-                $betting_money+=$temp[0];
-            }
+            $betting_money=array_sum($betting); //betting 是array ,下注的总数
+            
+            // foreach($betting as $v){
+            //     $temp=array_values($v);
+            //     $betting_money+=$temp[0];
+            // }
             
             $code=$this->gameModel->where('id',$gid)->value('code');
 

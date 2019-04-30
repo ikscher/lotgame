@@ -13,7 +13,7 @@
 namespace app\front\model;
 
 use \think\Model;
-class UserBidmode extends Model
+class UserAuto extends Model
 {
 	public function user()
     {
@@ -21,10 +21,10 @@ class UserBidmode extends Model
         return $this->belongsTo('User');
     }
 
-    public function user_auto()
+    public function mode()
     {
-       //关联自动投注表
-    	return $this->hasMany('UserAuto','mode_id');
+    	//关联模式表mode
+    	return $this->belongsTo('UserBidmode');
     }
   
 }

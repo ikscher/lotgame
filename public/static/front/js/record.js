@@ -2,7 +2,8 @@ layui.use(['layer','form'],function(){
     var layer=layui.layer,form=layui.form;
 })
 $('#page-wrap').on('click', '[role=show]', function(){
-    var orderid = $(this).attr('data-id');
+    var id = $(this).attr('data-id');
+    var oid = $(this).attr('data-oid');
     if(GTAG == 'sc'){
         $.ajax({
             url: '/game/get_bet_info',
@@ -10,7 +11,8 @@ $('#page-wrap').on('click', '[role=show]', function(){
             dataType: 'html',
             data: {
                 gid: GID,
-                oid: orderid
+                id: id,
+                oid:oid
             },
             success: function(map){
                 renderModalSc(map);
@@ -26,7 +28,8 @@ $('#page-wrap').on('click', '[role=show]', function(){
             dataType: 'json',
             data: {
                 gid: GID,
-                oid: orderid
+                id: id,
+                oid:oid
             },
             success: function(map){
                 console.log(map);
@@ -170,9 +173,9 @@ function renderList(data){
         html += '   <td>' + o.total_money + '</td>';
         html += '   <td>' + o.win_money + '</td>';
         html += '   <td>' + win_count + '</td>';
-        html += '   <td><button type="button" class="btn" role="show" data-id="' + o.times_id + '">查看</button></td>';
+        html += '   <td><button type="button" class="btn" role="show"  data-oid="'+o.times_id+'" data-id="' + o.id + '">查看</button></td>';
         if(GTAG != 'ww' && GTAG != 'sc') {
-            html += '   <td><a href="/game/mode?gid=' + GID + '&oid=' + o.times_id + '">保存</a></td>';
+            html += '   <td><a href="/game/mode?gid=' + GID + '&oid=' + o.times_id + '&id='+o.id+'">保存</a></td>';
         }else{
             html += '   <td></td>';
         }

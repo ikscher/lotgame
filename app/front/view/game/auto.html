@@ -8,7 +8,7 @@
         <a href="/game/index?gid={$gid}" >{$game.name}首页</a><a href="/game/intro?gid={$gid}" class="">游戏规则</a><a href="/game/record?gid={$gid}" class="">投注记录</a><a href="/game/mode?gid={$gid}" class="">编辑模式</a><a href="/game/auto?gid={$gid}" class="hover">自动投注</a><a href="/game/chart?gid={$gid}" class="">走势图</a><a href="/game/total?gid={$gid}" class="">盈利统计</a>        </div>
     <div class="bet-auto">
         <table>
-            <tr>
+           <!--  <tr>
                 <td colspan="4">
                     <label>开始模式：</label>
                     <select id="startMode" >
@@ -23,47 +23,40 @@
                     <input type="text" id="minG"  value="100" onkeyup="this.value=this.value.replace(/\D/g,'')">
                     <input type="hidden" id="conveID" value="3430">
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <th>投注模式</th>
                 <th>投注金币</th>
-                <th>赢后使用模式</th>
-                <th>输后使用模式</th>
+                <th>开始期号</th>
+                <th>期数</th>
+                <th>金币上限</th>
+                <th>金币下限</th>
             </tr>
             <tr>
-                <td>模式1</td>
-                <td>160</td>
                 <td>
-                    <select role="changemodel"  data-modeid="50457" data-type="0">
-                        <option value="50457" selected="selected">模式1</option><option value="50458" >模式2</option>                            </select>
+                    <select id="startMode" >
+                        {volist name="modes" id="vo"}
+                           <option value="{$vo.id}">{$vo.name}</option>
+                        {/volist} 
+                    </select>
                 </td>
-                <td>
-                    <select role="changemodel"  data-modeid="50457" data-type="1">
-                        <option value="50457" selected="selected">模式1</option><option value="50458" >模式2</option>                            </select>
-                </td>
-            </tr><tr>
-                <td>模式2</td>
                 <td>130</td>
-                <td>
-                    <select role="changemodel"  data-modeid="50458" data-type="0">
-                        <option value="50457" >模式1</option><option value="50458" selected="selected">模式2</option>                            </select>
-                </td>
-                <td>
-                    <select role="changemodel"  data-modeid="50458" data-type="1">
-                        <option value="50457" >模式1</option><option value="50458" selected="selected">模式2</option>                            </select>
-                </td>
+                <td><input type="text" id="startNo"  value="2416605" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="text" id="times"  value="3000" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="text" id="maxG"  value="999999999" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="text" id="minG"  value="100" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
             </tr>
             <tr>
-                <td colspan="4"><button type="button" class="btn" id="auto-submit" data-action="save">确定提交</button></td>
+                <td colspan="6"><button type="button" class="btn" id="auto-submit" data-action="save">确定提交</button></td>
             </tr>
         </table>
         <div class="tip">
             <p>设置方法：</p>
-            <p>1．“开始模式”选择第一次投注的模式.</p>
+            <p>1．选择自动投注的模式.</p>
             <p>2．设置“开始期号”与“期数”.</p>
-            <p>3．设置“乐豆上限”与“下限”限制,帐号内乐豆数达到限制数量后,自助投注自动停止.</p>
+            <p>3．设置“金币上限”与“下限”限制,帐号内金币数达到限制数量后,自助投注自动停止.</p>
             <p>4．确认并开始自动投注后，系统将会在您指定的期数内帮您自动投注，不论你离线或在线都会持续运行,直到期数终止或您关闭为止.</p>
-            <p>5．银行内的乐豆不能用于投注.</p>
+            <p>5．银行内的金币不能用于投注.</p>
         </div>
     </div>
 
@@ -71,7 +64,7 @@
 
 <script type="text/javascript">
     (function(root){
-        root.GID = 22;
+        root.GID = {$gid};
     })(this)
 </script>
 <script type="text/javascript" src="__JS__/auto.js"></script>

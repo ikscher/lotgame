@@ -20,6 +20,7 @@ $('#mode-submit').on('click', function(){
             betting[$("input[name=chk]").eq(i).attr('role')] = parseInt($("input[name='tbNum[]']").eq(i).val()==""?"0":$("input[name='tbNum[]']").eq(i).val());
         }
     }
+    console.log(betting);
     var modelid = $('#sltMode').val();
     var modelname = $('#txtModelName').val();
     if(modelname == ''){

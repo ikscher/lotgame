@@ -54,8 +54,8 @@ class Info extends Controller
 	                $uid=$v['user_id'];
 	                foreach($bidinfo as $k=>$w){
 	                    if('f'.$num==$k){
-	                    	$z=array_values($w);
-	                    	$win_coin=floor($z[0]*$x['f'.$num]);
+	                    	// $z=array_values($w);
+	                    	$win_coin=floor($w*$x['f'.$num]);
 
 	                    	$this->userModel->where('uid',$uid)->setInc('coin',$win_coin);
 	                    	$game=get_game($gid);
@@ -109,8 +109,8 @@ class Info extends Controller
 	                $uid=$v['user_id'];
 	                foreach($bidinfo as $k=>$w){
 	                    if('f'.$num==$k){
-	                    	$z=array_values($w);
-	                    	$win_coin=floor($z[0]*$x['f'.$num]);
+	                    	// $z=array_values($w);
+	                    	$win_coin=floor($w*$x['f'.$num]);
 
 	                    	$this->userModel->where('uid',$uid)->setInc('coin',$win_coin);
 	                    	$game=get_game($gid);
