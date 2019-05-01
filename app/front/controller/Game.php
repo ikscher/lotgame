@@ -7,6 +7,7 @@ use think\Db;
 use app\admin\model\Game as gameModel;
 use app\front\model\UserBid as userBidModel;
 use app\front\model\UserBidmode as userBidmodeModel;
+use app\front\model\UserAuto as userAutoModel;
 class Game extends Site
 {   
 	private $gameModel;
@@ -222,14 +223,78 @@ class Game extends Site
         return $this->fetch();
     }
 
-    //自动投注
+    //自动投注界面
     public function auto()
     {   
         $map['user_id']=$this->uid;
         $map['gid']=$this->gid;
-        $modes=$this->userBidmodeModel->where($map)->order('id asc')->select();
+        $modes=collection($this->userBidmodeModel->where($map)->order('id asc')->select())->toArray();
         $this->assign('modes',$modes);
+        //最大一期开奖号+1
+        $code=Db::name('game')->where('id',$this->gid)->value('code');
+        $id=Db::name('game_'.$code)->max('id');
+        $this->assign('id',$id+1);
+
+        //检查是否有自动投注模式
+        $userAutoModel=new userAutoModel();
+        $userautomode=$userAutoModel->where($map)->find();
+        unset($map);
+        $mode_id=isset($userautomode['mode_id'])?$userautomode['mode_id']:0;
+        //没有默认设置模式第一项
+        $map['id']=$mode_id?$mode_id:(isset($modes[0]['id'])?$modes[0]['id']:0);
+        $bidinfo=$this->userBidmodeModel->where($map)->value('bidinfo');
+        $bidmoney=0;
+        if(!empty($bidinfo)) $bidmoney=array_sum(json_decode($bidinfo,true));
+        $this->assign('mode_id',$mode_id);
+        $this->assign('bidmoney',$bidmoney);
+        $this->assign('userautomode',$userautomode);
+        
         return $this->fetch();
+    }
+
+    //保存自动投注
+    public function save_autobet()
+    {
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $data=array();
+            $data['gid']=$post['gid'];
+            $data['mode_id']=$post['mode_id'];
+            $data['start_game_no']=$post['start_period'];
+            $data['span']=$post['period'];
+            $data['upper']=$post['upper_limit'];
+            $data['lower']=$post['lower_limit'];
+            $data['user_id']=$this->uid;
+            $data['create_time']=time();
+
+            $userAutoModel=new userAutoModel();
+            $ret=$userAutoModel->insert($data);
+            if($ret==false){
+                echo json_encode(array('code'=>999,'msg'=>'设置失败！'));exit;
+            }else{
+                echo json_encode(array('code'=>200,'msg'=>'设置成功！'));exit;
+            }
+        }
+    }
+
+    //删除自动投注
+    public function del_autobet()
+    {
+        if($this->request->isPost()){
+            $post=$this->request->post();
+            $gid=$post['gid'];
+            // $mode_id=$post['mode_id'];
+            $map['gid']=$gid;
+            $map['user_id']=$this->uid;
+            // $map['mode_id']=$mode_id;
+            $userAutoModel=new userAutoModel();
+            $ret=$userAutoModel->where($map)->delete();
+            if($ret==false){
+                echo json_encode(array('code'=>999,'msg'=>'取消失败，请稍后重试！'));exit;
+            }else{
+                echo json_encode(array('code'=>200,'msg'=>'取消成功！'));exit;
+            }
+        }
     }
 
     //盈利统计

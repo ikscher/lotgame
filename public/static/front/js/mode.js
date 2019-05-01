@@ -27,19 +27,20 @@ $('#mode-submit').on('click', function(){
         layer.alert("请填写模式名称");
         return;
     }
-
-    var isvalid = false;
-    $('#sltMode option').each(function(index,ele){
-        if($(ele).text()==modelname){
-            isvalid=true;
-            return false; 
-        }
-    });
-    if(isvalid){
-        layer.alert("模式名称重复,请先修改模式名称！");
-        return;
-    }
     
+    if(modelid==0){
+        var isvalid = false;
+        $('#sltMode option').each(function(index,ele){
+            if($(ele).text()==modelname){
+                isvalid=true;
+                return false; 
+            }
+        });
+        if(isvalid){
+            layer.alert("模式名称重复,请先修改模式名称！");
+            return;
+        }
+    }
 
     $.ajax({
         url: '/game/save_mode',

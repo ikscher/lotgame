@@ -8,18 +8,27 @@ use think\Config;
 use think\Session;
 use think\Db;
 use app\admin\model\Game as gameModel;
+use app\front\model\UserAuto as userAutoModel;
+use app\front\model\User as userModel;
+use app\front\model\UserBidmode as userBidmodeModel;
 use baccarat\Game;
-class Data extends Site
+class Data extends Controller
 {   
 	private $bankCards;
 	private $playerCards;
 	private $result;
+	private $userAutoModel;
+	private $userModel;
+	private $userBidmodeModel;
 	
 	public function _initialize()
 	{
         $this->bankCards='';
         $this->playerCards='';
         $this->result='';
+        $this->userAutoModel=new userAutoModel();
+        $this->userModel=new userModel();
+        $this->userBidmodeModel=new userBidmodeModel();
         // if(empty(Session::get('uid'))) { $this->redirect('/common/login');} //如果加上，命令行下计划任务是执行不了的
 	}
 
@@ -104,14 +113,62 @@ class Data extends Site
 			];
 			Db::name('game_xybjl')->insertAll($data_);
         }else{
-            $id=$row['id'];
-            Db::name('game_xybjl')->where('id',$id)->update($data);
-            //更新下一期为当期开奖期
-            $next_id=$id+1;
-            Db::name('game_xybjl')->where('id',$next_id)->update(['period'=>'thisTimes']);
-            //同时插入一条记录
-            $data_ = [ 'open_time' => strtotime("+4minute"),'status'=>1];
-            Db::name('game_xybjl')->insert($data_);
+        	Db::startTrans();
+            try{
+	            $id=$row['id'];
+	            Db::name('game_xybjl')->where('id',$id)->update($data);
+	            //更新下一期为当期开奖期
+	            $next_id=$id+1;
+	            Db::name('game_xybjl')->where('id',$next_id)->update(['period'=>'thisTimes']);
+	            //同时插入一条记录
+	            $data_ = [ 'open_time' => strtotime("+4minute"),'status'=>1];
+	            Db::name('game_xybjl')->insert($data_);
+	            //自动投注用户投注$next_id这一期
+                //(1)取出自动投注此游戏的所有用户
+                $gid=1;//游戏ID
+                $map['gid']=$gid;
+                $userautomodes=collection($this->userAutoModel->where($map)->select())->toArray();
+                foreach($userautomodes as $v){
+                	if($v['start_game_no']>$next_id) continue; //自动投注起始期号大于当期开奖期号，退出
+                	if($v['done']>=$v['span']) continue; //已执行完成所有自动投注期数
+
+                    //用户自动投注信息
+                    $uid=$v['user_id'];
+                    $coin=$this->userModel->where('uid',$uid)->value('coin');
+                    if($coin>=$v['upper'] || $coin<=$v['lower']) continue;
+                    $data_bid=array();
+                    $data_bid['game_id']=$gid;
+                    $data_bid['game_number']=$next_id;
+                    $bidinfo=$this->userBidmodeModel->where('id',$v['mode_id'])->value('bidinfo');
+                    $data_bid['bidinfo']=$bidinfo;
+                    $bidmoney=array_sum(json_decode($bidinfo,true));
+                    $data_bid['bidmoney']=$bidmoney;
+                    $data_bid['create_time']=time();
+                    $data_bid['user_id']=$uid;
+                    Db::name('user_bid')->where('user_id',$uid)->insert($data_bid);
+
+                    //自动投注次数+1
+                    $this->userAutoModel->where('id',$v['id'])->setInc('done',1);
+
+                    //用户余额减少
+                    $this->userModel->where('uid',$uid)->setDec('coin',$bidmoney);
+
+                    //用户日志
+                    $coin=$this->userModel->where('uid',$uid)->value('coin');
+                    $game=get_game($gid);
+                    $ret6=adduserlog($uid,$game['name'].'第'.$next_id.'期,自动投注'.$bidmoney.'金币',-$bidmoney,0,$coin,'autobet');//bet类型：游戏下注
+                    
+                    //更改对应游戏表的投注总额，投注人数
+                    Db::name('game_xybjl')->where('id',$next_id)->setInc('bet_num',1);
+                    Db::name('game_xybjl')->where('id',$next_id)->setInc('total_money',$bidmoney);
+                }
+                // 提交事务
+                Db::commit(); 
+                
+            }catch (\Exception $e) {
+                // 回滚事务
+                Db::rollback();
+            }
         }
 		
 
@@ -174,14 +231,165 @@ class Data extends Site
 			];
 			Db::name('game_xy10')->insertAll($data_);
         }else{
-            $id=$row['id'];
-            Db::name('game_xy10')->where('id',$id)->update($data);
-            //更新下一期为当期开奖期
-            $next_id=$id+1;
-            Db::name('game_xy10')->where('id',$next_id)->update(['period'=>'thisTimes']);
-            //同时插入一条记录
-            $data_ = [ 'open_time' => strtotime("+4minute"),'status'=>1];
-            Db::name('game_xy10')->insert($data_);
+        	Db::startTrans();
+            try{
+	            $id=$row['id'];
+	            Db::name('game_xy10')->where('id',$id)->update($data);
+	            //更新下一期为当期开奖期
+	            $next_id=$id+1;
+	            Db::name('game_xy10')->where('id',$next_id)->update(['period'=>'thisTimes']);
+	            //同时插入一条记录
+	            $data_ = [ 'open_time' => strtotime("+4minute"),'status'=>1];
+	            Db::name('game_xy10')->insert($data_);
+	            //自动投注用户投注$next_id这一期
+                //(1)取出自动投注此游戏的所有用户
+                $gid=2;//游戏ID
+                $map['gid']=$gid;
+                $userautomodes=collection($this->userAutoModel->where($map)->select())->toArray();
+                foreach($userautomodes as $v){
+                	if($v['start_game_no']>$next_id) continue; //自动投注起始期号大于当期开奖期号，退出
+                	if($v['done']>=$v['span']) continue; //已执行完成所有自动投注期数
+
+                    //用户自动投注信息
+                    $uid=$v['user_id'];
+                    $coin=$this->userModel->where('uid',$uid)->value('coin');
+                    if($coin>=$v['upper'] || $coin<=$v['lower']) continue;
+                    $data_bid=array();
+                    $data_bid['game_id']=$gid;
+                    $data_bid['game_number']=$next_id;
+                    $bidinfo=$this->userBidmodeModel->where('id',$v['mode_id'])->value('bidinfo');
+                    $data_bid['bidinfo']=$bidinfo;
+                    $bidmoney=array_sum(json_decode($bidinfo,true));
+                    $data_bid['bidmoney']=$bidmoney;
+                    $data_bid['create_time']=time();
+                    $data_bid['user_id']=$uid;
+                    Db::name('user_bid')->where('user_id',$uid)->insert($data_bid);
+
+                    //自动投注次数+1
+                    $this->userAutoModel->where('id',$v['id'])->setInc('done',1);
+
+                    //用户余额减少
+                    $this->userModel->where('uid',$uid)->setDec('coin',$bidmoney);
+
+                    //用户日志
+                    $coin=$this->userModel->where('uid',$uid)->value('coin');
+                    $game=get_game($gid);
+                    $ret6=adduserlog($uid,$game['name'].'第'.$next_id.'期,自动投注'.$bidmoney.'金币',-$bidmoney,0,$coin,'autobet');//bet类型：游戏下注
+                    
+                    //更改对应游戏表的投注总额，投注人数
+                    Db::name('game_xy10')->where('id',$next_id)->setInc('bet_num',1);
+                    Db::name('game_xy10')->where('id',$next_id)->setInc('total_money',$bidmoney);
+                }
+                // 提交事务
+                Db::commit(); 
+                
+            }catch (\Exception $e) {
+                // 回滚事务
+                Db::rollback();
+            }
+        }
+    }
+
+    //幸运11
+    /**
+    *计算机系统随机产生2个数字,每个数字范围1-6,每1分钟一期，24小时开奖
+    */
+    public function luckyeleven()
+    {
+        $a=random_int(1,6);
+        $b=random_int(1,6);
+        
+        $now=strtotime('now');
+        $data['open_time']=$now;
+		$data['desc']=$a.','.$b;
+		$data['result']=$a+$b; //取首位
+		$data['create_time']=time();
+		$data['status']=2;//已开奖
+		$data['period']='';
+    
+        $row=Db::name('game_xy11')->where('status',1)->order('id asc')->find();
+ 
+        $data_=array();
+        if(empty($row['id'])){
+        	Db::name('game_xy11')->insert($data);
+        	// $lastid=Db::name('game_xybjl')->getLastInsID();
+        	$data_ = [
+			    [ 'open_time' => strtotime("+1minute"),'status'=>1,'period'=>'thisTimes'],
+			    [ 'open_time' => strtotime("+2minute"),'status'=>1,'period'=>''],
+			    [ 'open_time' => strtotime("+3minute"),'status'=>1,'period'=>''],
+			    [ 'open_time' => strtotime("+4minute"),'status'=>1,'period'=>''],
+			    
+			];
+			Db::name('game_xy11')->insertAll($data_);
+        }elseif($row['open_time']<time()){
+            Db::name('game_xy11')->where('status',1)->delete();
+            Db::name('game_xy11')->insert($data);
+        	// $lastid=Db::name('game_xybjl')->getLastInsID();
+        	$data_ = [
+			    [ 'open_time' => strtotime("+1minute"),'status'=>1,'period'=>'thisTimes'],
+			    [ 'open_time' => strtotime("+2minute"),'status'=>1,'period'=>''],
+			    [ 'open_time' => strtotime("+3minute"),'status'=>1,'period'=>''],
+			    [ 'open_time' => strtotime("+4minute"),'status'=>1,'period'=>''],
+			    
+			];
+			Db::name('game_xy11')->insertAll($data_);
+        }else{
+        	Db::startTrans();
+            try{
+	            $id=$row['id'];
+	            Db::name('game_xy11')->where('id',$id)->update($data);
+	            //更新下一期为当期开奖期
+	            $next_id=$id+1;
+	            Db::name('game_xy11')->where('id',$next_id)->update(['period'=>'thisTimes']);
+	            //同时插入一条记录
+	            $data_ = [ 'open_time' => strtotime("+4minute"),'status'=>1];
+	            Db::name('game_xy11')->insert($data_);
+	            //自动投注用户投注$next_id这一期
+                //(1)取出自动投注此游戏的所有用户
+                $gid=3;//游戏ID
+                $map['gid']=$gid;
+                $userautomodes=collection($this->userAutoModel->where($map)->select())->toArray();
+                foreach($userautomodes as $v){
+                	if($v['start_game_no']>$next_id) continue; //自动投注起始期号大于当期开奖期号，退出
+                	if($v['done']>=$v['span']) continue; //已执行完成所有自动投注期数
+
+                    //用户自动投注信息
+                    $uid=$v['user_id'];
+                    $coin=$this->userModel->where('uid',$uid)->value('coin');
+                    if($coin>=$v['upper'] || $coin<=$v['lower']) continue;
+                    $data_bid=array();
+                    $data_bid['game_id']=$gid;
+                    $data_bid['game_number']=$next_id;
+                    $bidinfo=$this->userBidmodeModel->where('id',$v['mode_id'])->value('bidinfo');
+                    $data_bid['bidinfo']=$bidinfo;
+                    $bidmoney=array_sum(json_decode($bidinfo,true));
+                    $data_bid['bidmoney']=$bidmoney;
+                    $data_bid['create_time']=time();
+                    $data_bid['user_id']=$uid;
+                    Db::name('user_bid')->where('user_id',$uid)->insert($data_bid);
+
+                    //自动投注次数+1
+                    $this->userAutoModel->where('id',$v['id'])->setInc('done',1);
+
+                    //用户余额减少
+                    $this->userModel->where('uid',$uid)->setDec('coin',$bidmoney);
+
+                    //用户日志
+                    $coin=$this->userModel->where('uid',$uid)->value('coin');
+                    $game=get_game($gid);
+                    $ret6=adduserlog($uid,$game['name'].'第'.$next_id.'期,自动投注'.$bidmoney.'金币',-$bidmoney,0,$coin,'autobet');//bet类型：游戏下注
+                    
+                    //更改对应游戏表的投注总额，投注人数
+                    Db::name('game_xy11')->where('id',$next_id)->setInc('bet_num',1);
+                    Db::name('game_xy11')->where('id',$next_id)->setInc('total_money',$bidmoney);
+                }
+                // 提交事务
+                Db::commit(); 
+                
+            }catch (\Exception $e) {
+                // 回滚事务
+                Db::rollback();
+            }
         }
     }
 	private function ShowCards($cards){

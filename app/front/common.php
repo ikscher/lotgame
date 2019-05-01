@@ -10,7 +10,7 @@ function get_game($gid)
 }
 
 /**
-* 获取用户下注游戏game_xxx表的相关信息
+* 获取用户下注游戏game_xxx某一期的相关信息
 * @param $gid 游戏种类的ID
 * @param $game_number 具体某种游戏的ID(期号)
 **/

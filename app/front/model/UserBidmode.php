@@ -21,10 +21,10 @@ class UserBidmode extends Model
         return $this->belongsTo('User');
     }
 
-    public function user_auto()
-    {
-       //关联自动投注表
-    	return $this->hasMany('UserAuto','mode_id');
-    }
+    // public function user_auto()
+    // {
+    //    //关联自动投注表
+    // 	return $this->hasOne('UserAuto','mode_id');
+    // }
   
 }

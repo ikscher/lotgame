@@ -21,10 +21,10 @@ class UserAuto extends Model
         return $this->belongsTo('User');
     }
 
-    public function mode()
-    {
-    	//关联模式表mode
-    	return $this->belongsTo('UserBidmode');
-    }
+    // public function mode()
+    // {
+    // 	//关联模式表mode
+    // 	return $this->hasOne('UserBidmode','id');
+    // }
   
 }

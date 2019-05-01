@@ -34,20 +34,26 @@
             </tr>
             <tr>
                 <td>
-                    <select id="startMode" >
+                    <select id="startMode" role="changemodel" {if condition="$mode_id gt 0"}disabled{/if}>
                         {volist name="modes" id="vo"}
-                           <option value="{$vo.id}">{$vo.name}</option>
+                           <option data-id="{$vo.id}" value="{$vo.bidinfo|json_decode=###,true|array_sum}"  {if condition="$mode_id eq $vo.id"}selected {/if}>{$vo.name}</option>
                         {/volist} 
                     </select>
                 </td>
-                <td>130</td>
-                <td><input type="text" id="startNo"  value="2416605" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                <td><input type="text" id="times"  value="3000" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                <td><input type="text" id="maxG"  value="999999999" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                <td><input type="text" id="minG"  value="100" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td id="bidmoney">{$bidmoney}</td>
+                <td><input type="text" id="startNo"  {if condition="$userautomode.start_game_no gt 0"}value="{$userautomode.start_game_no}" disabled {elseif condition="$id gt 0"/}value="{$id}"{else /}value="2416605"{/if} onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="text" id="times"  {if condition="$userautomode.span gt 0"}value="{$userautomode.span}" disabled {else /}value="3000"{/if} onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="text" id="maxG"  {if condition="$userautomode.upper gt 0"}value="{$userautomode.upper}" disabled {else /}value="999999999"{/if} onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="text" id="minG"  {if condition="$userautomode.lower gt 0"}value="{$userautomode.lower}" disabled {else /}value="100"{/if} onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
             </tr>
             <tr>
-                <td colspan="6"><button type="button" class="btn" id="auto-submit" data-action="save">确定提交</button></td>
+                <td colspan="6">
+                    {if condition="$userautomode.id gt 0"}
+                    <button type="button" class="btn" id="auto-submit" data-action="cancel">取消自动投注</button>
+                    {else /}
+                    <button type="button" class="btn" id="auto-submit" data-action="save">确定提交</button>
+                    {/if}
+                </td>
             </tr>
         </table>
         <div class="tip">
