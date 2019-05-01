@@ -23,6 +23,17 @@ function get_game_detail($gid,$game_number)
     
 }
 
+/**
+**无限接近生成数，开奖几率
+* @param $basenum基数
+* @param $from 
+* @param $to
+* @return 返回带四位小数的浮点数
+*/
+function approximate_num($basenum,$from=500,$to=900){
+    return number_format($basenum-rand($from,$to)/10000,4,'.','');
+}
+
 /****
 * 生成密保卡(用户)
 *$s=json_encode(gen_safecode());

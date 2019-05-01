@@ -794,7 +794,7 @@ function chgAllTimes(times)
 {
     var data = PRESSNUM.split(",");
     if(parseInt($("#bet-total").html()) * times > MAX_SCORE){
-        alert('已超过最大上限' + MAX_SCORE);
+        layer.alert('已超过最大上限' + MAX_SCORE);
         return;
     }
     $("#hidTimes").val($("#hidTimes").val() * times);
@@ -952,17 +952,17 @@ $('#usefenpei').on('click', function(){
     var Input_Score = $('#betsLeft').val();
     if(isNaN(Input_Score) ){
         $('#betsLeft').val('');
-        alert('分配分必须为数字!');
+        layer.alert('分配分必须为数字!');
         return;
     }else{
         if(  Input_Score<1){
             $('#betsLeft').val('');
-            alert('分配分必须大于0!');
+            layer.alert('分配分必须大于0!');
             return;
         }
         if(checkRate(Input_Score)==false){
             $('#betsLeft').val('');
-            alert('分配分必须正整数!');
+            layer.alert('分配分必须正整数!');
             return;
         }
         var checked_num=0;
@@ -974,7 +974,7 @@ $('#usefenpei').on('click', function(){
             }
         }
         if(Input_Score<checked_num){
-            alert('分配分不够!');
+            layer.alert('分配分不够!');
             return;
         }
         if(Input_Score>MAX_SCORE){
@@ -1066,7 +1066,7 @@ $('#prevBetting').on('click', function(){
                 })
                 $("#bet-total").html(totalPressScore);
             }else{
-                alert(map.msg);
+                layer.alert(map.msg);
             }
         }
     })

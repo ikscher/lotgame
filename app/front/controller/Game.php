@@ -95,6 +95,7 @@ class Game extends Site
             switch($gid){
                 case 1:
                 case 2:
+                case 3:
                     $page=isset($post['page'])?$post['page']:1;
                     $offset=20*($page-1);
                     $game=get_game($gid);
@@ -121,7 +122,7 @@ class Game extends Site
                         }elseif($prior['result']=='TIE'){
                             $data_['win_no']=3;
                         }
-                    }elseif($gid==2){
+                    }elseif($gid==2 || $gid==3){
                         $data_['win_no']=$prior['result'];
                     }
 
@@ -132,8 +133,8 @@ class Game extends Site
                     $data__['number']=$current['id'];
                     $data__['draw_time']=$current['open_time'];
                     $data__['id']=$current['id'];
-                    $data__['stop_time']=50; //距离停止下注时间
-                    $data__['kj_time']=54; //距离开奖时间
+                    $data__['stop_time']=$current['open_time']-time()-5; //距离停止下注时间
+                    $data__['kj_time']=$current['open_time']-time(); //距离开奖时间
                     $data__['is_change']=true;
 
                     $_data['thisTimes']=$data__;
@@ -148,7 +149,7 @@ class Game extends Site
                         $list1['result']=$l['desc'];
                         if($gid==1) {
                             $list1['win_no']=$l['result']=='PLAYER'?2:(($l['result']=='BANKER')?1:3);
-                        }elseif($gid==2){
+                        }elseif($gid==2 || $gid==3){
                             $list1['win_no']=strval($l['result']);
                         }
                         $list1['total_money']=$l['total_money'];//所有用户投注的金币总和

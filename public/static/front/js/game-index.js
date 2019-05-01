@@ -24,7 +24,7 @@ function getContent(){
             if(map.code == 200){
                 renderPage(map.data);
             }else if(map.code == 302){
-                window.location.href = '/index/login';
+                window.location.href = '/common/login';
             }
         }
     })
@@ -307,8 +307,9 @@ function renderNoList(data){
     var html = '';
     $.each(data, function(i, o){
         var bet = '';
+        console.log(o)
         var rest = fetchRest(o, i);
-        // console.log(rest);
+        
         if(o.status == 1){
             bet = '<a class="bet" data-href="/game/betting?gid=' + GID + '&oid=' + o.times_id + '">投注</a>';
         }else if(o.status == 0){
@@ -422,7 +423,7 @@ function fetchRest(o, i){
                 html += '<i class="kj kj_' + res.second_value + '"></i>';
                 html += '<i class="hdeng"></i>';
                 html += '<i class="mh m' + o.win_no + '"></i>';
-                if(GID != 2){
+                if(GID != 3){
                     html += '<a href="javascript:;" onclick="checkRes(' + i + ')" class="check">验证</a>';
                 }
             }
@@ -519,7 +520,7 @@ function fetchRest(o, i){
             }
             break;
         case 3:
-            console.log(o)
+            // console.log(o)
             if(o.win_no != ''){
                 var result = JSON.parse(o.result),
                     banker = result.banker,
@@ -686,7 +687,8 @@ function dyeResult(result){
             returnData['win'] = first_value;
             break;
         case 11:
-            if(GID == 2){
+            if(GID == 3){
+
                 var returnData = {};
                 returnData['first_value'] = result[0];
                 returnData['second_value'] = result[1];

@@ -112,6 +112,7 @@ Route::rule('game/test','front/game/test');
 //Crond
 Route::rule('data/baccarat','front/data/baccarat');
 Route::rule('data/luckyten','front/data/luckyten');
+Route::rule('data/luckyeleven','front/data/luckyeleven');
 Route::rule('info/check','front/info/check');
 
 
