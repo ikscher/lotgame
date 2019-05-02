@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-05-01 22:17:46
+Date: 2019-05-02 21:52:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3324,7 +3324,7 @@ CREATE TABLE `hov_game_xy10` (
   `win_num` int(11) DEFAULT '0',
   `bidrate` varchar(200) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1537 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1538 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_game_xy10
@@ -4725,10 +4725,11 @@ INSERT INTO `hov_game_xy10` VALUES ('1529', '', '1556720040', '2,1,3,4,7,9,8,10,
 INSERT INTO `hov_game_xy10` VALUES ('1530', '', '1556720100', '3,9,2,8,5,1,10,6,4,7', '3', '0', '1556720100', null, '2', '', '0', '0', '{\"f1\":\"9.9770\",\"f2\":\"9.9774\",\"f3\":\"9.9712\",\"f4\":\"9.9790\",\"f5\":\"9.9731\",\"f6\":\"9.9710\",\"f7\":\"9.9748\",\"f8\":\"9.9758\",\"f9\":\"9.9752\",\"f10\":\"9.9766\"}');
 INSERT INTO `hov_game_xy10` VALUES ('1531', '', '1556720160', '9,10,7,2,8,6,4,5,1,3', '9', '0', '1556720160', null, '2', '', '0', '0', '{\"f1\":\"9.9717\",\"f2\":\"9.9779\",\"f3\":\"9.9706\",\"f4\":\"9.9730\",\"f5\":\"9.9769\",\"f6\":\"9.9747\",\"f7\":\"9.9722\",\"f8\":\"9.9789\",\"f9\":\"9.9759\",\"f10\":\"9.9777\"}');
 INSERT INTO `hov_game_xy10` VALUES ('1532', '', '1556720220', '3,5,2,4,10,6,7,8,1,9', '3', '0', '1556720220', null, '2', '', '0', '0', '{\"f1\":\"9.9703\",\"f2\":\"9.9738\",\"f3\":\"9.9774\",\"f4\":\"9.9767\",\"f5\":\"9.9751\",\"f6\":\"9.9714\",\"f7\":\"9.9704\",\"f8\":\"9.9747\",\"f9\":\"9.9755\",\"f10\":\"9.9728\"}');
-INSERT INTO `hov_game_xy10` VALUES ('1533', '', '1556720280', null, null, '0', null, null, '1', 'thisTimes', '0', '0', '');
-INSERT INTO `hov_game_xy10` VALUES ('1534', '', '1556720340', null, null, '0', null, null, '1', null, '0', '0', '');
+INSERT INTO `hov_game_xy10` VALUES ('1533', '', '1556720280', '2,6,7,5,9,4,8,1,3,10', '2', '0', '1556720280', null, '2', '', '0', '0', '{\"f1\":\"9.9740\",\"f2\":\"9.9766\",\"f3\":\"9.9753\",\"f4\":\"9.9744\",\"f5\":\"9.9743\",\"f6\":\"9.9748\",\"f7\":\"9.9738\",\"f8\":\"9.9772\",\"f9\":\"9.9739\",\"f10\":\"9.9726\"}');
+INSERT INTO `hov_game_xy10` VALUES ('1534', '', '1556720340', null, null, '0', null, null, '1', 'thisTimes', '0', '0', '');
 INSERT INTO `hov_game_xy10` VALUES ('1535', '', '1556720400', null, null, '0', null, null, '1', null, '0', '0', '');
 INSERT INTO `hov_game_xy10` VALUES ('1536', '', '1556720460', null, null, '0', null, null, '1', null, '0', '0', '');
+INSERT INTO `hov_game_xy10` VALUES ('1537', '', '1556720520', null, null, '0', null, null, '1', null, '0', '0', '');
 
 -- ----------------------------
 -- Table structure for `hov_game_xy11`
@@ -4749,7 +4750,7 @@ CREATE TABLE `hov_game_xy11` (
   `win_num` int(11) DEFAULT '0',
   `bidrate` varchar(200) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_game_xy11
@@ -4829,10 +4830,11 @@ INSERT INTO `hov_game_xy11` VALUES ('100', '', '1556720040', '3,6', '9', '0', '1
 INSERT INTO `hov_game_xy11` VALUES ('101', '', '1556720100', '6,6', '12', '0', '1556720100', null, '2', '', '0', '0', '{\"f2\":\"35.9918\",\"f3\":\"17.9900\",\"f4\":\"11.9956\",\"f5\":\"8.9983\",\"f6\":\"7.1965\",\"f7\":\"5.9937\",\"f8\":\"7.1985\",\"f9\":\"8.9927\",\"f10\":\"11.9926\",\"f11\":\"17.9900\",\"f12\":\"35.9950\"}');
 INSERT INTO `hov_game_xy11` VALUES ('102', '', '1556720160', '6,1', '7', '0', '1556720160', null, '2', '', '0', '0', '{\"f2\":\"35.9938\",\"f3\":\"17.9923\",\"f4\":\"11.9945\",\"f5\":\"8.9923\",\"f6\":\"7.1940\",\"f7\":\"5.9933\",\"f8\":\"7.1928\",\"f9\":\"8.9944\",\"f10\":\"11.9939\",\"f11\":\"17.9936\",\"f12\":\"35.9931\"}');
 INSERT INTO `hov_game_xy11` VALUES ('103', '', '1556720220', '3,4', '7', '0', '1556720220', null, '2', '', '0', '0', '{\"f2\":\"35.9951\",\"f3\":\"17.9934\",\"f4\":\"11.9956\",\"f5\":\"8.9950\",\"f6\":\"7.1921\",\"f7\":\"5.9973\",\"f8\":\"7.1953\",\"f9\":\"8.9930\",\"f10\":\"11.9904\",\"f11\":\"17.9984\",\"f12\":\"35.9937\"}');
-INSERT INTO `hov_game_xy11` VALUES ('104', '', '1556720280', null, null, '0', null, null, '1', 'thisTimes', '0', '0', '');
-INSERT INTO `hov_game_xy11` VALUES ('105', '', '1556720340', null, null, '0', null, null, '1', null, '0', '0', '');
+INSERT INTO `hov_game_xy11` VALUES ('104', '', '1556720280', '5,4', '9', '0', '1556720280', null, '2', '', '0', '0', '{\"f2\":\"35.9937\",\"f3\":\"17.9930\",\"f4\":\"11.9907\",\"f5\":\"8.9946\",\"f6\":\"7.1902\",\"f7\":\"5.9984\",\"f8\":\"7.1985\",\"f9\":\"8.9963\",\"f10\":\"11.9990\",\"f11\":\"17.9918\",\"f12\":\"35.9913\"}');
+INSERT INTO `hov_game_xy11` VALUES ('105', '', '1556720340', null, null, '0', null, null, '1', 'thisTimes', '0', '0', '');
 INSERT INTO `hov_game_xy11` VALUES ('106', '', '1556720400', null, null, '0', null, null, '1', null, '0', '0', '');
 INSERT INTO `hov_game_xy11` VALUES ('107', '', '1556720460', null, null, '0', null, null, '1', null, '0', '0', '');
+INSERT INTO `hov_game_xy11` VALUES ('108', '', '1556720520', null, null, '0', null, null, '1', null, '0', '0', '');
 
 -- ----------------------------
 -- Table structure for `hov_game_xy16`
@@ -4953,7 +4955,7 @@ CREATE TABLE `hov_game_xybjl` (
   `win_num` int(11) DEFAULT '0',
   `bidrate` varchar(200) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12783 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12784 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of hov_game_xybjl
@@ -6551,10 +6553,11 @@ INSERT INTO `hov_game_xybjl` VALUES ('12775', '', '1556720040', '{\"banker\":[\"
 INSERT INTO `hov_game_xybjl` VALUES ('12776', '', '1556720100', '{\"banker\":[\"6c\",\"6d\",\"9c\"],\"player\":[\"13d\",\"10b\",\"4c\"]}', 'PLAYER', '0', '1556720100', null, '2', '', '0', '0', '{\"f1\":\"2.2312\",\"f2\":\"2.1723\",\"f3\":\"10.4933\"}');
 INSERT INTO `hov_game_xybjl` VALUES ('12777', '', '1556720160', '{\"banker\":[\"5d\",\"4d\"],\"player\":[\"10a\",\"4d\",\"13a\"]}', 'BANKER', '0', '1556720160', null, '2', '', '0', '0', '{\"f1\":\"2.2334\",\"f2\":\"2.1743\",\"f3\":\"10.4939\"}');
 INSERT INTO `hov_game_xybjl` VALUES ('12778', '', '1556720220', '{\"banker\":[\"13d\",\"5b\"],\"player\":[\"13a\",\"11b\",\"13c\"]}', 'BANKER', '0', '1556720220', null, '2', '', '0', '0', '{\"f1\":\"2.2342\",\"f2\":\"2.1741\",\"f3\":\"10.4948\"}');
-INSERT INTO `hov_game_xybjl` VALUES ('12779', '', '1556720280', null, null, '0', null, null, '1', 'thisTimes', '0', '0', '');
-INSERT INTO `hov_game_xybjl` VALUES ('12780', '', '1556720340', null, null, '0', null, null, '1', null, '0', '0', '');
+INSERT INTO `hov_game_xybjl` VALUES ('12779', '', '1556720280', '{\"banker\":[\"12c\",\"9b\"],\"player\":[\"4a\",\"2c\"]}', 'BANKER', '0', '1556720280', null, '2', '', '0', '0', '{\"f1\":\"2.2303\",\"f2\":\"2.1718\",\"f3\":\"10.4914\"}');
+INSERT INTO `hov_game_xybjl` VALUES ('12780', '', '1556720340', null, null, '0', null, null, '1', 'thisTimes', '0', '0', '');
 INSERT INTO `hov_game_xybjl` VALUES ('12781', '', '1556720400', null, null, '0', null, null, '1', null, '0', '0', '');
 INSERT INTO `hov_game_xybjl` VALUES ('12782', '', '1556720460', null, null, '0', null, null, '1', null, '0', '0', '');
+INSERT INTO `hov_game_xybjl` VALUES ('12783', '', '1556720520', null, null, '0', null, null, '1', null, '0', '0', '');
 
 -- ----------------------------
 -- Table structure for `hov_game_xygyj`

@@ -220,8 +220,68 @@ class Game extends Site
 
     //走势图
     public function chart()
-    {
+    {   
         return $this->fetch();
+    }
+
+    //获取走势图
+    public function get_chart()
+    {   
+        if($this->request->isGet()){
+            $scale_init=Config::get('scale_init');
+            $get=$this->request->get();
+            $gid=$get['gid'];
+            $code=Db::name('game')->where('id',$gid)->value('code');
+            $page_size=$get['page_size'];
+            
+            $this->assign('page_size',$page_size);
+            switch($gid){
+                case 1:
+                    $panel=$scale_init['xybjl'];
+                    $standardTimes=array();
+                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
+                 
+                    foreach($list as $k=>$v){
+                        $list[$k]['result']=$v['result']=='BANKER'?'庄':($v['result']=='PLAYER'?'闲':'和');
+                    }
+                    $this->assign('list',$list);
+                    break;
+                case 2:
+                    $panel=$scale_init['xy10'];
+                    // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
+                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
+                 
+                    foreach($list as $k=>$v){
+                        $list[$k]['result']=$v['result'];
+                    }
+                    $this->assign('list',$list);
+                    break;
+                case 3:
+                    $panel=$scale_init['xy11'];
+                    // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
+                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
+                 
+                    foreach($list as $k=>$v){
+                        $list[$k]['result']=$v['result'];
+                    }
+                    $this->assign('list',$list);
+                    break;
+            }
+
+            $title= array();
+            foreach($panel as $v){
+                $title[]=$v[1];
+            }
+            $this->assign('title',$title);
+            if($gid>1){
+                $this->assign('three',dividedbythree(array_pop($title),array_shift($title)));
+                $this->assign('basenum',array_pop($title)/2);//最后一个元素即最大的一个（投注）数
+            }
+            
+
+            $this->assign('gid',$gid);
+            echo  $this->fetch();exit;
+        }
     }
 
     //自动投注界面
@@ -300,7 +360,89 @@ class Game extends Site
 
     //盈利统计
     public function total()
-    {
+    {   
+        $prefix = Config::get('database.prefix');
+        $lists=array();
+        //今天
+        $uid=$this->uid;
+        $begin_time=strtotime(date('Y-m-d'));
+        $end_time=strtotime("+1 day",$begin_time);
+        $sql="SELECT `a`.`id`,`a`.`name`,sum(`b`.`bidmoney`) as bidmoney,`b`.`prizeinfo` FROM `{$prefix}game` `a` LEFT  JOIN `{$prefix}user_bid` `b` ON `a`.`id`=`b`.`game_id`  and `b`.`user_id`={$uid} and  ( `b`.`create_time` >= {$begin_time} AND `b`.`create_time` < {$end_time} ) GROUP BY a.id";
+        $rows=collection(Db::query($sql))->toArray();
+        
+        foreach($rows as $k=>$v){
+            $list['name']=$v['name'];
+            $list['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        }
+        $lists[0]=$list;
+        unset($map);unset($list);
+        //昨天
+        $end_time=strtotime(date('Y-m-d'));
+        $begin_time=strtotime("-1 day",$end_time);
+        $list=collection(Db::query($sql))->toArray();
+        foreach($list as $k=>$v){
+            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        }
+        
+        $lists[1]=$list;
+        unset($map);unset($list);
+
+        //前天
+        $cur_time=strtotime(date('Y-m-d'));
+        $begin_time=strtotime("-2 day",$cur_time);
+        $end_time=strtotime("-1 day",$cur_time);
+        $list=collection(Db::query($sql))->toArray();
+        foreach($list as $k=>$v){
+            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        }
+        $lists[2]=$list;
+        unset($map);unset($list);
+        
+        //大前天
+        $cur_time=strtotime(date('Y-m-d'));
+        $begin_time=strtotime("-3 day",$cur_time);
+        $end_time=strtotime("-2 day",$cur_time);
+        $list=collection(Db::query($sql))->toArray();
+        foreach($list as $k=>$v){
+            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        }
+        $lists[3]=$list;
+        unset($map);unset($list);
+
+        //大大前天
+        $cur_time=strtotime(date('Y-m-d'));
+        $begin_time=strtotime("-4 day",$cur_time);
+        $end_time=strtotime("-3 day",$cur_time);
+        $list=collection(Db::query($sql))->toArray();
+        foreach($list as $k=>$v){
+            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        }
+        $lists[4]=$list;
+        unset($map);unset($list);
+
+        //大大大前天
+        $cur_time=strtotime(date('Y-m-d'));
+        $begin_time=strtotime("-5 day",$cur_time);
+        $end_time=strtotime("-4 day",$cur_time);
+        $list=collection(Db::query($sql))->toArray();
+        foreach($list as $k=>$v){
+            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        }
+        $lists[5]=$list;
+        unset($map);unset($list);
+
+        //大大大大前天
+        $cur_time=strtotime(date('Y-m-d'));
+        $begin_time=strtotime("-6 day",$cur_time);
+        $end_time=strtotime("-5 day",$cur_time);
+        $list=collection(Db::query($sql))->toArray();
+        foreach($list as $k=>$v){
+            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        }
+        $lists[6]=$list;
+        unset($map);unset($list);
+        var_dump($lists);
+        $this->assign('lists',$lists);
         return $this->fetch();
     }
 
@@ -486,110 +628,7 @@ class Game extends Site
         }
     }
 
-    //获取走势图
-    public function get_chart()
-    {
-        $str = <<<EOT
-        <table class="table_list" cellspacing="0px" style="border-collapse:collapse;width:1200px;">
-            <tbody>
-            <tr bgcolor="#fbfbfb">
-                <th colspan="41">走势图 <select id="sltNum">
-                    <option value="100" selected="selected" >最新100期</option>
-                    <option value="200"  >最新200期</option>
-                    <option value="300"  >最新300期</option>
-                    <option value="400"  >最新400期</option>
-                    <option value="500"  >最新500期</option>
-                </select></th>
-            </tr>
-            <tr class="timeh">
-                <th colspan="2"><b class="black777">标准次数</b></th>
-                <th>2</th><th>5</th><th>8</th><th>11</th><th>14</th><th>16</th><th>14</th><th>11</th><th>8</th><th>5</th><th>2</th><th>50</th><th>50</th><th>56</th><th>44</th><th>50</th><th>50</th>    </tr>    <tr class="timeh">
-                <th colspan="2"><b class="black777">实际次数</b></th>
-                <th>3</th><th>7</th><th>7</th><th>10</th><th>12</th><th>12</th><th>12</th><th>14</th><th>18</th><th>4</th><th>1</th><th>47</th><th>53</th><th>60</th><th>40</th><th>121</th><th>79</th>        <th colspan="2"><b class="black777">尾数</b></th>
-                <th colspan="3"><b class="black777">余数</b></th>
-            </tr>
-            <tr class="font_color_2" bgcolor="#e3f0ff">
-                <th width="50">期号</th>
-                <th width="62">时间</th>
-                <th width="22">2</th><th width="22">3</th><th width="22">4</th><th width="22">5</th><th width="22">6</th><th width="22">7</th><th width="22">8</th><th width="22">9</th><th width="22">10</th><th width="22">11</th><th width="22">12</th>        <th width="22">单</th>
-                <th width="22">双</th>
-                <th width="22">中</th>
-                <th width="22">边</th>
-                <th width="22">大</th>
-                <th width="22">小</th>
-                <th width="22">大</th>
-                <th width="22">小</th>
-                <th width="22">3/</th>
-                <th width="22">4/</th>
-                <th width="22">5/</th>
-            </tr>
-            </tbody>
-            <tbody>
-            <tr>
-                <td class="tdbg3">2416621</td>
-                <td class="black777">04-20 19:00</td>
-                <td class="bgnum"></td><td class="bgnum"></td><td class="bgnum"></td><td ></td><td ></td><td ></td><td ><em class="final"><i>8</i></em></td><td ></td><td class="bgnum"></td><td class="bgnum"></td><td class="bgnum"></td>            <td >单</td>
-                <td class="bgkai02">双</td>
-                <td class="bgkai03">中</td>
-                <td >边</td>
-                <td class="bgkai05">大</td>
-                <td >小</td>
-                <td class="bgkai07">大</td>
-                <td >小</td>
-                <td class="black333">2</td>
-                <td class="black333">0</td>
-                <td class="black333">3</td>
-            </tr>
-            <tr>
-                <td class="tdbg3">2416620</td>
-                <td class="black777">04-20 18:56</td>
-                <td class="bgnum"></td><td class="bgnum"></td><td class="bgnum"></td><td ></td><td ></td><td ></td><td ></td><td ></td><td class="bgnum"><em class="final"><i>10</i></em></td><td class="bgnum"></td><td class="bgnum"></td>            <td >单</td>
-                <td class="bgkai02">双</td>
-                <td >中</td>
-                <td class="bgkai04">边</td>
-                <td class="bgkai05">大</td>
-                <td >小</td>
-                <td >大</td>
-                <td class="bgkai08">小</td>
-                <td class="black333">1</td>
-                <td class="black333">2</td>
-                <td class="black333">0</td>
-            </tr>
-            <tr>
-                <td class="tdbg3">2416619</td>
-                <td class="black777">04-20 18:53</td>
-                <td class="bgnum"></td><td class="bgnum"><em class="final"><i>3</i></em></td><td class="bgnum"></td><td ></td><td ></td><td ></td><td ></td><td ></td><td class="bgnum"></td><td class="bgnum"></td><td class="bgnum"></td>            <td class="bgkai01">单</td>
-                <td >双</td>
-                <td >中</td>
-                <td class="bgkai04">边</td>
-                <td >大</td>
-                <td class="bgkai06">小</td>
-                <td >大</td>
-                <td class="bgkai08">小</td>
-                <td class="black333">0</td>
-                <td class="black333">3</td>
-                <td class="black333">3</td>
-            </tr>
-            <tr>
-                <td class="tdbg3">2416618</td>
-                <td class="black777">04-20 18:49</td>
-                <td class="bgnum"></td><td class="bgnum"></td><td class="bgnum"></td><td ></td><td ><em class="final"><i>6</i></em></td><td ></td><td ></td><td ></td><td class="bgnum"></td><td class="bgnum"></td><td class="bgnum"></td>            <td >单</td>
-                <td class="bgkai02">双</td>
-                <td class="bgkai03">中</td>
-                <td >边</td>
-                <td >大</td>
-                <td class="bgkai06">小</td>
-                <td class="bgkai07">大</td>
-                <td >小</td>
-                <td class="black333">0</td>
-                <td class="black333">2</td>
-                <td class="black333">1</td>
-            </tr>
-            </tbody>
-        </table>
-EOT;
-    echo $str;exit;
-    }
+
 
     //获取投注信息
     //{"code":200,"msg":"SUCCESS","data":{"betting_num":"110","win_num":"108","order_num":"1378861","time":"2019-04-26 20:21:30","nolists":{"f1":{"no":"\u5e84\u8d62","scale_init":"2.2400","scale_draw":"2.2355","scale_prev":"2.2355","win_num":0,"bet_num":"50"},"f2":{"no":"\u95f2\u8d62","scale_init":"2.1800","scale_draw":"2.1756","scale_prev":"2.1756","win_num":"108","bet_num":"50","is_win":1},"f3":{"no":"\u548c","scale_init":"10.5000","scale_draw":"10.4790","scale_prev":"10.4791","win_num":0,"bet_num":"10"}}}}

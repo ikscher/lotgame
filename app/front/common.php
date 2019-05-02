@@ -34,6 +34,35 @@ function approximate_num($basenum,$from=500,$to=900){
     return number_format($basenum-rand($from,$to)/10000,4,'.','');
 }
 
+/**
+* 取数字的个位
+*/
+function get_digit($num){
+   $num_ = str_split($num);
+   $number = $num_[count($num_) - 1];
+   return $number;
+}
+
+/**
+*一个数均分三等份，边，中，边
+*/
+function dividedbythree($x,$y){
+    $arr=array();
+    $x=$x-$y+1;
+    if($x%3==0){
+        $arr[0]=$x/3+$y;
+        $arr[1]=$x/3*2+$y;
+    }elseif($x%3==1){
+        $arr[0]=floor($x/3)+$y-1;
+        $arr[1]=floor($x/3)*2+$y;
+
+    }elseif($x%3==2){
+        $arr[0]=floor($x/3)+$y;
+        $arr[1]=floor($x/3)*2+$y;
+    }
+    return $arr;
+}
+
 /****
 * 生成密保卡(用户)
 *$s=json_encode(gen_safecode());
