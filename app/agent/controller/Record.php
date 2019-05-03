@@ -17,7 +17,7 @@ class Record extends Site
         // $this->agentModel = new agentModel();
         $this->agentCateModel = new agentCateModel();
         $this->agentLogModel = new agentLogModel();
-        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+        if(empty($this->uid)) { $this->redirect('/common/login');}
     }
 
     //全部记录

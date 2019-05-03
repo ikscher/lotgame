@@ -11,7 +11,7 @@ class Agent extends Site
 	public function _initialize()
     {   
         parent::_initialize();
-        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+        if(empty($this->uid)) { $this->redirect('/common/login');}
         $this->agentModel = new agentModel();
         // $this->site_name=Config::get('site_name');
         $controller=$this->request->controller();

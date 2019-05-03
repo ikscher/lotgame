@@ -32,7 +32,7 @@ class Site extends Controller
                 
                 //安全起见，用UID,PASSWORD判断是否存在数据库？？？
 
-	            Session::set('uid',$uid);
+	            //Session::set('uid',$uid);
 
 	            $map['uid']=$uid;
 	            

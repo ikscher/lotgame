@@ -49,7 +49,7 @@ $(document).ready(function(){
                 async: false,
                 dataType:'json',
                 success:function(res) {
-                  // console.log(res);
+                  console.log(res);
 
                     if(res.code == 1) {
                           //layer.msg(res.msg, function(index){

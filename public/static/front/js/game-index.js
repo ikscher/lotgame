@@ -187,31 +187,31 @@ function fetchPrevRes(data){
             html += '<div class="lis"><label>一区号码：</label><span>' + parseInt(res[0]) + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + data.win_no + '</span></div>';
             break;
-        case 17 :
+        case 37 :
             html += '<div class="lis"><label>一区号码：</label><span>' + data.win_no + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + data.win_no + '</span></div>';
             break;
-        case 34 :
-        case 35 :
+        case 31 :
+        case 26 :
         case 36 :
         case 45 :
-        case 46 :
+        case 56 :
             var res = dyeResult(data.result);
             html += '<div class="lis"><label>一区号码：</label><span>' + res.first_value + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + data.win_no + '</span></div>';
             break;
         case 3 :
-        case 7 :
-        case 21 :
+        case 5 :
+        case 34 :
             var res = data.result.split(',');
             html += '<div class="lis"><label>一区号码：</label><span>' + parseInt(res[0]) + '</span></div>';
             html += '<div class="lis"><label>二区号码：</label><span>' + parseInt(res[1]) + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + data.win_no + '</span></div>';
             break;
-        case 3 :
         case 4 :
-        case 5 :
-        case 18 :
+        case 6 :
+        case 7 :
+        case 35 :
         case 43 :
             var res = data.result.split(',');
             html += '<div class="lis"><label>一区号码：</label><span>' + parseInt(res[0]) + '</span></div>';
@@ -219,59 +219,59 @@ function fetchPrevRes(data){
             html += '<div class="lis"><label>三区号码：</label><span>' + parseInt(res[2]) + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + data.win_no + '</span></div>';
             break;
-        case 6 :
+        case 8 :
             var res = data.result.split(',');
             html += '<div class="lis"><label>一区号码：</label><span>' + res[0] + '</span></div>';
             html += '<div class="lis"><label>二区号码：</label><span>' + res[1] + '</span></div>';
             html += '<div class="lis"><label>三区号码：</label><span>' + res[2] + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + BSDBZTEXT[data.win_no] + '</span></div>';
             break;
-        case 9 :
+        case 11 :
         case 12 :
         case 16 :
         case 25 :
-        case 42 :
+        case 55 :
             var res = dyeResult(data.result);
             html += '<div class="lis"><label>一区号码：</label><span>' + res.first_value + '</span></div>';
             html += '<div class="lis"><label>二区号码：</label><span>' + res.second_value + '</span></div>';
             html += '<div class="lis"><label>三区号码：</label><span>' + res.third_value + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + BSDBZTEXT[data.win_no] + '</span></div>';
             break;
-        case 20 :
+        case 38 :
             var res = data.result.split(',');
             html += '<div class="lis"><label>一区号码：</label><span>' + parseInt(res[0]) + '</span></div>';
             html += '<div class="lis"><label>二区号码：</label><span>' + parseInt(res[9]) + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + LHTEXT[data.win_no] + '</span></div>';
             break;
-        case 13 :
-        case 22 :
-        case 40 :
+        case 15 :
+        case 24 :
+        case 54 :
             var res = dyeResult(data.result);
             html += '<div class="lis"><label>一区号码：</label><span>' + res.first_value + '</span></div>';
             html += '<div class="lis"><label>二区号码：</label><span>' + res.second_value + '</span></div>';
             html += '<div class="lis"><label>结果：</label><span class="r">' + data.win_no + '</span></div>';
             break;
-        case 8 :
-        case 10 :
-        case 11 :
+        case 9 :
+        case 20 :
         case 14 :
-        case 15 :
+        case 13 :
+        case 12 :
         case 23 :
-        case 24 :
+        case 22 :
         case 27 :
         case 28 :
         case 29 :
         case 30 :
-        case 31 :
-        case 32 :
-        case 33 :
-        case 41 :
-        case 39 :
-        case 47 :
-        case 48 :
-        case 49 :
+        case 27 :
+        case 17 :
+        case 10 :
+        case 53 :
+        case 52 :
+        case 29 :
+        case 28 :
+        case 57 :
         case 50 :
-        case 51 :
+        case 18 :
             var res = dyeResult(data.result);
             html += '<div class="lis"><label>一区号码：</label><span>' + res.first_value + '</span></div>';
             html += '<div class="lis"><label>二区号码：</label><span>' + res.second_value + '</span></div>';
@@ -307,7 +307,7 @@ function renderNoList(data){
     var html = '';
     $.each(data, function(i, o){
         var bet = '';
-        console.log(o)
+        // console.log(o)
         var rest = fetchRest(o, i);
         
         if(o.status == 1){
@@ -438,7 +438,7 @@ function fetchRest(o, i){
                 html += '<i class="kj kj_' + res.third_value + '"></i>';
                 html += '<i class="hdeng"></i>';
                 html += '<i class="mh m' + o.win_no + '"></i>';
-                if(GID != 3){
+                if(GID != 4){
                     html += '<a href="javascript:;" onclick="checkRes(' + i + ')" class="check">验证</a>';
                 }
             }
@@ -730,7 +730,7 @@ function dyeResult(result){
             }
             break;
         case 16:
-            if(GID == 3){
+            if(GID == 4){
                 var returnData = {};
                 returnData['first_value'] = result[0];
                 returnData['second_value'] = result[1];

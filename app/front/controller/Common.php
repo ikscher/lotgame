@@ -48,7 +48,7 @@ class Common extends Site
     */
     public function findpwd()
     {
-        if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+        if(!empty($this->uid)) { $this->redirect('/user/index');}
         if($this->request->isPost()){
             $post=$this->request->post();
             Session::set('findpwd_mobile',$post['mobile']);
@@ -67,7 +67,7 @@ class Common extends Site
     */
     public function findpwd2()
     {   
-        if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+        if(!empty($this->uid)) { $this->redirect('/user/index');}
         $mobile=Session::get('findpwd_mobile');
         if(empty($mobile)) { $this->redirect('/common/findpwd');}
         if($this->request->isPost()){
@@ -92,101 +92,98 @@ class Common extends Site
      */
     public function login()
     {
-        if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+        if(!empty($this->uid)) { $this->redirect('/user/index');}
 
-        if(Session::has('uid') == false) { 
-
-            if($this->request->isPost()) {
-                //是登录操作
-                $post = $this->request->post();
-                //验证  唯一规则： 表名，字段名，排除主键值，主键名
-                // $validate = new \think\Validate([
-                //     ['name', 'require|alphaDash', '用户名不能为空|用户名格式只能是字母、数字、——或_'],
-                //     ['password', 'require', '密码不能为空'],
-                //     ['captcha','require|captcha','验证码不能为空|验证码不正确'],
-                // ]);
-                // //验证部分数据合法性
-                // if (!$validate->check($post)) {
-                //     $this->error('提交失败：' . $validate->getError());
-                // }
-                $logintype=$post['logintype'];
-                if($logintype==1){ //账号密码登录
-                    //判断是否只支持短信登录
-                    $username=$post['tbUserAccount'];
-                    $user = $this->userModel->where("email='$username'")->whereor("mobile='$username'")->find();
-                }elseif($logintype==2){
-                    $mobile=$post['mobile'];
-                    $user = $this->userModel->where("mobile='$mobile'")->find();
-                }
+        if($this->request->isPost()) {
+            //是登录操作
+            $post = $this->request->post();
+            //验证  唯一规则： 表名，字段名，排除主键值，主键名
+            // $validate = new \think\Validate([
+            //     ['name', 'require|alphaDash', '用户名不能为空|用户名格式只能是字母、数字、——或_'],
+            //     ['password', 'require', '密码不能为空'],
+            //     ['captcha','require|captcha','验证码不能为空|验证码不正确'],
+            // ]);
+            // //验证部分数据合法性
+            // if (!$validate->check($post)) {
+            //     $this->error('提交失败：' . $validate->getError());
+            // }
+            $logintype=$post['logintype'];
+            if($logintype==1){ //账号密码登录
+                //判断是否只支持短信登录
+                $username=$post['tbUserAccount'];
+                $user = $this->userModel->where("email='$username'")->whereor("mobile='$username'")->find();
+            }elseif($logintype==2){
+                $mobile=$post['mobile'];
+                $user = $this->userModel->where("mobile='$mobile'")->find();
+            }
+            
+            if(empty($user['username'])) {
+                //不存在该用户名
+                return $this->error('用户名不存在');
+            } else {
                 
-                if(empty($user['username'])) {
-                    //不存在该用户名
-                    return $this->error('用户名不存在');
-                } else {
-                    
-                    if($logintype==1){ //账号密码登录
-                        $password = password($post['tbUserPwd']);
-                        if($user['password'] != $password) {
-                            return $this->error('密码错误');
-                        } else {
-                            //判断是否只支持短信登录
-                            $username=$post['tbUserAccount'];
-                            
-                            $userlogin=$this->userModel->where("email='$username'")->whereor("mobile='$username'")->find();
-                            $login_by_msg=$userlogin['login_by_msg'];
-                            $uid=$userlogin['uid'];
-                            // $this->error($this->userModel->getLastSql());
-                            if($login_by_msg==1){
-                                $this->error("对不起,您的账户仅支持短信登录,请使用短信快捷登录");
-                            }
-                            
-                            //如果设置了密码卡，跳转
-                            $id_sf=$this->userSafepwdModel->where('user_id',$uid)->value('id');
-                            if(!empty($id_sf)) {
-                                Session::set('userlogin',$user);
-                                $this->success('','/common/logins');
-                            }
-                            //记录登录cookie
-                            Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
+                if($logintype==1){ //账号密码登录
+                    $password = password($post['tbUserPwd']);
+                    if($user['password'] != $password) {
+                        return $this->error('密码错误');
+                    } else {
+                        //判断是否只支持短信登录
+                        $username=$post['tbUserAccount'];
+                        
+                        $userlogin=$this->userModel->where("email='$username'")->whereor("mobile='$username'")->find();
+                        $login_by_msg=$userlogin['login_by_msg'];
+                        $uid=$userlogin['uid'];
+                        // $this->error($this->userModel->getLastSql());
+                        if($login_by_msg==1){
+                            $this->error("对不起,您的账户仅支持短信登录,请使用短信快捷登录");
+                        }
+                        
+                        //如果设置了密码卡，跳转
+                        $id_sf=$this->userSafepwdModel->where('user_id',$uid)->value('id');
+                        if(!empty($id_sf)) {
+                            Session::set('userlogin',$user);
+                            $this->success('','/common/logins');
+                        }
 
-                            //记录登录时间和ip
-                            $this->userModel->where('uid',$user['uid'])->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
-                            //记录操作日志
-                            $coin=$this->userModel->where('uid',$user['uid'])->value('coin');
-                            // $this->userModel->where('uid',$user['uid'])->setInc('experiments',5);
-                            adduserlog($user['uid'],'登录',0,0,$coin,'login');
-                            return $this->success('登录成功,正在跳转...','/user/index');
-                        }
-                    }elseif($logintype==2){ //短信验证登录
-                        if(!empty($post['code']) && $post['code']==Session::get('login_smscode_t')){
-                            Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400*7);
-                            $this->userModel->where('uid',$user['uid'])->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
-                            //记录操作日志
-                            $coin=$this->userModel->where('uid',$user['uid'])->value('coin');
-                            // $this->userModel->where('uid',$user['uid'])->setInc('experiments',5);
-                            adduserlog($user['uid'],'登录',0,0,$coin,'login');
-                            return $this->success('登录成功,正在跳转...','/user/index');
-                        }else{
-                            return $this->error('验证码错误');
-                        }
+
+                        //记录登录cookie
+                        Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400);
+
+                        //记录登录时间和ip
+                        $this->userModel->where('uid',$user['uid'])->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
+                        //记录操作日志
+                        $coin=$this->userModel->where('uid',$user['uid'])->value('coin');
+                        // $this->userModel->where('uid',$user['uid'])->setInc('experiments',5);
+                        adduserlog($user['uid'],'登录',0,0,$coin,'login');
+                        return $this->success('登录成功,正在跳转...','/user/index');
+                    }
+                }elseif($logintype==2){ //短信验证登录
+                    if(!empty($post['code']) && $post['code']==Session::get('login_smscode_t')){
+                        Cookie::set('auth',ThkAuthCode("$user[uid]\t$user[password]",'ENCODE'),86400);
+                        $this->userModel->where('uid',$user['uid'])->update(['login_ip'=> $this->request->ip(),'login_time' => time()]);
+                        //记录操作日志
+                        $coin=$this->userModel->where('uid',$user['uid'])->value('coin');
+                        // $this->userModel->where('uid',$user['uid'])->setInc('experiments',5);
+                        adduserlog($user['uid'],'登录',0,0,$coin,'login');
+                        return $this->success('登录成功,正在跳转...','/user/index');
+                    }else{
+                        return $this->error('验证码错误');
                     }
                 }
-            } else {
-
-                if(Cookie::has('usermember')) {
-                    $this->assign('usermember',Cookie::get('usermember'));
-                }
-                return $this->fetch();
             }
         } else {
-            $this->redirect('/common/login');
-        }   
+
+            if(Cookie::has('usermember')) {
+                $this->assign('usermember',Cookie::get('usermember'));
+            }
+            return $this->fetch();
+        }
     }
     
     //密保卡登录
     public function logins()
     {   
-        if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+        if(!empty($this->uid)) { $this->redirect('/user/index');}
         $user=Session::get('userlogin');
         $uid=$user['uid'];
         
@@ -227,7 +224,7 @@ class Common extends Site
      */
     public function register()
     {   
-        if(!empty(Session::get('uid'))) { $this->redirect('/user/index');}
+        if(!empty($this->uid)) { $this->redirect('/user/index');}
 
         if(Session::has('uid') == false) { 
 
@@ -283,10 +280,11 @@ class Common extends Site
      */
     public function logout()
     {
-        Session::delete('uid');
-        // Session::clear();//会清除后台的session
+        // Session::delete('uid');
+        Session::clear();//会清除后台的session
         Cookie::delete('auth');
-        if(Session::has('uid')) {
+        unset($this->uid);
+        if(!empty($this->uid)) {
             return $this->error('退出失败');
         } else {
             //return $this->success('正在退出...','/common/login');

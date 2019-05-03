@@ -25,7 +25,7 @@ class Other extends Site
         $this->agentLogModel = new agentLogModel();
         $this->cardcateModel = new CardCateModel();
         $this->userLogModel= new userLogModel();
-        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+        if(empty($this->uid)) { $this->redirect('/common/login');}
     }
 
     //代理信息

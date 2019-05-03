@@ -141,7 +141,7 @@ class Info extends Controller
 	    	    $num=$result;
 
 	            $map['game_number']=$row['id'];//上期期号
-	            $map['game_id']=3;//幸运10的ID
+	            $map['game_id']=3;//幸运11的ID
 	            $data=collection($this->userBidModel->where($map)->select())->toArray();//所有投注此游戏的用户数据
 	            
 
@@ -163,6 +163,141 @@ class Info extends Controller
 	                    	$prizeinfo[$k]=$win_coin;
 	                    	//添加中奖人数
 	                    	Db::name('game_xy11')->where('id',$prior_id)->setInc('win_num',1);
+	                    }else{
+	                    	$prizeinfo[$k]=0;
+	                    }
+
+	                }
+	                $bid=$v['id'];
+	                $this->userBidModel->where('id',$bid)->setField('prizeinfo',json_encode($prizeinfo));
+	            }
+	            break;
+	        case 'xy16': //幸运16
+                $id=Db::name('game_xy16')->where('period','thisTimes')->value('id');
+	    	    $prior_id=$id-1;
+	    	    //设置赔率
+	    	    $x=array();
+	    	    foreach($this->scale_init['xy16'] as $k=>$v){
+					$x[$k]=approximate_num($v[0],10,100);
+			    }
+	    	    Db::name('game_xy16')->where('id',$prior_id)->setField('bidrate',json_encode($x));
+	    	    $row=Db::name('game_xy16')->where('id',$prior_id)->find();
+	            $result=$row['result'];
+	    	    $num=$result;
+
+	            $map['game_number']=$row['id'];//上期期号
+	            $map['game_id']=4;//幸运11的ID
+	            $data=collection($this->userBidModel->where($map)->select())->toArray();//所有投注此游戏的用户数据
+	            
+
+	            foreach($data as $v){
+	            	$prizeinfo=array();
+	                $bidinfo=json_decode($v['bidinfo'],true);
+	                $gid=$v['game_id'];
+	                $oid=$v['game_number'];
+	                $uid=$v['user_id'];
+	                foreach($bidinfo as $k=>$w){
+	                    if('f'.$num==$k){
+	                    	// $z=array_values($w);
+	                    	$win_coin=floor($w*$x['f'.$num]);
+
+	                    	$this->userModel->where('uid',$uid)->setInc('coin',$win_coin);
+	                    	$game=get_game($gid);
+	                    	$coin=$this->userModel->where('uid',$uid)->value('coin');
+	                    	adduserlog($uid,$game['name'].'第'.$oid.'期,中奖'.$win_coin.'金币',$win_coin,0,$coin,'hit');//hit类型:游戏中奖
+	                    	$prizeinfo[$k]=$win_coin;
+	                    	//添加中奖人数
+	                    	Db::name('game_xy16')->where('id',$prior_id)->setInc('win_num',1);
+	                    }else{
+	                    	$prizeinfo[$k]=0;
+	                    }
+
+	                }
+	                $bid=$v['id'];
+	                $this->userBidModel->where('id',$bid)->setField('prizeinfo',json_encode($prizeinfo));
+	            }
+	            break;
+	        case 'xygyj': //幸运冠亚军
+                $id=Db::name('game_xygyj')->where('period','thisTimes')->value('id');
+	    	    $prior_id=$id-1;
+	    	    //设置赔率
+	    	    $x=array();
+	    	    foreach($this->scale_init['xygyj'] as $k=>$v){
+					$x[$k]=approximate_num($v[0],10,100);
+			    }
+	    	    Db::name('game_xygyj')->where('id',$prior_id)->setField('bidrate',json_encode($x));
+	    	    $row=Db::name('game_xygyj')->where('id',$prior_id)->find();
+	            $result=$row['result'];
+	    	    $num=$result;
+
+	            $map['game_number']=$row['id'];//上期期号
+	            $map['game_id']=5;//幸运冠亚的ID
+	            $data=collection($this->userBidModel->where($map)->select())->toArray();//所有投注此游戏的用户数据
+	            
+
+	            foreach($data as $v){
+	            	$prizeinfo=array();
+	                $bidinfo=json_decode($v['bidinfo'],true);
+	                $gid=$v['game_id'];
+	                $oid=$v['game_number'];
+	                $uid=$v['user_id'];
+	                foreach($bidinfo as $k=>$w){
+	                    if('f'.$num==$k){
+	                    	// $z=array_values($w);
+	                    	$win_coin=floor($w*$x['f'.$num]);
+
+	                    	$this->userModel->where('uid',$uid)->setInc('coin',$win_coin);
+	                    	$game=get_game($gid);
+	                    	$coin=$this->userModel->where('uid',$uid)->value('coin');
+	                    	adduserlog($uid,$game['name'].'第'.$oid.'期,中奖'.$win_coin.'金币',$win_coin,0,$coin,'hit');//hit类型:游戏中奖
+	                    	$prizeinfo[$k]=$win_coin;
+	                    	//添加中奖人数
+	                    	Db::name('game_xygyj')->where('id',$prior_id)->setInc('win_num',1);
+	                    }else{
+	                    	$prizeinfo[$k]=0;
+	                    }
+
+	                }
+	                $bid=$v['id'];
+	                $this->userBidModel->where('id',$bid)->setField('prizeinfo',json_encode($prizeinfo));
+	            }
+	            break;
+	        case 'xy22': //幸运22
+                $id=Db::name('game_xy22')->where('period','thisTimes')->value('id');
+	    	    $prior_id=$id-1;
+	    	    //设置赔率
+	    	    $x=array();
+	    	    foreach($this->scale_init['xy22'] as $k=>$v){
+					$x[$k]=approximate_num($v[0],10,100);
+			    }
+	    	    Db::name('game_xy22')->where('id',$prior_id)->setField('bidrate',json_encode($x));
+	    	    $row=Db::name('game_xy22')->where('id',$prior_id)->find();
+	            $result=$row['result'];
+	    	    $num=$result;
+
+	            $map['game_number']=$row['id'];//上期期号
+	            $map['game_id']=6;//幸运冠亚的ID
+	            $data=collection($this->userBidModel->where($map)->select())->toArray();//所有投注此游戏的用户数据
+	            
+
+	            foreach($data as $v){
+	            	$prizeinfo=array();
+	                $bidinfo=json_decode($v['bidinfo'],true);
+	                $gid=$v['game_id'];
+	                $oid=$v['game_number'];
+	                $uid=$v['user_id'];
+	                foreach($bidinfo as $k=>$w){
+	                    if('f'.$num==$k){
+	                    	// $z=array_values($w);
+	                    	$win_coin=floor($w*$x['f'.$num]);
+
+	                    	$this->userModel->where('uid',$uid)->setInc('coin',$win_coin);
+	                    	$game=get_game($gid);
+	                    	$coin=$this->userModel->where('uid',$uid)->value('coin');
+	                    	adduserlog($uid,$game['name'].'第'.$oid.'期,中奖'.$win_coin.'金币',$win_coin,0,$coin,'hit');//hit类型:游戏中奖
+	                    	$prizeinfo[$k]=$win_coin;
+	                    	//添加中奖人数
+	                    	Db::name('game_xy22')->where('id',$prior_id)->setInc('win_num',1);
 	                    }else{
 	                    	$prizeinfo[$k]=0;
 	                    }

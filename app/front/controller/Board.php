@@ -15,7 +15,7 @@ class Board extends Site
         // $this->site_name=Config::get('site_name');
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
-        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+        if(empty($this->uid)) { $this->redirect('/common/login');}
     }
     public function index()
     {   

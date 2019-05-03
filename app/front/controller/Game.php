@@ -30,13 +30,15 @@ class Game extends Site
         // //$map['create_time']= array(array('EGT',$begin_time),array('LT',$end_time));
         // $s=collection(Db::name('user_bid')->field('prizeinfo')->where($map)->select())->toArray();
         // var_dump($s);
-        $modes=collection($this->userBidmodeModel->order('id asc')->select())->toArray();
-        var_dump($modes);
+        // $modes=collection($this->userBidmodeModel->order('id asc')->select())->toArray();
+        // var_dump($modes);
+        // $zz=get_game_detail(5,82);
+        // var_dump(json_decode($zz['bidrate'],true));
     }
 	public function _initialize()
     {   
         parent::_initialize();
-        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+        if(empty($this->uid)) { $this->redirect('/common/login');}
         $this->gameModel = new gameModel();
         $this->userBidModel=new userBidModel();
         $this->userBidmodeModel=new userBidmodeModel();
@@ -59,7 +61,10 @@ class Game extends Site
         }
         // var_dump($listgame);
         $this->assign('games',$listgame);
-        if(empty($this->gid)) $this->gid=1;
+        if(empty($this->gid)) {
+            $this->gid=1;
+        }
+
         $this->game=$this->gameModel->where('id',$this->gid)->find();
         $this->assign('game',$this->game);
 
@@ -96,6 +101,9 @@ class Game extends Site
                 case 1:
                 case 2:
                 case 3:
+                case 4:
+                case 5:
+                case 6:
                     $page=isset($post['page'])?$post['page']:1;
                     $offset=20*($page-1);
                     $game=get_game($gid);
@@ -122,7 +130,7 @@ class Game extends Site
                         }elseif($prior['result']=='TIE'){
                             $data_['win_no']=3;
                         }
-                    }elseif($gid==2 || $gid==3){
+                    }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6){
                         $data_['win_no']=$prior['result'];
                     }
 
@@ -149,7 +157,7 @@ class Game extends Site
                         $list1['result']=$l['desc'];
                         if($gid==1) {
                             $list1['win_no']=$l['result']=='PLAYER'?2:(($l['result']=='BANKER')?1:3);
-                        }elseif($gid==2 || $gid==3){
+                        }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6){
                             $list1['win_no']=strval($l['result']);
                         }
                         $list1['total_money']=$l['total_money'];//所有用户投注的金币总和
@@ -198,7 +206,7 @@ class Game extends Site
                     $_data['dayCount']['betting']=$day_betting;//本人今日参与本游戏的期数
                     $_data['dayCount']['scale']=(!empty($day_sum_num) && ($day_win_num>=0))?sprintf("%.2f",($day_win_num/$day_sum_num)*100).'%':'0%'; //本人今日参与此游戏的获胜率
 
-                    $_data['is_auto']=0;
+                    $_data['isAuto']=0;
 
                     $data['data']=$_data;
 
@@ -258,6 +266,36 @@ class Game extends Site
                     break;
                 case 3:
                     $panel=$scale_init['xy11'];
+                    // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
+                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
+                 
+                    foreach($list as $k=>$v){
+                        $list[$k]['result']=$v['result'];
+                    }
+                    $this->assign('list',$list);
+                    break;
+                case 4:
+                    $panel=$scale_init['xy16'];
+                    // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
+                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
+                 
+                    foreach($list as $k=>$v){
+                        $list[$k]['result']=$v['result'];
+                    }
+                    $this->assign('list',$list);
+                    break;
+                case 5:
+                    $panel=$scale_init['xygyj'];
+                    // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
+                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
+                 
+                    foreach($list as $k=>$v){
+                        $list[$k]['result']=$v['result'];
+                    }
+                    $this->assign('list',$list);
+                    break;
+                case 6:
+                    $panel=$scale_init['xy22'];
                     // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
                     $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
                  
@@ -362,87 +400,95 @@ class Game extends Site
     public function total()
     {   
         $prefix = Config::get('database.prefix');
-        $lists=array();
+        $list=array();
+        $rows=array();
         //今天
         $uid=$this->uid;
         $begin_time=strtotime(date('Y-m-d'));
         $end_time=strtotime("+1 day",$begin_time);
-        $sql="SELECT `a`.`id`,`a`.`name`,sum(`b`.`bidmoney`) as bidmoney,`b`.`prizeinfo` FROM `{$prefix}game` `a` LEFT  JOIN `{$prefix}user_bid` `b` ON `a`.`id`=`b`.`game_id`  and `b`.`user_id`={$uid} and  ( `b`.`create_time` >= {$begin_time} AND `b`.`create_time` < {$end_time} ) GROUP BY a.id";
+        $sql_="SELECT `a`.`id`,`a`.`name`,sum(`b`.`bidmoney`) as bidmoney,`b`.`prizeinfo` FROM `{$prefix}game` `a` LEFT  JOIN `{$prefix}user_bid` `b` ON `a`.`id`=`b`.`game_id`  and `b`.`user_id`={$uid} and ";
+        $sql=$sql_." ( `b`.`create_time` >= {$begin_time} AND `b`.`create_time` < {$end_time} ) GROUP BY a.id";
         $rows=collection(Db::query($sql))->toArray();
         
         foreach($rows as $k=>$v){
-            $list['name']=$v['name'];
-            $list['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+            $list[$k][0]=$v['name'];
+            $list[$k][1]=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
         }
-        $lists[0]=$list;
-        unset($map);unset($list);
+        
+        unset($map);unset($rows);unset($v);
         //昨天
         $end_time=strtotime(date('Y-m-d'));
         $begin_time=strtotime("-1 day",$end_time);
-        $list=collection(Db::query($sql))->toArray();
-        foreach($list as $k=>$v){
-            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        $sql=$sql_." ( `b`.`create_time` >= {$begin_time} AND `b`.`create_time` < {$end_time} ) GROUP BY a.id";
+        $rows=collection(Db::query($sql))->toArray();
+        foreach($rows as $k=>$v){
+            $list[$k][2]=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
         }
         
-        $lists[1]=$list;
-        unset($map);unset($list);
+        unset($map);unset($rows);unset($v);
 
         //前天
         $cur_time=strtotime(date('Y-m-d'));
         $begin_time=strtotime("-2 day",$cur_time);
         $end_time=strtotime("-1 day",$cur_time);
-        $list=collection(Db::query($sql))->toArray();
-        foreach($list as $k=>$v){
-            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        $sql=$sql_." ( `b`.`create_time` >= {$begin_time} AND `b`.`create_time` < {$end_time} ) GROUP BY a.id";
+        $rows=collection(Db::query($sql))->toArray();
+        foreach($rows as $k=>$v){
+            $list[$k][3]=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
         }
-        $lists[2]=$list;
-        unset($map);unset($list);
+
+        unset($map);unset($rows);unset($v);
         
         //大前天
         $cur_time=strtotime(date('Y-m-d'));
         $begin_time=strtotime("-3 day",$cur_time);
         $end_time=strtotime("-2 day",$cur_time);
-        $list=collection(Db::query($sql))->toArray();
-        foreach($list as $k=>$v){
-            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        $sql=$sql_." ( `b`.`create_time` >= {$begin_time} AND `b`.`create_time` < {$end_time} ) GROUP BY a.id";
+        $rows=collection(Db::query($sql))->toArray();
+        foreach($rows as $k=>$v){
+            $list[$k][4]=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
         }
-        $lists[3]=$list;
-        unset($map);unset($list);
+        $this->assign('minus_four',$begin_time);
+        // echo $sql;exit;
+        unset($map);unset($rows);unset($v);
 
         //大大前天
         $cur_time=strtotime(date('Y-m-d'));
         $begin_time=strtotime("-4 day",$cur_time);
         $end_time=strtotime("-3 day",$cur_time);
-        $list=collection(Db::query($sql))->toArray();
-        foreach($list as $k=>$v){
-            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        $sql=$sql_." ( `b`.`create_time` >= {$begin_time} AND `b`.`create_time` < {$end_time} ) GROUP BY a.id";
+        $rows=collection(Db::query($sql))->toArray();
+        foreach($rows as $k=>$v){
+            $list[$k][5]=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
         }
-        $lists[4]=$list;
-        unset($map);unset($list);
+        $this->assign('minus_five',$begin_time);
+        unset($map);unset($rows);unset($v);
 
         //大大大前天
         $cur_time=strtotime(date('Y-m-d'));
         $begin_time=strtotime("-5 day",$cur_time);
         $end_time=strtotime("-4 day",$cur_time);
-        $list=collection(Db::query($sql))->toArray();
-        foreach($list as $k=>$v){
-            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        $sql=$sql_." ( `b`.`create_time` >= {$begin_time} AND `b`.`create_time` < {$end_time} ) GROUP BY a.id";
+        $rows=collection(Db::query($sql))->toArray();
+        foreach($rows as $k=>$v){
+            $list[$k][6]=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
         }
-        $lists[5]=$list;
-        unset($map);unset($list);
+        $this->assign('minus_six',$begin_time);
+        unset($map);unset($rows);unset($v);
 
         //大大大大前天
         $cur_time=strtotime(date('Y-m-d'));
         $begin_time=strtotime("-6 day",$cur_time);
         $end_time=strtotime("-5 day",$cur_time);
-        $list=collection(Db::query($sql))->toArray();
-        foreach($list as $k=>$v){
-            $list[$k]['winmoney']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
+        $sql=$sql_." ( `b`.`create_time` >= {$begin_time} AND `b`.`create_time` < {$end_time} ) GROUP BY a.id";
+        $rows=collection(Db::query($sql))->toArray();
+        foreach($rows as $k=>$v){
+            $list[$k][7]=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0-$v['bidmoney'];
         }
-        $lists[6]=$list;
-        unset($map);unset($list);
-        var_dump($lists);
-        $this->assign('lists',$lists);
+        $this->assign('minus_seven',$begin_time);
+        unset($map);unset($rows);unset($v);
+        // var_dump($list);exit;
+        $this->assign('list',$list);
         return $this->fetch();
     }
 
@@ -614,7 +660,7 @@ class Game extends Site
                 $rows_b['number']=$v['game_number'];
                 if($post['gid']==1){
                     $rows_b['win_no']=$zz['result']=='PLAYER'?2:($zz['result']=='BANKER'?1:3);
-                }elseif($post['gid']==2){
+                }else{
                     $rows_b['win_no']=$zz['result'];
                 }
                 $rows_b['total_money']=$v['bidmoney'];
@@ -638,7 +684,7 @@ class Game extends Site
             $post=$this->request->post();
             $gid=$post['gid'];
             $oid=$post['oid'];
-            $id=$post['id'];
+            $id=$post['id'];//用户投注的序号ID
             // $map['game_id']=$gid;
             // $map['game_number']=$oid;
             $map['id']=$id;
@@ -655,10 +701,9 @@ class Game extends Site
             $data['time']=date('Y-m-d H:i:s',$zz['open_time']);
             $game=get_game($gid);
             $scale_init=Config::get('scale_init');
-            $scale_init_=$scale_init[$game['code']];
+            // $scale_init_=$scale_init[$game['code']];
             $f=array();
             $arr=array();
-
             $scale_draw=json_decode($zz['bidrate'],true);
             $scale_prev=json_decode($zz_prior['bidrate'],true);
             
@@ -758,7 +803,7 @@ class Game extends Site
 
             $open_time=Db::name('game_'.$code)->where('id',$oid)->value('open_time');
             $stop_time=$open_time-time();
-            if(empty(Session::get('uid'))){
+            if(empty($this->uid)){
                 $data['code']=302;
                 $data['msg']='未登录，或登录超时，请重新登录！';
                 echo json_encode($data);exit;

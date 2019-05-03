@@ -48,8 +48,8 @@ class User extends Site
         //是否绑定了代理,可以进入代理后台
         $agent_id=$this->agentModel->where('user_id',$this->uid)->value('id');
         $this->assign('agent_id',$agent_id);
-
-        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+        
+        if(empty($this->uid)) { $this->redirect('/common/login');}
 
         
     }

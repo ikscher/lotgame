@@ -1,8 +1,9 @@
-<div class="bet-mode">
+<!-- <div class="bet-mode">
     <div class="my-mode">
         <label>我的投注模式：</label>
         <a href="/games/mode?gid=4">[编辑模式]</a>
-    </div>            <div class="group">
+    </div>     -->        
+    <div class="group">
         <a role="userModel" data-m="2">单</a>
         <a role="userModel" data-m="1">双</a>
         <a role="userModel" data-m="4">大</a>
@@ -56,11 +57,11 @@
 </div>
 <div class="bet-btn after">
     <div class="power">
-        <img src="/Public/home/images/chips_10000.png" onclick="chips(10000, 1)">
-        <img src="/Public/home/images/chips_100000.png" onclick="chips(100000, 2)">
-        <img src="/Public/home/images/chips_500000.png" onclick="chips(500000, 3)">
-        <img src="/Public/home/images/chips_1000000.png" onclick="chips(1000000, 4)">
-        <img src="/Public/home/images/chips_5000000.png" onclick="chips(5000000, 5)">
+        <img src="__IMAGE__/chips_10000.png" onclick="chips(10000, 1)">
+        <img src="__IMAGE__/chips_100000.png" onclick="chips(100000, 2)">
+        <img src="__IMAGE__/chips_500000.png" onclick="chips(500000, 3)">
+        <img src="__IMAGE__/chips_1000000.png" onclick="chips(1000000, 4)">
+        <img src="__IMAGE__/chips_5000000.png" onclick="chips(5000000, 5)">
     </div>
     <div class="desh">
         <input id="betsLeft" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')">
@@ -75,8 +76,12 @@
     </div>
     <div class="total">
         <label>总投注：</label>
-        <i id="bet-total">0</i>
+        <i id="bet-total">{notempty name="$bidmoney"}{$bidmoney}{else /}0{/notempty}</i>
+        {if condition="$action eq 'bet'"}
         <button class="btn" type="button" id="bet-submit">确认投注</button>
+        {elseif condition="$action eq 'mode'"}
+        <button class="btn" type="button" id="mode-submit">保存</button>
+        {/if}
     </div>
 </div>
 <div class="bet-nos after">
@@ -96,8 +101,8 @@
                 <td><i>6</i></td>
                 <td>120.0000</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f6"></td>
-                <td><input name="tbNum[]" role="f6" data-index="0" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f6" {notempty name="$bids['f6']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f6" data-index="0" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f6']"}value="{$bids['f6']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f6" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f6" data-num="2">2</button>
@@ -107,8 +112,8 @@
                 <td><i>7</i></td>
                 <td>120.0000</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f7"></td>
-                <td><input name="tbNum[]" role="f7" data-index="1" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f7" {notempty name="$bids['f7']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f7" data-index="1" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f7']"}value="{$bids['f7']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f7" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f7" data-num="2">2</button>
@@ -118,8 +123,8 @@
                 <td><i>8</i></td>
                 <td>60.0000</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f8"></td>
-                <td><input name="tbNum[]" role="f8" data-index="2" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f8" {notempty name="$bids['f8']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f8" data-index="2" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f8']"}value="{$bids['f8']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f8" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f8" data-num="2">2</button>
@@ -129,8 +134,8 @@
                 <td><i>9</i></td>
                 <td>40.0000</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f9"></td>
-                <td><input name="tbNum[]" role="f9" data-index="3" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f9" {notempty name="$bids['f9']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f9" data-index="3" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f9']"}value="{$bids['f9']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f9" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f9" data-num="2">2</button>
@@ -140,8 +145,8 @@
                 <td><i>10</i></td>
                 <td>30.0000</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f10"></td>
-                <td><input name="tbNum[]" role="f10" data-index="4" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f10" {notempty name="$bids['f10']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f10" data-index="4" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f10']"}value="{$bids['f10']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f10" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f10" data-num="2">2</button>
@@ -151,203 +156,211 @@
                 <td><i>11</i></td>
                 <td>24.0000</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f11"></td>
-                <td><input name="tbNum[]" role="f11" data-index="5" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f11" {notempty name="$bids['f11']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f11" data-index="5" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f11']"}value="{$bids['f11']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f11" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f11" data-num="2">2</button>
                     <button class="btn beilv" role="f11" data-num="10">10</button>
                 </td>
-            </tr><tr>
+            </tr>
+            <tr>
                 <td><i>12</i></td>
                 <td>17.1429</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f12"></td>
-                <td><input name="tbNum[]" role="f12" data-index="6" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f12" {notempty name="$bids['f12']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f12" data-index="6" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f12']"}value="{$bids['f12']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f12" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f12" data-num="2">2</button>
                     <button class="btn beilv" role="f12" data-num="10">10</button>
                 </td>
-            </tr><tr>
+            </tr>
+            <tr>
                 <td><i>13</i></td>
                 <td>15.0000</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f13"></td>
-                <td><input name="tbNum[]" role="f13" data-index="7" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f13" {notempty name="$bids['f13']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f13" data-index="7" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f13']"}value="{$bids['f13']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f13" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f13" data-num="2">2</button>
                     <button class="btn beilv" role="f13" data-num="10">10</button>
                 </td>
-            </tr><tr>
+            </tr>
+            <tr>
                 <td><i>14</i></td>
                 <td>13.3333</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f14"></td>
-                <td><input name="tbNum[]" role="f14" data-index="8" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f14" {notempty name="$bids['f14']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f14" data-index="8" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f14']"}value="{$bids['f14']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f14" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f14" data-num="2">2</button>
                     <button class="btn beilv" role="f14" data-num="10">10</button>
                 </td>
-            </tr><tr>
+            </tr>
+            <tr>
                 <td><i>15</i></td>
                 <td>12.0000</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f15"></td>
-                <td><input name="tbNum[]" role="f15" data-index="9" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f15" {notempty name="$bids['f15']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f15" data-index="9" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f15']"}value="{$bids['f15']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f15" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f15" data-num="2">2</button>
                     <button class="btn beilv" role="f15" data-num="10">10</button>
                 </td>
-            </tr><tr>
+            </tr>
+            <tr>
                 <td><i>16</i></td>
                 <td>12.0000</td>
                 <td>0</td>
-                <td><input type="checkbox" name="chk" role="f16"></td>
-                <td><input name="tbNum[]" role="f16" data-index="10" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
+                <td><input type="checkbox" name="chk" role="f16" {notempty name="$bids['f16']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f16" data-index="10" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f16']"}value="{$bids['f16']}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f16" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f16" data-num="2">2</button>
                     <button class="btn beilv" role="f16" data-num="10">10</button>
                 </td>
-            </tr>                </tbody>
-        </table>
-        <table class="r">
-            <thead>
-                <tr>
-                    <th width="10%">号码</th>
-                    <th width="16%">赔率</th>
-                    <th width="19%">已投注</th>
-                    <th width="10%">选择</th>
-                    <th width="21%">投注</th>
-                    <th width="24%">倍数</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><i>17</i></td>
-                    <td>12.0000</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f17"></td>
-                    <td><input name="tbNum[]" role="f17" data-index="11" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f17" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f17" data-num="2">2</button>
-                        <button class="btn beilv" role="f17" data-num="10">10</button>
-                    </td>
-                </tr><tr>
-                    <td><i>18</i></td>
-                    <td>12.0000</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f18"></td>
-                    <td><input name="tbNum[]" role="f18" data-index="12" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f18" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f18" data-num="2">2</button>
-                        <button class="btn beilv" role="f18" data-num="10">10</button>
-                    </td>
-                </tr><tr>
-                    <td><i>19</i></td>
-                    <td>13.3333</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f19"></td>
-                    <td><input name="tbNum[]" role="f19" data-index="13" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f19" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f19" data-num="2">2</button>
-                        <button class="btn beilv" role="f19" data-num="10">10</button>
-                    </td>
-                </tr><tr>
-                    <td><i>20</i></td>
-                    <td>15.0000</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f20"></td>
-                    <td><input name="tbNum[]" role="f20" data-index="14" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f20" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f20" data-num="2">2</button>
-                        <button class="btn beilv" role="f20" data-num="10">10</button>
-                    </td>
-                </tr><tr>
-                    <td><i>21</i></td>
-                    <td>17.1429</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f21"></td>
-                    <td><input name="tbNum[]" role="f21" data-index="15" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f21" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f21" data-num="2">2</button>
-                        <button class="btn beilv" role="f21" data-num="10">10</button>
-                    </td>
-                </tr><tr>
-                    <td><i>22</i></td>
-                    <td>24.0000</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f22"></td>
-                    <td><input name="tbNum[]" role="f22" data-index="16" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f22" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f22" data-num="2">2</button>
-                        <button class="btn beilv" role="f22" data-num="10">10</button>
-                    </td>
-                </tr><tr>
-                    <td><i>23</i></td>
-                    <td>30.0000</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f23"></td>
-                    <td><input name="tbNum[]" role="f23" data-index="17" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f23" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f23" data-num="2">2</button>
-                        <button class="btn beilv" role="f23" data-num="10">10</button>
-                    </td>
-                </tr><tr>
-                    <td><i>24</i></td>
-                    <td>40.0000</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f24"></td>
-                    <td><input name="tbNum[]" role="f24" data-index="18" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f24" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f24" data-num="2">2</button>
-                        <button class="btn beilv" role="f24" data-num="10">10</button>
-                    </td>
-                </tr><tr>
-                    <td><i>25</i></td>
-                    <td>60.0000</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f25"></td>
-                    <td><input name="tbNum[]" role="f25" data-index="19" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f25" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f25" data-num="2">2</button>
-                        <button class="btn beilv" role="f25" data-num="10">10</button>
-                    </td>
-                </tr><tr>
-                    <td><i>26</i></td>
-                    <td>120.0000</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f26"></td>
-                    <td><input name="tbNum[]" role="f26" data-index="20" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f26" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f26" data-num="2">2</button>
-                        <button class="btn beilv" role="f26" data-num="10">10</button>
-                    </td>
-                </tr><tr>
-                    <td><i>27</i></td>
-                    <td>120.0000</td>
-                    <td>0</td>
-                    <td><input type="checkbox" name="chk" role="f27"></td>
-                    <td><input name="tbNum[]" role="f27" data-index="21" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></td>
-                    <td>
-                        <button class="btn beilv" role="f27" data-num="0.5">.5</button>
-                        <button class="btn beilv" role="f27" data-num="2">2</button>
-                        <button class="btn beilv" role="f27" data-num="10">10</button>
-                    </td>
-                </tr>                </tbody>
-            </table>
-        </div>
+            </tr>                
+        </tbody>
+    </table>
+    <table class="r">
+        <thead>
+            <tr>
+                <th width="10%">号码</th>
+                <th width="16%">赔率</th>
+                <th width="19%">已投注</th>
+                <th width="10%">选择</th>
+                <th width="21%">投注</th>
+                <th width="24%">倍数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><i>17</i></td>
+                <td>12.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f17" {notempty name="$bids['f17']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f17" data-index="11" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f17']"}value="{$bids['f17']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f17" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f17" data-num="2">2</button>
+                    <button class="btn beilv" role="f17" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>18</i></td>
+                <td>12.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f18" {notempty name="$bids['f18']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f18" data-index="12" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f18']"}value="{$bids['f18']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f18" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f18" data-num="2">2</button>
+                    <button class="btn beilv" role="f18" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>19</i></td>
+                <td>13.3333</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f19" {notempty name="$bids['f19']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f19" data-index="13" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f19']"}value="{$bids['f19']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f19" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f19" data-num="2">2</button>
+                    <button class="btn beilv" role="f19" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>20</i></td>
+                <td>15.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f20" {notempty name="$bids['f20']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f20" data-index="14" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f20']"}value="{$bids['f20']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f20" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f20" data-num="2">2</button>
+                    <button class="btn beilv" role="f20" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>21</i></td>
+                <td>17.1429</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f21" {notempty name="$bids['f21']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f21" data-index="15" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f21']"}value="{$bids['f21']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f21" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f21" data-num="2">2</button>
+                    <button class="btn beilv" role="f21" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>22</i></td>
+                <td>24.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f22" {notempty name="$bids['f22']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f22" data-index="16" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f22']"}value="{$bids['f22']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f22" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f22" data-num="2">2</button>
+                    <button class="btn beilv" role="f22" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>23</i></td>
+                <td>30.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f23" {notempty name="$bids['f23']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f23" data-index="17" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f23']"}value="{$bids['f23']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f23" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f23" data-num="2">2</button>
+                    <button class="btn beilv" role="f23" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>24</i></td>
+                <td>40.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f24" {notempty name="$bids['f24']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f24" data-index="18" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f24']"}value="{$bids['f24']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f24" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f24" data-num="2">2</button>
+                    <button class="btn beilv" role="f24" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>25</i></td>
+                <td>60.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f25" {notempty name="$bids['f25']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f25" data-index="19" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f25']"}value="{$bids['f25']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f25" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f25" data-num="2">2</button>
+                    <button class="btn beilv" role="f25" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>26</i></td>
+                <td>120.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f26" {notempty name="$bids['f26']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f26" data-index="20" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f26']"}value="{$bids['f26']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f26" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f26" data-num="2">2</button>
+                    <button class="btn beilv" role="f26" data-num="10">10</button>
+                </td>
+            </tr><tr>
+                <td><i>27</i></td>
+                <td>120.0000</td>
+                <td>0</td>
+                <td><input type="checkbox" name="chk" role="f27" {notempty name="$bids['f27']"}checked{/notempty}></td>
+                <td><input name="tbNum[]" role="f27" data-index="21" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f27']"}value="{$bids['f27']}"{/notempty}></td>
+                <td>
+                    <button class="btn beilv" role="f27" data-num="0.5">.5</button>
+                    <button class="btn beilv" role="f27" data-num="2">2</button>
+                    <button class="btn beilv" role="f27" data-num="10">10</button>
+                </td>
+            </tr>                
+        </tbody>
+    </table>
+</div>
+<input name="hidTimes" id="hidTimes" type="hidden" value="1">

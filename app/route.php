@@ -113,6 +113,9 @@ Route::rule('game/test','front/game/test');
 Route::rule('data/baccarat','front/data/baccarat');
 Route::rule('data/luckyten','front/data/luckyten');
 Route::rule('data/luckyeleven','front/data/luckyeleven');
+Route::rule('data/luckysixteen','front/data/luckysixteen');
+Route::rule('data/luckyrank','front/data/luckyrank');
+Route::rule('data/luckytwentytwo','front/data/luckytwentytwo');
 Route::rule('info/check','front/info/check');
 
 

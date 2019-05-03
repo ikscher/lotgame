@@ -11,7 +11,7 @@ class Article extends Site
 	public function _initialize()
     {   
         parent::_initialize();
-        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+        if(empty($this->uid)) { $this->redirect('/common/login');}
         $this->articleModel = new articleModel();
         // $this->site_name=Config::get('site_name');
         $controller=$this->request->controller();

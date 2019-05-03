@@ -29,7 +29,7 @@ class Operate extends Site
         $this->cardcateModel = new cardcateModel();
         $this->cardPwdModel = new cardPwdModel();
         $this->userExchangeModel=new userExchangeModel();
-        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+        if(empty($this->uid)) { $this->redirect('/common/login');}
     }
 
     

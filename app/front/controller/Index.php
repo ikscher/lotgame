@@ -21,7 +21,7 @@ class Index extends Site
         $site_name=Config::get('site_name');
     	$boards=$this->boardModel->limit(5)->select();
         
-        $uid=Session::get('uid');
+        $uid=$this->uid;
         if(!empty($uid)){
             $this->assign('uid',$uid);
         }

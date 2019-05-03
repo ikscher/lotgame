@@ -11,34 +11,77 @@
         <table>
             <tr>
                 <th>游戏名称</th>
-                <th>今天</th><th>昨天</th><th>前天</th><th>04-17</th><th>04-16</th><th>04-15</th><th>04-14</th><th>汇总</th>                
+                <th>今天</th><th>昨天</th><th>前天</th><th>{$minus_four|date='m-d',###}</th><th>{$minus_five|date='m-d',###}</th><th>{$minus_six|date='m-d',###}</th><th>{$minus_seven|date='m-d',###}</th><th>汇总</th>                
             </tr>
-            {volist name="lists" id="data"}
-            <tr>
-                <td>{$data['name']}</td>
-                <td>0</td>   
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td><span class="win_color">100</span></td>
-                <td>0</td>
+            {volist name="list" id="data"}
+            <tr class="row">
+                <td>{$data[0]}</td>
+                <td class="wl one"><span {if condition="$data[1] gt 0"}class="win_color"{elseif condition="$data[1] lt 0"/}class="lose_color"{/if}>{$data[1]}</span></td>   
+                <td class="wl two"><span {if condition="$data[2] gt 0"}class="win_color"{elseif condition="$data[2] lt 0"/}class="lose_color"{/if}>{$data[2]}</span></td>
+                <td class="wl three"><span {if condition="$data[3] gt 0"}class="win_color"{elseif condition="$data[3] lt 0"/}class="lose_color"{/if}>{$data[3]}</span></td>
+                <td class="wl four"><span {if condition="$data[4] gt 0"}class="win_color"{elseif condition="$data[4] lt 0"/}class="lose_color"{/if}>{$data[4]}</span></td>
+                <td class="wl five"><span {if condition="$data[5] gt 0"}class="win_color"{elseif condition="$data[5] lt 0"/}class="lose_color"{/if}>{$data[5]}</span></td>
+                <td class="wl six"><span {if condition="$data[6] gt 0"}class="win_color"{elseif condition="$data[6] lt 0"/}class="lose_color"{/if}>{$data[6]}</span></td>
+                <td class="wl seven"><span {if condition="$data[7] gt 0"}class="win_color"{elseif condition="$data[7] lt 0"/}class="lose_color"{/if}>{$data[7]}</span></td>
+                <td class="wla eight"></td>
             </tr>
             {/volist}
-            <tr>
+            <tr class="ca">
                 <td>总数</td>
-                <td><span class="lose_color">-100</span></td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td><span class="lose_color">-100</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>            
         </table>
     </div>
 
 </div>
 {include file="public/footer" /}
+
+<script type="text/javascript">
+    var sum;
+    var aggregate=[];
+    aggregate[0]=0;aggregate[1]=0;aggregate[2]=0;aggregate[3]=0;aggregate[4]=0;aggregate[5]=0;aggregate[6]=0;aggregate[7]=0;
+    $('tr.row').each(function(i,w){
+        //单行汇总
+        sum=0;
+        $(w).children('td.wl').each(function(j,z){
+            sum+=parseInt($(z).children('span').text());
+        })
+        if(sum>0){
+            $(w).children('td.wla').append('<span class="win_color">'+sum+'</span>');
+        }else if(sum<0){
+            $(w).children('td.wla').append('<span class="lose_color">'+sum+'</span>');
+        }else{
+            $(w).children('td.wla').text(0);
+        }
+        
+
+        
+        aggregate[0]+=parseInt($(w).children('td.one').text());
+        aggregate[1]+=parseInt($(w).children('td.two').text());
+        aggregate[2]+=parseInt($(w).children('td.three').text());
+        aggregate[3]+=parseInt($(w).children('td.four').text());
+        aggregate[4]+=parseInt($(w).children('td.five').text());
+        aggregate[5]+=parseInt($(w).children('td.six').text());
+        aggregate[6]+=parseInt($(w).children('td.seven').text());
+        aggregate[7]+=parseInt($(w).children('td.eight').text());
+    })
+    // console.log(aggregate)
+    $('tr.ca td').each(function(i,w){
+        if(i==0) { return;}
+        if(aggregate[i-1]>0){
+            $(w).append('<span class="win_color">'+aggregate[i-1]+'</span>');
+        }else if(aggregate[i-1]<0){
+            $(w).append('<span class="lose_color">'+aggregate[i-1]+'</span>');
+        }else{
+            $(w).text(0);
+        }
+    })
+
+</script>

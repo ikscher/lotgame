@@ -21,7 +21,7 @@ class Capital extends Site
         $this->agentCateModel = new agentCateModel();
         $this->agentLogModel = new agentLogModel();
         $this->agentDepositModel = new agentDepositModel();
-        if(empty(Session::get('uid'))) { $this->redirect('/common/login');}
+        if(empty($this->uid)) { $this->redirect('/common/login');}
     }
 
     //代理信息

@@ -379,15 +379,13 @@ class Game extends Permissions
 
                 echo $code;
             }else{
-                $sql="alter table {$table} drop column `max_bets` "; //json保存
-                $this->model->query($sql);
-                $sql="alter table {$table} drop column `min_bets` "; //json保存
-                $this->model->query($sql);
+                // $sql="alter table {$table} drop column `max_bets` "; //json保存
                 // $sql="alter table {$table} add column `win_num` int(11) default 0"; //json保存
                 // $sql="alter table {$table} add column `bet_num` int(11) default 0"; //json保存
                 // $sql="alter table {$table} add column `status` tinyint(1)   COMMENT  '1：未开奖的，2：已开奖的'"; //json保存
                 // $sql="alter table {$table} add column `odd` varchar(300)   COMMENT  '开奖赔率'"; //json保存
-                // $this->model->query($sql);
+                $sql="ALTER TABLE {$table} MODIFY `bidrate` varchar(500) default null";
+                $this->model->query($sql);
             }
         }
 
