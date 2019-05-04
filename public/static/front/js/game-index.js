@@ -471,7 +471,7 @@ function fetchRest(o, i){
                 html += '<i class="kj kj_' + res.third_value + '"></i>';
                 html += '<i class="hdeng"></i>';
                 html += '<i class="mh m' + o.win_no + '"></i>';
-                if(GID != 5 && GID != 43){
+                if(GID != 7 && GID != 43){
                     html += '<a href="javascript:;" onclick="checkRes(' + i + ')" class="check">验证</a>';
                 }
             }
@@ -486,7 +486,7 @@ function fetchRest(o, i){
                 html += '<i class="kj kj_' + res.third_value + '"></i>';
                 html += '<i class="hdeng"></i>';
                 html += '<i class="zh z' + o.win_no + '"></i>';
-                if(GID != 6){
+                if(GID != 8){
                     html += '<a href="javascript:;" onclick="checkRes(' + i + ')" class="check">验证</a>';
                 }
             }
@@ -786,7 +786,7 @@ function dyeResult(result){
         case 110:
         case 111:
         case 112:
-            if(GID == 5 || GID == 43){
+            if(GID == 7 || GID == 43){
                 var returnData = {};
                 returnData['first_value'] = result[0];
                 returnData['second_value'] = result[1];
@@ -860,7 +860,7 @@ function dyeResult(result){
             }
             break;
         case 5:
-            if(GID == 6){
+            if(GID == 8){
                 var returnData = {};
                 returnData['first_value'] = result[0];
                 returnData['second_value'] = result[1];

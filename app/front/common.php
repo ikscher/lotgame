@@ -24,6 +24,13 @@ function get_game_detail($gid,$game_number)
 }
 
 /**
+* 返回豹顺对半杂
+*/
+function get_five_char($no){
+    $arr=array('1'=>'豹','2'=>'顺','3'=>'对','4'=>'半','5'=>'杂');
+    return $arr[$no];
+}
+/**
 **无限接近生成数，开奖几率
 * @param $basenum基数
 * @param $from 

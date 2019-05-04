@@ -22,15 +22,11 @@
             <input id="txtModelName" type="text" value="模式1">
             <button type="button" class="btn" id="btnremove">删除</button>
         </div>
-    {switch name="$gid"}
-        {case value="1"}{include file="game/betting_xybjl" /}{/case}
-        {case value="2"}{include file="game/betting_xy10" /}{/case}
-        {case value="3"}{include file="game/betting_xy11" /}{/case}
-        {case value="4"}{include file="game/betting_xy16" /}{/case}
-        {case value="5"}{include file="game/betting_xygyj" /}{/case}
-        {case value="6"}{include file="game/betting_xy22" /}{/case}
-        
-    {/switch}  
+    {in name="gid" value="1,2,3,4,5,6,7"}
+        {include file="game/betting_template_number" /}
+    {else/}
+        {include file="game/betting_template_char" /}
+    {/in}  
 
 </div>
 

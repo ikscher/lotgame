@@ -25,6 +25,7 @@ $('#bet-submit').on('click', function(){
             }
         }
         
+        
         $.ajax({
             url: '/game/betting_submit',
             type: 'post',

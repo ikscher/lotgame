@@ -116,6 +116,8 @@ Route::rule('data/luckyeleven','front/data/luckyeleven');
 Route::rule('data/luckysixteen','front/data/luckysixteen');
 Route::rule('data/luckyrank','front/data/luckyrank');
 Route::rule('data/luckytwentytwo','front/data/luckytwentytwo');
+Route::rule('data/luckytwentyeight','front/data/luckytwentyeight');
+Route::rule('data/luckythirtysix','front/data/luckythirtysix');
 Route::rule('info/check','front/info/check');
 
 

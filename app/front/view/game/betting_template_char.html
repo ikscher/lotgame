@@ -1,48 +1,8 @@
 <!-- <div class="bet-mode">
     <div class="my-mode">
         <label>我的投注模式：</label>
-        <a href="/games/mode?gid=5">[编辑模式]</a>
-    </div>    -->         
-    <div class="group">
-        <a role="userModel" data-m="2">单</a>
-        <a role="userModel" data-m="1">双</a>
-        <a role="userModel" data-m="4">大</a>
-        <a role="userModel" data-m="3">小</a>
-        <a role="userModel" data-m="5">中</a>
-        <a role="userModel" data-m="6">边</a>
-        <a role="userModel" data-m="7">大单</a>
-        <a role="userModel" data-m="8">小单</a>
-        <a role="userModel" data-m="9">大双</a>
-        <a role="userModel" data-m="10">小双</a>
-        <a role="userModel" data-m="11">大边</a>
-        <a role="userModel" data-m="12">小边</a>
-        <a role="userModel" data-m="37">单边</a>
-        <a role="userModel" data-m="38">双边</a>
-        <a role="userModel" data-m="13">0尾</a>
-        <a role="userModel" data-m="14">1尾</a>
-        <a role="userModel" data-m="15">2尾</a>
-        <a role="userModel" data-m="16">3尾</a>
-        <a role="userModel" data-m="17">4尾</a>
-        <a role="userModel" data-m="18">小尾</a>
-        <a role="userModel" data-m="19">5尾</a>
-        <a role="userModel" data-m="20">6尾</a>
-        <a role="userModel" data-m="21">7尾</a>
-        <a role="userModel" data-m="22">8尾</a>
-        <a role="userModel" data-m="23">9尾</a>
-        <a role="userModel" data-m="24">大尾</a>
-        <a role="userModel" data-m="25">3余0</a>
-        <a role="userModel" data-m="26">3余1</a>
-        <a role="userModel" data-m="27">3余2</a>
-        <a role="userModel" data-m="28">4余0</a>
-        <a role="userModel" data-m="29">4余1</a>
-        <a role="userModel" data-m="30">4余2</a>
-        <a role="userModel" data-m="31">4余3</a>
-        <a role="userModel" data-m="32">5余0</a>
-        <a role="userModel" data-m="33">5余1</a>
-        <a role="userModel" data-m="34">5余2</a>
-        <a role="userModel" data-m="35">5余3</a>
-        <a role="userModel" data-m="36">5余4</a>
-    </div>            
+        <a href="/games/mode?gid=6">[编辑模式]</a>
+    </div>    -->                     
     <div class="group d">
         <a role="chgAllTimes" data-m="0.1">0.1倍</a>
         <a role="chgAllTimes" data-m="0.5">0.5倍</a>
@@ -100,19 +60,18 @@
         <tbody>
             {volist name="items_left" id="vo" key="k"}
             <tr>
-                <td><i>{$vo[1]}</i></td>
+                <td><i>{$vo[1]|get_five_char}</i></td>
                 <td>{$vo[0]}</td>
                 <!-- <td>0</td> -->
-                <td><input type="checkbox" name="chk" role="f{$vo[1]}"  {notempty name="$bids['f'.$vo[1]]"}checked{/notempty}></td>
+                <td><input type="checkbox" name="chk" role="f{$vo[1]}" {notempty name="$bids['f'.$vo[1]]"}checked{/notempty}></td>
                 <td><input name="tbNum[]" role="f{$vo[1]}" data-index="{$k-1}" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f'.$vo[1]]"}value="{$bids['f'.$vo[1]]}"{/notempty}></td>
                 <td>
                     <button class="btn beilv" role="f{$vo[1]}" data-num="0.5">.5</button>
                     <button class="btn beilv" role="f{$vo[1]}" data-num="2">2</button>
                     <button class="btn beilv" role="f{$vo[1]}" data-num="10">10</button>
                 </td>
-            </tr>
-            {/volist}
-            
+            </tr> 
+            {/volist}     
         </tbody>
     </table>
     <table class="r">
@@ -129,7 +88,7 @@
         <tbody>
             {volist name="items_right" id="vo" key="k"}
             <tr>
-                <td><i>{$vo[1]}</i></td>
+                <td><i>{$vo[1]|get_five_char}</i></td>
                 <td>{$vo[0]}</td>
                 <!-- <td>0</td> -->
                 <td><input type="checkbox" name="chk" role="f{$vo[1]}" {notempty name="$bids['f'.$vo[1]]"}checked{/notempty}></td>
@@ -140,8 +99,7 @@
                     <button class="btn beilv" role="f{$vo[1]}" data-num="10">10</button>
                 </td>
             </tr>
-            {/volist}
-           
+            {/volist}             
         </tbody>
     </table>
 </div>

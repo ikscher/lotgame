@@ -460,7 +460,7 @@ function dyeResult(result){
         case 110:
         case 111:
         case 112:
-            if(GID == 5 || GID == 43){
+            if(GID == 7 || GID == 43){
                 var returnData = {};
                 returnData['first_value'] = result[0];
                 returnData['second_value'] = result[1];

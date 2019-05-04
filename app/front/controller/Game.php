@@ -48,7 +48,9 @@ class Game extends Site
         $controller=$this->request->controller();
         $this->assign('controller',$controller);
       
-        
+        $this->scale_init=Config::get('scale_init');
+        // $this->assign('scale_init',$this->scale_init);
+
         $this->gid = $this->request->has('gid') ? $this->request->param('gid', 0, 'intval') : 1;
         $this->assign('gid',$this->gid);
        
@@ -104,6 +106,8 @@ class Game extends Site
                 case 4:
                 case 5:
                 case 6:
+                case 7:
+                case 8:
                     $page=isset($post['page'])?$post['page']:1;
                     $offset=20*($page-1);
                     $game=get_game($gid);
@@ -130,7 +134,7 @@ class Game extends Site
                         }elseif($prior['result']=='TIE'){
                             $data_['win_no']=3;
                         }
-                    }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6){
+                    }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8){
                         $data_['win_no']=$prior['result'];
                     }
 
@@ -157,7 +161,7 @@ class Game extends Site
                         $list1['result']=$l['desc'];
                         if($gid==1) {
                             $list1['win_no']=$l['result']=='PLAYER'?2:(($l['result']=='BANKER')?1:3);
-                        }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6){
+                        }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8){
                             $list1['win_no']=strval($l['result']);
                         }
                         $list1['total_money']=$l['total_money'];//所有用户投注的金币总和
@@ -236,75 +240,29 @@ class Game extends Site
     public function get_chart()
     {   
         if($this->request->isGet()){
-            $scale_init=Config::get('scale_init');
             $get=$this->request->get();
             $gid=$get['gid'];
             $code=Db::name('game')->where('id',$gid)->value('code');
             $page_size=$get['page_size'];
             
             $this->assign('page_size',$page_size);
-            switch($gid){
-                case 1:
-                    $panel=$scale_init['xybjl'];
-                    $standardTimes=array();
-                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
-                 
-                    foreach($list as $k=>$v){
-                        $list[$k]['result']=$v['result']=='BANKER'?'庄':($v['result']=='PLAYER'?'闲':'和');
-                    }
-                    $this->assign('list',$list);
-                    break;
-                case 2:
-                    $panel=$scale_init['xy10'];
-                    // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
-                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
-                 
-                    foreach($list as $k=>$v){
-                        $list[$k]['result']=$v['result'];
-                    }
-                    $this->assign('list',$list);
-                    break;
-                case 3:
-                    $panel=$scale_init['xy11'];
-                    // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
-                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
-                 
-                    foreach($list as $k=>$v){
-                        $list[$k]['result']=$v['result'];
-                    }
-                    $this->assign('list',$list);
-                    break;
-                case 4:
-                    $panel=$scale_init['xy16'];
-                    // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
-                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
-                 
-                    foreach($list as $k=>$v){
-                        $list[$k]['result']=$v['result'];
-                    }
-                    $this->assign('list',$list);
-                    break;
-                case 5:
-                    $panel=$scale_init['xygyj'];
-                    // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
-                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
-                 
-                    foreach($list as $k=>$v){
-                        $list[$k]['result']=$v['result'];
-                    }
-                    $this->assign('list',$list);
-                    break;
-                case 6:
-                    $panel=$scale_init['xy22'];
-                    // $standardTimes=array(10,10,10,10,10,10,10,10,10,10,50,50,50,50,50,50);
-                    $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
-                 
-                    foreach($list as $k=>$v){
-                        $list[$k]['result']=$v['result'];
-                    }
-                    $this->assign('list',$list);
-                    break;
+            
+            $panel=$this->scale_init[$code];
+            $standardTimes=array();
+            $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
+            
+            if($gid==1){
+                foreach($list as $k=>$v){
+                    $list[$k]['result']=$v['result']=='BANKER'?'庄':($v['result']=='PLAYER'?'闲':'和');
+                }
+            }else{
+                foreach($list as $k=>$v){
+                    $list[$k]['result']=$v['result'];
+                }
             }
+            $this->assign('list',$list);
+           
+            
 
             $title= array();
             foreach($panel as $v){
@@ -518,6 +476,19 @@ class Game extends Site
         $map['gid']=$this->gid;
         $modes=$this->userBidmodeModel->where($map)->order('id asc')->select();
         $this->assign('modes',$modes);
+        
+        //投注项
+        $items=$this->scale_init[$this->game['code']];
+        $len=sizeof($items);
+        $len=ceil($len/2);
+        $items_fr=array_chunk($items,$len);
+        
+        $items_left=$items_fr[0];
+        $items_right=$items_fr[1];
+        $left_half=count($items_left);
+        $this->assign('items_left',$items_left);
+        $this->assign('items_right',$items_right);
+        $this->assign('left_half',$left_half);
 
         return $this->fetch();
     }
@@ -551,7 +522,7 @@ class Game extends Site
             $post=$this->request->post();
             // echo json_encode($post);exit;
             $gid=$post['gid'];
-            $betting=$post['betting'];
+            $betting=!empty($post['betting'])?$post['betting']:array();
             $mode_id=$post['mid'];
             $mode_name=$post['mname'];
             if($mode_id>0){//修改
@@ -700,7 +671,7 @@ class Game extends Site
             $zz_prior=get_game_detail($gid,$oid-1);
             $data['time']=date('Y-m-d H:i:s',$zz['open_time']);
             $game=get_game($gid);
-            $scale_init=Config::get('scale_init');
+            // $scale_init=Config::get('scale_init');
             // $scale_init_=$scale_init[$game['code']];
             $f=array();
             $arr=array();
@@ -709,9 +680,13 @@ class Game extends Site
             
             $prizeinfo=json_decode($row['prizeinfo'],true);
             $arr=json_decode($row['bidinfo'],true);
-            foreach($scale_init[$game['code']] as $k=>$v){
-                
-                $f["$k"]['no']=$v[1];
+
+            foreach($this->scale_init[$game['code']] as $k=>$v){
+                if($gid==8){
+                    $f["$k"]['no']=get_five_char($v[1]);
+                }else{
+                    $f["$k"]['no']=$v[1];
+                }
                 $f["$k"]['scale_init']=isset($v[0])?$v[0]:'';
                 $f["$k"]['scale_draw']=isset($scale_draw["$k"])?$scale_draw["$k"]:'';
                 $f["$k"]['scale_prev']=isset($scale_prev["$k"])?$scale_prev["$k"]:'';
@@ -739,6 +714,19 @@ class Game extends Site
         $map['user_id']=$this->uid;
         $modes=$this->userBidmodeModel->where($map)->select();
         $this->assign('modes',$modes);
+        
+        //投注项
+        $items=$this->scale_init[$this->game['code']];
+        $len=sizeof($items);
+        $len=ceil($len/2);
+        $items_fr=array_chunk($items,$len);
+
+        $items_left=$items_fr[0];
+        $items_right=$items_fr[1];
+        $left_half=count($items_left);
+        $this->assign('items_left',$items_left);
+        $this->assign('items_right',$items_right);
+        $this->assign('left_half',$left_half);
         
         //剩余开奖时间
         $open_time=Db::name('game_'.$this->game['code'])->where('id',$oid)->value('open_time');

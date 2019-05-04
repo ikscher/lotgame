@@ -17,4 +17,11 @@
    file_get_contents('http://test.lotgame.com/data/luckytwentytwo');//幸运冠亚军
    file_get_contents('http://test.lotgame.com/info/check?code=xy22'); //核对中奖用户
    
+   file_get_contents('http://test.lotgame.com/data/luckytwentyeight');//幸运28
+   file_get_contents('http://test.lotgame.com/info/check?code=xy28'); //核对中奖用户
+   
+   
+   file_get_contents('http://test.lotgame.com/data/luckythirtysix');//幸运36
+   file_get_contents('http://test.lotgame.com/info/check?code=xy36'); //核对中奖用户
+   
 ?>

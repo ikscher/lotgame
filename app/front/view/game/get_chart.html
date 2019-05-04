@@ -111,5 +111,19 @@
         $(w).text(countOccurences(chararr,c));
     })
 
+    $('td em').each(function(i,w){
+        var n=parseInt($(w).text());
+        var char=get_five_char(n);
+        $(w).text(char);
+    })
 
+    function get_five_char(n){
+        var m = new Map();
+        m.set(1, "豹");
+        m.set(2, "顺");
+        m.set(3, "对");
+        m.set(4, "半");
+        m.set(5, "杂");
+        return m.get(n);
+    }
 </script>
