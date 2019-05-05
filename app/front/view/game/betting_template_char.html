@@ -60,7 +60,7 @@
         <tbody>
             {volist name="items_left" id="vo" key="k"}
             <tr>
-                <td><i>{$vo[1]|get_five_char}</i></td>
+                <td><i>{if condition="$gid eq 8"}{$vo[1]|get_five_char}{elseif condition="$gid eq 1"}{$vo[1]|get_card_party}{/if}</i></td>
                 <td>{$vo[0]}</td>
                 <!-- <td>0</td> -->
                 <td><input type="checkbox" name="chk" role="f{$vo[1]}" {notempty name="$bids['f'.$vo[1]]"}checked{/notempty}></td>
@@ -88,7 +88,7 @@
         <tbody>
             {volist name="items_right" id="vo" key="k"}
             <tr>
-                <td><i>{$vo[1]|get_five_char}</i></td>
+                <td><i>{if condition="$gid eq 8"}{$vo[1]|get_five_char}{elseif condition="$gid eq 1"}{$vo[1]|get_card_party}{/if}</i></td>
                 <td>{$vo[0]}</td>
                 <!-- <td>0</td> -->
                 <td><input type="checkbox" name="chk" role="f{$vo[1]}" {notempty name="$bids['f'.$vo[1]]"}checked{/notempty}></td>

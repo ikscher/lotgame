@@ -30,6 +30,14 @@ function get_five_char($no){
     $arr=array('1'=>'豹','2'=>'顺','3'=>'对','4'=>'半','5'=>'杂');
     return $arr[$no];
 }
+
+/**返回 庄闲和
+*
+*/
+function get_card_party($no){
+    $arr=array('1'=>'庄','2'=>'闲','3'=>'和');
+    return $arr[$no];
+}
 /**
 **无限接近生成数，开奖几率
 * @param $basenum基数

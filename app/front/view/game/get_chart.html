@@ -110,13 +110,7 @@
         // console.log(countOccurences(idarr,t));
         $(w).text(countOccurences(chararr,c));
     })
-
-    $('td em').each(function(i,w){
-        var n=parseInt($(w).text());
-        var char=get_five_char(n);
-        $(w).text(char);
-    })
-
+    
     function get_five_char(n){
         var m = new Map();
         m.set(1, "豹");
@@ -126,4 +120,30 @@
         m.set(5, "杂");
         return m.get(n);
     }
+
+    function get_card_party(n){
+        var m = new Map();
+        m.set(1, "庄");
+        m.set(2, "闲");
+        m.set(3, "和");
+        return m.get(n);
+    }
+
+    {if condition="$gid eq 8"}
+    $('td em').each(function(i,w){
+        var n=parseInt($(w).text());
+        var char=get_five_char(n);
+        $(w).text(char);
+    });
+    {/if}
+
+    {if condition="$gid eq 1"}
+    $('td em').each(function(i,w){
+        var n=parseInt($(w).text());
+        var char=get_card_party(n);
+        $(w).text(char);
+    });
+    {/if}
+
+    
 </script>

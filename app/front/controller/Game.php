@@ -108,6 +108,7 @@ class Game extends Site
                 case 6:
                 case 7:
                 case 8:
+                case 9:
                     $page=isset($post['page'])?$post['page']:1;
                     $offset=20*($page-1);
                     $game=get_game($gid);
@@ -134,7 +135,7 @@ class Game extends Site
                         }elseif($prior['result']=='TIE'){
                             $data_['win_no']=3;
                         }
-                    }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8){
+                    }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8 || $gid==9){
                         $data_['win_no']=$prior['result'];
                     }
 
@@ -161,7 +162,7 @@ class Game extends Site
                         $list1['result']=$l['desc'];
                         if($gid==1) {
                             $list1['win_no']=$l['result']=='PLAYER'?2:(($l['result']=='BANKER')?1:3);
-                        }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8){
+                        }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8 || $gid==9){
                             $list1['win_no']=strval($l['result']);
                         }
                         $list1['total_money']=$l['total_money'];//所有用户投注的金币总和
@@ -253,7 +254,7 @@ class Game extends Site
             
             if($gid==1){
                 foreach($list as $k=>$v){
-                    $list[$k]['result']=$v['result']=='BANKER'?'庄':($v['result']=='PLAYER'?'闲':'和');
+                    $list[$k]['result']=$v['result']=='BANKER'?'1':($v['result']=='PLAYER'?'2':'3');
                 }
             }else{
                 foreach($list as $k=>$v){
@@ -684,6 +685,8 @@ class Game extends Site
             foreach($this->scale_init[$game['code']] as $k=>$v){
                 if($gid==8){
                     $f["$k"]['no']=get_five_char($v[1]);
+                }elseif($gid==1){
+                    $f["$k"]['no']=get_card_party($v[1]);
                 }else{
                     $f["$k"]['no']=$v[1];
                 }
