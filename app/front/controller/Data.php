@@ -1179,7 +1179,7 @@ class Data extends Controller
     /**
     *采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖
     */
-    public function dandan28()
+    public function dandanwaiwei21()
     {
         $str='07,11,13,16,19,20,22,29,40,43,45,46,47,58,61,62,66,67,75,80';
         $arr=explode(',',$str);

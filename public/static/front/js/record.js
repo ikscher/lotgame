@@ -481,7 +481,7 @@ function dyeResult(result){
 
                 $.each(result, function(i,o){
                     var ii = i+1;
-                    if(GID == 8 || GID == 33 || GID == 27 || GID==47){//蛋蛋28
+                    if(GID == 8 || GID == 10 || GID == 27 || GID==47){//蛋蛋28
                         if(ii >= 1 && ii < 7){
                             nos[i] = '<i style="color:red">' + o + '</i>';
                             first.push(nos[i]);

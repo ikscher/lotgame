@@ -109,6 +109,7 @@ class Game extends Site
                 case 7:
                 case 8:
                 case 9:
+                case 10:
                     $page=isset($post['page'])?$post['page']:1;
                     $offset=20*($page-1);
                     $game=get_game($gid);
@@ -135,7 +136,7 @@ class Game extends Site
                         }elseif($prior['result']=='TIE'){
                             $data_['win_no']=3;
                         }
-                    }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8 || $gid==9){
+                    }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8 || $gid==9 || $gid==10){
                         $data_['win_no']=$prior['result'];
                     }
 
@@ -162,7 +163,7 @@ class Game extends Site
                         $list1['result']=$l['desc'];
                         if($gid==1) {
                             $list1['win_no']=$l['result']=='PLAYER'?2:(($l['result']=='BANKER')?1:3);
-                        }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8 || $gid==9){
+                        }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8 || $gid==9 || $gid==10){
                             $list1['win_no']=strval($l['result']);
                         }
                         $list1['total_money']=$l['total_money'];//所有用户投注的金币总和
@@ -171,7 +172,11 @@ class Game extends Site
                         $list1['status']=$l['status'];
                         $list1['times_id']=$l['id'];
                         $list1['draw_time_full']=date('Y-m-d H:i:s',$l['open_time']);
-                        
+                        if($gid=='10' && !empty($l['result'])){
+                            $list1['win_no_ww']=array_map('get_fnum_title',single_double($l['result']));
+                        } else{
+                            $list1['win_no_ww']=[];
+                        }
                         $map['game_id']=$gid;
                         $map['game_number']=$l['id'];
                         $map['user_id']=$this->uid;
@@ -635,6 +640,11 @@ class Game extends Site
                 }else{
                     $rows_b['win_no']=$zz['result'];
                 }
+                if($post['gid']=='10' && !empty($zz['result'])){
+                    $rows_b['win_no_ww']=array_map('get_fnum_title',single_double($zz['result']));
+                } else{
+                    $rows_b['win_no_ww']=[];
+                }
                 $rows_b['total_money']=$v['bidmoney'];
                 $rows_b['win_money']=!empty($v['prizeinfo'])?array_sum(json_decode($v['prizeinfo'],true)):0;
                 $rows_b['win_count']=$rows_b['win_money']-$rows_b['total_money'];
@@ -687,6 +697,8 @@ class Game extends Site
                     $f["$k"]['no']=get_five_char($v[1]);
                 }elseif($gid==1){
                     $f["$k"]['no']=get_card_party($v[1]);
+                }elseif($gid==10){
+                    $f["$k"]['no']=get_num_title($v[1]);
                 }else{
                     $f["$k"]['no']=$v[1];
                 }

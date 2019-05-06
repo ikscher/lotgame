@@ -60,8 +60,15 @@
         <tbody>
             {volist name="items_left" id="vo" key="k"}
             <tr>
-                <td><i>{if condition="$gid eq 8"}{$vo[1]|get_five_char}{elseif condition="$gid eq 1"}{$vo[1]|get_card_party}{/if}</i></td>
-                <td>{$vo[0]}</td>
+                <td><i>
+                    {if condition="$gid eq 8"}
+                        {$vo[1]|get_five_char}
+                    {elseif condition="$gid eq 1"}
+                        {$vo[1]|get_card_party}
+                    {elseif condition="$gid eq 10"}
+                        {$vo[1]|get_num_title}
+                    {/if}</i></td>
+                <td><?php echo number_format($vo[0],4,'.','');?></td>
                 <!-- <td>0</td> -->
                 <td><input type="checkbox" name="chk" role="f{$vo[1]}" {notempty name="$bids['f'.$vo[1]]"}checked{/notempty}></td>
                 <td><input name="tbNum[]" role="f{$vo[1]}" data-index="{$k-1}" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f'.$vo[1]]"}value="{$bids['f'.$vo[1]]}"{/notempty}></td>
@@ -88,8 +95,15 @@
         <tbody>
             {volist name="items_right" id="vo" key="k"}
             <tr>
-                <td><i>{if condition="$gid eq 8"}{$vo[1]|get_five_char}{elseif condition="$gid eq 1"}{$vo[1]|get_card_party}{/if}</i></td>
-                <td>{$vo[0]}</td>
+                <td><i>
+                    {if condition="$gid eq 8"}
+                        {$vo[1]|get_five_char}
+                    {elseif condition="$gid eq 1"}
+                        {$vo[1]|get_card_party}
+                    {elseif condition="$gid eq 10"}
+                        {$vo[1]|get_num_title}
+                    {/if}</i></td>
+                <td><?php echo number_format($vo[0],4,'.','');?></td>
                 <!-- <td>0</td> -->
                 <td><input type="checkbox" name="chk" role="f{$vo[1]}" {notempty name="$bids['f'.$vo[1]]"}checked{/notempty}></td>
                 <td><input name="tbNum[]" role="f{$vo[1]}" data-index="{$left_half+$k-1}" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')" {notempty name="$bids['f'.$vo[1]]"}value="{$bids['f'.$vo[1]]}"{/notempty}></td>

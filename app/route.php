@@ -119,6 +119,7 @@ Route::rule('data/luckytwentytwo','front/data/luckytwentytwo');
 Route::rule('data/luckytwentyeight','front/data/luckytwentyeight');
 Route::rule('data/luckythirtysix','front/data/luckythirtysix');
 Route::rule('data/dandan28','front/data/dandan28');
+Route::rule('data/dandanwaiwei21','front/data/dandanwaiwei21');
 Route::rule('info/check','front/info/check');
 
 

@@ -38,6 +38,70 @@ function get_card_party($no){
     $arr=array('1'=>'庄','2'=>'闲','3'=>'和');
     return $arr[$no];
 }
+
+/**
+*返回单双小极
+*/
+function get_num_title($no){
+     $arr=array(1=>'单',2=>'双',3=>'大',4=>'小',5=>'小单',6=>'小双',7=>'大单',8=>'大双',9=>'极小',10=>'极大');
+     return $arr[$no];
+}
+
+/**
+*返回单双小极
+*/
+function get_fnum_title($no){
+     $arr=array('f1'=>'单','f2'=>'双','f3'=>'大','f4'=>'小','f5'=>'小单','f6'=>'小双','f7'=>'大单','f8'=>'大双','f9'=>'极小','f10'=>'极大');
+     return $arr[$no];
+}
+/*****
+// 'ddww21'=>[
+  // 'f1'=>array(2.1000,1), //单
+  // 'f2'=>array(2.1000,2), //双
+  // 'f3'=>array(2.1000,3), //大
+  // 'f4'=>array(2.1000,4), //小
+  // 'f5'=>array(4.6000,5), //小单
+  // 'f6'=>array(4.2000,6), //小双
+  // 'f7'=>array(4.2000,7), //大单
+  // 'f8'=>array(4.6000,8), //大双
+  // 'f9'=>array(17.0000,9),  //极小
+  // 'f10'=>array(17.0000,10) //极大
+// ],
+*/
+function single_double($no){
+    $data=array();
+    $r=$no%2;
+    if($r==0){
+       array_push($data,'f2');
+    }else{
+        array_push($data,'f1');
+    }
+    
+    if($no>=22){
+        array_push($data,'f10');
+    }
+    
+    if($no<=5){
+        array_push($data,'f9');
+    }
+    
+    if($no<=13){
+         array_push($data,'f4');
+         if($r==0){
+            array_push($data,'f6');
+         }else{
+            array_push($data,'f5');
+         }
+    }else{
+        array_push($data,'f3');
+         if($r==0){
+            array_push($data,'f8');
+         }else{
+            array_push($data,'f7');
+         }
+    }
+    return $data;
+}
 /**
 **无限接近生成数，开奖几率
 * @param $basenum基数
