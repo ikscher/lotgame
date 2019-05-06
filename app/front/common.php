@@ -48,10 +48,28 @@ function get_num_title($no){
 }
 
 /**
+*返回单双小极豹顺对
+*/
+function get_num_title_($no){
+     $arr=array(1=>'单',2=>'双',3=>'大',4=>'小',5=>'小单',6=>'小双',7=>'大单',8=>'大双',9=>'豹',10=>'顺',11=>'对');
+     return $arr[$no];
+}
+
+
+
+/**
 *返回单双小极
 */
 function get_fnum_title($no){
      $arr=array('f1'=>'单','f2'=>'双','f3'=>'大','f4'=>'小','f5'=>'小单','f6'=>'小双','f7'=>'大单','f8'=>'大双','f9'=>'极小','f10'=>'极大');
+     return $arr[$no];
+}
+
+/**
+*返回单双小豹顺对
+*/
+function get_fnum_title_($no){
+     $arr=array('f1'=>'单','f2'=>'双','f3'=>'大','f4'=>'小','f5'=>'小单','f6'=>'小双','f7'=>'大单','f8'=>'大双','f9'=>'豹','f10'=>'顺','f11'=>'对');
      return $arr[$no];
 }
 /*****
@@ -68,7 +86,7 @@ function get_fnum_title($no){
   // 'f10'=>array(17.0000,10) //极大
 // ],
 */
-function single_double($no){
+function single_double($no,$flag=true){
     $data=array();
     $r=$no%2;
     if($r==0){
@@ -77,14 +95,16 @@ function single_double($no){
         array_push($data,'f1');
     }
     
-    if($no>=22){
-        array_push($data,'f10');
+    if($flag==true){
+      if($no>=22){
+          array_push($data,'f10');
+      }
+      
+      if($no<=5){
+          array_push($data,'f9');
+      }
     }
-    
-    if($no<=5){
-        array_push($data,'f9');
-    }
-    
+
     if($no<=13){
          array_push($data,'f4');
          if($r==0){
@@ -140,6 +160,50 @@ function dividedbythree($x,$y){
         $arr[1]=floor($x/3)*2+$y;
     }
     return $arr;
+}
+
+
+/**
+ * 计算顺子、对子、半顺、豹子、杂六
+ * @param array 数组
+ * @return 数组下标0 对应豹子、对子   数组下标1 对应顺子、半顺、杂六
+ */
+function verdictBSDBZ($arr){
+  if(!is_array($arr)) return ;
+  $array = array_map("intval", $arr);
+  sort($array);
+ 
+    if($array[0] == 0 && $array[1] == 1 && $array[2] == 9){
+        $win = 2;//顺
+    }else if($array[0] == 0 && $array[1] == 8 && $array[2] == 9){
+        $win = 2;//顺
+    }else{
+        //存储计算结果
+        $resultArray = array();
+        //计算豹子、对子
+        $resultArray[0] = $array[2] - $array[1] == 0 ? 1 : 0;
+        $resultArray[0] = $array[1] - $array[0] == 0 ? ++$resultArray[0] : $resultArray[0];
+        //计算顺子、半顺、杂六
+        $resultArray[1] = $array[2] - $array[1] == 1 ? 1 : 0;
+        $resultArray[1] = $array[1] - $array[0] == 1 ? ++$resultArray[1] :  $resultArray[1];
+
+        if($resultArray[0] == 1){
+            $win = 3;//对
+        }else if($resultArray[0] == 2){
+            $win = 1;//豹
+        }else if($resultArray[1] == 1){
+            $win = 4;//半
+        }else if($resultArray[1] == 2){
+            $win = 2;//顺
+        }else{
+            if($array[0] == 0 && $array[2] == 9){
+                $win = 4;//半
+            }else{
+                $win = 5;//杂
+            }
+        }
+    }
+    return $win;
 }
 
 /****

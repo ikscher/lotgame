@@ -500,6 +500,67 @@ class Info extends Controller
 	                $this->userBidModel->where('id',$bid)->setField('prizeinfo',json_encode($prizeinfo));
 	            }
 	            break;
+	        case 'ddww28': //蛋蛋外围28
+                $id=Db::name('game_ddww28')->where('period','thisTimes')->value('id');
+	    	    $prior_id=$id-1;
+	    	    
+	    	    
+	    	    $row=Db::name('game_ddww28')->where('id',$prior_id)->find();
+	    	    $endnum=$row['endnum'];//判断豹顺对
+	    	    $bsd=verdictBSDBZ($endnum);
+	    	    $bsd=$bsd==1?'f9':($bsd==2?'f10':($bsd==3?'f11':''));
+	            $result=$row['result'];
+	    	    $num=$result;//判断单双小大
+
+	    	    //设置赔率
+	    	    $x=array();
+	    	    foreach($this->scale_init['ddww28'] as $k=>$v){
+					$x[$k]=approximate_num($v[0],10,100);
+			    }
+
+			    if($num==13){ //中奖号码赔率为1
+    	    		$x['f1']=1.0000;
+                    $x['f4']=1.0000;
+                    $x['f5']=1.0000;
+    	    	}elseif($num==14){//中奖号码赔率为1
+                    $x['f3']=1.0000;
+                    $x['f2']=1.0000;
+                    $x['f8']=1.0000;
+    	    	}
+			    Db::name('game_ddww28')->where('id',$prior_id)->setField('bidrate',json_encode($x));
+               
+	            $map['game_number']=$row['id'];//上期期号
+	            $map['game_id']=29;//幸运36的ID
+	            $data=collection($this->userBidModel->where($map)->select())->toArray();//所有投注此游戏的用户数据
+	            
+
+	            foreach($data as $v){
+	            	$prizeinfo=array();
+	                $bidinfo=json_decode($v['bidinfo'],true);
+	                $gid=$v['game_id'];
+	                $oid=$v['game_number'];
+	                $uid=$v['user_id'];
+	                foreach($bidinfo as $k=>$w){
+	                    if(in_array($k,single_double($num,false)) || $k==$bsd ){
+	                    	// $z=array_values($w);
+	                    	$win_coin=floor($w*$x[$k]);
+
+	                    	$this->userModel->where('uid',$uid)->setInc('coin',$win_coin);
+	                    	$game=get_game($gid);
+	                    	$coin=$this->userModel->where('uid',$uid)->value('coin');
+	                    	adduserlog($uid,$game['name'].'第'.$oid.'期,中奖'.$win_coin.'金币',$win_coin,0,$coin,'hit');//hit类型:游戏中奖
+	                    	$prizeinfo[$k]=$win_coin;
+	                    	//添加中奖人数
+	                    	Db::name('game_ddww28')->where('id',$prior_id)->setInc('win_num',1);
+	                    }else{
+	                    	$prizeinfo[$k]=0;
+	                    }
+
+	                }
+	                $bid=$v['id'];
+	                $this->userBidModel->where('id',$bid)->setField('prizeinfo',json_encode($prizeinfo));
+	            }
+	            break;
 
     	}
     }

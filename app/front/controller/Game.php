@@ -110,6 +110,7 @@ class Game extends Site
                 case 8:
                 case 9:
                 case 10:
+                case 29:
                     $page=isset($post['page'])?$post['page']:1;
                     $offset=20*($page-1);
                     $game=get_game($gid);
@@ -136,7 +137,7 @@ class Game extends Site
                         }elseif($prior['result']=='TIE'){
                             $data_['win_no']=3;
                         }
-                    }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8 || $gid==9 || $gid==10){
+                    }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8 || $gid==9 || $gid==10 || $gid==29){
                         $data_['win_no']=$prior['result'];
                     }
 
@@ -163,7 +164,7 @@ class Game extends Site
                         $list1['result']=$l['desc'];
                         if($gid==1) {
                             $list1['win_no']=$l['result']=='PLAYER'?2:(($l['result']=='BANKER')?1:3);
-                        }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8 || $gid==9 || $gid==10){
+                        }elseif($gid==2 || $gid==3 || $gid==4 || $gid==5 || $gid==6 || $gid==7 || $gid==8 || $gid==9 || $gid==10 || $gid==29){
                             $list1['win_no']=strval($l['result']);
                         }
                         $list1['total_money']=$l['total_money'];//所有用户投注的金币总和
@@ -172,10 +173,17 @@ class Game extends Site
                         $list1['status']=$l['status'];
                         $list1['times_id']=$l['id'];
                         $list1['draw_time_full']=date('Y-m-d H:i:s',$l['open_time']);
-                        if($gid=='10' && !empty($l['result'])){
+                        if($gid==10){
                             $list1['win_no_ww']=array_map('get_fnum_title',single_double($l['result']));
-                        } else{
-                            $list1['win_no_ww']=[];
+                        }elseif($gid==29){
+                            $list1['win_no_ww']=array_map('get_fnum_title',single_double($l['result'],false));
+                            $endnum=Db::name('game_'.$code)->where('id',$l['id'])->value('endnum');
+                            if(!empty($endnum)){
+                                $c=get_five_char(verdictBSDBZ(explode(',',$endnum)));
+                                array_push($list1['win_no_ww'],$c);
+                            }
+                        }else{
+                            $list1['win_no_ww']=[];//这行是否多余
                         }
                         $map['game_id']=$gid;
                         $map['game_number']=$l['id'];
@@ -253,7 +261,23 @@ class Game extends Site
             
             $this->assign('page_size',$page_size);
             
-            $panel=$this->scale_init[$code];
+            $panel=array();
+            $title= array();
+            
+            if($gid!=10){//蛋蛋外围21
+                $panel=$this->scale_init[$code];
+                foreach($panel as $v){
+                    $title[]=$v[1];
+                }
+            }else{
+                for($i=0;$i<=27;$i++){
+                    array_push($title,$i);
+                }
+            
+            }
+        
+            $this->assign('title',$title);
+            
             $standardTimes=array();
             $list=collection(Db::name('game_'.$code)->where('status',2)->limit($page_size)->order('id desc')->select())->toArray();
             
@@ -269,12 +293,6 @@ class Game extends Site
             $this->assign('list',$list);
            
             
-
-            $title= array();
-            foreach($panel as $v){
-                $title[]=$v[1];
-            }
-            $this->assign('title',$title);
             if($gid>1){
                 $this->assign('three',dividedbythree(array_pop($title),array_shift($title)));
                 $this->assign('basenum',array_pop($title)/2);//最后一个元素即最大的一个（投注）数

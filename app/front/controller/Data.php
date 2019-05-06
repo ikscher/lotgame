@@ -940,7 +940,7 @@ class Data extends Controller
         $data['open_time']=$now;
 		$data['desc']=$a.','.$b.','.$c;
 		$input_array=explode(',',$data['desc']);
-		$data['result']=$this->verdictBSDBZ($input_array); //判断
+		$data['result']=verdictBSDBZ($input_array); //判断
 		$data['create_time']=time();
 		$data['status']=2;//已开奖
 		$data['period']='';
@@ -1304,6 +1304,136 @@ class Data extends Controller
         }
     }
 
+    //蛋蛋外围28
+    /**
+    *采用北京福彩中心快乐8数据，与PC蛋蛋结果相同，每5分钟一期，每天179期，每天0-9点暂停开奖
+    */
+    public function dandanwaiwei28()
+    {
+        $str='03,08,10,16,20,21,22,24,29,33,35,42,46,54,57,61,72,73,76,80';
+        $arr=explode(',',$str);
+
+        $arr1=array_slice($arr,0,6);
+        $arr2=array_slice($arr,6,6);
+        $arr3=array_slice($arr,12,6);
+
+        $sum1=array_sum($arr1);
+        $sum2=array_sum($arr2);
+        $sum3=array_sum($arr3);
+
+        $a=get_digit($sum1);
+        $b=get_digit($sum2);
+        $c=get_digit($sum3);
+        
+        $now=strtotime('now');
+        $data['open_time']=$now;
+        $data['desc']=$str;
+        $data['endnum']=$a.','.$b.','.$c;//位数，如987，234
+        $data['result']=$a+$b+$c; //相加结果判断
+        $data['create_time']=time();
+        $data['status']=2;//已开奖
+        $data['period']='';
+    
+        $row=Db::name('game_ddww28')->where('status',1)->order('id asc')->find();
+ 
+        $data_=array();
+        if(empty($row['id'])){//初始
+            Db::name('game_ddww28')->insert($data);
+            // $lastid=Db::name('game_xybjl')->getLastInsID();
+            $data_ = [
+                [ 'open_time' => strtotime("+1minute"),'status'=>1,'period'=>'thisTimes'],
+                [ 'open_time' => strtotime("+2minute"),'status'=>1,'period'=>''],
+                [ 'open_time' => strtotime("+3minute"),'status'=>1,'period'=>''],
+                [ 'open_time' => strtotime("+4minute"),'status'=>1,'period'=>''],
+                
+            ];
+            Db::name('game_ddww28')->insertAll($data_);
+        }elseif($row['open_time']<time()){//网络中断
+            Db::startTrans();
+            try{
+                $id=$row['id'];
+                Db::name('game_ddww28')->where('id',$id)->update($data);
+                
+                $data_ =[ 'open_time' => strtotime("+1minute"),'period'=>'thisTimes'];
+                Db::name('game_ddww28')->where('id',$id+1)->update($data_);
+                unset($data_);
+                $data_ = [ 'open_time' => strtotime("+2minute")];
+                Db::name('game_ddww28')->where('id',$id+2)->update($data_);
+                unset($data_);
+                $data_ = [ 'open_time' => strtotime("+3minute")];
+                Db::name('game_ddww28')->where('id',$id+3)->update($data_);
+                unset($data_);
+
+                $data_ = [ 'open_time' => strtotime("+4minute"),'status'=>1];
+                Db::name('game_ddww28')->insert($data_);
+                // 提交事务
+                Db::commit(); 
+                
+            }catch (\Exception $e) {
+                // 回滚事务
+                Db::rollback();
+            }
+        }else{//正常
+            Db::startTrans();
+            try{
+                $id=$row['id'];
+                Db::name('game_ddww28')->where('id',$id)->update($data);
+                //更新下一期为当期开奖期
+                $next_id=$id+1;
+                Db::name('game_ddww28')->where('id',$next_id)->update(['period'=>'thisTimes']);
+                //同时插入一条记录
+                $data_ = [ 'open_time' => strtotime("+4minute"),'status'=>1];
+                Db::name('game_ddww28')->insert($data_);
+                //自动投注用户投注$next_id这一期
+                //(1)取出自动投注此游戏的所有用户
+                $gid=29;//游戏ID
+                $map['gid']=$gid;
+                $userautomodes=collection($this->userAutoModel->where($map)->select())->toArray();
+                foreach($userautomodes as $v){
+                    if($v['start_game_no']>$next_id) continue; //自动投注起始期号大于当期开奖期号，退出
+                    if($v['done']>=$v['span']) continue; //已执行完成所有自动投注期数
+
+                    //用户自动投注信息
+                    $uid=$v['user_id'];
+                    $coin=$this->userModel->where('uid',$uid)->value('coin');
+                    if($coin>=$v['upper'] || $coin<=$v['lower']) continue;
+                    $data_bid=array();
+                    $data_bid['game_id']=$gid;
+                    $data_bid['game_number']=$next_id;
+                    $bidinfo=$this->userBidmodeModel->where('id',$v['mode_id'])->value('bidinfo');
+                    $data_bid['bidinfo']=$bidinfo;
+                    $bidmoney=array_sum(json_decode($bidinfo,true));
+                    $data_bid['bidmoney']=$bidmoney;
+                    $data_bid['create_time']=time();
+                    $data_bid['user_id']=$uid;
+                    $data_bid['is_auto']=1;
+                    Db::name('user_bid')->where('user_id',$uid)->insert($data_bid);
+
+                    //自动投注次数+1
+                    $this->userAutoModel->where('id',$v['id'])->setInc('done',1);
+
+                    //用户余额减少
+                    $this->userModel->where('uid',$uid)->setDec('coin',$bidmoney);
+
+                    //用户日志
+                    $coin=$this->userModel->where('uid',$uid)->value('coin');
+                    $game=get_game($gid);
+                    $ret6=adduserlog($uid,$game['name'].'第'.$next_id.'期,自动投注'.$bidmoney.'金币',-$bidmoney,0,$coin,'autobet');//bet类型：游戏下注
+                    
+                    //更改对应游戏表的投注总额，投注人数
+                    Db::name('game_ddww28')->where('id',$next_id)->setInc('bet_num',1);
+                    Db::name('game_ddww28')->where('id',$next_id)->setInc('total_money',$bidmoney);
+                }
+                // 提交事务
+                Db::commit(); 
+                
+            }catch (\Exception $e) {
+                // 回滚事务
+                Db::rollback();
+            }
+        }
+    }
+
 
 	private function ShowCards($cards){
 	    return implode(",", array_map(function($card){
@@ -1338,47 +1468,6 @@ class Data extends Controller
                return $card;
          }
 	}
-    /**
-	 * 计算顺子、对子、半顺、豹子、杂六
-	 * @param array 数组
-	 * @return 数组下标0 对应豹子、对子   数组下标1 对应顺子、半顺、杂六
-	 */
-	private function verdictBSDBZ($arr){
-		if(!is_array($arr)) return ;
-		$array = array_map("intval", $arr);
-		sort($array);
-	 
-	    if($array[0] == 0 && $array[1] == 1 && $array[2] == 9){
-	        $win = 2;//顺
-	    }else if($array[0] == 0 && $array[1] == 8 && $array[2] == 9){
-	        $win = 2;//顺
-	    }else{
-	        //存储计算结果
-	        $resultArray = array();
-	        //计算豹子、对子
-	        $resultArray[0] = $array[2] - $array[1] == 0 ? 1 : 0;
-	        $resultArray[0] = $array[1] - $array[0] == 0 ? ++$resultArray[0] : $resultArray[0];
-	        //计算顺子、半顺、杂六
-	        $resultArray[1] = $array[2] - $array[1] == 1 ? 1 : 0;
-	        $resultArray[1] = $array[1] - $array[0] == 1 ? ++$resultArray[1] :  $resultArray[1];
-
-	        if($resultArray[0] == 1){
-	            $win = 3;//对
-	        }else if($resultArray[0] == 2){
-	            $win = 1;//豹
-	        }else if($resultArray[1] == 1){
-	            $win = 4;//半
-	        }else if($resultArray[1] == 2){
-	            $win = 2;//顺
-	        }else{
-	            if($array[0] == 0 && $array[2] == 9){
-	                $win = 4;//半
-	            }else{
-	                $win = 5;//杂
-	            }
-	        }
-	    }
-	    return $win;
-	}
+    
 
 }

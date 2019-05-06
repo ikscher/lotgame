@@ -67,6 +67,8 @@
                         {$vo[1]|get_card_party}
                     {elseif condition="$gid eq 10"}
                         {$vo[1]|get_num_title}
+                    {elseif condition="$gid eq 29"}
+                        {$vo[1]|get_num_title_}
                     {/if}</i></td>
                 <td><?php echo number_format($vo[0],4,'.','');?></td>
                 <!-- <td>0</td> -->
@@ -102,6 +104,8 @@
                         {$vo[1]|get_card_party}
                     {elseif condition="$gid eq 10"}
                         {$vo[1]|get_num_title}
+                    {elseif condition="$gid eq 29"}
+                        {$vo[1]|get_num_title_}
                     {/if}</i></td>
                 <td><?php echo number_format($vo[0],4,'.','');?></td>
                 <!-- <td>0</td> -->

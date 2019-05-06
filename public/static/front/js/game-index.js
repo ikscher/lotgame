@@ -613,7 +613,7 @@ function checkRes(i){
         case 110:
         case 111:
         case 112:
-            if(GID == 9 || GID == 10 || GID == 27 || GID==47){
+            if(GID == 9 || GID == 10 || GID == 27 || GID==29){
                 var qu = '<td>第一区[第1/2/3/4/5/6位数字]</td><td>第二区[第7/8/9/10/11/12位数字]</td><td>第三区[第13/14/15/16/17/18位数字]</td>';
             }else{
                 var qu = '<td>第一区[第2/5/8/11/14/17位数字]</td><td>第二区[第3/6/9/12/15/18位数字]</td><td>第三区[第4/7/10/13/16/19位数字]</td>'
@@ -807,7 +807,7 @@ function dyeResult(result){
 
                 $.each(result, function(i,o){
                     var ii = i+1;
-                    if(GID == 9 || GID == 10 || GID == 27 ||GID==47){
+                    if(GID == 9 || GID == 10 || GID == 27 ||GID==29){
                         if(ii >= 1 && ii < 7){
                             nos[i] = '<i style="color:red">' + o + '</i>';
                             first.push(nos[i]);
