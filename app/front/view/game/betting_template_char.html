@@ -59,9 +59,10 @@
         </thead>
         <tbody>
             {volist name="items_left" id="vo" key="k"}
+            <!-- <?php if($vo[0]==1)  continue;  ?> -->
             <tr>
                 <td><i>
-                    {if condition="$gid eq 8"}
+                    {if condition="$gid eq 8 or $gid eq 11"}
                         {$vo[1]|get_five_char}
                     {elseif condition="$gid eq 1"}
                         {$vo[1]|get_card_party}
@@ -96,9 +97,10 @@
         </thead>
         <tbody>
             {volist name="items_right" id="vo" key="k"}
+            <!-- <?php if($vo[0]==1)  continue;  ?> -->
             <tr>
                 <td><i>
-                    {if condition="$gid eq 8"}
+                    {if condition="$gid eq 8 or $gid eq 11"}
                         {$vo[1]|get_five_char}
                     {elseif condition="$gid eq 1"}
                         {$vo[1]|get_card_party}

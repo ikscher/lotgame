@@ -24,4 +24,18 @@
    file_get_contents('http://test.lotgame.com/data/luckythirtysix');//幸运36
    file_get_contents('http://test.lotgame.com/info/check?code=xy36'); //核对中奖用户
    
+   file_get_contents('http://test.lotgame.com/data/dandan28');//蛋蛋28
+   file_get_contents('http://test.lotgame.com/info/check?code=dd28'); //核对中奖用户
+   
+   
+   file_get_contents('http://test.lotgame.com/data/dandanwaiwei21');//蛋蛋外围21
+   file_get_contents('http://test.lotgame.com/info/check?code=ddww21'); //核对中奖用户
+   
+   
+   file_get_contents('http://test.lotgame.com/data/dandanwaiwei28');//蛋蛋外围28
+   file_get_contents('http://test.lotgame.com/info/check?code=ddww28'); //核对中奖用户
+   
+   file_get_contents('http://test.lotgame.com/data/dandan36');//蛋蛋外围28
+   file_get_contents('http://test.lotgame.com/info/check?code=dd36'); //核对中奖用户
+   
 ?>

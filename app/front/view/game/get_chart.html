@@ -129,7 +129,7 @@
         return m.get(n);
     }
 
-    {if condition="$gid eq 8"}
+    {if condition="$gid eq 8 || $gid eq 11"}
     $('td em').each(function(i,w){
         var n=parseInt($(w).text());
         var char=get_five_char(n);
